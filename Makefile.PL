@@ -23,7 +23,7 @@ WriteMakefile(
       develop => {
         requires => {
           'Perl::Critic'        => '0',
-          'Perl::Tidy'          => '0',
+          'Perl::Tidy'          => '20260826',
           'Test::Pod'           => '1.52',
           'Test::Pod::Coverage' => '1.10',
         },
