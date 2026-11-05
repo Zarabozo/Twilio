@@ -1,0 +1,2 @@
+# Keep LF on every platform so the perltidy check gives the same answer on Windows.
+* text=auto eol=lf
