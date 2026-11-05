@@ -1,0 +1,7 @@
+#!include_default
+^\.git
+^\.perlcriticrc$
+^\.perltidyrc$
+^cover_db/
+^MYMETA\.
+^Twilio-

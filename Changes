@@ -1,0 +1,5 @@
+Revision history for Twilio
+
+{{NEXT}}
+    - Rewrite from scratch for the current Twilio API. Version 2 shares no
+      code or interface with 1.000.
