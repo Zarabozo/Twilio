@@ -1,0 +1,16 @@
+# Build output
+/Makefile
+/Makefile.old
+/MYMETA.*
+/blib/
+/pm_to_blib
+/MANIFEST
+/MANIFEST.bak
+/Twilio-*
+
+# Tool output
+/cover_db/
+/nytprof*
+*.bak
+*.tdy
+*.ERR
