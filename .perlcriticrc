@@ -1,0 +1,10 @@
+severity = 3
+verbose = %f:%l:%c [%p] %m\n
+program-extensions = .t
+
+# Each resource keeps its list, context and instance packages in one .pm, which gives
+# one POD page per resource instead of the five files PHP uses.
+[-Modules::ProhibitMultiplePackages]
+
+# Most patterns here are short URL and header matches, where /x adds nothing.
+[-RegularExpressions::RequireExtendedFormatting]
