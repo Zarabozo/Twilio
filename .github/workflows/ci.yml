@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Perl ${{ matrix.perl }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        perl: ['5.16', '5']
+    defaults:
+      run:
+        # On Windows, bash steps run the system Perl instead of the one set up below.
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: shogo82148/actions-setup-perl@3b59bd33efdae98406a9bc4b75a4aa041e11993a # v1.44.4
+        with:
+          perl-version: ${{ matrix.perl }}
+      - run: perl -V
+      # Perl 5.16 ships an older MakeMaker. CPAN clients get the newer one from META
+      # configure_requires, but a git checkout has no META file.
+      - run: cpanm --notest ExtUtils::MakeMaker
+      - run: perl Makefile.PL
+      - run: cpanm --installdeps --notest .
+      - name: Run the tests with the platform's make
+        run: |
+          perl -MConfig -e 'exit(system($Config{make}, q{test}) == 0 ? 0 : 1)'
+
+  author:
+    name: Author tests and distribution check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: shogo82148/actions-setup-perl@3b59bd33efdae98406a9bc4b75a4aa041e11993a # v1.44.4
+        with:
+          perl-version: '5'
+      # perltidy output changes between releases, so this matches Makefile.PL exactly.
+      - run: cpanm --notest Perl::Tidy@20260826 Perl::Critic Test::Pod Test::Pod::Coverage
+      - run: prove -lr xt
+      - run: perl Makefile.PL
+      - run: make manifest
+      - run: make distcheck
+      - run: make disttest
