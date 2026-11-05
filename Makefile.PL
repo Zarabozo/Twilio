@@ -12,14 +12,26 @@ WriteMakefile(
   MIN_PERL_VERSION   => '5.016',
   CONFIGURE_REQUIRES => { 'ExtUtils::MakeMaker' => '6.64' },
   TEST_REQUIRES      => { 'Test::More'          => '0.98' },
-  PREREQ_PM          => {},
-  test               => { RECURSIVE_TEST_FILES => 1 },
-  clean              => { FILES                => 'Twilio-* cover_db' },
-  META_MERGE         => {
+  PREREQ_PM          => {
+    'Carp'            => '0',
+    'HTTP::Tiny'      => '0.076',
+    'IO::Socket::SSL' => '1.968',
+    'JSON::PP'        => '0',
+    'MIME::Base64'    => '0',
+    'Mozilla::CA'     => '0',
+    'Net::SSLeay'     => '1.49',
+    'overload'        => '0',
+    'parent'          => '0',
+    'POSIX'           => '0',
+  },
+  test       => { RECURSIVE_TEST_FILES => 1 },
+  clean      => { FILES                => 'Twilio-* cover_db' },
+  META_MERGE => {
     'meta-spec'    => { version => 2 },
     dynamic_config => 0,
     no_index       => { directory => ['t', 'xt'] },
     prereqs        => {
+      runtime => { recommends => { 'Cpanel::JSON::XS' => '0' } },
       develop => {
         requires => {
           'Perl::Critic'        => '0',

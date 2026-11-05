@@ -8,3 +8,11 @@ program-extensions = .t
 
 # Most patterns here are short URL and header matches, where /x adds nothing.
 [-RegularExpressions::RequireExtendedFormatting]
+
+# Twilio's REST errors need five values, and the object itself should not count.
+[Subroutines::ProhibitManyArgs]
+skip_object = 1
+
+# One-line accessors are clearer without unpacking @_.
+[Subroutines::RequireArgUnpacking]
+short_subroutine_statements = 1
