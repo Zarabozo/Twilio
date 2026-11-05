@@ -1,5 +1,7 @@
 # Twilio for Perl
 
+[![CI](https://github.com/Zarabozo/Twilio/actions/workflows/ci.yml/badge.svg)](https://github.com/Zarabozo/Twilio/actions/workflows/ci.yml)
+
 A community Perl library for the [Twilio](https://www.twilio.com/) API, designed
 to feel like Twilio's official helper libraries.
 
