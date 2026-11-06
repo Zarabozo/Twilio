@@ -15,34 +15,51 @@ our $VERSION = '2.000000';
 # An entry with no value is sent or read as it is. A format that is not listed stops generation:
 # guessing would either send a value in a form Twilio rejects, or hide a date behind a string.
 my %REQUEST_WRITER = (
-  'boolean'      => 'boolean_to_string',
-  'date-time'    => 'iso8601_date_time',
-  'integer'      => undef,
-  'number'       => undef,
-  'phone-number' => undef,
-  'string'       => undef,
-  'uri'          => undef,
+  q{}                => 'json_object',         # a schema with no type holds free-form data
+  'boolean'          => 'boolean_to_string',
+  'date'             => 'iso8601_date',
+  'date-time'        => 'iso8601_date_time',
+  'endpoint'         => undef,
+  'http-method'      => undef,
+  'int64'            => undef,
+  'integer'          => undef,
+  'iso-country-code' => undef,
+  'number'           => undef,
+  'phone-number'     => undef,
+  'string'           => undef,
+  'twiml'            => undef,
+  'uri'              => undef,
 );
 
 my %FIELD_READER = (
-  'boolean'            => undef,
-  'currency'           => undef,
-  'date-time-rfc-2822' => 'date_time',
-  'integer'            => undef,
-  'number'             => undef,
-  'object'             => undef,
-  'phone-number'       => undef,
-  'string'             => undef,
-  'uri'                => undef,
-  'uri-map'            => undef,
+  q{}                         => undef,
+  'array'                     => undef,
+  'boolean'                   => undef,
+  'currency'                  => undef,
+  'date'                      => 'date_time',
+  'date-time-rfc-2822'        => 'date_time',
+  'http-method'               => undef,
+  'integer'                   => undef,
+  'iso-country-code'          => undef,
+  'number'                    => undef,
+  'object'                    => undef,
+  'phone-number'              => undef,
+  'phone-number-capabilities' => 'phone_number_capabilities',
+  'string'                    => undef,
+  'uri'                       => undef,
+  'uri-map'                   => undef,
 );
 
 sub option_name {
   my ($wire_name) = @_;
 
-  # The official libraries turn Date< and Date> into dateBefore and dateAfter.
-  my $name = $wire_name =~ s/<\z/_before/r;
+  # The official libraries turn Date< and Date> into dateBefore and dateAfter, and
+  # Parameter1.Name into parameter1Name.
+  my $name = $wire_name;
+  $name =~ s/<\z/_before/;
   $name =~ s/>\z/_after/;
+  $name =~ s/[.]/_/g;
+
   croak "Cannot name an option from '$wire_name'" if $name !~ /\A\w+\z/;
   return snake($name);
 }

@@ -15,8 +15,8 @@ use Twilio::Http::FakeClient;
 use Twilio::Rest::Client;
 use Twilio::Version;
 
-my $ACCOUNT   = 'AC1';
-my $NAMESPACE = 'Twilio::Rest::Demo::V1::Account::';
+my $ACCOUNT = 'AC1';
+our $NAMESPACE = 'Twilio::Rest::Demo::V1::Account::';
 
 load_generated(emit(document()));
 
@@ -170,15 +170,69 @@ subtest 'the generated documentation' => sub {
   like($code, qr/C<date_created> return L<Time::Piece>/,   'date fields');
 };
 
+subtest 'the other value types' => sub {
+  my $document   = document();
+  my $path       = '/v1/Accounts/{AccountSid}/Things.json';
+  my $form       = 'application/x-www-form-urlencoded';
+  my $body       = $document->{paths}{$path}{post}{requestBody}{content}{$form}{schema}{properties};
+  my $properties = $document->{components}{schemas}{thing}{properties};
+
+  $body->{Day}                = { type => 'string', format => 'date' };
+  $body->{Parameter}          = {};
+  $body->{'Parameter1.Name'}  = { type => 'string' };
+  $properties->{capabilities} = { type => 'object', format => 'phone-number-capabilities' };
+  $properties->{start_date}   = { type => 'string', format => 'date' };
+  $properties->{tags}         = { type => 'array',  items  => { type => 'string' } };
+
+  local $NAMESPACE = 'Twilio::Rest::Demo::V1::Other::';
+  my $code = emit($document) =~ s/V1::Account::/V1::Other::/gr;
+  load_generated($code);
+
+  my ($list, $http) = list();
+  $http->mock(
+    201,
+    {
+      capabilities => { MMS => \1 },
+      start_date   => '2026-11-06',
+      tags         => ['a'],
+    }
+  );
+
+  my $thing = $list->create(
+    'one', 3,
+    {
+      day             => bless({}, 'Local::Date'),
+      parameter       => { a => 1 },
+      parameter1_name => 'first',
+    }
+  );
+
+  my ($request) = $http->requests;
+  like($request->{content}, qr/Day=1970-01-01(?:&|\z)/,      'date with no time');
+  like($request->{content}, qr/Parameter=%7B%22a%22%3A1%7D/, 'free-form data as JSON');
+  like($request->{content}, qr/Parameter1[.]Name=first/,     'a dotted wire name');
+
+  isa_ok($thing->capabilities, 'Twilio::Base::PhoneNumberCapabilities');
+  is($thing->capabilities->mms, 1,            'capabilities are read');
+  is($thing->start_date->ymd,   '2026-11-06', 'a date field is read');
+  is_deeply($thing->tags, ['a'], 'an array field stays as it is');
+
+  like($code, qr/C<capabilities> return L<Twilio::Base::Phone/,            'capabilities in POD');
+  like($code, qr/C<date_created> and C<start_date> return L<Time::Piece>/, 'dates in POD');
+  like($code, qr/C<day> and C<when>\s+take\s+a\s+string/,                  'date option in POD');
+};
+
 subtest 'option names' => sub {
   is(option_name('StatusCallback'), 'status_callback',  'plain');
   is(option_name('DateSent<'),      'date_sent_before', 'before');
   is(option_name('DateSent>'),      'date_sent_after',  'after');
 
-  my $ok    = eval { option_name('Sip.Header'); 1 };
+  is(option_name('Parameter1.Name'), 'parameter1_name', 'dot');
+
+  my $ok    = eval { option_name('X-Header'); 1 };
   my $error = $@;
-  ok(!$ok, 'a name with a dot is refused');
-  like($error, qr/Cannot name an option from 'Sip[.]Header'/, 'says why');
+  ok(!$ok, 'a name with a dash is refused');
+  like($error, qr/Cannot name an option from 'X-Header'/, 'says why');
 };
 
 subtest 'anything with no rule stops generation' => sub {

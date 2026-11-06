@@ -6,6 +6,7 @@ use Test::More;
 my @modules = qw(
   Twilio
   Twilio::Base::BaseClient
+  Twilio::Base::PhoneNumberCapabilities
   Twilio::Deserialize
   Twilio::Domain
   Twilio::Exceptions::ConfigurationException
