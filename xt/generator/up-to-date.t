@@ -21,6 +21,10 @@ for my $name (sort keys %{$files}) {
   ok($same, "lib/$name is what the generator writes");
 }
 
+my $wire_rules = q{t/data/contract-api-v2010.json};
+ok(slurp($wire_rules) eq Twilio::Generator::contract_json($SPEC),
+  "$wire_rules is what the generator writes");
+
 done_testing;
 
 sub slurp {

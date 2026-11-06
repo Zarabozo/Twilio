@@ -25,3 +25,7 @@ my $files =
   Twilio::Generator::generated_files("$spec_dir/twilio_api_v2010.json", "$Bin/../.perltidyrc");
 Twilio::Generator::write_files($files, $out_dir);
 say for sort keys %{$files};
+
+my $json = Twilio::Generator::contract_json("$spec_dir/twilio_api_v2010.json");
+Twilio::Generator::write_files({ 'contract-api-v2010.json' => $json }, "$Bin/../t/data");
+say 't/data/contract-api-v2010.json';
