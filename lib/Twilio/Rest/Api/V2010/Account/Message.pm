@@ -284,6 +284,14 @@ C<content_variables>, C<message_intent>, C<risk_check> and C<fallback_from>.
 C<media_url> and C<persistent_action> take an array reference. C<send_at> takes a
 string, or an object with an C<epoch> method such as L<Time::Piece>.
 
+Inside a hash, C<< Time::Piece->gmtime >> returns a list of date parts instead of
+an object, and that breaks the options. Keep the date in a variable first, or
+use C<scalar>:
+
+  my $send_at = gmtime(time + 3600);    # with "use Time::Piece"
+
+  $client->messages->create($to, { schedule_type => 'fixed', send_at => $send_at });
+
 =head2 read
 
   my @messages = $client->messages->read(\%options, $limit, $page_size);
