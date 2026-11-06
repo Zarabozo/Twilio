@@ -5,3 +5,6 @@
 ^cover_db/
 ^MYMETA\.
 ^Twilio-
+^spec/
+^tools/
+^xt/generator/
