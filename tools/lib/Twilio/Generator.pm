@@ -83,6 +83,9 @@ sub tidy {
   my ($code, $config) = @_;
   require Perl::Tidy;
 
+  # The descriptions from the spec are characters, and files hold bytes.
+  utf8::encode($code);
+
   my ($tidied, $errors);
   my $failed = Perl::Tidy::perltidy(
     source      => \$code,
