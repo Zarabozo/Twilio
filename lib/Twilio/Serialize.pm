@@ -71,6 +71,14 @@ Returns any object with an C<epoch> method, such as L<Time::Piece> or C<DateTime
 as a UTC date in ISO 8601 format. Anything else is returned as it is, so a date
 can also be given as a string.
 
+Inside a hash, C<< Time::Piece->gmtime >> returns a list of date parts instead of
+an object, and that breaks the options. Keep the date in a variable first, or
+use C<scalar>:
+
+  my $send_at = gmtime(time + 3600);    # with "use Time::Piece"
+
+  $client->messages->create($to, { schedule_type => 'fixed', send_at => $send_at });
+
 =head2 path_segment
 
 Returns a value encoded for use as one part of a URL path.
