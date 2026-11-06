@@ -6,7 +6,9 @@ use Test::More;
 my @modules = qw(
   Twilio
   Twilio::Base::BaseClient
+  Twilio::Domain
   Twilio::Exceptions::ConfigurationException
+  Twilio::Exceptions::DeserializeException
   Twilio::Exceptions::EnvironmentException
   Twilio::Exceptions::RestException
   Twilio::Exceptions::TwilioException
@@ -14,8 +16,14 @@ my @modules = qw(
   Twilio::Http::FakeClient
   Twilio::Http::Response
   Twilio::Http::TinyClient
+  Twilio::InstanceContext
+  Twilio::InstanceResource
   Twilio::Json
+  Twilio::ListResource
+  Twilio::Page
   Twilio::Rest::Client
+  Twilio::Stream
+  Twilio::Version
 );
 
 use_ok($_) or BAIL_OUT("$_ failed to load") for @modules;
