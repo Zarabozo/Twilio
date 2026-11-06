@@ -26,7 +26,7 @@ done_testing;
 
 sub perl_files {
   my @files = ('Makefile.PL');
-  find(sub { push @files, $File::Find::name if /[.](?:pm|t)\z/ }, 'lib', 't', 'xt');
+  find(sub { push @files, $File::Find::name if /[.](?:pm|pl|t)\z/ }, 'lib', 't', 'tools', 'xt');
   my @sorted = sort @files;
   return @sorted;
 }
