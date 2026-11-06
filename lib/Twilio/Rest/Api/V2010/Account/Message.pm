@@ -142,6 +142,7 @@ sub delete {
 
 sub fetch {
   my ($self) = @_;
+
   my $response = $self->{version}->handle_request('GET', $self->{uri}, 'fetch');
   return $self->_build_instance($response);
 }
@@ -166,6 +167,27 @@ sub _build_instance {
     $self->{version},               $response->get_content,
     $self->{solution}{account_sid}, $self->{solution}{sid}
   );
+}
+
+sub feedback {
+  my ($self) = @_;
+  require Twilio::Rest::Api::V2010::Account::Message::Feedback;
+  return Twilio::Rest::Api::V2010::Account::Message::FeedbackList->new(
+    $self->{version},
+    $self->{solution}{account_sid},
+    $self->{solution}{sid}
+  );
+}
+
+sub media {
+  my ($self, $sid) = @_;
+  require Twilio::Rest::Api::V2010::Account::Message::Media;
+  my $list = Twilio::Rest::Api::V2010::Account::Message::MediaList->new(
+    $self->{version},
+    $self->{solution}{account_sid},
+    $self->{solution}{sid}
+  );
+  return defined $sid ? $list->get_context($sid) : $list;
 }
 
 package Twilio::Rest::Api::V2010::Account::MessageInstance;
@@ -194,6 +216,16 @@ sub fetch {
 sub update {
   my ($self, @arguments) = @_;
   return $self->_context->update(@arguments);
+}
+
+sub feedback {
+  my ($self, @arguments) = @_;
+  return $self->_context->feedback(@arguments);
+}
+
+sub media {
+  my ($self, @arguments) = @_;
+  return $self->_context->media(@arguments);
 }
 
 sub _context {
@@ -306,7 +338,7 @@ Returns a C<MessageContext>, and makes no request.
 
 =head2 fetch
 
-  my $result = $context->fetch;
+  my $result = $object->fetch;
 
 Returns a C<MessageInstance>.
 
@@ -324,11 +356,26 @@ The options are C<body> and C<status>.
 
 Returns true.
 
+=head2 feedback
+
+  my $list = $object->feedback;
+
+See L<Twilio::Rest::Api::V2010::Account::Message::Feedback>.
+
+=head2 media
+
+  my $list = $object->media;
+
+  my $context = $object->media($sid);
+
+See L<Twilio::Rest::Api::V2010::Account::Message::Media>.
+
 =head1 MessageInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update> and C<delete> too, which work the same way.
+It has C<fetch>, C<update>, C<delete>, C<feedback> and C<media> too, which work
+the same way.
 
 Its fields are C<account_sid>, C<api_version>, C<body>, C<direction>,
 C<error_code>, C<error_message>, C<from>, C<messaging_service_sid>,
