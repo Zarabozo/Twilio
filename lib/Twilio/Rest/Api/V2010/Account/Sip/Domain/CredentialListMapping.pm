@@ -189,80 +189,159 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Sip::Domain::CredentialListMapping - The CredentialListMapping resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $credential_list_mapping = $client->sip->domains($domain_sid)->credential_list_mappings->create($credential_list_sid);
+  for my $credential_list_mapping ($client->sip->domains($domain_sid)->credential_list_mappings->read({}, 20)) {
+    ...
+  }
+  my $credential_list_mapping = $client->sip->domains($domain_sid)->credential_list_mappings($sid)->fetch;
+  $client->sip->domains($domain_sid)->credential_list_mappings($sid)->delete;
+
 =head1 DESCRIPTION
 
 Credential lists associated with a SIP Domain
 
 This file holds C<CredentialListMappingList>, C<CredentialListMappingPage>,
-C<CredentialListMappingContext> and C<CredentialListMappingInstance>. All the
-methods that make a request throw L<Twilio::Exceptions::RestException> on an
-error response.
+C<CredentialListMappingContext> and C<CredentialListMappingInstance>. Methods
+that make a request throw L<Twilio::Exceptions::RestException> on an error
+response.
 
 =head1 CredentialListMappingList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->sip->domains($domain_sid)->credential_list_mappings
+>>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($credential_list_sid);
+  my $credential_list_mapping = $client->sip->domains($domain_sid)->credential_list_mappings->create($credential_list_sid);
 
-Returns a C<CredentialListMappingInstance>.
+Create a CredentialListMapping resource for an account. Returns a
+C<CredentialListMappingInstance>.
+
+The required values are:
+
+=over
+
+=item C<$credential_list_sid>
+
+A 34 character string that uniquely identifies the CredentialList resource to
+map to the SIP domain.
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->sip->domains($domain_sid)->credential_list_mappings->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Read multiple CredentialListMapping resources from an account. Returns the
+records as a list, fetching as many pages as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->sip->domains($domain_sid)->credential_list_mappings->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->sip->domains($domain_sid)->credential_list_mappings->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->sip->domains($domain_sid)->credential_list_mappings->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->sip->domains($domain_sid)->credential_list_mappings->get_context($sid);
 
 Returns a C<CredentialListMappingContext>, and makes no request.
 
+=head1 CredentialListMappingPage
+
+A L<Twilio::Page> of C<CredentialListMappingInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 CredentialListMappingContext
+
+Returned by C<<
+$client->sip->domains($domain_sid)->credential_list_mappings($sid) >>. It makes
+no request until one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $credential_list_mapping = $client->sip->domains($domain_sid)->credential_list_mappings($sid)->fetch;
 
-Returns a C<CredentialListMappingInstance>.
+Fetch a single CredentialListMapping resource from an account. Returns a
+C<CredentialListMappingInstance>.
 
 =head2 delete
 
-  $context->delete;
+  $client->sip->domains($domain_sid)->credential_list_mappings($sid)->delete;
 
-Returns true.
+Delete a CredentialListMapping resource from an account. Returns true.
 
 =head1 CredentialListMappingInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch> and C<delete> too, which work the same way.
+It has C<fetch> and C<delete>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<domain_sid>, C<friendly_name>, C<sid> and
-C<uri>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The unique id of the Account that is responsible for this resource.
+
+=item date_created
+
+The date that this resource was created, given as GMT in L<RFC
+2822|https://www.php.net/manual/en/class.datetime.php#datetime.constants.rfc2822>
+format. A L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date that this resource was last updated, given as GMT in L<RFC
+2822|https://www.php.net/manual/en/class.datetime.php#datetime.constants.rfc2822>
+format. A L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item domain_sid
+
+The unique string that is created to identify the SipDomain resource.
+
+=item friendly_name
+
+A human readable descriptive text for this resource, up to 64 characters long.
+
+=item sid
+
+A 34 character string that uniquely identifies this resource.
+
+=item uri
+
+The URI for this resource, relative to C<https://api.twilio.com>
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

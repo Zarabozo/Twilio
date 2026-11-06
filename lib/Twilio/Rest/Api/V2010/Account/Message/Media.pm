@@ -178,81 +178,177 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Message::Media - The Media resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $media ($client->messages($message_sid)->media->read({}, 20)) {
+    ...
+  }
+  my $media = $client->messages($message_sid)->media($sid)->fetch;
+  $client->messages($message_sid)->media($sid)->delete;
+
 =head1 DESCRIPTION
 
 The Media subresource of a Message resource represents a piece of media, such
 as an image, that is associated with the Message.
 
 This file holds C<MediaList>, C<MediaPage>, C<MediaContext> and
-C<MediaInstance>. All the methods that make a request throw
+C<MediaInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 MediaList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->messages($message_sid)->media >>. See also
+L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->messages($message_sid)->media->read(\%options, $limit, $page_size);
 
+Read a list of Media resources associated with a specific Message resource.
 Returns the records as a list, fetching as many pages as it needs.
 
-The options are C<date_created>, C<date_created_before> and
-C<date_created_after>.
+The options are:
 
-C<date_created>, C<date_created_before> and C<date_created_after> take a
-string, or an object with an C<epoch> method. See
-L<Twilio::Serialize/iso8601_date_time>.
+=over
+
+=item C<date_created>
+
+Only include Media resources that were created on this date. Specify a date as
+C<YYYY-MM-DD> in GMT, for example: C<2009-07-06>, to read Media that were
+created on this date. You can also specify an inequality, such as C<<
+StartTime<=YYYY-MM-DD >>, to read Media that were created on or before midnight
+of this date, and C<< StartTime>=YYYY-MM-DD >> to read Media that were created
+on or after midnight of this date. A string, or an object with an C<epoch>
+method. See L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<date_created_before>
+
+Only include Media resources that were created on this date. Specify a date as
+C<YYYY-MM-DD> in GMT, for example: C<2009-07-06>, to read Media that were
+created on this date. You can also specify an inequality, such as C<<
+StartTime<=YYYY-MM-DD >>, to read Media that were created on or before midnight
+of this date, and C<< StartTime>=YYYY-MM-DD >> to read Media that were created
+on or after midnight of this date. A string, or an object with an C<epoch>
+method. See L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<date_created_after>
+
+Only include Media resources that were created on this date. Specify a date as
+C<YYYY-MM-DD> in GMT, for example: C<2009-07-06>, to read Media that were
+created on this date. You can also specify an inequality, such as C<<
+StartTime<=YYYY-MM-DD >>, to read Media that were created on or before midnight
+of this date, and C<< StartTime>=YYYY-MM-DD >> to read Media that were created
+on or after midnight of this date. A string, or an object with an C<epoch>
+method. See L<Twilio::Serialize/iso8601_date_time>.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->messages($message_sid)->media->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->messages($message_sid)->media->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->messages($message_sid)->media->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->messages($message_sid)->media->get_context($sid);
 
 Returns a C<MediaContext>, and makes no request.
 
+=head1 MediaPage
+
+A L<Twilio::Page> of C<MediaInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 MediaContext
+
+Returned by C<< $client->messages($message_sid)->media($sid) >>. It makes no
+request until one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $media = $client->messages($message_sid)->media($sid)->fetch;
 
+Fetch a single Media resource associated with a specific Message resource.
 Returns a C<MediaInstance>.
 
 =head2 delete
 
-  $context->delete;
+  $client->messages($message_sid)->media($sid)->delete;
 
-Returns true.
+Delete the Media resource. Returns true.
 
 =head1 MediaInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch> and C<delete> too, which work the same way.
+It has C<fetch> and C<delete>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<content_type>, C<parent_sid>, C<sid> and
-C<uri>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account>
+associated with this Media resource.
+
+=item content_type
+
+The default L<MIME type|https://en.wikipedia.org/wiki/Internet_media_type> of
+the media, for example C<image/jpeg>, C<image/png>, or C<image/gif>.
+
+=item date_created
+
+The date and time in GMT when this Media resource was created, specified in
+L<RFC 2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece>
+object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT when this Media resource was last updated, specified
+in L<RFC 2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece>
+object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item parent_sid
+
+The SID of the Message resource that is associated with this Media resource.
+
+=item sid
+
+The unique string that identifies this Media resource.
+
+=item uri
+
+The URI of this Media resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

@@ -238,6 +238,18 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Address - The Address resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $address = $client->addresses->create($customer_name, $street, $city, $region, $postal_code, $iso_country, \%options);
+  for my $address ($client->addresses->read({}, 20)) {
+    ...
+  }
+  my $address = $client->addresses($sid)->fetch;
+  $client->addresses($sid)->update(\%options);
+  $client->addresses($sid)->delete;
+
 =head1 DESCRIPTION
 
 An Address instance resource represents your or your customer's physical
@@ -246,76 +258,207 @@ name and address of the user to be on file with Twilio to purchase and own a
 phone number.
 
 This file holds C<AddressList>, C<AddressPage>, C<AddressContext> and
-C<AddressInstance>. All the methods that make a request throw
+C<AddressInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 AddressList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->addresses >>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($customer_name, $street, $city, $region, $postal_code, $iso_country, \%options);
+  my $address = $client->addresses->create($customer_name, $street, $city, $region, $postal_code, $iso_country, \%options);
 
 Returns a C<AddressInstance>.
 
-The options are C<auto_correct_address>, C<emergency_enabled>, C<friendly_name>
-and C<street_secondary>.
+The required values are:
+
+=over
+
+=item C<$customer_name>
+
+The name to associate with the new address.
+
+=item C<$street>
+
+The number and street address of the new address.
+
+=item C<$city>
+
+The city of the new address.
+
+=item C<$region>
+
+The state or region of the new address.
+
+=item C<$postal_code>
+
+The postal code of the new address.
+
+=item C<$iso_country>
+
+The ISO country code of the new address.
+
+=back
+
+The options are:
+
+=over
+
+=item C<auto_correct_address>
+
+Whether we should automatically correct the address. Can be: C<true> or
+C<false> and the default is C<true>. If empty or C<true>, we will correct the
+address you provide if necessary. If C<false>, we won't alter the address you
+provide.
+
+=item C<emergency_enabled>
+
+Whether to enable emergency calling on the new address. Can be: C<true> or
+C<false>.
+
+=item C<friendly_name>
+
+A descriptive string that you create to describe the new address. It can be up
+to 64 characters long for Regulatory Compliance addresses and 32 characters
+long for Emergency addresses.
+
+=item C<street_secondary>
+
+The additional number and street address of the address.
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->addresses->read(\%options, $limit, $page_size);
 
 Returns the records as a list, fetching as many pages as it needs.
 
-The options are C<customer_name>, C<emergency_enabled>, C<friendly_name> and
-C<iso_country>.
+The options are:
+
+=over
+
+=item C<customer_name>
+
+The C<customer_name> of the Address resources to read.
+
+=item C<emergency_enabled>
+
+Whether the address can be associated to a number for emergency calling.
+
+=item C<friendly_name>
+
+The string that identifies the Address resources to read.
+
+=item C<iso_country>
+
+The ISO country code of the Address resources to read.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->addresses->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->addresses->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->addresses->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->addresses->get_context($sid);
 
 Returns a C<AddressContext>, and makes no request.
 
+=head1 AddressPage
+
+A L<Twilio::Page> of C<AddressInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 AddressContext
+
+Returned by C<< $client->addresses($sid) >>. It makes no request until one of
+these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $address = $client->addresses($sid)->fetch;
 
 Returns a C<AddressInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $address = $client->addresses($sid)->update(\%options);
 
 Returns a C<AddressInstance>.
 
-The options are C<auto_correct_address>, C<city>, C<customer_name>,
-C<emergency_enabled>, C<friendly_name>, C<postal_code>, C<region>, C<street>
-and C<street_secondary>.
+The options are:
+
+=over
+
+=item C<auto_correct_address>
+
+Whether we should automatically correct the address. Can be: C<true> or
+C<false> and the default is C<true>. If empty or C<true>, we will correct the
+address you provide if necessary. If C<false>, we won't alter the address you
+provide.
+
+=item C<city>
+
+The city of the address.
+
+=item C<customer_name>
+
+The name to associate with the address.
+
+=item C<emergency_enabled>
+
+Whether to enable emergency calling on the address. Can be: C<true> or
+C<false>.
+
+=item C<friendly_name>
+
+A descriptive string that you create to describe the new address. It can be up
+to 64 characters long for Regulatory Compliance addresses and 32 characters
+long for Emergency addresses.
+
+=item C<postal_code>
+
+The postal code of the address.
+
+=item C<region>
+
+The state or region of the address.
+
+=item C<street>
+
+The number and street address of the address.
+
+=item C<street_secondary>
+
+The additional number and street address of the address.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->addresses($sid)->delete;
 
 Returns true.
 
@@ -329,15 +472,97 @@ See L<Twilio::Rest::Api::V2010::Account::Address::DependentPhoneNumber>.
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update>, C<delete> and C<dependent_phone_numbers> too, which
-work the same way.
+It has C<fetch>, C<update>, C<delete> and C<dependent_phone_numbers>, which
+work as they do on the context.
 
-Its fields are C<account_sid>, C<city>, C<customer_name>, C<emergency_enabled>,
-C<friendly_name>, C<iso_country>, C<postal_code>, C<region>, C<sid>, C<street>,
-C<street_secondary>, C<uri>, C<validated> and C<verified>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that is
+responsible for the Address resource.
+
+=item city
+
+The city in which the address is located.
+
+=item customer_name
+
+The name associated with the address.This property has a maximum length of 16
+4-byte characters, or 21 3-byte characters.
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item emergency_enabled
+
+Whether emergency calling has been enabled on this number.
+
+=item friendly_name
+
+The string that you assigned to describe the resource.
+
+=item iso_country
+
+The ISO country code of the address.
+
+=item postal_code
+
+The postal code of the address.
+
+=item region
+
+The state or region of the address.
+
+=item sid
+
+The unique string that that we created to identify the Address resource.
+
+=item street
+
+The number and street address of the address.
+
+=item street_secondary
+
+The additional number and street address of the address.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=item validated
+
+Whether the address has been validated to comply with local regulation. In
+countries that require valid addresses, an invalid address will not be
+accepted. C<true> indicates the Address has been validated. C<false> indicate
+the country doesn't require validation or the Address is not valid.
+
+=item verified
+
+Whether the address has been verified to comply with regulation. In countries
+that require valid addresses, an invalid address will not be accepted. C<true>
+indicates the Address has been verified. C<false> indicate the country doesn't
+require verified or the Address is not valid.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

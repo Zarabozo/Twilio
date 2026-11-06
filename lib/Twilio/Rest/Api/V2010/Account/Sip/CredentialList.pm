@@ -203,73 +203,122 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Sip::CredentialList - The CredentialList resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $credential_list = $client->sip->credential_lists->create($friendly_name);
+  for my $credential_list ($client->sip->credential_lists->read({}, 20)) {
+    ...
+  }
+  my $credential_list = $client->sip->credential_lists($sid)->fetch;
+  $client->sip->credential_lists($sid)->update($friendly_name);
+  $client->sip->credential_lists($sid)->delete;
+
 =head1 DESCRIPTION
 
 Lists of SIP credentials
 
 This file holds C<CredentialListList>, C<CredentialListPage>,
-C<CredentialListContext> and C<CredentialListInstance>. All the methods that
-make a request throw L<Twilio::Exceptions::RestException> on an error response.
+C<CredentialListContext> and C<CredentialListInstance>. Methods that make a
+request throw L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 CredentialListList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->sip->credential_lists >>. See also
+L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($friendly_name);
+  my $credential_list = $client->sip->credential_lists->create($friendly_name);
 
-Returns a C<CredentialListInstance>.
+Create a Credential List. Returns a C<CredentialListInstance>.
+
+The required values are:
+
+=over
+
+=item C<$friendly_name>
+
+A human readable descriptive text that describes the CredentialList, up to 64
+characters long.
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->sip->credential_lists->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Get All Credential Lists. Returns the records as a list, fetching as many pages
+as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->sip->credential_lists->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->sip->credential_lists->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->sip->credential_lists->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->sip->credential_lists->get_context($sid);
 
 Returns a C<CredentialListContext>, and makes no request.
 
+=head1 CredentialListPage
+
+A L<Twilio::Page> of C<CredentialListInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 CredentialListContext
+
+Returned by C<< $client->sip->credential_lists($sid) >>. It makes no request
+until one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $credential_list = $client->sip->credential_lists($sid)->fetch;
 
-Returns a C<CredentialListInstance>.
+Get a Credential List. Returns a C<CredentialListInstance>.
 
 =head2 update
 
-  my $result = $object->update($friendly_name);
+  my $credential_list = $client->sip->credential_lists($sid)->update($friendly_name);
 
-Returns a C<CredentialListInstance>.
+Update a Credential List. Returns a C<CredentialListInstance>.
+
+The required values are:
+
+=over
+
+=item C<$friendly_name>
+
+A human readable descriptive text for a CredentialList, up to 64 characters
+long.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->sip->credential_lists($sid)->delete;
 
-Returns true.
+Delete a Credential List. Returns true.
 
 =head2 credentials
 
@@ -283,14 +332,55 @@ See L<Twilio::Rest::Api::V2010::Account::Sip::CredentialList::Credential>.
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update>, C<delete> and C<credentials> too, which work the
-same way.
+It has C<fetch>, C<update>, C<delete> and C<credentials>, which work as they do
+on the context.
 
-Its fields are C<account_sid>, C<friendly_name>, C<sid>, C<subresource_uris>
-and C<uri>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The unique id of the L<Account|https://www.twilio.com/docs/iam/api/account>
+that owns this resource.
+
+=item date_created
+
+The date that this resource was created, given as GMT in L<RFC
+2822|https://www.php.net/manual/en/class.datetime.php#datetime.constants.rfc2822>
+format. A L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date that this resource was last updated, given as GMT in L<RFC
+2822|https://www.php.net/manual/en/class.datetime.php#datetime.constants.rfc2822>
+format. A L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item friendly_name
+
+A human readable descriptive text that describes the CredentialList, up to 64
+characters long.
+
+=item sid
+
+A 34 character string that uniquely identifies this resource.
+
+=item subresource_uris
+
+A list of credentials associated with this credential list.
+
+=item uri
+
+The URI for this resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

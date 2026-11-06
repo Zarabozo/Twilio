@@ -56,29 +56,63 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Balance - The Balance resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $balance = $client->balance->fetch;
+
 =head1 DESCRIPTION
 
 Account balance
 
-This file holds C<BalanceList> and C<BalanceInstance>. All the methods that
-make a request throw L<Twilio::Exceptions::RestException> on an error response.
+This file holds C<BalanceList> and C<BalanceInstance>. Methods that make a
+request throw L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 BalanceList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->balance >>. See also L<Twilio::ListResource>.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $balance = $client->balance->fetch;
 
+Fetch the balance for an Account based on Account Sid. Balance changes may not
+be reflected immediately. Child accounts do not contain balance information.
 Returns a C<BalanceInstance>.
+
 
 
 =head1 BalanceInstance
 
 See also L<Twilio::InstanceResource>.
 
-Its fields are C<account_sid>, C<balance> and C<currency>.
+Its fields are:
+
+=over
+
+=item account_sid
+
+The unique SID identifier of the Account.
+
+=item balance
+
+The balance of the Account, in units specified by the unit parameter. Balance
+changes may not be reflected immediately. Child accounts do not contain balance
+information
+
+=item currency
+
+The units of currency for the account balance
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

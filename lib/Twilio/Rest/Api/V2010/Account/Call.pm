@@ -410,102 +410,487 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Call - The Call resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $call = $client->calls->create($to, $from, \%options);
+  for my $call ($client->calls->read({}, 20)) {
+    ...
+  }
+  my $call = $client->calls($sid)->fetch;
+  $client->calls($sid)->update(\%options);
+  $client->calls($sid)->delete;
+
 =head1 DESCRIPTION
 
 A Call is an object that represents a connection between a telephone and
 Twilio.
 
 This file holds C<CallList>, C<CallPage>, C<CallContext> and C<CallInstance>.
-All the methods that make a request throw L<Twilio::Exceptions::RestException>
-on an error response.
+Methods that make a request throw L<Twilio::Exceptions::RestException> on an
+error response.
 
 =head1 CallList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->calls >>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($to, $from, \%options);
+  my $call = $client->calls->create($to, $from, \%options);
 
-Returns a C<CallInstance>.
+Create a new outgoing call to phones, SIP-enabled endpoints or Twilio Client
+connections. Returns a C<CallInstance>.
 
-The options are C<application_sid>, C<async_amd>, C<async_amd_status_callback>,
-C<async_amd_status_callback_method>, C<byoc>, C<call_reason>, C<call_token>,
-C<caller_id>, C<client_notification_url>, C<fallback_method>, C<fallback_url>,
-C<machine_detection>, C<machine_detection_silence_timeout>,
-C<machine_detection_speech_end_threshold>,
-C<machine_detection_speech_threshold>, C<machine_detection_timeout>, C<method>,
-C<passports>, C<record>, C<recording_channels>, C<recording_configuration_id>,
-C<recording_status_callback>, C<recording_status_callback_event>,
-C<recording_status_callback_method>, C<recording_track>, C<send_digits>,
-C<sip_auth_password>, C<sip_auth_username>, C<status_callback>,
-C<status_callback_event>, C<status_callback_method>, C<time_limit>, C<timeout>,
-C<trim>, C<twiml> and C<url>.
+The required values are:
 
-C<recording_status_callback_event> and C<status_callback_event> take an array
+=over
+
+=item C<$to>
+
+The phone number, SIP address, or client identifier to call.
+
+=item C<$from>
+
+The phone number or client identifier to use as the caller id. If using a phone
+number, it must be a Twilio number or a Verified L<outgoing caller
+id|https://www.twilio.com/docs/voice/api/outgoing-caller-ids> for your account.
+If the C<to> parameter is a phone number, C<From> must also be a phone number.
+
+=back
+
+The options are:
+
+=over
+
+=item C<application_sid>
+
+The SID of the Application resource that will handle the call, if the call will
+be handled by an application.
+
+=item C<async_amd>
+
+Select whether to perform answering machine detection in the background.
+Default, blocks the execution of the call until Answering Machine Detection is
+completed. Can be: C<true> or C<false>.
+
+=item C<async_amd_status_callback>
+
+The URL that we should call using the C<async_amd_status_callback_method> to
+notify customer application whether the call was answered by human, machine or
+fax.
+
+=item C<async_amd_status_callback_method>
+
+The HTTP method we should use when calling the C<async_amd_status_callback>
+URL. Can be: C<GET> or C<POST> and the default is C<POST>. One of C<GET> or
+C<POST>.
+
+=item C<byoc>
+
+The SID of a BYOC (Bring Your Own Carrier) trunk to route this call with. Note
+that C<byoc> is only meaningful when C<to> is a phone number; it will otherwise
+be ignored. (Beta)
+
+=item C<call_reason>
+
+The Reason for the outgoing call. Use it to specify the purpose of the call
+that is presented on the called party's phone. (Branded Calls Beta)
+
+=item C<call_token>
+
+A token string needed to invoke a forwarded call. A call_token is generated
+when an incoming call is received on a Twilio number. Pass an incoming call's
+call_token value to a forwarded call via the call_token parameter when creating
+a new call. A forwarded call should bear the same CallerID of the original
+incoming call.
+
+=item C<caller_id>
+
+The phone number, SIP address, or Client identifier that made this call. Phone
+numbers are in L<E.164 format|https://wwnw.twilio.com/docs/glossary/what-e164>
+(e.g., +16175551212). SIP addresses are formatted as C<name@company.com>.
+
+=item C<client_notification_url>
+
+The URL that we should use to deliver C<push call notification>.
+
+=item C<fallback_method>
+
+The HTTP method that we should use to request the C<fallback_url>. Can be:
+C<GET> or C<POST> and the default is C<POST>. If an C<application_sid>
+parameter is present, this parameter is ignored. One of C<GET> or C<POST>.
+
+=item C<fallback_url>
+
+The URL that we call using the C<fallback_method> if an error occurs when
+requesting or executing the TwiML at C<url>. If an C<application_sid> parameter
+is present, this parameter is ignored.
+
+=item C<machine_detection>
+
+Whether to detect if a human, answering machine, or fax has picked up the call.
+Can be: C<Enable> or C<DetectMessageEnd>. Use C<Enable> if you would like us to
+return C<AnsweredBy> as soon as the called party is identified. Use
+C<DetectMessageEnd>, if you would like to leave a message on an answering
+machine. If C<send_digits> is provided, this parameter is ignored. For more
+information, see L<Answering Machine
+Detection|https://www.twilio.com/docs/voice/answering-machine-detection>.
+
+=item C<machine_detection_silence_timeout>
+
+The number of milliseconds of initial silence after which an C<unknown>
+AnsweredBy result will be returned. Possible Values: 2000-10000. Default: 5000.
+
+=item C<machine_detection_speech_end_threshold>
+
+The number of milliseconds of silence after speech activity at which point the
+speech activity is considered complete. Possible Values: 500-5000. Default:
+1200.
+
+=item C<machine_detection_speech_threshold>
+
+The number of milliseconds that is used as the measuring stick for the length
+of the speech activity, where durations lower than this value will be
+interpreted as a human and longer than this value as a machine. Possible
+Values: 1000-6000. Default: 2400.
+
+=item C<machine_detection_timeout>
+
+The number of seconds that we should attempt to detect an answering machine
+before timing out and sending a voice request with C<AnsweredBy> of C<unknown>.
+The default timeout is 30 seconds.
+
+=item C<method>
+
+The HTTP method we should use when calling the C<url> parameter's value. Can
+be: C<GET> or C<POST> and the default is C<POST>. If an C<application_sid>
+parameter is present, this parameter is ignored. One of C<GET> or C<POST>.
+
+=item C<passports>
+
+The STIR/SHAKEN passport for this call, provided as a base64 encoded string.
+Multiple passports (at max 5) are comma separated and provided as base64
+encoded string
+
+=item C<record>
+
+Whether to record the call. Can be C<true> to record the phone call, or
+C<false> to not. The default is C<false>. The C<recording_url> is sent to the
+C<status_callback> URL.
+
+=item C<recording_channels>
+
+The number of channels in the final recording. Can be: C<mono> or C<dual>. The
+default is C<mono>. C<mono> records both legs of the call in a single channel
+of the recording file. C<dual> records each leg to a separate channel of the
+recording file. The first channel of a dual-channel recording contains the
+parent call and the second channel contains the child call.
+
+=item C<recording_configuration_id>
+
+The identifier of the configuration to be used when creating and processing the
+recording
+
+=item C<recording_status_callback>
+
+The URL that we call when the recording is available to be accessed.
+
+=item C<recording_status_callback_event>
+
+The recording status events that will trigger calls to the URL specified in
+C<recording_status_callback>. Can be: C<in-progress>, C<completed> and
+C<absent>. Defaults to C<completed>. Separate multiple values with a space. An
+array reference.
+
+=item C<recording_status_callback_method>
+
+The HTTP method we should use when calling the C<recording_status_callback>
+URL. Can be: C<GET> or C<POST> and the default is C<POST>. One of C<GET> or
+C<POST>.
+
+=item C<recording_track>
+
+The audio track to record for the call. Can be: C<inbound>, C<outbound> or
+C<both>. The default is C<both>. C<inbound> records the audio that is received
+by Twilio. C<outbound> records the audio that is generated from Twilio. C<both>
+records the audio that is received and generated by Twilio.
+
+=item C<send_digits>
+
+The string of keys to dial after connecting to the number, with a maximum
+length of 32 digits. Valid digits in the string include any digit (C<0>-C<9>),
+'C<A>', 'C<B>', 'C<C>', 'C<D>', 'C<#>', and 'C<*>'. You can also use 'C<w>' to
+insert a half-second pause and 'C<W>' to insert a one-second pause. For
+example, to pause for one second after connecting and then dial extension 1234
+followed by the # key, set this parameter to C<W1234#>. Be sure to URL-encode
+this string because the 'C<#>' character has special meaning in a URL. If both
+C<SendDigits> and C<MachineDetection> parameters are provided, then
+C<MachineDetection> will be ignored.
+
+=item C<sip_auth_password>
+
+The password required to authenticate the user account specified in
+C<sip_auth_username>.
+
+=item C<sip_auth_username>
+
+The username used to authenticate the caller making a SIP call.
+
+=item C<status_callback>
+
+The URL we should call using the C<status_callback_method> to send status
+information to your application. If no C<status_callback_event> is specified,
+we will send the C<completed> status. If an C<application_sid> parameter is
+present, this parameter is ignored. URLs must contain a valid hostname
+(underscores are not permitted).
+
+=item C<status_callback_event>
+
+The call progress events that we will send to the C<status_callback> URL. Can
+be: C<initiated>, C<ringing>, C<answered>, and C<completed>. If no event is
+specified, we send the C<completed> status. If you want to receive multiple
+events, specify each one in a separate C<status_callback_event> parameter. See
+the code sample for L<monitoring call
+progress|https://www.twilio.com/docs/voice/api/call-resource?code-sample=code-create-a-call-resource-and-specify-a-statuscallbackevent&code-sdk-version=json>.
+If an C<application_sid> is present, this parameter is ignored. An array
 reference.
+
+=item C<status_callback_method>
+
+The HTTP method we should use when calling the C<status_callback> URL. Can be:
+C<GET> or C<POST> and the default is C<POST>. If an C<application_sid>
+parameter is present, this parameter is ignored. One of C<GET> or C<POST>.
+
+=item C<time_limit>
+
+The maximum duration of the call in seconds. Constraints depend on account and
+configuration.
+
+=item C<timeout>
+
+The integer number of seconds that we should allow the phone to ring before
+assuming there is no answer. The default is C<60> seconds and the maximum is
+C<600> seconds. For some call flows, we will add a 5-second buffer to the
+timeout value you provide. For this reason, a timeout value of 10 seconds could
+result in an actual timeout closer to 15 seconds. You can set this to a short
+time, such as C<15> seconds, to hang up before reaching an answering machine or
+voicemail.
+
+=item C<trim>
+
+Whether to trim any leading and trailing silence from the recording. Can be:
+C<trim-silence> or C<do-not-trim> and the default is C<trim-silence>.
+
+=item C<twiml>
+
+TwiML instructions for the call Twilio will use without fetching Twiml from url
+parameter. If both C<twiml> and C<url> are provided then C<twiml> parameter
+will be ignored. Max 4000 characters.
+
+=item C<url>
+
+The absolute URL that returns the TwiML instructions for the call. We will call
+this URL using the C<method> when the call connects. For more information, see
+the L<Url
+Parameter|https://www.twilio.com/docs/voice/make-calls#specify-a-url-parameter>
+section in L<Making Calls|https://www.twilio.com/docs/voice/make-calls>.
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->calls->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieves a collection of calls made to and from your account. Returns the
+records as a list, fetching as many pages as it needs.
 
-The options are C<end_time>, C<end_time_before>, C<end_time_after>, C<from>,
-C<parent_call_sid>, C<start_time>, C<start_time_before>, C<start_time_after>,
-C<status> and C<to>.
+The options are:
 
-C<end_time>, C<end_time_before>, C<end_time_after>, C<start_time>,
-C<start_time_before> and C<start_time_after> take a string, or an object with
-an C<epoch> method. See L<Twilio::Serialize/iso8601_date_time>.
+=over
+
+=item C<end_time>
+
+Only include calls that ended on this date. Specify a date as C<YYYY-MM-DD> in
+UTC, for example: C<2009-07-06>, to read only calls that ended on this date. A
+string, or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<end_time_before>
+
+Only include calls that ended before this date. Specify a date as C<YYYY-MM-DD>
+in UTC, for example: C<2009-07-06>, to read only calls that ended before this
+date. A string, or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<end_time_after>
+
+Only include calls that ended on or after this date. Specify a date as
+C<YYYY-MM-DD> in UTC, for example: C<2009-07-06>, to read only calls that ended
+on or after this date. A string, or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<from>
+
+Only include calls from this phone number, SIP address, Client identifier or
+SIM SID.
+
+=item C<parent_call_sid>
+
+Only include calls spawned by calls with this SID.
+
+=item C<start_time>
+
+Only include calls that started on this date. Specify a date as C<YYYY-MM-DD>
+in UTC, for example: C<2009-07-06>, to read only calls that started on this
+date. A string, or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<start_time_before>
+
+Only include calls that started before this date. Specify a date as
+C<YYYY-MM-DD> in UTC, for example: C<2009-07-06>, to read only calls that
+started before this date. A string, or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<start_time_after>
+
+Only include calls that started on or after this date. Specify a date as
+C<YYYY-MM-DD> in UTC, for example: C<2009-07-06>, to read only calls that
+started on or after this date. A string, or an object with an C<epoch> method.
+See L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<status>
+
+The status of the calls to include. Can be: C<queued>, C<ringing>,
+C<in-progress>, C<canceled>, C<completed>, C<failed>, C<busy>, or C<no-answer>.
+One of C<queued>, C<ringing>, C<in-progress>, C<completed>, C<busy>, C<failed>,
+C<no-answer> or C<canceled>.
+
+=item C<to>
+
+Only show calls made to this phone number, SIP address, Client identifier or
+SIM SID.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->calls->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->calls->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->calls->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->calls->get_context($sid);
 
 Returns a C<CallContext>, and makes no request.
 
+=head1 CallPage
+
+A L<Twilio::Page> of C<CallInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 CallContext
+
+Returned by C<< $client->calls($sid) >>. It makes no request until one of these
+methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $call = $client->calls($sid)->fetch;
 
-Returns a C<CallInstance>.
+Fetch the call specified by the provided Call SID. Returns a C<CallInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $call = $client->calls($sid)->update(\%options);
 
-Returns a C<CallInstance>.
+Initiates a call redirect or terminates a call. Returns a C<CallInstance>.
 
-The options are C<fallback_method>, C<fallback_url>, C<method>, C<status>,
-C<status_callback>, C<status_callback_method>, C<time_limit>, C<twiml> and
-C<url>.
+The options are:
+
+=over
+
+=item C<fallback_method>
+
+The HTTP method that we should use to request the C<fallback_url>. Can be:
+C<GET> or C<POST> and the default is C<POST>. If an C<application_sid>
+parameter is present, this parameter is ignored. One of C<GET> or C<POST>.
+
+=item C<fallback_url>
+
+The URL that we call using the C<fallback_method> if an error occurs when
+requesting or executing the TwiML at C<url>. If an C<application_sid> parameter
+is present, this parameter is ignored.
+
+=item C<method>
+
+The HTTP method we should use when calling the C<url>. Can be: C<GET> or
+C<POST> and the default is C<POST>. If an C<application_sid> parameter is
+present, this parameter is ignored. One of C<GET> or C<POST>.
+
+=item C<status>
+
+One of C<canceled> or C<completed>.
+
+=item C<status_callback>
+
+The URL we should call using the C<status_callback_method> to send status
+information to your application. If no C<status_callback_event> is specified,
+we will send the C<completed> status. If an C<application_sid> parameter is
+present, this parameter is ignored. URLs must contain a valid hostname
+(underscores are not permitted).
+
+=item C<status_callback_method>
+
+The HTTP method we should use when requesting the C<status_callback> URL. Can
+be: C<GET> or C<POST> and the default is C<POST>. If an C<application_sid>
+parameter is present, this parameter is ignored. One of C<GET> or C<POST>.
+
+=item C<time_limit>
+
+The maximum duration of the call in seconds. Constraints depend on account and
+configuration.
+
+=item C<twiml>
+
+TwiML instructions for the call Twilio will use without fetching Twiml from
+url. Twiml and url parameters are mutually exclusive
+
+=item C<url>
+
+The absolute URL that returns the TwiML instructions for the call. We will call
+this URL using the C<method> when the call connects. For more information, see
+the L<Url
+Parameter|https://www.twilio.com/docs/voice/make-calls#specify-a-url-parameter>
+section in L<Making Calls|https://www.twilio.com/docs/voice/make-calls>.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->calls($sid)->delete;
 
-Returns true.
+Delete a Call record from your account. Once the record is deleted, it will no
+longer appear in the API and Account Portal logs. Returns true.
 
 =head2 events
 
@@ -581,17 +966,180 @@ See also L<Twilio::InstanceResource>.
 
 It has C<fetch>, C<update>, C<delete>, C<events>, C<notifications>,
 C<payments>, C<recordings>, C<siprec>, C<streams>, C<transcriptions>,
-C<user_defined_messages> and C<user_defined_message_subscriptions> too, which
-work the same way.
+C<user_defined_messages> and C<user_defined_message_subscriptions>, which work
+as they do on the context.
 
-Its fields are C<account_sid>, C<answered_by>, C<api_version>, C<caller_name>,
-C<direction>, C<duration>, C<forwarded_from>, C<from>, C<from_formatted>,
-C<group_sid>, C<parent_call_sid>, C<phone_number_sid>, C<price>, C<price_unit>,
-C<queue_time>, C<sid>, C<status>, C<stir_verstat>, C<subresource_uris>, C<to>,
-C<to_formatted>, C<trunk_sid> and C<uri>.
+Its fields are:
 
-C<date_created>, C<date_updated>, C<end_time> and C<start_time> return
-L<Time::Piece> objects in UTC. See L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created this Call resource.
+
+=item answered_by
+
+Either C<human> or C<machine> if this call was initiated with answering machine
+detection. Empty otherwise.
+
+=item api_version
+
+The API version used to create the call.
+
+=item caller_name
+
+The caller's name if this call was an incoming call to a phone number with
+caller ID Lookup enabled. Otherwise, empty.
+
+=item date_created
+
+The date and time in UTC that this resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in UTC that this resource was last updated, specified in
+L<RFC 2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece>
+object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item direction
+
+A string describing the direction of the call. Can be: C<inbound> for inbound
+calls, C<outbound-api> for calls initiated via the REST API or C<outbound-dial>
+for calls initiated by a C<< <Dial> >> verb. Using L<Elastic SIP
+Trunking|https://www.twilio.com/docs/sip-trunking>, the values can be
+L<C<trunking-terminating>|https://www.twilio.com/docs/sip-trunking#termination>
+for outgoing calls from your communications infrastructure to the PSTN or
+L<C<trunking-originating>|https://www.twilio.com/docs/sip-trunking#origination>
+for incoming calls to your communications infrastructure from the PSTN.
+
+=item duration
+
+The length of the call in seconds. This value is empty for busy, failed,
+unanswered, or ongoing calls.
+
+=item end_time
+
+The time the call ended, given as UTC in L<RFC
+2822|https://www.php.net/manual/en/class.datetime.php#datetime.constants.rfc2822>
+format. Empty if the call did not complete successfully. A L<Time::Piece>
+object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item forwarded_from
+
+The forwarding phone number if this call was an incoming call forwarded from
+another number (depends on carrier supporting forwarding). Otherwise, empty.
+
+=item from
+
+The phone number, SIP address, Client identifier or SIM SID that made this
+call. Phone numbers are in
+L<E.164|https://www.twilio.com/docs/glossary/what-e164> format (e.g.,
++16175551212). SIP addresses are formatted as C<name@company.com>. Client
+identifiers are formatted C<client:name>. SIM SIDs are formatted as C<sim:sid>.
+
+=item from_formatted
+
+The calling phone number, SIP address, or Client identifier formatted for
+display. Non-North American phone numbers are in
+L<E.164|https://www.twilio.com/docs/glossary/what-e164> format (e.g.,
++442071838750).
+
+=item group_sid
+
+The Group SID associated with this call. If no Group is associated with the
+call, the field is empty.
+
+=item parent_call_sid
+
+The SID that identifies the call that created this leg.
+
+=item phone_number_sid
+
+If the call was inbound, this is the SID of the IncomingPhoneNumber resource
+that received the call. If the call was outbound, it is the SID of the
+OutgoingCallerId resource from which the call was placed.
+
+=item price
+
+The charge for this call, in the currency associated with the account.
+Populated after the call is completed. May not be immediately available. The
+price associated with a call only reflects the charge for connectivity. Charges
+for other call-related features such as Answering Machine Detection,
+Text-To-Speech, and SIP REFER are not included in this value.
+
+=item price_unit
+
+The currency in which C<Price> is measured, in L<ISO
+4127|https://www.iso.org/iso/home/standards/currency_codes.htm> format (e.g.,
+C<USD>, C<EUR>, C<JPY>). Always capitalized for calls.
+
+=item queue_time
+
+The wait time in milliseconds before the call is placed.
+
+=item sid
+
+The unique string that we created to identify this Call resource.
+
+=item start_time
+
+The start time of the call, given as UTC in L<RFC
+2822|https://www.php.net/manual/en/class.datetime.php#datetime.constants.rfc2822>
+format. Empty if the call has not yet been dialed. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item status
+
+One of C<queued>, C<ringing>, C<in-progress>, C<completed>, C<busy>, C<failed>,
+C<no-answer> or C<canceled>.
+
+=item stir_verstat
+
+The STIR/SHAKEN verification status of the call, for example
+C<TN-Validation-Passed-A>. Empty if the incoming call had no STIR/SHAKEN
+information.
+
+=item subresource_uris
+
+A list of subresources available to this call, identified by their URIs
+relative to C<https://api.twilio.com>.
+
+=item to
+
+The phone number, SIP address, Client identifier or SIM SID that received this
+call. Phone numbers are in
+L<E.164|https://www.twilio.com/docs/glossary/what-e164> format (e.g.,
++16175551212). SIP addresses are formatted as C<name@company.com>. Client
+identifiers are formatted C<client:name>. SIM SIDs are formatted as C<sim:sid>.
+
+=item to_formatted
+
+The phone number, SIP address or Client identifier that received this call.
+Formatted for display. Non-North American phone numbers are in
+L<E.164|https://www.twilio.com/docs/glossary/what-e164> format (e.g.,
++442071838750).
+
+=item trunk_sid
+
+The unique identifier of the trunk resource that was used for this call. The
+field is empty if the call was not made using a SIP trunk or if the call is not
+terminated.
+
+=item uri
+
+The URI of this resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

@@ -174,67 +174,100 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Key - The Key resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $key ($client->keys->read({}, 20)) {
+    ...
+  }
+  my $key = $client->keys($sid)->fetch;
+  $client->keys($sid)->update(\%options);
+  $client->keys($sid)->delete;
+
 =head1 DESCRIPTION
 
 API keys
 
-This file holds C<KeyList>, C<KeyPage>, C<KeyContext> and C<KeyInstance>. All
-the methods that make a request throw L<Twilio::Exceptions::RestException> on
-an error response.
+This file holds C<KeyList>, C<KeyPage>, C<KeyContext> and C<KeyInstance>.
+Methods that make a request throw L<Twilio::Exceptions::RestException> on an
+error response.
 
 =head1 KeyList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->keys >>. See also L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->keys->read(\%options, $limit, $page_size);
 
 Returns the records as a list, fetching as many pages as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->keys->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->keys->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->keys->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->keys->get_context($sid);
 
 Returns a C<KeyContext>, and makes no request.
 
+=head1 KeyPage
+
+A L<Twilio::Page> of C<KeyInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 KeyContext
+
+Returned by C<< $client->keys($sid) >>. It makes no request until one of these
+methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $key = $client->keys($sid)->fetch;
 
 Returns a C<KeyInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $key = $client->keys($sid)->update(\%options);
 
 Returns a C<KeyInstance>.
 
-The options are C<friendly_name>.
+The options are:
+
+=over
+
+=item C<friendly_name>
+
+A descriptive string that you create to describe the resource. It can be up to
+64 characters long.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->keys($sid)->delete;
 
 Returns true.
 
@@ -242,12 +275,40 @@ Returns true.
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update> and C<delete> too, which work the same way.
+It has C<fetch>, C<update> and C<delete>, which work as they do on the context.
 
-Its fields are C<friendly_name> and C<sid>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item friendly_name
+
+The string that you assigned to describe the resource.
+
+=item sid
+
+The unique string that that we created to identify the Key resource.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

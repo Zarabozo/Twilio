@@ -156,66 +156,135 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::AuthorizedConnectApp - The AuthorizedConnectApp resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $authorized_connect_app ($client->authorized_connect_apps->read({}, 20)) {
+    ...
+  }
+  my $authorized_connect_app = $client->authorized_connect_apps($connect_app_sid)->fetch;
+
 =head1 DESCRIPTION
 
 Authorized Twilio Connect apps
 
 This file holds C<AuthorizedConnectAppList>, C<AuthorizedConnectAppPage>,
-C<AuthorizedConnectAppContext> and C<AuthorizedConnectAppInstance>. All the
-methods that make a request throw L<Twilio::Exceptions::RestException> on an
-error response.
+C<AuthorizedConnectAppContext> and C<AuthorizedConnectAppInstance>. Methods
+that make a request throw L<Twilio::Exceptions::RestException> on an error
+response.
 
 =head1 AuthorizedConnectAppList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->authorized_connect_apps >>. See also
+L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->authorized_connect_apps->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of authorized-connect-apps belonging to the account used to
+make the request. Returns the records as a list, fetching as many pages as it
+needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->authorized_connect_apps->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->authorized_connect_apps->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->authorized_connect_apps->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($connect_app_sid);
+  my $context = $client->authorized_connect_apps->get_context($connect_app_sid);
 
 Returns a C<AuthorizedConnectAppContext>, and makes no request.
 
+=head1 AuthorizedConnectAppPage
+
+A L<Twilio::Page> of C<AuthorizedConnectAppInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 AuthorizedConnectAppContext
+
+Returned by C<< $client->authorized_connect_apps($connect_app_sid) >>. It makes
+no request until one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $authorized_connect_app = $client->authorized_connect_apps($connect_app_sid)->fetch;
 
-Returns a C<AuthorizedConnectAppInstance>.
+Fetch an instance of an authorized-connect-app. Returns a
+C<AuthorizedConnectAppInstance>.
 
 =head1 AuthorizedConnectAppInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch> too, which work the same way.
+It has C<fetch>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<connect_app_company_name>,
-C<connect_app_description>, C<connect_app_friendly_name>,
-C<connect_app_homepage_url>, C<connect_app_sid>, C<permissions> and C<uri>.
+Its fields are:
+
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created the AuthorizedConnectApp resource.
+
+=item connect_app_company_name
+
+The company name set for the Connect App.
+
+=item connect_app_description
+
+A detailed description of the Connect App.
+
+=item connect_app_friendly_name
+
+The name of the Connect App.
+
+=item connect_app_homepage_url
+
+The public URL for the Connect App.
+
+=item connect_app_sid
+
+The SID that we assigned to the Connect App.
+
+=item permissions
+
+The set of permissions that you authorized for the Connect App. Can be:
+C<get-all> or C<post-all>.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 
