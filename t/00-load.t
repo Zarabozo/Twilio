@@ -5,6 +5,7 @@ use Test::More;
 
 my @modules = qw(
   Twilio
+  Twilio::ApiV1Version
   Twilio::Base::BaseClient
   Twilio::Base::PhoneNumberCapabilities
   Twilio::Deserialize
@@ -13,6 +14,7 @@ my @modules = qw(
   Twilio::Exceptions::DeserializeException
   Twilio::Exceptions::EnvironmentException
   Twilio::Exceptions::RestException
+  Twilio::Exceptions::RestExceptionV1
   Twilio::Exceptions::TwilioException
   Twilio::Http::Client
   Twilio::Http::FakeClient
@@ -30,6 +32,7 @@ my @modules = qw(
   Twilio::Rest::Client
   Twilio::Serialize
   Twilio::Stream
+  Twilio::TokenPaginationPage
   Twilio::Version
 );
 

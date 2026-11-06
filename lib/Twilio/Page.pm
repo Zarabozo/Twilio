@@ -113,7 +113,7 @@ sub previous_page {
 sub next {
   my ($self) = @_;
   return if $self->{position} >= @{ $self->{records} };
-  return $self->build_instance($self->{records}[$self->{position}++]);
+  return $self->instance_for($self->{records}[$self->{position}++]);
 }
 
 sub rewind {
@@ -124,10 +124,15 @@ sub rewind {
 
 sub records {
   my ($self) = @_;
-  return map { $self->build_instance($_) } @{ $self->{records} };
+  return map { $self->instance_for($_) } @{ $self->{records} };
 }
 
 sub get_version { return $_[0]{version} }
+
+sub instance_for {
+  my ($self, $item) = @_;
+  return $self->build_instance($item);
+}
 
 sub _page_url {
   my ($self, $direction) = @_;
@@ -234,6 +239,13 @@ Fetch and return the next or previous page, or nothing if there is none.
 =head2 get_previous_page_url
 
 Return the URL of the next or previous page, or nothing if there is none.
+
+=head2 instance_for
+
+  my $instance = $page->instance_for($record);
+
+Returns the instance for one record of the list. It calls C<build_instance>, and
+exists so that a subclass can prepare a record first.
 
 =head2 has_meta
 
