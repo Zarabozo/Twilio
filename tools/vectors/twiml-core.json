@@ -1,0 +1,101 @@
+[
+  { "description": "an empty response" },
+  {
+    "description": "text in an element",
+    "children": [{ "name": "Say", "value": "Hello" }]
+  },
+  {
+    "description": "attributes",
+    "children": [
+      {
+        "name": "Say",
+        "value": "Hola",
+        "attributes": { "voice": "alice", "language": "es-MX", "loop": "2" }
+      }
+    ]
+  },
+  {
+    "description": "attributes are sorted",
+    "children": [{ "name": "Dial", "attributes": { "timeout": "20", "action": "/a", "Zed": "1" } }]
+  },
+  {
+    "description": "an element with no content",
+    "children": [{ "name": "Hangup" }]
+  },
+  {
+    "description": "empty text",
+    "children": [{ "name": "Say", "value": "" }]
+  },
+  {
+    "description": "nesting",
+    "children": [
+      {
+        "name": "Gather",
+        "attributes": { "input": "dtmf" },
+        "children": [
+          { "name": "Say", "value": "Press one" },
+          { "name": "Pause", "attributes": { "length": "1" } }
+        ]
+      }
+    ]
+  },
+  {
+    "description": "text between elements",
+    "children": [
+      {
+        "name": "Say",
+        "value": "Before ",
+        "children": [{ "name": "emphasis", "value": "this" }, " after"]
+      }
+    ]
+  },
+  {
+    "description": "text beside the response",
+    "children": ["Plain text", { "name": "Hangup" }, "More"]
+  },
+  {
+    "description": "escaping in text",
+    "children": [{ "name": "Say", "value": "a & b < c > d \"e\" 'f'" }]
+  },
+  {
+    "description": "entities are not read in text",
+    "children": [{ "name": "Say", "value": "&amp; &#10; &lt;" }]
+  },
+  {
+    "description": "escaping in attributes",
+    "children": [
+      { "name": "Redirect", "attributes": { "url": "https://a.test/?a=1&b=<2>", "note": "\"q\" 'r'" } }
+    ]
+  },
+  {
+    "description": "white space in text",
+    "children": [{ "name": "Say", "value": " a\tb\nc\rd " }]
+  },
+  {
+    "description": "white space in attributes",
+    "children": [{ "name": "Say", "attributes": { "note": " a\tb\nc\rd " } }]
+  },
+  {
+    "description": "non-ASCII text",
+    "children": [
+      {
+        "name": "Say",
+        "value": "código ñandú 日本語 😀",
+        "attributes": { "note": "acción" }
+      }
+    ]
+  },
+  {
+    "description": "deep nesting",
+    "children": [
+      {
+        "name": "A",
+        "children": [{ "name": "B", "children": [{ "name": "C", "children": [{ "name": "D" }] }] }]
+      }
+    ]
+  },
+  {
+    "description": "names with punctuation",
+    "children": [{ "name": "ns:Thing", "attributes": { "xml:lang": "es", "interpret-as": "date" } }]
+  }
+]
