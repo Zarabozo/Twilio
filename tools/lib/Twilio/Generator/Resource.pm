@@ -27,6 +27,8 @@ sub build {
 
   my $model = _names($tree, $resource);
   $model->{description} = _description($spec, $resource);
+  $model->{variable}    = snake($resource->{class_parts}[-1]);
+  $model->{calls}       = _calls($tree, $resource);
   $model->{list}        = _list_side($spec, $resource)    if $resource->{list};
   $model->{context}     = _context_side($spec, $resource) if $resource->{instance};
 
@@ -53,6 +55,48 @@ sub _names {
     module => "${space}::$name",
     class  => { map { $_ => "${space}::$name" . ucfirst } qw(list page context instance) },
   };
+}
+
+# How a reader reaches a resource, for the documentation. Resources of an account have a shortcut
+# on the client, so they start there.
+sub _calls {
+  my ($tree, $resource) = @_;
+
+  my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
+  my $list     = _list_call(\%by_class, $resource);
+  my $instance = $resource->{instance} // {};
+  return {
+    list    => $list,
+    context => defined $instance->{key} ? "$list(\$" . snake($instance->{key}) . ')' : $list
+  };
+}
+
+sub _list_call {
+  my ($by_class, $resource) = @_;
+
+  my $mount = $resource->{mount};
+  return "\$client->api->$mount" if !defined $resource->{parent};
+
+  my $parent = $by_class->{ $resource->{parent} };
+  return "\$client->$mount" if $parent->{class} eq 'Account' && _hangs_from_instance($resource);
+
+  my $from = _list_call($by_class, $parent);
+  return "$from->$mount" if !_hangs_from_instance($resource);
+  return "$from(\$" . _parent_id($resource) . ")->$mount";
+}
+
+sub _hangs_from_instance {
+  my ($resource) = @_;
+  return ($resource->{parent_side} // q{}) ne 'list';
+}
+
+# The id of the parent is the last parameter of the child's list, or of a singleton's path.
+sub _parent_id {
+  my ($resource) = @_;
+
+  my $path = ($resource->{list} // $resource->{instance})->{path};
+  my ($name) = $path =~ /.*[{](\w+)[}]/;
+  return snake($name);
 }
 
 sub root_class {
@@ -111,7 +155,7 @@ sub _delete_operation {
 
   _refuse_parameters($operation, sub { 0 });
   croak "$operation->{id}: no rule for a body here" if $operation->{spec}{requestBody};
-  return { method => $operation->{method} };
+  return { method => $operation->{method}, description => $operation->{spec}{description} };
 }
 
 sub _fetch_operation {
@@ -119,14 +163,22 @@ sub _fetch_operation {
 
   _refuse_parameters($operation, sub { $_[0]{in} eq 'query' });
   croak "$operation->{id}: no rule for a body here" if $operation->{spec}{requestBody};
-  return { method => $operation->{method}, options => _query_arguments($spec, $operation) };
+  return {
+    method      => $operation->{method},
+    description => $operation->{spec}{description},
+    options     => _query_arguments($spec, $operation),
+  };
 }
 
 sub _read_operation {
   my ($spec, $operation) = @_;
 
   _refuse_parameters($operation, sub { $_[0]{in} eq 'query' });
-  return { method => $operation->{method}, filters => _query_arguments($spec, $operation) };
+  return {
+    method      => $operation->{method},
+    description => $operation->{spec}{description},
+    filters     => _query_arguments($spec, $operation),
+  };
 }
 
 sub _query_arguments {
@@ -140,7 +192,8 @@ sub _query_arguments {
   for my $parameter (@parameters) {
     my $where = "$operation->{id} $parameter->{name}";
     croak "$where: no rule for a required query parameter" if $parameter->{required};
-    push @arguments, _argument($spec, $where, $parameter->{name}, $parameter->{schema});
+    push @arguments,
+      _argument($spec, $where, $parameter->{name}, $parameter->{schema}, $parameter->{description});
   }
   return \@arguments;
 }
@@ -164,9 +217,10 @@ sub _body_operation {
     sub { _argument($spec, "$operation->{id} $_[0]", $_[0], $properties->{ $_[0] }) };
 
   return {
-    method   => $operation->{method},
-    required => [map { $argument->($_) } @required],
-    options  => [map { $argument->($_) } sort grep { !$is_required{$_} } keys %{$properties}],
+    method      => $operation->{method},
+    description => $operation->{spec}{description},
+    required    => [map { $argument->($_) } @required],
+    options     => [map { $argument->($_) } sort grep { !$is_required{$_} } keys %{$properties}],
   };
 }
 
@@ -183,15 +237,23 @@ sub _refuse_parameters {
 }
 
 sub _argument {
-  my ($spec, $where, $wire_name, $schema) = @_;
+  my ($spec, $where, $wire_name, $schema, $description) = @_;
 
   my $resolved = $spec->resolve($schema);
+  my $is_array = ($resolved->{type} // q{}) eq 'array';
   return {
-    wire   => $wire_name,
-    name   => option_name($wire_name),
-    writer => scalar request_writer($spec, $where, $schema),
-    array  => ($resolved->{type} // q{}) eq 'array' ? 1 : 0,
+    wire        => $wire_name,
+    name        => option_name($wire_name),
+    writer      => scalar request_writer($spec, $where, $schema),
+    array       => $is_array ? 1 : 0,
+    description => $description // $schema->{description},
+    enum        => _enum_of($spec, $is_array ? $resolved->{items} : $schema),
   };
+}
+
+sub _enum_of {
+  my ($spec, $schema) = @_;
+  return $spec->resolve($schema // {})->{enum};
 }
 
 sub _response_schemas {
@@ -246,7 +308,7 @@ sub _instance_schemas {
 sub _fields {
   my ($spec, $resource, $schemas) = @_;
 
-  my %readers;
+  my (%readers, %notes);
   for my $schema (@{$schemas}) {
     my $properties = $schema->{properties} // {};
     for my $name (sort keys %{$properties}) {
@@ -257,10 +319,12 @@ sub _fields {
         croak "$resource->{key}: field $name is read in two ways";
       }
       $readers{$name} = $reader;
+      $notes{$name}{description} //= $properties->{$name}{description};
+      $notes{$name}{enum}        //= _enum_of($spec, $properties->{$name});
     }
   }
   return [
-    map { { name => $_, reader => length $readers{$_} ? $readers{$_} : undef } }
+    map { { name => $_, reader => length $readers{$_} ? $readers{$_} : undef, %{ $notes{$_} } } }
     sort keys %readers
   ];
 }
