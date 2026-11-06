@@ -6,7 +6,7 @@ A community Perl library for the [Twilio](https://www.twilio.com/) API, designed
 to feel like Twilio's official helper libraries.
 
 **Status: under development.** Version 2 is a rewrite from scratch. So far it
-covers the Messages resource only, and it has not been released. The
+covers the main REST API (`api.twilio.com`), and it has not been released. The
 `Twilio-1.000` release on CPAN is the old, unrelated codebase.
 
 ```perl
