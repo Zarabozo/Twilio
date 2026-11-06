@@ -16,6 +16,9 @@ Generated files start with a comment saying so, and they shouldn't be edited by
 hand. `xt/generator/up-to-date.t` fails when `lib/` differs from what the generator
 writes.
 
+It also writes `t/data/contract-api-v2010.json`, which holds what each operation must
+send, taken straight from the spec. `t/contract.t` checks the real classes against it.
+
 Besides the resources, it writes `Twilio::Rest::Client`, `Twilio::Rest::Api` and
 `Twilio::Rest::Api::V2010`, which offer a shortcut to each resource of an account.
 
