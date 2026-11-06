@@ -29,6 +29,20 @@ sub load {
   return $class->new($domain, $version, JSON::PP->new->utf8->decode($content));
 }
 
+# The first path segment, which is the version in Twilio's URLs.
+sub version_path {
+  my ($self) = @_;
+
+  my ($first)   = sort keys %{ $self->{document}{paths} // {} };
+  my ($segment) = ($first // q{}) =~ $VERSION_PREFIX ? $first =~ m{\A/([^/]+)} : ();
+  return $segment // croak 'No version in the paths of the spec';
+}
+
+sub base_url {
+  my ($self) = @_;
+  return $self->{document}{servers}[0]{url} // croak 'No server in the spec';
+}
+
 sub domain  { return $_[0]{domain} }
 sub version { return $_[0]{version} }
 
