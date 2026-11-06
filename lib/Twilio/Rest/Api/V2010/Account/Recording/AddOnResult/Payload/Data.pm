@@ -93,29 +93,56 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Recording::AddOnResult::Payload::Data - The Data resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $data = $client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads($payload_sid)->data->fetch;
+
 =head1 DESCRIPTION
 
 The Payload Data subresource hosts the actual data returned by the Add-on
 
-This file holds C<DataContext> and C<DataInstance>. All the methods that make a
-request throw L<Twilio::Exceptions::RestException> on an error response.
+This file holds C<DataContext> and C<DataInstance>. Methods that make a request
+throw L<Twilio::Exceptions::RestException> on an error response.
+
 
 
 =head1 DataContext
 
+Returned by C<<
+$client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads($payload_sid)->data
+>>. It makes no request until one of these methods is called.
+
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $data = $client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads($payload_sid)->data->fetch;
 
-Returns a C<DataInstance>.
+Fetch an instance of a result payload. Returns a C<DataInstance>.
 
 =head1 DataInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch> too, which work the same way.
+It has C<fetch>, which work as they do on the context.
 
-Its fields are C<redirect_to>.
+Its fields are:
+
+=over
+
+=item redirect_to
+
+The URL to redirect to to get the data returned by the AddOn that was
+previously stored.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

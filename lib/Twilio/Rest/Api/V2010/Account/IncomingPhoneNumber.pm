@@ -310,62 +310,227 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::IncomingPhoneNumber - The IncomingPhoneNumber resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $incoming_phone_number = $client->incoming_phone_numbers->create(\%options);
+  for my $incoming_phone_number ($client->incoming_phone_numbers->read({}, 20)) {
+    ...
+  }
+  my $incoming_phone_number = $client->incoming_phone_numbers($sid)->fetch;
+  $client->incoming_phone_numbers($sid)->update(\%options);
+  $client->incoming_phone_numbers($sid)->delete;
+
 =head1 DESCRIPTION
 
 Incoming phone numbers on a Twilio account/project
 
 This file holds C<IncomingPhoneNumberList>, C<IncomingPhoneNumberPage>,
-C<IncomingPhoneNumberContext> and C<IncomingPhoneNumberInstance>. All the
-methods that make a request throw L<Twilio::Exceptions::RestException> on an
-error response.
+C<IncomingPhoneNumberContext> and C<IncomingPhoneNumberInstance>. Methods that
+make a request throw L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 IncomingPhoneNumberList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->incoming_phone_numbers >>. See also
+L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create(\%options);
+  my $incoming_phone_number = $client->incoming_phone_numbers->create(\%options);
 
-Returns a C<IncomingPhoneNumberInstance>.
+Purchase a phone-number for the account. Returns a
+C<IncomingPhoneNumberInstance>.
 
-The options are C<address_sid>, C<api_version>, C<area_code>, C<bundle_sid>,
-C<emergency_address_sid>, C<emergency_status>, C<friendly_name>,
-C<identity_sid>, C<phone_number>, C<sms_application_sid>,
-C<sms_fallback_method>, C<sms_fallback_url>, C<sms_method>, C<sms_url>,
-C<status_callback>, C<status_callback_method>, C<trunk_sid>,
-C<voice_application_sid>, C<voice_caller_id_lookup>, C<voice_fallback_method>,
-C<voice_fallback_url>, C<voice_method>, C<voice_receive_mode> and C<voice_url>.
+The options are:
+
+=over
+
+=item C<address_sid>
+
+The SID of the Address resource we should associate with the new phone number.
+Some regions require addresses to meet local regulations.
+
+=item C<api_version>
+
+The API version to use for incoming calls made to the new phone number. The
+default is C<2010-04-01>.
+
+=item C<area_code>
+
+The desired area code for your new incoming phone number. Can be any
+three-digit, US or Canada area code. We will provision an available phone
+number within this area code for you. B<You must provide an C<area_code> or a
+C<phone_number>.> (US and Canada only).
+
+=item C<bundle_sid>
+
+The SID of the Bundle resource that you associate with the phone number. Some
+regions require a Bundle to meet local Regulations.
+
+=item C<emergency_address_sid>
+
+The SID of the emergency address configuration to use for emergency calling
+from the new phone number.
+
+=item C<emergency_status>
+
+One of C<Active> or C<Inactive>.
+
+=item C<friendly_name>
+
+A descriptive string that you created to describe the new phone number. It can
+be up to 64 characters long. By default, this is a formatted version of the new
+phone number.
+
+=item C<identity_sid>
+
+The SID of the Identity resource that we should associate with the new phone
+number. Some regions require an identity to meet local regulations.
+
+=item C<phone_number>
+
+The phone number to purchase specified in
+L<E.164|https://www.twilio.com/docs/glossary/what-e164> format. E.164 phone
+numbers consist of a + followed by the country code and subscriber number
+without punctuation characters. For example, +14155551234.
+
+=item C<sms_application_sid>
+
+The SID of the application that should handle SMS messages sent to the new
+phone number. If an C<sms_application_sid> is present, we ignore all of the
+C<sms_*_url> urls and use those set on the application.
+
+=item C<sms_fallback_method>
+
+The HTTP method that we should use to call C<sms_fallback_url>. Can be: C<GET>
+or C<POST> and defaults to C<POST>. One of C<GET> or C<POST>.
+
+=item C<sms_fallback_url>
+
+The URL that we should call when an error occurs while requesting or executing
+the TwiML defined by C<sms_url>.
+
+=item C<sms_method>
+
+The HTTP method that we should use to call C<sms_url>. Can be: C<GET> or
+C<POST> and defaults to C<POST>. One of C<GET> or C<POST>.
+
+=item C<sms_url>
+
+The URL we should call when the new phone number receives an incoming SMS
+message.
+
+=item C<status_callback>
+
+The URL we should call using the C<status_callback_method> to send status
+information to your application.
+
+=item C<status_callback_method>
+
+The HTTP method we should use to call C<status_callback>. Can be: C<GET> or
+C<POST> and defaults to C<POST>. One of C<GET> or C<POST>.
+
+=item C<trunk_sid>
+
+The SID of the Trunk we should use to handle calls to the new phone number. If
+a C<trunk_sid> is present, we ignore all of the voice urls and voice
+applications and use only those set on the Trunk. Setting a C<trunk_sid> will
+automatically delete your C<voice_application_sid> and vice versa.
+
+=item C<voice_application_sid>
+
+The SID of the application we should use to handle calls to the new phone
+number. If a C<voice_application_sid> is present, we ignore all of the voice
+urls and use only those set on the application. Setting a
+C<voice_application_sid> will automatically delete your C<trunk_sid> and vice
+versa.
+
+=item C<voice_caller_id_lookup>
+
+Whether to lookup the caller's name from the CNAM database and post it to your
+app. Can be: C<true> or C<false> and defaults to C<false>.
+
+=item C<voice_fallback_method>
+
+The HTTP method that we should use to call C<voice_fallback_url>. Can be:
+C<GET> or C<POST> and defaults to C<POST>. One of C<GET> or C<POST>.
+
+=item C<voice_fallback_url>
+
+The URL that we should call when an error occurs retrieving or executing the
+TwiML requested by C<url>.
+
+=item C<voice_method>
+
+The HTTP method that we should use to call C<voice_url>. Can be: C<GET> or
+C<POST> and defaults to C<POST>. One of C<GET> or C<POST>.
+
+=item C<voice_receive_mode>
+
+One of C<voice> or C<fax>.
+
+=item C<voice_url>
+
+The URL that we should call to answer a call to the new phone number. The
+C<voice_url> will not be called if a C<voice_application_sid> or a C<trunk_sid>
+is set.
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->incoming_phone_numbers->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of incoming-phone-numbers belonging to the account used to make
+the request. Returns the records as a list, fetching as many pages as it needs.
 
-The options are C<beta>, C<friendly_name>, C<origin> and C<phone_number>.
+The options are:
+
+=over
+
+=item C<beta>
+
+Whether to include phone numbers new to the Twilio platform. Can be: C<true> or
+C<false> and the default is C<true>.
+
+=item C<friendly_name>
+
+A string that identifies the IncomingPhoneNumber resources to read.
+
+=item C<origin>
+
+Whether to include phone numbers based on their origin. Can be: C<twilio> or
+C<hosted>. By default, phone numbers of all origin are included.
+
+=item C<phone_number>
+
+The phone numbers of the IncomingPhoneNumber resources to read. You can specify
+partial numbers and use '*' as a wildcard for any digit.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->incoming_phone_numbers->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->incoming_phone_numbers->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->incoming_phone_numbers->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->incoming_phone_numbers->get_context($sid);
 
 Returns a C<IncomingPhoneNumberContext>, and makes no request.
 
@@ -387,32 +552,168 @@ See L<Twilio::Rest::Api::V2010::Account::IncomingPhoneNumber::Mobile>.
 
 See L<Twilio::Rest::Api::V2010::Account::IncomingPhoneNumber::TollFree>.
 
+=head1 IncomingPhoneNumberPage
+
+A L<Twilio::Page> of C<IncomingPhoneNumberInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 IncomingPhoneNumberContext
+
+Returned by C<< $client->incoming_phone_numbers($sid) >>. It makes no request
+until one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $incoming_phone_number = $client->incoming_phone_numbers($sid)->fetch;
 
-Returns a C<IncomingPhoneNumberInstance>.
+Fetch an incoming-phone-number belonging to the account used to make the
+request. Returns a C<IncomingPhoneNumberInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $incoming_phone_number = $client->incoming_phone_numbers($sid)->update(\%options);
 
-Returns a C<IncomingPhoneNumberInstance>.
+Update an incoming-phone-number instance. Returns a
+C<IncomingPhoneNumberInstance>.
 
-The options are C<account_sid>, C<address_sid>, C<api_version>, C<bundle_sid>,
-C<emergency_address_sid>, C<emergency_status>, C<friendly_name>,
-C<identity_sid>, C<sms_application_sid>, C<sms_fallback_method>,
-C<sms_fallback_url>, C<sms_method>, C<sms_url>, C<status_callback>,
-C<status_callback_method>, C<trunk_sid>, C<voice_application_sid>,
-C<voice_caller_id_lookup>, C<voice_fallback_method>, C<voice_fallback_url>,
-C<voice_method>, C<voice_receive_mode> and C<voice_url>.
+The options are:
+
+=over
+
+=item C<account_sid>
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created the IncomingPhoneNumber resource to update. For more information, see
+L<Exchanging Numbers Between
+Subaccounts|https://www.twilio.com/docs/iam/api/subaccounts#exchanging-numbers>.
+
+=item C<address_sid>
+
+The SID of the Address resource we should associate with the phone number. Some
+regions require addresses to meet local regulations.
+
+=item C<api_version>
+
+The API version to use for incoming calls made to the phone number. The default
+is C<2010-04-01>.
+
+=item C<bundle_sid>
+
+The SID of the Bundle resource that you associate with the phone number. Some
+regions require a Bundle to meet local Regulations.
+
+=item C<emergency_address_sid>
+
+The SID of the emergency address configuration to use for emergency calling
+from this phone number.
+
+=item C<emergency_status>
+
+One of C<Active> or C<Inactive>.
+
+=item C<friendly_name>
+
+A descriptive string that you created to describe this phone number. It can be
+up to 64 characters long. By default, this is a formatted version of the phone
+number.
+
+=item C<identity_sid>
+
+The SID of the Identity resource that we should associate with the phone
+number. Some regions require an identity to meet local regulations.
+
+=item C<sms_application_sid>
+
+The SID of the application that should handle SMS messages sent to the number.
+If an C<sms_application_sid> is present, we ignore all of the C<sms_*_url> urls
+and use those set on the application.
+
+=item C<sms_fallback_method>
+
+The HTTP method that we should use to call C<sms_fallback_url>. Can be: C<GET>
+or C<POST> and defaults to C<POST>. One of C<GET> or C<POST>.
+
+=item C<sms_fallback_url>
+
+The URL that we should call when an error occurs while requesting or executing
+the TwiML defined by C<sms_url>.
+
+=item C<sms_method>
+
+The HTTP method that we should use to call C<sms_url>. Can be: C<GET> or
+C<POST> and defaults to C<POST>. One of C<GET> or C<POST>.
+
+=item C<sms_url>
+
+The URL we should call when the phone number receives an incoming SMS message.
+
+=item C<status_callback>
+
+The URL we should call using the C<status_callback_method> to send status
+information to your application.
+
+=item C<status_callback_method>
+
+The HTTP method we should use to call C<status_callback>. Can be: C<GET> or
+C<POST> and defaults to C<POST>. One of C<GET> or C<POST>.
+
+=item C<trunk_sid>
+
+The SID of the Trunk we should use to handle phone calls to the phone number.
+If a C<trunk_sid> is present, we ignore all of the voice urls and voice
+applications and use only those set on the Trunk. Setting a C<trunk_sid> will
+automatically delete your C<voice_application_sid> and vice versa.
+
+=item C<voice_application_sid>
+
+The SID of the application we should use to handle phone calls to the phone
+number. If a C<voice_application_sid> is present, we ignore all of the voice
+urls and use only those set on the application. Setting a
+C<voice_application_sid> will automatically delete your C<trunk_sid> and vice
+versa.
+
+=item C<voice_caller_id_lookup>
+
+Whether to lookup the caller's name from the CNAM database and post it to your
+app. Can be: C<true> or C<false> and defaults to C<false>.
+
+=item C<voice_fallback_method>
+
+The HTTP method that we should use to call C<voice_fallback_url>. Can be:
+C<GET> or C<POST> and defaults to C<POST>. One of C<GET> or C<POST>.
+
+=item C<voice_fallback_url>
+
+The URL that we should call when an error occurs retrieving or executing the
+TwiML requested by C<url>.
+
+=item C<voice_method>
+
+The HTTP method that we should use to call C<voice_url>. Can be: C<GET> or
+C<POST> and defaults to C<POST>. One of C<GET> or C<POST>.
+
+=item C<voice_receive_mode>
+
+One of C<voice> or C<fax>.
+
+=item C<voice_url>
+
+The URL that we should call to answer a call to the phone number. The
+C<voice_url> will not be called if a C<voice_application_sid> or a C<trunk_sid>
+is set.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->incoming_phone_numbers($sid)->delete;
 
+Delete a phone-numbers belonging to the account used to make the request.
 Returns true.
 
 =head2 assigned_add_ons
@@ -427,23 +728,197 @@ See L<Twilio::Rest::Api::V2010::Account::IncomingPhoneNumber::AssignedAddOn>.
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update>, C<delete> and C<assigned_add_ons> too, which work
-the same way.
+It has C<fetch>, C<update>, C<delete> and C<assigned_add_ons>, which work as
+they do on the context.
 
-Its fields are C<account_sid>, C<address_requirements>, C<address_sid>,
-C<api_version>, C<beta>, C<bundle_sid>, C<emergency_address_sid>,
-C<emergency_address_status>, C<emergency_status>, C<friendly_name>,
-C<identity_sid>, C<origin>, C<phone_number>, C<sid>, C<sms_application_sid>,
-C<sms_fallback_method>, C<sms_fallback_url>, C<sms_method>, C<sms_url>,
-C<status>, C<status_callback>, C<status_callback_method>, C<trunk_sid>,
-C<type>, C<uri>, C<voice_application_sid>, C<voice_caller_id_lookup>,
-C<voice_fallback_method>, C<voice_fallback_url>, C<voice_method>,
-C<voice_receive_mode> and C<voice_url>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
 
-C<capabilities> return L<Twilio::Base::PhoneNumberCapabilities> objects.
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created this IncomingPhoneNumber resource.
+
+=item address_requirements
+
+One of C<none>, C<any>, C<local> or C<foreign>.
+
+=item address_sid
+
+The SID of the Address resource associated with the phone number.
+
+=item api_version
+
+The API version used to start a new TwiML session.
+
+=item beta
+
+Whether the phone number is new to the Twilio platform. Can be: C<true> or
+C<false>.
+
+=item bundle_sid
+
+The SID of the Bundle resource that you associate with the phone number. Some
+regions require a Bundle to meet local Regulations.
+
+=item capabilities
+
+The set of Boolean properties that indicate whether a phone number can receive
+calls or messages. Capabilities are C<Voice>, C<SMS>, and C<MMS> and each
+capability can be: C<true> or C<false>. A
+L<Twilio::Base::PhoneNumberCapabilities> object.
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item emergency_address_sid
+
+The SID of the emergency address configuration that we use for emergency
+calling from this phone number.
+
+=item emergency_address_status
+
+One of C<registered>, C<unregistered>, C<pending-registration>,
+C<registration-failure>, C<pending-unregistration> or
+C<unregistration-failure>.
+
+=item emergency_status
+
+One of C<Active> or C<Inactive>.
+
+=item friendly_name
+
+The string that you assigned to describe the resource.
+
+=item identity_sid
+
+The SID of the Identity resource that we associate with the phone number. Some
+regions require an Identity to meet local regulations.
+
+=item origin
+
+The phone number's origin. C<twilio> identifies Twilio-owned phone numbers and
+C<hosted> identifies hosted phone numbers.
+
+=item phone_number
+
+The phone number in L<E.164|https://www.twilio.com/docs/glossary/what-e164>
+format, which consists of a + followed by the country code and subscriber
+number.
+
+=item sid
+
+The unique string that that we created to identify this IncomingPhoneNumber
+resource.
+
+=item sms_application_sid
+
+The SID of the application that handles SMS messages sent to the phone number.
+If an C<sms_application_sid> is present, we ignore all C<sms_*_url> values and
+use those of the application.
+
+=item sms_fallback_method
+
+The HTTP method we use to call C<sms_fallback_url>. Can be: C<GET> or C<POST>.
+One of C<GET> or C<POST>.
+
+=item sms_fallback_url
+
+The URL that we call when an error occurs while retrieving or executing the
+TwiML from C<sms_url>.
+
+=item sms_method
+
+The HTTP method we use to call C<sms_url>. Can be: C<GET> or C<POST>. One of
+C<GET> or C<POST>.
+
+=item sms_url
+
+The URL we call when the phone number receives an incoming SMS message.
+
+=item status
+
+No description in the specification.
+
+=item status_callback
+
+The URL we call using the C<status_callback_method> to send status information
+to your application.
+
+=item status_callback_method
+
+The HTTP method we use to call C<status_callback>. Can be: C<GET> or C<POST>.
+One of C<GET> or C<POST>.
+
+=item trunk_sid
+
+The SID of the Trunk that handles calls to the phone number. If a C<trunk_sid>
+is present, we ignore all of the voice urls and voice applications and use
+those set on the Trunk. Setting a C<trunk_sid> will automatically delete your
+C<voice_application_sid> and vice versa.
+
+=item type
+
+The phone number type.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=item voice_application_sid
+
+The SID of the application that handles calls to the phone number. If a
+C<voice_application_sid> is present, we ignore all of the voice urls and use
+those set on the application. Setting a C<voice_application_sid> will
+automatically delete your C<trunk_sid> and vice versa.
+
+=item voice_caller_id_lookup
+
+Whether we look up the caller's caller-ID name from the CNAM database ($0.01
+per look up). Can be: C<true> or C<false>.
+
+=item voice_fallback_method
+
+The HTTP method we use to call C<voice_fallback_url>. Can be: C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item voice_fallback_url
+
+The URL that we call when an error occurs retrieving or executing the TwiML
+requested by C<url>.
+
+=item voice_method
+
+The HTTP method we use to call C<voice_url>. Can be: C<GET> or C<POST>. One of
+C<GET> or C<POST>.
+
+=item voice_receive_mode
+
+One of C<voice> or C<fax>.
+
+=item voice_url
+
+The URL we call when the phone number receives a call. The C<voice_url> will
+not be used if a C<voice_application_sid> or a C<trunk_sid> is set.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

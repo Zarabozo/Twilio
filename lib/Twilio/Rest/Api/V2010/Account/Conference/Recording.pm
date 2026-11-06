@@ -208,89 +208,261 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Conference::Recording - The Recording resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $recording ($client->conferences($conference_sid)->recordings->read({}, 20)) {
+    ...
+  }
+  my $recording = $client->conferences($conference_sid)->recordings($sid)->fetch;
+  $client->conferences($conference_sid)->recordings($sid)->update($status, \%options);
+  $client->conferences($conference_sid)->recordings($sid)->delete;
+
 =head1 DESCRIPTION
 
 Recordings of conferences
 
 This file holds C<RecordingList>, C<RecordingPage>, C<RecordingContext> and
-C<RecordingInstance>. All the methods that make a request throw
+C<RecordingInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 RecordingList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->conferences($conference_sid)->recordings >>. See also
+L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->conferences($conference_sid)->recordings->read(\%options, $limit, $page_size);
 
+Retrieve a list of recordings belonging to the call used to make the request.
 Returns the records as a list, fetching as many pages as it needs.
 
-The options are C<date_created>, C<date_created_before> and
-C<date_created_after>.
+The options are:
 
-C<date_created>, C<date_created_before> and C<date_created_after> take a
-string, or an object with an C<epoch> method. See
+=over
+
+=item C<date_created>
+
+The C<date_created> value, specified as C<YYYY-MM-DD>, of the resources to
+read. You can also specify inequality: C<< DateCreated<=YYYY-MM-DD >> will
+return recordings generated at or before midnight on a given date, and C<<
+DateCreated>=YYYY-MM-DD >> returns recordings generated at or after midnight on
+a date. A string, or an object with an C<epoch> method. See
 L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<date_created_before>
+
+The C<date_created> value, specified as C<YYYY-MM-DD>, of the resources to
+read. You can also specify inequality: C<< DateCreated<=YYYY-MM-DD >> will
+return recordings generated at or before midnight on a given date, and C<<
+DateCreated>=YYYY-MM-DD >> returns recordings generated at or after midnight on
+a date. A string, or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<date_created_after>
+
+The C<date_created> value, specified as C<YYYY-MM-DD>, of the resources to
+read. You can also specify inequality: C<< DateCreated<=YYYY-MM-DD >> will
+return recordings generated at or before midnight on a given date, and C<<
+DateCreated>=YYYY-MM-DD >> returns recordings generated at or after midnight on
+a date. A string, or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->conferences($conference_sid)->recordings->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->conferences($conference_sid)->recordings->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->conferences($conference_sid)->recordings->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->conferences($conference_sid)->recordings->get_context($sid);
 
 Returns a C<RecordingContext>, and makes no request.
 
+=head1 RecordingPage
+
+A L<Twilio::Page> of C<RecordingInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 RecordingContext
+
+Returned by C<< $client->conferences($conference_sid)->recordings($sid) >>. It
+makes no request until one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $recording = $client->conferences($conference_sid)->recordings($sid)->fetch;
 
-Returns a C<RecordingInstance>.
+Fetch an instance of a recording for a call. Returns a C<RecordingInstance>.
 
 =head2 update
 
-  my $result = $object->update($status, \%options);
+  my $recording = $client->conferences($conference_sid)->recordings($sid)->update($status, \%options);
 
-Returns a C<RecordingInstance>.
+Changes the status of the recording to paused, stopped, or in-progress. Note:
+To use C<Twilio.CURRENT>, pass it as recording sid. Returns a
+C<RecordingInstance>.
 
-The options are C<pause_behavior>.
+The required values are:
+
+=over
+
+=item C<$status>
+
+One of C<in-progress>, C<paused>, C<stopped>, C<processing>, C<completed> or
+C<absent>.
+
+=back
+
+The options are:
+
+=over
+
+=item C<pause_behavior>
+
+Whether to record during a pause. Can be: C<skip> or C<silence> and the default
+is C<silence>. C<skip> does not record during the pause period, while
+C<silence> will replace the actual audio of the call with silence during the
+pause period. This parameter only applies when setting C<status> is set to
+C<paused>.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->conferences($conference_sid)->recordings($sid)->delete;
 
-Returns true.
+Delete a recording from your account. Returns true.
 
 =head1 RecordingInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update> and C<delete> too, which work the same way.
+It has C<fetch>, C<update> and C<delete>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<api_version>, C<call_sid>, C<channels>,
-C<conference_sid>, C<duration>, C<encryption_details>, C<error_code>, C<price>,
-C<price_unit>, C<sid>, C<source>, C<status> and C<uri>.
+Its fields are:
 
-C<date_created>, C<date_updated> and C<start_time> return L<Time::Piece>
-objects in UTC. See L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created the Conference Recording resource.
+
+=item api_version
+
+The API version used to create the recording.
+
+=item call_sid
+
+The SID of the L<Call|https://www.twilio.com/docs/voice/api/call-resource> the
+Conference Recording resource is associated with.
+
+=item channels
+
+The number of channels in the final recording file. Can be: C<1>, or C<2>.
+Separating a two leg call into two separate channels of the recording file is
+supported in
+L<Dial|https://www.twilio.com/docs/voice/twiml/dial#attributes-record> and
+L<Outbound Rest API|https://www.twilio.com/docs/voice/make-calls> record
+options.
+
+=item conference_sid
+
+The Conference SID that identifies the conference associated with the
+recording.
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated, specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item duration
+
+The length of the recording in seconds.
+
+=item encryption_details
+
+How to decrypt the recording if it was encrypted using L<Call Recording
+Encryption|https://www.twilio.com/docs/voice/tutorials/voice-recording-encryption>
+feature.
+
+=item error_code
+
+The error code that describes why the recording is C<absent>. The error code is
+described in our L<Error Dictionary|https://www.twilio.com/docs/api/errors>.
+This value is null if the recording C<status> is not C<absent>.
+
+=item price
+
+The one-time cost of creating the recording in the C<price_unit> currency.
+
+=item price_unit
+
+The currency used in the C<price> property. Example: C<USD>.
+
+=item sid
+
+The unique string that that we created to identify the Conference Recording
+resource.
+
+=item source
+
+One of C<DialVerb>, C<Conference>, C<OutboundAPI>, C<Trunking>, C<RecordVerb>,
+C<StartCallRecordingAPI> or C<StartConferenceRecordingAPI>.
+
+=item start_time
+
+The start time of the recording in GMT and in L<RFC
+2822|https://www.php.net/manual/en/class.datetime.php#datetime.constants.rfc2822>
+format. A L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item status
+
+One of C<in-progress>, C<paused>, C<stopped>, C<processing>, C<completed> or
+C<absent>.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

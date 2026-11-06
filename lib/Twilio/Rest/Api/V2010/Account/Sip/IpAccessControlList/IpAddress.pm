@@ -222,89 +222,212 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Sip::IpAccessControlList::IpAddress - The IpAddress resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $ip_address = $client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses->create($friendly_name, $ip_address, \%options);
+  for my $ip_address ($client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses->read({}, 20)) {
+    ...
+  }
+  my $ip_address = $client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses($sid)->fetch;
+  $client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses($sid)->update(\%options);
+  $client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses($sid)->delete;
+
 =head1 DESCRIPTION
 
 IP addresses that have access to a SIP Domain
 
 This file holds C<IpAddressList>, C<IpAddressPage>, C<IpAddressContext> and
-C<IpAddressInstance>. All the methods that make a request throw
+C<IpAddressInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 IpAddressList
 
-See also L<Twilio::ListResource>.
+Returned by C<<
+$client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses
+>>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($friendly_name, $ip_address, \%options);
+  my $ip_address = $client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses->create($friendly_name, $ip_address, \%options);
 
-Returns a C<IpAddressInstance>.
+Create a new IpAddress resource. Returns a C<IpAddressInstance>.
 
-The options are C<cidr_prefix_length>.
+The required values are:
+
+=over
+
+=item C<$friendly_name>
+
+A human readable descriptive text for this resource, up to 255 characters long.
+
+=item C<$ip_address>
+
+An IP address in dotted decimal notation from which you want to accept traffic.
+Any SIP requests from this IP address will be allowed by Twilio. IPv4 only
+supported today.
+
+=back
+
+The options are:
+
+=over
+
+=item C<cidr_prefix_length>
+
+An integer representing the length of the CIDR prefix to use with this IP
+address when accepting traffic. By default the entire IP address is used.
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Read multiple IpAddress resources. Returns the records as a list, fetching as
+many pages as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses->get_context($sid);
 
 Returns a C<IpAddressContext>, and makes no request.
 
+=head1 IpAddressPage
+
+A L<Twilio::Page> of C<IpAddressInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 IpAddressContext
+
+Returned by C<<
+$client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses($sid)
+>>. It makes no request until one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $ip_address = $client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses($sid)->fetch;
 
-Returns a C<IpAddressInstance>.
+Read one IpAddress resource. Returns a C<IpAddressInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $ip_address = $client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses($sid)->update(\%options);
 
-Returns a C<IpAddressInstance>.
+Update an IpAddress resource. Returns a C<IpAddressInstance>.
 
-The options are C<cidr_prefix_length>, C<friendly_name> and C<ip_address>.
+The options are:
+
+=over
+
+=item C<cidr_prefix_length>
+
+An integer representing the length of the CIDR prefix to use with this IP
+address when accepting traffic. By default the entire IP address is used.
+
+=item C<friendly_name>
+
+A human readable descriptive text for this resource, up to 255 characters long.
+
+=item C<ip_address>
+
+An IP address in dotted decimal notation from which you want to accept traffic.
+Any SIP requests from this IP address will be allowed by Twilio. IPv4 only
+supported today.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->sip->ip_access_control_lists($ip_access_control_list_sid)->ip_addresses($sid)->delete;
 
-Returns true.
+Delete an IpAddress resource. Returns true.
 
 =head1 IpAddressInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update> and C<delete> too, which work the same way.
+It has C<fetch>, C<update> and C<delete>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<cidr_prefix_length>, C<friendly_name>,
-C<ip_access_control_list_sid>, C<ip_address>, C<sid> and C<uri>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The unique id of the Account that is responsible for this resource.
+
+=item cidr_prefix_length
+
+An integer representing the length of the CIDR prefix to use with this IP
+address when accepting traffic. By default the entire IP address is used.
+
+=item date_created
+
+The date that this resource was created, given as GMT in L<RFC
+2822|https://www.php.net/manual/en/class.datetime.php#datetime.constants.rfc2822>
+format. A L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date that this resource was last updated, given as GMT in L<RFC
+2822|https://www.php.net/manual/en/class.datetime.php#datetime.constants.rfc2822>
+format. A L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item friendly_name
+
+A human readable descriptive text for this resource, up to 255 characters long.
+
+=item ip_access_control_list_sid
+
+The unique id of the IpAccessControlList resource that includes this resource.
+
+=item ip_address
+
+An IP address in dotted decimal notation from which you want to accept traffic.
+Any SIP requests from this IP address will be allowed by Twilio. IPv4 only
+supported today.
+
+=item sid
+
+A 34 character string that uniquely identifies this resource.
+
+=item uri
+
+The URI for this resource, relative to C<https://api.twilio.com>
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

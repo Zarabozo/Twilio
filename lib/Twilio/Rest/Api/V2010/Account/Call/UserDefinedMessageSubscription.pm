@@ -116,6 +116,13 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Call::UserDefinedMessageSubscription - The UserDefinedMessageSubscription resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $user_defined_message_subscription = $client->calls($call_sid)->user_defined_message_subscriptions->create($callback, \%options);
+  $client->calls($call_sid)->user_defined_message_subscriptions($sid)->delete;
+
 =head1 DESCRIPTION
 
 Subscription for server-side application access to messages sent from the Voice
@@ -123,45 +130,112 @@ SDK for an active Call.
 
 This file holds C<UserDefinedMessageSubscriptionList>,
 C<UserDefinedMessageSubscriptionContext> and
-C<UserDefinedMessageSubscriptionInstance>. All the methods that make a request
-throw L<Twilio::Exceptions::RestException> on an error response.
+C<UserDefinedMessageSubscriptionInstance>. Methods that make a request throw
+L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 UserDefinedMessageSubscriptionList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->calls($call_sid)->user_defined_message_subscriptions
+>>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($callback, \%options);
+  my $user_defined_message_subscription = $client->calls($call_sid)->user_defined_message_subscriptions->create($callback, \%options);
 
-Returns a C<UserDefinedMessageSubscriptionInstance>.
+Subscribe to User Defined Messages for a given Call SID. Returns a
+C<UserDefinedMessageSubscriptionInstance>.
 
-The options are C<idempotency_key> and C<method>.
+The required values are:
+
+=over
+
+=item C<$callback>
+
+The URL we should call using the C<method> to send user defined events to your
+application. URLs must contain a valid hostname (underscores are not
+permitted).
+
+=back
+
+The options are:
+
+=over
+
+=item C<idempotency_key>
+
+A unique string value to identify API call. This should be a unique string
+value per API call and can be a randomly generated.
+
+=item C<method>
+
+The HTTP method Twilio will use when requesting the above C<Url>. Either C<GET>
+or C<POST>. Default is C<POST>. One of C<GET> or C<POST>.
+
+=back
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->calls($call_sid)->user_defined_message_subscriptions->get_context($sid);
 
 Returns a C<UserDefinedMessageSubscriptionContext>, and makes no request.
 
+
 =head1 UserDefinedMessageSubscriptionContext
+
+Returned by C<<
+$client->calls($call_sid)->user_defined_message_subscriptions($sid) >>. It
+makes no request until one of these methods is called.
 
 =head2 delete
 
-  $context->delete;
+  $client->calls($call_sid)->user_defined_message_subscriptions($sid)->delete;
 
-Returns true.
+Delete a specific User Defined Message Subscription. Returns true.
 
 =head1 UserDefinedMessageSubscriptionInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<delete> too, which work the same way.
+It has C<delete>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<call_sid>, C<sid> and C<uri>.
+Its fields are:
 
-C<date_created> return L<Time::Piece> objects in UTC. See
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+subscribed to the User Defined Messages.
+
+=item call_sid
+
+The SID of the L<Call|https://www.twilio.com/docs/voice/api/call-resource> the
+User Defined Message Subscription is associated with. This refers to the Call
+SID that is producing the User Defined Messages.
+
+=item date_created
+
+The date that this User Defined Message Subscription was created, given in RFC
+2822 format. A L<Time::Piece> object in UTC. See
 L<Twilio::Deserialize/date_time>.
+
+=item sid
+
+The SID that uniquely identifies this User Defined Message Subscription.
+
+=item uri
+
+The URI of the User Defined Message Subscription Resource, relative to
+C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

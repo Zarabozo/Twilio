@@ -203,74 +203,123 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Sip::IpAccessControlList - The IpAccessControlList resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $ip_access_control_list = $client->sip->ip_access_control_lists->create($friendly_name);
+  for my $ip_access_control_list ($client->sip->ip_access_control_lists->read({}, 20)) {
+    ...
+  }
+  my $ip_access_control_list = $client->sip->ip_access_control_lists($sid)->fetch;
+  $client->sip->ip_access_control_lists($sid)->update($friendly_name);
+  $client->sip->ip_access_control_lists($sid)->delete;
+
 =head1 DESCRIPTION
 
 Access control lists of IP address resources
 
 This file holds C<IpAccessControlListList>, C<IpAccessControlListPage>,
-C<IpAccessControlListContext> and C<IpAccessControlListInstance>. All the
-methods that make a request throw L<Twilio::Exceptions::RestException> on an
-error response.
+C<IpAccessControlListContext> and C<IpAccessControlListInstance>. Methods that
+make a request throw L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 IpAccessControlListList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->sip->ip_access_control_lists >>. See also
+L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($friendly_name);
+  my $ip_access_control_list = $client->sip->ip_access_control_lists->create($friendly_name);
 
-Returns a C<IpAccessControlListInstance>.
+Create a new IpAccessControlList resource. Returns a
+C<IpAccessControlListInstance>.
+
+The required values are:
+
+=over
+
+=item C<$friendly_name>
+
+A human readable descriptive text that describes the IpAccessControlList, up to
+255 characters long.
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->sip->ip_access_control_lists->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of IpAccessControlLists that belong to the account used to make
+the request. Returns the records as a list, fetching as many pages as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->sip->ip_access_control_lists->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->sip->ip_access_control_lists->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->sip->ip_access_control_lists->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->sip->ip_access_control_lists->get_context($sid);
 
 Returns a C<IpAccessControlListContext>, and makes no request.
 
+=head1 IpAccessControlListPage
+
+A L<Twilio::Page> of C<IpAccessControlListInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 IpAccessControlListContext
+
+Returned by C<< $client->sip->ip_access_control_lists($sid) >>. It makes no
+request until one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $ip_access_control_list = $client->sip->ip_access_control_lists($sid)->fetch;
 
-Returns a C<IpAccessControlListInstance>.
+Fetch a specific instance of an IpAccessControlList. Returns a
+C<IpAccessControlListInstance>.
 
 =head2 update
 
-  my $result = $object->update($friendly_name);
+  my $ip_access_control_list = $client->sip->ip_access_control_lists($sid)->update($friendly_name);
 
-Returns a C<IpAccessControlListInstance>.
+Rename an IpAccessControlList. Returns a C<IpAccessControlListInstance>.
+
+The required values are:
+
+=over
+
+=item C<$friendly_name>
+
+A human readable descriptive text, up to 255 characters long.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->sip->ip_access_control_lists($sid)->delete;
 
-Returns true.
+Delete an IpAccessControlList from the requested account. Returns true.
 
 =head2 ip_addresses
 
@@ -284,14 +333,55 @@ See L<Twilio::Rest::Api::V2010::Account::Sip::IpAccessControlList::IpAddress>.
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update>, C<delete> and C<ip_addresses> too, which work the
-same way.
+It has C<fetch>, C<update>, C<delete> and C<ip_addresses>, which work as they
+do on the context.
 
-Its fields are C<account_sid>, C<friendly_name>, C<sid>, C<subresource_uris>
-and C<uri>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The unique id of the L<Account|https://www.twilio.com/docs/iam/api/account>
+that owns this resource.
+
+=item date_created
+
+The date that this resource was created, given as GMT in L<RFC
+2822|https://www.php.net/manual/en/class.datetime.php#datetime.constants.rfc2822>
+format. A L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date that this resource was last updated, given as GMT in L<RFC
+2822|https://www.php.net/manual/en/class.datetime.php#datetime.constants.rfc2822>
+format. A L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item friendly_name
+
+A human readable descriptive text, up to 255 characters long.
+
+=item sid
+
+A 34 character string that uniquely identifies this resource.
+
+=item subresource_uris
+
+A list of the IpAddress resources associated with this IP access control list
+resource.
+
+=item uri
+
+The URI for this resource, relative to C<https://api.twilio.com>
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

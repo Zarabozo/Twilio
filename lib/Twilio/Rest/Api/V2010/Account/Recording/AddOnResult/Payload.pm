@@ -212,61 +212,88 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Recording::AddOnResult::Payload - The Payload resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $payload ($client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads->read({}, 20)) {
+    ...
+  }
+  my $payload = $client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads($sid)->fetch;
+  $client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads($sid)->delete;
+
 =head1 DESCRIPTION
 
 A single Add-on results' payload
 
 This file holds C<PayloadList>, C<PayloadPage>, C<PayloadContext> and
-C<PayloadInstance>. All the methods that make a request throw
+C<PayloadInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 PayloadList
 
-See also L<Twilio::ListResource>.
+Returned by C<<
+$client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads
+>>. See also L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of payloads belonging to the AddOnResult. Returns the records
+as a list, fetching as many pages as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads->get_context($sid);
 
 Returns a C<PayloadContext>, and makes no request.
 
+=head1 PayloadPage
+
+A L<Twilio::Page> of C<PayloadInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 PayloadContext
+
+Returned by C<<
+$client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads($sid)
+>>. It makes no request until one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $payload = $client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads($sid)->fetch;
 
-Returns a C<PayloadInstance>.
+Fetch an instance of a result payload. Returns a C<PayloadInstance>.
 
 =head2 delete
 
-  $context->delete;
+  $client->recordings($reference_sid)->add_on_results($add_on_result_sid)->payloads($sid)->delete;
 
-Returns true.
+Delete a payload from the result along with all associated Data. Returns true.
 
 =head2 data
 
@@ -278,14 +305,71 @@ See L<Twilio::Rest::Api::V2010::Account::Recording::AddOnResult::Payload::Data>.
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<delete> and C<data> too, which work the same way.
+It has C<fetch>, C<delete> and C<data>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<add_on_configuration_sid>,
-C<add_on_result_sid>, C<add_on_sid>, C<content_type>, C<label>,
-C<reference_sid>, C<sid> and C<subresource_uris>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created the Recording AddOnResult Payload resource.
+
+=item add_on_configuration_sid
+
+The SID of the Add-on configuration.
+
+=item add_on_result_sid
+
+The SID of the AddOnResult to which the payload belongs.
+
+=item add_on_sid
+
+The SID of the Add-on to which the result belongs.
+
+=item content_type
+
+The MIME type of the payload.
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item label
+
+The string provided by the vendor that describes the payload.
+
+=item reference_sid
+
+The SID of the recording to which the AddOnResult resource that contains the
+payload belongs.
+
+=item sid
+
+The unique string that that we created to identify the Recording AddOnResult
+Payload resource.
+
+=item subresource_uris
+
+A list of related resources identified by their relative URIs.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

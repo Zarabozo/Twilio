@@ -199,6 +199,17 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Sip::Domain::AuthTypes::AuthTypeCalls::AuthCallsIpAccessControlListMapping - The AuthCallsIpAccessControlListMapping resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $auth_calls_ip_access_control_list_mapping = $client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings->create($ip_access_control_list_sid);
+  for my $auth_calls_ip_access_control_list_mapping ($client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings->read({}, 20)) {
+    ...
+  }
+  my $auth_calls_ip_access_control_list_mapping = $client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings($sid)->fetch;
+  $client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings($sid)->delete;
+
 =head1 DESCRIPTION
 
 IP address lists for SIP calls
@@ -206,73 +217,138 @@ IP address lists for SIP calls
 This file holds C<AuthCallsIpAccessControlListMappingList>,
 C<AuthCallsIpAccessControlListMappingPage>,
 C<AuthCallsIpAccessControlListMappingContext> and
-C<AuthCallsIpAccessControlListMappingInstance>. All the methods that make a
-request throw L<Twilio::Exceptions::RestException> on an error response.
+C<AuthCallsIpAccessControlListMappingInstance>. Methods that make a request
+throw L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 AuthCallsIpAccessControlListMappingList
 
-See also L<Twilio::ListResource>.
+Returned by C<<
+$client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings
+>>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($ip_access_control_list_sid);
+  my $auth_calls_ip_access_control_list_mapping = $client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings->create($ip_access_control_list_sid);
 
-Returns a C<AuthCallsIpAccessControlListMappingInstance>.
+Create a new IP Access Control List mapping. Returns a
+C<AuthCallsIpAccessControlListMappingInstance>.
+
+The required values are:
+
+=over
+
+=item C<$ip_access_control_list_sid>
+
+The SID of the IpAccessControlList resource to map to the SIP domain.
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of IP Access Control List mappings belonging to the domain used
+in the request. Returns the records as a list, fetching as many pages as it
+needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings->get_context($sid);
 
 Returns a C<AuthCallsIpAccessControlListMappingContext>, and makes no request.
 
+=head1 AuthCallsIpAccessControlListMappingPage
+
+A L<Twilio::Page> of C<AuthCallsIpAccessControlListMappingInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 AuthCallsIpAccessControlListMappingContext
+
+Returned by C<<
+$client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings($sid)
+>>. It makes no request until one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $auth_calls_ip_access_control_list_mapping = $client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings($sid)->fetch;
 
-Returns a C<AuthCallsIpAccessControlListMappingInstance>.
+Fetch a specific instance of an IP Access Control List mapping. Returns a
+C<AuthCallsIpAccessControlListMappingInstance>.
 
 =head2 delete
 
-  $context->delete;
+  $client->sip->domains($domain_sid)->auth->calls->ip_access_control_list_mappings($sid)->delete;
 
-Returns true.
+Delete an IP Access Control List mapping from the requested domain. Returns
+true.
 
 =head1 AuthCallsIpAccessControlListMappingInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch> and C<delete> too, which work the same way.
+It has C<fetch> and C<delete>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<friendly_name> and C<sid>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created the IpAccessControlListMapping resource.
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item friendly_name
+
+The string that you assigned to describe the resource.
+
+=item sid
+
+The unique string that that we created to identify the
+IpAccessControlListMapping resource.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

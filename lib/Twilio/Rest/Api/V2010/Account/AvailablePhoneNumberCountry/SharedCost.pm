@@ -133,58 +133,261 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::AvailablePhoneNumberCountry::SharedCost - The SharedCost resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $shared_cost ($client->available_phone_numbers($country_code)->shared_cost->read({}, 20)) {
+    ...
+  }
+
 =head1 DESCRIPTION
 
 Available shared cost numbers
 
 This file holds C<SharedCostList>, C<SharedCostPage> and C<SharedCostInstance>.
-All the methods that make a request throw L<Twilio::Exceptions::RestException>
-on an error response.
+Methods that make a request throw L<Twilio::Exceptions::RestException> on an
+error response.
 
 =head1 SharedCostList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->available_phone_numbers($country_code)->shared_cost
+>>. See also L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->available_phone_numbers($country_code)->shared_cost->read(\%options, $limit, $page_size);
 
 Returns the records as a list, fetching as many pages as it needs.
 
-The options are C<area_code>, C<beta>, C<contains>, C<distance>,
-C<exclude_all_address_required>, C<exclude_foreign_address_required>,
-C<exclude_local_address_required>, C<fax_enabled>, C<in_lata>, C<in_locality>,
-C<in_postal_code>, C<in_rate_center>, C<in_region>, C<mms_enabled>,
-C<near_lat_long>, C<near_number>, C<sms_enabled> and C<voice_enabled>.
+The options are:
+
+=over
+
+=item C<area_code>
+
+The area code of the phone numbers to read. Applies to only phone numbers in
+the US and Canada.
+
+=item C<beta>
+
+Whether to read phone numbers that are new to the Twilio platform. Can be:
+C<true> or C<false> and the default is C<true>.
+
+=item C<contains>
+
+Matching pattern to identify phone numbers. This pattern can be between 2 and
+16 characters long and allows all digits (0-9) and all non-diacritic latin
+alphabet letters (a-z, A-Z). It accepts four meta-characters: C<*>, C<%>, C<+>,
+C<$>. The C<*> and C<%> meta-characters can appear multiple times in the
+pattern. To match wildcards at the beginning or end of the pattern, use C<*> to
+match any single character or C<%> to match a sequence of characters. If you
+use the wildcard patterns, it must include at least two non-meta-characters,
+and wildcards cannot be used between non-meta-characters. To match the
+beginning of a pattern, start the pattern with C<+>. To match the end of the
+pattern, append the pattern with C<$>. These meta-characters can't be adjacent
+to each other.
+
+=item C<distance>
+
+The search radius, in miles, for a C<near_> query. Can be up to C<500> and the
+default is C<25>. Applies to only phone numbers in the US and Canada.
+
+=item C<exclude_all_address_required>
+
+Whether to exclude phone numbers that require an
+L<Address|https://www.twilio.com/docs/usage/api/address>. Can be: C<true> or
+C<false> and the default is C<false>.
+
+=item C<exclude_foreign_address_required>
+
+Whether to exclude phone numbers that require a foreign
+L<Address|https://www.twilio.com/docs/usage/api/address>. Can be: C<true> or
+C<false> and the default is C<false>.
+
+=item C<exclude_local_address_required>
+
+Whether to exclude phone numbers that require a local
+L<Address|https://www.twilio.com/docs/usage/api/address>. Can be: C<true> or
+C<false> and the default is C<false>.
+
+=item C<fax_enabled>
+
+Whether the phone numbers can receive faxes. Can be: C<true> or C<false>.
+
+=item C<in_lata>
+
+Limit results to a specific local access and transport area
+(L<LATA|https://en.wikipedia.org/wiki/Local_access_and_transport_area>). Given
+a phone number, search within the same
+L<LATA|https://en.wikipedia.org/wiki/Local_access_and_transport_area> as that
+number. Applies to only phone numbers in the US and Canada.
+
+=item C<in_locality>
+
+Limit results to a particular locality or city. Given a phone number, search
+within the same Locality as that number.
+
+=item C<in_postal_code>
+
+Limit results to a particular postal code. Given a phone number, search within
+the same postal code as that number. Applies to only phone numbers in the US
+and Canada.
+
+=item C<in_rate_center>
+
+Limit results to a specific rate center, or given a phone number search within
+the same rate center as that number. Requires C<in_lata> to be set as well.
+Applies to only phone numbers in the US and Canada.
+
+=item C<in_region>
+
+Limit results to a particular region, state, or province. Given a phone number,
+search within the same region as that number. Applies to only phone numbers in
+the US and Canada.
+
+=item C<mms_enabled>
+
+Whether the phone numbers can receive MMS messages. Can be: C<true> or
+C<false>.
+
+=item C<near_lat_long>
+
+Given a latitude/longitude pair C<lat,long> find geographically close numbers
+within C<distance> miles. Applies to only phone numbers in the US and Canada.
+
+=item C<near_number>
+
+Given a phone number, find a geographically close number within C<distance>
+miles. Distance defaults to 25 miles. Applies to only phone numbers in the US
+and Canada.
+
+=item C<sms_enabled>
+
+Whether the phone numbers can receive text messages. Can be: C<true> or
+C<false>.
+
+=item C<voice_enabled>
+
+Whether the phone numbers can receive calls. Can be: C<true> or C<false>.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->available_phone_numbers($country_code)->shared_cost->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->available_phone_numbers($country_code)->shared_cost->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->available_phone_numbers($country_code)->shared_cost->get_page($url);
 
 Fetches the page at a URL given by Twilio.
+
+=head1 SharedCostPage
+
+A L<Twilio::Page> of C<SharedCostInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
 
 
 =head1 SharedCostInstance
 
 See also L<Twilio::InstanceResource>.
 
-Its fields are C<address_requirements>, C<beta>, C<friendly_name>,
-C<iso_country>, C<lata>, C<latitude>, C<locality>, C<longitude>,
-C<phone_number>, C<postal_code>, C<rate_center> and C<region>.
+Its fields are:
 
-C<capabilities> return L<Twilio::Base::PhoneNumberCapabilities> objects.
+=over
+
+=item address_requirements
+
+The type of L<Address|https://www.twilio.com/docs/usage/api/address> resource
+the phone number requires. Can be: C<none>, C<any>, C<local>, or C<foreign>.
+C<none> means no address is required. C<any> means an address is required, but
+it can be anywhere in the world. C<local> means an address in the phone
+number's country is required. C<foreign> means an address outside of the phone
+number's country is required.
+
+=item beta
+
+Whether the phone number is new to the Twilio platform. Can be: C<true> or
+C<false>.
+
+=item capabilities
+
+The set of Boolean properties that indicate whether a phone number can receive
+calls or messages. Capabilities are: C<Voice>, C<SMS>, and C<MMS> and each
+capability can be: C<true> or C<false>. A
+L<Twilio::Base::PhoneNumberCapabilities> object.
+
+=item friendly_name
+
+A formatted version of the phone number.
+
+=item iso_country
+
+The L<ISO country code|https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2> of
+this phone number.
+
+=item lata
+
+The L<LATA|https://en.wikipedia.org/wiki/Local_access_and_transport_area> of
+this phone number. Available for only phone numbers from the US and Canada.
+
+=item latitude
+
+The latitude of this phone number's location. Available for only phone numbers
+from the US and Canada.
+
+=item locality
+
+The locality or city of this phone number's location.
+
+=item longitude
+
+The longitude of this phone number's location. Available for only phone numbers
+from the US and Canada.
+
+=item phone_number
+
+The phone number in L<E.164|https://www.twilio.com/docs/glossary/what-e164>
+format, which consists of a + followed by the country code and subscriber
+number.
+
+=item postal_code
+
+The postal or ZIP code of this phone number's location. Available for only
+phone numbers from the US and Canada.
+
+=item rate_center
+
+The L<rate center|https://en.wikipedia.org/wiki/Telephone_exchange> of this
+phone number. Available for only phone numbers from the US and Canada.
+
+=item region
+
+The two-letter state or province abbreviation of this phone number's location.
+Available for only phone numbers from the US and Canada.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

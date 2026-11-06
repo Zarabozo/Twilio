@@ -148,55 +148,200 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Call::Transcription - The Transcription resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $transcription = $client->calls($call_sid)->transcriptions->create(\%options);
+  $client->calls($call_sid)->transcriptions($sid)->update($status);
+
 =head1 DESCRIPTION
 
-
 This file holds C<TranscriptionList>, C<TranscriptionContext> and
-C<TranscriptionInstance>. All the methods that make a request throw
+C<TranscriptionInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 TranscriptionList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->calls($call_sid)->transcriptions >>. See also
+L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create(\%options);
+  my $transcription = $client->calls($call_sid)->transcriptions->create(\%options);
 
-Returns a C<TranscriptionInstance>.
+Create a Transcription. Returns a C<TranscriptionInstance>.
 
-The options are C<conversation_configuration>, C<conversation_id>,
-C<enable_automatic_punctuation>, C<enable_provider_data>, C<hints>,
-C<inbound_track_label>, C<intelligence_service>, C<language_code>, C<name>,
-C<outbound_track_label>, C<partial_results>, C<profanity_filter>,
-C<speech_model>, C<status_callback_method>, C<status_callback_url>, C<track>,
-C<transcription_configuration_id> and C<transcription_engine>.
+The options are:
+
+=over
+
+=item C<conversation_configuration>
+
+The ID of the Conversations Configuration for customizing conversation behavior
+in Intelligence Service
+
+=item C<conversation_id>
+
+The ID of the Conversation for associating this Transcription with an existing
+Conversation in Intelligence Service
+
+=item C<enable_automatic_punctuation>
+
+The provider will add punctuation to recognition result
+
+=item C<enable_provider_data>
+
+Whether the callback includes raw provider data.
+
+=item C<hints>
+
+A Phrase contains words and phrase "hints" so that the speech recognition
+engine is more likely to recognize them.
+
+=item C<inbound_track_label>
+
+Friendly name given to the Inbound Track
+
+=item C<intelligence_service>
+
+The SID or unique name of the L<Intelligence
+Service|https://www.twilio.com/docs/conversational-intelligence/api/service-resource>
+for persisting transcripts and running post-call Language Operators
+
+=item C<language_code>
+
+Language code used by the transcription engine, specified in
+L<BCP-47|https://www.rfc-editor.org/rfc/bcp/bcp47.txt> format
+
+=item C<name>
+
+The user-specified name of this Transcription, if one was given when the
+Transcription was created. This may be used to stop the Transcription.
+
+=item C<outbound_track_label>
+
+Friendly name given to the Outbound Track
+
+=item C<partial_results>
+
+Indicates if partial results are going to be sent to the customer
+
+=item C<profanity_filter>
+
+indicates if the server will attempt to filter out profanities, replacing all
+but the initial character in each filtered word with asterisks
+
+=item C<speech_model>
+
+Recognition model used by the transcription engine, among those supported by
+the provider
+
+=item C<status_callback_method>
+
+The http method for the status_callback (one of GET, POST). One of C<GET> or
+C<POST>.
+
+=item C<status_callback_url>
+
+Absolute URL of the status callback.
+
+=item C<track>
+
+One of C<inbound_track>, C<outbound_track> or C<both_tracks>.
+
+=item C<transcription_configuration_id>
+
+The ID of the RealTimeTranscription Configuration for configuring all the
+non-default behaviors in one go.
+
+=item C<transcription_engine>
+
+Definition of the transcription engine to be used, among those supported by
+Twilio
+
+=back
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->calls($call_sid)->transcriptions->get_context($sid);
 
 Returns a C<TranscriptionContext>, and makes no request.
 
+
 =head1 TranscriptionContext
+
+Returned by C<< $client->calls($call_sid)->transcriptions($sid) >>. It makes no
+request until one of these methods is called.
 
 =head2 update
 
-  my $result = $object->update($status);
+  my $transcription = $client->calls($call_sid)->transcriptions($sid)->update($status);
 
-Returns a C<TranscriptionInstance>.
+Stop a Transcription using either the SID of the Transcription resource or the
+C<name> used when creating the resource. Returns a C<TranscriptionInstance>.
+
+The required values are:
+
+=over
+
+=item C<$status>
+
+Must be C<stopped>.
+
+=back
 
 =head1 TranscriptionInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<update> too, which work the same way.
+It has C<update>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<call_sid>, C<name>, C<sid>, C<status> and
-C<uri>.
+Its fields are:
 
-C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created this Transcription resource.
+
+=item call_sid
+
+The SID of the L<Call|https://www.twilio.com/docs/voice/api/call-resource> the
+Transcription resource is associated with.
+
+=item date_updated
+
+The date and time in GMT that this resource was last updated, specified in
+L<RFC 2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece>
+object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item name
+
+The user-specified name of this Transcription, if one was given when the
+Transcription was created. This may be used to stop the Transcription.
+
+=item sid
+
+The SID of the Transcription resource.
+
+=item status
+
+One of C<in-progress> or C<stopped>.
+
+=item uri
+
+No description in the specification.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

@@ -190,83 +190,204 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::ConnectApp - The ConnectApp resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $connect_app ($client->connect_apps->read({}, 20)) {
+    ...
+  }
+  my $connect_app = $client->connect_apps($sid)->fetch;
+  $client->connect_apps($sid)->update(\%options);
+  $client->connect_apps($sid)->delete;
+
 =head1 DESCRIPTION
 
 Twilio Connect apps
 
 This file holds C<ConnectAppList>, C<ConnectAppPage>, C<ConnectAppContext> and
-C<ConnectAppInstance>. All the methods that make a request throw
+C<ConnectAppInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 ConnectAppList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->connect_apps >>. See also L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->connect_apps->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of connect-apps belonging to the account used to make the
+request. Returns the records as a list, fetching as many pages as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->connect_apps->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->connect_apps->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->connect_apps->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->connect_apps->get_context($sid);
 
 Returns a C<ConnectAppContext>, and makes no request.
 
+=head1 ConnectAppPage
+
+A L<Twilio::Page> of C<ConnectAppInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 ConnectAppContext
+
+Returned by C<< $client->connect_apps($sid) >>. It makes no request until one
+of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $connect_app = $client->connect_apps($sid)->fetch;
 
-Returns a C<ConnectAppInstance>.
+Fetch an instance of a connect-app. Returns a C<ConnectAppInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $connect_app = $client->connect_apps($sid)->update(\%options);
 
-Returns a C<ConnectAppInstance>.
+Update a connect-app with the specified parameters. Returns a
+C<ConnectAppInstance>.
 
-The options are C<authorize_redirect_url>, C<company_name>,
-C<deauthorize_callback_method>, C<deauthorize_callback_url>, C<description>,
-C<friendly_name>, C<homepage_url> and C<permissions>.
+The options are:
 
-C<permissions> takes an array reference.
+=over
+
+=item C<authorize_redirect_url>
+
+The URL to redirect the user to after we authenticate the user and obtain
+authorization to access the Connect App.
+
+=item C<company_name>
+
+The company name to set for the Connect App.
+
+=item C<deauthorize_callback_method>
+
+The HTTP method to use when calling C<deauthorize_callback_url>. One of C<GET>
+or C<POST>.
+
+=item C<deauthorize_callback_url>
+
+The URL to call using the C<deauthorize_callback_method> to de-authorize the
+Connect App.
+
+=item C<description>
+
+A description of the Connect App.
+
+=item C<friendly_name>
+
+A descriptive string that you create to describe the resource. It can be up to
+64 characters long.
+
+=item C<homepage_url>
+
+A public URL where users can obtain more information about this Connect App.
+
+=item C<permissions>
+
+A comma-separated list of the permissions you will request from the users of
+this ConnectApp. Can include: C<get-all> and C<post-all>. One of C<get-all> or
+C<post-all>. An array reference.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->connect_apps($sid)->delete;
 
-Returns true.
+Delete an instance of a connect-app. Returns true.
 
 =head1 ConnectAppInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update> and C<delete> too, which work the same way.
+It has C<fetch>, C<update> and C<delete>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<authorize_redirect_url>, C<company_name>,
-C<deauthorize_callback_method>, C<deauthorize_callback_url>, C<description>,
-C<friendly_name>, C<homepage_url>, C<permissions>, C<sid> and C<uri>.
+Its fields are:
+
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created the ConnectApp resource.
+
+=item authorize_redirect_url
+
+The URL we redirect the user to after we authenticate the user and obtain
+authorization to access the Connect App.
+
+=item company_name
+
+The company name set for the Connect App.
+
+=item deauthorize_callback_method
+
+The HTTP method we use to call C<deauthorize_callback_url>. One of C<GET> or
+C<POST>.
+
+=item deauthorize_callback_url
+
+The URL we call using the C<deauthorize_callback_method> to de-authorize the
+Connect App.
+
+=item description
+
+The description of the Connect App.
+
+=item friendly_name
+
+The string that you assigned to describe the resource.
+
+=item homepage_url
+
+The public URL where users can obtain more information about this Connect App.
+
+=item permissions
+
+The set of permissions that your ConnectApp requests.
+
+=item sid
+
+The unique string that that we created to identify the ConnectApp resource.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

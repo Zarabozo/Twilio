@@ -47,13 +47,13 @@ Twilio::Rest::Api::V2010::Account::Sip::Domain::AuthTypes::AuthTypeRegistrations
 
 =head1 DESCRIPTION
 
-
-This file holds C<AuthTypeRegistrationsList>. All the methods that make a
-request throw L<Twilio::Exceptions::RestException> on an error response.
+This file holds C<AuthTypeRegistrationsList>. Methods that make a request throw
+L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 AuthTypeRegistrationsList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->sip->domains($domain_sid)->auth->registrations >>. See
+also L<Twilio::ListResource>.
 
 =head2 credential_list_mappings
 
@@ -64,6 +64,14 @@ See also L<Twilio::ListResource>.
 See L<Twilio::Rest::Api::V2010::Account::Sip::Domain::AuthTypes::AuthTypeRegistrations::AuthRegistrationsCredentialListMapping>.
 
 
+
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 
