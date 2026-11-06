@@ -6,6 +6,8 @@ use warnings;
 use Time::Local qw(timegm);
 use Time::Piece ();
 
+use Twilio::Base::PhoneNumberCapabilities;
+
 our $VERSION = '2.000000';
 
 my $SECONDS_PER_MINUTE = 60;
@@ -33,6 +35,15 @@ sub date_time {
 
   # In list context, Time::Piece would return the date parts instead of an object.
   return defined $epoch ? scalar Time::Piece->gmtime($epoch) : $value;
+}
+
+sub phone_number_capabilities {
+  my ($value) = @_;
+  return $value if ref $value ne 'HASH';
+
+  my %is_capability = map { $_ => 1 } Twilio::Base::PhoneNumberCapabilities->capabilities;
+  return $value if !grep { $is_capability{ lc $_ } } keys %{$value};
+  return Twilio::Base::PhoneNumberCapabilities->new($value);
 }
 
 # Not strptime, because month names there follow the locale, and %z is ignored by the
@@ -105,6 +116,11 @@ C<ref> before relying on it, if the value does not come from a documented field.
 To work with a C<DateTime> object instead:
 
   my $date_time = DateTime->from_epoch(epoch => $date->epoch);
+
+=head2 phone_number_capabilities
+
+Returns a L<Twilio::Base::PhoneNumberCapabilities> object. A value that is not a
+hash reference holding at least one capability is returned as it is.
 
 =head1 LICENSE
 
