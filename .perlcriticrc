@@ -16,3 +16,6 @@ skip_object = 1
 # One-line accessors are clearer without unpacking @_.
 [Subroutines::RequireArgUnpacking]
 short_subroutine_statements = 1
+
+# Resources must offer the operations Twilio names: read, delete and next among them.
+[-Subroutines::ProhibitBuiltinHomonyms]

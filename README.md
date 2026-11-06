@@ -5,9 +5,9 @@
 A community Perl library for the [Twilio](https://www.twilio.com/) API, designed
 to feel like Twilio's official helper libraries.
 
-**Status: under development.** Version 2 is a rewrite from scratch and has no
-usable API client yet. The `Twilio-1.000` release on CPAN is the old, unrelated
-codebase.
+**Status: under development.** Version 2 is a rewrite from scratch. So far it
+covers the Messages resource only, and it has not been released. The
+`Twilio-1.000` release on CPAN is the old, unrelated codebase.
 
 ```perl
 my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
@@ -18,8 +18,8 @@ my $message = $client->messages->create('+15558675309', {
 });
 ```
 
-This is the planned interface. It mirrors `twilio-php`, so a Twilio documentation
-example translates to Perl with a few simple rules.
+The interface mirrors `twilio-php`, so a Twilio documentation example translates
+to Perl with a few simple rules.
 
 ## Development
 

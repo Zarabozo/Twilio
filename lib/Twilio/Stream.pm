@@ -17,7 +17,6 @@ sub new {
   }, $class;
 }
 
-## no critic (Subroutines::ProhibitBuiltinHomonyms)
 sub next {
   my ($self) = @_;
   return if $self->_over_limit;
@@ -38,7 +37,6 @@ sub next {
 
   return;
 }
-## use critic
 
 sub rewind {
   my ($self) = @_;
