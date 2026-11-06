@@ -168,45 +168,83 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Usage::Record - The Record resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $record ($client->usage->records->read({}, 20)) {
+    ...
+  }
+
 =head1 DESCRIPTION
 
 Twilio account usage records
 
-This file holds C<RecordList>, C<RecordPage> and C<RecordInstance>. All the
-methods that make a request throw L<Twilio::Exceptions::RestException> on an
-error response.
+This file holds C<RecordList>, C<RecordPage> and C<RecordInstance>. Methods
+that make a request throw L<Twilio::Exceptions::RestException> on an error
+response.
 
 =head1 RecordList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->usage->records >>. See also L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->usage->records->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of usage-records belonging to the account used to make the
+request. Returns the records as a list, fetching as many pages as it needs.
 
-The options are C<category>, C<end_date>, C<include_subaccounts> and
-C<start_date>.
+The options are:
 
-C<end_date> and C<start_date> take a string, or an object with an C<epoch>
-method. See L<Twilio::Serialize/iso8601_date_time>.
+=over
+
+=item C<category>
+
+The L<usage
+category|https://www.twilio.com/docs/usage/api/usage-record#usage-categories>
+of the UsageRecord resources to read. Only UsageRecord resources in the
+specified category are retrieved.
+
+=item C<end_date>
+
+Only include usage that occurred on or before this date. Specify the date in
+GMT and format as C<YYYY-MM-DD>. You can also specify offsets from the current
+date, such as: C<+30days>, which will set the end date to 30 days from the
+current date. A string, or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<include_subaccounts>
+
+Whether to include usage from the master account and all its subaccounts. Can
+be: C<true> (the default) to include usage from the master account and all
+subaccounts or C<false> to retrieve usage from only the specified account.
+
+=item C<start_date>
+
+Only include usage that has occurred on or after this date. Specify the date in
+GMT and format as C<YYYY-MM-DD>. You can also specify offsets from the current
+date, such as: C<-30days>, which will set the start date to be 30 days before
+the current date. A string, or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->usage->records->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->usage->records->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->usage->records->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
@@ -258,17 +296,107 @@ See L<Twilio::Rest::Api::V2010::Account::Usage::Record::Yearly>.
 
 See L<Twilio::Rest::Api::V2010::Account::Usage::Record::Yesterday>.
 
+=head1 RecordPage
+
+A L<Twilio::Page> of C<RecordInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 
 =head1 RecordInstance
 
 See also L<Twilio::InstanceResource>.
 
-Its fields are C<account_sid>, C<api_version>, C<as_of>, C<category>, C<count>,
-C<count_unit>, C<description>, C<price>, C<price_unit>, C<subresource_uris>,
-C<uri>, C<usage> and C<usage_unit>.
+Its fields are:
 
-C<end_date> and C<start_date> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+accrued the usage.
+
+=item api_version
+
+The API version used to create the resource.
+
+=item as_of
+
+Usage records up to date as of this timestamp, formatted as
+YYYY-MM-DDTHH:MM:SS+00:00. All timestamps are in GMT
+
+=item category
+
+The category of usage. For more information, see L<Usage
+Categories|https://www.twilio.com/docs/usage/api/usage-record#usage-categories>.
+
+=item count
+
+The number of usage events, such as the number of calls.
+
+=item count_unit
+
+The units in which C<count> is measured, such as C<calls> for calls or
+C<messages> for SMS.
+
+=item description
+
+A plain-language description of the usage category.
+
+=item end_date
+
+The last date for which usage is included in the UsageRecord. The date is
+specified in GMT and formatted as C<YYYY-MM-DD>. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item price
+
+The total price of the usage in the currency specified in C<price_unit> and
+associated with the account.
+
+=item price_unit
+
+The currency in which C<price> is measured, in L<ISO
+4127|https://www.iso.org/iso/home/standards/currency_codes.htm> format, such as
+C<usd>, C<eur>, and C<jpy>.
+
+=item start_date
+
+The first date for which usage is included in this UsageRecord. The date is
+specified in GMT and formatted as C<YYYY-MM-DD>. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item subresource_uris
+
+A list of related resources identified by their URIs. For more information, see
+L<List
+Subresources|https://www.twilio.com/docs/usage/api/usage-record#list-subresources>.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=item usage
+
+The amount used to bill usage and measured in units described in C<usage_unit>.
+
+=item usage_unit
+
+The units in which C<usage> is measured, such as C<minutes> for calls or
+C<messages> for SMS.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

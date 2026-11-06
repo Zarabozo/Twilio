@@ -213,78 +213,189 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Usage::Trigger - The Trigger resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $trigger = $client->usage->triggers->create($callback_url, $trigger_value, $usage_category, \%options);
+  for my $trigger ($client->usage->triggers->read({}, 20)) {
+    ...
+  }
+  my $trigger = $client->usage->triggers($sid)->fetch;
+  $client->usage->triggers($sid)->update(\%options);
+  $client->usage->triggers($sid)->delete;
+
 =head1 DESCRIPTION
 
 Webhooks that notify you of usage thresholds
 
 This file holds C<TriggerList>, C<TriggerPage>, C<TriggerContext> and
-C<TriggerInstance>. All the methods that make a request throw
+C<TriggerInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 TriggerList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->usage->triggers >>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($callback_url, $trigger_value, $usage_category, \%options);
+  my $trigger = $client->usage->triggers->create($callback_url, $trigger_value, $usage_category, \%options);
 
-Returns a C<TriggerInstance>.
+Create a new UsageTrigger. Returns a C<TriggerInstance>.
 
-The options are C<callback_method>, C<friendly_name>, C<recurring> and
-C<trigger_by>.
+The required values are:
+
+=over
+
+=item C<$callback_url>
+
+The URL we should call using C<callback_method> when the trigger fires.
+
+=item C<$trigger_value>
+
+The usage value at which the trigger should fire. For convenience, you can use
+an offset value such as C<+30> to specify a trigger_value that is 30 units more
+than the current usage value. Be sure to urlencode a C<+> as C<%2B>.
+
+=item C<$usage_category>
+
+The usage category that the trigger should watch. Use one of the supported
+L<usage
+categories|https://www.twilio.com/docs/usage/api/usage-record#usage-categories>
+for this value.
+
+=back
+
+The options are:
+
+=over
+
+=item C<callback_method>
+
+The HTTP method we should use to call C<callback_url>. Can be: C<GET> or
+C<POST> and the default is C<POST>. One of C<GET> or C<POST>.
+
+=item C<friendly_name>
+
+A descriptive string that you create to describe the resource. It can be up to
+64 characters long.
+
+=item C<recurring>
+
+One of C<daily>, C<monthly>, C<yearly> or C<alltime>.
+
+=item C<trigger_by>
+
+One of C<count>, C<usage> or C<price>.
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->usage->triggers->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of usage-triggers belonging to the account used to make the
+request. Returns the records as a list, fetching as many pages as it needs.
 
-The options are C<recurring>, C<trigger_by> and C<usage_category>.
+The options are:
+
+=over
+
+=item C<recurring>
+
+The frequency of recurring UsageTriggers to read. Can be: C<daily>, C<monthly>,
+or C<yearly> to read recurring UsageTriggers. An empty value or a value of
+C<alltime> reads non-recurring UsageTriggers. One of C<daily>, C<monthly>,
+C<yearly> or C<alltime>.
+
+=item C<trigger_by>
+
+The trigger field of the UsageTriggers to read. Can be: C<count>, C<usage>, or
+C<price> as described in the L<UsageRecords
+documentation|https://www.twilio.com/docs/usage/api/usage-record#usage-count-price>.
+One of C<count>, C<usage> or C<price>.
+
+=item C<usage_category>
+
+The usage category of the UsageTriggers to read. Must be a supported L<usage
+categories|https://www.twilio.com/docs/usage/api/usage-record#usage-categories>.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->usage->triggers->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->usage->triggers->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->usage->triggers->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->usage->triggers->get_context($sid);
 
 Returns a C<TriggerContext>, and makes no request.
 
+=head1 TriggerPage
+
+A L<Twilio::Page> of C<TriggerInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 TriggerContext
+
+Returned by C<< $client->usage->triggers($sid) >>. It makes no request until
+one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $trigger = $client->usage->triggers($sid)->fetch;
 
-Returns a C<TriggerInstance>.
+Fetch and instance of a usage-trigger. Returns a C<TriggerInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $trigger = $client->usage->triggers($sid)->update(\%options);
 
-Returns a C<TriggerInstance>.
+Update an instance of a usage trigger. Returns a C<TriggerInstance>.
 
-The options are C<callback_method>, C<callback_url> and C<friendly_name>.
+The options are:
+
+=over
+
+=item C<callback_method>
+
+The HTTP method we should use to call C<callback_url>. Can be: C<GET> or
+C<POST> and the default is C<POST>. One of C<GET> or C<POST>.
+
+=item C<callback_url>
+
+The URL we should call using C<callback_method> when the trigger fires.
+
+=item C<friendly_name>
+
+A descriptive string that you create to describe the resource. It can be up to
+64 characters long.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->usage->triggers($sid)->delete;
 
 Returns true.
 
@@ -292,15 +403,95 @@ Returns true.
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update> and C<delete> too, which work the same way.
+It has C<fetch>, C<update> and C<delete>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<api_version>, C<callback_method>,
-C<callback_url>, C<current_value>, C<friendly_name>, C<recurring>, C<sid>,
-C<trigger_by>, C<trigger_value>, C<uri>, C<usage_category> and
-C<usage_record_uri>.
+Its fields are:
 
-C<date_created>, C<date_fired> and C<date_updated> return L<Time::Piece>
-objects in UTC. See L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that the
+trigger monitors.
+
+=item api_version
+
+The API version used to create the resource.
+
+=item callback_method
+
+The HTTP method we use to call C<callback_url>. Can be: C<GET> or C<POST>. One
+of C<GET> or C<POST>.
+
+=item callback_url
+
+The URL we call using the C<callback_method> when the trigger fires.
+
+=item current_value
+
+The current value of the field the trigger is watching.
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_fired
+
+The date and time in GMT that the trigger was last fired specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item friendly_name
+
+The string that you assigned to describe the trigger.
+
+=item recurring
+
+One of C<daily>, C<monthly>, C<yearly> or C<alltime>.
+
+=item sid
+
+The unique string that that we created to identify the UsageTrigger resource.
+
+=item trigger_by
+
+One of C<count>, C<usage> or C<price>.
+
+=item trigger_value
+
+The value at which the trigger will fire. Must be a positive, numeric value.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=item usage_category
+
+The usage category the trigger watches. Must be one of the supported L<usage
+categories|https://www.twilio.com/docs/usage/api/usage-record#usage-categories>.
+
+=item usage_record_uri
+
+The URI of the
+L<UsageRecord|https://www.twilio.com/docs/usage/api/usage-record> resource this
+trigger watches, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

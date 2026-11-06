@@ -167,74 +167,166 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Transcription - The Transcription resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $transcription ($client->transcriptions->read({}, 20)) {
+    ...
+  }
+  my $transcription = $client->transcriptions($sid)->fetch;
+  $client->transcriptions($sid)->delete;
+
 =head1 DESCRIPTION
 
 Text transcriptions of call recordings
 
 This file holds C<TranscriptionList>, C<TranscriptionPage>,
-C<TranscriptionContext> and C<TranscriptionInstance>. All the methods that make
-a request throw L<Twilio::Exceptions::RestException> on an error response.
+C<TranscriptionContext> and C<TranscriptionInstance>. Methods that make a
+request throw L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 TranscriptionList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->transcriptions >>. See also L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->transcriptions->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of transcriptions belonging to the account used to make the
+request. Returns the records as a list, fetching as many pages as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->transcriptions->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->transcriptions->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->transcriptions->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->transcriptions->get_context($sid);
 
 Returns a C<TranscriptionContext>, and makes no request.
 
+=head1 TranscriptionPage
+
+A L<Twilio::Page> of C<TranscriptionInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 TranscriptionContext
+
+Returned by C<< $client->transcriptions($sid) >>. It makes no request until one
+of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $transcription = $client->transcriptions($sid)->fetch;
 
-Returns a C<TranscriptionInstance>.
+Fetch an instance of a Transcription. Returns a C<TranscriptionInstance>.
 
 =head2 delete
 
-  $context->delete;
+  $client->transcriptions($sid)->delete;
 
-Returns true.
+Delete a transcription from the account used to make the request. Returns true.
 
 =head1 TranscriptionInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch> and C<delete> too, which work the same way.
+It has C<fetch> and C<delete>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<api_version>, C<duration>, C<price>,
-C<price_unit>, C<recording_sid>, C<sid>, C<status>, C<transcription_text>,
-C<type> and C<uri>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created the Transcription resource.
+
+=item api_version
+
+The API version used to create the transcription.
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item duration
+
+The duration of the transcribed audio in seconds.
+
+=item price
+
+The charge for the transcript in the currency associated with the account. This
+value is populated after the transcript is complete so it may not be available
+immediately.
+
+=item price_unit
+
+The currency in which C<price> is measured, in L<ISO
+4127|https://www.iso.org/iso/home/standards/currency_codes.htm> format (e.g.
+C<usd>, C<eur>, C<jpy>).
+
+=item recording_sid
+
+The SID of the L<Recording|https://www.twilio.com/docs/voice/api/recording>
+from which the transcription was created.
+
+=item sid
+
+The unique string that that we created to identify the Transcription resource.
+
+=item status
+
+One of C<in-progress>, C<completed> or C<failed>.
+
+=item transcription_text
+
+The text content of the transcription.
+
+=item type
+
+The transcription type. Can only be: C<fast>.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

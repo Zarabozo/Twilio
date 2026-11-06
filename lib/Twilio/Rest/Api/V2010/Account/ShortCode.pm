@@ -180,79 +180,214 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::ShortCode - The ShortCode resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $short_code ($client->short_codes->read({}, 20)) {
+    ...
+  }
+  my $short_code = $client->short_codes($sid)->fetch;
+  $client->short_codes($sid)->update(\%options);
+
 =head1 DESCRIPTION
 
 Messaging short codes
 
 This file holds C<ShortCodeList>, C<ShortCodePage>, C<ShortCodeContext> and
-C<ShortCodeInstance>. All the methods that make a request throw
+C<ShortCodeInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 ShortCodeList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->short_codes >>. See also L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->short_codes->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of short-codes belonging to the account used to make the
+request. Returns the records as a list, fetching as many pages as it needs.
 
-The options are C<friendly_name> and C<short_code>.
+The options are:
+
+=over
+
+=item C<friendly_name>
+
+The string that identifies the ShortCode resources to read.
+
+=item C<short_code>
+
+Only show the ShortCode resources that match this pattern. You can specify
+partial numbers and use '*' as a wildcard for any digit.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->short_codes->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->short_codes->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->short_codes->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->short_codes->get_context($sid);
 
 Returns a C<ShortCodeContext>, and makes no request.
 
+=head1 ShortCodePage
+
+A L<Twilio::Page> of C<ShortCodeInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 ShortCodeContext
+
+Returned by C<< $client->short_codes($sid) >>. It makes no request until one of
+these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $short_code = $client->short_codes($sid)->fetch;
 
-Returns a C<ShortCodeInstance>.
+Fetch an instance of a short code. Returns a C<ShortCodeInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $short_code = $client->short_codes($sid)->update(\%options);
 
-Returns a C<ShortCodeInstance>.
+Update a short code with the following parameters. Returns a
+C<ShortCodeInstance>.
 
-The options are C<api_version>, C<friendly_name>, C<sms_fallback_method>,
-C<sms_fallback_url>, C<sms_method> and C<sms_url>.
+The options are:
+
+=over
+
+=item C<api_version>
+
+The API version to use to start a new TwiML session. Can be: C<2010-04-01> or
+C<2008-08-01>.
+
+=item C<friendly_name>
+
+A descriptive string that you created to describe this resource. It can be up
+to 64 characters long. By default, the C<FriendlyName> is the short code.
+
+=item C<sms_fallback_method>
+
+The HTTP method that we should use to call the C<sms_fallback_url>. Can be:
+C<GET> or C<POST>. One of C<GET> or C<POST>.
+
+=item C<sms_fallback_url>
+
+The URL that we should call if an error occurs while retrieving or executing
+the TwiML from C<sms_url>.
+
+=item C<sms_method>
+
+The HTTP method we should use when calling the C<sms_url>. Can be: C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item C<sms_url>
+
+The URL we should call when receiving an incoming SMS message to this short
+code.
+
+=back
 
 =head1 ShortCodeInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch> and C<update> too, which work the same way.
+It has C<fetch> and C<update>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<api_version>, C<friendly_name>, C<short_code>,
-C<sid>, C<sms_fallback_method>, C<sms_fallback_url>, C<sms_method>, C<sms_url>
-and C<uri>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created this ShortCode resource.
+
+=item api_version
+
+The API version used to start a new TwiML session when an SMS message is sent
+to this short code.
+
+=item date_created
+
+The date and time in GMT that this resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that this resource was last updated, specified in
+L<RFC 2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece>
+object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item friendly_name
+
+A string that you assigned to describe this resource. By default, the
+C<FriendlyName> is the short code.
+
+=item short_code
+
+The short code. e.g., 894546.
+
+=item sid
+
+The unique string that that we created to identify this ShortCode resource.
+
+=item sms_fallback_method
+
+The HTTP method we use to call the C<sms_fallback_url>. Can be: C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item sms_fallback_url
+
+The URL that we call if an error occurs while retrieving or executing the TwiML
+from C<sms_url>.
+
+=item sms_method
+
+The HTTP method we use to call the C<sms_url>. Can be: C<GET> or C<POST>. One
+of C<GET> or C<POST>.
+
+=item sms_url
+
+The URL we call when receiving an incoming SMS message to this short code.
+
+=item uri
+
+The URI of this resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

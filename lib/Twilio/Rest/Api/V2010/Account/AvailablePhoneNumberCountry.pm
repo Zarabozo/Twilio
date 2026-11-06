@@ -258,54 +258,77 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::AvailablePhoneNumberCountry - The AvailablePhoneNumberCountry resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $available_phone_number_country ($client->available_phone_numbers->read({}, 20)) {
+    ...
+  }
+  my $available_phone_number_country = $client->available_phone_numbers($country_code)->fetch;
+
 =head1 DESCRIPTION
 
 Country codes with available phone numbers
 
 This file holds C<AvailablePhoneNumberCountryList>,
 C<AvailablePhoneNumberCountryPage>, C<AvailablePhoneNumberCountryContext> and
-C<AvailablePhoneNumberCountryInstance>. All the methods that make a request
-throw L<Twilio::Exceptions::RestException> on an error response.
+C<AvailablePhoneNumberCountryInstance>. Methods that make a request throw
+L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 AvailablePhoneNumberCountryList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->available_phone_numbers >>. See also
+L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->available_phone_numbers->read(\%options, $limit, $page_size);
 
 Returns the records as a list, fetching as many pages as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->available_phone_numbers->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->available_phone_numbers->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->available_phone_numbers->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($country_code);
+  my $context = $client->available_phone_numbers->get_context($country_code);
 
 Returns a C<AvailablePhoneNumberCountryContext>, and makes no request.
 
+=head1 AvailablePhoneNumberCountryPage
+
+A L<Twilio::Page> of C<AvailablePhoneNumberCountryInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 AvailablePhoneNumberCountryContext
+
+Returned by C<< $client->available_phone_numbers($country_code) >>. It makes no
+request until one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $available_phone_number_country = $client->available_phone_numbers($country_code)->fetch;
 
 Returns a C<AvailablePhoneNumberCountryInstance>.
 
@@ -356,10 +379,44 @@ See L<Twilio::Rest::Api::V2010::Account::AvailablePhoneNumberCountry::Voip>.
 See also L<Twilio::InstanceResource>.
 
 It has C<fetch>, C<local>, C<machine_to_machine>, C<mobile>, C<national>,
-C<shared_cost>, C<toll_free> and C<voip> too, which work the same way.
+C<shared_cost>, C<toll_free> and C<voip>, which work as they do on the context.
 
-Its fields are C<beta>, C<country>, C<country_code>, C<subresource_uris> and
-C<uri>.
+Its fields are:
+
+=over
+
+=item beta
+
+Whether all phone numbers available in the country are new to the Twilio
+platform. C<true> if they are and C<false> if all numbers are not in the Twilio
+Phone Number Beta program.
+
+=item country
+
+The name of the country.
+
+=item country_code
+
+The L<ISO-3166-1|https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2> country code
+of the country.
+
+=item subresource_uris
+
+A list of related AvailablePhoneNumber resources identified by their URIs
+relative to C<https://api.twilio.com>.
+
+=item uri
+
+The URI of the Country resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

@@ -66,36 +66,90 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Message::Feedback - The Feedback resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $feedback = $client->messages($message_sid)->feedback->create(\%options);
+
 =head1 DESCRIPTION
 
 The MessageFeedback subresource of a Message resource. MessageFeedback contains
 the reported outcome of whether the Message recipient performed a tracked user
 action.
 
-This file holds C<FeedbackList> and C<FeedbackInstance>. All the methods that
-make a request throw L<Twilio::Exceptions::RestException> on an error response.
+This file holds C<FeedbackList> and C<FeedbackInstance>. Methods that make a
+request throw L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 FeedbackList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->messages($message_sid)->feedback >>. See also
+L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create(\%options);
+  my $feedback = $client->messages($message_sid)->feedback->create(\%options);
 
-Returns a C<FeedbackInstance>.
+Create Message Feedback to confirm a tracked user action was performed by the
+recipient of the associated Message. Returns a C<FeedbackInstance>.
 
-The options are C<outcome>.
+The options are:
+
+=over
+
+=item C<outcome>
+
+One of C<confirmed> or C<unconfirmed>.
+
+=back
+
 
 
 =head1 FeedbackInstance
 
 See also L<Twilio::InstanceResource>.
 
-Its fields are C<account_sid>, C<message_sid>, C<outcome> and C<uri>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account>
+associated with this MessageFeedback resource.
+
+=item date_created
+
+The date and time in GMT when this MessageFeedback resource was created,
+specified in L<RFC 2822|https://www.ietf.org/rfc/rfc2822.txt> format. A
+L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT when this MessageFeedback resource was last updated,
+specified in L<RFC 2822|https://www.ietf.org/rfc/rfc2822.txt> format. A
+L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item message_sid
+
+The SID of the Message resource associated with this MessageFeedback resource.
+
+=item outcome
+
+One of C<confirmed> or C<unconfirmed>.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

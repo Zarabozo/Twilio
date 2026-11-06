@@ -98,49 +98,88 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Call::Event - The Event resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $event ($client->calls($call_sid)->events->read({}, 20)) {
+    ...
+  }
+
 =head1 DESCRIPTION
 
 API and webhook requests and responses. Contains parameters and TwiML for
 application control.
 
-This file holds C<EventList>, C<EventPage> and C<EventInstance>. All the
-methods that make a request throw L<Twilio::Exceptions::RestException> on an
-error response.
+This file holds C<EventList>, C<EventPage> and C<EventInstance>. Methods that
+make a request throw L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 EventList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->calls($call_sid)->events >>. See also
+L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->calls($call_sid)->events->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of all events for a call. Returns the records as a list,
+fetching as many pages as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->calls($call_sid)->events->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->calls($call_sid)->events->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->calls($call_sid)->events->get_page($url);
 
 Fetches the page at a URL given by Twilio.
+
+=head1 EventPage
+
+A L<Twilio::Page> of C<EventInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
 
 
 =head1 EventInstance
 
 See also L<Twilio::InstanceResource>.
 
-Its fields are C<request> and C<response>.
+Its fields are:
+
+=over
+
+=item request
+
+Contains a dictionary representing the request of the call.
+
+=item response
+
+Contains a dictionary representing the call response, including a list of the
+call events.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

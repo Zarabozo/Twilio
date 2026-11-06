@@ -69,36 +69,119 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::ValidationRequest - The ValidationRequest resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $validation_request = $client->validation_requests->create($phone_number, \%options);
+
 =head1 DESCRIPTION
 
 An OutgoingCallerId resource represents a single verified number that may be
 used as a caller ID when making outgoing calls via the REST API and within the
-TwiML `E<lt>DialE<gt>` verb.
+TwiML C<< <Dial> >> verb.
 
-This file holds C<ValidationRequestList> and C<ValidationRequestInstance>. All
-the methods that make a request throw L<Twilio::Exceptions::RestException> on
-an error response.
+This file holds C<ValidationRequestList> and C<ValidationRequestInstance>.
+Methods that make a request throw L<Twilio::Exceptions::RestException> on an
+error response.
 
 =head1 ValidationRequestList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->validation_requests >>. See also
+L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($phone_number, \%options);
+  my $validation_request = $client->validation_requests->create($phone_number, \%options);
 
 Returns a C<ValidationRequestInstance>.
 
-The options are C<call_delay>, C<extension>, C<friendly_name>,
-C<status_callback> and C<status_callback_method>.
+The required values are:
+
+=over
+
+=item C<$phone_number>
+
+The phone number to verify in
+L<E.164|https://www.twilio.com/docs/glossary/what-e164> format, which consists
+of a + followed by the country code and subscriber number.
+
+=back
+
+The options are:
+
+=over
+
+=item C<call_delay>
+
+The number of seconds to delay before initiating the verification call. Can be
+an integer between C<0> and C<60>, inclusive. The default is C<0>.
+
+=item C<extension>
+
+The digits to dial after connecting the verification call.
+
+=item C<friendly_name>
+
+A descriptive string that you create to describe the new caller ID resource. It
+can be up to 64 characters long. The default value is a formatted version of
+the phone number.
+
+=item C<status_callback>
+
+The URL we should call using the C<status_callback_method> to send status
+information about the verification process to your application.
+
+=item C<status_callback_method>
+
+The HTTP method we should use to call C<status_callback>. Can be: C<GET> or
+C<POST>, and the default is C<POST>. One of C<GET> or C<POST>.
+
+=back
+
 
 
 =head1 ValidationRequestInstance
 
 See also L<Twilio::InstanceResource>.
 
-Its fields are C<account_sid>, C<call_sid>, C<friendly_name>, C<phone_number>
-and C<validation_code>.
+Its fields are:
+
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account>
+responsible for the Caller ID.
+
+=item call_sid
+
+The SID of the L<Call|https://www.twilio.com/docs/voice/api/call-resource> the
+Caller ID is associated with.
+
+=item friendly_name
+
+The string that you assigned to describe the resource.
+
+=item phone_number
+
+The phone number to verify in
+L<E.164|https://www.twilio.com/docs/glossary/what-e164> format, which consists
+of a + followed by the country code and subscriber number.
+
+=item validation_code
+
+The 6 digit validation code that someone must enter to validate the Caller ID
+when C<phone_number> is called.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

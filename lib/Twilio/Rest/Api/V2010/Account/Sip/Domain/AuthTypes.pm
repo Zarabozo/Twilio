@@ -53,13 +53,13 @@ Twilio::Rest::Api::V2010::Account::Sip::Domain::AuthTypes - The AuthTypes resour
 
 =head1 DESCRIPTION
 
-
-This file holds C<AuthTypesList>. All the methods that make a request throw
+This file holds C<AuthTypesList>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 AuthTypesList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->sip->domains($domain_sid)->auth >>. See also
+L<Twilio::ListResource>.
 
 =head2 calls
 
@@ -74,6 +74,14 @@ See L<Twilio::Rest::Api::V2010::Account::Sip::Domain::AuthTypes::AuthTypeCalls>.
 See L<Twilio::Rest::Api::V2010::Account::Sip::Domain::AuthTypes::AuthTypeRegistrations>.
 
 
+
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

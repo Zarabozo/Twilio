@@ -268,93 +268,370 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Message - The Message resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $message = $client->messages->create($to, \%options);
+  for my $message ($client->messages->read({}, 20)) {
+    ...
+  }
+  my $message = $client->messages($sid)->fetch;
+  $client->messages($sid)->update(\%options);
+  $client->messages($sid)->delete;
+
 =head1 DESCRIPTION
 
 A Message resource represents an inbound or outbound message.
 
 This file holds C<MessageList>, C<MessagePage>, C<MessageContext> and
-C<MessageInstance>. All the methods that make a request throw
+C<MessageInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 MessageList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->messages >>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($to, \%options);
+  my $message = $client->messages->create($to, \%options);
 
-Returns a C<MessageInstance>.
+Send a message. Returns a C<MessageInstance>.
 
-The options are C<address_retention>, C<application_sid>, C<attempt>, C<body>,
-C<content_retention>, C<content_sid>, C<content_variables>, C<fallback_from>,
-C<force_delivery>, C<from>, C<max_price>, C<media_url>, C<message_intent>,
-C<messaging_service_sid>, C<persistent_action>, C<provide_feedback>,
-C<risk_check>, C<schedule_type>, C<send_as_mms>, C<send_at>, C<shorten_urls>,
-C<smart_encoded>, C<status_callback>, C<traffic_type> and C<validity_period>.
+The required values are:
 
-C<media_url> and C<persistent_action> take an array reference.
+=over
 
-C<send_at> takes a string, or an object with an C<epoch> method. See
+=item C<$to>
+
+The recipient's phone number in
+L<E.164|https://www.twilio.com/docs/glossary/what-e164> format (for SMS/MMS) or
+L<channel address|https://www.twilio.com/docs/messaging/channels>, e.g.
+C<whatsapp:+15552229999>.
+
+=back
+
+The options are:
+
+=over
+
+=item C<address_retention>
+
+One of C<retain> or C<obfuscate>.
+
+=item C<application_sid>
+
+The SID of the associated L<TwiML
+Application|https://www.twilio.com/docs/usage/api/applications>. L<Message
+status callback
+requests|https://www.twilio.com/docs/sms/api/message-resource#twilios-request-to-the-statuscallback-url>
+are sent to the TwiML App's C<message_status_callback> URL. Note that the
+C<status_callback> parameter of a request takes priority over the
+C<application_sid> parameter; if both are included C<application_sid> is
+ignored.
+
+=item C<attempt>
+
+Total number of attempts made (including this request) to send the message
+regardless of the provider used
+
+=item C<body>
+
+The text content of the outgoing message. Can be up to 1,600 characters in
+length. SMS only: If the C<body> contains more than 160
+L<GSM-7|https://www.twilio.com/docs/glossary/what-is-gsm-7-character-encoding>
+characters (or 70
+L<UCS-2|https://www.twilio.com/docs/glossary/what-is-ucs-2-character-encoding>
+characters), the message is segmented and charged accordingly. For long C<body>
+text, consider using the L<send_as_mms
+parameter|https://www.twilio.com/blog/mms-for-long-text-messages>.
+
+=item C<content_retention>
+
+One of C<retain> or C<discard>.
+
+=item C<content_sid>
+
+For L<Content Editor/API|https://www.twilio.com/docs/content> only: The SID of
+the Content Template to be used with the Message, e.g.,
+C<HXXXXXXXXXXXXXXXXXXXXXXXXXXXXX>. If this parameter is not provided, a Content
+Template is not used. Find the SID in the Console on the Content Editor page.
+For Content API users, the SID is found in Twilio's response when L<creating
+the
+Template|https://www.twilio.com/docs/content/content-api-resources#create-templates>
+or by L<fetching your
+Templates|https://www.twilio.com/docs/content/content-api-resources#fetch-all-content-resources>.
+
+=item C<content_variables>
+
+For L<Content Editor/API|https://www.twilio.com/docs/content> only: Key-value
+pairs of L<Template
+variables|https://www.twilio.com/docs/content/using-variables-with-content-api>
+and their substitution values. C<content_sid> parameter must also be provided.
+If values are not defined in the C<content_variables> parameter, the
+L<Template's default placeholder
+values|https://www.twilio.com/docs/content/content-api-resources#create-templates>
+are used.
+
+=item C<fallback_from>
+
+A fallback SMS sender to use when the recipient cannot be reached over RCS.
+This parameter may only be used when also providing a L<Messaging
+Service|https://twilio.com/docs/messaging/services> containing an RCS sender.
+The fallback SMS sender must be either a Twilio phone number (in
+L<E.164|https://en.wikipedia.org/wiki/E.164> format), L<alphanumeric sender
+ID|https://www.twilio.com/docs/sms/quickstart>, or L<short
+code|https://www.twilio.com/en-us/messaging/channels/sms/short-codes>, hosted
+within Twilio and belong to the Account creating the Message.
+
+=item C<force_delivery>
+
+Reserved
+
+=item C<from>
+
+The sender's Twilio phone number (in
+L<E.164|https://en.wikipedia.org/wiki/E.164> format), L<alphanumeric sender
+ID|https://www.twilio.com/docs/sms/quickstart>, L<Wireless
+SIM|https://www.twilio.com/docs/iot/wireless/programmable-wireless-send-machine-machine-sms-commands>,
+L<short code|https://www.twilio.com/en-us/messaging/channels/sms/short-codes>,
+or L<channel address|https://www.twilio.com/docs/messaging/channels> (e.g.,
+C<whatsapp:+15554449999>). The value of the C<from> parameter must be a sender
+that is hosted within Twilio and belongs to the Account creating the Message.
+If you are using C<messaging_service_sid>, this parameter can be empty (Twilio
+assigns a C<from> value from the Messaging Service's Sender Pool) or you can
+provide a specific sender from your Sender Pool.
+
+=item C<max_price>
+
+[OBSOLETE] This parameter will no longer have any effect as of 2024-06-03.
+
+=item C<media_url>
+
+The URL of media to include in the Message content. C<jpeg>, C<jpg>, C<gif>,
+and C<png> file types are fully supported by Twilio and content is formatted
+for delivery on destination devices. The media size limit is 5 MB for supported
+file types (C<jpeg>, C<jpg>, C<png>, C<gif>) and 500 KB for L<other
+types|https://www.twilio.com/docs/messaging/guides/accepted-mime-types> of
+accepted media. To send more than one image in the message, provide multiple
+C<media_url> parameters in the POST request. You can include up to ten
+C<media_url> parameters per message.
+L<International|https://support.twilio.com/hc/en-us/articles/223179808-Sending-and-receiving-MMS-messages>
+and
+L<carrier|https://support.twilio.com/hc/en-us/articles/223133707-Is-MMS-supported-for-all-carriers-in-US-and-Canada->
+limits apply. An array reference.
+
+=item C<message_intent>
+
+Specifies the purpose or use case of the outbound communication. This parameter
+is used by Twilio's L<Traffic
+Shaping|https://www.twilio.com/docs/messaging/features/traffic-shaping> and
+L<Compliance
+Toolkit|https://www.twilio.com/docs/messaging/features/compliance-toolkit>
+products. Possible values include: C<otp>, C<notifications>, C<marketing>,
+C<fraud>, C<security>, C<customercare>, C<delivery>, C<education>, C<polling>,
+C<announcements>, and C<events>.
+
+=item C<messaging_service_sid>
+
+The SID of the L<Messaging
+Service|https://www.twilio.com/docs/messaging/services> you want to associate
+with the Message. When this parameter is provided and the C<from> parameter is
+omitted, Twilio selects the optimal sender from the Messaging Service's Sender
+Pool. You may also provide a C<from> parameter if you want to use a specific
+Sender from the Sender Pool.
+
+=item C<persistent_action>
+
+Rich actions for non-SMS/MMS channels. Used for L<sending location in WhatsApp
+messages|https://www.twilio.com/docs/whatsapp/message-features#location-messages-with-whatsapp>.
+An array reference.
+
+=item C<provide_feedback>
+
+Boolean indicating whether or not you intend to provide delivery confirmation
+feedback to Twilio (used in conjunction with the L<Message Feedback
+subresource|https://www.twilio.com/docs/sms/api/message-feedback-resource>).
+Default value is C<false>.
+
+=item C<risk_check>
+
+One of C<enable> or C<disable>.
+
+=item C<schedule_type>
+
+Must be C<fixed>.
+
+=item C<send_as_mms>
+
+If set to C<true>, Twilio delivers the message as a single MMS message,
+regardless of the presence of media.
+
+=item C<send_at>
+
+The time that Twilio will send the message. Must be in ISO 8601 format. A
+string, or an object with an C<epoch> method. See
 L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<shorten_urls>
+
+For Messaging Services with L<Link Shortening
+configured|https://www.twilio.com/docs/messaging/features/link-shortening>
+only: A Boolean indicating whether or not Twilio should shorten links in the
+C<body> of the Message. Default value is C<false>. If C<true>, the
+C<messaging_service_sid> parameter must also be provided.
+
+=item C<smart_encoded>
+
+Whether to detect Unicode characters that have a similar GSM-7 character and
+replace them. Can be: C<true> or C<false>.
+
+=item C<status_callback>
+
+The URL of the endpoint to which Twilio sends L<Message status callback
+requests|https://www.twilio.com/docs/sms/api/message-resource#twilios-request-to-the-statuscallback-url>.
+URL must contain a valid hostname and underscores are not allowed. If you
+include this parameter with the C<messaging_service_sid>, Twilio uses this URL
+instead of the Status Callback URL of the L<Messaging
+Service|https://www.twilio.com/docs/messaging/api/service-resource>.
+
+=item C<traffic_type>
+
+Must be C<free>.
+
+=item C<validity_period>
+
+The maximum length in seconds that the Message can remain in Twilio's outgoing
+message queue. If a queued Message exceeds the C<validity_period>, the Message
+is not sent. Accepted values are integers from C<1> to C<36000>. Default value
+is C<36000>. A C<validity_period> greater than C<5> is recommended. L<Learn
+more about the validity
+period|https://www.twilio.com/blog/take-more-control-of-outbound-messages-using-validity-period-html>
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->messages->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of Message resources associated with a Twilio Account. Returns
+the records as a list, fetching as many pages as it needs.
 
-The options are C<date_sent>, C<date_sent_before>, C<date_sent_after>, C<from>
-and C<to>.
+The options are:
 
-C<date_sent>, C<date_sent_before> and C<date_sent_after> take a string, or an
-object with an C<epoch> method. See L<Twilio::Serialize/iso8601_date_time>.
+=over
+
+=item C<date_sent>
+
+Filter by Message C<sent_date>. Accepts GMT dates in the following formats:
+C<YYYY-MM-DD> (to find Messages with a specific C<sent_date>), C<< <=YYYY-MM-DD
+>> (to find Messages with C<sent_date>s on and before a specific date), and C<<
+>=YYYY-MM-DD >> (to find Messages with C<sent_dates> on and after a specific
+date). A string, or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<date_sent_before>
+
+Filter by Message C<sent_date>. Accepts GMT dates in the following formats:
+C<YYYY-MM-DD> (to find Messages with a specific C<sent_date>), C<< <=YYYY-MM-DD
+>> (to find Messages with C<sent_date>s on and before a specific date), and C<<
+>=YYYY-MM-DD >> (to find Messages with C<sent_dates> on and after a specific
+date). A string, or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<date_sent_after>
+
+Filter by Message C<sent_date>. Accepts GMT dates in the following formats:
+C<YYYY-MM-DD> (to find Messages with a specific C<sent_date>), C<< <=YYYY-MM-DD
+>> (to find Messages with C<sent_date>s on and before a specific date), and C<<
+>=YYYY-MM-DD >> (to find Messages with C<sent_dates> on and after a specific
+date). A string, or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<from>
+
+Filter by sender. For example: Set this parameter to C<+15552229999> to
+retrieve a list of Message resources sent by C<+15552229999>.
+
+=item C<to>
+
+Filter by recipient. For example: Set this parameter to C<+15558881111> to
+retrieve a list of Message resources sent to C<+15558881111>.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->messages->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->messages->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->messages->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->messages->get_context($sid);
 
 Returns a C<MessageContext>, and makes no request.
 
+=head1 MessagePage
+
+A L<Twilio::Page> of C<MessageInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 MessageContext
+
+Returned by C<< $client->messages($sid) >>. It makes no request until one of
+these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $message = $client->messages($sid)->fetch;
 
-Returns a C<MessageInstance>.
+Fetch a specific Message. Returns a C<MessageInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $message = $client->messages($sid)->update(\%options);
 
-Returns a C<MessageInstance>.
+Update a Message resource (used to redact Message C<body> text and to cancel
+not-yet-sent messages). Returns a C<MessageInstance>.
 
-The options are C<body> and C<status>.
+The options are:
+
+=over
+
+=item C<body>
+
+The new C<body> of the Message resource. To redact the text content of a
+Message, this parameter's value must be an empty string
+
+=item C<status>
+
+Must be C<canceled>.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->messages($sid)->delete;
 
-Returns true.
+Deletes a Message resource from your account. Returns true.
 
 =head2 feedback
 
@@ -374,16 +651,145 @@ See L<Twilio::Rest::Api::V2010::Account::Message::Media>.
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update>, C<delete>, C<feedback> and C<media> too, which work
-the same way.
+It has C<fetch>, C<update>, C<delete>, C<feedback> and C<media>, which work as
+they do on the context.
 
-Its fields are C<account_sid>, C<api_version>, C<body>, C<direction>,
-C<error_code>, C<error_message>, C<from>, C<messaging_service_sid>,
-C<num_media>, C<num_segments>, C<price>, C<price_unit>, C<sid>, C<status>,
-C<subresource_uris>, C<to> and C<uri>.
+Its fields are:
 
-C<date_created>, C<date_sent> and C<date_updated> return L<Time::Piece> objects
-in UTC. See L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account>
+associated with the Message resource
+
+=item api_version
+
+The API version used to process the Message
+
+=item body
+
+The text content of the message
+
+=item date_created
+
+The L<RFC 2822|https://datatracker.ietf.org/doc/html/rfc2822#section-3.3>
+timestamp (in GMT) of when the Message resource was created A L<Time::Piece>
+object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_sent
+
+The L<RFC 2822|https://datatracker.ietf.org/doc/html/rfc2822#section-3.3>
+timestamp (in GMT) of when the Message was sent. For an outgoing message, this
+is when Twilio sent the message. For an incoming message, this is when Twilio
+sent the HTTP request to your incoming message webhook URL. A L<Time::Piece>
+object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The L<RFC 2822|https://datatracker.ietf.org/doc/html/rfc2822#section-3.3>
+timestamp (in GMT) of when the Message resource was last updated A
+L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item direction
+
+One of C<inbound>, C<outbound-api>, C<outbound-call> or C<outbound-reply>.
+
+=item error_code
+
+The L<error code|https://www.twilio.com/docs/api/errors> returned if the
+Message C<status> is C<failed> or C<undelivered>. If no error was encountered,
+the value is C<null>. The value returned in this field for a specific error
+cause is subject to change as Twilio improves errors. Users should not use the
+C<error_code> and C<error_message> fields programmatically.
+
+=item error_message
+
+The description of the C<error_code> if the Message C<status> is C<failed> or
+C<undelivered>. If no error was encountered, the value is C<null>. The value
+returned in this field for a specific error cause is subject to change as
+Twilio improves errors. Users should not use the C<error_code> and
+C<error_message> fields programmatically.
+
+=item from
+
+The sender's phone number (in L<E.164|https://en.wikipedia.org/wiki/E.164>
+format), L<alphanumeric sender ID|https://www.twilio.com/docs/sms/quickstart>,
+L<Wireless
+SIM|https://www.twilio.com/docs/iot/wireless/programmable-wireless-send-machine-machine-sms-commands>,
+L<short code|https://www.twilio.com/en-us/messaging/channels/sms/short-codes>,
+or L<channel address|https://www.twilio.com/docs/messaging/channels> (e.g.,
+C<whatsapp:+15554449999>). For incoming messages, this is the number or channel
+address of the sender. For outgoing messages, this value is a Twilio phone
+number, alphanumeric sender ID, short code, or channel address from which the
+message is sent.
+
+=item messaging_service_sid
+
+The SID of the L<Messaging
+Service|https://www.twilio.com/docs/messaging/api/service-resource> associated
+with the Message resource. A unique default value is assigned if a Messaging
+Service is not used.
+
+=item num_media
+
+The number of media files associated with the Message resource.
+
+=item num_segments
+
+The number of segments that make up the complete message. SMS message bodies
+that exceed the L<character
+limit|https://www.twilio.com/docs/glossary/what-sms-character-limit> are
+segmented and charged as multiple messages. Note: For messages sent via a
+Messaging Service, C<num_segments> is initially C<0>, since a sender hasn't yet
+been assigned.
+
+=item price
+
+The amount billed for the message in the currency specified by C<price_unit>.
+The C<price> is populated after the message has been sent/received, and may not
+be immediately availalble. View the L<Pricing
+page|https://www.twilio.com/en-us/pricing> for more details.
+
+=item price_unit
+
+The currency in which C<price> is measured, in L<ISO
+4127|https://www.iso.org/iso/home/standards/currency_codes.htm> format (e.g.
+C<usd>, C<eur>, C<jpy>).
+
+=item sid
+
+The unique, Twilio-provided string that identifies the Message resource.
+
+=item status
+
+One of C<queued>, C<sending>, C<sent>, C<failed>, C<delivered>, C<undelivered>,
+C<receiving>, C<received>, C<accepted>, C<scheduled>, C<read>,
+C<partially_delivered> or C<canceled>.
+
+=item subresource_uris
+
+A list of related resources identified by their URIs relative to
+C<https://api.twilio.com>
+
+=item to
+
+The recipient's phone number (in L<E.164|https://en.wikipedia.org/wiki/E.164>
+format) or L<channel address|https://www.twilio.com/docs/messaging/channels>
+(e.g. C<whatsapp:+15552229999>)
+
+=item uri
+
+The URI of the Message resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

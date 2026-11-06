@@ -3,17 +3,15 @@ package Twilio::Generator::Emit;
 use 5.016;
 use warnings;
 
-use Text::Wrap ();
+use Twilio::Generator::Pod;
 
 our $VERSION = '2.000000';
-
-my $POD_WIDTH = 80;
 
 # The layout does not matter here, because the result goes through perltidy.
 sub module {
   my ($model) = @_;
   return join "\n", _header($model), _list($model), _page($model), _context($model),
-    _instance($model), "1;\n", '__END__', q{}, _pod($model);
+    _instance($model), "1;\n", '__END__', q{}, Twilio::Generator::Pod::document($model);
 }
 
 sub _header {
@@ -383,195 +381,6 @@ sub _accessor {
   return "sub $field->{name} { return $value }\n";
 }
 
-sub _pod {
-  my ($model) = @_;
-  return join "\n", _pod_top($model), _pod_list($model), _pod_context($model),
-    _pod_instance($model), "=head1 LICENSE\n",
-    "Copyright (c) 2026 Francisco Zarabozo. Released under the MIT License.\n", "=cut\n";
-}
-
-sub _pod_top {
-  my ($model) = @_;
-
-  my @classes = map { $model->{class}{$_} =~ s/.*:://r } _classes_in_file($model);
-  my $names   = _sentence(map { "C<$_>" } @classes);
-  my $about   = length $model->{description} ? _paragraph(_pod_text($model->{description})) : q{};
-
-  return join "\n", "=encoding UTF-8\n", "=head1 NAME\n",
-    "$model->{module} - The $model->{name} resource\n",
-    "=head1 DESCRIPTION\n", $about,
-    _paragraph("This file holds $names. All the methods that make a request throw "
-      . 'L<Twilio::Exceptions::RestException> on an error response.');
-}
-
-sub _classes_in_file {
-  my ($model) = @_;
-
-  my @classes;
-  push @classes, 'list'     if $model->{list};
-  push @classes, 'page'     if defined $model->{records_key};
-  push @classes, 'context'  if $model->{context};
-  push @classes, 'instance' if $model->{has_instance};
-  return @classes;
-}
-
-sub _pod_text {
-  my ($text) = @_;
-
-  my %escape = ('<' => 'E<lt>', '>' => 'E<gt>');
-  $text =~ s/([<>])/$escape{$1}/g;
-  return $text;
-}
-
-sub _paragraph {
-  my ($text) = @_;
-  local $Text::Wrap::columns = $POD_WIDTH;
-  return Text::Wrap::wrap(q{}, q{}, $text) . "\n";
-}
-
-sub _sentence {
-  my (@items) = @_;
-  return $items[0] // q{} if @items < 2;
-
-  my $final_item = pop @items;
-  return join(q{, }, @items) . " and $final_item";
-}
-
-sub _pod_list {
-  my ($model) = @_;
-  my $side = $model->{list} or return q{};
-
-  my @pod = ("=head1 $model->{name}List\n", "See also L<Twilio::ListResource>.\n");
-  push @pod, _pod_body_method('create', $side->{create}, "a C<$model->{name}Instance>")
-    if $side->{create};
-  push @pod, _pod_fetch($model, $side) if $side->{fetch};
-  push @pod, _pod_reading($model)      if $side->{read};
-  if (my $own = ($model->{context} // {})->{own}) {
-    push @pod, "=head2 get_context\n", "  my \$context = \$list->get_context(\$$own);\n",
-      "Returns a C<$model->{name}Context>, and makes no request.\n";
-  }
-  push @pod, map { _pod_child($_) } @{ $side->{children} // [] };
-  return join "\n", @pod;
-}
-
-sub _pod_fetch {
-  my ($model, $side) = @_;
-
-  my @options = @{ $side->{fetch}{options} };
-  my $call    = @options ? '(\%options)' : q{};
-  return join "\n", "=head2 fetch\n", "  my \$result = \$object->fetch$call;\n",
-    "Returns a C<$model->{name}Instance>.\n", @options ? _pod_options(\@options) : ();
-}
-
-sub _pod_child {
-  my ($child) = @_;
-
-  my $own  = $child->{own};
-  my $call = "\$object->$child->{mount}";
-  my @pod  = ("=head2 $child->{mount}\n", "  my \$list = $call;\n");
-  $pod[1] = "  my \$context = $call;\n" if $child->{singleton};
-  push @pod, "  my \$context = $call(\$$own);\n" if defined $own;
-  return join "\n", @pod, "See L<$child->{module}>.\n";
-}
-
-sub _pod_body_method {
-  my ($verb, $operation, $result) = @_;
-
-  my @required = map { "\$$_->{name}" } @{ $operation->{required} };
-  my @options  = @{ $operation->{options} };
-  my $call     = join q{, }, @required, @options ? '\%options' : ();
-
-  my @pod = ("=head2 $verb\n", "  my \$result = \$object->$verb($call);\n", "Returns $result.\n");
-  push @pod, _pod_options(\@options) if @options;
-  return join "\n", @pod;
-}
-
-sub _pod_options {
-  my ($options) = @_;
-
-  my @names  = map { "C<$_->{name}>" } @{$options};
-  my @arrays = map { "C<$_->{name}>" } grep { $_->{array} } @{$options};
-  my @dates  = map { "C<$_->{name}>" } grep { ($_->{writer} // q{}) =~ /date/ } @{$options};
-
-  my @pod = (_paragraph('The options are ' . _sentence(@names) . q{.}));
-  if (@arrays) {
-    push @pod, _paragraph(_sentence(@arrays) . _take(@arrays) . ' an array reference.');
-  }
-  if (@dates) {
-    push @pod,
-      _paragraph(_sentence(@dates)
-        . _take(@dates)
-        . ' a string, or an object with an C<epoch> method. '
-        . 'See L<Twilio::Serialize/iso8601_date_time>.');
-  }
-  return join "\n", @pod;
-}
-
-sub _take {
-  my (@names) = @_;
-  return @names == 1 ? ' takes' : ' take';
-}
-
-sub _pod_reading {
-  my ($model) = @_;
-
-  my @filters = @{ $model->{list}{read}{filters} };
-  return join "\n", "=head2 read\n",
-    "  my \@items = \$list->read(\\%options, \$limit, \$page_size);\n",
-    "Returns the records as a list, fetching as many pages as it needs.\n",
-    @filters ? _pod_options(\@filters) : (), "=head2 stream\n",
-    "  my \$stream = \$list->stream(\\%options, \$limit, \$page_size);\n",
-    "Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.\n", "=head2 page\n",
-    "  my \$page = \$list->page(\\%options, \$page_size, \$page_token, \$page_number);\n",
-    "Fetches one page, and returns a L<Twilio::Page>.\n", "=head2 get_page\n",
-    "  my \$page = \$list->get_page(\$url);\n",
-    "Fetches the page at a URL given by Twilio.\n";
-}
-
-sub _pod_context {
-  my ($model) = @_;
-  my $side = $model->{context} or return q{};
-
-  my @pod = ("=head1 $model->{name}Context\n");
-  push @pod, _pod_fetch($model, $side) if $side->{fetch};
-  push @pod, _pod_body_method('update', $side->{update}, "a C<$model->{name}Instance>")
-    if $side->{update};
-  if ($side->{delete}) {
-    push @pod, "=head2 delete\n", "  \$context->delete;\n", "Returns true.\n";
-  }
-  push @pod, map { _pod_child($_) } @{ $side->{children} // [] };
-  return join "\n", @pod;
-}
-
-sub _pod_instance {
-  my ($model) = @_;
-  return q{} if !$model->{has_instance};
-
-  my @plain        = map { "C<$_->{name}>" } grep { !defined $_->{reader} } @{ $model->{fields} };
-  my @dates        = _fields_read_by($model, 'date_time');
-  my @capabilities = _fields_read_by($model, 'phone_number_capabilities');
-
-  my @pod = ("=head1 $model->{name}Instance\n", "See also L<Twilio::InstanceResource>.\n");
-  if ($model->{context}) {
-    my @verbs = map { "C<$_>" } grep { $model->{context}{$_} } qw(fetch update delete);
-    push @verbs, map { "C<$_->{mount}>" } @{ $model->{context}{children} // [] };
-    push @pod, _paragraph('It has ' . _sentence(@verbs) . ' too, which work the same way.')
-      if @verbs;
-  }
-  push @pod, _paragraph('Its fields are ' . _sentence(@plain) . q{.}) if @plain;
-  if (@dates) {
-    push @pod,
-      _paragraph(_sentence(@dates)
-        . ' return L<Time::Piece> objects in UTC. See L<Twilio::Deserialize/date_time>.');
-  }
-  if (@capabilities) {
-    push @pod,
-      _paragraph(
-      _sentence(@capabilities) . ' return L<Twilio::Base::PhoneNumberCapabilities> objects.');
-  }
-  return join "\n", @pod;
-}
-
 sub version {
   my ($top) = @_;
 
@@ -725,17 +534,12 @@ sub _pod_shortcuts {
   );
   push @pod, map { ("=head2 $_->[0]\n", "$_->[1]\n") } @entries;
   push @pod, _pod_shortcut_entries($shortcuts);
-  return join "\n", @pod, _pod_end();
+  return join "\n", @pod, Twilio::Generator::Pod::end();
 }
 
 sub _pod_shortcut_entries {
   my ($shortcuts) = @_;
   return map { ("=head2 $_->{mount}\n", "See L<$_->{module}>.\n") } @{$shortcuts};
-}
-
-sub _pod_end {
-  return "=head1 LICENSE\n",
-    "Copyright (c) 2026 Francisco Zarabozo. Released under the MIT License.\n", "=cut\n";
 }
 
 sub _pod_client {
@@ -780,12 +584,7 @@ Returns L<Twilio::Rest::Api>, the domain of the main API.
 Returns the context of the client's account. See
 L<Twilio::Rest::Api::V2010::Account>.
 END_POD
-    _pod_shortcut_entries($top->{shortcuts}), _pod_end();
-}
-
-sub _fields_read_by {
-  my ($model, $reader) = @_;
-  return map { "C<$_->{name}>" } grep { ($_->{reader} // q{}) eq $reader } @{ $model->{fields} };
+    _pod_shortcut_entries($top->{shortcuts}), Twilio::Generator::Pod::end();
 }
 
 1;
