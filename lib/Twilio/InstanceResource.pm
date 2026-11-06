@@ -9,7 +9,6 @@ sub new {
   my ($class, $version, $payload, $solution) = @_;
   return bless {
     version    => $version,
-    context    => undef,
     properties => ref $payload eq 'HASH' ? { %{$payload} } : {},
     solution   => $solution // {},
   }, $class;

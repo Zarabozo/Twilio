@@ -21,8 +21,8 @@ Version 2.000000
 
 =head1 STATUS
 
-This distribution is being rewritten and has no usable API client yet. The
-planned interface follows Twilio's official helper libraries, so that any
+This distribution is being rewritten, and so far it covers the Messages resource
+only. The interface follows Twilio's official helper libraries, so that any
 Twilio documentation example can be translated to Perl with a few simple rules:
 
   my $client = Twilio::Rest::Client->new($account_sid, $auth_token);

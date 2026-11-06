@@ -110,13 +110,11 @@ sub previous_page {
   return $self->_page_at($self->get_previous_page_url);
 }
 
-## no critic (Subroutines::ProhibitBuiltinHomonyms)
 sub next {
   my ($self) = @_;
   return if $self->{position} >= @{ $self->{records} };
   return $self->build_instance($self->{records}[$self->{position}++]);
 }
-## use critic
 
 sub rewind {
   my ($self) = @_;
