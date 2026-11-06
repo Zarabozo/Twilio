@@ -215,72 +215,186 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Conference - The Conference resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $conference ($client->conferences->read({}, 20)) {
+    ...
+  }
+  my $conference = $client->conferences($sid)->fetch;
+  $client->conferences($sid)->update(\%options);
+
 =head1 DESCRIPTION
 
 Voice call conferences
 
 This file holds C<ConferenceList>, C<ConferencePage>, C<ConferenceContext> and
-C<ConferenceInstance>. All the methods that make a request throw
+C<ConferenceInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 ConferenceList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->conferences >>. See also L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->conferences->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of conferences belonging to the account used to make the
+request. Returns the records as a list, fetching as many pages as it needs.
 
-The options are C<date_created>, C<date_created_before>, C<date_created_after>,
-C<date_updated>, C<date_updated_before>, C<date_updated_after>,
-C<friendly_name> and C<status>.
+The options are:
 
-C<date_created>, C<date_created_before>, C<date_created_after>,
-C<date_updated>, C<date_updated_before> and C<date_updated_after> take a
-string, or an object with an C<epoch> method. See
+=over
+
+=item C<date_created>
+
+Only include conferences that were created on this date. Specify a date as
+C<YYYY-MM-DD> in UTC, for example: C<2009-07-06>, to read only conferences that
+were created on this date. You can also specify an inequality, such as C<<
+DateCreated<=YYYY-MM-DD >>, to read conferences that were created on or before
+midnight of this date, and C<< DateCreated>=YYYY-MM-DD >> to read conferences
+that were created on or after midnight of this date. A string, or an object
+with an C<epoch> method. See L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<date_created_before>
+
+Only include conferences that were created on this date. Specify a date as
+C<YYYY-MM-DD> in UTC, for example: C<2009-07-06>, to read only conferences that
+were created on this date. You can also specify an inequality, such as C<<
+DateCreated<=YYYY-MM-DD >>, to read conferences that were created on or before
+midnight of this date, and C<< DateCreated>=YYYY-MM-DD >> to read conferences
+that were created on or after midnight of this date. A string, or an object
+with an C<epoch> method. See L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<date_created_after>
+
+Only include conferences that were created on this date. Specify a date as
+C<YYYY-MM-DD> in UTC, for example: C<2009-07-06>, to read only conferences that
+were created on this date. You can also specify an inequality, such as C<<
+DateCreated<=YYYY-MM-DD >>, to read conferences that were created on or before
+midnight of this date, and C<< DateCreated>=YYYY-MM-DD >> to read conferences
+that were created on or after midnight of this date. A string, or an object
+with an C<epoch> method. See L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<date_updated>
+
+Only include conferences that were last updated on this date. Specify a date as
+C<YYYY-MM-DD> in UTC, for example: C<2009-07-06>, to read only conferences that
+were last updated on this date. You can also specify an inequality, such as C<<
+DateUpdated<=YYYY-MM-DD >>, to read conferences that were last updated on or
+before midnight of this date, and C<< DateUpdated>=YYYY-MM-DD >> to read
+conferences that were last updated on or after midnight of this date. A string,
+or an object with an C<epoch> method. See
 L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<date_updated_before>
+
+Only include conferences that were last updated on this date. Specify a date as
+C<YYYY-MM-DD> in UTC, for example: C<2009-07-06>, to read only conferences that
+were last updated on this date. You can also specify an inequality, such as C<<
+DateUpdated<=YYYY-MM-DD >>, to read conferences that were last updated on or
+before midnight of this date, and C<< DateUpdated>=YYYY-MM-DD >> to read
+conferences that were last updated on or after midnight of this date. A string,
+or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<date_updated_after>
+
+Only include conferences that were last updated on this date. Specify a date as
+C<YYYY-MM-DD> in UTC, for example: C<2009-07-06>, to read only conferences that
+were last updated on this date. You can also specify an inequality, such as C<<
+DateUpdated<=YYYY-MM-DD >>, to read conferences that were last updated on or
+before midnight of this date, and C<< DateUpdated>=YYYY-MM-DD >> to read
+conferences that were last updated on or after midnight of this date. A string,
+or an object with an C<epoch> method. See
+L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<friendly_name>
+
+The string that identifies the Conference resources to read.
+
+=item C<status>
+
+The status of the resources to read. Can be: C<init>, C<in-progress>, or
+C<completed>. Starting from September 30th, 2026, the default is
+C<in-progress>. To read completed conferences, set C<Status> to C<completed>.
+One of C<init>, C<in-progress> or C<completed>.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->conferences->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->conferences->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->conferences->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->conferences->get_context($sid);
 
 Returns a C<ConferenceContext>, and makes no request.
 
+=head1 ConferencePage
+
+A L<Twilio::Page> of C<ConferenceInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 ConferenceContext
+
+Returned by C<< $client->conferences($sid) >>. It makes no request until one of
+these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $conference = $client->conferences($sid)->fetch;
 
-Returns a C<ConferenceInstance>.
+Fetch an instance of a conference. Returns a C<ConferenceInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $conference = $client->conferences($sid)->update(\%options);
 
 Returns a C<ConferenceInstance>.
 
-The options are C<announce_method>, C<announce_url> and C<status>.
+The options are:
+
+=over
+
+=item C<announce_method>
+
+The HTTP method used to call C<announce_url>. Can be: C<GET> or C<POST> and the
+default is C<POST> One of C<GET> or C<POST>.
+
+=item C<announce_url>
+
+The URL we should call to announce something into the conference. The URL may
+return an MP3 file, a WAV file, or a TwiML document that contains C<< <Play>
+>>, C<< <Say> >>, C<< <Pause> >>, or C<< <Redirect> >> verbs.
+
+=item C<status>
+
+Must be C<completed>.
+
+=back
 
 =head2 participants
 
@@ -302,15 +416,82 @@ See L<Twilio::Rest::Api::V2010::Account::Conference::Recording>.
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update>, C<participants> and C<recordings> too, which work
-the same way.
+It has C<fetch>, C<update>, C<participants> and C<recordings>, which work as
+they do on the context.
 
-Its fields are C<account_sid>, C<api_version>, C<call_sid_ending_conference>,
-C<friendly_name>, C<reason_conference_ended>, C<region>, C<sid>, C<status>,
-C<subresource_uris> and C<uri>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created this Conference resource.
+
+=item api_version
+
+The API version used to create this conference.
+
+=item call_sid_ending_conference
+
+The call SID that caused the conference to end.
+
+=item date_created
+
+The date and time in UTC that this resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in UTC that this resource was last updated, specified in
+L<RFC 2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece>
+object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item friendly_name
+
+A string that you assigned to describe this conference room. Maximum length is
+128 characters.
+
+=item reason_conference_ended
+
+One of C<conference-ended-via-api>,
+C<participant-with-end-conference-on-exit-left>,
+C<participant-with-end-conference-on-exit-kicked>, C<last-participant-kicked>
+or C<last-participant-left>.
+
+=item region
+
+A string that represents the Twilio Region where the conference audio was
+mixed. May be C<us1>, C<us2>, C<ie1>, C<de1>, C<sg1>, C<br1>, C<au1>, and
+C<jp1>. Basic conference audio will always be mixed in C<us1>. Global
+Conference audio will be mixed nearest to the majority of participants.
+
+=item sid
+
+The unique, Twilio-provided string used to identify this Conference resource.
+
+=item status
+
+One of C<init>, C<in-progress> or C<completed>.
+
+=item subresource_uris
+
+A list of related resources identified by their URIs relative to
+C<https://api.twilio.com>.
+
+=item uri
+
+The URI of this resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

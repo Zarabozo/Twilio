@@ -152,57 +152,256 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Call::Payment - The Payment resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $payment = $client->calls($call_sid)->payments->create($idempotency_key, $status_callback, \%options);
+  $client->calls($call_sid)->payments($sid)->update($idempotency_key, $status_callback, \%options);
+
 =head1 DESCRIPTION
 
 Twilio enabled secure payments solution for accepting credit and ACH payments
 over the phone.
 
-This file holds C<PaymentList>, C<PaymentContext> and C<PaymentInstance>. All
-the methods that make a request throw L<Twilio::Exceptions::RestException> on
-an error response.
+This file holds C<PaymentList>, C<PaymentContext> and C<PaymentInstance>.
+Methods that make a request throw L<Twilio::Exceptions::RestException> on an
+error response.
 
 =head1 PaymentList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->calls($call_sid)->payments >>. See also
+L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($idempotency_key, $status_callback, \%options);
+  my $payment = $client->calls($call_sid)->payments->create($idempotency_key, $status_callback, \%options);
 
-Returns a C<PaymentInstance>.
+create an instance of payments. This will start a new payments session. Returns
+a C<PaymentInstance>.
 
-The options are C<bank_account_type>, C<charge_amount>, C<confirmation>,
-C<currency>, C<description>, C<input>, C<min_postal_code_length>, C<parameter>,
-C<payment_connector>, C<payment_method>, C<postal_code>,
-C<require_matching_inputs>, C<security_code>, C<timeout>, C<token_type> and
-C<valid_card_types>.
+The required values are:
+
+=over
+
+=item C<$idempotency_key>
+
+A unique token that will be used to ensure that multiple API calls with the
+same information do not result in multiple transactions. This should be a
+unique string value per API call and can be a randomly generated.
+
+=item C<$status_callback>
+
+Provide an absolute or relative URL to receive status updates regarding your
+Pay session. Read more about the L<expected StatusCallback
+values|https://www.twilio.com/docs/voice/api/payment-resource#statuscallback>
+
+=back
+
+The options are:
+
+=over
+
+=item C<bank_account_type>
+
+One of C<consumer-checking>, C<consumer-savings> or C<commercial-checking>.
+
+=item C<charge_amount>
+
+A positive decimal value less than 1,000,000 to charge against the credit card
+or bank account. Default currency can be overwritten with C<currency> field.
+Leave blank or set to 0 to tokenize.
+
+=item C<confirmation>
+
+Whether to prompt the caller to confirm their payment information before
+submitting to the payment gateway. If C<true>, the caller will hear the last 4
+digits of their card or account number and must press 1 to confirm or 2 to
+cancel. Default is C<false>. One of C<true> or C<false>.
+
+=item C<currency>
+
+The currency of the C<charge_amount>, formatted as L<ISO
+4127|http://www.iso.org/iso/home/standards/currency_codes.htm> format. The
+default value is C<USD> and all values allowed from the Pay Connector are
+accepted.
+
+=item C<description>
+
+The description can be used to provide more details regarding the transaction.
+This information is submitted along with the payment details to the Payment
+Connector which are then posted on the transactions.
+
+=item C<input>
+
+A list of inputs that should be accepted. Currently only C<dtmf> is supported.
+All digits captured during a pay session are redacted from the logs.
+
+=item C<min_postal_code_length>
+
+A positive integer that is used to validate the length of the C<PostalCode>
+inputted by the user. User must enter this many digits.
+
+=item C<parameter>
+
+A single-level JSON object used to pass custom parameters to payment
+processors. (Required for ACH payments). The information that has to be
+included here depends on the E<lt>PayE<gt> Connector. L<Read
+more|https://www.twilio.com/console/voice/pay-connectors>. A hash or array
+reference, or a string of JSON.
+
+=item C<payment_connector>
+
+This is the unique name corresponding to the Pay Connector installed in the
+Twilio Add-ons. Learn more about L<E<lt>PayE<gt>
+Connectors|https://www.twilio.com/console/voice/pay-connectors>. The default
+value is C<Default>.
+
+=item C<payment_method>
+
+One of C<credit-card> or C<ach-debit>.
+
+=item C<postal_code>
+
+Indicates whether the credit card postal code (zip code) is a required piece of
+payment information that must be provided by the caller. The default is
+C<true>.
+
+=item C<require_matching_inputs>
+
+A comma-separated list of payment information fields that require the caller to
+enter the same value twice for confirmation. Supported values are
+C<payment-card-number>, C<expiration-date>, C<security-code>, and
+C<postal-code>.
+
+=item C<security_code>
+
+Indicates whether the credit card security code is a required piece of payment
+information that must be provided by the caller. The default is C<true>.
+
+=item C<timeout>
+
+The number of seconds that E<lt>PayE<gt> should wait for the caller to press a
+digit between each subsequent digit, after the first one, before moving on to
+validate the digits captured. The default is C<5>, maximum is C<600>.
+
+=item C<token_type>
+
+One of C<one-time>, C<reusable> or C<payment-method>.
+
+=item C<valid_card_types>
+
+Credit card types separated by space that Pay should accept. The default value
+is C<visa mastercard amex>
+
+=back
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->calls($call_sid)->payments->get_context($sid);
 
 Returns a C<PaymentContext>, and makes no request.
 
+
 =head1 PaymentContext
+
+Returned by C<< $client->calls($call_sid)->payments($sid) >>. It makes no
+request until one of these methods is called.
 
 =head2 update
 
-  my $result = $object->update($idempotency_key, $status_callback, \%options);
+  my $payment = $client->calls($call_sid)->payments($sid)->update($idempotency_key, $status_callback, \%options);
 
-Returns a C<PaymentInstance>.
+update an instance of payments with different phases of payment flows. Returns
+a C<PaymentInstance>.
 
-The options are C<capture> and C<status>.
+The required values are:
+
+=over
+
+=item C<$idempotency_key>
+
+A unique token that will be used to ensure that multiple API calls with the
+same information do not result in multiple transactions. This should be a
+unique string value per API call and can be a randomly generated.
+
+=item C<$status_callback>
+
+Provide an absolute or relative URL to receive status updates regarding your
+Pay session. Read more about the
+L<Update|https://www.twilio.com/docs/voice/api/payment-resource#statuscallback-update>
+and
+L<Complete/Cancel|https://www.twilio.com/docs/voice/api/payment-resource#statuscallback-cancelcomplete>
+POST requests.
+
+=back
+
+The options are:
+
+=over
+
+=item C<capture>
+
+One of C<payment-card-number>, C<expiration-date>, C<security-code>,
+C<postal-code>, C<bank-routing-number>, C<bank-account-number>,
+C<payment-card-number-matcher>, C<expiration-date-matcher>,
+C<security-code-matcher> or C<postal-code-matcher>.
+
+=item C<status>
+
+One of C<complete> or C<cancel>.
+
+=back
 
 =head1 PaymentInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<update> too, which work the same way.
+It has C<update>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<call_sid>, C<sid> and C<uri>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created the Payments resource.
+
+=item call_sid
+
+The SID of the L<Call|https://www.twilio.com/docs/voice/api/call-resource> the
+Payments resource is associated with. This will refer to the call sid that is
+producing the payment card (credit/ACH) information thru DTMF.
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item sid
+
+The SID of the Payments resource.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

@@ -64,35 +64,93 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Token - The Token resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $token = $client->tokens->create(\%options);
+
 =head1 DESCRIPTION
 
 Credentials for ICE servers
 
-This file holds C<TokenList> and C<TokenInstance>. All the methods that make a
-request throw L<Twilio::Exceptions::RestException> on an error response.
+This file holds C<TokenList> and C<TokenInstance>. Methods that make a request
+throw L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 TokenList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->tokens >>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create(\%options);
+  my $token = $client->tokens->create(\%options);
 
-Returns a C<TokenInstance>.
+Create a new token for ICE servers. Returns a C<TokenInstance>.
 
-The options are C<ttl>.
+The options are:
+
+=over
+
+=item C<ttl>
+
+The duration in seconds for which the generated credentials are valid. The
+default value is 86400 (24 hours).
+
+=back
+
 
 
 =head1 TokenInstance
 
 See also L<Twilio::InstanceResource>.
 
-Its fields are C<account_sid>, C<ice_servers>, C<password>, C<ttl> and
-C<username>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created the Token resource.
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item ice_servers
+
+An array representing the ephemeral credentials and the STUN and TURN server
+URIs.
+
+=item password
+
+The temporary password that the username will use when authenticating with
+Twilio.
+
+=item ttl
+
+The duration in seconds for which the username and password are valid.
+
+=item username
+
+The temporary username that uniquely identifies a Token.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

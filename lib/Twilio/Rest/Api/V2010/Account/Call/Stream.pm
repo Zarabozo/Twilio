@@ -332,118 +332,938 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Call::Stream - The Stream resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $stream = $client->calls($call_sid)->streams->create($url, \%options);
+  $client->calls($call_sid)->streams($sid)->update($status);
+
 =head1 DESCRIPTION
 
 The Stream resource allows you to create and stop uni-directional Media Streams
 
-This file holds C<StreamList>, C<StreamContext> and C<StreamInstance>. All the
-methods that make a request throw L<Twilio::Exceptions::RestException> on an
-error response.
+This file holds C<StreamList>, C<StreamContext> and C<StreamInstance>. Methods
+that make a request throw L<Twilio::Exceptions::RestException> on an error
+response.
 
 =head1 StreamList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->calls($call_sid)->streams >>. See also
+L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($url, \%options);
+  my $stream = $client->calls($call_sid)->streams->create($url, \%options);
 
-Returns a C<StreamInstance>.
+Create a Stream. Returns a C<StreamInstance>.
 
-The options are C<name>, C<parameter1_name>, C<parameter1_value>,
-C<parameter10_name>, C<parameter10_value>, C<parameter11_name>,
-C<parameter11_value>, C<parameter12_name>, C<parameter12_value>,
-C<parameter13_name>, C<parameter13_value>, C<parameter14_name>,
-C<parameter14_value>, C<parameter15_name>, C<parameter15_value>,
-C<parameter16_name>, C<parameter16_value>, C<parameter17_name>,
-C<parameter17_value>, C<parameter18_name>, C<parameter18_value>,
-C<parameter19_name>, C<parameter19_value>, C<parameter2_name>,
-C<parameter2_value>, C<parameter20_name>, C<parameter20_value>,
-C<parameter21_name>, C<parameter21_value>, C<parameter22_name>,
-C<parameter22_value>, C<parameter23_name>, C<parameter23_value>,
-C<parameter24_name>, C<parameter24_value>, C<parameter25_name>,
-C<parameter25_value>, C<parameter26_name>, C<parameter26_value>,
-C<parameter27_name>, C<parameter27_value>, C<parameter28_name>,
-C<parameter28_value>, C<parameter29_name>, C<parameter29_value>,
-C<parameter3_name>, C<parameter3_value>, C<parameter30_name>,
-C<parameter30_value>, C<parameter31_name>, C<parameter31_value>,
-C<parameter32_name>, C<parameter32_value>, C<parameter33_name>,
-C<parameter33_value>, C<parameter34_name>, C<parameter34_value>,
-C<parameter35_name>, C<parameter35_value>, C<parameter36_name>,
-C<parameter36_value>, C<parameter37_name>, C<parameter37_value>,
-C<parameter38_name>, C<parameter38_value>, C<parameter39_name>,
-C<parameter39_value>, C<parameter4_name>, C<parameter4_value>,
-C<parameter40_name>, C<parameter40_value>, C<parameter41_name>,
-C<parameter41_value>, C<parameter42_name>, C<parameter42_value>,
-C<parameter43_name>, C<parameter43_value>, C<parameter44_name>,
-C<parameter44_value>, C<parameter45_name>, C<parameter45_value>,
-C<parameter46_name>, C<parameter46_value>, C<parameter47_name>,
-C<parameter47_value>, C<parameter48_name>, C<parameter48_value>,
-C<parameter49_name>, C<parameter49_value>, C<parameter5_name>,
-C<parameter5_value>, C<parameter50_name>, C<parameter50_value>,
-C<parameter51_name>, C<parameter51_value>, C<parameter52_name>,
-C<parameter52_value>, C<parameter53_name>, C<parameter53_value>,
-C<parameter54_name>, C<parameter54_value>, C<parameter55_name>,
-C<parameter55_value>, C<parameter56_name>, C<parameter56_value>,
-C<parameter57_name>, C<parameter57_value>, C<parameter58_name>,
-C<parameter58_value>, C<parameter59_name>, C<parameter59_value>,
-C<parameter6_name>, C<parameter6_value>, C<parameter60_name>,
-C<parameter60_value>, C<parameter61_name>, C<parameter61_value>,
-C<parameter62_name>, C<parameter62_value>, C<parameter63_name>,
-C<parameter63_value>, C<parameter64_name>, C<parameter64_value>,
-C<parameter65_name>, C<parameter65_value>, C<parameter66_name>,
-C<parameter66_value>, C<parameter67_name>, C<parameter67_value>,
-C<parameter68_name>, C<parameter68_value>, C<parameter69_name>,
-C<parameter69_value>, C<parameter7_name>, C<parameter7_value>,
-C<parameter70_name>, C<parameter70_value>, C<parameter71_name>,
-C<parameter71_value>, C<parameter72_name>, C<parameter72_value>,
-C<parameter73_name>, C<parameter73_value>, C<parameter74_name>,
-C<parameter74_value>, C<parameter75_name>, C<parameter75_value>,
-C<parameter76_name>, C<parameter76_value>, C<parameter77_name>,
-C<parameter77_value>, C<parameter78_name>, C<parameter78_value>,
-C<parameter79_name>, C<parameter79_value>, C<parameter8_name>,
-C<parameter8_value>, C<parameter80_name>, C<parameter80_value>,
-C<parameter81_name>, C<parameter81_value>, C<parameter82_name>,
-C<parameter82_value>, C<parameter83_name>, C<parameter83_value>,
-C<parameter84_name>, C<parameter84_value>, C<parameter85_name>,
-C<parameter85_value>, C<parameter86_name>, C<parameter86_value>,
-C<parameter87_name>, C<parameter87_value>, C<parameter88_name>,
-C<parameter88_value>, C<parameter89_name>, C<parameter89_value>,
-C<parameter9_name>, C<parameter9_value>, C<parameter90_name>,
-C<parameter90_value>, C<parameter91_name>, C<parameter91_value>,
-C<parameter92_name>, C<parameter92_value>, C<parameter93_name>,
-C<parameter93_value>, C<parameter94_name>, C<parameter94_value>,
-C<parameter95_name>, C<parameter95_value>, C<parameter96_name>,
-C<parameter96_value>, C<parameter97_name>, C<parameter97_value>,
-C<parameter98_name>, C<parameter98_value>, C<parameter99_name>,
-C<parameter99_value>, C<status_callback>, C<status_callback_method> and
-C<track>.
+The required values are:
+
+=over
+
+=item C<$url>
+
+Relative or absolute URL where WebSocket connection will be established.
+
+=back
+
+The options are:
+
+=over
+
+=item C<name>
+
+The user-specified name of this Stream, if one was given when the Stream was
+created. This can be used to stop the Stream.
+
+=item C<parameter1_name>
+
+Parameter name
+
+=item C<parameter1_value>
+
+Parameter value
+
+=item C<parameter10_name>
+
+Parameter name
+
+=item C<parameter10_value>
+
+Parameter value
+
+=item C<parameter11_name>
+
+Parameter name
+
+=item C<parameter11_value>
+
+Parameter value
+
+=item C<parameter12_name>
+
+Parameter name
+
+=item C<parameter12_value>
+
+Parameter value
+
+=item C<parameter13_name>
+
+Parameter name
+
+=item C<parameter13_value>
+
+Parameter value
+
+=item C<parameter14_name>
+
+Parameter name
+
+=item C<parameter14_value>
+
+Parameter value
+
+=item C<parameter15_name>
+
+Parameter name
+
+=item C<parameter15_value>
+
+Parameter value
+
+=item C<parameter16_name>
+
+Parameter name
+
+=item C<parameter16_value>
+
+Parameter value
+
+=item C<parameter17_name>
+
+Parameter name
+
+=item C<parameter17_value>
+
+Parameter value
+
+=item C<parameter18_name>
+
+Parameter name
+
+=item C<parameter18_value>
+
+Parameter value
+
+=item C<parameter19_name>
+
+Parameter name
+
+=item C<parameter19_value>
+
+Parameter value
+
+=item C<parameter2_name>
+
+Parameter name
+
+=item C<parameter2_value>
+
+Parameter value
+
+=item C<parameter20_name>
+
+Parameter name
+
+=item C<parameter20_value>
+
+Parameter value
+
+=item C<parameter21_name>
+
+Parameter name
+
+=item C<parameter21_value>
+
+Parameter value
+
+=item C<parameter22_name>
+
+Parameter name
+
+=item C<parameter22_value>
+
+Parameter value
+
+=item C<parameter23_name>
+
+Parameter name
+
+=item C<parameter23_value>
+
+Parameter value
+
+=item C<parameter24_name>
+
+Parameter name
+
+=item C<parameter24_value>
+
+Parameter value
+
+=item C<parameter25_name>
+
+Parameter name
+
+=item C<parameter25_value>
+
+Parameter value
+
+=item C<parameter26_name>
+
+Parameter name
+
+=item C<parameter26_value>
+
+Parameter value
+
+=item C<parameter27_name>
+
+Parameter name
+
+=item C<parameter27_value>
+
+Parameter value
+
+=item C<parameter28_name>
+
+Parameter name
+
+=item C<parameter28_value>
+
+Parameter value
+
+=item C<parameter29_name>
+
+Parameter name
+
+=item C<parameter29_value>
+
+Parameter value
+
+=item C<parameter3_name>
+
+Parameter name
+
+=item C<parameter3_value>
+
+Parameter value
+
+=item C<parameter30_name>
+
+Parameter name
+
+=item C<parameter30_value>
+
+Parameter value
+
+=item C<parameter31_name>
+
+Parameter name
+
+=item C<parameter31_value>
+
+Parameter value
+
+=item C<parameter32_name>
+
+Parameter name
+
+=item C<parameter32_value>
+
+Parameter value
+
+=item C<parameter33_name>
+
+Parameter name
+
+=item C<parameter33_value>
+
+Parameter value
+
+=item C<parameter34_name>
+
+Parameter name
+
+=item C<parameter34_value>
+
+Parameter value
+
+=item C<parameter35_name>
+
+Parameter name
+
+=item C<parameter35_value>
+
+Parameter value
+
+=item C<parameter36_name>
+
+Parameter name
+
+=item C<parameter36_value>
+
+Parameter value
+
+=item C<parameter37_name>
+
+Parameter name
+
+=item C<parameter37_value>
+
+Parameter value
+
+=item C<parameter38_name>
+
+Parameter name
+
+=item C<parameter38_value>
+
+Parameter value
+
+=item C<parameter39_name>
+
+Parameter name
+
+=item C<parameter39_value>
+
+Parameter value
+
+=item C<parameter4_name>
+
+Parameter name
+
+=item C<parameter4_value>
+
+Parameter value
+
+=item C<parameter40_name>
+
+Parameter name
+
+=item C<parameter40_value>
+
+Parameter value
+
+=item C<parameter41_name>
+
+Parameter name
+
+=item C<parameter41_value>
+
+Parameter value
+
+=item C<parameter42_name>
+
+Parameter name
+
+=item C<parameter42_value>
+
+Parameter value
+
+=item C<parameter43_name>
+
+Parameter name
+
+=item C<parameter43_value>
+
+Parameter value
+
+=item C<parameter44_name>
+
+Parameter name
+
+=item C<parameter44_value>
+
+Parameter value
+
+=item C<parameter45_name>
+
+Parameter name
+
+=item C<parameter45_value>
+
+Parameter value
+
+=item C<parameter46_name>
+
+Parameter name
+
+=item C<parameter46_value>
+
+Parameter value
+
+=item C<parameter47_name>
+
+Parameter name
+
+=item C<parameter47_value>
+
+Parameter value
+
+=item C<parameter48_name>
+
+Parameter name
+
+=item C<parameter48_value>
+
+Parameter value
+
+=item C<parameter49_name>
+
+Parameter name
+
+=item C<parameter49_value>
+
+Parameter value
+
+=item C<parameter5_name>
+
+Parameter name
+
+=item C<parameter5_value>
+
+Parameter value
+
+=item C<parameter50_name>
+
+Parameter name
+
+=item C<parameter50_value>
+
+Parameter value
+
+=item C<parameter51_name>
+
+Parameter name
+
+=item C<parameter51_value>
+
+Parameter value
+
+=item C<parameter52_name>
+
+Parameter name
+
+=item C<parameter52_value>
+
+Parameter value
+
+=item C<parameter53_name>
+
+Parameter name
+
+=item C<parameter53_value>
+
+Parameter value
+
+=item C<parameter54_name>
+
+Parameter name
+
+=item C<parameter54_value>
+
+Parameter value
+
+=item C<parameter55_name>
+
+Parameter name
+
+=item C<parameter55_value>
+
+Parameter value
+
+=item C<parameter56_name>
+
+Parameter name
+
+=item C<parameter56_value>
+
+Parameter value
+
+=item C<parameter57_name>
+
+Parameter name
+
+=item C<parameter57_value>
+
+Parameter value
+
+=item C<parameter58_name>
+
+Parameter name
+
+=item C<parameter58_value>
+
+Parameter value
+
+=item C<parameter59_name>
+
+Parameter name
+
+=item C<parameter59_value>
+
+Parameter value
+
+=item C<parameter6_name>
+
+Parameter name
+
+=item C<parameter6_value>
+
+Parameter value
+
+=item C<parameter60_name>
+
+Parameter name
+
+=item C<parameter60_value>
+
+Parameter value
+
+=item C<parameter61_name>
+
+Parameter name
+
+=item C<parameter61_value>
+
+Parameter value
+
+=item C<parameter62_name>
+
+Parameter name
+
+=item C<parameter62_value>
+
+Parameter value
+
+=item C<parameter63_name>
+
+Parameter name
+
+=item C<parameter63_value>
+
+Parameter value
+
+=item C<parameter64_name>
+
+Parameter name
+
+=item C<parameter64_value>
+
+Parameter value
+
+=item C<parameter65_name>
+
+Parameter name
+
+=item C<parameter65_value>
+
+Parameter value
+
+=item C<parameter66_name>
+
+Parameter name
+
+=item C<parameter66_value>
+
+Parameter value
+
+=item C<parameter67_name>
+
+Parameter name
+
+=item C<parameter67_value>
+
+Parameter value
+
+=item C<parameter68_name>
+
+Parameter name
+
+=item C<parameter68_value>
+
+Parameter value
+
+=item C<parameter69_name>
+
+Parameter name
+
+=item C<parameter69_value>
+
+Parameter value
+
+=item C<parameter7_name>
+
+Parameter name
+
+=item C<parameter7_value>
+
+Parameter value
+
+=item C<parameter70_name>
+
+Parameter name
+
+=item C<parameter70_value>
+
+Parameter value
+
+=item C<parameter71_name>
+
+Parameter name
+
+=item C<parameter71_value>
+
+Parameter value
+
+=item C<parameter72_name>
+
+Parameter name
+
+=item C<parameter72_value>
+
+Parameter value
+
+=item C<parameter73_name>
+
+Parameter name
+
+=item C<parameter73_value>
+
+Parameter value
+
+=item C<parameter74_name>
+
+Parameter name
+
+=item C<parameter74_value>
+
+Parameter value
+
+=item C<parameter75_name>
+
+Parameter name
+
+=item C<parameter75_value>
+
+Parameter value
+
+=item C<parameter76_name>
+
+Parameter name
+
+=item C<parameter76_value>
+
+Parameter value
+
+=item C<parameter77_name>
+
+Parameter name
+
+=item C<parameter77_value>
+
+Parameter value
+
+=item C<parameter78_name>
+
+Parameter name
+
+=item C<parameter78_value>
+
+Parameter value
+
+=item C<parameter79_name>
+
+Parameter name
+
+=item C<parameter79_value>
+
+Parameter value
+
+=item C<parameter8_name>
+
+Parameter name
+
+=item C<parameter8_value>
+
+Parameter value
+
+=item C<parameter80_name>
+
+Parameter name
+
+=item C<parameter80_value>
+
+Parameter value
+
+=item C<parameter81_name>
+
+Parameter name
+
+=item C<parameter81_value>
+
+Parameter value
+
+=item C<parameter82_name>
+
+Parameter name
+
+=item C<parameter82_value>
+
+Parameter value
+
+=item C<parameter83_name>
+
+Parameter name
+
+=item C<parameter83_value>
+
+Parameter value
+
+=item C<parameter84_name>
+
+Parameter name
+
+=item C<parameter84_value>
+
+Parameter value
+
+=item C<parameter85_name>
+
+Parameter name
+
+=item C<parameter85_value>
+
+Parameter value
+
+=item C<parameter86_name>
+
+Parameter name
+
+=item C<parameter86_value>
+
+Parameter value
+
+=item C<parameter87_name>
+
+Parameter name
+
+=item C<parameter87_value>
+
+Parameter value
+
+=item C<parameter88_name>
+
+Parameter name
+
+=item C<parameter88_value>
+
+Parameter value
+
+=item C<parameter89_name>
+
+Parameter name
+
+=item C<parameter89_value>
+
+Parameter value
+
+=item C<parameter9_name>
+
+Parameter name
+
+=item C<parameter9_value>
+
+Parameter value
+
+=item C<parameter90_name>
+
+Parameter name
+
+=item C<parameter90_value>
+
+Parameter value
+
+=item C<parameter91_name>
+
+Parameter name
+
+=item C<parameter91_value>
+
+Parameter value
+
+=item C<parameter92_name>
+
+Parameter name
+
+=item C<parameter92_value>
+
+Parameter value
+
+=item C<parameter93_name>
+
+Parameter name
+
+=item C<parameter93_value>
+
+Parameter value
+
+=item C<parameter94_name>
+
+Parameter name
+
+=item C<parameter94_value>
+
+Parameter value
+
+=item C<parameter95_name>
+
+Parameter name
+
+=item C<parameter95_value>
+
+Parameter value
+
+=item C<parameter96_name>
+
+Parameter name
+
+=item C<parameter96_value>
+
+Parameter value
+
+=item C<parameter97_name>
+
+Parameter name
+
+=item C<parameter97_value>
+
+Parameter value
+
+=item C<parameter98_name>
+
+Parameter name
+
+=item C<parameter98_value>
+
+Parameter value
+
+=item C<parameter99_name>
+
+Parameter name
+
+=item C<parameter99_value>
+
+Parameter value
+
+=item C<status_callback>
+
+Absolute URL to which Twilio sends status callback HTTP requests.
+
+=item C<status_callback_method>
+
+The HTTP method Twilio uses when sending C<status_callback> requests. Possible
+values are C<GET> and C<POST>. Default is C<POST>. One of C<GET> or C<POST>.
+
+=item C<track>
+
+One of C<inbound_track>, C<outbound_track> or C<both_tracks>.
+
+=back
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->calls($call_sid)->streams->get_context($sid);
 
 Returns a C<StreamContext>, and makes no request.
 
+
 =head1 StreamContext
+
+Returned by C<< $client->calls($call_sid)->streams($sid) >>. It makes no
+request until one of these methods is called.
 
 =head2 update
 
-  my $result = $object->update($status);
+  my $stream = $client->calls($call_sid)->streams($sid)->update($status);
 
-Returns a C<StreamInstance>.
+Stop a Stream using either the SID of the Stream resource or the C<name> used
+when creating the resource. Returns a C<StreamInstance>.
+
+The required values are:
+
+=over
+
+=item C<$status>
+
+Must be C<stopped>.
+
+=back
 
 =head1 StreamInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<update> too, which work the same way.
+It has C<update>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<call_sid>, C<name>, C<sid>, C<status> and
-C<uri>.
+Its fields are:
 
-C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created this Stream resource.
+
+=item call_sid
+
+The SID of the L<Call|https://www.twilio.com/docs/voice/api/call-resource> the
+Stream resource is associated with.
+
+=item date_updated
+
+The date and time in GMT that this resource was last updated, specified in
+L<RFC 2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece>
+object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item name
+
+The user-specified name of this Stream, if one was given when the Stream was
+created. This can be used to stop the Stream.
+
+=item sid
+
+The SID of the Stream resource.
+
+=item status
+
+One of C<in-progress> or C<stopped>.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

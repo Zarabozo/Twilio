@@ -479,73 +479,135 @@ __END__
 
 Twilio::Rest::Api::V2010::Account - The Account resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $account = $client->api->accounts->create(\%options);
+  for my $account ($client->api->accounts->read({}, 20)) {
+    ...
+  }
+  my $account = $client->api->accounts($sid)->fetch;
+  $client->api->accounts($sid)->update(\%options);
+
 =head1 DESCRIPTION
 
 Twilio accounts (aka Project) or subaccounts
 
 This file holds C<AccountList>, C<AccountPage>, C<AccountContext> and
-C<AccountInstance>. All the methods that make a request throw
+C<AccountInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 AccountList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->api->accounts >>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create(\%options);
+  my $account = $client->api->accounts->create(\%options);
 
-Returns a C<AccountInstance>.
+Create a new Twilio Subaccount from the account making the request. Returns a
+C<AccountInstance>.
 
-The options are C<friendly_name>.
+The options are:
+
+=over
+
+=item C<friendly_name>
+
+A human readable description of the account to create, defaults to C<SubAccount
+Created at {YYYY-MM-DD HH:MM meridian}>
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->api->accounts->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieves a collection of Accounts belonging to the account used to make the
+request. Returns the records as a list, fetching as many pages as it needs.
 
-The options are C<friendly_name> and C<status>.
+The options are:
+
+=over
+
+=item C<friendly_name>
+
+Only return the Account resources with friendly names that exactly match this
+name.
+
+=item C<status>
+
+Only return Account resources with the given status. Can be C<closed>,
+C<suspended> or C<active>. One of C<active>, C<suspended> or C<closed>.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->api->accounts->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->api->accounts->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->api->accounts->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->api->accounts->get_context($sid);
 
 Returns a C<AccountContext>, and makes no request.
 
+=head1 AccountPage
+
+A L<Twilio::Page> of C<AccountInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 AccountContext
+
+Returned by C<< $client->api->accounts($sid) >>. It makes no request until one
+of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $account = $client->api->accounts($sid)->fetch;
 
-Returns a C<AccountInstance>.
+Fetch the account specified by the provided Account Sid. Returns a
+C<AccountInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $account = $client->api->accounts($sid)->update(\%options);
 
-Returns a C<AccountInstance>.
+Modify the properties of a given Account. Returns a C<AccountInstance>.
 
-The options are C<friendly_name> and C<status>.
+The options are:
+
+=over
+
+=item C<friendly_name>
+
+Update the human-readable description of this Account
+
+=item C<status>
+
+One of C<active>, C<suspended> or C<closed>.
+
+=back
 
 =head2 addresses
 
@@ -735,13 +797,65 @@ C<conferences>, C<connect_apps>, C<incoming_phone_numbers>, C<keys>,
 C<messages>, C<new_keys>, C<new_signing_keys>, C<notifications>,
 C<outgoing_caller_ids>, C<queues>, C<recordings>, C<short_codes>,
 C<signing_keys>, C<sip>, C<tokens>, C<transcriptions>, C<usage> and
-C<validation_requests> too, which work the same way.
+C<validation_requests>, which work as they do on the context.
 
-Its fields are C<auth_token>, C<friendly_name>, C<owner_account_sid>, C<sid>,
-C<status>, C<subresource_uris>, C<type> and C<uri>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item auth_token
+
+The authorization token for this account. This token should be kept a secret,
+so no sharing.
+
+=item date_created
+
+The date that this account was created, in GMT in RFC 2822 format A
+L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date that this account was last updated, in GMT in RFC 2822 format. A
+L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item friendly_name
+
+A human readable description of this account, up to 64 characters long. By
+default the FriendlyName is your email address.
+
+=item owner_account_sid
+
+The unique 34 character id that represents the parent of this account. The
+OwnerAccountSid of a parent account is it's own sid.
+
+=item sid
+
+A 34 character string that uniquely identifies this resource.
+
+=item status
+
+One of C<active>, C<suspended> or C<closed>.
+
+=item subresource_uris
+
+A Map of various subresources available for the given Account Instance
+
+=item type
+
+One of C<Trial> or C<Full>.
+
+=item uri
+
+The URI for this resource, relative to C<https://api.twilio.com>
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

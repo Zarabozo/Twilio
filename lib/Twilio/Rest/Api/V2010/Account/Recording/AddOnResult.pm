@@ -195,61 +195,86 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Recording::AddOnResult - The AddOnResult resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $add_on_result ($client->recordings($reference_sid)->add_on_results->read({}, 20)) {
+    ...
+  }
+  my $add_on_result = $client->recordings($reference_sid)->add_on_results($sid)->fetch;
+  $client->recordings($reference_sid)->add_on_results($sid)->delete;
+
 =head1 DESCRIPTION
 
 The results of an Add-on API call
 
 This file holds C<AddOnResultList>, C<AddOnResultPage>, C<AddOnResultContext>
-and C<AddOnResultInstance>. All the methods that make a request throw
+and C<AddOnResultInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 AddOnResultList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->recordings($reference_sid)->add_on_results >>. See
+also L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->recordings($reference_sid)->add_on_results->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of results belonging to the recording. Returns the records as a
+list, fetching as many pages as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->recordings($reference_sid)->add_on_results->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->recordings($reference_sid)->add_on_results->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->recordings($reference_sid)->add_on_results->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->recordings($reference_sid)->add_on_results->get_context($sid);
 
 Returns a C<AddOnResultContext>, and makes no request.
 
+=head1 AddOnResultPage
+
+A L<Twilio::Page> of C<AddOnResultInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 AddOnResultContext
+
+Returned by C<< $client->recordings($reference_sid)->add_on_results($sid) >>.
+It makes no request until one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $add_on_result = $client->recordings($reference_sid)->add_on_results($sid)->fetch;
 
-Returns a C<AddOnResultInstance>.
+Fetch an instance of an AddOnResult. Returns a C<AddOnResultInstance>.
 
 =head2 delete
 
-  $context->delete;
+  $client->recordings($reference_sid)->add_on_results($sid)->delete;
 
-Returns true.
+Delete a result and purge all associated Payloads. Returns true.
 
 =head2 payloads
 
@@ -263,13 +288,70 @@ See L<Twilio::Rest::Api::V2010::Account::Recording::AddOnResult::Payload>.
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<delete> and C<payloads> too, which work the same way.
+It has C<fetch>, C<delete> and C<payloads>, which work as they do on the
+context.
 
-Its fields are C<account_sid>, C<add_on_configuration_sid>, C<add_on_sid>,
-C<reference_sid>, C<sid>, C<status> and C<subresource_uris>.
+Its fields are:
 
-C<date_completed>, C<date_created> and C<date_updated> return L<Time::Piece>
-objects in UTC. See L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created the Recording AddOnResult resource.
+
+=item add_on_configuration_sid
+
+The SID of the Add-on configuration.
+
+=item add_on_sid
+
+The SID of the Add-on to which the result belongs.
+
+=item date_completed
+
+The date and time in GMT that the result was completed specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item reference_sid
+
+The SID of the recording to which the AddOnResult resource belongs.
+
+=item sid
+
+The unique string that that we created to identify the Recording AddOnResult
+resource.
+
+=item status
+
+One of C<canceled>, C<completed>, C<deleted>, C<failed>, C<in-progress>,
+C<init>, C<processing> or C<queued>.
+
+=item subresource_uris
+
+A list of related resources identified by their relative URIs.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

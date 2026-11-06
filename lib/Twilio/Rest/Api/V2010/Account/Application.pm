@@ -243,6 +243,18 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Application - The Application resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $application = $client->applications->create(\%options);
+  for my $application ($client->applications->read({}, 20)) {
+    ...
+  }
+  my $application = $client->applications($sid)->fetch;
+  $client->applications($sid)->update(\%options);
+  $client->applications($sid)->delete;
+
 =head1 DESCRIPTION
 
 An Application instance resource represents an application that you have
@@ -251,101 +263,386 @@ other configuration data that tells Twilio how to behave when one of your
 Twilio numbers receives a call or SMS message.
 
 This file holds C<ApplicationList>, C<ApplicationPage>, C<ApplicationContext>
-and C<ApplicationInstance>. All the methods that make a request throw
+and C<ApplicationInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 ApplicationList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->applications >>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create(\%options);
+  my $application = $client->applications->create(\%options);
 
-Returns a C<ApplicationInstance>.
+Create a new application within your account. Returns a C<ApplicationInstance>.
 
-The options are C<api_version>, C<friendly_name>, C<message_status_callback>,
-C<public_application_connect_enabled>, C<sms_fallback_method>,
-C<sms_fallback_url>, C<sms_method>, C<sms_status_callback>, C<sms_url>,
-C<status_callback>, C<status_callback_method>, C<voice_caller_id_lookup>,
-C<voice_fallback_method>, C<voice_fallback_url>, C<voice_method> and
-C<voice_url>.
+The options are:
+
+=over
+
+=item C<api_version>
+
+The API version to use to start a new TwiML session. Can be: C<2010-04-01> or
+C<2008-08-01>. The default value is the account's default API version.
+
+=item C<friendly_name>
+
+A descriptive string that you create to describe the new application. It can be
+up to 64 characters long.
+
+=item C<message_status_callback>
+
+The URL we should call using a POST method to send message status information
+to your application.
+
+=item C<public_application_connect_enabled>
+
+Whether to allow other Twilio accounts to dial this applicaton using Dial verb.
+Can be: C<true> or C<false>.
+
+=item C<sms_fallback_method>
+
+The HTTP method we should use to call C<sms_fallback_url>. Can be: C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item C<sms_fallback_url>
+
+The URL that we should call when an error occurs while retrieving or executing
+the TwiML from C<sms_url>.
+
+=item C<sms_method>
+
+The HTTP method we should use to call C<sms_url>. Can be: C<GET> or C<POST>.
+One of C<GET> or C<POST>.
+
+=item C<sms_status_callback>
+
+The URL we should call using a POST method to send status information about SMS
+messages sent by the application.
+
+=item C<sms_url>
+
+The URL we should call when the phone number receives an incoming SMS message.
+
+=item C<status_callback>
+
+The URL we should call using the C<status_callback_method> to send status
+information to your application.
+
+=item C<status_callback_method>
+
+The HTTP method we should use to call C<status_callback>. Can be: C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item C<voice_caller_id_lookup>
+
+Whether we should look up the caller's caller-ID name from the CNAM database
+(additional charges apply). Can be: C<true> or C<false>.
+
+=item C<voice_fallback_method>
+
+The HTTP method we should use to call C<voice_fallback_url>. Can be: C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item C<voice_fallback_url>
+
+The URL that we should call when an error occurs retrieving or executing the
+TwiML requested by C<url>.
+
+=item C<voice_method>
+
+The HTTP method we should use to call C<voice_url>. Can be: C<GET> or C<POST>.
+One of C<GET> or C<POST>.
+
+=item C<voice_url>
+
+The URL we should call when the phone number assigned to this application
+receives a call.
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->applications->read(\%options, $limit, $page_size);
 
-Returns the records as a list, fetching as many pages as it needs.
+Retrieve a list of applications representing an application within the
+requesting account. Returns the records as a list, fetching as many pages as it
+needs.
 
-The options are C<friendly_name>.
+The options are:
+
+=over
+
+=item C<friendly_name>
+
+The string that identifies the Application resources to read.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->applications->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->applications->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->applications->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->applications->get_context($sid);
 
 Returns a C<ApplicationContext>, and makes no request.
 
+=head1 ApplicationPage
+
+A L<Twilio::Page> of C<ApplicationInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 ApplicationContext
+
+Returned by C<< $client->applications($sid) >>. It makes no request until one
+of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $application = $client->applications($sid)->fetch;
 
-Returns a C<ApplicationInstance>.
+Fetch the application specified by the provided sid. Returns a
+C<ApplicationInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $application = $client->applications($sid)->update(\%options);
 
-Returns a C<ApplicationInstance>.
+Updates the application's properties. Returns a C<ApplicationInstance>.
 
-The options are C<api_version>, C<friendly_name>, C<message_status_callback>,
-C<public_application_connect_enabled>, C<sms_fallback_method>,
-C<sms_fallback_url>, C<sms_method>, C<sms_status_callback>, C<sms_url>,
-C<status_callback>, C<status_callback_method>, C<voice_caller_id_lookup>,
-C<voice_fallback_method>, C<voice_fallback_url>, C<voice_method> and
-C<voice_url>.
+The options are:
+
+=over
+
+=item C<api_version>
+
+The API version to use to start a new TwiML session. Can be: C<2010-04-01> or
+C<2008-08-01>. The default value is your account's default API version.
+
+=item C<friendly_name>
+
+A descriptive string that you create to describe the resource. It can be up to
+64 characters long.
+
+=item C<message_status_callback>
+
+The URL we should call using a POST method to send message status information
+to your application.
+
+=item C<public_application_connect_enabled>
+
+Whether to allow other Twilio accounts to dial this applicaton using Dial verb.
+Can be: C<true> or C<false>.
+
+=item C<sms_fallback_method>
+
+The HTTP method we should use to call C<sms_fallback_url>. Can be: C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item C<sms_fallback_url>
+
+The URL that we should call when an error occurs while retrieving or executing
+the TwiML from C<sms_url>.
+
+=item C<sms_method>
+
+The HTTP method we should use to call C<sms_url>. Can be: C<GET> or C<POST>.
+One of C<GET> or C<POST>.
+
+=item C<sms_status_callback>
+
+Same as message_status_callback: The URL we should call using a POST method to
+send status information about SMS messages sent by the application. Deprecated,
+included for backwards compatibility.
+
+=item C<sms_url>
+
+The URL we should call when the phone number receives an incoming SMS message.
+
+=item C<status_callback>
+
+The URL we should call using the C<status_callback_method> to send status
+information to your application.
+
+=item C<status_callback_method>
+
+The HTTP method we should use to call C<status_callback>. Can be: C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item C<voice_caller_id_lookup>
+
+Whether we should look up the caller's caller-ID name from the CNAM database
+(additional charges apply). Can be: C<true> or C<false>.
+
+=item C<voice_fallback_method>
+
+The HTTP method we should use to call C<voice_fallback_url>. Can be: C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item C<voice_fallback_url>
+
+The URL that we should call when an error occurs retrieving or executing the
+TwiML requested by C<url>.
+
+=item C<voice_method>
+
+The HTTP method we should use to call C<voice_url>. Can be: C<GET> or C<POST>.
+One of C<GET> or C<POST>.
+
+=item C<voice_url>
+
+The URL we should call when the phone number assigned to this application
+receives a call.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->applications($sid)->delete;
 
-Returns true.
+Delete the application by the specified application sid. Returns true.
 
 =head1 ApplicationInstance
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update> and C<delete> too, which work the same way.
+It has C<fetch>, C<update> and C<delete>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<api_version>, C<friendly_name>,
-C<message_status_callback>, C<public_application_connect_enabled>, C<sid>,
-C<sms_fallback_method>, C<sms_fallback_url>, C<sms_method>,
-C<sms_status_callback>, C<sms_url>, C<status_callback>,
-C<status_callback_method>, C<uri>, C<voice_caller_id_lookup>,
-C<voice_fallback_method>, C<voice_fallback_url>, C<voice_method> and
-C<voice_url>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created the Application resource.
+
+=item api_version
+
+The API version used to start a new TwiML session.
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item friendly_name
+
+The string that you assigned to describe the resource.
+
+=item message_status_callback
+
+The URL we call using a POST method to send message status information to your
+application.
+
+=item public_application_connect_enabled
+
+Whether to allow other Twilio accounts to dial this applicaton using Dial verb.
+Can be: C<true> or C<false>.
+
+=item sid
+
+The unique string that that we created to identify the Application resource.
+
+=item sms_fallback_method
+
+The HTTP method we use to call C<sms_fallback_url>. Can be: C<GET> or C<POST>.
+One of C<GET> or C<POST>.
+
+=item sms_fallback_url
+
+The URL that we call when an error occurs while retrieving or executing the
+TwiML from C<sms_url>.
+
+=item sms_method
+
+The HTTP method we use to call C<sms_url>. Can be: C<GET> or C<POST>. One of
+C<GET> or C<POST>.
+
+=item sms_status_callback
+
+The URL we call using a POST method to send status information to your
+application about SMS messages that refer to the application.
+
+=item sms_url
+
+The URL we call when the phone number receives an incoming SMS message.
+
+=item status_callback
+
+The URL we call using the C<status_callback_method> to send status information
+to your application.
+
+=item status_callback_method
+
+The HTTP method we use to call C<status_callback>. Can be: C<GET> or C<POST>.
+One of C<GET> or C<POST>.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=item voice_caller_id_lookup
+
+Whether we look up the caller's caller-ID name from the CNAM database
+(additional charges apply). Can be: C<true> or C<false>.
+
+=item voice_fallback_method
+
+The HTTP method we use to call C<voice_fallback_url>. Can be: C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item voice_fallback_url
+
+The URL that we call when an error occurs retrieving or executing the TwiML
+requested by C<url>.
+
+=item voice_method
+
+The HTTP method we use to call C<voice_url>. Can be: C<GET> or C<POST>. One of
+C<GET> or C<POST>.
+
+=item voice_url
+
+The URL we call when the phone number assigned to this application receives a
+call.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

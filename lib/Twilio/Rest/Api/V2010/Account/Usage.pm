@@ -48,13 +48,12 @@ Twilio::Rest::Api::V2010::Account::Usage - The Usage resource
 
 =head1 DESCRIPTION
 
-
-This file holds C<UsageList>. All the methods that make a request throw
+This file holds C<UsageList>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 UsageList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->usage >>. See also L<Twilio::ListResource>.
 
 =head2 records
 
@@ -71,6 +70,14 @@ See L<Twilio::Rest::Api::V2010::Account::Usage::Record>.
 See L<Twilio::Rest::Api::V2010::Account::Usage::Trigger>.
 
 
+
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

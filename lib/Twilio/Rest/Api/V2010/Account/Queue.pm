@@ -213,77 +213,138 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Queue - The Queue resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $queue = $client->queues->create($friendly_name, \%options);
+  for my $queue ($client->queues->read({}, 20)) {
+    ...
+  }
+  my $queue = $client->queues($sid)->fetch;
+  $client->queues($sid)->update(\%options);
+  $client->queues($sid)->delete;
+
 =head1 DESCRIPTION
 
 Queues of calls
 
 This file holds C<QueueList>, C<QueuePage>, C<QueueContext> and
-C<QueueInstance>. All the methods that make a request throw
+C<QueueInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 QueueList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->queues >>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($friendly_name, \%options);
+  my $queue = $client->queues->create($friendly_name, \%options);
 
-Returns a C<QueueInstance>.
+Create a queue. Returns a C<QueueInstance>.
 
-The options are C<max_size>.
+The required values are:
+
+=over
+
+=item C<$friendly_name>
+
+A descriptive string that you created to describe this resource. It can be up
+to 64 characters long.
+
+=back
+
+The options are:
+
+=over
+
+=item C<max_size>
+
+The maximum number of calls allowed to be in the queue. The default is 1000.
+The maximum is 5000.
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->queues->read(\%options, $limit, $page_size);
 
+Retrieve a list of queues belonging to the account used to make the request.
 Returns the records as a list, fetching as many pages as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->queues->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->queues->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->queues->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->queues->get_context($sid);
 
 Returns a C<QueueContext>, and makes no request.
 
+=head1 QueuePage
+
+A L<Twilio::Page> of C<QueueInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 QueueContext
+
+Returned by C<< $client->queues($sid) >>. It makes no request until one of
+these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $queue = $client->queues($sid)->fetch;
 
-Returns a C<QueueInstance>.
+Fetch an instance of a queue identified by the QueueSid. Returns a
+C<QueueInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $queue = $client->queues($sid)->update(\%options);
 
-Returns a C<QueueInstance>.
+Update the queue with the new parameters. Returns a C<QueueInstance>.
 
-The options are C<friendly_name> and C<max_size>.
+The options are:
+
+=over
+
+=item C<friendly_name>
+
+A descriptive string that you created to describe this resource. It can be up
+to 64 characters long.
+
+=item C<max_size>
+
+The maximum number of calls allowed to be in the queue. The default is 1000.
+The maximum is 5000.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->queues($sid)->delete;
 
-Returns true.
+Remove an empty queue. Returns true.
 
 =head2 members
 
@@ -297,14 +358,64 @@ See L<Twilio::Rest::Api::V2010::Account::Queue::Member>.
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update>, C<delete> and C<members> too, which work the same
-way.
+It has C<fetch>, C<update>, C<delete> and C<members>, which work as they do on
+the context.
 
-Its fields are C<account_sid>, C<average_wait_time>, C<current_size>,
-C<friendly_name>, C<max_size>, C<sid> and C<uri>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created this Queue resource.
+
+=item average_wait_time
+
+The average wait time in seconds of the members in this queue. This is
+calculated at the time of the request.
+
+=item current_size
+
+The number of calls currently in the queue.
+
+=item date_created
+
+The date and time in GMT that this resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that this resource was last updated, specified in
+L<RFC 2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece>
+object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item friendly_name
+
+A string that you assigned to describe this resource.
+
+=item max_size
+
+The maximum number of calls that can be in the queue. The default is 1000 and
+the maximum is 5000.
+
+=item sid
+
+The unique string that that we created to identify this Queue resource.
+
+=item uri
+
+The URI of this resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

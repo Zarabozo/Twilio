@@ -175,60 +175,112 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Call::Notification - The Notification resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $notification ($client->calls($call_sid)->notifications->read({}, 20)) {
+    ...
+  }
+  my $notification = $client->calls($call_sid)->notifications($sid)->fetch;
+
 =head1 DESCRIPTION
 
 Error notifications for calls
 
 This file holds C<NotificationList>, C<NotificationPage>,
-C<NotificationContext> and C<NotificationInstance>. All the methods that make a
-request throw L<Twilio::Exceptions::RestException> on an error response.
+C<NotificationContext> and C<NotificationInstance>. Methods that make a request
+throw L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 NotificationList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->calls($call_sid)->notifications >>. See also
+L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->calls($call_sid)->notifications->read(\%options, $limit, $page_size);
 
 Returns the records as a list, fetching as many pages as it needs.
 
-The options are C<log>, C<message_date>, C<message_date_before> and
-C<message_date_after>.
+The options are:
 
-C<message_date>, C<message_date_before> and C<message_date_after> take a
-string, or an object with an C<epoch> method. See
-L<Twilio::Serialize/iso8601_date_time>.
+=over
+
+=item C<log>
+
+Only read notifications of the specified log level. Can be: C<0> to read only
+ERROR notifications or C<1> to read only WARNING notifications. By default, all
+notifications are read.
+
+=item C<message_date>
+
+Only show notifications for the specified date, formatted as C<YYYY-MM-DD>. You
+can also specify an inequality, such as C<< <=YYYY-MM-DD >> for messages logged
+at or before midnight on a date, or C<< >=YYYY-MM-DD >> for messages logged at
+or after midnight on a date. A string, or an object with an C<epoch> method.
+See L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<message_date_before>
+
+Only show notifications for the specified date, formatted as C<YYYY-MM-DD>. You
+can also specify an inequality, such as C<< <=YYYY-MM-DD >> for messages logged
+at or before midnight on a date, or C<< >=YYYY-MM-DD >> for messages logged at
+or after midnight on a date. A string, or an object with an C<epoch> method.
+See L<Twilio::Serialize/iso8601_date_time>.
+
+=item C<message_date_after>
+
+Only show notifications for the specified date, formatted as C<YYYY-MM-DD>. You
+can also specify an inequality, such as C<< <=YYYY-MM-DD >> for messages logged
+at or before midnight on a date, or C<< >=YYYY-MM-DD >> for messages logged at
+or after midnight on a date. A string, or an object with an C<epoch> method.
+See L<Twilio::Serialize/iso8601_date_time>.
+
+=back
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->calls($call_sid)->notifications->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->calls($call_sid)->notifications->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->calls($call_sid)->notifications->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->calls($call_sid)->notifications->get_context($sid);
 
 Returns a C<NotificationContext>, and makes no request.
 
+=head1 NotificationPage
+
+A L<Twilio::Page> of C<NotificationInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 NotificationContext
+
+Returned by C<< $client->calls($call_sid)->notifications($sid) >>. It makes no
+request until one of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $notification = $client->calls($call_sid)->notifications($sid)->fetch;
 
 Returns a C<NotificationInstance>.
 
@@ -236,14 +288,110 @@ Returns a C<NotificationInstance>.
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch> too, which work the same way.
+It has C<fetch>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<api_version>, C<call_sid>, C<error_code>,
-C<log>, C<message_text>, C<more_info>, C<request_method>, C<request_url>,
-C<request_variables>, C<response_body>, C<response_headers>, C<sid> and C<uri>.
+Its fields are:
 
-C<date_created>, C<date_updated> and C<message_date> return L<Time::Piece>
-objects in UTC. See L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created the Call Notification resource.
+
+=item api_version
+
+The API version used to create the Call Notification resource.
+
+=item call_sid
+
+The SID of the L<Call|https://www.twilio.com/docs/voice/api/call-resource> the
+Call Notification resource is associated with.
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item error_code
+
+A unique error code for the error condition that is described in our L<Error
+Dictionary|https://www.twilio.com/docs/api/errors>.
+
+=item log
+
+An integer log level that corresponds to the type of notification: C<0> is
+ERROR, C<1> is WARNING.
+
+=item message_date
+
+The date the notification was actually generated in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. Message buffering can cause
+this value to differ from C<date_created>. A L<Time::Piece> object in UTC. See
+L<Twilio::Deserialize/date_time>.
+
+=item message_text
+
+The text of the notification.
+
+=item more_info
+
+The URL for more information about the error condition. This value is a page in
+our L<Error Dictionary|https://www.twilio.com/docs/api/errors>.
+
+=item request_method
+
+The HTTP method used to generate the notification. If the notification was
+generated during a phone call, this is the HTTP Method used to request the
+resource on your server. If the notification was generated by your use of our
+REST API, this is the HTTP method used to call the resource on our servers. One
+of C<GET> or C<POST>.
+
+=item request_url
+
+The URL of the resource that generated the notification. If the notification
+was generated during a phone call, this is the URL of the resource on your
+server that caused the notification. If the notification was generated by your
+use of our REST API, this is the URL of the resource you called.
+
+=item request_variables
+
+The HTTP GET or POST variables we sent to your server. However, if the
+notification was generated by our REST API, this contains the HTTP POST or PUT
+variables you sent to our API.
+
+=item response_body
+
+The HTTP body returned by your server.
+
+=item response_headers
+
+The HTTP headers returned by your server.
+
+=item sid
+
+The unique string that that we created to identify the Call Notification
+resource.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

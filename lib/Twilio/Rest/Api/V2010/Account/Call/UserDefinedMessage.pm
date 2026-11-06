@@ -67,36 +67,91 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Call::UserDefinedMessage - The UserDefinedMessage resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $user_defined_message = $client->calls($call_sid)->user_defined_messages->create($content, \%options);
+
 =head1 DESCRIPTION
 
 Allows your server-side application to send messages to the Voice SDK end user
 during an active Call.
 
 This file holds C<UserDefinedMessageList> and C<UserDefinedMessageInstance>.
-All the methods that make a request throw L<Twilio::Exceptions::RestException>
-on an error response.
+Methods that make a request throw L<Twilio::Exceptions::RestException> on an
+error response.
 
 =head1 UserDefinedMessageList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->calls($call_sid)->user_defined_messages >>. See also
+L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($content, \%options);
+  my $user_defined_message = $client->calls($call_sid)->user_defined_messages->create($content, \%options);
 
-Returns a C<UserDefinedMessageInstance>.
+Create a new User Defined Message for the given Call SID. Returns a
+C<UserDefinedMessageInstance>.
 
-The options are C<idempotency_key>.
+The required values are:
+
+=over
+
+=item C<$content>
+
+The User Defined Message in the form of URL-encoded JSON string.
+
+=back
+
+The options are:
+
+=over
+
+=item C<idempotency_key>
+
+A unique string value to identify API call. This should be a unique string
+value per API call and can be a randomly generated.
+
+=back
+
 
 
 =head1 UserDefinedMessageInstance
 
 See also L<Twilio::InstanceResource>.
 
-Its fields are C<account_sid>, C<call_sid> and C<sid>.
+Its fields are:
 
-C<date_created> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created User Defined Message.
+
+=item call_sid
+
+The SID of the L<Call|https://www.twilio.com/docs/voice/api/call-resource> the
+User Defined Message is associated with.
+
+=item date_created
+
+The date that this User Defined Message was created, given in RFC 2822 format.
+A L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item sid
+
+The SID that uniquely identifies this User Defined Message.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

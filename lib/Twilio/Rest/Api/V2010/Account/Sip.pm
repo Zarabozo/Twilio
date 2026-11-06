@@ -56,13 +56,12 @@ Twilio::Rest::Api::V2010::Account::Sip - The Sip resource
 
 =head1 DESCRIPTION
 
-
-This file holds C<SipList>. All the methods that make a request throw
+This file holds C<SipList>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 SipList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->sip >>. See also L<Twilio::ListResource>.
 
 =head2 credential_lists
 
@@ -89,6 +88,14 @@ See L<Twilio::Rest::Api::V2010::Account::Sip::Domain>.
 See L<Twilio::Rest::Api::V2010::Account::Sip::IpAccessControlList>.
 
 
+
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

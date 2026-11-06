@@ -174,67 +174,99 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::SigningKey - The SigningKey resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  for my $signing_key ($client->signing_keys->read({}, 20)) {
+    ...
+  }
+  my $signing_key = $client->signing_keys($sid)->fetch;
+  $client->signing_keys($sid)->update(\%options);
+  $client->signing_keys($sid)->delete;
+
 =head1 DESCRIPTION
 
 Create a new signing key
 
 This file holds C<SigningKeyList>, C<SigningKeyPage>, C<SigningKeyContext> and
-C<SigningKeyInstance>. All the methods that make a request throw
+C<SigningKeyInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 SigningKeyList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->signing_keys >>. See also L<Twilio::ListResource>.
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->signing_keys->read(\%options, $limit, $page_size);
 
 Returns the records as a list, fetching as many pages as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->signing_keys->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->signing_keys->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->signing_keys->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->signing_keys->get_context($sid);
 
 Returns a C<SigningKeyContext>, and makes no request.
 
+=head1 SigningKeyPage
+
+A L<Twilio::Page> of C<SigningKeyInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 SigningKeyContext
+
+Returned by C<< $client->signing_keys($sid) >>. It makes no request until one
+of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $signing_key = $client->signing_keys($sid)->fetch;
 
 Returns a C<SigningKeyInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $signing_key = $client->signing_keys($sid)->update(\%options);
 
 Returns a C<SigningKeyInstance>.
 
-The options are C<friendly_name>.
+The options are:
+
+=over
+
+=item C<friendly_name>
+
+No description in the specification.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->signing_keys($sid)->delete;
 
 Returns true.
 
@@ -242,12 +274,36 @@ Returns true.
 
 See also L<Twilio::InstanceResource>.
 
-It has C<fetch>, C<update> and C<delete> too, which work the same way.
+It has C<fetch>, C<update> and C<delete>, which work as they do on the context.
 
-Its fields are C<friendly_name> and C<sid>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item date_created
+
+A L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+A L<Time::Piece> object in UTC. See L<Twilio::Deserialize/date_time>.
+
+=item friendly_name
+
+No description in the specification.
+
+=item sid
+
+No description in the specification.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

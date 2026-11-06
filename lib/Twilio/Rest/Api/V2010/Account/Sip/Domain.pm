@@ -280,83 +280,248 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::Sip::Domain - The Domain resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $domain = $client->sip->domains->create($domain_name, \%options);
+  for my $domain ($client->sip->domains->read({}, 20)) {
+    ...
+  }
+  my $domain = $client->sip->domains($sid)->fetch;
+  $client->sip->domains($sid)->update(\%options);
+  $client->sip->domains($sid)->delete;
+
 =head1 DESCRIPTION
 
 Custom DNS hostnames that can accept SIP traffic
 
 This file holds C<DomainList>, C<DomainPage>, C<DomainContext> and
-C<DomainInstance>. All the methods that make a request throw
+C<DomainInstance>. Methods that make a request throw
 L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 DomainList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->sip->domains >>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create($domain_name, \%options);
+  my $domain = $client->sip->domains->create($domain_name, \%options);
 
-Returns a C<DomainInstance>.
+Create a new Domain. Returns a C<DomainInstance>.
 
-The options are C<byoc_trunk_sid>, C<emergency_caller_sid>,
-C<emergency_calling_enabled>, C<friendly_name>, C<secure>, C<sip_registration>,
-C<voice_fallback_method>, C<voice_fallback_url>, C<voice_method>,
-C<voice_status_callback_method>, C<voice_status_callback_url> and C<voice_url>.
+The required values are:
+
+=over
+
+=item C<$domain_name>
+
+The unique address you reserve on Twilio to which you route your SIP traffic.
+Domain names can contain letters, digits, and "-" and must end with
+C<sip.twilio.com>.
+
+=back
+
+The options are:
+
+=over
+
+=item C<byoc_trunk_sid>
+
+The SID of the BYOC Trunk(Bring Your Own Carrier) resource that the Sip Domain
+will be associated with.
+
+=item C<emergency_caller_sid>
+
+Whether an emergency caller sid is configured for the domain. If present, this
+phone number will be used as the callback for the emergency call.
+
+=item C<emergency_calling_enabled>
+
+Whether emergency calling is enabled for the domain. If enabled, allows
+emergency calls on the domain from phone numbers with validated addresses.
+
+=item C<friendly_name>
+
+A descriptive string that you created to describe the resource. It can be up to
+64 characters long.
+
+=item C<secure>
+
+Whether secure SIP is enabled for the domain. If enabled, TLS will be enforced
+and SRTP will be negotiated on all incoming calls to this sip domain.
+
+=item C<sip_registration>
+
+Whether to allow SIP Endpoints to register with the domain to receive calls.
+Can be C<true> or C<false>. C<true> allows SIP Endpoints to register with the
+domain to receive calls, C<false> does not.
+
+=item C<voice_fallback_method>
+
+The HTTP method we should use to call C<voice_fallback_url>. Can be: C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item C<voice_fallback_url>
+
+The URL that we should call when an error occurs while retrieving or executing
+the TwiML from C<voice_url>.
+
+=item C<voice_method>
+
+The HTTP method we should use to call C<voice_url>. Can be: C<GET> or C<POST>.
+One of C<GET> or C<POST>.
+
+=item C<voice_status_callback_method>
+
+The HTTP method we should use to call C<voice_status_callback_url>. Can be:
+C<GET> or C<POST>. One of C<GET> or C<POST>.
+
+=item C<voice_status_callback_url>
+
+The URL that we should call to pass status parameters (such as call ended) to
+your application.
+
+=item C<voice_url>
+
+The URL we should when the domain receives a call.
+
+=back
 
 =head2 read
 
-  my @items = $list->read(\%options, $limit, $page_size);
+  my @records = $client->sip->domains->read(\%options, $limit, $page_size);
 
+Retrieve a list of domains belonging to the account used to make the request.
 Returns the records as a list, fetching as many pages as it needs.
 
 =head2 stream
 
-  my $stream = $list->stream(\%options, $limit, $page_size);
+  my $stream = $client->sip->domains->stream(\%options, $limit, $page_size);
 
 Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.
 
 =head2 page
 
-  my $page = $list->page(\%options, $page_size, $page_token, $page_number);
+  my $page = $client->sip->domains->page(\%options, $page_size, $page_token, $page_number);
 
 Fetches one page, and returns a L<Twilio::Page>.
 
 =head2 get_page
 
-  my $page = $list->get_page($url);
+  my $page = $client->sip->domains->get_page($url);
 
 Fetches the page at a URL given by Twilio.
 
 =head2 get_context
 
-  my $context = $list->get_context($sid);
+  my $context = $client->sip->domains->get_context($sid);
 
 Returns a C<DomainContext>, and makes no request.
 
+=head1 DomainPage
+
+A L<Twilio::Page> of C<DomainInstance> objects.
+
+=head2 records_key
+
+=head2 build_instance
+
+Used by L<Twilio::Page>.
+
 =head1 DomainContext
+
+Returned by C<< $client->sip->domains($sid) >>. It makes no request until one
+of these methods is called.
 
 =head2 fetch
 
-  my $result = $object->fetch;
+  my $domain = $client->sip->domains($sid)->fetch;
 
-Returns a C<DomainInstance>.
+Fetch an instance of a Domain. Returns a C<DomainInstance>.
 
 =head2 update
 
-  my $result = $object->update(\%options);
+  my $domain = $client->sip->domains($sid)->update(\%options);
 
-Returns a C<DomainInstance>.
+Update the attributes of a domain. Returns a C<DomainInstance>.
 
-The options are C<byoc_trunk_sid>, C<domain_name>, C<emergency_caller_sid>,
-C<emergency_calling_enabled>, C<friendly_name>, C<secure>, C<sip_registration>,
-C<voice_fallback_method>, C<voice_fallback_url>, C<voice_method>,
-C<voice_status_callback_method>, C<voice_status_callback_url> and C<voice_url>.
+The options are:
+
+=over
+
+=item C<byoc_trunk_sid>
+
+The SID of the BYOC Trunk(Bring Your Own Carrier) resource that the Sip Domain
+will be associated with.
+
+=item C<domain_name>
+
+The unique address you reserve on Twilio to which you route your SIP traffic.
+Domain names can contain letters, digits, and "-" and must end with
+C<sip.twilio.com>.
+
+=item C<emergency_caller_sid>
+
+Whether an emergency caller sid is configured for the domain. If present, this
+phone number will be used as the callback for the emergency call.
+
+=item C<emergency_calling_enabled>
+
+Whether emergency calling is enabled for the domain. If enabled, allows
+emergency calls on the domain from phone numbers with validated addresses.
+
+=item C<friendly_name>
+
+A descriptive string that you created to describe the resource. It can be up to
+64 characters long.
+
+=item C<secure>
+
+Whether secure SIP is enabled for the domain. If enabled, TLS will be enforced
+and SRTP will be negotiated on all incoming calls to this sip domain.
+
+=item C<sip_registration>
+
+Whether to allow SIP Endpoints to register with the domain to receive calls.
+Can be C<true> or C<false>. C<true> allows SIP Endpoints to register with the
+domain to receive calls, C<false> does not.
+
+=item C<voice_fallback_method>
+
+The HTTP method we should use to call C<voice_fallback_url>. Can be: C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item C<voice_fallback_url>
+
+The URL that we should call when an error occurs while retrieving or executing
+the TwiML requested by C<voice_url>.
+
+=item C<voice_method>
+
+The HTTP method we should use to call C<voice_url> One of C<GET> or C<POST>.
+
+=item C<voice_status_callback_method>
+
+The HTTP method we should use to call C<voice_status_callback_url>. Can be:
+C<GET> or C<POST>. One of C<GET> or C<POST>.
+
+=item C<voice_status_callback_url>
+
+The URL that we should call to pass status parameters (such as call ended) to
+your application.
+
+=item C<voice_url>
+
+The URL we should call when the domain receives a call.
+
+=back
 
 =head2 delete
 
-  $context->delete;
+  $client->sip->domains($sid)->delete;
 
-Returns true.
+Delete an instance of a Domain. Returns true.
 
 =head2 auth
 
@@ -385,16 +550,124 @@ See L<Twilio::Rest::Api::V2010::Account::Sip::Domain::IpAccessControlListMapping
 See also L<Twilio::InstanceResource>.
 
 It has C<fetch>, C<update>, C<delete>, C<auth>, C<credential_list_mappings> and
-C<ip_access_control_list_mappings> too, which work the same way.
+C<ip_access_control_list_mappings>, which work as they do on the context.
 
-Its fields are C<account_sid>, C<api_version>, C<auth_type>, C<byoc_trunk_sid>,
-C<domain_name>, C<emergency_caller_sid>, C<emergency_calling_enabled>,
-C<friendly_name>, C<secure>, C<sid>, C<sip_registration>, C<subresource_uris>,
-C<uri>, C<voice_fallback_method>, C<voice_fallback_url>, C<voice_method>,
-C<voice_status_callback_method>, C<voice_status_callback_url> and C<voice_url>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item account_sid
+
+The SID of the L<Account|https://www.twilio.com/docs/iam/api/account> that
+created the SipDomain resource.
+
+=item api_version
+
+The API version used to process the call.
+
+=item auth_type
+
+The types of authentication you have mapped to your domain. Can be: C<IP_ACL>
+and C<CREDENTIAL_LIST>. If you have both defined for your domain, both will be
+returned in a comma delimited string. If C<auth_type> is not defined, the
+domain will not be able to receive any traffic.
+
+=item byoc_trunk_sid
+
+The SID of the BYOC Trunk(Bring Your Own Carrier) resource that the Sip Domain
+will be associated with.
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item domain_name
+
+The unique address you reserve on Twilio to which you route your SIP traffic.
+Domain names can contain letters, digits, and "-" and must end with
+C<sip.twilio.com>.
+
+=item emergency_caller_sid
+
+Whether an emergency caller sid is configured for the domain. If present, this
+phone number will be used as the callback for the emergency call.
+
+=item emergency_calling_enabled
+
+Whether emergency calling is enabled for the domain. If enabled, allows
+emergency calls on the domain from phone numbers with validated addresses.
+
+=item friendly_name
+
+The string that you assigned to describe the resource.
+
+=item secure
+
+Whether secure SIP is enabled for the domain. If enabled, TLS will be enforced
+and SRTP will be negotiated on all incoming calls to this sip domain.
+
+=item sid
+
+The unique string that that we created to identify the SipDomain resource.
+
+=item sip_registration
+
+Whether to allow SIP Endpoints to register with the domain to receive calls.
+
+=item subresource_uris
+
+A list of mapping resources associated with the SIP Domain resource identified
+by their relative URIs.
+
+=item uri
+
+The URI of the resource, relative to C<https://api.twilio.com>.
+
+=item voice_fallback_method
+
+The HTTP method we use to call C<voice_fallback_url>. Can be: C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item voice_fallback_url
+
+The URL that we call when an error occurs while retrieving or executing the
+TwiML requested from C<voice_url>.
+
+=item voice_method
+
+The HTTP method we use to call C<voice_url>. Can be: C<GET> or C<POST>. One of
+C<GET> or C<POST>.
+
+=item voice_status_callback_method
+
+The HTTP method we use to call C<voice_status_callback_url>. Either C<GET> or
+C<POST>. One of C<GET> or C<POST>.
+
+=item voice_status_callback_url
+
+The URL that we call to pass status parameters (such as call ended) to your
+application.
+
+=item voice_url
+
+The URL we call using the C<voice_method> when the domain receives a call.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

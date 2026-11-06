@@ -62,35 +62,86 @@ __END__
 
 Twilio::Rest::Api::V2010::Account::NewSigningKey - The NewSigningKey resource
 
+=head1 SYNOPSIS
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  my $new_signing_key = $client->new_signing_keys->create(\%options);
+
 =head1 DESCRIPTION
 
 Create a new signing key
 
-This file holds C<NewSigningKeyList> and C<NewSigningKeyInstance>. All the
-methods that make a request throw L<Twilio::Exceptions::RestException> on an
-error response.
+This file holds C<NewSigningKeyList> and C<NewSigningKeyInstance>. Methods that
+make a request throw L<Twilio::Exceptions::RestException> on an error response.
 
 =head1 NewSigningKeyList
 
-See also L<Twilio::ListResource>.
+Returned by C<< $client->new_signing_keys >>. See also L<Twilio::ListResource>.
 
 =head2 create
 
-  my $result = $object->create(\%options);
+  my $new_signing_key = $client->new_signing_keys->create(\%options);
 
-Returns a C<NewSigningKeyInstance>.
+Create a new Signing Key for the account making the request. Returns a
+C<NewSigningKeyInstance>.
 
-The options are C<friendly_name>.
+The options are:
+
+=over
+
+=item C<friendly_name>
+
+A descriptive string that you create to describe the resource. It can be up to
+64 characters long.
+
+=back
+
 
 
 =head1 NewSigningKeyInstance
 
 See also L<Twilio::InstanceResource>.
 
-Its fields are C<friendly_name>, C<secret> and C<sid>.
+Its fields are:
 
-C<date_created> and C<date_updated> return L<Time::Piece> objects in UTC. See
-L<Twilio::Deserialize/date_time>.
+=over
+
+=item date_created
+
+The date and time in GMT that the resource was created specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item date_updated
+
+The date and time in GMT that the resource was last updated specified in L<RFC
+2822|https://www.ietf.org/rfc/rfc2822.txt> format. A L<Time::Piece> object in
+UTC. See L<Twilio::Deserialize/date_time>.
+
+=item friendly_name
+
+The string that you assigned to describe the resource.
+
+=item secret
+
+The secret your application uses to sign Access Tokens and to authenticate to
+the REST API (you will use this as the basic-auth C<password>). B<Note that for
+security reasons, this field is ONLY returned when the API Key is first
+created.>
+
+=item sid
+
+The unique string that that we created to identify the NewSigningKey resource.
+
+=back
+
+=head1 CONSTRUCTORS
+
+=head2 new
+
+Objects here come from the methods above, so there is no need to call C<new>
+directly.
 
 =head1 LICENSE
 

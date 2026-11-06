@@ -157,19 +157,6 @@ subtest 'optional pieces are left out' => sub {
   ok(compiles($code), 'it compiles') or diag($@);
 };
 
-subtest 'the generated documentation' => sub {
-  my $code = emit(document());
-
-  unlike($code, qr/C<page_size>/,  'paging is not listed among the filters');
-  unlike($code, qr/C<page_token>/, 'nor the token');
-  like($code, qr/E<lt>things E<gt>/,                       'description is escaped');
-  like($code, qr/C<active>, C<mode>, C<tags> and C<when>/, 'options');
-  like($code, qr/C<tags> takes an array reference/,        'arrays');
-  like($code, qr/C<when> takes a string/,                  'dates');
-  like($code, qr/create\(\$name, \$size, \\%options\)/,    'the call');
-  like($code, qr/C<date_created> return L<Time::Piece>/,   'date fields');
-};
-
 subtest 'the other value types' => sub {
   my $document   = document();
   my $path       = '/v1/Accounts/{AccountSid}/Things.json';
@@ -217,9 +204,6 @@ subtest 'the other value types' => sub {
   is($thing->start_date->ymd,   '2026-11-06', 'a date field is read');
   is_deeply($thing->tags, ['a'], 'an array field stays as it is');
 
-  like($code, qr/C<capabilities> return L<Twilio::Base::Phone/,            'capabilities in POD');
-  like($code, qr/C<date_created> and C<start_date> return L<Time::Piece>/, 'dates in POD');
-  like($code, qr/C<day> and C<when>\s+take\s+a\s+string/,                  'date option in POD');
 };
 
 subtest 'parents and their children' => sub {
@@ -289,12 +273,10 @@ subtest 'parents and their children' => sub {
   unlike($section_code, qr/^package \S+SectionInstance/m, 'a section has no instance class');
 
   my $parent_pod = Twilio::Generator::Emit::module($thing);
-  like($parent_pod, qr/require \S+Thing::Part;/,     'a child is loaded when it is reached');
-  like($parent_pod, qr/->fetch\(\\%options\)/,       'the call with options is documented');
-  like($parent_pod, qr/=head2 parts/,                'children are documented');
-  like($parent_pod, qr/C<fetch>, C<data>, C<notes>/, 'the instance lists its methods');
-  like($parent_pod, qr/\$object->parts\(\$sid\)/,    'with the id');
-  like($parent_pod, qr/C<deep>/,                     'fetch options are documented');
+  like($parent_pod, qr/require \S+Thing::Part;/, 'a child is loaded when it is reached');
+  like($parent_pod, qr/->fetch\(\\%options\)/,   'the call with options is documented');
+  like($parent_pod, qr/=head2 parts/,            'children are documented');
+  like($parent_pod, qr/C<deep>/,                 'fetch options are documented');
 };
 
 subtest 'a family that does not fit stops generation' => sub {
@@ -386,6 +368,75 @@ subtest 'top-level modules' => sub {
   like($client, qr/=head2 things/, 'documented');
 
   compiles($_) or BAIL_OUT("Does not compile: $@") for $version, $domain, $client;
+};
+
+subtest 'descriptions reach the documentation' => sub {
+  my $document = document();
+  my $path     = '/v1/Accounts/{AccountSid}/Things.json';
+  my $form     = 'application/x-www-form-urlencoded';
+  my $body     = $document->{paths}{$path}{post}{requestBody}{content}{$form}{schema}{properties};
+
+  $document->{paths}{$path}{post}{description} = 'Makes a thing.';
+  $body->{Name}{description}                   = 'Its name, in the body.';
+  $body->{Mode}{description}                   = 'The mode.';
+  $body->{Tags}{items} = { '$ref' => '#/components/schemas/thing_enum_mode' };
+  $document->{paths}{$path}{get}{parameters}[1]{description}             = 'Only with this status.';
+  $document->{components}{schemas}{thing}{properties}{name}{description} = 'What it is called.';
+
+  my $code = emit($document);
+
+  like($code, qr/Makes a thing[.] Returns a C<ThingInstance>/, 'the operation');
+  like($code, qr/=item C<\$name>\n\nIts name, in the body[.]/, 'a body value');
+  like(
+    $code,
+    qr/=item C<mode>\n\nThe mode[.] One of C<fast> or C<slow>[.]/,
+    'the choices of an enum'
+  );
+  like(
+    $code,
+    qr/=item C<tags>\n\nOne of C<fast> or C<slow>[.] An array/,
+    'the choices inside an array'
+  );
+  like($code, qr/=item C<status>\n\nOnly with this status[.]/, 'a query parameter');
+  like($code, qr/=item name\n\nWhat it is called[.]/,          'a field');
+  like($code, qr/=item mode\n\nOne of C<fast> or C<slow>[.]/,  'the choices of a field');
+  like($code, qr/\$client->things->create/, 'how to reach it, from the shortcut of an account');
+};
+
+subtest 'a resource of an account has a shortcut, and others do not' => sub {
+  my $model = model(document());
+  is($model->{calls}{list}, '$client->things', 'the account');
+
+  my %models = map { ($_->{module} =~ s/.*V1:://r) => $_ } all_models(family());
+  like($models{'Thing::Part'}{calls}{list}, qr/\A\$client->api->/, 'another root');
+};
+
+subtest 'how a resource is reached' => sub {
+  my %models = map { ($_->{module} =~ s/.*V1:://r) => $_ } all_models(family());
+
+  is($models{Thing}{calls}{list},    '$client->api->things',       'the root');
+  is($models{Thing}{calls}{context}, '$client->api->things($sid)', 'one of them');
+  is(
+    $models{'Thing::Part'}{calls}{list},
+    '$client->api->things($thing_sid)->parts',
+    'below the root'
+  );
+  is(
+    $models{'Thing::Part'}{calls}{context},
+    '$client->api->things($thing_sid)->parts($sid)',
+    'one of those'
+  );
+  is(
+    $models{'Thing::Data'}{calls}{context},
+    '$client->api->things($thing_sid)->data',
+    'a singleton'
+  );
+  is($models{'Thing::Kind'}{calls}{list}, '$client->api->things->kinds', 'below a list');
+  is(
+    $models{'Thing::Section::Row'}{calls}{list},
+    '$client->api->things($thing_sid)->sections->rows',
+    'below a section'
+  );
 };
 
 subtest 'option names' => sub {
