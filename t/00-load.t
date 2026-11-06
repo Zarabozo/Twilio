@@ -33,6 +33,8 @@ my @modules = qw(
   Twilio::Serialize
   Twilio::Stream
   Twilio::TokenPaginationPage
+  Twilio::TwiML::GenericNode
+  Twilio::TwiML::TwiML
   Twilio::Version
 );
 
