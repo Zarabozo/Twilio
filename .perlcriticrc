@@ -9,9 +9,11 @@ program-extensions = .pl .t
 # Most patterns here are short URL and header matches, where /x adds nothing.
 [-RegularExpressions::RequireExtendedFormatting]
 
-# Twilio's REST errors need five values, and the object itself should not count.
+# The object itself should not count. Generated methods take one argument for each part of a
+# path and each required value, as in Twilio's libraries, and Address needs six of those.
 [Subroutines::ProhibitManyArgs]
 skip_object = 1
+max_arguments = 8
 
 # One-line accessors are clearer without unpacking @_.
 [Subroutines::RequireArgUnpacking]

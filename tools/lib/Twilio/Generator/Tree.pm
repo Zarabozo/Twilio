@@ -111,7 +111,8 @@ sub _set_parent {
   if (defined $node->{parent_key} && $node->{parent_key} ne $key) {
     croak "$path: parent $key conflicts with $node->{parent_key}";
   }
-  $node->{parent_key} = $key;
+  $node->{parent_key}  = $key;
+  $node->{parent_side} = defined _instance_key($parent) ? 'instance' : 'list';
   return;
 }
 
@@ -189,10 +190,11 @@ sub _move_operations {
   my ($nodes, $node, $noun) = @_;
 
   my %sibling = (
-    key        => "$node->{key}:$noun",
-    segments   => $node->{segments},
-    parent_key => $node->{parent_key},
-    class_name => snake($noun),
+    key         => "$node->{key}:$noun",
+    segments    => $node->{segments},
+    parent_key  => $node->{parent_key},
+    parent_side => $node->{parent_side},
+    class_name  => snake($noun),
   );
   for my $type (qw(list instance)) {
     my $side  = $node->{$type} or next;
