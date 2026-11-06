@@ -39,6 +39,18 @@ sub paths {
   return { map { strip_version($_) => $paths->{$_} } keys %{$paths} };
 }
 
+# An enum lives in components, and what matters here is the type it has there.
+sub resolve {
+  my ($self, $schema) = @_;
+
+  my $reference = $schema->{'$ref'};
+  return $schema if !defined $reference;
+
+  my ($name) = $reference =~ m{\A#/components/schemas/(.+)\z};
+  croak "Cannot follow $reference" if !defined $name;
+  return $self->{document}{components}{schemas}{$name} // croak "No schema $name";
+}
+
 sub strip_version {
   my ($path) = @_;
   return $path =~ s/$VERSION_PREFIX//r;
