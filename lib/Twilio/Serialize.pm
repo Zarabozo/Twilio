@@ -6,6 +6,8 @@ use warnings;
 use POSIX        ();
 use Scalar::Util qw(blessed);
 
+use Twilio::Json;
+
 our $VERSION = '2.000000';
 
 sub boolean_to_string {
@@ -21,11 +23,29 @@ sub boolean_to_string {
 sub iso8601_date_time {
   my ($value) = @_;
 
-  # Time::Piece and DateTime both have epoch, so neither has to be a dependency here.
+  return _utc_format($value, '%Y-%m-%dT%H:%M:%SZ');
+}
+
+sub iso8601_date {
+  my ($value) = @_;
+  return _utc_format($value, '%Y-%m-%d');
+}
+
+# Time::Piece and DateTime both have epoch, so neither has to be a dependency here.
+sub _utc_format {
+  my ($value, $format) = @_;
   if (blessed($value) && $value->can('epoch')) {
-    return POSIX::strftime('%Y-%m-%dT%H:%M:%SZ', gmtime $value->epoch);
+    return POSIX::strftime($format, gmtime $value->epoch);
   }
   return $value;
+}
+
+sub json_object {
+  my ($value) = @_;
+
+  # An object could encode to anything, so only plain data is turned into JSON here.
+  my $type = ref $value;
+  return $type eq 'HASH' || $type eq 'ARRAY' ? Twilio::Json::encode($value) : $value;
 }
 
 sub path_segment {
@@ -78,6 +98,16 @@ use C<scalar>:
   my $send_at = gmtime(time + 3600);    # with "use Time::Piece"
 
   $client->messages->create($to, { schedule_type => 'fixed', send_at => $send_at });
+
+=head2 iso8601_date
+
+Returns any object with an C<epoch> method as a UTC date in the form
+C<2026-11-06>, for values that have no time. Anything else is returned as it is.
+
+=head2 json_object
+
+Returns a hash or array reference as JSON. Anything else is returned as it is, so
+a value can also be given as text that is already JSON.
 
 =head2 path_segment
 
