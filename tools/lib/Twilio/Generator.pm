@@ -7,6 +7,7 @@ use Carp           qw(croak);
 use File::Basename qw(dirname);
 use File::Path     qw(make_path);
 
+use Twilio::Generator::Contract;
 use Twilio::Generator::Emit;
 use Twilio::Generator::Resource;
 use Twilio::Generator::Spec;
@@ -54,6 +55,14 @@ sub _top_level {
     version_method  => $tree->{version},
     version_path    => $spec->version_path,
   };
+}
+
+sub contract_json {
+  my ($spec_file) = @_;
+
+  my $spec = Twilio::Generator::Spec->load($spec_file);
+  my $tree = Twilio::Generator::Tree::build($spec);
+  return Twilio::Generator::Contract::to_json(Twilio::Generator::Contract::entries($spec, $tree));
 }
 
 sub write_files {
