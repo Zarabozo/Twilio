@@ -6,6 +6,7 @@ use Test::More;
 my @modules = qw(
   Twilio
   Twilio::Base::BaseClient
+  Twilio::Deserialize
   Twilio::Domain
   Twilio::Exceptions::ConfigurationException
   Twilio::Exceptions::DeserializeException
@@ -21,7 +22,12 @@ my @modules = qw(
   Twilio::Json
   Twilio::ListResource
   Twilio::Page
+  Twilio::Rest::Api
+  Twilio::Rest::Api::V2010
+  Twilio::Rest::Api::V2010::Account
+  Twilio::Rest::Api::V2010::Account::Message
   Twilio::Rest::Client
+  Twilio::Serialize
   Twilio::Stream
   Twilio::Version
 );
