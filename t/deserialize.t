@@ -4,6 +4,7 @@ use warnings;
 use Test::More;
 
 use Twilio::Deserialize;
+use Twilio::Json;
 
 my $MOMENT = 1_438_287_151;    # 2015-07-30 20:12:31 UTC
 
@@ -77,6 +78,23 @@ subtest 'values that are not dates are returned as they are' => sub {
   for my $value (@values) {
     is(Twilio::Deserialize::date_time($value), $value, $value // 'undef');
   }
+};
+
+subtest 'phone_number_capabilities' => sub {
+  my $read = \&Twilio::Deserialize::phone_number_capabilities;
+
+  my $capabilities = $read->(Twilio::Json::decode('{"MMS":true,"SMS":false,"voice":true}'));
+  isa_ok($capabilities, 'Twilio::Base::PhoneNumberCapabilities');
+  is($capabilities->mms, 1, 'upper case');
+  is($capabilities->sms, 0, 'false stays false');
+
+  isa_ok($read->({ fax => 0 }), 'Twilio::Base::PhoneNumberCapabilities');
+
+  is($read->(undef),  undef,  'undef stays undef');
+  is($read->('text'), 'text', 'text stays the same');
+  is_deeply($read->({}),             {},             'an empty hash stays the same');
+  is_deeply($read->({ other => 1 }), { other => 1 }, 'an unknown hash stays the same');
+  is_deeply($read->([1]),            [1],            'an array stays the same');
 };
 
 done_testing;

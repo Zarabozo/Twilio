@@ -454,8 +454,9 @@ sub _pod_context {
 sub _pod_instance {
   my ($model) = @_;
 
-  my @plain = map { "C<$_->{name}>" } grep { !defined $_->{reader} } @{ $model->{fields} };
-  my @dates = map { "C<$_->{name}>" } grep { defined $_->{reader} } @{ $model->{fields} };
+  my @plain        = map { "C<$_->{name}>" } grep { !defined $_->{reader} } @{ $model->{fields} };
+  my @dates        = _fields_read_by($model, 'date_time');
+  my @capabilities = _fields_read_by($model, 'phone_number_capabilities');
 
   my @pod = ("=head1 $model->{name}Instance\n", "See also L<Twilio::InstanceResource>.\n");
   if ($model->{context}) {
@@ -469,7 +470,17 @@ sub _pod_instance {
       _paragraph(_sentence(@dates)
         . ' return L<Time::Piece> objects in UTC. See L<Twilio::Deserialize/date_time>.');
   }
+  if (@capabilities) {
+    push @pod,
+      _paragraph(
+      _sentence(@capabilities) . ' return L<Twilio::Base::PhoneNumberCapabilities> objects.');
+  }
   return join "\n", @pod;
+}
+
+sub _fields_read_by {
+  my ($model, $reader) = @_;
+  return map { "C<$_->{name}>" } grep { ($_->{reader} // q{}) eq $reader } @{ $model->{fields} };
 }
 
 1;
