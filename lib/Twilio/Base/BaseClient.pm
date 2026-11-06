@@ -22,6 +22,10 @@ my $DEFAULT_REGION  = 'us1';
 my $PIECES_WITH_REGION = 4;    # product.region.twilio.com
 my $PIECES_WITH_EDGE   = 5;    # product.edge.region.twilio.com
 
+my $STATUS_TOO_MANY_REQUESTS = 429;
+my $RETRY_BACKOFF_BASE       = 2;
+my $RETRY_MAX_WAIT_SECONDS   = 60;
+
 sub new {
   my ($class, $username, $password, $options) = @_;
   $options //= {};
@@ -38,6 +42,7 @@ sub new {
   $self->{region}    = $self->get_arg($options->{region}, $ENV_REGION);
   $self->{edge}      = $self->get_arg($options->{edge},   $ENV_EDGE);
   $self->{log_level} = $self->get_arg(undef,              $ENV_LOG_LEVEL);
+  $self->set_max_retries($options->{max_retries});
 
   return $self;
 }
@@ -65,12 +70,9 @@ sub request {
   # Delete responses have no body to negotiate.
   $headers{Accept} //= 'application/json' if $method ne 'DELETE';
 
-  my $url       = $self->build_uri($uri);
-  my $log_debug = $self->_log_debug_enabled;
-  _log_request($method, $url, $options->{params}, \%headers) if $log_debug;
-
-  my $response = $self->get_http_client->request(
-    $method, $url,
+  return $self->_send_with_retries(
+    $method,
+    $self->build_uri($uri),
     {
       %{$options},
       headers  => \%headers,
@@ -78,9 +80,64 @@ sub request {
       password => $password,
     }
   );
+}
 
+# Only 429 is retried: Twilio has refused the request, so repeating it cannot send anything
+# twice. After a 5xx or a broken connection, a POST may already have sent its message.
+sub _send_with_retries {
+  my ($self, $method, $url, $options) = @_;
+
+  my $response = $self->_send($method, $url, $options);
+  for my $attempt (1 .. $self->get_max_retries) {
+    my $wait = _retry_wait($response, $attempt);
+    last if !defined $wait;
+    $self->_sleep($wait);
+    $response = $self->_send($method, $url, $options);
+  }
+  return $response;
+}
+
+sub _send {
+  my ($self, $method, $url, $options) = @_;
+
+  my $log_debug = $self->_log_debug_enabled;
+  _log_request($method, $url, $options->{params}, $options->{headers}) if $log_debug;
+  my $response = $self->get_http_client->request($method, $url, $options);
   _log_response($response) if $log_debug;
   return $response;
+}
+
+sub _retry_wait {
+  my ($response, $attempt) = @_;
+  return if $response->get_status_code != $STATUS_TOO_MANY_REQUESTS;
+
+  my $retry_after = _retry_after($response->get_headers);
+  if (defined $retry_after) {
+
+    # Retrying sooner than Twilio asked would only use up an attempt, and waiting longer than
+    # the limit could hang a web request, so a long wait is the caller's to decide.
+    return $retry_after <= $RETRY_MAX_WAIT_SECONDS ? $retry_after : undef;
+  }
+
+  my $backoff = $RETRY_BACKOFF_BASE**($attempt - 1);
+  return $backoff < $RETRY_MAX_WAIT_SECONDS ? $backoff : $RETRY_MAX_WAIT_SECONDS;
+}
+
+# The date form of Retry-After is not read: it would depend on the local clock, and the
+# backoff is a safe answer to it.
+sub _retry_after {
+  my ($headers) = @_;
+  my ($name)    = grep { lc $_ eq 'retry-after' } keys %{$headers};
+  return if !defined $name;
+
+  my ($seconds) = ($headers->{$name} // q{}) =~ /\A\s*([0-9]+)\s*\z/;
+  return $seconds;
+}
+
+sub _sleep {
+  my ($self, $seconds) = @_;
+  sleep $seconds;
+  return;
 }
 
 sub build_uri {
@@ -126,6 +183,7 @@ sub get_region      { return $_[0]{region} }
 sub get_edge        { return $_[0]{edge} }
 sub get_http_client { return $_[0]{http_client} }
 sub get_log_level   { return $_[0]{log_level} }
+sub get_max_retries { return $_[0]{max_retries} }
 
 sub set_username {
   my ($self, $username) = @_;
@@ -142,6 +200,16 @@ sub set_password {
 sub set_account_sid {
   my ($self, $account_sid) = @_;
   $self->{account_sid} = $account_sid;
+  return;
+}
+
+sub set_max_retries {
+  my ($self, $max_retries) = @_;
+  $max_retries //= 0;
+  if ($max_retries !~ /\A[0-9]+\z/) {
+    Twilio::Exceptions::ConfigurationException->throw('max_retries must be a whole number');
+  }
+  $self->{max_retries} = $max_retries;
   return;
 }
 
@@ -248,7 +316,26 @@ A hash reference to read the environment variables from, instead of C<%ENV>.
 
 An array reference of strings to add to the C<User-Agent> header.
 
+=item max_retries
+
+How many times to repeat a request that Twilio answers with HTTP 429. The
+default is 0, which means never. See L</Retries>.
+
 =back
+
+=head2 Retries
+
+With C<max_retries> set, a request that gets a 429 response is sent again, after
+the number of seconds in the C<Retry-After> header. Without that header, the
+waits are 1, 2, 4 seconds and so on, up to 60.
+
+Nothing else is retried. After a server error or a lost connection, Twilio may
+already have accepted a request, so repeating it could send a message twice.
+
+C<request> does not return while it waits, so each retry can block the process
+for up to 60 seconds. When C<Retry-After> asks for more than that, there is no
+retry, and the 429 response is returned. When the retries run out, the last
+response is returned too.
 
 =head2 request
 
@@ -295,6 +382,8 @@ Returns the value if it is not empty, and otherwise the environment variable.
 
 =head2 get_log_level
 
+=head2 get_max_retries
+
 Return the current value of each setting.
 
 =head2 set_username
@@ -306,6 +395,13 @@ Return the current value of each setting.
 =head2 set_http_client
 
 Replace the current value of each setting.
+
+=head2 set_max_retries
+
+  $client->set_max_retries(3);
+
+Sets the number of retries. With no argument, it turns retries off. It throws
+L<Twilio::Exceptions::ConfigurationException> unless the value is a whole number.
 
 =head2 set_edge
 
