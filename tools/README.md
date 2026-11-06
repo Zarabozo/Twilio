@@ -8,6 +8,15 @@ aren't kept in this repository. To download them into `spec/`:
 
     perl tools/fetch-specs.pl
 
+To write the generated classes into `lib/`:
+
+    perl tools/generate.pl
+
+Generated files start with a comment saying so, and they shouldn't be edited by
+hand. `xt/generator/up-to-date.t` fails when `lib/` differs from what the generator
+writes. Only the resources listed in `tools/lib/Twilio/Generator.pm` are generated
+so far.
+
 To print the resource tree of an API:
 
     perl tools/generate.pl --tree api_v2010
