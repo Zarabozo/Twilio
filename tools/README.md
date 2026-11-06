@@ -43,3 +43,15 @@ operations:
 
 The generator stops on anything it can't place, because a guess would become
 wrong public API.
+
+## Test vectors
+
+`tools/vectors/generate.php` runs real twilio-php and writes what it produces into
+`t/data/vectors-*.json`, so the tests compare against twilio-php without needing
+PHP. The cases that both languages build are in `tools/vectors/`, and the release
+of twilio-php they were last written with is in `tools/twilio-php.version`.
+
+    php tools/vectors/generate.php /path/to/twilio-php
+
+Attributes are sorted in the vectors, because this library sorts them. The text
+is otherwise exactly what twilio-php wrote.
