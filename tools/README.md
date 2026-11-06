@@ -14,8 +14,10 @@ To write the generated classes into `lib/`:
 
 Generated files start with a comment saying so, and they shouldn't be edited by
 hand. `xt/generator/up-to-date.t` fails when `lib/` differs from what the generator
-writes. Only the resources listed in `tools/lib/Twilio/Generator.pm` are generated
-so far.
+writes.
+
+Besides the resources, it writes `Twilio::Rest::Client`, `Twilio::Rest::Api` and
+`Twilio::Rest::Api::V2010`, which offer a shortcut to each resource of an account.
 
 To print the resource tree of an API:
 

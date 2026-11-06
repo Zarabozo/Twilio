@@ -90,17 +90,20 @@ subtest 'one path can hold two resources' => sub {
         new_keys => { resource_url => '/v1/Things/{thing_sid}/Keys.json' },
       }
     ),
-    '/Things/{ThingSid}/Keys.json'       => list([get => 'ListKey'], [post => 'CreateNewKey']),
-    '/Things/{ThingSid}/Keys/{Sid}.json' => instance([get => 'FetchKey']),
+    '/Things/{ThingSid}/Keys.json' =>
+      list([get => 'ListKey'], [post => 'CreateNewKey'], parent => '/Things/{Sid}.json'),
+    '/Things/{ThingSid}/Keys/{Sid}.json' =>
+      instance([get => 'FetchKey'], parent => '/Things/{Sid}.json'),
   );
   my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
 
   is_deeply([sort keys %by_class], ['Thing', 'Thing::Key', 'Thing::NewKey'], 'two classes');
 
   my ($key, $new_key) = @by_class{qw(Thing::Key Thing::NewKey)};
-  is($key->{mount},      'keys',     'mount of the first');
-  is($new_key->{mount},  'new_keys', 'mount of the second');
-  is($new_key->{parent}, 'Thing',    'same parent');
+  is($key->{mount},           'keys',     'mount of the first');
+  is($new_key->{mount},       'new_keys', 'mount of the second');
+  is($new_key->{parent},      'Thing',    'same parent');
+  is($new_key->{parent_side}, 'instance', 'on the same side of it');
   is_deeply([map { $_->{id} } @{ $key->{list}{operations} }], ['ListKey'], 'the list stays');
   is_deeply([map { $_->{id} } @{ $new_key->{list}{operations} }],
     ['CreateNewKey'], 'the create moves');
@@ -269,6 +272,23 @@ subtest 'loading a spec file' => sub {
   $error = $@;
   ok(!$ok, 'a missing file is refused');
   like($error, qr/Cannot read/, 'says why');
+
+  my $document =
+    { paths => { '/2010-04-01/Accounts.json' => {} }, servers => [{ url => 'https://a.test' }] };
+  my $full = Twilio::Generator::Spec->new('api', 'v2010', $document);
+  is($full->version_path, '2010-04-01',     'the version in the paths');
+  is($full->base_url,     'https://a.test', 'the host');
+
+  my $empty = Twilio::Generator::Spec->new('api', 'v2010', { paths => { '/Accounts.json' => {} } });
+  $ok    = eval { $empty->version_path; 1 };
+  $error = $@;
+  ok(!$ok, 'paths with no version are refused');
+  like($error, qr/No version in the paths/, 'says why');
+
+  $ok    = eval { $empty->base_url; 1 };
+  $error = $@;
+  ok(!$ok, 'no server is refused');
+  like($error, qr/No server in the spec/, 'says why');
 };
 
 done_testing;

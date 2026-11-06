@@ -14,24 +14,46 @@ use Twilio::Generator::Tree;
 
 our $VERSION = '2.000000';
 
-# Grows until the whole tree is generated.
-my @GENERATED = ('Account::Message');
-
 sub generated_files {
   my ($spec_file, $tidy_config) = @_;
 
-  my $spec     = Twilio::Generator::Spec->load($spec_file);
-  my $tree     = Twilio::Generator::Tree::build($spec);
-  my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
+  my $spec = Twilio::Generator::Spec->load($spec_file);
+  my $tree = Twilio::Generator::Tree::build($spec);
 
   my %files;
-  for my $class (@GENERATED) {
-    my $resource = $by_class{$class} // croak "No resource $class in $spec_file";
-    my $model    = Twilio::Generator::Resource::build($spec, $tree, $resource);
-    my $code     = Twilio::Generator::Emit::module($model);
-    $files{ _file_name($model->{module}) } = tidy($code, $tidy_config);
+  my %models;
+  for my $resource (@{ $tree->{resources} }) {
+    my $model = Twilio::Generator::Resource::build($spec, $tree, $resource);
+    $models{ $resource->{class} } = $model;
+    $files{ _file_name($model->{module}) } =
+      tidy(Twilio::Generator::Emit::module($model), $tidy_config);
   }
+
+  my $top = _top_level($spec, $tree, $models{Account} // croak "No Account in $spec_file");
+  $files{ _file_name($top->{version_class}) } =
+    tidy(Twilio::Generator::Emit::version($top), $tidy_config);
+  $files{ _file_name($top->{domain_class}) } =
+    tidy(Twilio::Generator::Emit::domain($top), $tidy_config);
+  $files{'Twilio/Rest/Client.pm'} = tidy(Twilio::Generator::Emit::client($top), $tidy_config);
   return \%files;
+}
+
+# What the client, the domain and the version need: each offers the resources of an account.
+sub _top_level {
+  my ($spec, $tree, $account) = @_;
+
+  my $domain_class = Twilio::Generator::Resource::root_class($tree) =~ s/::\w+\z//r;
+  return {
+    account_context => $account->{class}{context},
+    account_list    => $account->{class}{list},
+    account_module  => $account->{module},
+    base_url        => $spec->base_url,
+    domain_class    => $domain_class,
+    shortcuts       => [sort { $a->{mount} cmp $b->{mount} } @{ $account->{context}{children} }],
+    version_class   => Twilio::Generator::Resource::root_class($tree),
+    version_method  => $tree->{version},
+    version_path    => $spec->version_path,
+  };
 }
 
 sub write_files {

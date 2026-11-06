@@ -34,12 +34,82 @@ sub _list {
   my $side = $model->{list} or return q{};
 
   my @methods = (_constructor($side));
-  push @methods, _create($model)      if $side->{create};
-  push @methods, _reading($model)     if $side->{read};
-  push @methods, _get_context($model) if $model->{context};
+  push @methods, _create($model)                      if $side->{create};
+  push @methods, _fetch_method($model, $side, 'list') if $side->{fetch};
+  push @methods, _reading($model)                     if $side->{read};
+  push @methods, _get_context($model)                 if ($model->{context} // {})->{own};
+  push @methods, map { _child_method($side, $_) } @{ $side->{children} // [] };
 
   return join "\n", "package $model->{class}{list};\n", "use parent 'Twilio::ListResource';\n",
     "use Twilio::Serialize;\n", @methods;
+}
+
+# A list has no instance URI of its own to fetch, and answers with the object itself, as the
+# account balance does.
+sub _fetch_method {
+  my ($model, $side, $where) = @_;
+
+  my @options   = @{ $side->{fetch}{options} };
+  my $signature = join q{, }, '$self', @options ? '$options' : ();
+  my $defaults  = @options ? "  \$options //= {};\n" : q{};
+  my $pairs     = join q{}, map { _pair($_, "\$options->{$_->{name}}") . ",\n" } @options;
+  my $extra     = @options ? ", { params => { $pairs } }" : q{};
+  my $result =
+    $where eq 'list'
+    ? _new_instance($model, '$response->get_content', $side->{parameters})
+    : '$self->_build_instance($response)';
+
+  return <<"END_CODE";
+sub fetch {
+  my ($signature) = \@_;
+$defaults
+  my \$response = \$self->{version}->handle_request('$side->{fetch}{method}', \$self->{uri}, 'fetch'$extra);
+  return $result;
+}
+END_CODE
+}
+
+sub _new_instance {
+  my ($model, $payload, $names) = @_;
+
+  my $arguments = join q{, }, '$self->{version}', $payload,
+    map { "\$self->{solution}{$_}" } @{$names};
+  return "$model->{class}{instance}->new($arguments)";
+}
+
+sub _child_method {
+  my ($side, $child) = @_;
+
+  my $arguments = join q{, }, '$self->{version}',
+    map { "\$self->{solution}{$_}" } @{ $side->{parameters} };
+  my $load = "  require $child->{module};\n";
+
+  if ($child->{singleton}) {
+    return <<"END_CODE";
+sub $child->{mount} {
+  my (\$self) = \@_;
+$load  return $child->{context}->new($arguments);
+}
+END_CODE
+  }
+
+  my $own = $child->{own};
+  if (!defined $own) {
+    return <<"END_CODE";
+sub $child->{mount} {
+  my (\$self) = \@_;
+$load  return $child->{list}->new($arguments);
+}
+END_CODE
+  }
+
+  return <<"END_CODE";
+sub $child->{mount} {
+  my (\$self, \$$own) = \@_;
+$load  my \$list = $child->{list}->new($arguments);
+  return defined \$$own ? \$list->get_context(\$$own) : \$list;
+}
+END_CODE
 }
 
 sub _constructor {
@@ -81,17 +151,12 @@ sub _quoted {
 sub _create {
   my ($model)   = @_;
   my $operation = $model->{list}{create};
-  my $arguments = _solution_values($model->{list}{parameters});
+  my $result    = _new_instance($model, '$response->get_content', $model->{list}{parameters});
 
   return _body_method('create', $operation) . <<"END_CODE";
-  return $model->{class}{instance}->new(\$self->{version}, \$response->get_content, $arguments);
+  return $result;
 }
 END_CODE
-}
-
-sub _solution_values {
-  my ($names) = @_;
-  return join q{, }, map { "\$self->{solution}{$_}" } @{$names};
 }
 
 # Ends just after the request, so each caller only adds how the result is returned.
@@ -174,13 +239,15 @@ END_CODE
 
 sub _get_context {
   my ($model)   = @_;
-  my $own       = $model->{context}{parameters}[-1];
-  my $arguments = _solution_values($model->{list}{parameters});
+  my $own       = $model->{context}{own};
+  my $arguments = join q{, }, '$self->{version}',
+    (map { "\$self->{solution}{$_}" } @{ $model->{list}{parameters} }),
+    "\$$own";
 
   return <<"END_CODE";
 sub get_context {
   my (\$self, \$$own) = \@_;
-  return $model->{class}{context}->new(\$self->{version}, $arguments, \$$own);
+  return $model->{class}{context}->new($arguments);
 }
 END_CODE
 }
@@ -189,7 +256,7 @@ sub _page {
   my ($model) = @_;
   return q{} if !defined $model->{records_key};
 
-  my $arguments = _solution_values($model->{list}{parameters});
+  my $result = _new_instance($model, '$payload', $model->{list}{parameters});
   return <<"END_CODE";
 package $model->{class}{page};
 
@@ -199,7 +266,7 @@ sub records_key { return '$model->{records_key}' }
 
 sub build_instance {
   my (\$self, \$payload) = \@_;
-  return $model->{class}{instance}->new(\$self->{version}, \$payload, $arguments);
+  return $result;
 }
 END_CODE
 }
@@ -218,15 +285,7 @@ sub delete {
 }
 END_CODE
   }
-  if ($side->{fetch}) {
-    push @methods, <<"END_CODE";
-sub fetch {
-  my (\$self) = \@_;
-  my \$response = \$self->{version}->handle_request('$side->{fetch}{method}', \$self->{uri}, 'fetch');
-  return \$self->_build_instance(\$response);
-}
-END_CODE
-  }
+  push @methods, _fetch_method($model, $side, 'context') if $side->{fetch};
   if ($side->{update}) {
     push @methods, _body_method('update', $side->{update}) . <<'END_CODE';
   return $self->_build_instance($response);
@@ -234,13 +293,16 @@ END_CODE
 END_CODE
   }
 
-  my $arguments = _solution_values($side->{parameters});
-  push @methods, <<"END_CODE";
+  if ($side->{fetch} || $side->{update}) {
+    my $result = _new_instance($model, '$response->get_content', $side->{parameters});
+    push @methods, <<"END_CODE";
 sub _build_instance {
   my (\$self, \$response) = \@_;
-  return $model->{class}{instance}->new(\$self->{version}, \$response->get_content, $arguments);
+  return $result;
 }
 END_CODE
+  }
+  push @methods, map { _child_method($side, $_) } @{ $side->{children} // [] };
 
   return join "\n", "package $model->{class}{context};\n",
     "use parent 'Twilio::InstanceContext';\n", "use Twilio::Serialize;\n", @methods;
@@ -248,9 +310,10 @@ END_CODE
 
 sub _instance {
   my ($model) = @_;
+  return q{} if !$model->{has_instance};
 
   my @names = @{ ($model->{context} // $model->{list})->{parameters} };
-  my $own   = $model->{context} ? $names[-1] : undef;
+  my $own   = ($model->{context} // {})->{own};
 
   my @pairs =
     map { defined $own && $_ eq $own ? "$_ => \$$_ // \$self->{properties}{$_}" : "$_ => \$$_" }
@@ -292,11 +355,21 @@ sub $verb {
 END_CODE
   }
 
-  my $arguments = _solution_values($side->{parameters});
+  for my $child (@{ $side->{children} // [] }) {
+    push @code, <<"END_CODE";
+sub $child->{mount} {
+  my (\$self, \@arguments) = \@_;
+  return \$self->_context->$child->{mount}(\@arguments);
+}
+END_CODE
+  }
+
+  my $arguments = join q{, }, '$self->{version}',
+    map { "\$self->{solution}{$_}" } @{ $side->{parameters} };
   push @code, <<"END_CODE";
 sub _context {
   my (\$self) = \@_;
-  return $model->{class}{context}->new(\$self->{version}, $arguments);
+  return $model->{class}{context}->new($arguments);
 }
 END_CODE
   return join "\n", @code;
@@ -335,10 +408,10 @@ sub _classes_in_file {
   my ($model) = @_;
 
   my @classes;
-  push @classes, 'list'    if $model->{list};
-  push @classes, 'page'    if defined $model->{records_key};
-  push @classes, 'context' if $model->{context};
-  push @classes, 'instance';
+  push @classes, 'list'     if $model->{list};
+  push @classes, 'page'     if defined $model->{records_key};
+  push @classes, 'context'  if $model->{context};
+  push @classes, 'instance' if $model->{has_instance};
   return @classes;
 }
 
@@ -371,13 +444,34 @@ sub _pod_list {
   my @pod = ("=head1 $model->{name}List\n", "See also L<Twilio::ListResource>.\n");
   push @pod, _pod_body_method('create', $side->{create}, "a C<$model->{name}Instance>")
     if $side->{create};
-  push @pod, _pod_reading($model) if $side->{read};
-  if ($model->{context}) {
-    my $own = $model->{context}{parameters}[-1];
+  push @pod, _pod_fetch($model, $side) if $side->{fetch};
+  push @pod, _pod_reading($model)      if $side->{read};
+  if (my $own = ($model->{context} // {})->{own}) {
     push @pod, "=head2 get_context\n", "  my \$context = \$list->get_context(\$$own);\n",
       "Returns a C<$model->{name}Context>, and makes no request.\n";
   }
+  push @pod, map { _pod_child($_) } @{ $side->{children} // [] };
   return join "\n", @pod;
+}
+
+sub _pod_fetch {
+  my ($model, $side) = @_;
+
+  my @options = @{ $side->{fetch}{options} };
+  my $call    = @options ? '(\%options)' : q{};
+  return join "\n", "=head2 fetch\n", "  my \$result = \$object->fetch$call;\n",
+    "Returns a C<$model->{name}Instance>.\n", @options ? _pod_options(\@options) : ();
+}
+
+sub _pod_child {
+  my ($child) = @_;
+
+  my $own  = $child->{own};
+  my $call = "\$object->$child->{mount}";
+  my @pod  = ("=head2 $child->{mount}\n", "  my \$list = $call;\n");
+  $pod[1] = "  my \$context = $call;\n" if $child->{singleton};
+  push @pod, "  my \$context = $call(\$$own);\n" if defined $own;
+  return join "\n", @pod, "See L<$child->{module}>.\n";
 }
 
 sub _pod_body_method {
@@ -439,20 +533,19 @@ sub _pod_context {
   my $side = $model->{context} or return q{};
 
   my @pod = ("=head1 $model->{name}Context\n");
-  if ($side->{fetch}) {
-    push @pod, "=head2 fetch\n", "  my \$result = \$context->fetch;\n",
-      "Returns a C<$model->{name}Instance>.\n";
-  }
+  push @pod, _pod_fetch($model, $side) if $side->{fetch};
   push @pod, _pod_body_method('update', $side->{update}, "a C<$model->{name}Instance>")
     if $side->{update};
   if ($side->{delete}) {
     push @pod, "=head2 delete\n", "  \$context->delete;\n", "Returns true.\n";
   }
+  push @pod, map { _pod_child($_) } @{ $side->{children} // [] };
   return join "\n", @pod;
 }
 
 sub _pod_instance {
   my ($model) = @_;
+  return q{} if !$model->{has_instance};
 
   my @plain        = map { "C<$_->{name}>" } grep { !defined $_->{reader} } @{ $model->{fields} };
   my @dates        = _fields_read_by($model, 'date_time');
@@ -461,6 +554,7 @@ sub _pod_instance {
   my @pod = ("=head1 $model->{name}Instance\n", "See also L<Twilio::InstanceResource>.\n");
   if ($model->{context}) {
     my @verbs = map { "C<$_>" } grep { $model->{context}{$_} } qw(fetch update delete);
+    push @verbs, map { "C<$_->{mount}>" } @{ $model->{context}{children} // [] };
     push @pod, _paragraph('It has ' . _sentence(@verbs) . ' too, which work the same way.')
       if @verbs;
   }
@@ -476,6 +570,217 @@ sub _pod_instance {
       _sentence(@capabilities) . ' return L<Twilio::Base::PhoneNumberCapabilities> objects.');
   }
   return join "\n", @pod;
+}
+
+sub version {
+  my ($top) = @_;
+
+  my $class = $top->{version_class};
+  my $code  = <<"END_CODE";
+# Generated by tools/generate.pl from Twilio's OpenAPI specs. Do not edit this file.
+package $class;
+
+use 5.016;
+use warnings;
+
+use parent 'Twilio::Version';
+
+our \$VERSION = '2.000000';
+
+sub new {
+  my (\$class, \$domain) = \@_;
+  my \$self = \$class->SUPER::new(\$domain);
+  \$self->{version} = '$top->{version_path}';
+  return \$self;
+}
+
+# Each of these objects is built on demand, for the reason given in Twilio::Rest::Client.
+sub accounts {
+  my (\$self, \$sid) = \@_;
+  require $top->{account_module};
+  my \$list = $top->{account_list}->new(\$self);
+  return defined \$sid ? \$list->get_context(\$sid) : \$list;
+}
+
+sub account {
+  my (\$self) = \@_;
+  require $top->{account_module};
+  return $top->{account_context}->new(\$self, \$self->get_domain->get_client->get_account_sid);
+}
+
+END_CODE
+
+  $code .= _forwarders($top->{shortcuts}, '$self->account');
+  return $code
+    . _pod_shortcuts(
+    $class,
+    "Version $top->{version_path} of the Twilio REST API",
+    "See L<Twilio::Version> for the inherited methods.",
+    ['accounts', "Returns the list of accounts, or the context of one account."],
+    ['account',  "Returns the context of the client's account."],
+    $top->{shortcuts},
+    );
+}
+
+sub domain {
+  my ($top) = @_;
+
+  my $class = $top->{domain_class};
+  my $code  = <<"END_CODE";
+# Generated by tools/generate.pl from Twilio's OpenAPI specs. Do not edit this file.
+package $class;
+
+use 5.016;
+use warnings;
+
+use parent 'Twilio::Domain';
+
+our \$VERSION = '2.000000';
+
+sub new {
+  my (\$class, \$client) = \@_;
+  my \$self = \$class->SUPER::new(\$client);
+  \$self->{base_url} = '$top->{base_url}';
+  return \$self;
+}
+
+sub $top->{version_method} {
+  my (\$self) = \@_;
+  require $top->{version_class};
+  return $top->{version_class}->new(\$self);
+}
+
+END_CODE
+
+  my @forwarded = ({ mount => 'accounts' }, { mount => 'account' }, @{ $top->{shortcuts} });
+  $code .= _forwarders(\@forwarded, "\$self->$top->{version_method}");
+  return $code
+    . _pod_shortcuts(
+    $class,
+    "The $top->{base_url} host",
+    "See L<Twilio::Domain> for the inherited methods.",
+    [$top->{version_method}, "Returns L<$top->{version_class}>."],
+    ['accounts',             "Returns the list of accounts, or the context of one account."],
+    ['account',              "Returns the context of the client's account."],
+    $top->{shortcuts},
+    );
+}
+
+sub client {
+  my ($top) = @_;
+
+  my $code = <<"END_CODE";
+# Generated by tools/generate.pl from Twilio's OpenAPI specs. Do not edit this file.
+package Twilio::Rest::Client;
+
+use 5.016;
+use warnings;
+
+use parent 'Twilio::Base::BaseClient';
+
+our \$VERSION = '2.000000';
+
+# twilio-php caches these objects. Here each is built on demand: a child holds its parent, so
+# a parent that also held its child would be a reference cycle, which Perl never frees, and
+# long-running processes would leak every client they create. Requiring on demand keeps
+# startup fast when hundreds of resources exist.
+sub api {
+  my (\$self) = \@_;
+  require $top->{domain_class};
+  return $top->{domain_class}->new(\$self);
+}
+
+END_CODE
+
+  $code .= _forwarders([{ mount => 'account' }, @{ $top->{shortcuts} }], '$self->api');
+  return $code . _pod_client($top);
+}
+
+sub _forwarders {
+  my ($shortcuts, $target) = @_;
+
+  return join "\n", map { <<"END_CODE" } @{$shortcuts}, ();
+sub $_->{mount} {
+  my (\$self, \@arguments) = \@_;
+  return $target->$_->{mount}(\@arguments);
+}
+END_CODE
+}
+
+sub _pod_shortcuts {
+  my ($class, $title, $intro, @entries) = @_;
+
+  my $shortcuts = pop @entries;
+  my @pod       = (
+    "\n1;\n",
+    "__END__\n",
+    "=encoding UTF-8\n",
+    "=head1 NAME\n",
+    "$class - $title\n",
+    "=head1 DESCRIPTION\n",
+    "$intro\n",
+    "=head1 METHODS\n",
+    "=head2 new\n",
+    "  my \$object = $class->new(\$parent);\n",
+  );
+  push @pod, map { ("=head2 $_->[0]\n", "$_->[1]\n") } @entries;
+  push @pod, _pod_shortcut_entries($shortcuts);
+  return join "\n", @pod, _pod_end();
+}
+
+sub _pod_shortcut_entries {
+  my ($shortcuts) = @_;
+  return map { ("=head2 $_->{mount}\n", "See L<$_->{module}>.\n") } @{$shortcuts};
+}
+
+sub _pod_end {
+  return "=head1 LICENSE\n",
+    "Copyright (c) 2026 Francisco Zarabozo. Released under the MIT License.\n", "=cut\n";
+}
+
+sub _pod_client {
+  my ($top) = @_;
+
+  return join "\n", "\n1;\n", "__END__\n", "=encoding UTF-8\n", "=head1 NAME\n",
+    "Twilio::Rest::Client - Client for the Twilio REST API\n", <<'END_POD',
+=head1 SYNOPSIS
+
+  use Twilio::Rest::Client;
+
+  my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+
+  # With an API key, which is what Twilio recommends for applications
+  my $client = Twilio::Rest::Client->new($api_key_sid, $api_key_secret, {
+    account_sid => $account_sid,
+  });
+
+  my $message = $client->messages->create('+15558675309', {
+    from => '+15017250604',
+    body => 'Hello',
+  });
+
+=head1 DESCRIPTION
+
+The entry point to the Twilio API. Credentials, routing and low-level requests
+are described in L<Twilio::Base::BaseClient>.
+
+Each resource of the account has a method here. It returns the list of the
+resource, or, given an identifier, the context of one record. The same methods
+exist on the object from C<account>, which takes another account from
+C<< $client->api->accounts($sid) >>.
+
+=head1 METHODS
+
+=head2 api
+
+Returns L<Twilio::Rest::Api>, the domain of the main API.
+
+=head2 account
+
+Returns the context of the client's account. See
+L<Twilio::Rest::Api::V2010::Account>.
+END_POD
+    _pod_shortcut_entries($top->{shortcuts}), _pod_end();
 }
 
 sub _fields_read_by {

@@ -13,33 +13,51 @@ our $VERSION = '2.000000';
 my $FORM_CONTENT      = 'application/x-www-form-urlencoded';
 my %IS_PAGE_PARAMETER = map { $_ => 1 } qw(Page PageSize PageToken);
 
-# Every instance has these methods, so a field with one of these names would replace them.
+# These methods exist on every object of their kind, so a name from the spec would replace them.
 my %IS_RESERVED_FIELD = map { $_ => 1 } qw(DESTROY can delete fetch isa new to_hash update);
+my %IS_RESERVED_MOUNT = map { $_ => 1 } qw(
+  DESTROY can create delete fetch get_context get_page isa new page read read_records stream
+  stream_records update
+);
 
 # Turns one resource of the tree into what the emitter needs, so that everything the spec
 # cannot answer stops here and Emit only has to write text.
 sub build {
   my ($spec, $tree, $resource) = @_;
 
-  my @parts = @{ $resource->{class_parts} };
-  my $name  = pop @parts;
-  my $root  = join q{::}, 'Twilio::Rest', camelize($tree->{domain}), camelize($tree->{version});
-  my $space = join q{::}, $root, @parts;
-
-  my $model = {
-    name        => $name,
-    module      => "${space}::$name",
-    class       => { map { $_ => "${space}::$name" . ucfirst } qw(list page context instance) },
-    description => _description($spec, $resource),
-  };
-  $model->{list}    = _list_side($spec, $resource)    if $resource->{list};
-  $model->{context} = _context_side($spec, $resource) if $resource->{instance};
+  my $model = _names($tree, $resource);
+  $model->{description} = _description($spec, $resource);
+  $model->{list}        = _list_side($spec, $resource)    if $resource->{list};
+  $model->{context}     = _context_side($spec, $resource) if $resource->{instance};
 
   my $records = _records($spec, $resource);
   $model->{records_key} = $records->{key} if $records;
-  $model->{fields}      = _fields($spec, _instance_schema($spec, $resource, $records));
 
+  my @schemas = _instance_schemas($spec, $resource, $records);
+  $model->{has_instance} = @schemas ? 1 : 0;
+  $model->{fields}       = _fields($spec, $resource, \@schemas);
+
+  _add_children($spec, $tree, $resource, $model);
   return $model;
+}
+
+sub _names {
+  my ($tree, $resource) = @_;
+
+  my @parts = @{ $resource->{class_parts} };
+  my $name  = pop @parts;
+  my $space = join q{::}, root_class($tree), @parts;
+
+  return {
+    name   => $name,
+    module => "${space}::$name",
+    class  => { map { $_ => "${space}::$name" . ucfirst } qw(list page context instance) },
+  };
+}
+
+sub root_class {
+  my ($tree) = @_;
+  return join q{::}, 'Twilio::Rest', camelize($tree->{domain}), camelize($tree->{version});
 }
 
 sub _description {
@@ -56,6 +74,7 @@ sub _list_side {
   for my $operation (@{ $resource->{list}{operations} }) {
     my $verb = $operation->{verb};
     if    ($verb eq 'create') { $side->{create} = _body_operation($spec, $operation) }
+    elsif ($verb eq 'fetch')  { $side->{fetch} = _fetch_operation($spec, $operation) }
     elsif ($verb eq 'list')   { $side->{read} = _read_operation($spec, $operation) }
     else                      { croak "$operation->{id}: no rule for $verb on a list" }
   }
@@ -66,13 +85,13 @@ sub _context_side {
   my ($spec, $resource) = @_;
 
   my $side = _side($resource->{instance});
-  croak "$resource->{key}: no rule for a singleton yet" if !defined $resource->{instance}{key};
+  $side->{own} = $side->{parameters}[-1] if defined $resource->{instance}{key};
 
   for my $operation (@{ $resource->{instance}{operations} }) {
     my $verb = $operation->{verb};
     if    ($verb eq 'update') { $side->{update} = _body_operation($spec, $operation) }
-    elsif ($verb eq 'delete') { $side->{delete} = _plain_operation($operation) }
-    elsif ($verb eq 'fetch')  { $side->{fetch} = _plain_operation($operation) }
+    elsif ($verb eq 'delete') { $side->{delete} = _delete_operation($operation) }
+    elsif ($verb eq 'fetch')  { $side->{fetch} = _fetch_operation($spec, $operation) }
     else                      { croak "$operation->{id}: no rule for $verb on an instance" }
   }
   return $side;
@@ -87,7 +106,7 @@ sub _side {
   return { parameters => [map { $_->{parameter} // () } @uri], uri => \@uri };
 }
 
-sub _plain_operation {
+sub _delete_operation {
   my ($operation) = @_;
 
   _refuse_parameters($operation, sub { 0 });
@@ -95,20 +114,35 @@ sub _plain_operation {
   return { method => $operation->{method} };
 }
 
+sub _fetch_operation {
+  my ($spec, $operation) = @_;
+
+  _refuse_parameters($operation, sub { $_[0]{in} eq 'query' });
+  croak "$operation->{id}: no rule for a body here" if $operation->{spec}{requestBody};
+  return { method => $operation->{method}, options => _query_arguments($spec, $operation) };
+}
+
 sub _read_operation {
   my ($spec, $operation) = @_;
 
   _refuse_parameters($operation, sub { $_[0]{in} eq 'query' });
-  my @filters = grep { !$IS_PAGE_PARAMETER{ $_->{name} } && $_->{in} eq 'query' }
+  return { method => $operation->{method}, filters => _query_arguments($spec, $operation) };
+}
+
+sub _query_arguments {
+  my ($spec, $operation) = @_;
+
+  my @parameters = sort { $a->{name} cmp $b->{name} }
+    grep { !$IS_PAGE_PARAMETER{ $_->{name} } && $_->{in} eq 'query' }
     @{ $operation->{spec}{parameters} // [] };
 
-  return {
-    method  => $operation->{method},
-    filters => [
-      map  { _argument($spec, "$operation->{id} $_->{name}", $_->{name}, $_->{schema}) }
-      sort { $a->{name} cmp $b->{name} } @filters
-    ],
-  };
+  my @arguments;
+  for my $parameter (@parameters) {
+    my $where = "$operation->{id} $parameter->{name}";
+    croak "$where: no rule for a required query parameter" if $parameter->{required};
+    push @arguments, _argument($spec, $where, $parameter->{name}, $parameter->{schema});
+  }
+  return \@arguments;
 }
 
 sub _body_operation {
@@ -191,33 +225,92 @@ sub _records {
   return $found[0];
 }
 
-sub _instance_schema {
+# A list and a fetch can answer with different schemas for the same object.
+sub _instance_schemas {
   my ($spec, $resource, $records) = @_;
 
   my %references;
   $references{ $records->{reference} } = 1 if $records;
   for my $side (grep { $_ } @{$resource}{qw(list instance)}) {
-    for my $operation (grep { $_->{verb} ne 'list' } @{ $side->{operations} }) {
-      $references{ $_->{'$ref'} } = 1 for grep { $_->{'$ref'} } _response_schemas($operation);
+    for my $operation (grep { $_->{verb} ne 'list' && $_->{verb} ne 'delete' }
+      @{ $side->{operations} })
+    {
+      my @found = grep { $_->{'$ref'} } _response_schemas($operation);
+      croak "$operation->{id}: no schema for its response" if !@found;
+      $references{ $_->{'$ref'} } = 1 for @found;
     }
   }
-
-  my @found = sort keys %references;
-  croak "$resource->{key}: expected one instance schema, found @found" if @found != 1;
-  return $spec->resolve({ '$ref' => $found[0] });
+  return map { $spec->resolve({ '$ref' => $_ }) } sort keys %references;
 }
 
 sub _fields {
-  my ($spec, $schema) = @_;
+  my ($spec, $resource, $schemas) = @_;
 
-  my @fields;
-  my $properties = $schema->{properties} // {};
-  for my $name (sort keys %{$properties}) {
-    croak "Field $name is reserved" if $IS_RESERVED_FIELD{$name};
-    my $reader = field_reader($spec, "Field $name", $properties->{$name});
-    push @fields, { name => $name, reader => $reader };
+  my %readers;
+  for my $schema (@{$schemas}) {
+    my $properties = $schema->{properties} // {};
+    for my $name (sort keys %{$properties}) {
+      croak "Field $name is reserved" if $IS_RESERVED_FIELD{$name};
+
+      my $reader = field_reader($spec, "Field $name", $properties->{$name}) // q{};
+      if (exists $readers{$name} && $readers{$name} ne $reader) {
+        croak "$resource->{key}: field $name is read in two ways";
+      }
+      $readers{$name} = $reader;
+    }
   }
-  return \@fields;
+  return [
+    map { { name => $_, reader => length $readers{$_} ? $readers{$_} : undef } }
+    sort keys %readers
+  ];
+}
+
+sub _add_children {
+  my ($spec, $tree, $resource, $model) = @_;
+
+  my %is_field = map { $_->{name} => 1 } @{ $model->{fields} };
+  for my $child (grep { ($_->{parent} // q{}) eq $resource->{class} } @{ $tree->{resources} }) {
+    my $names = _names($tree, $child);
+    my $side  = _host_side($model, $child);
+
+    my $mount = $child->{mount};
+    croak "$child->{key}: method $mount is reserved"     if $IS_RESERVED_MOUNT{$mount};
+    croak "$child->{key}: method $mount is also a field" if $is_field{$mount} && $side->{own};
+
+    # Only a list can turn an id into a context, so without one there is no way to reach it.
+    if (!$child->{list} && defined $child->{instance}{key}) {
+      croak "$child->{key}: an instance with an id needs a list";
+    }
+
+    my $target = $child->{list} // $child->{instance};
+    my $count  = () = $target->{path} =~ /[{]/g;
+    if ($count != @{ $side->{parameters} }) {
+      croak "$child->{key}: its path does not fit the parameters of its parent";
+    }
+
+    my $key = ($child->{instance} // {})->{key};
+    push @{ $side->{children} },
+      {
+      mount     => $mount,
+      module    => $names->{module},
+      list      => $names->{class}{list},
+      context   => $names->{class}{context},
+      singleton => $child->{list} ? 0 : 1,
+      defined $key ? (own => snake($key)) : (),
+      };
+  }
+  return;
+}
+
+# A child hangs from the object its parent link names: /Things/{Sid} is one thing, and /Things
+# is the list, which is what a section like Usage has.
+sub _host_side {
+  my ($model, $child) = @_;
+
+  my $wanted = ($child->{parent_side} // q{}) eq 'list' ? 'list' : 'context';
+  my $side   = $model->{$wanted} // ($child->{parent_side} ? undef : $model->{list});
+  croak "$child->{key}: its parent has no $wanted" if !$side;
+  return $side;
 }
 
 1;

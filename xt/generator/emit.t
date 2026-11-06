@@ -222,6 +222,172 @@ subtest 'the other value types' => sub {
   like($code, qr/C<day> and C<when>\s+take\s+a\s+string/,                  'date option in POD');
 };
 
+subtest 'parents and their children' => sub {
+  my $document = family();
+  my %models   = map { ($_->{module} =~ s/.*V1:://r) => $_ } all_models($document);
+
+  my ($thing, $section) = @models{qw(Thing Thing::Section)};
+  my @children = @{ $thing->{context}{children} };
+  is_deeply(
+    [sort map { $_->{mount} } @children],
+    [qw(data notes parts sections)],
+    'the children of an instance are on the context'
+  );
+  is_deeply([map { $_->{mount} } @{ $thing->{list}{children} // [] }],
+    ['kinds'], 'a list link stays on the list');
+  is_deeply([map { $_->{mount} } @{ $section->{list}{children} }],
+    ['rows'], 'a section has children');
+  ok(!$section->{has_instance}, 'and no instance');
+
+  for my $model (values %models) {
+    my $code = Twilio::Generator::Emit::module($model);
+    compiles($code) or BAIL_OUT("$model->{module} does not compile: $@");
+    my $file = ($model->{module} =~ s{::}{/}gr) . '.pm';
+    $INC{$file} = 1;    ## no critic (RequireLocalizedPunctuationVars)
+  }
+
+  my $http = Twilio::Http::FakeClient->new;
+  my $client =
+    Twilio::Rest::Client->new('ACxx', 'token', { http_client => $http, environment => {} });
+  my $domain = Twilio::Domain->new($client);
+  $domain->{base_url} = 'https://demo.test';
+  my $version = Twilio::Version->new($domain);
+  $version->{version} = 'v1';
+
+  my $list    = 'Twilio::Rest::Demo::V1::ThingList'->new($version);
+  my $context = $list->get_context('T1');
+
+  isa_ok($context->parts,       'Twilio::Rest::Demo::V1::Thing::PartList');
+  isa_ok($context->parts('P1'), 'Twilio::Rest::Demo::V1::Thing::PartContext');
+  isa_ok($context->notes,       'Twilio::Rest::Demo::V1::Thing::NoteList');
+  ok(!$context->notes->can('get_context'), 'a child with no instance has no context');
+  isa_ok($context->data,           'Twilio::Rest::Demo::V1::Thing::DataContext');
+  isa_ok($list->kinds,             'Twilio::Rest::Demo::V1::Thing::KindList');
+  isa_ok($context->sections->rows, 'Twilio::Rest::Demo::V1::Thing::Section::RowList');
+
+  $http->mock(200, { sid => 'T1', name => 'one' });
+  my $thing_instance = $context->fetch({ deep => 1 });
+  like(($http->requests)[-1]{url}, qr{/v1/Things/T1[.]json\?Deep=true\z}, 'options on a fetch');
+
+  isa_ok($thing_instance->parts('P1'), 'Twilio::Rest::Demo::V1::Thing::PartContext');
+  like(
+    ($context->data)->{uri},
+    qr{\A/Things/T1/Data[.]json\z},
+    'a singleton uses the id of its parent'
+  );
+
+  $http->mock(200, { name => 'total' });
+  is($list->kinds->fetch->name, 'total', 'a fetch on a list');
+
+  is($models{'Thing::Data'}{context}{own}, undef, 'a singleton has no id of its own');
+  is($models{'Thing::Part'}{context}{own}, 'sid', 'other instances do');
+
+  my $part = Twilio::Generator::Emit::module($models{'Thing::Part'});
+  unlike($part, qr/_build_instance/, 'nothing is built when nothing answers with an instance');
+
+  my $section_code = Twilio::Generator::Emit::module($section);
+  unlike($section_code, qr/^package \S+SectionInstance/m, 'a section has no instance class');
+
+  my $parent_pod = Twilio::Generator::Emit::module($thing);
+  like($parent_pod, qr/require \S+Thing::Part;/,     'a child is loaded when it is reached');
+  like($parent_pod, qr/->fetch\(\\%options\)/,       'the call with options is documented');
+  like($parent_pod, qr/=head2 parts/,                'children are documented');
+  like($parent_pod, qr/C<fetch>, C<data>, C<notes>/, 'the instance lists its methods');
+  like($parent_pod, qr/\$object->parts\(\$sid\)/,    'with the id');
+  like($parent_pod, qr/C<deep>/,                     'fetch options are documented');
+};
+
+subtest 'a family that does not fit stops generation' => sub {
+  my @cases = (
+    [
+      'a method with a reserved name',
+      qr/method read is reserved/,
+      sub {
+        $_[0]{paths}{'/v1/Things/{Sid}.json'}{'x-twilio'}{dependentProperties} =
+          { read => { resource_url => '/v1/Things/{thing_sid}/Parts.json' } };
+      },
+    ],
+    [
+      'a method that is also a field',
+      qr/method name is also a field/,
+      sub {
+        $_[0]{paths}{'/v1/Things/{Sid}.json'}{'x-twilio'}{dependentProperties} =
+          { name => { resource_url => '/v1/Things/{thing_sid}/Parts.json' } };
+      },
+    ],
+    [
+      'a child with an extra parameter',
+      qr/its path does not fit the parameters of its parent/,
+      sub {
+        my ($document) = @_;
+        $document->{paths}{'/v1/Things/{ThingSid}/{Extra}/Parts.json'} =
+          delete $document->{paths}{'/v1/Things/{ThingSid}/Parts.json'};
+      },
+    ],
+    [
+      'a child of an instance that does not exist',
+      qr/its parent has no context/,
+      sub { delete $_[0]{paths}{'/v1/Things/{Sid}.json'} },
+    ],
+    [
+      'an instance with an id and no list',
+      qr/an instance with an id needs a list/,
+      sub { delete $_[0]{paths}{'/v1/Things/{ThingSid}/Parts.json'} },
+    ],
+    [
+      'a child of a list that does not exist',
+      qr/its parent has no list/,
+      sub { delete $_[0]{paths}{'/v1/Things.json'} },
+    ],
+  );
+
+  for my $case (@cases) {
+    my ($name, $expected, $change) = @{$case};
+    my $document = family();
+    $change->($document);
+
+    my $ok    = eval { all_models($document); 1 };
+    my $error = $@;
+    ok(!$ok, "$name: refused");
+    like($error, $expected, "$name: says why");
+  }
+};
+
+subtest 'top-level modules' => sub {
+  my $top = {
+    account_context => 'Demo::AccountContext',
+    account_list    => 'Demo::AccountList',
+    account_module  => 'Demo::Account',
+    base_url        => 'https://demo.test',
+    domain_class    => 'Twilio::Rest::Demo',
+    shortcuts       => [{ mount => 'things', module => 'Demo::Thing' }],
+    version_class   => 'Twilio::Rest::Demo::V1',
+    version_method  => 'v1',
+    version_path    => '2026-01-01',
+  };
+
+  my $version = Twilio::Generator::Emit::version($top);
+  like($version, qr/\{version\} = '2026-01-01'/,                    'the version in URLs');
+  like($version, qr/sub accounts .*sub account .*sub things/s,      'accounts and shortcuts');
+  like($version, qr/return \$self->account->things\(\@arguments\)/, 'forwarded to the account');
+  like($version, qr/get_account_sid/,                               'the account of the client');
+
+  my $domain = Twilio::Generator::Emit::domain($top);
+  like($domain, qr/\{base_url\} = 'https:\/\/demo.test'/,       'the host');
+  like($domain, qr/sub v1 /,                                    'the version');
+  like($domain, qr/return \$self->v1->accounts\(\@arguments\)/, 'forwarded to the version');
+  like($domain, qr/=head2 things/,                              'documented');
+
+  my $client = Twilio::Generator::Emit::client($top);
+  like($client, qr/require Twilio::Rest::Demo;/,                'the domain');
+  like($client, qr/return \$self->api->things\(\@arguments\)/,  'forwarded to the domain');
+  like($client, qr/return \$self->api->account\(\@arguments\)/, 'with the account');
+  unlike($client, qr/sub accounts/, 'accounts is left for its own domain');
+  like($client, qr/=head2 things/, 'documented');
+
+  compiles($_) or BAIL_OUT("Does not compile: $@") for $version, $domain, $client;
+};
+
 subtest 'option names' => sub {
   is(option_name('StatusCallback'), 'status_callback',  'plain');
   is(option_name('DateSent<'),      'date_sent_before', 'before');
@@ -279,14 +445,6 @@ subtest 'anything with no rule stops generation' => sub {
       },
     ],
     [
-      'query parameter on fetch',
-      qr/FetchThing: no rule for query parameter Extra/,
-      sub {
-        push @{ $_[0]{paths}{$item_path}{get}{parameters} },
-          { in => 'query', name => 'Extra', schema => {} };
-      },
-    ],
-    [
       'header parameter on a list',
       qr/ListThing: no rule for header parameter X-Thing/,
       sub {
@@ -305,6 +463,19 @@ subtest 'anything with no rule stops generation' => sub {
       sub { $_[0]{paths}{$list_path}{post}{requestBody}{content}{'text/plain'} = {} },
     ],
     [
+      'query parameter on a delete',
+      qr/DeleteThing: no rule for query parameter Extra/,
+      sub {
+        push @{ $_[0]{paths}{$item_path}{delete}{parameters} },
+          { in => 'query', name => 'Extra', schema => {} };
+      },
+    ],
+    [
+      'body on a fetch',
+      qr/FetchThing: no rule for a body here/,
+      sub { $_[0]{paths}{$item_path}{get}{requestBody} = {} },
+    ],
+    [
       'body on a delete',
       qr/DeleteThing: no rule for a body here/,
       sub { $_[0]{paths}{$item_path}{delete}{requestBody} = {} },
@@ -318,18 +489,6 @@ subtest 'anything with no rule stops generation' => sub {
       'create on an instance',
       qr/CreateThing: no rule for create on an instance/,
       sub { $_[0]{paths}{$item_path}{put} = { operationId => 'CreateThing' } },
-    ],
-    [
-      'singleton',
-      qr/no rule for a singleton yet/,
-      sub {
-        my ($document) = @_;
-        $document->{paths}{'/v1/Accounts/{AccountSid}/Things.json'}{'x-twilio'}{pathType} =
-          'instance';
-        delete $document->{paths}{$item_path};
-        delete $document->{paths}{$list_path}{post};
-        delete $document->{paths}{$list_path}{get};
-      },
     ],
     [
       'no records',
@@ -348,12 +507,27 @@ subtest 'anything with no rule stops generation' => sub {
       },
     ],
     [
-      'two instance schemas',
-      qr/expected one instance schema, found/,
+      'required query parameter',
+      qr/ListThing Extra: no rule for a required query parameter/,
       sub {
-        $_[0]{components}{schemas}{other} = { properties => {} };
-        $_[0]{paths}{$item_path}{get}{responses}{200}{content}{'application/json'}{schema} =
-          { '$ref' => '#/components/schemas/other' };
+        push @{ $_[0]{paths}{$list_path}{get}{parameters} },
+          { in => 'query', name => 'Extra', required => 1, schema => {} };
+      },
+    ],
+    [
+      'no schema for a response',
+      qr/FetchThing: no schema for its response/,
+      sub { $_[0]{paths}{$item_path}{get}{responses} = { 200 => {} } },
+    ],
+    [
+      'a field read in two ways',
+      qr/field name is read in two ways/,
+      sub {
+        my ($document) = @_;
+        my $schemas = $document->{components}{schemas};
+        $schemas->{other} = { properties => { name => { type => 'string', format => 'date' } } };
+        $document->{paths}{$item_path}{get}{responses}{200} =
+          response({ '$ref' => '#/components/schemas/other' });
       },
     ],
     [
@@ -429,6 +603,51 @@ sub list {
   my $version = Twilio::Version->new($domain);
   $version->{version} = 'v1';
   return ("${NAMESPACE}ThingList"->new($version, $ACCOUNT), $http);
+}
+
+sub all_models {
+  my ($document) = @_;
+
+  my $spec = Twilio::Generator::Spec->new('demo', 'v1', $document);
+  my $tree = Twilio::Generator::Tree::build($spec);
+  return map { Twilio::Generator::Resource::build($spec, $tree, $_) } @{ $tree->{resources} };
+}
+
+# A parent with one child of each kind.
+sub family {
+  my $item = sub {
+    my ($type, $parent, %operations) = @_;
+    return {
+      'x-twilio' => { pathType => $type, defined $parent ? (parent => $parent) : () },
+      %operations
+    };
+  };
+  my $answer = { responses => { 200 => response(thing_reference()) } };
+  my $query  = { name => 'Deep', in => 'query', schema => { type => 'boolean' } };
+
+  return {
+    paths => {
+      '/v1/Things.json'       => $item->('list', undef),
+      '/v1/Things/{Sid}.json' => $item->(
+        'instance', undef,
+        get => { %{$answer}, operationId => 'FetchThing', parameters => [$query] }
+      ),
+      '/v1/Things/{ThingSid}/Parts.json'         => $item->('list',     '/Things/{Sid}.json'),
+      '/v1/Things/{ThingSid}/Parts/{Sid}.json'   => $item->('instance', '/Things/{Sid}.json'),
+      '/v1/Things/{ThingSid}/Notes.json'         => $item->('list',     '/Things/{Sid}.json'),
+      '/v1/Things/{ThingSid}/Data.json'          => $item->('instance', '/Things/{Sid}.json'),
+      '/v1/Things/{ThingSid}/Sections.json'      => $item->('list',     '/Things/{Sid}.json'),
+      '/v1/Things/{ThingSid}/Sections/Rows.json' =>
+        $item->('list', '/Things/{ThingSid}/Sections.json'),
+      '/v1/Things/Kinds.json' =>
+        $item->('list', '/Things.json', get => { %{$answer}, operationId => 'FetchKind' }),
+    },
+    components => {
+      schemas => {
+        thing => { properties => { name => { type => 'string' }, sid => { type => 'string' } } },
+      },
+    },
+  };
 }
 
 sub thing_reference {
