@@ -25,8 +25,8 @@ sub snake {
 sub singular {
   my ($word) = @_;
   return $word =~ s/ies\z/y/r if $word =~ /[^aeiou]ies\z/;
-  return $word =~ s/es\z//r   if $word =~ /(?:ss|x|ch|sh)es\z/;
-  return $word if $word =~ /ss\z/;
+  return $word =~ s/es\z//r   if $word =~ /(?:ss|us|x|ch|sh)es\z/;
+  return $word if $word =~ /(?:ss|us)\z/;
   return $word =~ s/s\z//r;
 }
 
@@ -35,7 +35,9 @@ sub segment_class {
 
   # An acronym like SIP is a class named Sip in the official libraries.
   return ucfirst lc $segment if $segment =~ /\A[A-Z]+\z/;
-  return singular($segment);
+
+  # A few paths are lowercase, like OAuth's /v1/token.
+  return ucfirst singular($segment);
 }
 
 1;

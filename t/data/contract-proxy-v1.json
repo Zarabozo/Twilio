@@ -1,0 +1,930 @@
+[
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    1
+   ],
+   [
+    "participants",
+    1
+   ],
+   [
+    "message_interactions",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Body",
+    "v_body"
+   ],
+   [
+    "MediaUrl",
+    "v_media_url_1"
+   ],
+   [
+    "MediaUrl",
+    "v_media_url_2"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateMessageInteraction",
+  "method" : "create",
+  "options" : {
+   "body" : "v_body",
+   "media_url" : [
+    "v_media_url_1",
+    "v_media_url_2"
+   ]
+  },
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants/id3/MessageInteractions"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    1
+   ],
+   [
+    "participants",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Identifier",
+    "v_identifier"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "ProxyIdentifier",
+    "v_proxy_identifier"
+   ],
+   [
+    "ProxyIdentifierSid",
+    "v_proxy_identifier_sid"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateParticipant",
+  "method" : "create",
+  "options" : {
+   "friendly_name" : "v_friendly_name",
+   "proxy_identifier" : "v_proxy_identifier",
+   "proxy_identifier_sid" : "v_proxy_identifier_sid"
+  },
+  "required" : [
+   "v_identifier"
+  ],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "phone_numbers",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "IsReserved",
+    "true"
+   ],
+   [
+    "PhoneNumber",
+    "v_phone_number"
+   ],
+   [
+    "Sid",
+    "v_sid"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreatePhoneNumber",
+  "method" : "create",
+  "options" : {
+   "is_reserved" : 1,
+   "phone_number" : "v_phone_number",
+   "sid" : "v_sid"
+  },
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/PhoneNumbers"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "UniqueName",
+    "v_unique_name"
+   ],
+   [
+    "CallbackUrl",
+    "v_callback_url"
+   ],
+   [
+    "ChatInstanceSid",
+    "v_chat_instance_sid"
+   ],
+   [
+    "DefaultTtl",
+    "1017"
+   ],
+   [
+    "GeoMatchLevel",
+    "area-code"
+   ],
+   [
+    "InterceptCallbackUrl",
+    "v_intercept_callback_url"
+   ],
+   [
+    "NumberSelectionBehavior",
+    "prefer-sticky"
+   ],
+   [
+    "OutOfSessionCallbackUrl",
+    "v_out_of_session_callback_url"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateService",
+  "method" : "create",
+  "options" : {
+   "callback_url" : "v_callback_url",
+   "chat_instance_sid" : "v_chat_instance_sid",
+   "default_ttl" : 1017,
+   "geo_match_level" : "area-code",
+   "intercept_callback_url" : "v_intercept_callback_url",
+   "number_selection_behavior" : "prefer-sticky",
+   "out_of_session_callback_url" : "v_out_of_session_callback_url"
+  },
+  "required" : [
+   "v_unique_name"
+  ],
+  "url" : "https://proxy.twilio.com/v1/Services"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "DateExpiry",
+    "2026-01-16T03:04:05Z"
+   ],
+   [
+    "Mode",
+    "voice-and-message"
+   ],
+   [
+    "Participants",
+    "{\"v_participants\":1}"
+   ],
+   [
+    "Participants",
+    "{\"v_participants\":2}"
+   ],
+   [
+    "Status",
+    "unknown"
+   ],
+   [
+    "Ttl",
+    "308"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateSession",
+  "method" : "create",
+  "options" : {
+   "date_expiry" : {
+    "epoch" : 1768532645
+   },
+   "mode" : "voice-and-message",
+   "participants" : [
+    {
+     "v_participants" : 1
+    },
+    {
+     "v_participants" : 2
+    }
+   ],
+   "status" : "unknown",
+   "ttl" : 308,
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    1
+   ],
+   [
+    "interactions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteInteraction",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Interactions/id3"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    1
+   ],
+   [
+    "participants",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteParticipant",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants/id3"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "phone_numbers",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeletePhoneNumber",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/PhoneNumbers/id2"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteService",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteSession",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    1
+   ],
+   [
+    "interactions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchInteraction",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Interactions/id3"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    1
+   ],
+   [
+    "participants",
+    1
+   ],
+   [
+    "message_interactions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchMessageInteraction",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants/id3/MessageInteractions/id4"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    1
+   ],
+   [
+    "participants",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchParticipant",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants/id3"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "phone_numbers",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchPhoneNumber",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/PhoneNumbers/id2"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchService",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSession",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    1
+   ],
+   [
+    "interactions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListInteraction",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "interactions",
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Interactions"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    1
+   ],
+   [
+    "participants",
+    1
+   ],
+   [
+    "message_interactions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListMessageInteraction",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "interactions",
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants/id3/MessageInteractions"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    1
+   ],
+   [
+    "participants",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListParticipant",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "participants",
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "phone_numbers",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListPhoneNumber",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "phone_numbers",
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/PhoneNumbers"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListService",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "services",
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListSession",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "sessions",
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "phone_numbers",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "IsReserved",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdatePhoneNumber",
+  "method" : "update",
+  "options" : {
+   "is_reserved" : 1
+  },
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/PhoneNumbers/id2"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "CallbackUrl",
+    "v_callback_url"
+   ],
+   [
+    "ChatInstanceSid",
+    "v_chat_instance_sid"
+   ],
+   [
+    "DefaultTtl",
+    "1017"
+   ],
+   [
+    "GeoMatchLevel",
+    "area-code"
+   ],
+   [
+    "InterceptCallbackUrl",
+    "v_intercept_callback_url"
+   ],
+   [
+    "NumberSelectionBehavior",
+    "prefer-sticky"
+   ],
+   [
+    "OutOfSessionCallbackUrl",
+    "v_out_of_session_callback_url"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateService",
+  "method" : "update",
+  "options" : {
+   "callback_url" : "v_callback_url",
+   "chat_instance_sid" : "v_chat_instance_sid",
+   "default_ttl" : 1017,
+   "geo_match_level" : "area-code",
+   "intercept_callback_url" : "v_intercept_callback_url",
+   "number_selection_behavior" : "prefer-sticky",
+   "out_of_session_callback_url" : "v_out_of_session_callback_url",
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1"
+ },
+ {
+  "chain" : [
+   [
+    "proxy",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sessions",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "DateExpiry",
+    "2026-01-16T03:04:05Z"
+   ],
+   [
+    "Status",
+    "unknown"
+   ],
+   [
+    "Ttl",
+    "308"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateSession",
+  "method" : "update",
+  "options" : {
+   "date_expiry" : {
+    "epoch" : 1768532645
+   },
+   "status" : "unknown",
+   "ttl" : 308
+  },
+  "required" : [],
+  "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2"
+ }
+]

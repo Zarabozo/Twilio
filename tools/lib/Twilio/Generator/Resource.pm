@@ -6,7 +6,7 @@ use warnings;
 use Carp qw(croak);
 
 use Twilio::Generator::Names qw(camelize snake);
-use Twilio::Generator::Types qw(field_reader option_name request_writer);
+use Twilio::Generator::Types qw(field_reader map_prefix option_name request_writer);
 
 our $VERSION = '2.000000';
 
@@ -266,6 +266,7 @@ sub _argument {
     wire        => $wire_name,
     name        => option_name($wire_name),
     writer      => scalar request_writer($spec, $where, $schema),
+    map_prefix  => scalar map_prefix($spec, $schema),
     array       => $is_array ? 1 : 0,
     description => $description // $schema->{description},
     enum        => _enum_of($spec, $is_array ? $resolved->{items} : $schema),

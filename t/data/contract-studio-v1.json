@@ -1,0 +1,638 @@
+[
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "engagements",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "To",
+    "v_to"
+   ],
+   [
+    "From",
+    "v_from"
+   ],
+   [
+    "Parameters",
+    "{\"v_parameters\":9}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateEngagement",
+  "method" : "create",
+  "options" : {
+   "parameters" : {
+    "v_parameters" : 9
+   }
+  },
+  "required" : [
+   "v_to",
+   "v_from"
+  ],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Engagements"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "executions",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "To",
+    "v_to"
+   ],
+   [
+    "From",
+    "v_from"
+   ],
+   [
+    "Parameters",
+    "{\"v_parameters\":9}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateExecution",
+  "method" : "create",
+  "options" : {
+   "parameters" : {
+    "v_parameters" : 9
+   }
+  },
+  "required" : [
+   "v_to",
+   "v_from"
+  ],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Executions"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "engagements",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteEngagement",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Engagements/id2"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "executions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteExecution",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Executions/id2"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteFlow",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "engagements",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchEngagement",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Engagements/id2"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "engagements",
+    1
+   ],
+   [
+    "engagement_context",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchEngagementContext",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Engagements/id2/Context"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "executions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchExecution",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Executions/id2"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "executions",
+    1
+   ],
+   [
+    "execution_context",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchExecutionContext",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Executions/id2/Context"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "executions",
+    1
+   ],
+   [
+    "steps",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchExecutionStep",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Executions/id2/Steps/id3"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "executions",
+    1
+   ],
+   [
+    "steps",
+    1
+   ],
+   [
+    "step_context",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchExecutionStepContext",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Executions/id2/Steps/id3/Context"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchFlow",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "engagements",
+    1
+   ],
+   [
+    "steps",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchStep",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Engagements/id2/Steps/id3"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "engagements",
+    1
+   ],
+   [
+    "steps",
+    1
+   ],
+   [
+    "step_context",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchStepContext",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Engagements/id2/Steps/id3/Context"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "engagements",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListEngagement",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "engagements",
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Engagements"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "executions",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "DateCreatedFrom",
+    "2026-01-27T03:04:05Z"
+   ],
+   [
+    "DateCreatedTo",
+    "2026-01-14T03:04:05Z"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListExecution",
+  "method" : "page",
+  "options" : {
+   "date_created_from" : {
+    "epoch" : 1769483045
+   },
+   "date_created_to" : {
+    "epoch" : 1768359845
+   }
+  },
+  "records_key" : "executions",
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Executions"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "executions",
+    1
+   ],
+   [
+    "steps",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListExecutionStep",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "steps",
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Executions/id2/Steps"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListFlow",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "flows",
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "engagements",
+    1
+   ],
+   [
+    "steps",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListStep",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "steps",
+  "required" : [],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Engagements/id2/Steps"
+ },
+ {
+  "chain" : [
+   [
+    "studio",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flows",
+    1
+   ],
+   [
+    "executions",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "active"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateExecution",
+  "method" : "update",
+  "options" : {},
+  "required" : [
+   "active"
+  ],
+  "url" : "https://studio.twilio.com/v1/Flows/id1/Executions/id2"
+ }
+]

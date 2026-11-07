@@ -80,9 +80,9 @@ sub _entry {
   );
 
   for my $name (@{ $body->{required} }) {
-    my ($input, @wire) = _sample($spec, $name, $body->{properties}{$name});
+    my ($input, @pairs) = _sample($spec, $name, $body->{properties}{$name});
     push @{ $entry{required} }, $input;
-    push @{ $entry{expected} }, map { [$name, $_] } @wire;
+    push @{ $entry{expected} }, @pairs;
   }
   for my $name (sort keys %{ $body->{properties} }) {
     next if grep { $_ eq $name } @{ $body->{required} };
@@ -111,9 +111,9 @@ sub _body {
 sub _add_option {
   my ($entry, $spec, $wire_name, $schema) = @_;
 
-  my ($input, @wire) = _sample($spec, $wire_name, $schema);
+  my ($input, @pairs) = _sample($spec, $wire_name, $schema);
   $entry->{options}{ option_name($wire_name) } = $input;
-  push @{ $entry->{expected} }, map { [$wire_name, $_] } @wire;
+  push @{ $entry->{expected} }, @pairs;
   return;
 }
 
@@ -124,26 +124,52 @@ sub _moment {
   return { epoch => timegm(5, 4, 3, $day, 0, 2026) };
 }
 
-# A value to pass in, and what must then appear on the wire. Each one comes from the name of its
-# parameter, so that two values wired to each other's place cannot look right.
+# A value to pass in, and the name and value pairs that must then appear on the wire. Each one
+# comes from the name of its parameter, so that two values wired to each other's place cannot
+# look right.
 sub _sample {
   my ($spec, $wire_name, $schema) = @_;
 
   my $resolved = $spec->resolve($schema // {});
-  my $type     = $resolved->{type}   // q{};
-  my $format   = $resolved->{format} // $type;
   my $text     = 'v_' . option_name($wire_name);
-  my $number   = unpack '%32C*', $wire_name;
-  my $day      = $number % $DAYS_IN_A_SHORT_MONTH + 1;
-  my $date     = sprintf '2026-01-%02d', $day;
 
-  return (["${text}_1", "${text}_2"], "${text}_1", "${text}_2") if $type eq 'array';
-  return (1,               'true')              if $format eq 'boolean';
-  return (_moment($day),   $date)               if $format eq 'date';
-  return (_moment($day),   "${date}T03:04:05Z") if $format eq 'date-time';
-  return ({ a => 1 },      '{"a":1}')           if $format eq q{};
-  return ($number,         "$number")           if $type eq 'integer';
-  return ($number + $HALF, $number + $HALF)     if $type eq 'number';
+  # Its own name is never sent: each key in the map becomes a parameter.
+  if (my ($prefix) = ($resolved->{format} // q{}) =~ /\Aprefixed-collapsible-map-(\w+)\z/) {
+    return ({ one => { two => $text } }, ["$prefix.one.two", $text]);
+  }
+  if (($resolved->{type} // q{}) eq 'array') {
+    my ($input, @wire) = _array_sample($spec, $text, $resolved->{items});
+    return ($input, map { [$wire_name, $_] } @wire);
+  }
+  my ($input, $wire) = _value_sample($resolved, $text, unpack '%32C*', $wire_name);
+  return ($input, [$wire_name, $wire]);
+}
+
+sub _array_sample {
+  my ($spec, $text, $items) = @_;
+
+  my $item = $spec->resolve($items // {});
+  my $kind = $item->{format} // $item->{type} // q{};
+  if ($kind eq q{} || $kind eq 'object') {
+    return ([{ $text => 1 }, { $text => 2 }], qq({"$text":1}), qq({"$text":2}));
+  }
+  return (["${text}_1", "${text}_2"], "${text}_1", "${text}_2");
+}
+
+sub _value_sample {
+  my ($resolved, $text, $number) = @_;
+
+  my $type   = $resolved->{type}   // q{};
+  my $format = $resolved->{format} // $type;
+  my $day    = $number % $DAYS_IN_A_SHORT_MONTH + 1;
+  my $date   = sprintf '2026-01-%02d', $day;
+
+  return (1,                 'true')              if $format eq 'boolean';
+  return (_moment($day),     $date)               if $format eq 'date';
+  return (_moment($day),     "${date}T03:04:05Z") if $format eq 'date-time';
+  return ({ $text => $day }, qq({"$text":$day}))  if $format eq q{} || $format eq 'object';
+  return ($number,           "$number")           if $type eq 'integer';
+  return ($number + $HALF,   $number + $HALF)     if $type eq 'number';
 
   my @choices = @{ $resolved->{enum} // [] };
   my $value   = @choices ? $choices[$number % @choices] : $text;

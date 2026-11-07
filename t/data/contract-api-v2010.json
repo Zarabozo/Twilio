@@ -1867,7 +1867,7 @@
    ],
    [
     "Parameter",
-    "{\"a\":1}"
+    "{\"v_parameter\":6}"
    ],
    [
     "PaymentConnector",
@@ -1914,7 +1914,7 @@
    "input" : "v_input",
    "min_postal_code_length" : 1908,
    "parameter" : {
-    "a" : 1
+    "v_parameter" : 6
    },
    "payment_connector" : "v_payment_connector",
    "payment_method" : "ach-debit",

@@ -1,0 +1,1146 @@
+[
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "esim_profiles",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "CallbackMethod",
+    "GET"
+   ],
+   [
+    "CallbackUrl",
+    "v_callback_url"
+   ],
+   [
+    "Eid",
+    "v_eid"
+   ],
+   [
+    "GenerateMatchingId",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateEsimProfile",
+  "method" : "create",
+  "options" : {
+   "callback_method" : "GET",
+   "callback_url" : "v_callback_url",
+   "eid" : "v_eid",
+   "generate_matching_id" : 1
+  },
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/ESimProfiles"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "fleets",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "NetworkAccessProfile",
+    "v_network_access_profile"
+   ],
+   [
+    "DataEnabled",
+    "true"
+   ],
+   [
+    "DataLimit",
+    "889"
+   ],
+   [
+    "IpCommandsMethod",
+    "GET"
+   ],
+   [
+    "IpCommandsUrl",
+    "v_ip_commands_url"
+   ],
+   [
+    "SmsCommandsEnabled",
+    "true"
+   ],
+   [
+    "SmsCommandsMethod",
+    "GET"
+   ],
+   [
+    "SmsCommandsUrl",
+    "v_sms_commands_url"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateFleet",
+  "method" : "create",
+  "options" : {
+   "data_enabled" : 1,
+   "data_limit" : 889,
+   "ip_commands_method" : "GET",
+   "ip_commands_url" : "v_ip_commands_url",
+   "sms_commands_enabled" : 1,
+   "sms_commands_method" : "GET",
+   "sms_commands_url" : "v_sms_commands_url",
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [
+   "v_network_access_profile"
+  ],
+  "url" : "https://supersim.twilio.com/v1/Fleets"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "ip_commands",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Sim",
+    "v_sim"
+   ],
+   [
+    "Payload",
+    "v_payload"
+   ],
+   [
+    "DevicePort",
+    "1013"
+   ],
+   [
+    "CallbackMethod",
+    "GET"
+   ],
+   [
+    "CallbackUrl",
+    "v_callback_url"
+   ],
+   [
+    "PayloadType",
+    "text"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateIpCommand",
+  "method" : "create",
+  "options" : {
+   "callback_method" : "GET",
+   "callback_url" : "v_callback_url",
+   "payload_type" : "text"
+  },
+  "required" : [
+   "v_sim",
+   "v_payload",
+   1013
+  ],
+  "url" : "https://supersim.twilio.com/v1/IpCommands"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "network_access_profiles",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Networks",
+    "v_networks_1"
+   ],
+   [
+    "Networks",
+    "v_networks_2"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateNetworkAccessProfile",
+  "method" : "create",
+  "options" : {
+   "networks" : [
+    "v_networks_1",
+    "v_networks_2"
+   ],
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "network_access_profiles",
+    1
+   ],
+   [
+    "networks",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Network",
+    "v_network"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateNetworkAccessProfileNetwork",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   "v_network"
+  ],
+  "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles/id1/Networks"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sims",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Iccid",
+    "v_iccid"
+   ],
+   [
+    "RegistrationCode",
+    "v_registration_code"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateSim",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   "v_iccid",
+   "v_registration_code"
+  ],
+  "url" : "https://supersim.twilio.com/v1/Sims"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sms_commands",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Sim",
+    "v_sim"
+   ],
+   [
+    "Payload",
+    "v_payload"
+   ],
+   [
+    "CallbackMethod",
+    "GET"
+   ],
+   [
+    "CallbackUrl",
+    "v_callback_url"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateSmsCommand",
+  "method" : "create",
+  "options" : {
+   "callback_method" : "GET",
+   "callback_url" : "v_callback_url"
+  },
+  "required" : [
+   "v_sim",
+   "v_payload"
+  ],
+  "url" : "https://supersim.twilio.com/v1/SmsCommands"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "network_access_profiles",
+    1
+   ],
+   [
+    "networks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteNetworkAccessProfileNetwork",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles/id1/Networks/id2"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "esim_profiles",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchEsimProfile",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/ESimProfiles/id1"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "fleets",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchFleet",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/Fleets/id1"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "ip_commands",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchIpCommand",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/IpCommands/id1"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "networks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchNetwork",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/Networks/id1"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "network_access_profiles",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchNetworkAccessProfile",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles/id1"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "network_access_profiles",
+    1
+   ],
+   [
+    "networks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchNetworkAccessProfileNetwork",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles/id1/Networks/id2"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sims",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSim",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/Sims/id1"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sms_commands",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSmsCommand",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/SmsCommands/id1"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sims",
+    1
+   ],
+   [
+    "billing_periods",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListBillingPeriod",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "billing_periods",
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/Sims/id1/BillingPeriods"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "esim_profiles",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Eid",
+    "v_eid"
+   ],
+   [
+    "SimSid",
+    "v_sim_sid"
+   ],
+   [
+    "Status",
+    "available"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListEsimProfile",
+  "method" : "page",
+  "options" : {
+   "eid" : "v_eid",
+   "sim_sid" : "v_sim_sid",
+   "status" : "available"
+  },
+  "records_key" : "esim_profiles",
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/ESimProfiles"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "fleets",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "NetworkAccessProfile",
+    "v_network_access_profile"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListFleet",
+  "method" : "page",
+  "options" : {
+   "network_access_profile" : "v_network_access_profile"
+  },
+  "records_key" : "fleets",
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/Fleets"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "ip_commands",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Sim",
+    "v_sim"
+   ],
+   [
+    "SimIccid",
+    "v_sim_iccid"
+   ],
+   [
+    "Status",
+    "queued"
+   ],
+   [
+    "Direction",
+    "from_sim"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListIpCommand",
+  "method" : "page",
+  "options" : {
+   "direction" : "from_sim",
+   "sim" : "v_sim",
+   "sim_iccid" : "v_sim_iccid",
+   "status" : "queued"
+  },
+  "records_key" : "ip_commands",
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/IpCommands"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "networks",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "IsoCountry",
+    "v_iso_country"
+   ],
+   [
+    "Mcc",
+    "v_mcc"
+   ],
+   [
+    "Mnc",
+    "v_mnc"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListNetwork",
+  "method" : "page",
+  "options" : {
+   "iso_country" : "v_iso_country",
+   "mcc" : "v_mcc",
+   "mnc" : "v_mnc"
+  },
+  "records_key" : "networks",
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/Networks"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "network_access_profiles",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListNetworkAccessProfile",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "network_access_profiles",
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "network_access_profiles",
+    1
+   ],
+   [
+    "networks",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListNetworkAccessProfileNetwork",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "networks",
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles/id1/Networks"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "settings_updates",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Sim",
+    "v_sim"
+   ],
+   [
+    "Status",
+    "scheduled"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListSettingsUpdate",
+  "method" : "page",
+  "options" : {
+   "sim" : "v_sim",
+   "status" : "scheduled"
+  },
+  "records_key" : "settings_updates",
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/SettingsUpdates"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sims",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "scheduled"
+   ],
+   [
+    "Fleet",
+    "v_fleet"
+   ],
+   [
+    "Iccid",
+    "v_iccid"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListSim",
+  "method" : "page",
+  "options" : {
+   "fleet" : "v_fleet",
+   "iccid" : "v_iccid",
+   "status" : "scheduled"
+  },
+  "records_key" : "sims",
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/Sims"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sims",
+    1
+   ],
+   [
+    "sim_ip_addresses",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListSimIpAddress",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "ip_addresses",
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/Sims/id1/IpAddresses"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sms_commands",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Sim",
+    "v_sim"
+   ],
+   [
+    "Status",
+    "failed"
+   ],
+   [
+    "Direction",
+    "from_sim"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListSmsCommand",
+  "method" : "page",
+  "options" : {
+   "direction" : "from_sim",
+   "sim" : "v_sim",
+   "status" : "failed"
+  },
+  "records_key" : "sms_commands",
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/SmsCommands"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "usage_records",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Sim",
+    "v_sim"
+   ],
+   [
+    "Fleet",
+    "v_fleet"
+   ],
+   [
+    "Network",
+    "v_network"
+   ],
+   [
+    "IsoCountry",
+    "v_iso_country"
+   ],
+   [
+    "Group",
+    "fleet"
+   ],
+   [
+    "Granularity",
+    "hour"
+   ],
+   [
+    "StartTime",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "EndTime",
+    "2026-01-07T03:04:05Z"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListUsageRecord",
+  "method" : "page",
+  "options" : {
+   "end_time" : {
+    "epoch" : 1767755045
+   },
+   "fleet" : "v_fleet",
+   "granularity" : "hour",
+   "group" : "fleet",
+   "iso_country" : "v_iso_country",
+   "network" : "v_network",
+   "sim" : "v_sim",
+   "start_time" : {
+    "epoch" : 1767323045
+   }
+  },
+  "records_key" : "usage_records",
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/UsageRecords"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "fleets",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "DataLimit",
+    "889"
+   ],
+   [
+    "IpCommandsMethod",
+    "GET"
+   ],
+   [
+    "IpCommandsUrl",
+    "v_ip_commands_url"
+   ],
+   [
+    "NetworkAccessProfile",
+    "v_network_access_profile"
+   ],
+   [
+    "SmsCommandsMethod",
+    "GET"
+   ],
+   [
+    "SmsCommandsUrl",
+    "v_sms_commands_url"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateFleet",
+  "method" : "update",
+  "options" : {
+   "data_limit" : 889,
+   "ip_commands_method" : "GET",
+   "ip_commands_url" : "v_ip_commands_url",
+   "network_access_profile" : "v_network_access_profile",
+   "sms_commands_method" : "GET",
+   "sms_commands_url" : "v_sms_commands_url",
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/Fleets/id1"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "network_access_profiles",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateNetworkAccessProfile",
+  "method" : "update",
+  "options" : {
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles/id1"
+ },
+ {
+  "chain" : [
+   [
+    "supersim",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sims",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "AccountSid",
+    "v_account_sid"
+   ],
+   [
+    "CallbackMethod",
+    "GET"
+   ],
+   [
+    "CallbackUrl",
+    "v_callback_url"
+   ],
+   [
+    "Fleet",
+    "v_fleet"
+   ],
+   [
+    "Status",
+    "inactive"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateSim",
+  "method" : "update",
+  "options" : {
+   "account_sid" : "v_account_sid",
+   "callback_method" : "GET",
+   "callback_url" : "v_callback_url",
+   "fleet" : "v_fleet",
+   "status" : "inactive",
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://supersim.twilio.com/v1/Sims/id1"
+ }
+]

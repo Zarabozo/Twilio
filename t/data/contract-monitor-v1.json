@@ -1,0 +1,153 @@
+[
+ {
+  "chain" : [
+   [
+    "monitor",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "alerts",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchAlert",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://monitor.twilio.com/v1/Alerts/id1"
+ },
+ {
+  "chain" : [
+   [
+    "monitor",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "events",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchEvent",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://monitor.twilio.com/v1/Events/id1"
+ },
+ {
+  "chain" : [
+   [
+    "monitor",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "alerts",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "LogLevel",
+    "v_log_level"
+   ],
+   [
+    "StartDate",
+    "2026-01-13T03:04:05Z"
+   ],
+   [
+    "EndDate",
+    "2026-01-18T03:04:05Z"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListAlert",
+  "method" : "page",
+  "options" : {
+   "end_date" : {
+    "epoch" : 1768705445
+   },
+   "log_level" : "v_log_level",
+   "start_date" : {
+    "epoch" : 1768273445
+   }
+  },
+  "records_key" : "alerts",
+  "required" : [],
+  "url" : "https://monitor.twilio.com/v1/Alerts"
+ },
+ {
+  "chain" : [
+   [
+    "monitor",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "events",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "ActorSid",
+    "v_actor_sid"
+   ],
+   [
+    "EventType",
+    "v_event_type"
+   ],
+   [
+    "ResourceSid",
+    "v_resource_sid"
+   ],
+   [
+    "SourceIpAddress",
+    "v_source_ip_address"
+   ],
+   [
+    "StartDate",
+    "2026-01-13T03:04:05Z"
+   ],
+   [
+    "EndDate",
+    "2026-01-18T03:04:05Z"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListEvent",
+  "method" : "page",
+  "options" : {
+   "actor_sid" : "v_actor_sid",
+   "end_date" : {
+    "epoch" : 1768705445
+   },
+   "event_type" : "v_event_type",
+   "resource_sid" : "v_resource_sid",
+   "source_ip_address" : "v_source_ip_address",
+   "start_date" : {
+    "epoch" : 1768273445
+   }
+  },
+  "records_key" : "events",
+  "required" : [],
+  "url" : "https://monitor.twilio.com/v1/Events"
+ }
+]
