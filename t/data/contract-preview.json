@@ -1,0 +1,1461 @@
+[
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "hosted_numbers",
+    0
+   ],
+   [
+    "authorization_documents",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "HostedNumberOrderSids",
+    "v_hosted_number_order_sids_1"
+   ],
+   [
+    "HostedNumberOrderSids",
+    "v_hosted_number_order_sids_2"
+   ],
+   [
+    "AddressSid",
+    "v_address_sid"
+   ],
+   [
+    "Email",
+    "v_email"
+   ],
+   [
+    "ContactTitle",
+    "v_contact_title"
+   ],
+   [
+    "ContactPhoneNumber",
+    "v_contact_phone_number"
+   ],
+   [
+    "CcEmails",
+    "v_cc_emails_1"
+   ],
+   [
+    "CcEmails",
+    "v_cc_emails_2"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateHostedNumbersAuthorizationDocument",
+  "method" : "create",
+  "options" : {
+   "cc_emails" : [
+    "v_cc_emails_1",
+    "v_cc_emails_2"
+   ]
+  },
+  "required" : [
+   [
+    "v_hosted_number_order_sids_1",
+    "v_hosted_number_order_sids_2"
+   ],
+   "v_address_sid",
+   "v_email",
+   "v_contact_title",
+   "v_contact_phone_number"
+  ],
+  "url" : "https://preview.twilio.com/HostedNumbers/AuthorizationDocuments"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "hosted_numbers",
+    0
+   ],
+   [
+    "hosted_number_orders",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "PhoneNumber",
+    "v_phone_number"
+   ],
+   [
+    "SmsCapability",
+    "true"
+   ],
+   [
+    "AccountSid",
+    "v_account_sid"
+   ],
+   [
+    "AddressSid",
+    "v_address_sid"
+   ],
+   [
+    "CcEmails",
+    "v_cc_emails_1"
+   ],
+   [
+    "CcEmails",
+    "v_cc_emails_2"
+   ],
+   [
+    "Email",
+    "v_email"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "SmsApplicationSid",
+    "v_sms_application_sid"
+   ],
+   [
+    "SmsFallbackMethod",
+    "GET"
+   ],
+   [
+    "SmsFallbackUrl",
+    "v_sms_fallback_url"
+   ],
+   [
+    "SmsMethod",
+    "GET"
+   ],
+   [
+    "SmsUrl",
+    "v_sms_url"
+   ],
+   [
+    "StatusCallbackMethod",
+    "GET"
+   ],
+   [
+    "StatusCallbackUrl",
+    "v_status_callback_url"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ],
+   [
+    "VerificationDocumentSid",
+    "v_verification_document_sid"
+   ],
+   [
+    "VerificationType",
+    "phone-bill"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateHostedNumbersHostedNumberOrder",
+  "method" : "create",
+  "options" : {
+   "account_sid" : "v_account_sid",
+   "address_sid" : "v_address_sid",
+   "cc_emails" : [
+    "v_cc_emails_1",
+    "v_cc_emails_2"
+   ],
+   "email" : "v_email",
+   "friendly_name" : "v_friendly_name",
+   "sms_application_sid" : "v_sms_application_sid",
+   "sms_fallback_method" : "GET",
+   "sms_fallback_url" : "v_sms_fallback_url",
+   "sms_method" : "GET",
+   "sms_url" : "v_sms_url",
+   "status_callback_method" : "GET",
+   "status_callback_url" : "v_status_callback_url",
+   "unique_name" : "v_unique_name",
+   "verification_document_sid" : "v_verification_document_sid",
+   "verification_type" : "phone-bill"
+  },
+  "required" : [
+   "v_phone_number",
+   1
+  ],
+  "url" : "https://preview.twilio.com/HostedNumbers/HostedNumberOrders"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "installed_add_ons",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "AvailableAddOnSid",
+    "v_available_add_on_sid"
+   ],
+   [
+    "AcceptTermsOfService",
+    "true"
+   ],
+   [
+    "Configuration",
+    "{\"v_configuration\":25}"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateMarketplaceInstalledAddOn",
+  "method" : "create",
+  "options" : {
+   "configuration" : {
+    "v_configuration" : 25
+   },
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [
+   "v_available_add_on_sid",
+   1
+  ],
+  "url" : "https://preview.twilio.com/marketplace/InstalledAddOns"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "wireless",
+    0
+   ],
+   [
+    "commands",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Command",
+    "v_command"
+   ],
+   [
+    "CallbackMethod",
+    "v_callback_method"
+   ],
+   [
+    "CallbackUrl",
+    "v_callback_url"
+   ],
+   [
+    "CommandMode",
+    "v_command_mode"
+   ],
+   [
+    "Device",
+    "v_device"
+   ],
+   [
+    "IncludeSid",
+    "v_include_sid"
+   ],
+   [
+    "Sim",
+    "v_sim"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateWirelessCommand",
+  "method" : "create",
+  "options" : {
+   "callback_method" : "v_callback_method",
+   "callback_url" : "v_callback_url",
+   "command_mode" : "v_command_mode",
+   "device" : "v_device",
+   "include_sid" : "v_include_sid",
+   "sim" : "v_sim"
+  },
+  "required" : [
+   "v_command"
+  ],
+  "url" : "https://preview.twilio.com/wireless/Commands"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "wireless",
+    0
+   ],
+   [
+    "rate_plans",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "CommandsEnabled",
+    "true"
+   ],
+   [
+    "DataEnabled",
+    "true"
+   ],
+   [
+    "DataLimit",
+    "889"
+   ],
+   [
+    "DataMetering",
+    "v_data_metering"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "InternationalRoaming",
+    "v_international_roaming_1"
+   ],
+   [
+    "InternationalRoaming",
+    "v_international_roaming_2"
+   ],
+   [
+    "MessagingEnabled",
+    "true"
+   ],
+   [
+    "NationalRoamingEnabled",
+    "true"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ],
+   [
+    "VoiceEnabled",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateWirelessRatePlan",
+  "method" : "create",
+  "options" : {
+   "commands_enabled" : 1,
+   "data_enabled" : 1,
+   "data_limit" : 889,
+   "data_metering" : "v_data_metering",
+   "friendly_name" : "v_friendly_name",
+   "international_roaming" : [
+    "v_international_roaming_1",
+    "v_international_roaming_2"
+   ],
+   "messaging_enabled" : 1,
+   "national_roaming_enabled" : 1,
+   "unique_name" : "v_unique_name",
+   "voice_enabled" : 1
+  },
+  "required" : [],
+  "url" : "https://preview.twilio.com/wireless/RatePlans"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "hosted_numbers",
+    0
+   ],
+   [
+    "authorization_documents",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteAuthorizationDocumentRequest",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview.twilio.com/HostedNumbers/AuthorizationDocuments/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "hosted_numbers",
+    0
+   ],
+   [
+    "hosted_number_orders",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteHostedNumbersHostedNumberOrder",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview.twilio.com/HostedNumbers/HostedNumberOrders/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "installed_add_ons",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteMarketplaceInstalledAddOn",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview.twilio.com/marketplace/InstalledAddOns/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "wireless",
+    0
+   ],
+   [
+    "rate_plans",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteWirelessRatePlan",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview.twilio.com/wireless/RatePlans/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "hosted_numbers",
+    0
+   ],
+   [
+    "authorization_documents",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchHostedNumbersAuthorizationDocument",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview.twilio.com/HostedNumbers/AuthorizationDocuments/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "hosted_numbers",
+    0
+   ],
+   [
+    "hosted_number_orders",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchHostedNumbersHostedNumberOrder",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview.twilio.com/HostedNumbers/HostedNumberOrders/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "available_add_ons",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchMarketplaceAvailableAddOn",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview.twilio.com/marketplace/AvailableAddOns/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "available_add_ons",
+    1
+   ],
+   [
+    "extensions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchMarketplaceAvailableAddOnExtension",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview.twilio.com/marketplace/AvailableAddOns/id1/Extensions/id2"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "installed_add_ons",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchMarketplaceInstalledAddOn",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview.twilio.com/marketplace/InstalledAddOns/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "installed_add_ons",
+    1
+   ],
+   [
+    "extensions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchMarketplaceInstalledAddOnExtension",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview.twilio.com/marketplace/InstalledAddOns/id1/Extensions/id2"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "wireless",
+    0
+   ],
+   [
+    "commands",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchWirelessCommand",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview.twilio.com/wireless/Commands/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "wireless",
+    0
+   ],
+   [
+    "rate_plans",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchWirelessRatePlan",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview.twilio.com/wireless/RatePlans/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "wireless",
+    0
+   ],
+   [
+    "sims",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchWirelessSim",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview.twilio.com/wireless/Sims/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "wireless",
+    0
+   ],
+   [
+    "sims",
+    1
+   ],
+   [
+    "usage",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "End",
+    "v_end"
+   ],
+   [
+    "Start",
+    "v_start"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchWirelessUsage",
+  "method" : "fetch",
+  "options" : {
+   "end" : "v_end",
+   "start" : "v_start"
+  },
+  "required" : [],
+  "url" : "https://preview.twilio.com/wireless/Sims/id1/Usage"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "hosted_numbers",
+    0
+   ],
+   [
+    "authorization_documents",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Email",
+    "v_email"
+   ],
+   [
+    "Status",
+    "failed"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListHostedNumbersAuthorizationDocument",
+  "method" : "page",
+  "options" : {
+   "email" : "v_email",
+   "status" : "failed"
+  },
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://preview.twilio.com/HostedNumbers/AuthorizationDocuments"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "hosted_numbers",
+    0
+   ],
+   [
+    "authorization_documents",
+    1
+   ],
+   [
+    "dependent_hosted_number_orders",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "pending-loa"
+   ],
+   [
+    "PhoneNumber",
+    "v_phone_number"
+   ],
+   [
+    "IncomingPhoneNumberSid",
+    "v_incoming_phone_number_sid"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListHostedNumbersDependentHostedNumberOrder",
+  "method" : "page",
+  "options" : {
+   "friendly_name" : "v_friendly_name",
+   "incoming_phone_number_sid" : "v_incoming_phone_number_sid",
+   "phone_number" : "v_phone_number",
+   "status" : "pending-loa",
+   "unique_name" : "v_unique_name"
+  },
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://preview.twilio.com/HostedNumbers/AuthorizationDocuments/id1/DependentHostedNumberOrders"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "hosted_numbers",
+    0
+   ],
+   [
+    "hosted_number_orders",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "pending-loa"
+   ],
+   [
+    "PhoneNumber",
+    "v_phone_number"
+   ],
+   [
+    "IncomingPhoneNumberSid",
+    "v_incoming_phone_number_sid"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListHostedNumbersHostedNumberOrder",
+  "method" : "page",
+  "options" : {
+   "friendly_name" : "v_friendly_name",
+   "incoming_phone_number_sid" : "v_incoming_phone_number_sid",
+   "phone_number" : "v_phone_number",
+   "status" : "pending-loa",
+   "unique_name" : "v_unique_name"
+  },
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://preview.twilio.com/HostedNumbers/HostedNumberOrders"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "available_add_ons",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListMarketplaceAvailableAddOn",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "available_add_ons",
+  "required" : [],
+  "url" : "https://preview.twilio.com/marketplace/AvailableAddOns"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "available_add_ons",
+    1
+   ],
+   [
+    "extensions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListMarketplaceAvailableAddOnExtension",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "extensions",
+  "required" : [],
+  "url" : "https://preview.twilio.com/marketplace/AvailableAddOns/id1/Extensions"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "installed_add_ons",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListMarketplaceInstalledAddOn",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "installed_add_ons",
+  "required" : [],
+  "url" : "https://preview.twilio.com/marketplace/InstalledAddOns"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "installed_add_ons",
+    1
+   ],
+   [
+    "extensions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListMarketplaceInstalledAddOnExtension",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "extensions",
+  "required" : [],
+  "url" : "https://preview.twilio.com/marketplace/InstalledAddOns/id1/Extensions"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "wireless",
+    0
+   ],
+   [
+    "commands",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Device",
+    "v_device"
+   ],
+   [
+    "Sim",
+    "v_sim"
+   ],
+   [
+    "Status",
+    "v_status"
+   ],
+   [
+    "Direction",
+    "v_direction"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListWirelessCommand",
+  "method" : "page",
+  "options" : {
+   "device" : "v_device",
+   "direction" : "v_direction",
+   "sim" : "v_sim",
+   "status" : "v_status"
+  },
+  "records_key" : "commands",
+  "required" : [],
+  "url" : "https://preview.twilio.com/wireless/Commands"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "wireless",
+    0
+   ],
+   [
+    "rate_plans",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListWirelessRatePlan",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "rate_plans",
+  "required" : [],
+  "url" : "https://preview.twilio.com/wireless/RatePlans"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "wireless",
+    0
+   ],
+   [
+    "sims",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "v_status"
+   ],
+   [
+    "Iccid",
+    "v_iccid"
+   ],
+   [
+    "RatePlan",
+    "v_rate_plan"
+   ],
+   [
+    "EId",
+    "v_e_id"
+   ],
+   [
+    "SimRegistrationCode",
+    "v_sim_registration_code"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListWirelessSim",
+  "method" : "page",
+  "options" : {
+   "e_id" : "v_e_id",
+   "iccid" : "v_iccid",
+   "rate_plan" : "v_rate_plan",
+   "sim_registration_code" : "v_sim_registration_code",
+   "status" : "v_status"
+  },
+  "records_key" : "sims",
+  "required" : [],
+  "url" : "https://preview.twilio.com/wireless/Sims"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "hosted_numbers",
+    0
+   ],
+   [
+    "authorization_documents",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "AddressSid",
+    "v_address_sid"
+   ],
+   [
+    "CcEmails",
+    "v_cc_emails_1"
+   ],
+   [
+    "CcEmails",
+    "v_cc_emails_2"
+   ],
+   [
+    "ContactPhoneNumber",
+    "v_contact_phone_number"
+   ],
+   [
+    "ContactTitle",
+    "v_contact_title"
+   ],
+   [
+    "Email",
+    "v_email"
+   ],
+   [
+    "HostedNumberOrderSids",
+    "v_hosted_number_order_sids_1"
+   ],
+   [
+    "HostedNumberOrderSids",
+    "v_hosted_number_order_sids_2"
+   ],
+   [
+    "Status",
+    "failed"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateHostedNumbersAuthorizationDocument",
+  "method" : "update",
+  "options" : {
+   "address_sid" : "v_address_sid",
+   "cc_emails" : [
+    "v_cc_emails_1",
+    "v_cc_emails_2"
+   ],
+   "contact_phone_number" : "v_contact_phone_number",
+   "contact_title" : "v_contact_title",
+   "email" : "v_email",
+   "hosted_number_order_sids" : [
+    "v_hosted_number_order_sids_1",
+    "v_hosted_number_order_sids_2"
+   ],
+   "status" : "failed"
+  },
+  "required" : [],
+  "url" : "https://preview.twilio.com/HostedNumbers/AuthorizationDocuments/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "hosted_numbers",
+    0
+   ],
+   [
+    "hosted_number_orders",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "CallDelay",
+    "875"
+   ],
+   [
+    "CcEmails",
+    "v_cc_emails_1"
+   ],
+   [
+    "CcEmails",
+    "v_cc_emails_2"
+   ],
+   [
+    "Email",
+    "v_email"
+   ],
+   [
+    "Extension",
+    "v_extension"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Status",
+    "pending-loa"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ],
+   [
+    "VerificationCode",
+    "v_verification_code"
+   ],
+   [
+    "VerificationDocumentSid",
+    "v_verification_document_sid"
+   ],
+   [
+    "VerificationType",
+    "phone-bill"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateHostedNumbersHostedNumberOrder",
+  "method" : "update",
+  "options" : {
+   "call_delay" : 875,
+   "cc_emails" : [
+    "v_cc_emails_1",
+    "v_cc_emails_2"
+   ],
+   "email" : "v_email",
+   "extension" : "v_extension",
+   "friendly_name" : "v_friendly_name",
+   "status" : "pending-loa",
+   "unique_name" : "v_unique_name",
+   "verification_code" : "v_verification_code",
+   "verification_document_sid" : "v_verification_document_sid",
+   "verification_type" : "phone-bill"
+  },
+  "required" : [],
+  "url" : "https://preview.twilio.com/HostedNumbers/HostedNumberOrders/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "installed_add_ons",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Configuration",
+    "{\"v_configuration\":25}"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateMarketplaceInstalledAddOn",
+  "method" : "update",
+  "options" : {
+   "configuration" : {
+    "v_configuration" : 25
+   },
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://preview.twilio.com/marketplace/InstalledAddOns/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "installed_add_ons",
+    1
+   ],
+   [
+    "extensions",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Enabled",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateMarketplaceInstalledAddOnExtension",
+  "method" : "update",
+  "options" : {},
+  "required" : [
+   1
+  ],
+  "url" : "https://preview.twilio.com/marketplace/InstalledAddOns/id1/Extensions/id2"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "wireless",
+    0
+   ],
+   [
+    "rate_plans",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateWirelessRatePlan",
+  "method" : "update",
+  "options" : {
+   "friendly_name" : "v_friendly_name",
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://preview.twilio.com/wireless/RatePlans/id1"
+ },
+ {
+  "chain" : [
+   [
+    "preview",
+    0
+   ],
+   [
+    "wireless",
+    0
+   ],
+   [
+    "sims",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "CallbackMethod",
+    "v_callback_method"
+   ],
+   [
+    "CallbackUrl",
+    "v_callback_url"
+   ],
+   [
+    "CommandsCallbackMethod",
+    "GET"
+   ],
+   [
+    "CommandsCallbackUrl",
+    "v_commands_callback_url"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "RatePlan",
+    "v_rate_plan"
+   ],
+   [
+    "SmsFallbackMethod",
+    "GET"
+   ],
+   [
+    "SmsFallbackUrl",
+    "v_sms_fallback_url"
+   ],
+   [
+    "SmsMethod",
+    "GET"
+   ],
+   [
+    "SmsUrl",
+    "v_sms_url"
+   ],
+   [
+    "Status",
+    "v_status"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ],
+   [
+    "VoiceFallbackMethod",
+    "POST"
+   ],
+   [
+    "VoiceFallbackUrl",
+    "v_voice_fallback_url"
+   ],
+   [
+    "VoiceMethod",
+    "POST"
+   ],
+   [
+    "VoiceUrl",
+    "v_voice_url"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateWirelessSim",
+  "method" : "update",
+  "options" : {
+   "callback_method" : "v_callback_method",
+   "callback_url" : "v_callback_url",
+   "commands_callback_method" : "GET",
+   "commands_callback_url" : "v_commands_callback_url",
+   "friendly_name" : "v_friendly_name",
+   "rate_plan" : "v_rate_plan",
+   "sms_fallback_method" : "GET",
+   "sms_fallback_url" : "v_sms_fallback_url",
+   "sms_method" : "GET",
+   "sms_url" : "v_sms_url",
+   "status" : "v_status",
+   "unique_name" : "v_unique_name",
+   "voice_fallback_method" : "POST",
+   "voice_fallback_url" : "v_voice_fallback_url",
+   "voice_method" : "POST",
+   "voice_url" : "v_voice_url"
+  },
+  "required" : [],
+  "url" : "https://preview.twilio.com/wireless/Sims/id1"
+ }
+]
