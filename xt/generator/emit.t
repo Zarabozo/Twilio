@@ -465,7 +465,17 @@ subtest 'top-level modules' => sub {
   };
 
   my $version = Twilio::Generator::Emit::version($top);
-  like($version, qr/\{version\} = '2026-01-01'/,                    'the version in URLs');
+  like($version, qr/\{version\} = '2026-01-01'/,                     'the version in URLs');
+  like($version, qr/ - Version 2026-01-01 of the Twilio REST API$/m, 'and in its documentation');
+
+  my $versionless = Twilio::Generator::Emit::version(
+    { %{$top}, version_path => q{}, version_method => 'versionless', account_context => undef });
+  like($versionless, qr/\{version\} = ''/, 'a version with nothing in the URL');
+  like(
+    $versionless,
+    qr/ - Version versionless of the Twilio REST API$/m,
+    'is documented by its name'
+  );
   like($version, qr/sub accounts .*sub account .*sub things/s,      'accounts and shortcuts');
   like($version, qr/return \$self->account->things\(\@arguments\)/, 'forwarded to the account');
   like($version, qr/get_account_sid/,                               'the account of the client');
@@ -513,10 +523,10 @@ subtest 'descriptions reach the documentation' => sub {
     qr/=item C<tags>\n\nOne of C<fast> or C<slow>[.] An array/,
     'the choices inside an array'
   );
-  like($code, qr/=item C<status>\n\nOnly with this status[.]/, 'a query parameter');
-  like($code, qr/=item name\n\nWhat it is called[.]/,          'a field');
-  like($code, qr/=item mode\n\nOne of C<fast> or C<slow>[.]/,  'the choices of a field');
-  like($code, qr/\$client->demo->v1->accounts/,                'how to reach it');
+  like($code, qr/=item C<status>\n\nOnly with this status[.]/,          'a query parameter');
+  like($code, qr/=item name\n\nWhat it is called[.]/,                   'a field');
+  like($code, qr/=item mode\n\nOne of C<fast> or C<slow>[.]/,           'the choices of a field');
+  like($code, qr/\$client->demo->v1->account\(\$account_sid\)->things/, 'how to reach it');
 };
 
 subtest 'a resource of an account has a shortcut, and others do not' => sub {

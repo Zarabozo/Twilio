@@ -26,33 +26,42 @@ sub _try_spec {
   my ($spec_dir, $name) = @_;
 
   my %result = (resources => 0, stops => []);
-  my ($spec, $tree);
-  my $loaded = eval { ($spec, $tree) = Twilio::Generator::load_spec($spec_dir, $name); 1 };
+  my @versions;
+  my $loaded = eval { @versions = Twilio::Generator::load_versions($spec_dir, $name); 1 };
   if (!$loaded) {
     push @{ $result{stops} }, _stop_text($@);
     return \%result;
   }
+  _try_version(\%result, @{$_}) for @versions;
+  return \%result;
+}
 
+# Adds one version's resources and stops to the result of its spec.
+sub _try_version {
+  my ($result, $spec, $tree) = @_;
+
+  my @stops;
   for my $resource (@{ $tree->{resources} }) {
     my $built = eval {
       my $model = Twilio::Generator::Resource::build($spec, $tree, $resource);
       Twilio::Generator::Emit::module($model);
       1;
     };
-    if   ($built) { $result{resources}++ }
-    else          { push @{ $result{stops} }, _stop_text($@) }
+    if   ($built) { $result->{resources}++ }
+    else          { push @stops, _stop_text($@) }
   }
 
   # These only make sense once every resource has been built.
-  if (!@{ $result{stops} }) {
+  if (!@stops) {
     my $finished = eval {
       Twilio::Generator::top_level($spec, $tree);
       Twilio::Generator::Contract::entries($spec, $tree);
       1;
     };
-    push @{ $result{stops} }, _stop_text($@) if !$finished;
+    push @stops, _stop_text($@) if !$finished;
   }
-  return \%result;
+  push @{ $result->{stops} }, @stops;
+  return;
 }
 
 sub _stop_text {

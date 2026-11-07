@@ -44,6 +44,13 @@ exactly one:
 
 A domain takes twilio-php's name, which isn't always the spec's: `flex` is `flex_api`.
 
+Two specs have no version in their file name, because each holds several. Each first
+path segment is then a version, as in twilio-oai-generator: `preview` has
+`hosted_numbers`, `marketplace` and `wireless`, and their segments stay in the URL.
+`iam_organizations` has `v1`, and its `/Organizations` paths are `versionless`, the
+name twilio-php gives them, with nothing of the version's own in the URL.
+`Twilio::Generator::Scope` holds that one name.
+
 To print the resource tree of an API:
 
     perl tools/generate.pl --tree api_v2010
@@ -66,7 +73,8 @@ unclear, twilio-php decides.
   `/Configuration/Addresses` is `AddressConfiguration`, next to `Configuration`. A parent
   written with the version, like `/v1/Roles/{Sid}`, isn't recognized either.
 - A declared parent that no path describes becomes a level with no operations. When it
-  ends in an id, it takes that id.
+  ends in an id, it takes that id, and its method is named after its class:
+  `organization($organization_sid)`, as in twilio-php and twilio-python.
 - `className` in `x-twilio` names the class. Without it, `mountName` does: a user's
   `user_channels` are `UserChannel`, not `Channel`. Without either, the last part of the
   list's URL does, even an id: Routes v3's `/ShortCodes/{IsoCountryCode}` is

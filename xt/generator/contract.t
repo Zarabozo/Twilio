@@ -13,6 +13,19 @@ use Twilio::Generator::Tree;
 
 my @ROOT = (['demo', 0], ['v1', 0]);
 
+subtest 'a version with nothing in the URL' => sub {
+  my $document = document();
+  my $paths    = $document->{paths};
+  $paths->{s{\A/v1}{}r} = delete $paths->{$_} for keys %{$paths};
+
+  my $spec = Twilio::Generator::Spec->new('demo', 'versionless', $document);
+  $spec->{version_path} = q{};
+  my ($entry) = grep { $_->{id} eq 'FetchThing' }
+    @{ Twilio::Generator::Contract::entries($spec, Twilio::Generator::Tree::build($spec)) };
+
+  is($entry->{url}, 'https://demo.test/Things/id1.json', 'the path follows the host');
+};
+
 subtest 'the walk from the client' => sub {
   my %entries = map { $_->{id} => $_ } @{ entries(document()) };
 

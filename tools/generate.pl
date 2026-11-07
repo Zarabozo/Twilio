@@ -22,8 +22,12 @@ GetOptions(
 ) or exit 2;
 
 if (defined $tree_of) {
-  my $spec = Twilio::Generator::Spec->load("$spec_dir/twilio_$tree_of.json");
-  print Twilio::Generator::Tree::render(Twilio::Generator::Tree::build($spec));
+  my @versions = Twilio::Generator::load_versions($spec_dir, $tree_of);
+  for my $version (@versions) {
+    my ($spec, $tree) = @{$version};
+    say "== $tree->{version}" if @versions > 1;
+    print Twilio::Generator::Tree::render($tree);
+  }
   exit 0;
 }
 
