@@ -1,0 +1,111 @@
+{
+  "tokens": [
+    { "description": "no grants" },
+    { "description": "an identity", "identity": "alice" },
+    { "description": "a region", "region": "foo" },
+    { "description": "another lifetime", "ttl": 60 },
+    { "description": "not valid before", "nbf": 1700000500 },
+    { "description": "custom claims", "claims": { "foo": "bar", "number": "7" } },
+    { "description": "a claim cannot replace the issuer", "claims": { "iss": "someone else" } },
+    { "description": "non-ASCII", "identity": "José Ñandú" },
+    { "description": "HS384", "algorithm": "HS384" },
+    { "description": "HS512", "algorithm": "HS512", "identity": "alice" },
+    {
+      "description": "chat",
+      "identity": "alice",
+      "grants": [
+        {
+          "class": "ChatGrant",
+          "calls": [
+            ["set_service_sid", "IS123"],
+            ["set_endpoint_id", "Endpoint"],
+            ["set_deployment_role_sid", "RL123"],
+            ["set_push_credential_sid", "CR123"]
+          ]
+        }
+      ]
+    },
+    {
+      "description": "sync",
+      "grants": [
+        {
+          "class": "SyncGrant",
+          "calls": [
+            ["set_service_sid", "IS123"],
+            ["set_endpoint_id", "Endpoint"],
+            ["set_deployment_role_sid", "RL123"],
+            ["set_push_credential_sid", "CR123"]
+          ]
+        }
+      ]
+    },
+    {
+      "description": "video",
+      "grants": [{ "class": "VideoGrant", "calls": [["set_room", "RM123"]] }]
+    },
+    {
+      "description": "task router",
+      "grants": [
+        {
+          "class": "TaskRouterGrant",
+          "calls": [["set_workspace_sid", "WS123"], ["set_worker_sid", "WK123"], ["set_role", "worker"]]
+        }
+      ]
+    },
+    {
+      "description": "playback",
+      "grants": [
+        {
+          "class": "PlaybackGrant",
+          "calls": [
+            ["set_grant", { "requestCredentials": null, "playbackUrl": "https://a.test/x", "playerStreamerSid": "VJ1" }]
+          ]
+        }
+      ]
+    },
+    {
+      "description": "voice",
+      "grants": [
+        {
+          "class": "VoiceGrant",
+          "calls": [
+            ["set_incoming_allow", true],
+            ["set_outgoing_application_sid", "AP123"],
+            ["set_push_credential_sid", "CR123"],
+            ["set_endpoint_id", "Endpoint"]
+          ]
+        }
+      ]
+    },
+    {
+      "description": "voice with parameters",
+      "grants": [
+        {
+          "class": "VoiceGrant",
+          "calls": [["set_outgoing_application", "AP123", { "foo": "bar", "n": "1" }]]
+        }
+      ]
+    },
+    {
+      "description": "voice with incoming not allowed",
+      "grants": [{ "class": "VoiceGrant", "calls": [["set_incoming_allow", false]] }]
+    },
+    { "description": "an empty grant", "grants": [{ "class": "VideoGrant", "calls": [] }] },
+    {
+      "description": "several grants",
+      "identity": "alice",
+      "region": "ie1",
+      "grants": [
+        { "class": "VideoGrant", "calls": [["set_room", "RM123"]] },
+        { "class": "ChatGrant", "calls": [["set_service_sid", "IS123"]] }
+      ]
+    }
+  ],
+  "signatures": [
+    { "message": "header.payload", "key": "secret", "algorithm": "HS256" },
+    { "message": "header.payload", "key": "secret", "algorithm": "HS384" },
+    { "message": "header.payload", "key": "secret", "algorithm": "HS512" },
+    { "message": "other", "key": "another", "algorithm": "HS256" }
+  ],
+  "base64": ["", "f", "fo", "foo", "foob", "ûÿþ"]
+}
