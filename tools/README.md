@@ -54,4 +54,19 @@ of twilio-php they were last written with is in `tools/twilio-php.version`.
     php tools/vectors/generate.php /path/to/twilio-php
 
 Attributes are sorted in the vectors, because this library sorts them. The text
-is otherwise exactly what twilio-php wrote.
+is otherwise exactly what twilio-php wrote, with two corrections.
+
+## TwiML
+
+`twilio-oai` has no TwiML spec, so the names of elements and attributes come from
+the source of twilio-php, in `tools/twiml-elements.json`:
+
+    perl tools/extract-twiml.pl /path/to/twilio-php
+
+Run it again when updating `tools/twilio-php.version`, then run the generator. It
+stops on any PHP it doesn't recognize, because a skipped element would simply go
+missing.
+
+Two attribute names are corrected there, because twilio-php writes them wrongly
+and its tests don't cover them: `for_` becomes `for`, and `xml:Lang` becomes
+`xml:lang`. twilio-python uses the corrected names.

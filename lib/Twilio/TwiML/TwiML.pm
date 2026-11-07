@@ -10,6 +10,8 @@ use overload
 
 use Scalar::Util qw(blessed);
 
+use Twilio::Serialize;
+
 our $VERSION = '2.000000';
 
 my $DECLARATION = qq{<?xml version="1.0" encoding="UTF-8"?>\n};
@@ -20,11 +22,12 @@ my %ATTRIBUTE_ESCAPE = (%TEXT_ESCAPE, q{"} => '&quot;', "\n" => '&#10;', "\t" =>
 sub new {
   my ($class, $name, $value, $attributes) = @_;
 
-  return bless {
-    name       => $name,
-    attributes => { %{ $attributes // {} } },
-    children   => [defined $value ? $value : ()],
-  }, $class;
+  my $self = bless { name => $name, attributes => {}, children => [defined $value ? $value : ()] },
+    $class;
+
+  my %given = %{ $attributes // {} };
+  $self->set_attribute($_, $given{$_}) for sort keys %given;
+  return $self;
 }
 
 sub append {
@@ -41,9 +44,18 @@ sub nest {
 
 sub set_attribute {
   my ($self, $name, $value) = @_;
+
+  # A name no element knows is written as it is, so new TwiML works before this library has it.
+  my $known = $self->attribute_table->{$name};
+  if ($known) {
+    $name  = $known->{name};
+    $value = Twilio::Serialize::boolean_to_string($value) if $known->{boolean};
+  }
   $self->{attributes}{$name} = $value;
   return $self;
 }
+
+sub attribute_table { return {} }
 
 sub add_child {
   my ($self, $name, $value, $attributes) = @_;
@@ -168,7 +180,13 @@ returns it.
   $element->set_attribute(name => 'value');
 
 Sets an attribute and returns C<$element>. An array reference is written as a list
-separated by spaces, and a reference to 1 or 0 as C<true> or C<false>.
+separated by spaces, and a reference to 1 or 0 as C<true> or C<false>. A name the
+element does not know is written as it is.
+
+=head2 attribute_table
+
+Returns what each element knows about its attributes. Generated elements use it to
+turn C<send_digits> into C<sendDigits>, and a Perl true value into C<true>.
 
 =head2 as_xml
 

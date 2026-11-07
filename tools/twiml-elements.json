@@ -1,0 +1,4796 @@
+{
+ "Fax::Receive" : {
+  "attributes" : [
+   {
+    "about" : "Receive action URL",
+    "method" : "set_action",
+    "name" : "action",
+    "php_type" : "string",
+    "php_wire" : "action",
+    "setter" : "setAction",
+    "type" : "text",
+    "wire" : "action"
+   },
+   {
+    "about" : "The media type used to store media in the fax media store",
+    "method" : "set_media_type",
+    "name" : "media_type",
+    "php_type" : "string",
+    "php_wire" : "mediaType",
+    "setter" : "setMediaType",
+    "type" : "text",
+    "wire" : "mediaType"
+   },
+   {
+    "about" : "Receive action URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "What size to interpret received pages as",
+    "method" : "set_page_size",
+    "name" : "page_size",
+    "php_type" : "string",
+    "php_wire" : "pageSize",
+    "setter" : "setPageSize",
+    "type" : "text",
+    "wire" : "pageSize"
+   },
+   {
+    "about" : "Whether or not to store received media in the fax media store",
+    "method" : "set_store_media",
+    "name" : "store_media",
+    "php_type" : "bool",
+    "php_wire" : "storeMedia",
+    "setter" : "setStoreMedia",
+    "type" : "boolean",
+    "wire" : "storeMedia"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Fax::Receive",
+  "tag" : "Receive",
+  "value" : null
+ },
+ "FaxResponse" : {
+  "attributes" : [],
+  "children" : [
+   {
+    "about" : "Add Receive child.",
+    "class" : "Fax::Receive",
+    "has_attributes" : 1,
+    "method" : "receive",
+    "php_method" : "receive",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 0,
+  "php_class" : "FaxResponse",
+  "tag" : "Response",
+  "value" : null
+ },
+ "Messaging::Body" : {
+  "attributes" : [],
+  "children" : [],
+  "has_attributes" : 0,
+  "php_class" : "Messaging::Body",
+  "tag" : "Body",
+  "value" : "message"
+ },
+ "Messaging::Media" : {
+  "attributes" : [],
+  "children" : [],
+  "has_attributes" : 0,
+  "php_class" : "Messaging::Media",
+  "tag" : "Media",
+  "value" : "url"
+ },
+ "Messaging::Message" : {
+  "attributes" : [
+   {
+    "about" : "A URL specifying where Twilio should send status callbacks for the created outbound message.",
+    "method" : "set_action",
+    "name" : "action",
+    "php_type" : "string",
+    "php_wire" : "action",
+    "setter" : "setAction",
+    "type" : "text",
+    "wire" : "action"
+   },
+   {
+    "about" : "Phone Number to send Message from",
+    "method" : "set_from",
+    "name" : "from",
+    "php_type" : "string",
+    "php_wire" : "from",
+    "setter" : "setFrom",
+    "type" : "text",
+    "wire" : "from"
+   },
+   {
+    "about" : "Action URL Method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "Status callback URL. Deprecated in favor of action.",
+    "method" : "set_status_callback",
+    "name" : "status_callback",
+    "php_type" : "string",
+    "php_wire" : "statusCallback",
+    "setter" : "setStatusCallback",
+    "type" : "text",
+    "wire" : "statusCallback"
+   },
+   {
+    "about" : "Phone Number to send Message to",
+    "method" : "set_to",
+    "name" : "to",
+    "php_type" : "string",
+    "php_wire" : "to",
+    "setter" : "setTo",
+    "type" : "text",
+    "wire" : "to"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Body child.",
+    "class" : "Messaging::Body",
+    "has_attributes" : 0,
+    "method" : "body",
+    "php_method" : "body",
+    "value" : "message"
+   },
+   {
+    "about" : "Add Media child.",
+    "class" : "Messaging::Media",
+    "has_attributes" : 0,
+    "method" : "media",
+    "php_method" : "media",
+    "value" : "url"
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Messaging::Message",
+  "tag" : "Message",
+  "value" : "body"
+ },
+ "Messaging::Redirect" : {
+  "attributes" : [
+   {
+    "about" : "Redirect URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Messaging::Redirect",
+  "tag" : "Redirect",
+  "value" : "url"
+ },
+ "MessagingResponse" : {
+  "attributes" : [],
+  "children" : [
+   {
+    "about" : "Add Message child.",
+    "class" : "Messaging::Message",
+    "has_attributes" : 1,
+    "method" : "message",
+    "php_method" : "message",
+    "value" : "body"
+   },
+   {
+    "about" : "Add Redirect child.",
+    "class" : "Messaging::Redirect",
+    "has_attributes" : 1,
+    "method" : "redirect",
+    "php_method" : "redirect",
+    "value" : "url"
+   }
+  ],
+  "has_attributes" : 0,
+  "php_class" : "MessagingResponse",
+  "tag" : "Response",
+  "value" : null
+ },
+ "Video::Room" : {
+  "attributes" : [],
+  "children" : [],
+  "has_attributes" : 0,
+  "php_class" : "Video::Room",
+  "tag" : "Room",
+  "value" : "name"
+ },
+ "Voice::AiSession" : {
+  "attributes" : [
+   {
+    "about" : "The unique name or installed add-on sid that identifies the installed addon resource for the AI Connector",
+    "method" : "set_ai_connector",
+    "name" : "ai_connector",
+    "php_type" : "string",
+    "php_wire" : "aiConnector",
+    "setter" : "setAiConnector",
+    "type" : "text",
+    "wire" : "aiConnector"
+   },
+   {
+    "about" : "The unique name or id of the AiSession Configuration resource.",
+    "method" : "set_ai_session_configuration",
+    "name" : "ai_session_configuration",
+    "php_type" : "string",
+    "php_wire" : "aiSessionConfiguration",
+    "setter" : "setAiSessionConfiguration",
+    "type" : "text",
+    "wire" : "aiSessionConfiguration"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::AiSession",
+  "tag" : "AiSession",
+  "value" : null
+ },
+ "Voice::Application" : {
+  "attributes" : [
+   {
+    "about" : "Copy parent call To field to called application side, otherwise use the application sid as To field",
+    "method" : "set_copy_parent_to",
+    "name" : "copy_parent_to",
+    "php_type" : "bool",
+    "php_wire" : "copyParentTo",
+    "setter" : "setCopyParentTo",
+    "type" : "boolean",
+    "wire" : "copyParentTo"
+   },
+   {
+    "about" : "Identity of the customer calling application",
+    "method" : "set_customer_id",
+    "name" : "customer_id",
+    "php_type" : "string",
+    "php_wire" : "customerId",
+    "setter" : "setCustomerId",
+    "type" : "text",
+    "wire" : "customerId"
+   },
+   {
+    "about" : "TwiML URL Method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "Status Callback URL",
+    "method" : "set_status_callback",
+    "name" : "status_callback",
+    "php_type" : "string",
+    "php_wire" : "statusCallback",
+    "setter" : "setStatusCallback",
+    "type" : "text",
+    "wire" : "statusCallback"
+   },
+   {
+    "about" : "Events to trigger status callback",
+    "method" : "set_status_callback_event",
+    "name" : "status_callback_event",
+    "php_type" : "string[]",
+    "php_wire" : "statusCallbackEvent",
+    "setter" : "setStatusCallbackEvent",
+    "type" : "list",
+    "wire" : "statusCallbackEvent"
+   },
+   {
+    "about" : "Status Callback URL Method",
+    "method" : "set_status_callback_method",
+    "name" : "status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "statusCallbackMethod",
+    "setter" : "setStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "statusCallbackMethod"
+   },
+   {
+    "about" : "TwiML URL",
+    "method" : "set_url",
+    "name" : "url",
+    "php_type" : "string",
+    "php_wire" : "url",
+    "setter" : "setUrl",
+    "type" : "text",
+    "wire" : "url"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add ApplicationSid child.",
+    "class" : "Voice::ApplicationSid",
+    "has_attributes" : 0,
+    "method" : "application_sid",
+    "php_method" : "applicationSid",
+    "value" : "sid"
+   },
+   {
+    "about" : "Add Parameter child.",
+    "class" : "Voice::Parameter",
+    "has_attributes" : 1,
+    "method" : "parameter",
+    "php_method" : "parameter",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Application",
+  "tag" : "Application",
+  "value" : "application_sid"
+ },
+ "Voice::ApplicationSid" : {
+  "attributes" : [],
+  "children" : [],
+  "has_attributes" : 0,
+  "php_class" : "Voice::ApplicationSid",
+  "tag" : "ApplicationSid",
+  "value" : "sid"
+ },
+ "Voice::Autopilot" : {
+  "attributes" : [],
+  "children" : [],
+  "has_attributes" : 0,
+  "php_class" : "Voice::Autopilot",
+  "tag" : "Autopilot",
+  "value" : "name"
+ },
+ "Voice::Client" : {
+  "attributes" : [
+   {
+    "about" : "Client URL Method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "Status Callback URL",
+    "method" : "set_status_callback",
+    "name" : "status_callback",
+    "php_type" : "string",
+    "php_wire" : "statusCallback",
+    "setter" : "setStatusCallback",
+    "type" : "text",
+    "wire" : "statusCallback"
+   },
+   {
+    "about" : "Events to trigger status callback",
+    "method" : "set_status_callback_event",
+    "name" : "status_callback_event",
+    "php_type" : "string[]",
+    "php_wire" : "statusCallbackEvent",
+    "setter" : "setStatusCallbackEvent",
+    "type" : "list",
+    "wire" : "statusCallbackEvent"
+   },
+   {
+    "about" : "Status Callback URL Method",
+    "method" : "set_status_callback_method",
+    "name" : "status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "statusCallbackMethod",
+    "setter" : "setStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "statusCallbackMethod"
+   },
+   {
+    "about" : "Client URL",
+    "method" : "set_url",
+    "name" : "url",
+    "php_type" : "string",
+    "php_wire" : "url",
+    "setter" : "setUrl",
+    "type" : "text",
+    "wire" : "url"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Identity child.",
+    "class" : "Voice::Identity",
+    "has_attributes" : 0,
+    "method" : "identity",
+    "php_method" : "identity",
+    "value" : "client_identity"
+   },
+   {
+    "about" : "Add Parameter child.",
+    "class" : "Voice::Parameter",
+    "has_attributes" : 1,
+    "method" : "parameter",
+    "php_method" : "parameter",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Client",
+  "tag" : "Client",
+  "value" : "identity"
+ },
+ "Voice::Conference" : {
+  "attributes" : [
+   {
+    "about" : "Play beep when joining",
+    "method" : "set_beep",
+    "name" : "beep",
+    "php_type" : "string",
+    "php_wire" : "beep",
+    "setter" : "setBeep",
+    "type" : "text",
+    "wire" : "beep"
+   },
+   {
+    "about" : "Call coach",
+    "method" : "set_coach",
+    "name" : "coach",
+    "php_type" : "string",
+    "php_wire" : "coach",
+    "setter" : "setCoach",
+    "type" : "text",
+    "wire" : "coach"
+   },
+   {
+    "about" : "End the conferenceon exit",
+    "method" : "set_end_conference_on_exit",
+    "name" : "end_conference_on_exit",
+    "php_type" : "bool",
+    "php_wire" : "endConferenceOnExit",
+    "setter" : "setEndConferenceOnExit",
+    "type" : "boolean",
+    "wire" : "endConferenceOnExit"
+   },
+   {
+    "about" : "Event callback URL",
+    "method" : "set_event_callback_url",
+    "name" : "event_callback_url",
+    "php_type" : "string",
+    "php_wire" : "eventCallbackUrl",
+    "setter" : "setEventCallbackUrl",
+    "type" : "text",
+    "wire" : "eventCallbackUrl"
+   },
+   {
+    "about" : "Size of jitter buffer for participant",
+    "method" : "set_jitter_buffer_size",
+    "name" : "jitter_buffer_size",
+    "php_type" : "string",
+    "php_wire" : "jitterBufferSize",
+    "setter" : "setJitterBufferSize",
+    "type" : "text",
+    "wire" : "jitterBufferSize"
+   },
+   {
+    "about" : "Maximum number of participants",
+    "method" : "set_max_participants",
+    "name" : "max_participants",
+    "php_type" : "int",
+    "php_wire" : "maxParticipants",
+    "setter" : "setMaxParticipants",
+    "type" : "text",
+    "wire" : "maxParticipants"
+   },
+   {
+    "about" : "Join the conference muted",
+    "method" : "set_muted",
+    "name" : "muted",
+    "php_type" : "bool",
+    "php_wire" : "muted",
+    "setter" : "setMuted",
+    "type" : "boolean",
+    "wire" : "muted"
+   },
+   {
+    "about" : "A label for participant",
+    "method" : "set_participant_label",
+    "name" : "participant_label",
+    "php_type" : "string",
+    "php_wire" : "participantLabel",
+    "setter" : "setParticipantLabel",
+    "type" : "text",
+    "wire" : "participantLabel"
+   },
+   {
+    "about" : "Record the conference",
+    "method" : "set_record",
+    "name" : "record",
+    "php_type" : "string",
+    "php_wire" : "record",
+    "setter" : "setRecord",
+    "type" : "text",
+    "wire" : "record"
+   },
+   {
+    "about" : "Configuration for the recording",
+    "method" : "set_recording_configuration_id",
+    "name" : "recording_configuration_id",
+    "php_type" : "string",
+    "php_wire" : "recordingConfigurationId",
+    "setter" : "setRecordingConfigurationId",
+    "type" : "text",
+    "wire" : "recordingConfigurationId"
+   },
+   {
+    "about" : "Recording status callback URL",
+    "method" : "set_recording_status_callback",
+    "name" : "recording_status_callback",
+    "php_type" : "string",
+    "php_wire" : "recordingStatusCallback",
+    "setter" : "setRecordingStatusCallback",
+    "type" : "text",
+    "wire" : "recordingStatusCallback"
+   },
+   {
+    "about" : "Recording status callback events",
+    "method" : "set_recording_status_callback_event",
+    "name" : "recording_status_callback_event",
+    "php_type" : "string[]",
+    "php_wire" : "recordingStatusCallbackEvent",
+    "setter" : "setRecordingStatusCallbackEvent",
+    "type" : "list",
+    "wire" : "recordingStatusCallbackEvent"
+   },
+   {
+    "about" : "Recording status callback URL method",
+    "method" : "set_recording_status_callback_method",
+    "name" : "recording_status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "recordingStatusCallbackMethod",
+    "setter" : "setRecordingStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "recordingStatusCallbackMethod"
+   },
+   {
+    "about" : "Conference region",
+    "method" : "set_region",
+    "name" : "region",
+    "php_type" : "string",
+    "php_wire" : "region",
+    "setter" : "setRegion",
+    "type" : "text",
+    "wire" : "region"
+   },
+   {
+    "about" : "Start the conference on enter",
+    "method" : "set_start_conference_on_enter",
+    "name" : "start_conference_on_enter",
+    "php_type" : "bool",
+    "php_wire" : "startConferenceOnEnter",
+    "setter" : "setStartConferenceOnEnter",
+    "type" : "boolean",
+    "wire" : "startConferenceOnEnter"
+   },
+   {
+    "about" : "Status callback URL",
+    "method" : "set_status_callback",
+    "name" : "status_callback",
+    "php_type" : "string",
+    "php_wire" : "statusCallback",
+    "setter" : "setStatusCallback",
+    "type" : "text",
+    "wire" : "statusCallback"
+   },
+   {
+    "about" : "Events to call status callback URL",
+    "method" : "set_status_callback_event",
+    "name" : "status_callback_event",
+    "php_type" : "string[]",
+    "php_wire" : "statusCallbackEvent",
+    "setter" : "setStatusCallbackEvent",
+    "type" : "list",
+    "wire" : "statusCallbackEvent"
+   },
+   {
+    "about" : "Status callback URL method",
+    "method" : "set_status_callback_method",
+    "name" : "status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "statusCallbackMethod",
+    "setter" : "setStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "statusCallbackMethod"
+   },
+   {
+    "about" : "Trim the conference recording",
+    "method" : "set_trim",
+    "name" : "trim",
+    "php_type" : "string",
+    "php_wire" : "trim",
+    "setter" : "setTrim",
+    "type" : "text",
+    "wire" : "trim"
+   },
+   {
+    "about" : "Wait URL method",
+    "method" : "set_wait_method",
+    "name" : "wait_method",
+    "php_type" : "string",
+    "php_wire" : "waitMethod",
+    "setter" : "setWaitMethod",
+    "type" : "text",
+    "wire" : "waitMethod"
+   },
+   {
+    "about" : "Wait URL",
+    "method" : "set_wait_url",
+    "name" : "wait_url",
+    "php_type" : "string",
+    "php_wire" : "waitUrl",
+    "setter" : "setWaitUrl",
+    "type" : "text",
+    "wire" : "waitUrl"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Conference",
+  "tag" : "Conference",
+  "value" : "name"
+ },
+ "Voice::Config" : {
+  "attributes" : [
+   {
+    "about" : "The name of the custom config",
+    "method" : "set_name",
+    "name" : "name",
+    "php_type" : "string",
+    "php_wire" : "name",
+    "setter" : "setName",
+    "type" : "text",
+    "wire" : "name"
+   },
+   {
+    "about" : "The value of the custom config",
+    "method" : "set_value",
+    "name" : "value",
+    "php_type" : "string",
+    "php_wire" : "value",
+    "setter" : "setValue",
+    "type" : "text",
+    "wire" : "value"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Config",
+  "tag" : "Config",
+  "value" : null
+ },
+ "Voice::Connect" : {
+  "attributes" : [
+   {
+    "about" : "Action URL",
+    "method" : "set_action",
+    "name" : "action",
+    "php_type" : "string",
+    "php_wire" : "action",
+    "setter" : "setAction",
+    "type" : "text",
+    "wire" : "action"
+   },
+   {
+    "about" : "Action URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add AiSession child.",
+    "class" : "Voice::AiSession",
+    "has_attributes" : 1,
+    "method" : "ai_session",
+    "php_method" : "aiSession",
+    "value" : null
+   },
+   {
+    "about" : "Add Autopilot child.",
+    "class" : "Voice::Autopilot",
+    "has_attributes" : 0,
+    "method" : "autopilot",
+    "php_method" : "autopilot",
+    "value" : "name"
+   },
+   {
+    "about" : "Add Conversation child.",
+    "class" : "Voice::Conversation",
+    "has_attributes" : 1,
+    "method" : "conversation",
+    "php_method" : "conversation",
+    "value" : null
+   },
+   {
+    "about" : "Add ConversationRelay child.",
+    "class" : "Voice::ConversationRelay",
+    "has_attributes" : 1,
+    "method" : "conversation_relay",
+    "php_method" : "conversationRelay",
+    "value" : null
+   },
+   {
+    "about" : "Add ConversationRelaySession child.",
+    "class" : "Voice::ConversationRelaySession",
+    "has_attributes" : 1,
+    "method" : "conversation_relay_session",
+    "php_method" : "conversationRelaySession",
+    "value" : null
+   },
+   {
+    "about" : "Add Room child.",
+    "class" : "Voice::Room",
+    "has_attributes" : 1,
+    "method" : "room",
+    "php_method" : "room",
+    "value" : "name"
+   },
+   {
+    "about" : "Add Stream child.",
+    "class" : "Voice::Stream",
+    "has_attributes" : 1,
+    "method" : "stream",
+    "php_method" : "stream",
+    "value" : null
+   },
+   {
+    "about" : "Add VirtualAgent child.",
+    "class" : "Voice::VirtualAgent",
+    "has_attributes" : 1,
+    "method" : "virtual_agent",
+    "php_method" : "virtualAgent",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Connect",
+  "tag" : "Connect",
+  "value" : null
+ },
+ "Voice::Conversation" : {
+  "attributes" : [
+   {
+    "about" : "Inbound autocreation",
+    "method" : "set_inbound_autocreation",
+    "name" : "inbound_autocreation",
+    "php_type" : "bool",
+    "php_wire" : "inboundAutocreation",
+    "setter" : "setInboundAutocreation",
+    "type" : "boolean",
+    "wire" : "inboundAutocreation"
+   },
+   {
+    "about" : "Inbound timeout",
+    "method" : "set_inbound_timeout",
+    "name" : "inbound_timeout",
+    "php_type" : "int",
+    "php_wire" : "inboundTimeout",
+    "setter" : "setInboundTimeout",
+    "type" : "text",
+    "wire" : "inboundTimeout"
+   },
+   {
+    "about" : "TwiML URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "Record",
+    "method" : "set_record",
+    "name" : "record",
+    "php_type" : "string",
+    "php_wire" : "record",
+    "setter" : "setRecord",
+    "type" : "text",
+    "wire" : "record"
+   },
+   {
+    "about" : "Recording status callback URL",
+    "method" : "set_recording_status_callback",
+    "name" : "recording_status_callback",
+    "php_type" : "string",
+    "php_wire" : "recordingStatusCallback",
+    "setter" : "setRecordingStatusCallback",
+    "type" : "text",
+    "wire" : "recordingStatusCallback"
+   },
+   {
+    "about" : "Recording status callback events",
+    "method" : "set_recording_status_callback_event",
+    "name" : "recording_status_callback_event",
+    "php_type" : "string[]",
+    "php_wire" : "recordingStatusCallbackEvent",
+    "setter" : "setRecordingStatusCallbackEvent",
+    "type" : "list",
+    "wire" : "recordingStatusCallbackEvent"
+   },
+   {
+    "about" : "Recording status callback URL method",
+    "method" : "set_recording_status_callback_method",
+    "name" : "recording_status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "recordingStatusCallbackMethod",
+    "setter" : "setRecordingStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "recordingStatusCallbackMethod"
+   },
+   {
+    "about" : "Routing assignment timeout",
+    "method" : "set_routing_assignment_timeout",
+    "name" : "routing_assignment_timeout",
+    "php_type" : "int",
+    "php_wire" : "routingAssignmentTimeout",
+    "setter" : "setRoutingAssignmentTimeout",
+    "type" : "text",
+    "wire" : "routingAssignmentTimeout"
+   },
+   {
+    "about" : "Service instance Sid",
+    "method" : "set_service_instance_sid",
+    "name" : "service_instance_sid",
+    "php_type" : "string",
+    "php_wire" : "serviceInstanceSid",
+    "setter" : "setServiceInstanceSid",
+    "type" : "text",
+    "wire" : "serviceInstanceSid"
+   },
+   {
+    "about" : "Status callback URL",
+    "method" : "set_status_callback",
+    "name" : "status_callback",
+    "php_type" : "string",
+    "php_wire" : "statusCallback",
+    "setter" : "setStatusCallback",
+    "type" : "text",
+    "wire" : "statusCallback"
+   },
+   {
+    "about" : "Events to call status callback URL",
+    "method" : "set_status_callback_event",
+    "name" : "status_callback_event",
+    "php_type" : "string[]",
+    "php_wire" : "statusCallbackEvent",
+    "setter" : "setStatusCallbackEvent",
+    "type" : "list",
+    "wire" : "statusCallbackEvent"
+   },
+   {
+    "about" : "Status callback URL method",
+    "method" : "set_status_callback_method",
+    "name" : "status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "statusCallbackMethod",
+    "setter" : "setStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "statusCallbackMethod"
+   },
+   {
+    "about" : "Trim",
+    "method" : "set_trim",
+    "name" : "trim",
+    "php_type" : "string",
+    "php_wire" : "trim",
+    "setter" : "setTrim",
+    "type" : "text",
+    "wire" : "trim"
+   },
+   {
+    "about" : "TwiML URL",
+    "method" : "set_url",
+    "name" : "url",
+    "php_type" : "string",
+    "php_wire" : "url",
+    "setter" : "setUrl",
+    "type" : "text",
+    "wire" : "url"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Conversation",
+  "tag" : "Conversation",
+  "value" : null
+ },
+ "Voice::ConversationRelay" : {
+  "attributes" : [
+   {
+    "about" : "Whether the WebSocket connection to the application should be reconnected if it drops during the call. Defaults to false",
+    "method" : "set_application_reconnect",
+    "name" : "application_reconnect",
+    "php_type" : "bool",
+    "php_wire" : "applicationReconnect",
+    "setter" : "setApplicationReconnect",
+    "type" : "boolean",
+    "wire" : "applicationReconnect"
+   },
+   {
+    "about" : "Whether smart formatting should be applied to transcripts. Takes precedence over deepgramSmartFormat",
+    "method" : "set_asr_smart_format",
+    "name" : "asr_smart_format",
+    "php_type" : "bool",
+    "php_wire" : "asrSmartFormat",
+    "setter" : "setAsrSmartFormat",
+    "type" : "boolean",
+    "wire" : "asrSmartFormat"
+   },
+   {
+    "about" : "This parameters enables background noise filtering on the audio stream before it reaches the STT engine, improving transcription accuracy in noisy environments",
+    "method" : "set_backgroundnoisereduction",
+    "name" : "backgroundnoisereduction",
+    "php_type" : "string",
+    "php_wire" : "backgroundnoisereduction",
+    "setter" : "setBackgroundnoisereduction",
+    "type" : "text",
+    "wire" : "backgroundnoisereduction"
+   },
+   {
+    "about" : "Customer name sent to Conversations and Conversational Intelligence. Defaults to the caller ID",
+    "method" : "set_customer_name",
+    "name" : "customer_name",
+    "php_type" : "string",
+    "php_wire" : "customerName",
+    "setter" : "setCustomerName",
+    "type" : "text",
+    "wire" : "customerName"
+   },
+   {
+    "about" : "Multiple debug options to be used for troubleshooting",
+    "method" : "set_debug",
+    "name" : "debug",
+    "php_type" : "string",
+    "php_wire" : "debug",
+    "setter" : "setDebug",
+    "type" : "text",
+    "wire" : "debug"
+   },
+   {
+    "about" : "This parameter enables Deepgram's smart formatting feature, which automatically applies punctuation, capitalization, and formatting (e.g. numbers, dates, currency) to transcripts",
+    "method" : "set_deepgramsmartformat",
+    "name" : "deepgramsmartformat",
+    "php_type" : "string",
+    "php_wire" : "deepgramsmartformat",
+    "setter" : "setDeepgramsmartformat",
+    "type" : "text",
+    "wire" : "deepgramsmartformat"
+   },
+   {
+    "about" : "Whether DTMF tones should be detected and reported in speech transcription",
+    "method" : "set_dtmf_detection",
+    "name" : "dtmf_detection",
+    "php_type" : "bool",
+    "php_wire" : "dtmfDetection",
+    "setter" : "setDtmfDetection",
+    "type" : "boolean",
+    "wire" : "dtmfDetection"
+   },
+   {
+    "about" : "Eager end-of-turn confidence threshold, which fires before the end-of-turn threshold. The value can be between 0.3 and 0.9",
+    "method" : "set_eager_eot_threshold",
+    "name" : "eager_eot_threshold",
+    "php_type" : "string",
+    "php_wire" : "eagerEotThreshold",
+    "setter" : "setEagerEotThreshold",
+    "type" : "text",
+    "wire" : "eagerEotThreshold"
+   },
+   {
+    "about" : "Whether transcripts that echo the agent's own text-to-speech should be dropped. Defaults to false",
+    "method" : "set_echo_prompt_filtering",
+    "name" : "echo_prompt_filtering",
+    "php_type" : "bool",
+    "php_wire" : "echoPromptFiltering",
+    "setter" : "setEchoPromptFiltering",
+    "type" : "boolean",
+    "wire" : "echoPromptFiltering"
+   },
+   {
+    "about" : "Legacy alias of ttsLanguageTextNormalization",
+    "method" : "set_elevenlabs_language_text_normalization",
+    "name" : "elevenlabs_language_text_normalization",
+    "php_type" : "bool",
+    "php_wire" : "elevenlabsLanguageTextNormalization",
+    "setter" : "setElevenlabsLanguageTextNormalization",
+    "type" : "boolean",
+    "wire" : "elevenlabsLanguageTextNormalization"
+   },
+   {
+    "about" : "When using ElevenLabs as TTS provider, this parameter allows you to enable or disable its text normalization feature",
+    "method" : "set_elevenlabs_text_normalization",
+    "name" : "elevenlabs_text_normalization",
+    "php_type" : "string",
+    "php_wire" : "elevenlabsTextNormalization",
+    "setter" : "setElevenlabsTextNormalization",
+    "type" : "text",
+    "wire" : "elevenlabsTextNormalization"
+   },
+   {
+    "about" : "This parameter allows you to enable event subscriptions",
+    "method" : "set_events",
+    "name" : "events",
+    "php_type" : "string",
+    "php_wire" : "events",
+    "setter" : "setEvents",
+    "type" : "text",
+    "wire" : "events"
+   },
+   {
+    "about" : "Phrases to help better accuracy in speech recognition of these pharases",
+    "method" : "set_hints",
+    "name" : "hints",
+    "php_type" : "string",
+    "php_wire" : "hints",
+    "setter" : "setHints",
+    "type" : "text",
+    "wire" : "hints"
+   },
+   {
+    "about" : "This parameter brief caller acknowledgments (e.g. \"yeah\", \"uh-huh\") are ignored and will not interrupt the agent while it is speaking.",
+    "method" : "set_ignorebackchannel",
+    "name" : "ignorebackchannel",
+    "php_type" : "string",
+    "php_wire" : "ignorebackchannel",
+    "setter" : "setIgnorebackchannel",
+    "type" : "text",
+    "wire" : "ignorebackchannel"
+   },
+   {
+    "about" : "Extra fields to be included in prompt messages. The value can be turn-state or prompt-segments",
+    "method" : "set_include_in_prompt",
+    "name" : "include_in_prompt",
+    "php_type" : "string",
+    "php_wire" : "includeInPrompt",
+    "setter" : "setIncludeInPrompt",
+    "type" : "text",
+    "wire" : "includeInPrompt"
+   },
+   {
+    "about" : "The Conversational Intelligence Service id or unique name to be used for the session",
+    "method" : "set_intelligence_service",
+    "name" : "intelligence_service",
+    "php_type" : "string",
+    "php_wire" : "intelligenceService",
+    "setter" : "setIntelligenceService",
+    "type" : "text",
+    "wire" : "intelligenceService"
+   },
+   {
+    "about" : "Set the sensitivity of the interrupt feature for speech. The value can be low, medium, or high",
+    "method" : "set_interrupt_sensitivity",
+    "name" : "interrupt_sensitivity",
+    "php_type" : "string",
+    "php_wire" : "interruptSensitivity",
+    "setter" : "setInterruptSensitivity",
+    "type" : "text",
+    "wire" : "interruptSensitivity"
+   },
+   {
+    "about" : "Whether and how the input from a caller, such as speaking or DTMF can interrupt the play of text-to-speech",
+    "method" : "set_interruptible",
+    "name" : "interruptible",
+    "php_type" : "string",
+    "php_wire" : "interruptible",
+    "setter" : "setInterruptible",
+    "type" : "text",
+    "wire" : "interruptible"
+   },
+   {
+    "about" : "Language to be used for both text-to-speech and transcription",
+    "method" : "set_language",
+    "name" : "language",
+    "php_type" : "string",
+    "php_wire" : "language",
+    "setter" : "setLanguage",
+    "type" : "text",
+    "wire" : "language"
+   },
+   {
+    "about" : "Whether the in-progress partial transcript should be reported as a prompt when the call hangs up",
+    "method" : "set_partial_prompt_on_hangup",
+    "name" : "partial_prompt_on_hangup",
+    "php_type" : "bool",
+    "php_wire" : "partialPromptOnHangup",
+    "setter" : "setPartialPromptOnHangup",
+    "type" : "boolean",
+    "wire" : "partialPromptOnHangup"
+   },
+   {
+    "about" : "Whether partial prompts should be reported to WebSocket server before the caller finishes speaking",
+    "method" : "set_partial_prompts",
+    "name" : "partial_prompts",
+    "php_type" : "bool",
+    "php_wire" : "partialPrompts",
+    "setter" : "setPartialPrompts",
+    "type" : "boolean",
+    "wire" : "partialPrompts"
+   },
+   {
+    "about" : "Whether subsequent text-to-speech or play media can interrupt the on-going play of text-to-speech or media",
+    "method" : "set_preemptible",
+    "name" : "preemptible",
+    "php_type" : "bool",
+    "php_wire" : "preemptible",
+    "setter" : "setPreemptible",
+    "type" : "boolean",
+    "wire" : "preemptible"
+   },
+   {
+    "about" : "Whether profanities should be filtered out of the speech transcription",
+    "method" : "set_profanity_filter",
+    "name" : "profanity_filter",
+    "php_type" : "bool",
+    "php_wire" : "profanityFilter",
+    "setter" : "setProfanityFilter",
+    "type" : "boolean",
+    "wire" : "profanityFilter"
+   },
+   {
+    "about" : "Whether prompts should be reported to WebSocket server when text-to-speech playing and interrupt is disabled",
+    "method" : "set_report_input_during_agent_speech",
+    "name" : "report_input_during_agent_speech",
+    "php_type" : "bool",
+    "php_wire" : "reportInputDuringAgentSpeech",
+    "setter" : "setReportInputDuringAgentSpeech",
+    "type" : "boolean",
+    "wire" : "reportInputDuringAgentSpeech"
+   },
+   {
+    "about" : "Speech model to be used for transcription",
+    "method" : "set_speech_model",
+    "name" : "speech_model",
+    "php_type" : "string",
+    "php_wire" : "speechModel",
+    "setter" : "setSpeechModel",
+    "type" : "text",
+    "wire" : "speechModel"
+   },
+   {
+    "about" : "Set the duration of silence that indicates the end of speech",
+    "method" : "set_speechtimeout",
+    "name" : "speechtimeout",
+    "php_type" : "string",
+    "php_wire" : "speechtimeout",
+    "setter" : "setSpeechtimeout",
+    "type" : "text",
+    "wire" : "speechtimeout"
+   },
+   {
+    "about" : "Language to be used for transcription",
+    "method" : "set_transcription_language",
+    "name" : "transcription_language",
+    "php_type" : "string",
+    "php_wire" : "transcriptionLanguage",
+    "setter" : "setTranscriptionLanguage",
+    "type" : "text",
+    "wire" : "transcriptionLanguage"
+   },
+   {
+    "about" : "Provider to be used for transcription",
+    "method" : "set_transcription_provider",
+    "name" : "transcription_provider",
+    "php_type" : "string",
+    "php_wire" : "transcriptionProvider",
+    "setter" : "setTranscriptionProvider",
+    "type" : "text",
+    "wire" : "transcriptionProvider"
+   },
+   {
+    "about" : "Language to be used for text-to-speech",
+    "method" : "set_tts_language",
+    "name" : "tts_language",
+    "php_type" : "string",
+    "php_wire" : "ttsLanguage",
+    "setter" : "setTtsLanguage",
+    "type" : "text",
+    "wire" : "ttsLanguage"
+   },
+   {
+    "about" : "Whether language-specific text normalization should be applied for text-to-speech",
+    "method" : "set_tts_language_text_normalization",
+    "name" : "tts_language_text_normalization",
+    "php_type" : "bool",
+    "php_wire" : "ttsLanguageTextNormalization",
+    "setter" : "setTtsLanguageTextNormalization",
+    "type" : "boolean",
+    "wire" : "ttsLanguageTextNormalization"
+   },
+   {
+    "about" : "Provider to be used for text-to-speech",
+    "method" : "set_tts_provider",
+    "name" : "tts_provider",
+    "php_type" : "string",
+    "php_wire" : "ttsProvider",
+    "setter" : "setTtsProvider",
+    "type" : "text",
+    "wire" : "ttsProvider"
+   },
+   {
+    "about" : "Text normalization for text-to-speech. The value can be auto, on, or off. Takes precedence over elevenlabsTextNormalization",
+    "method" : "set_tts_text_normalization",
+    "name" : "tts_text_normalization",
+    "php_type" : "string",
+    "php_wire" : "ttsTextNormalization",
+    "setter" : "setTtsTextNormalization",
+    "type" : "text",
+    "wire" : "ttsTextNormalization"
+   },
+   {
+    "about" : "Whether turn detection should be used to decide when the caller has finished speaking. Defaults to false",
+    "method" : "set_turn_detection",
+    "name" : "turn_detection",
+    "php_type" : "bool",
+    "php_wire" : "turnDetection",
+    "setter" : "setTurnDetection",
+    "type" : "boolean",
+    "wire" : "turnDetection"
+   },
+   {
+    "about" : "URL of the remote service where the session is connected to",
+    "method" : "set_url",
+    "name" : "url",
+    "php_type" : "string",
+    "php_wire" : "url",
+    "setter" : "setUrl",
+    "type" : "text",
+    "wire" : "url"
+   },
+   {
+    "about" : "Voice to be used for text-to-speech",
+    "method" : "set_voice",
+    "name" : "voice",
+    "php_type" : "string",
+    "php_wire" : "voice",
+    "setter" : "setVoice",
+    "type" : "text",
+    "wire" : "voice"
+   },
+   {
+    "about" : "The sentence to be played automatically when the session is connected",
+    "method" : "set_welcome_greeting",
+    "name" : "welcome_greeting",
+    "php_type" : "string",
+    "php_wire" : "welcomeGreeting",
+    "setter" : "setWelcomeGreeting",
+    "type" : "text",
+    "wire" : "welcomeGreeting"
+   },
+   {
+    "about" : "\"Whether and how the input from a caller, such as speaking or DTMF can interrupt the welcome greeting",
+    "method" : "set_welcome_greeting_interruptible",
+    "name" : "welcome_greeting_interruptible",
+    "php_type" : "string",
+    "php_wire" : "welcomeGreetingInterruptible",
+    "setter" : "setWelcomeGreetingInterruptible",
+    "type" : "text",
+    "wire" : "welcomeGreetingInterruptible"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Language child.",
+    "class" : "Voice::Language",
+    "has_attributes" : 1,
+    "method" : "language",
+    "php_method" : "language",
+    "value" : null
+   },
+   {
+    "about" : "Add Parameter child.",
+    "class" : "Voice::Parameter",
+    "has_attributes" : 1,
+    "method" : "parameter",
+    "php_method" : "parameter",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::ConversationRelay",
+  "tag" : "ConversationRelay",
+  "value" : null
+ },
+ "Voice::ConversationRelaySession" : {
+  "attributes" : [
+   {
+    "about" : "The unique name or installed add-on sid that identifies the installed addon resource for the ConversationRelaySession Connector",
+    "method" : "set_connector",
+    "name" : "connector",
+    "php_type" : "string",
+    "php_wire" : "connector",
+    "setter" : "setConnector",
+    "type" : "text",
+    "wire" : "connector"
+   },
+   {
+    "about" : "The unique name or id of the ConversationRelaySession  Configuration resource.",
+    "method" : "set_session_configuration",
+    "name" : "session_configuration",
+    "php_type" : "string",
+    "php_wire" : "sessionConfiguration",
+    "setter" : "setSessionConfiguration",
+    "type" : "text",
+    "wire" : "sessionConfiguration"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::ConversationRelaySession",
+  "tag" : "ConversationRelaySession",
+  "value" : null
+ },
+ "Voice::Dial" : {
+  "attributes" : [
+   {
+    "about" : "Action URL",
+    "method" : "set_action",
+    "name" : "action",
+    "php_type" : "string",
+    "php_wire" : "action",
+    "setter" : "setAction",
+    "type" : "text",
+    "wire" : "action"
+   },
+   {
+    "about" : "Preserve the ringing behavior of the inbound call until the Dialed call picks up",
+    "method" : "set_answer_on_bridge",
+    "name" : "answer_on_bridge",
+    "php_type" : "bool",
+    "php_wire" : "answerOnBridge",
+    "setter" : "setAnswerOnBridge",
+    "type" : "boolean",
+    "wire" : "answerOnBridge"
+   },
+   {
+    "about" : "Caller ID to display",
+    "method" : "set_caller_id",
+    "name" : "caller_id",
+    "php_type" : "string",
+    "php_wire" : "callerId",
+    "setter" : "setCallerId",
+    "type" : "text",
+    "wire" : "callerId"
+   },
+   {
+    "about" : "Subscription to events",
+    "method" : "set_events",
+    "name" : "events",
+    "php_type" : "string",
+    "php_wire" : "events",
+    "setter" : "setEvents",
+    "type" : "text",
+    "wire" : "events"
+   },
+   {
+    "about" : "Hangup call on star press",
+    "method" : "set_hangup_on_star",
+    "name" : "hangup_on_star",
+    "php_type" : "bool",
+    "php_wire" : "hangupOnStar",
+    "setter" : "setHangupOnStar",
+    "type" : "boolean",
+    "wire" : "hangupOnStar"
+   },
+   {
+    "about" : "Action URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "Base64-encoded comma-separated identity passports (e.g. shaken, div)",
+    "method" : "set_passports",
+    "name" : "passports",
+    "php_type" : "string",
+    "php_wire" : "passports",
+    "setter" : "setPassports",
+    "type" : "text",
+    "wire" : "passports"
+   },
+   {
+    "about" : "Record the call",
+    "method" : "set_record",
+    "name" : "record",
+    "php_type" : "string",
+    "php_wire" : "record",
+    "setter" : "setRecord",
+    "type" : "text",
+    "wire" : "record"
+   },
+   {
+    "about" : "Configuration for the recording",
+    "method" : "set_recording_configuration_id",
+    "name" : "recording_configuration_id",
+    "php_type" : "string",
+    "php_wire" : "recordingConfigurationId",
+    "setter" : "setRecordingConfigurationId",
+    "type" : "text",
+    "wire" : "recordingConfigurationId"
+   },
+   {
+    "about" : "Recording status callback URL",
+    "method" : "set_recording_status_callback",
+    "name" : "recording_status_callback",
+    "php_type" : "string",
+    "php_wire" : "recordingStatusCallback",
+    "setter" : "setRecordingStatusCallback",
+    "type" : "text",
+    "wire" : "recordingStatusCallback"
+   },
+   {
+    "about" : "Recording status callback events",
+    "method" : "set_recording_status_callback_event",
+    "name" : "recording_status_callback_event",
+    "php_type" : "string[]",
+    "php_wire" : "recordingStatusCallbackEvent",
+    "setter" : "setRecordingStatusCallbackEvent",
+    "type" : "list",
+    "wire" : "recordingStatusCallbackEvent"
+   },
+   {
+    "about" : "Recording status callback URL method",
+    "method" : "set_recording_status_callback_method",
+    "name" : "recording_status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "recordingStatusCallbackMethod",
+    "setter" : "setRecordingStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "recordingStatusCallbackMethod"
+   },
+   {
+    "about" : "To indicate which audio track should be recorded",
+    "method" : "set_recording_track",
+    "name" : "recording_track",
+    "php_type" : "string",
+    "php_wire" : "recordingTrack",
+    "setter" : "setRecordingTrack",
+    "type" : "text",
+    "wire" : "recordingTrack"
+   },
+   {
+    "about" : "The HTTP method to use for the refer Webhook",
+    "method" : "set_refer_method",
+    "name" : "refer_method",
+    "php_type" : "string",
+    "php_wire" : "referMethod",
+    "setter" : "setReferMethod",
+    "type" : "text",
+    "wire" : "referMethod"
+   },
+   {
+    "about" : "Webhook that will receive future SIP REFER requests",
+    "method" : "set_refer_url",
+    "name" : "refer_url",
+    "php_type" : "string",
+    "php_wire" : "referUrl",
+    "setter" : "setReferUrl",
+    "type" : "text",
+    "wire" : "referUrl"
+   },
+   {
+    "about" : "Ringtone allows you to override the ringback tone that Twilio will play back to the caller while executing the Dial",
+    "method" : "set_ring_tone",
+    "name" : "ring_tone",
+    "php_type" : "string",
+    "php_wire" : "ringTone",
+    "setter" : "setRingTone",
+    "type" : "text",
+    "wire" : "ringTone"
+   },
+   {
+    "about" : "Used to determine if child TwiML nouns should be dialed in order, one after the other (sequential) or dial all at once (parallel). Default is false, parallel",
+    "method" : "set_sequential",
+    "name" : "sequential",
+    "php_type" : "bool",
+    "php_wire" : "sequential",
+    "setter" : "setSequential",
+    "type" : "boolean",
+    "wire" : "sequential"
+   },
+   {
+    "about" : "Max time length",
+    "method" : "set_time_limit",
+    "name" : "time_limit",
+    "php_type" : "int",
+    "php_wire" : "timeLimit",
+    "setter" : "setTimeLimit",
+    "type" : "text",
+    "wire" : "timeLimit"
+   },
+   {
+    "about" : "Time to wait for answer",
+    "method" : "set_timeout",
+    "name" : "timeout",
+    "php_type" : "int",
+    "php_wire" : "timeout",
+    "setter" : "setTimeout",
+    "type" : "text",
+    "wire" : "timeout"
+   },
+   {
+    "about" : "Trim the recording",
+    "method" : "set_trim",
+    "name" : "trim",
+    "php_type" : "string",
+    "php_wire" : "trim",
+    "setter" : "setTrim",
+    "type" : "text",
+    "wire" : "trim"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Application child.",
+    "class" : "Voice::Application",
+    "has_attributes" : 1,
+    "method" : "application",
+    "php_method" : "application",
+    "value" : "application_sid"
+   },
+   {
+    "about" : "Add Client child.",
+    "class" : "Voice::Client",
+    "has_attributes" : 1,
+    "method" : "client",
+    "php_method" : "client",
+    "value" : "identity"
+   },
+   {
+    "about" : "Add Conference child.",
+    "class" : "Voice::Conference",
+    "has_attributes" : 1,
+    "method" : "conference",
+    "php_method" : "conference",
+    "value" : "name"
+   },
+   {
+    "about" : "Add Number child.",
+    "class" : "Voice::Number",
+    "has_attributes" : 1,
+    "method" : "number",
+    "php_method" : "number",
+    "value" : "phone_number"
+   },
+   {
+    "about" : "Add Queue child.",
+    "class" : "Voice::Queue",
+    "has_attributes" : 1,
+    "method" : "queue",
+    "php_method" : "queue",
+    "value" : "name"
+   },
+   {
+    "about" : "Add Sim child.",
+    "class" : "Voice::Sim",
+    "has_attributes" : 0,
+    "method" : "sim",
+    "php_method" : "sim",
+    "value" : "sim_sid"
+   },
+   {
+    "about" : "Add Sip child.",
+    "class" : "Voice::Sip",
+    "has_attributes" : 1,
+    "method" : "sip",
+    "php_method" : "sip",
+    "value" : "sip_url"
+   },
+   {
+    "about" : "Add WhatsApp child.",
+    "class" : "Voice::WhatsApp",
+    "has_attributes" : 1,
+    "method" : "whats_app",
+    "php_method" : "whatsApp",
+    "value" : "phone_number"
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Dial",
+  "tag" : "Dial",
+  "value" : "number"
+ },
+ "Voice::Echo" : {
+  "attributes" : [],
+  "children" : [],
+  "has_attributes" : 0,
+  "php_class" : "Voice::Echo_",
+  "tag" : "Echo",
+  "value" : null
+ },
+ "Voice::Enqueue" : {
+  "attributes" : [
+   {
+    "about" : "Action URL",
+    "method" : "set_action",
+    "name" : "action",
+    "php_type" : "string",
+    "php_wire" : "action",
+    "setter" : "setAction",
+    "type" : "text",
+    "wire" : "action"
+   },
+   {
+    "about" : "Maximum size of queue",
+    "method" : "set_max_queue_size",
+    "name" : "max_queue_size",
+    "php_type" : "int",
+    "php_wire" : "maxQueueSize",
+    "setter" : "setMaxQueueSize",
+    "type" : "text",
+    "wire" : "maxQueueSize"
+   },
+   {
+    "about" : "Action URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "Wait URL",
+    "method" : "set_wait_url",
+    "name" : "wait_url",
+    "php_type" : "string",
+    "php_wire" : "waitUrl",
+    "setter" : "setWaitUrl",
+    "type" : "text",
+    "wire" : "waitUrl"
+   },
+   {
+    "about" : "Wait URL method",
+    "method" : "set_wait_url_method",
+    "name" : "wait_url_method",
+    "php_type" : "string",
+    "php_wire" : "waitUrlMethod",
+    "setter" : "setWaitUrlMethod",
+    "type" : "text",
+    "wire" : "waitUrlMethod"
+   },
+   {
+    "about" : "TaskRouter Workflow SID",
+    "method" : "set_workflow_sid",
+    "name" : "workflow_sid",
+    "php_type" : "string",
+    "php_wire" : "workflowSid",
+    "setter" : "setWorkflowSid",
+    "type" : "text",
+    "wire" : "workflowSid"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Task child.",
+    "class" : "Voice::Task",
+    "has_attributes" : 1,
+    "method" : "task",
+    "php_method" : "task",
+    "value" : "body"
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Enqueue",
+  "tag" : "Enqueue",
+  "value" : "name"
+ },
+ "Voice::Gather" : {
+  "attributes" : [
+   {
+    "about" : "Action URL",
+    "method" : "set_action",
+    "name" : "action",
+    "php_type" : "string",
+    "php_wire" : "action",
+    "setter" : "setAction",
+    "type" : "text",
+    "wire" : "action"
+   },
+   {
+    "about" : "Force webhook to the action URL event if there is no input",
+    "method" : "set_action_on_empty_result",
+    "name" : "action_on_empty_result",
+    "php_type" : "bool",
+    "php_wire" : "actionOnEmptyResult",
+    "setter" : "setActionOnEmptyResult",
+    "type" : "boolean",
+    "wire" : "actionOnEmptyResult"
+   },
+   {
+    "about" : "Stop playing media upon speech",
+    "method" : "set_barge_in",
+    "name" : "barge_in",
+    "php_type" : "bool",
+    "php_wire" : "bargeIn",
+    "setter" : "setBargeIn",
+    "type" : "boolean",
+    "wire" : "bargeIn"
+   },
+   {
+    "about" : "Allow debug for gather",
+    "method" : "set_debug",
+    "name" : "debug",
+    "php_type" : "bool",
+    "php_wire" : "debug",
+    "setter" : "setDebug",
+    "type" : "boolean",
+    "wire" : "debug"
+   },
+   {
+    "about" : "Use enhanced speech model",
+    "method" : "set_enhanced",
+    "name" : "enhanced",
+    "php_type" : "bool",
+    "php_wire" : "enhanced",
+    "setter" : "setEnhanced",
+    "type" : "boolean",
+    "wire" : "enhanced"
+   },
+   {
+    "about" : "Finish gather on key",
+    "method" : "set_finish_on_key",
+    "name" : "finish_on_key",
+    "php_type" : "string",
+    "php_wire" : "finishOnKey",
+    "setter" : "setFinishOnKey",
+    "type" : "text",
+    "wire" : "finishOnKey"
+   },
+   {
+    "about" : "Speech recognition hints",
+    "method" : "set_hints",
+    "name" : "hints",
+    "php_type" : "string",
+    "php_wire" : "hints",
+    "setter" : "setHints",
+    "type" : "text",
+    "wire" : "hints"
+   },
+   {
+    "about" : "Input type Twilio should accept",
+    "method" : "set_input",
+    "name" : "input",
+    "php_type" : "string[]",
+    "php_wire" : "input",
+    "setter" : "setInput",
+    "type" : "list",
+    "wire" : "input"
+   },
+   {
+    "about" : "Language to use",
+    "method" : "set_language",
+    "name" : "language",
+    "php_type" : "string",
+    "php_wire" : "language",
+    "setter" : "setLanguage",
+    "type" : "text",
+    "wire" : "language"
+   },
+   {
+    "about" : "Max allowed time for speech input",
+    "method" : "set_max_speech_time",
+    "name" : "max_speech_time",
+    "php_type" : "int",
+    "php_wire" : "maxSpeechTime",
+    "setter" : "setMaxSpeechTime",
+    "type" : "text",
+    "wire" : "maxSpeechTime"
+   },
+   {
+    "about" : "Action URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "Number of digits to collect",
+    "method" : "set_num_digits",
+    "name" : "num_digits",
+    "php_type" : "int",
+    "php_wire" : "numDigits",
+    "setter" : "setNumDigits",
+    "type" : "text",
+    "wire" : "numDigits"
+   },
+   {
+    "about" : "Partial result callback URL",
+    "method" : "set_partial_result_callback",
+    "name" : "partial_result_callback",
+    "php_type" : "string",
+    "php_wire" : "partialResultCallback",
+    "setter" : "setPartialResultCallback",
+    "type" : "text",
+    "wire" : "partialResultCallback"
+   },
+   {
+    "about" : "Partial result callback URL method",
+    "method" : "set_partial_result_callback_method",
+    "name" : "partial_result_callback_method",
+    "php_type" : "string",
+    "php_wire" : "partialResultCallbackMethod",
+    "setter" : "setPartialResultCallbackMethod",
+    "type" : "text",
+    "wire" : "partialResultCallbackMethod"
+   },
+   {
+    "about" : "Profanity Filter on speech",
+    "method" : "set_profanity_filter",
+    "name" : "profanity_filter",
+    "php_type" : "bool",
+    "php_wire" : "profanityFilter",
+    "setter" : "setProfanityFilter",
+    "type" : "boolean",
+    "wire" : "profanityFilter"
+   },
+   {
+    "about" : "Specify the model that is best suited for your use case",
+    "method" : "set_speech_model",
+    "name" : "speech_model",
+    "php_type" : "string",
+    "php_wire" : "speechModel",
+    "setter" : "setSpeechModel",
+    "type" : "text",
+    "wire" : "speechModel"
+   },
+   {
+    "about" : "Time to wait to gather speech input and it should be either auto or a positive integer.",
+    "method" : "set_speech_timeout",
+    "name" : "speech_timeout",
+    "php_type" : "string",
+    "php_wire" : "speechTimeout",
+    "setter" : "setSpeechTimeout",
+    "type" : "text",
+    "wire" : "speechTimeout"
+   },
+   {
+    "about" : "Time to wait to gather input",
+    "method" : "set_timeout",
+    "name" : "timeout",
+    "php_type" : "int",
+    "php_wire" : "timeout",
+    "setter" : "setTimeout",
+    "type" : "text",
+    "wire" : "timeout"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Pause child.",
+    "class" : "Voice::Pause",
+    "has_attributes" : 1,
+    "method" : "pause",
+    "php_method" : "pause",
+    "value" : null
+   },
+   {
+    "about" : "Add Play child.",
+    "class" : "Voice::Play",
+    "has_attributes" : 1,
+    "method" : "play",
+    "php_method" : "play",
+    "value" : "url"
+   },
+   {
+    "about" : "Add Say child.",
+    "class" : "Voice::Say",
+    "has_attributes" : 1,
+    "method" : "say",
+    "php_method" : "say",
+    "value" : "message"
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Gather",
+  "tag" : "Gather",
+  "value" : null
+ },
+ "Voice::Hangup" : {
+  "attributes" : [],
+  "children" : [
+   {
+    "about" : "Add Parameter child.",
+    "class" : "Voice::Parameter",
+    "has_attributes" : 1,
+    "method" : "parameter",
+    "php_method" : "parameter",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 0,
+  "php_class" : "Voice::Hangup",
+  "tag" : "Hangup",
+  "value" : null
+ },
+ "Voice::Header" : {
+  "attributes" : [
+   {
+    "about" : "The name of the custom header",
+    "method" : "set_name",
+    "name" : "name",
+    "php_type" : "string",
+    "php_wire" : "name",
+    "setter" : "setName",
+    "type" : "text",
+    "wire" : "name"
+   },
+   {
+    "about" : "The value of the custom header",
+    "method" : "set_value",
+    "name" : "value",
+    "php_type" : "string",
+    "php_wire" : "value",
+    "setter" : "setValue",
+    "type" : "text",
+    "wire" : "value"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Header",
+  "tag" : "Header",
+  "value" : null
+ },
+ "Voice::Headers" : {
+  "attributes" : [],
+  "children" : [
+   {
+    "about" : "Add Header child.",
+    "class" : "Voice::Header",
+    "has_attributes" : 1,
+    "method" : "header",
+    "php_method" : "header",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 0,
+  "php_class" : "Voice::Headers",
+  "tag" : "Headers",
+  "value" : null
+ },
+ "Voice::Identity" : {
+  "attributes" : [],
+  "children" : [],
+  "has_attributes" : 0,
+  "php_class" : "Voice::Identity",
+  "tag" : "Identity",
+  "value" : "client_identity"
+ },
+ "Voice::Language" : {
+  "attributes" : [
+   {
+    "about" : "Whether smart formatting should be applied to transcripts of this language",
+    "method" : "set_asr_smart_format",
+    "name" : "asr_smart_format",
+    "php_type" : "bool",
+    "php_wire" : "asrSmartFormat",
+    "setter" : "setAsrSmartFormat",
+    "type" : "boolean",
+    "wire" : "asrSmartFormat"
+   },
+   {
+    "about" : "Language code of this language setting is for",
+    "method" : "set_code",
+    "name" : "code",
+    "php_type" : "string",
+    "php_wire" : "code",
+    "setter" : "setCode",
+    "type" : "text",
+    "wire" : "code"
+   },
+   {
+    "about" : "Phrases to help better accuracy in speech recognition of this language",
+    "method" : "set_hints",
+    "name" : "hints",
+    "php_type" : "string",
+    "php_wire" : "hints",
+    "setter" : "setHints",
+    "type" : "text",
+    "wire" : "hints"
+   },
+   {
+    "about" : "Speech model to be used for transcription of this language",
+    "method" : "set_speech_model",
+    "name" : "speech_model",
+    "php_type" : "string",
+    "php_wire" : "speechModel",
+    "setter" : "setSpeechModel",
+    "type" : "text",
+    "wire" : "speechModel"
+   },
+   {
+    "about" : "Provider to be used for transcription of this language",
+    "method" : "set_transcription_provider",
+    "name" : "transcription_provider",
+    "php_type" : "string",
+    "php_wire" : "transcriptionProvider",
+    "setter" : "setTranscriptionProvider",
+    "type" : "text",
+    "wire" : "transcriptionProvider"
+   },
+   {
+    "about" : "Whether language-specific text normalization should be applied for text-to-speech of this language",
+    "method" : "set_tts_language_text_normalization",
+    "name" : "tts_language_text_normalization",
+    "php_type" : "bool",
+    "php_wire" : "ttsLanguageTextNormalization",
+    "setter" : "setTtsLanguageTextNormalization",
+    "type" : "boolean",
+    "wire" : "ttsLanguageTextNormalization"
+   },
+   {
+    "about" : "Provider to be used for text-to-speech of this language",
+    "method" : "set_tts_provider",
+    "name" : "tts_provider",
+    "php_type" : "string",
+    "php_wire" : "ttsProvider",
+    "setter" : "setTtsProvider",
+    "type" : "text",
+    "wire" : "ttsProvider"
+   },
+   {
+    "about" : "Text normalization for text-to-speech of this language. The value can be auto, on, or off",
+    "method" : "set_tts_text_normalization",
+    "name" : "tts_text_normalization",
+    "php_type" : "string",
+    "php_wire" : "ttsTextNormalization",
+    "setter" : "setTtsTextNormalization",
+    "type" : "text",
+    "wire" : "ttsTextNormalization"
+   },
+   {
+    "about" : "Voice to be used for text-to-speech of this language",
+    "method" : "set_voice",
+    "name" : "voice",
+    "php_type" : "string",
+    "php_wire" : "voice",
+    "setter" : "setVoice",
+    "type" : "text",
+    "wire" : "voice"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Language",
+  "tag" : "Language",
+  "value" : null
+ },
+ "Voice::Leave" : {
+  "attributes" : [],
+  "children" : [],
+  "has_attributes" : 0,
+  "php_class" : "Voice::Leave",
+  "tag" : "Leave",
+  "value" : null
+ },
+ "Voice::Number" : {
+  "attributes" : [
+   {
+    "about" : "The URL we should call to send amd status information to your application",
+    "method" : "set_amd_status_callback",
+    "name" : "amd_status_callback",
+    "php_type" : "string",
+    "php_wire" : "amdStatusCallback",
+    "setter" : "setAmdStatusCallback",
+    "type" : "text",
+    "wire" : "amdStatusCallback"
+   },
+   {
+    "about" : "HTTP Method to use with amd_status_callback",
+    "method" : "set_amd_status_callback_method",
+    "name" : "amd_status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "amdStatusCallbackMethod",
+    "setter" : "setAmdStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "amdStatusCallbackMethod"
+   },
+   {
+    "about" : "BYOC trunk SID (Beta)",
+    "method" : "set_byoc",
+    "name" : "byoc",
+    "php_type" : "string",
+    "php_wire" : "byoc",
+    "setter" : "setByoc",
+    "type" : "text",
+    "wire" : "byoc"
+   },
+   {
+    "about" : "Enable machine detection or end of greeting detection",
+    "method" : "set_machine_detection",
+    "name" : "machine_detection",
+    "php_type" : "string",
+    "php_wire" : "machineDetection",
+    "setter" : "setMachineDetection",
+    "type" : "text",
+    "wire" : "machineDetection"
+   },
+   {
+    "about" : "Number of milliseconds of initial silence",
+    "method" : "set_machine_detection_silence_timeout",
+    "name" : "machine_detection_silence_timeout",
+    "php_type" : "int",
+    "php_wire" : "machineDetectionSilenceTimeout",
+    "setter" : "setMachineDetectionSilenceTimeout",
+    "type" : "text",
+    "wire" : "machineDetectionSilenceTimeout"
+   },
+   {
+    "about" : "Number of milliseconds of silence after speech activity",
+    "method" : "set_machine_detection_speech_end_threshold",
+    "name" : "machine_detection_speech_end_threshold",
+    "php_type" : "int",
+    "php_wire" : "machineDetectionSpeechEndThreshold",
+    "setter" : "setMachineDetectionSpeechEndThreshold",
+    "type" : "text",
+    "wire" : "machineDetectionSpeechEndThreshold"
+   },
+   {
+    "about" : "Number of milliseconds for measuring stick for the length of the speech activity",
+    "method" : "set_machine_detection_speech_threshold",
+    "name" : "machine_detection_speech_threshold",
+    "php_type" : "int",
+    "php_wire" : "machineDetectionSpeechThreshold",
+    "setter" : "setMachineDetectionSpeechThreshold",
+    "type" : "text",
+    "wire" : "machineDetectionSpeechThreshold"
+   },
+   {
+    "about" : "Number of seconds to wait for machine detection",
+    "method" : "set_machine_detection_timeout",
+    "name" : "machine_detection_timeout",
+    "php_type" : "int",
+    "php_wire" : "machineDetectionTimeout",
+    "setter" : "setMachineDetectionTimeout",
+    "type" : "text",
+    "wire" : "machineDetectionTimeout"
+   },
+   {
+    "about" : "TwiML URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "DTMF tones to play when the call is answered",
+    "method" : "set_send_digits",
+    "name" : "send_digits",
+    "php_type" : "string",
+    "php_wire" : "sendDigits",
+    "setter" : "setSendDigits",
+    "type" : "text",
+    "wire" : "sendDigits"
+   },
+   {
+    "about" : "Status callback URL",
+    "method" : "set_status_callback",
+    "name" : "status_callback",
+    "php_type" : "string",
+    "php_wire" : "statusCallback",
+    "setter" : "setStatusCallback",
+    "type" : "text",
+    "wire" : "statusCallback"
+   },
+   {
+    "about" : "Events to call status callback",
+    "method" : "set_status_callback_event",
+    "name" : "status_callback_event",
+    "php_type" : "string[]",
+    "php_wire" : "statusCallbackEvent",
+    "setter" : "setStatusCallbackEvent",
+    "type" : "list",
+    "wire" : "statusCallbackEvent"
+   },
+   {
+    "about" : "Status callback URL method",
+    "method" : "set_status_callback_method",
+    "name" : "status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "statusCallbackMethod",
+    "setter" : "setStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "statusCallbackMethod"
+   },
+   {
+    "about" : "TwiML URL",
+    "method" : "set_url",
+    "name" : "url",
+    "php_type" : "string",
+    "php_wire" : "url",
+    "setter" : "setUrl",
+    "type" : "text",
+    "wire" : "url"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Number",
+  "tag" : "Number",
+  "value" : "phone_number"
+ },
+ "Voice::Parameter" : {
+  "attributes" : [
+   {
+    "about" : "The name of the custom parameter",
+    "method" : "set_name",
+    "name" : "name",
+    "php_type" : "string",
+    "php_wire" : "name",
+    "setter" : "setName",
+    "type" : "text",
+    "wire" : "name"
+   },
+   {
+    "about" : "The value of the custom parameter",
+    "method" : "set_value",
+    "name" : "value",
+    "php_type" : "string",
+    "php_wire" : "value",
+    "setter" : "setValue",
+    "type" : "text",
+    "wire" : "value"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Parameter",
+  "tag" : "Parameter",
+  "value" : null
+ },
+ "Voice::Pause" : {
+  "attributes" : [
+   {
+    "about" : "Length in seconds to pause",
+    "method" : "set_length",
+    "name" : "length",
+    "php_type" : "int",
+    "php_wire" : "length",
+    "setter" : "setLength",
+    "type" : "text",
+    "wire" : "length"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Pause",
+  "tag" : "Pause",
+  "value" : null
+ },
+ "Voice::Pay" : {
+  "attributes" : [
+   {
+    "about" : "Action URL",
+    "method" : "set_action",
+    "name" : "action",
+    "php_type" : "string",
+    "php_wire" : "action",
+    "setter" : "setAction",
+    "type" : "text",
+    "wire" : "action"
+   },
+   {
+    "about" : "Bank account type for ach transactions. If set, payment method attribute must be provided and value should be set to ach-debit. defaults to consumer-checking",
+    "method" : "set_bank_account_type",
+    "name" : "bank_account_type",
+    "php_type" : "string",
+    "php_wire" : "bankAccountType",
+    "setter" : "setBankAccountType",
+    "type" : "text",
+    "wire" : "bankAccountType"
+   },
+   {
+    "about" : "Amount to process. If value is greater than 0 then make the payment else create a payment token",
+    "method" : "set_charge_amount",
+    "name" : "charge_amount",
+    "php_type" : "string",
+    "php_wire" : "chargeAmount",
+    "setter" : "setChargeAmount",
+    "type" : "text",
+    "wire" : "chargeAmount"
+   },
+   {
+    "about" : "Currency of the amount attribute",
+    "method" : "set_currency",
+    "name" : "currency",
+    "php_type" : "string",
+    "php_wire" : "currency",
+    "setter" : "setCurrency",
+    "type" : "text",
+    "wire" : "currency"
+   },
+   {
+    "about" : "Details regarding the payment",
+    "method" : "set_description",
+    "name" : "description",
+    "php_type" : "string",
+    "php_wire" : "description",
+    "setter" : "setDescription",
+    "type" : "text",
+    "wire" : "description"
+   },
+   {
+    "about" : "Input type Twilio should accept",
+    "method" : "set_input",
+    "name" : "input",
+    "php_type" : "string",
+    "php_wire" : "input",
+    "setter" : "setInput",
+    "type" : "text",
+    "wire" : "input"
+   },
+   {
+    "about" : "Language to use",
+    "method" : "set_language",
+    "name" : "language",
+    "php_type" : "string",
+    "php_wire" : "language",
+    "setter" : "setLanguage",
+    "type" : "text",
+    "wire" : "language"
+   },
+   {
+    "about" : "Maximum number of allowed retries when gathering input",
+    "method" : "set_max_attempts",
+    "name" : "max_attempts",
+    "php_type" : "int",
+    "php_wire" : "maxAttempts",
+    "setter" : "setMaxAttempts",
+    "type" : "text",
+    "wire" : "maxAttempts"
+   },
+   {
+    "about" : "Prompt for minimum postal code length",
+    "method" : "set_min_postal_code_length",
+    "name" : "min_postal_code_length",
+    "php_type" : "int",
+    "php_wire" : "minPostalCodeLength",
+    "setter" : "setMinPostalCodeLength",
+    "type" : "text",
+    "wire" : "minPostalCodeLength"
+   },
+   {
+    "about" : "Unique name for payment connector",
+    "method" : "set_payment_connector",
+    "name" : "payment_connector",
+    "php_type" : "string",
+    "php_wire" : "paymentConnector",
+    "setter" : "setPaymentConnector",
+    "type" : "text",
+    "wire" : "paymentConnector"
+   },
+   {
+    "about" : "Payment method to be used. defaults to credit-card",
+    "method" : "set_payment_method",
+    "name" : "payment_method",
+    "php_type" : "string",
+    "php_wire" : "paymentMethod",
+    "setter" : "setPaymentMethod",
+    "type" : "text",
+    "wire" : "paymentMethod"
+   },
+   {
+    "about" : "Prompt for postal code and it should be true/false or default postal code",
+    "method" : "set_postal_code",
+    "name" : "postal_code",
+    "php_type" : "string",
+    "php_wire" : "postalCode",
+    "setter" : "setPostalCode",
+    "type" : "text",
+    "wire" : "postalCode"
+   },
+   {
+    "about" : "Prompt for security code",
+    "method" : "set_security_code",
+    "name" : "security_code",
+    "php_type" : "bool",
+    "php_wire" : "securityCode",
+    "setter" : "setSecurityCode",
+    "type" : "boolean",
+    "wire" : "securityCode"
+   },
+   {
+    "about" : "Status callback URL",
+    "method" : "set_status_callback",
+    "name" : "status_callback",
+    "php_type" : "string",
+    "php_wire" : "statusCallback",
+    "setter" : "setStatusCallback",
+    "type" : "text",
+    "wire" : "statusCallback"
+   },
+   {
+    "about" : "Status callback method",
+    "method" : "set_status_callback_method",
+    "name" : "status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "statusCallbackMethod",
+    "setter" : "setStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "statusCallbackMethod"
+   },
+   {
+    "about" : "Time to wait to gather input",
+    "method" : "set_timeout",
+    "name" : "timeout",
+    "php_type" : "int",
+    "php_wire" : "timeout",
+    "setter" : "setTimeout",
+    "type" : "text",
+    "wire" : "timeout"
+   },
+   {
+    "about" : "Type of token",
+    "method" : "set_token_type",
+    "name" : "token_type",
+    "php_type" : "string",
+    "php_wire" : "tokenType",
+    "setter" : "setTokenType",
+    "type" : "text",
+    "wire" : "tokenType"
+   },
+   {
+    "about" : "Comma separated accepted card types",
+    "method" : "set_valid_card_types",
+    "name" : "valid_card_types",
+    "php_type" : "string[]",
+    "php_wire" : "validCardTypes",
+    "setter" : "setValidCardTypes",
+    "type" : "list",
+    "wire" : "validCardTypes"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Parameter child.",
+    "class" : "Voice::Parameter",
+    "has_attributes" : 1,
+    "method" : "parameter",
+    "php_method" : "parameter",
+    "value" : null
+   },
+   {
+    "about" : "Add Prompt child.",
+    "class" : "Voice::Prompt",
+    "has_attributes" : 1,
+    "method" : "prompt",
+    "php_method" : "prompt",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Pay",
+  "tag" : "Pay",
+  "value" : null
+ },
+ "Voice::Play" : {
+  "attributes" : [
+   {
+    "about" : "Play DTMF tones for digits",
+    "method" : "set_digits",
+    "name" : "digits",
+    "php_type" : "string",
+    "php_wire" : "digits",
+    "setter" : "setDigits",
+    "type" : "text",
+    "wire" : "digits"
+   },
+   {
+    "about" : "Times to loop media",
+    "method" : "set_loop",
+    "name" : "loop",
+    "php_type" : "int",
+    "php_wire" : "loop",
+    "setter" : "setLoop",
+    "type" : "text",
+    "wire" : "loop"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Play",
+  "tag" : "Play",
+  "value" : "url"
+ },
+ "Voice::Prompt" : {
+  "attributes" : [
+   {
+    "about" : "Current attempt count",
+    "method" : "set_attempt",
+    "name" : "attempt",
+    "php_type" : "int[]",
+    "php_wire" : "attempt",
+    "setter" : "setAttempt",
+    "type" : "list",
+    "wire" : "attempt"
+   },
+   {
+    "about" : "Type of the credit card",
+    "method" : "set_card_type",
+    "name" : "card_type",
+    "php_type" : "string[]",
+    "php_wire" : "cardType",
+    "setter" : "setCardType",
+    "type" : "list",
+    "wire" : "cardType"
+   },
+   {
+    "about" : "Type of error",
+    "method" : "set_error_type",
+    "name" : "error_type",
+    "php_type" : "string[]",
+    "php_wire" : "errorType",
+    "setter" : "setErrorType",
+    "type" : "list",
+    "wire" : "errorType"
+   },
+   {
+    "about" : "Name of the payment source data element",
+    "method" : "set_for",
+    "name" : "for",
+    "php_type" : "string",
+    "php_wire" : "for_",
+    "setter" : "setFor_",
+    "type" : "text",
+    "wire" : "for"
+   },
+   {
+    "about" : "Require customer to input requested information twice and verify matching.",
+    "method" : "set_require_matching_inputs",
+    "name" : "require_matching_inputs",
+    "php_type" : "bool",
+    "php_wire" : "requireMatchingInputs",
+    "setter" : "setRequireMatchingInputs",
+    "type" : "boolean",
+    "wire" : "requireMatchingInputs"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Pause child.",
+    "class" : "Voice::Pause",
+    "has_attributes" : 1,
+    "method" : "pause",
+    "php_method" : "pause",
+    "value" : null
+   },
+   {
+    "about" : "Add Play child.",
+    "class" : "Voice::Play",
+    "has_attributes" : 1,
+    "method" : "play",
+    "php_method" : "play",
+    "value" : "url"
+   },
+   {
+    "about" : "Add Say child.",
+    "class" : "Voice::Say",
+    "has_attributes" : 1,
+    "method" : "say",
+    "php_method" : "say",
+    "value" : "message"
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Prompt",
+  "tag" : "Prompt",
+  "value" : null
+ },
+ "Voice::Queue" : {
+  "attributes" : [
+   {
+    "about" : "Action URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "TaskRouter Activity SID",
+    "method" : "set_post_work_activity_sid",
+    "name" : "post_work_activity_sid",
+    "php_type" : "string",
+    "php_wire" : "postWorkActivitySid",
+    "setter" : "setPostWorkActivitySid",
+    "type" : "text",
+    "wire" : "postWorkActivitySid"
+   },
+   {
+    "about" : "TaskRouter Reservation SID",
+    "method" : "set_reservation_sid",
+    "name" : "reservation_sid",
+    "php_type" : "string",
+    "php_wire" : "reservationSid",
+    "setter" : "setReservationSid",
+    "type" : "text",
+    "wire" : "reservationSid"
+   },
+   {
+    "about" : "Action URL",
+    "method" : "set_url",
+    "name" : "url",
+    "php_type" : "string",
+    "php_wire" : "url",
+    "setter" : "setUrl",
+    "type" : "text",
+    "wire" : "url"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Queue",
+  "tag" : "Queue",
+  "value" : "name"
+ },
+ "Voice::Record" : {
+  "attributes" : [
+   {
+    "about" : "Action URL",
+    "method" : "set_action",
+    "name" : "action",
+    "php_type" : "string",
+    "php_wire" : "action",
+    "setter" : "setAction",
+    "type" : "text",
+    "wire" : "action"
+   },
+   {
+    "about" : "Finish recording on key",
+    "method" : "set_finish_on_key",
+    "name" : "finish_on_key",
+    "php_type" : "string",
+    "php_wire" : "finishOnKey",
+    "setter" : "setFinishOnKey",
+    "type" : "text",
+    "wire" : "finishOnKey"
+   },
+   {
+    "about" : "Max time to record in seconds",
+    "method" : "set_max_length",
+    "name" : "max_length",
+    "php_type" : "int",
+    "php_wire" : "maxLength",
+    "setter" : "setMaxLength",
+    "type" : "text",
+    "wire" : "maxLength"
+   },
+   {
+    "about" : "Action URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "Play beep",
+    "method" : "set_play_beep",
+    "name" : "play_beep",
+    "php_type" : "bool",
+    "php_wire" : "playBeep",
+    "setter" : "setPlayBeep",
+    "type" : "boolean",
+    "wire" : "playBeep"
+   },
+   {
+    "about" : "Configuration for the recording",
+    "method" : "set_recording_configuration_id",
+    "name" : "recording_configuration_id",
+    "php_type" : "string",
+    "php_wire" : "recordingConfigurationId",
+    "setter" : "setRecordingConfigurationId",
+    "type" : "text",
+    "wire" : "recordingConfigurationId"
+   },
+   {
+    "about" : "Status callback URL",
+    "method" : "set_recording_status_callback",
+    "name" : "recording_status_callback",
+    "php_type" : "string",
+    "php_wire" : "recordingStatusCallback",
+    "setter" : "setRecordingStatusCallback",
+    "type" : "text",
+    "wire" : "recordingStatusCallback"
+   },
+   {
+    "about" : "Recording status callback events",
+    "method" : "set_recording_status_callback_event",
+    "name" : "recording_status_callback_event",
+    "php_type" : "string[]",
+    "php_wire" : "recordingStatusCallbackEvent",
+    "setter" : "setRecordingStatusCallbackEvent",
+    "type" : "list",
+    "wire" : "recordingStatusCallbackEvent"
+   },
+   {
+    "about" : "Status callback URL method",
+    "method" : "set_recording_status_callback_method",
+    "name" : "recording_status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "recordingStatusCallbackMethod",
+    "setter" : "setRecordingStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "recordingStatusCallbackMethod"
+   },
+   {
+    "about" : "Timeout to begin recording",
+    "method" : "set_timeout",
+    "name" : "timeout",
+    "php_type" : "int",
+    "php_wire" : "timeout",
+    "setter" : "setTimeout",
+    "type" : "text",
+    "wire" : "timeout"
+   },
+   {
+    "about" : "Transcribe the recording",
+    "method" : "set_transcribe",
+    "name" : "transcribe",
+    "php_type" : "bool",
+    "php_wire" : "transcribe",
+    "setter" : "setTranscribe",
+    "type" : "boolean",
+    "wire" : "transcribe"
+   },
+   {
+    "about" : "Transcribe callback URL",
+    "method" : "set_transcribe_callback",
+    "name" : "transcribe_callback",
+    "php_type" : "string",
+    "php_wire" : "transcribeCallback",
+    "setter" : "setTranscribeCallback",
+    "type" : "text",
+    "wire" : "transcribeCallback"
+   },
+   {
+    "about" : "Trim the recording",
+    "method" : "set_trim",
+    "name" : "trim",
+    "php_type" : "string",
+    "php_wire" : "trim",
+    "setter" : "setTrim",
+    "type" : "text",
+    "wire" : "trim"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Record",
+  "tag" : "Record",
+  "value" : null
+ },
+ "Voice::Recording" : {
+  "attributes" : [
+   {
+    "about" : "The recording channels for the final recording",
+    "method" : "set_channels",
+    "name" : "channels",
+    "php_type" : "string",
+    "php_wire" : "channels",
+    "setter" : "setChannels",
+    "type" : "text",
+    "wire" : "channels"
+   },
+   {
+    "about" : "Configuration for the recording",
+    "method" : "set_recording_configuration_id",
+    "name" : "recording_configuration_id",
+    "php_type" : "string",
+    "php_wire" : "recordingConfigurationId",
+    "setter" : "setRecordingConfigurationId",
+    "type" : "text",
+    "wire" : "recordingConfigurationId"
+   },
+   {
+    "about" : "Recording Status Callback URL",
+    "method" : "set_recording_status_callback",
+    "name" : "recording_status_callback",
+    "php_type" : "string",
+    "php_wire" : "recordingStatusCallback",
+    "setter" : "setRecordingStatusCallback",
+    "type" : "text",
+    "wire" : "recordingStatusCallback"
+   },
+   {
+    "about" : "Recording Status Callback Events",
+    "method" : "set_recording_status_callback_event",
+    "name" : "recording_status_callback_event",
+    "php_type" : "string[]",
+    "php_wire" : "recordingStatusCallbackEvent",
+    "setter" : "setRecordingStatusCallbackEvent",
+    "type" : "list",
+    "wire" : "recordingStatusCallbackEvent"
+   },
+   {
+    "about" : "Recording Status Callback URL method",
+    "method" : "set_recording_status_callback_method",
+    "name" : "recording_status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "recordingStatusCallbackMethod",
+    "setter" : "setRecordingStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "recordingStatusCallbackMethod"
+   },
+   {
+    "about" : "To indicate which audio track should be recorded",
+    "method" : "set_track",
+    "name" : "track",
+    "php_type" : "string",
+    "php_wire" : "track",
+    "setter" : "setTrack",
+    "type" : "text",
+    "wire" : "track"
+   },
+   {
+    "about" : "Trim the recording",
+    "method" : "set_trim",
+    "name" : "trim",
+    "php_type" : "string",
+    "php_wire" : "trim",
+    "setter" : "setTrim",
+    "type" : "text",
+    "wire" : "trim"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Recording",
+  "tag" : "Recording",
+  "value" : null
+ },
+ "Voice::Redirect" : {
+  "attributes" : [
+   {
+    "about" : "Redirect URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Redirect",
+  "tag" : "Redirect",
+  "value" : "url"
+ },
+ "Voice::Refer" : {
+  "attributes" : [
+   {
+    "about" : "Action URL",
+    "method" : "set_action",
+    "name" : "action",
+    "php_type" : "string",
+    "php_wire" : "action",
+    "setter" : "setAction",
+    "type" : "text",
+    "wire" : "action"
+   },
+   {
+    "about" : "Action URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Sip child.",
+    "class" : "Voice::ReferSip",
+    "has_attributes" : 0,
+    "method" : "sip",
+    "php_method" : "sip",
+    "value" : "sip_url"
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Refer",
+  "tag" : "Refer",
+  "value" : null
+ },
+ "Voice::ReferSip" : {
+  "attributes" : [],
+  "children" : [],
+  "has_attributes" : 0,
+  "php_class" : "Voice::ReferSip",
+  "tag" : "Sip",
+  "value" : "sip_url"
+ },
+ "Voice::Reject" : {
+  "attributes" : [
+   {
+    "about" : "Rejection reason",
+    "method" : "set_reason",
+    "name" : "reason",
+    "php_type" : "string",
+    "php_wire" : "reason",
+    "setter" : "setReason",
+    "type" : "text",
+    "wire" : "reason"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Parameter child.",
+    "class" : "Voice::Parameter",
+    "has_attributes" : 1,
+    "method" : "parameter",
+    "php_method" : "parameter",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Reject",
+  "tag" : "Reject",
+  "value" : null
+ },
+ "Voice::Room" : {
+  "attributes" : [
+   {
+    "about" : "Participant identity when connecting to the Room",
+    "method" : "set_participant_identity",
+    "name" : "participant_identity",
+    "php_type" : "string",
+    "php_wire" : "participantIdentity",
+    "setter" : "setParticipantIdentity",
+    "type" : "text",
+    "wire" : "participantIdentity"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Room",
+  "tag" : "Room",
+  "value" : "name"
+ },
+ "Voice::Say" : {
+  "attributes" : [
+   {
+    "about" : "Message language",
+    "method" : "set_language",
+    "name" : "language",
+    "php_type" : "string",
+    "php_wire" : "language",
+    "setter" : "setLanguage",
+    "type" : "text",
+    "wire" : "language"
+   },
+   {
+    "about" : "Times to loop message",
+    "method" : "set_loop",
+    "name" : "loop",
+    "php_type" : "int",
+    "php_wire" : "loop",
+    "setter" : "setLoop",
+    "type" : "text",
+    "wire" : "loop"
+   },
+   {
+    "about" : "Voice to use",
+    "method" : "set_voice",
+    "name" : "voice",
+    "php_type" : "string",
+    "php_wire" : "voice",
+    "setter" : "setVoice",
+    "type" : "text",
+    "wire" : "voice"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Break child.",
+    "class" : "Voice::SsmlBreak",
+    "has_attributes" : 1,
+    "method" : "break",
+    "php_method" : "break_",
+    "value" : null
+   },
+   {
+    "about" : "Add Emphasis child.",
+    "class" : "Voice::SsmlEmphasis",
+    "has_attributes" : 1,
+    "method" : "emphasis",
+    "php_method" : "emphasis",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Lang child.",
+    "class" : "Voice::SsmlLang",
+    "has_attributes" : 1,
+    "method" : "lang",
+    "php_method" : "lang",
+    "value" : "words"
+   },
+   {
+    "about" : "Add P child.",
+    "class" : "Voice::SsmlP",
+    "has_attributes" : 0,
+    "method" : "p",
+    "php_method" : "p",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Phoneme child.",
+    "class" : "Voice::SsmlPhoneme",
+    "has_attributes" : 1,
+    "method" : "phoneme",
+    "php_method" : "phoneme",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Prosody child.",
+    "class" : "Voice::SsmlProsody",
+    "has_attributes" : 1,
+    "method" : "prosody",
+    "php_method" : "prosody",
+    "value" : "words"
+   },
+   {
+    "about" : "Add S child.",
+    "class" : "Voice::SsmlS",
+    "has_attributes" : 0,
+    "method" : "s",
+    "php_method" : "s",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Say-As child.",
+    "class" : "Voice::SsmlSayAs",
+    "has_attributes" : 1,
+    "method" : "say_as",
+    "php_method" : "say_As",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Sub child.",
+    "class" : "Voice::SsmlSub",
+    "has_attributes" : 1,
+    "method" : "sub",
+    "php_method" : "sub",
+    "value" : "words"
+   },
+   {
+    "about" : "Add W child.",
+    "class" : "Voice::SsmlW",
+    "has_attributes" : 1,
+    "method" : "w",
+    "php_method" : "w",
+    "value" : "words"
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Say",
+  "tag" : "Say",
+  "value" : "message"
+ },
+ "Voice::Sim" : {
+  "attributes" : [],
+  "children" : [],
+  "has_attributes" : 0,
+  "php_class" : "Voice::Sim",
+  "tag" : "Sim",
+  "value" : "sim_sid"
+ },
+ "Voice::Sip" : {
+  "attributes" : [
+   {
+    "about" : "The URL we should call to send amd status information to your application",
+    "method" : "set_amd_status_callback",
+    "name" : "amd_status_callback",
+    "php_type" : "string",
+    "php_wire" : "amdStatusCallback",
+    "setter" : "setAmdStatusCallback",
+    "type" : "text",
+    "wire" : "amdStatusCallback"
+   },
+   {
+    "about" : "HTTP Method to use with amd_status_callback",
+    "method" : "set_amd_status_callback_method",
+    "name" : "amd_status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "amdStatusCallbackMethod",
+    "setter" : "setAmdStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "amdStatusCallbackMethod"
+   },
+   {
+    "about" : "Enable machine detection or end of greeting detection",
+    "method" : "set_machine_detection",
+    "name" : "machine_detection",
+    "php_type" : "string",
+    "php_wire" : "machineDetection",
+    "setter" : "setMachineDetection",
+    "type" : "text",
+    "wire" : "machineDetection"
+   },
+   {
+    "about" : "Number of milliseconds of initial silence",
+    "method" : "set_machine_detection_silence_timeout",
+    "name" : "machine_detection_silence_timeout",
+    "php_type" : "int",
+    "php_wire" : "machineDetectionSilenceTimeout",
+    "setter" : "setMachineDetectionSilenceTimeout",
+    "type" : "text",
+    "wire" : "machineDetectionSilenceTimeout"
+   },
+   {
+    "about" : "Number of milliseconds of silence after speech activity",
+    "method" : "set_machine_detection_speech_end_threshold",
+    "name" : "machine_detection_speech_end_threshold",
+    "php_type" : "int",
+    "php_wire" : "machineDetectionSpeechEndThreshold",
+    "setter" : "setMachineDetectionSpeechEndThreshold",
+    "type" : "text",
+    "wire" : "machineDetectionSpeechEndThreshold"
+   },
+   {
+    "about" : "Number of milliseconds for measuring stick for the length of the speech activity",
+    "method" : "set_machine_detection_speech_threshold",
+    "name" : "machine_detection_speech_threshold",
+    "php_type" : "int",
+    "php_wire" : "machineDetectionSpeechThreshold",
+    "setter" : "setMachineDetectionSpeechThreshold",
+    "type" : "text",
+    "wire" : "machineDetectionSpeechThreshold"
+   },
+   {
+    "about" : "Number of seconds to wait for machine detection",
+    "method" : "set_machine_detection_timeout",
+    "name" : "machine_detection_timeout",
+    "php_type" : "int",
+    "php_wire" : "machineDetectionTimeout",
+    "setter" : "setMachineDetectionTimeout",
+    "type" : "text",
+    "wire" : "machineDetectionTimeout"
+   },
+   {
+    "about" : "Action URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "SIP Password",
+    "method" : "set_password",
+    "name" : "password",
+    "php_type" : "string",
+    "php_wire" : "password",
+    "setter" : "setPassword",
+    "type" : "text",
+    "wire" : "password"
+   },
+   {
+    "about" : "Status callback URL",
+    "method" : "set_status_callback",
+    "name" : "status_callback",
+    "php_type" : "string",
+    "php_wire" : "statusCallback",
+    "setter" : "setStatusCallback",
+    "type" : "text",
+    "wire" : "statusCallback"
+   },
+   {
+    "about" : "Status callback events",
+    "method" : "set_status_callback_event",
+    "name" : "status_callback_event",
+    "php_type" : "string[]",
+    "php_wire" : "statusCallbackEvent",
+    "setter" : "setStatusCallbackEvent",
+    "type" : "list",
+    "wire" : "statusCallbackEvent"
+   },
+   {
+    "about" : "Status callback URL method",
+    "method" : "set_status_callback_method",
+    "name" : "status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "statusCallbackMethod",
+    "setter" : "setStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "statusCallbackMethod"
+   },
+   {
+    "about" : "Action URL",
+    "method" : "set_url",
+    "name" : "url",
+    "php_type" : "string",
+    "php_wire" : "url",
+    "setter" : "setUrl",
+    "type" : "text",
+    "wire" : "url"
+   },
+   {
+    "about" : "SIP Username",
+    "method" : "set_username",
+    "name" : "username",
+    "php_type" : "string",
+    "php_wire" : "username",
+    "setter" : "setUsername",
+    "type" : "text",
+    "wire" : "username"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Headers child.",
+    "class" : "Voice::Headers",
+    "has_attributes" : 0,
+    "method" : "headers",
+    "php_method" : "headers",
+    "value" : null
+   },
+   {
+    "about" : "Add Uri child.",
+    "class" : "Voice::SipUri",
+    "has_attributes" : 1,
+    "method" : "uri",
+    "php_method" : "uri",
+    "value" : "sip_url"
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Sip",
+  "tag" : "Sip",
+  "value" : "sip_url"
+ },
+ "Voice::SipUri" : {
+  "attributes" : [
+   {
+    "about" : "The password for authentication",
+    "method" : "set_password",
+    "name" : "password",
+    "php_type" : "string",
+    "php_wire" : "password",
+    "setter" : "setPassword",
+    "type" : "text",
+    "wire" : "password"
+   },
+   {
+    "about" : "The priority of this SIP URI",
+    "method" : "set_priority",
+    "name" : "priority",
+    "php_type" : "string",
+    "php_wire" : "priority",
+    "setter" : "setPriority",
+    "type" : "text",
+    "wire" : "priority"
+   },
+   {
+    "about" : "The username for authentication",
+    "method" : "set_username",
+    "name" : "username",
+    "php_type" : "string",
+    "php_wire" : "username",
+    "setter" : "setUsername",
+    "type" : "text",
+    "wire" : "username"
+   },
+   {
+    "about" : "The weight of this SIP URI",
+    "method" : "set_weight",
+    "name" : "weight",
+    "php_type" : "string",
+    "php_wire" : "weight",
+    "setter" : "setWeight",
+    "type" : "text",
+    "wire" : "weight"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::SipUri",
+  "tag" : "Uri",
+  "value" : "sip_url"
+ },
+ "Voice::Siprec" : {
+  "attributes" : [
+   {
+    "about" : "Unique name for Connector",
+    "method" : "set_connector_name",
+    "name" : "connector_name",
+    "php_type" : "string",
+    "php_wire" : "connectorName",
+    "setter" : "setConnectorName",
+    "type" : "text",
+    "wire" : "connectorName"
+   },
+   {
+    "about" : "Friendly name given to SIPREC",
+    "method" : "set_name",
+    "name" : "name",
+    "php_type" : "string",
+    "php_wire" : "name",
+    "setter" : "setName",
+    "type" : "text",
+    "wire" : "name"
+   },
+   {
+    "about" : "Status Callback URL",
+    "method" : "set_status_callback",
+    "name" : "status_callback",
+    "php_type" : "string",
+    "php_wire" : "statusCallback",
+    "setter" : "setStatusCallback",
+    "type" : "text",
+    "wire" : "statusCallback"
+   },
+   {
+    "about" : "Status Callback URL method",
+    "method" : "set_status_callback_method",
+    "name" : "status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "statusCallbackMethod",
+    "setter" : "setStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "statusCallbackMethod"
+   },
+   {
+    "about" : "Track to be streamed to remote service",
+    "method" : "set_track",
+    "name" : "track",
+    "php_type" : "string",
+    "php_wire" : "track",
+    "setter" : "setTrack",
+    "type" : "text",
+    "wire" : "track"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Parameter child.",
+    "class" : "Voice::Parameter",
+    "has_attributes" : 1,
+    "method" : "parameter",
+    "php_method" : "parameter",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Siprec",
+  "tag" : "Siprec",
+  "value" : null
+ },
+ "Voice::Sms" : {
+  "attributes" : [
+   {
+    "about" : "Action URL",
+    "method" : "set_action",
+    "name" : "action",
+    "php_type" : "string",
+    "php_wire" : "action",
+    "setter" : "setAction",
+    "type" : "text",
+    "wire" : "action"
+   },
+   {
+    "about" : "Number to send message from",
+    "method" : "set_from",
+    "name" : "from",
+    "php_type" : "string",
+    "php_wire" : "from",
+    "setter" : "setFrom",
+    "type" : "text",
+    "wire" : "from"
+   },
+   {
+    "about" : "Action URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "Status callback URL",
+    "method" : "set_status_callback",
+    "name" : "status_callback",
+    "php_type" : "string",
+    "php_wire" : "statusCallback",
+    "setter" : "setStatusCallback",
+    "type" : "text",
+    "wire" : "statusCallback"
+   },
+   {
+    "about" : "Number to send message to",
+    "method" : "set_to",
+    "name" : "to",
+    "php_type" : "string",
+    "php_wire" : "to",
+    "setter" : "setTo",
+    "type" : "text",
+    "wire" : "to"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Sms",
+  "tag" : "Sms",
+  "value" : "message"
+ },
+ "Voice::SsmlBreak" : {
+  "attributes" : [
+   {
+    "about" : "Set a pause based on strength",
+    "method" : "set_strength",
+    "name" : "strength",
+    "php_type" : "string",
+    "php_wire" : "strength",
+    "setter" : "setStrength",
+    "type" : "text",
+    "wire" : "strength"
+   },
+   {
+    "about" : "Set a pause to a specific length of time in seconds or milliseconds, available values: [number]s, [number]ms",
+    "method" : "set_time",
+    "name" : "time",
+    "php_type" : "string",
+    "php_wire" : "time",
+    "setter" : "setTime",
+    "type" : "text",
+    "wire" : "time"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::SsmlBreak",
+  "tag" : "break",
+  "value" : null
+ },
+ "Voice::SsmlEmphasis" : {
+  "attributes" : [
+   {
+    "about" : "Specify the degree of emphasis",
+    "method" : "set_level",
+    "name" : "level",
+    "php_type" : "string",
+    "php_wire" : "level",
+    "setter" : "setLevel",
+    "type" : "text",
+    "wire" : "level"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Break child.",
+    "class" : "Voice::SsmlBreak",
+    "has_attributes" : 1,
+    "method" : "break",
+    "php_method" : "break_",
+    "value" : null
+   },
+   {
+    "about" : "Add Emphasis child.",
+    "class" : "Voice::SsmlEmphasis",
+    "has_attributes" : 1,
+    "method" : "emphasis",
+    "php_method" : "emphasis",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Lang child.",
+    "class" : "Voice::SsmlLang",
+    "has_attributes" : 1,
+    "method" : "lang",
+    "php_method" : "lang",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Phoneme child.",
+    "class" : "Voice::SsmlPhoneme",
+    "has_attributes" : 1,
+    "method" : "phoneme",
+    "php_method" : "phoneme",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Prosody child.",
+    "class" : "Voice::SsmlProsody",
+    "has_attributes" : 1,
+    "method" : "prosody",
+    "php_method" : "prosody",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Say-As child.",
+    "class" : "Voice::SsmlSayAs",
+    "has_attributes" : 1,
+    "method" : "say_as",
+    "php_method" : "say_As",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Sub child.",
+    "class" : "Voice::SsmlSub",
+    "has_attributes" : 1,
+    "method" : "sub",
+    "php_method" : "sub",
+    "value" : "words"
+   },
+   {
+    "about" : "Add W child.",
+    "class" : "Voice::SsmlW",
+    "has_attributes" : 1,
+    "method" : "w",
+    "php_method" : "w",
+    "value" : "words"
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::SsmlEmphasis",
+  "tag" : "emphasis",
+  "value" : "words"
+ },
+ "Voice::SsmlLang" : {
+  "attributes" : [
+   {
+    "about" : "Specify the language",
+    "method" : "set_xml_lang",
+    "name" : "xml_lang",
+    "php_type" : "string",
+    "php_wire" : "xml:Lang",
+    "setter" : "setXmlLang",
+    "type" : "text",
+    "wire" : "xml:lang"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Break child.",
+    "class" : "Voice::SsmlBreak",
+    "has_attributes" : 1,
+    "method" : "break",
+    "php_method" : "break_",
+    "value" : null
+   },
+   {
+    "about" : "Add Emphasis child.",
+    "class" : "Voice::SsmlEmphasis",
+    "has_attributes" : 1,
+    "method" : "emphasis",
+    "php_method" : "emphasis",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Lang child.",
+    "class" : "Voice::SsmlLang",
+    "has_attributes" : 1,
+    "method" : "lang",
+    "php_method" : "lang",
+    "value" : "words"
+   },
+   {
+    "about" : "Add P child.",
+    "class" : "Voice::SsmlP",
+    "has_attributes" : 0,
+    "method" : "p",
+    "php_method" : "p",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Phoneme child.",
+    "class" : "Voice::SsmlPhoneme",
+    "has_attributes" : 1,
+    "method" : "phoneme",
+    "php_method" : "phoneme",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Prosody child.",
+    "class" : "Voice::SsmlProsody",
+    "has_attributes" : 1,
+    "method" : "prosody",
+    "php_method" : "prosody",
+    "value" : "words"
+   },
+   {
+    "about" : "Add S child.",
+    "class" : "Voice::SsmlS",
+    "has_attributes" : 0,
+    "method" : "s",
+    "php_method" : "s",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Say-As child.",
+    "class" : "Voice::SsmlSayAs",
+    "has_attributes" : 1,
+    "method" : "say_as",
+    "php_method" : "say_As",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Sub child.",
+    "class" : "Voice::SsmlSub",
+    "has_attributes" : 1,
+    "method" : "sub",
+    "php_method" : "sub",
+    "value" : "words"
+   },
+   {
+    "about" : "Add W child.",
+    "class" : "Voice::SsmlW",
+    "has_attributes" : 1,
+    "method" : "w",
+    "php_method" : "w",
+    "value" : "words"
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::SsmlLang",
+  "tag" : "lang",
+  "value" : "words"
+ },
+ "Voice::SsmlP" : {
+  "attributes" : [],
+  "children" : [
+   {
+    "about" : "Add Break child.",
+    "class" : "Voice::SsmlBreak",
+    "has_attributes" : 1,
+    "method" : "break",
+    "php_method" : "break_",
+    "value" : null
+   },
+   {
+    "about" : "Add Emphasis child.",
+    "class" : "Voice::SsmlEmphasis",
+    "has_attributes" : 1,
+    "method" : "emphasis",
+    "php_method" : "emphasis",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Lang child.",
+    "class" : "Voice::SsmlLang",
+    "has_attributes" : 1,
+    "method" : "lang",
+    "php_method" : "lang",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Phoneme child.",
+    "class" : "Voice::SsmlPhoneme",
+    "has_attributes" : 1,
+    "method" : "phoneme",
+    "php_method" : "phoneme",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Prosody child.",
+    "class" : "Voice::SsmlProsody",
+    "has_attributes" : 1,
+    "method" : "prosody",
+    "php_method" : "prosody",
+    "value" : "words"
+   },
+   {
+    "about" : "Add S child.",
+    "class" : "Voice::SsmlS",
+    "has_attributes" : 0,
+    "method" : "s",
+    "php_method" : "s",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Say-As child.",
+    "class" : "Voice::SsmlSayAs",
+    "has_attributes" : 1,
+    "method" : "say_as",
+    "php_method" : "say_As",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Sub child.",
+    "class" : "Voice::SsmlSub",
+    "has_attributes" : 1,
+    "method" : "sub",
+    "php_method" : "sub",
+    "value" : "words"
+   },
+   {
+    "about" : "Add W child.",
+    "class" : "Voice::SsmlW",
+    "has_attributes" : 1,
+    "method" : "w",
+    "php_method" : "w",
+    "value" : "words"
+   }
+  ],
+  "has_attributes" : 0,
+  "php_class" : "Voice::SsmlP",
+  "tag" : "p",
+  "value" : "words"
+ },
+ "Voice::SsmlPhoneme" : {
+  "attributes" : [
+   {
+    "about" : "Specify the phonetic alphabet",
+    "method" : "set_alphabet",
+    "name" : "alphabet",
+    "php_type" : "string",
+    "php_wire" : "alphabet",
+    "setter" : "setAlphabet",
+    "type" : "text",
+    "wire" : "alphabet"
+   },
+   {
+    "about" : "Specifiy the phonetic symbols for pronunciation",
+    "method" : "set_ph",
+    "name" : "ph",
+    "php_type" : "string",
+    "php_wire" : "ph",
+    "setter" : "setPh",
+    "type" : "text",
+    "wire" : "ph"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::SsmlPhoneme",
+  "tag" : "phoneme",
+  "value" : "words"
+ },
+ "Voice::SsmlProsody" : {
+  "attributes" : [
+   {
+    "about" : "Specify the pitch, available values: default, x-low, low, medium, high, x-high, +n%, -n%",
+    "method" : "set_pitch",
+    "name" : "pitch",
+    "php_type" : "string",
+    "php_wire" : "pitch",
+    "setter" : "setPitch",
+    "type" : "text",
+    "wire" : "pitch"
+   },
+   {
+    "about" : "Specify the rate, available values: x-slow, slow, medium, fast, x-fast, n%",
+    "method" : "set_rate",
+    "name" : "rate",
+    "php_type" : "string",
+    "php_wire" : "rate",
+    "setter" : "setRate",
+    "type" : "text",
+    "wire" : "rate"
+   },
+   {
+    "about" : "Specify the volume, available values: default, silent, x-soft, soft, medium, loud, x-loud, +ndB, -ndB",
+    "method" : "set_volume",
+    "name" : "volume",
+    "php_type" : "string",
+    "php_wire" : "volume",
+    "setter" : "setVolume",
+    "type" : "text",
+    "wire" : "volume"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Break child.",
+    "class" : "Voice::SsmlBreak",
+    "has_attributes" : 1,
+    "method" : "break",
+    "php_method" : "break_",
+    "value" : null
+   },
+   {
+    "about" : "Add Emphasis child.",
+    "class" : "Voice::SsmlEmphasis",
+    "has_attributes" : 1,
+    "method" : "emphasis",
+    "php_method" : "emphasis",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Lang child.",
+    "class" : "Voice::SsmlLang",
+    "has_attributes" : 1,
+    "method" : "lang",
+    "php_method" : "lang",
+    "value" : "words"
+   },
+   {
+    "about" : "Add P child.",
+    "class" : "Voice::SsmlP",
+    "has_attributes" : 0,
+    "method" : "p",
+    "php_method" : "p",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Phoneme child.",
+    "class" : "Voice::SsmlPhoneme",
+    "has_attributes" : 1,
+    "method" : "phoneme",
+    "php_method" : "phoneme",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Prosody child.",
+    "class" : "Voice::SsmlProsody",
+    "has_attributes" : 1,
+    "method" : "prosody",
+    "php_method" : "prosody",
+    "value" : "words"
+   },
+   {
+    "about" : "Add S child.",
+    "class" : "Voice::SsmlS",
+    "has_attributes" : 0,
+    "method" : "s",
+    "php_method" : "s",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Say-As child.",
+    "class" : "Voice::SsmlSayAs",
+    "has_attributes" : 1,
+    "method" : "say_as",
+    "php_method" : "say_As",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Sub child.",
+    "class" : "Voice::SsmlSub",
+    "has_attributes" : 1,
+    "method" : "sub",
+    "php_method" : "sub",
+    "value" : "words"
+   },
+   {
+    "about" : "Add W child.",
+    "class" : "Voice::SsmlW",
+    "has_attributes" : 1,
+    "method" : "w",
+    "php_method" : "w",
+    "value" : "words"
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::SsmlProsody",
+  "tag" : "prosody",
+  "value" : "words"
+ },
+ "Voice::SsmlS" : {
+  "attributes" : [],
+  "children" : [
+   {
+    "about" : "Add Break child.",
+    "class" : "Voice::SsmlBreak",
+    "has_attributes" : 1,
+    "method" : "break",
+    "php_method" : "break_",
+    "value" : null
+   },
+   {
+    "about" : "Add Emphasis child.",
+    "class" : "Voice::SsmlEmphasis",
+    "has_attributes" : 1,
+    "method" : "emphasis",
+    "php_method" : "emphasis",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Lang child.",
+    "class" : "Voice::SsmlLang",
+    "has_attributes" : 1,
+    "method" : "lang",
+    "php_method" : "lang",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Phoneme child.",
+    "class" : "Voice::SsmlPhoneme",
+    "has_attributes" : 1,
+    "method" : "phoneme",
+    "php_method" : "phoneme",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Prosody child.",
+    "class" : "Voice::SsmlProsody",
+    "has_attributes" : 1,
+    "method" : "prosody",
+    "php_method" : "prosody",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Say-As child.",
+    "class" : "Voice::SsmlSayAs",
+    "has_attributes" : 1,
+    "method" : "say_as",
+    "php_method" : "say_As",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Sub child.",
+    "class" : "Voice::SsmlSub",
+    "has_attributes" : 1,
+    "method" : "sub",
+    "php_method" : "sub",
+    "value" : "words"
+   },
+   {
+    "about" : "Add W child.",
+    "class" : "Voice::SsmlW",
+    "has_attributes" : 1,
+    "method" : "w",
+    "php_method" : "w",
+    "value" : "words"
+   }
+  ],
+  "has_attributes" : 0,
+  "php_class" : "Voice::SsmlS",
+  "tag" : "s",
+  "value" : "words"
+ },
+ "Voice::SsmlSayAs" : {
+  "attributes" : [
+   {
+    "about" : "Specify the format of the date when interpret-as is set to date",
+    "method" : "set_format",
+    "name" : "format",
+    "php_type" : "string",
+    "php_wire" : "format",
+    "setter" : "setFormat",
+    "type" : "text",
+    "wire" : "format"
+   },
+   {
+    "about" : "Specify the type of words are spoken",
+    "method" : "set_interpret_as",
+    "name" : "interpret_as",
+    "php_type" : "string",
+    "php_wire" : "interpret-as",
+    "setter" : "setInterpretAs",
+    "type" : "text",
+    "wire" : "interpret-as"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::SsmlSayAs",
+  "tag" : "say-as",
+  "value" : "words"
+ },
+ "Voice::SsmlSub" : {
+  "attributes" : [
+   {
+    "about" : "Substitute a different word (or pronunciation) for selected text such as an acronym or abbreviation",
+    "method" : "set_alias",
+    "name" : "alias",
+    "php_type" : "string",
+    "php_wire" : "alias",
+    "setter" : "setAlias",
+    "type" : "text",
+    "wire" : "alias"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::SsmlSub",
+  "tag" : "sub",
+  "value" : "words"
+ },
+ "Voice::SsmlW" : {
+  "attributes" : [
+   {
+    "about" : "Customize the pronunciation of words by specifying the word’s part of speech or alternate meaning",
+    "method" : "set_role",
+    "name" : "role",
+    "php_type" : "string",
+    "php_wire" : "role",
+    "setter" : "setRole",
+    "type" : "text",
+    "wire" : "role"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Break child.",
+    "class" : "Voice::SsmlBreak",
+    "has_attributes" : 1,
+    "method" : "break",
+    "php_method" : "break_",
+    "value" : null
+   },
+   {
+    "about" : "Add Emphasis child.",
+    "class" : "Voice::SsmlEmphasis",
+    "has_attributes" : 1,
+    "method" : "emphasis",
+    "php_method" : "emphasis",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Phoneme child.",
+    "class" : "Voice::SsmlPhoneme",
+    "has_attributes" : 1,
+    "method" : "phoneme",
+    "php_method" : "phoneme",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Prosody child.",
+    "class" : "Voice::SsmlProsody",
+    "has_attributes" : 1,
+    "method" : "prosody",
+    "php_method" : "prosody",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Say-As child.",
+    "class" : "Voice::SsmlSayAs",
+    "has_attributes" : 1,
+    "method" : "say_as",
+    "php_method" : "say_As",
+    "value" : "words"
+   },
+   {
+    "about" : "Add Sub child.",
+    "class" : "Voice::SsmlSub",
+    "has_attributes" : 1,
+    "method" : "sub",
+    "php_method" : "sub",
+    "value" : "words"
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::SsmlW",
+  "tag" : "w",
+  "value" : "words"
+ },
+ "Voice::Start" : {
+  "attributes" : [
+   {
+    "about" : "Action URL",
+    "method" : "set_action",
+    "name" : "action",
+    "php_type" : "string",
+    "php_wire" : "action",
+    "setter" : "setAction",
+    "type" : "text",
+    "wire" : "action"
+   },
+   {
+    "about" : "Action URL method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Recording child.",
+    "class" : "Voice::Recording",
+    "has_attributes" : 1,
+    "method" : "recording",
+    "php_method" : "recording",
+    "value" : null
+   },
+   {
+    "about" : "Add Siprec child.",
+    "class" : "Voice::Siprec",
+    "has_attributes" : 1,
+    "method" : "siprec",
+    "php_method" : "siprec",
+    "value" : null
+   },
+   {
+    "about" : "Add Stream child.",
+    "class" : "Voice::Stream",
+    "has_attributes" : 1,
+    "method" : "stream",
+    "php_method" : "stream",
+    "value" : null
+   },
+   {
+    "about" : "Add Transcription child.",
+    "class" : "Voice::Transcription",
+    "has_attributes" : 1,
+    "method" : "transcription",
+    "php_method" : "transcription",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Start",
+  "tag" : "Start",
+  "value" : null
+ },
+ "Voice::Stop" : {
+  "attributes" : [],
+  "children" : [
+   {
+    "about" : "Add Siprec child.",
+    "class" : "Voice::Siprec",
+    "has_attributes" : 1,
+    "method" : "siprec",
+    "php_method" : "siprec",
+    "value" : null
+   },
+   {
+    "about" : "Add Stream child.",
+    "class" : "Voice::Stream",
+    "has_attributes" : 1,
+    "method" : "stream",
+    "php_method" : "stream",
+    "value" : null
+   },
+   {
+    "about" : "Add Transcription child.",
+    "class" : "Voice::Transcription",
+    "has_attributes" : 1,
+    "method" : "transcription",
+    "php_method" : "transcription",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 0,
+  "php_class" : "Voice::Stop",
+  "tag" : "Stop",
+  "value" : null
+ },
+ "Voice::Stream" : {
+  "attributes" : [
+   {
+    "about" : "Required Audio Format",
+    "method" : "set_audio_format",
+    "name" : "audio_format",
+    "php_type" : "string",
+    "php_wire" : "audioFormat",
+    "setter" : "setAudioFormat",
+    "type" : "text",
+    "wire" : "audioFormat"
+   },
+   {
+    "about" : "Unique name for Stream Connector",
+    "method" : "set_connector_name",
+    "name" : "connector_name",
+    "php_type" : "string",
+    "php_wire" : "connectorName",
+    "setter" : "setConnectorName",
+    "type" : "text",
+    "wire" : "connectorName"
+   },
+   {
+    "about" : "Friendly name given to the Stream",
+    "method" : "set_name",
+    "name" : "name",
+    "php_type" : "string",
+    "php_wire" : "name",
+    "setter" : "setName",
+    "type" : "text",
+    "wire" : "name"
+   },
+   {
+    "about" : "Sample Rate for HD Codec",
+    "method" : "set_sample_rate",
+    "name" : "sample_rate",
+    "php_type" : "string",
+    "php_wire" : "sampleRate",
+    "setter" : "setSampleRate",
+    "type" : "text",
+    "wire" : "sampleRate"
+   },
+   {
+    "about" : "Status Callback URL",
+    "method" : "set_status_callback",
+    "name" : "status_callback",
+    "php_type" : "string",
+    "php_wire" : "statusCallback",
+    "setter" : "setStatusCallback",
+    "type" : "text",
+    "wire" : "statusCallback"
+   },
+   {
+    "about" : "Status Callback URL method",
+    "method" : "set_status_callback_method",
+    "name" : "status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "statusCallbackMethod",
+    "setter" : "setStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "statusCallbackMethod"
+   },
+   {
+    "about" : "Track to be streamed to remote service",
+    "method" : "set_track",
+    "name" : "track",
+    "php_type" : "string",
+    "php_wire" : "track",
+    "setter" : "setTrack",
+    "type" : "text",
+    "wire" : "track"
+   },
+   {
+    "about" : "URL of the remote service where the Stream is routed",
+    "method" : "set_url",
+    "name" : "url",
+    "php_type" : "string",
+    "php_wire" : "url",
+    "setter" : "setUrl",
+    "type" : "text",
+    "wire" : "url"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Parameter child.",
+    "class" : "Voice::Parameter",
+    "has_attributes" : 1,
+    "method" : "parameter",
+    "php_method" : "parameter",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Stream",
+  "tag" : "Stream",
+  "value" : null
+ },
+ "Voice::Task" : {
+  "attributes" : [
+   {
+    "about" : "Task priority",
+    "method" : "set_priority",
+    "name" : "priority",
+    "php_type" : "int",
+    "php_wire" : "priority",
+    "setter" : "setPriority",
+    "type" : "text",
+    "wire" : "priority"
+   },
+   {
+    "about" : "Timeout associated with task",
+    "method" : "set_timeout",
+    "name" : "timeout",
+    "php_type" : "int",
+    "php_wire" : "timeout",
+    "setter" : "setTimeout",
+    "type" : "text",
+    "wire" : "timeout"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Task",
+  "tag" : "Task",
+  "value" : "body"
+ },
+ "Voice::Transcription" : {
+  "attributes" : [
+   {
+    "about" : "Enable Automatic Punctuation",
+    "method" : "set_enable_automatic_punctuation",
+    "name" : "enable_automatic_punctuation",
+    "php_type" : "bool",
+    "php_wire" : "enableAutomaticPunctuation",
+    "setter" : "setEnableAutomaticPunctuation",
+    "type" : "boolean",
+    "wire" : "enableAutomaticPunctuation"
+   },
+   {
+    "about" : "Hints to be provided to the transcription engine",
+    "method" : "set_hints",
+    "name" : "hints",
+    "php_type" : "string",
+    "php_wire" : "hints",
+    "setter" : "setHints",
+    "type" : "text",
+    "wire" : "hints"
+   },
+   {
+    "about" : "Friendly name given to the Inbound Track",
+    "method" : "set_inbound_track_label",
+    "name" : "inbound_track_label",
+    "php_type" : "string",
+    "php_wire" : "inboundTrackLabel",
+    "setter" : "setInboundTrackLabel",
+    "type" : "text",
+    "wire" : "inboundTrackLabel"
+   },
+   {
+    "about" : "The SID or the unique name of the Intelligence Service to be used",
+    "method" : "set_intelligence_service",
+    "name" : "intelligence_service",
+    "php_type" : "string",
+    "php_wire" : "intelligenceService",
+    "setter" : "setIntelligenceService",
+    "type" : "text",
+    "wire" : "intelligenceService"
+   },
+   {
+    "about" : "Language Code used by the transcription engine",
+    "method" : "set_language_code",
+    "name" : "language_code",
+    "php_type" : "string",
+    "php_wire" : "languageCode",
+    "setter" : "setLanguageCode",
+    "type" : "text",
+    "wire" : "languageCode"
+   },
+   {
+    "about" : "Friendly name given to the Transcription",
+    "method" : "set_name",
+    "name" : "name",
+    "php_type" : "string",
+    "php_wire" : "name",
+    "setter" : "setName",
+    "type" : "text",
+    "wire" : "name"
+   },
+   {
+    "about" : "Friendly name given to the Outbound Track Label",
+    "method" : "set_outbound_track_label",
+    "name" : "outbound_track_label",
+    "php_type" : "string",
+    "php_wire" : "outboundTrackLabel",
+    "setter" : "setOutboundTrackLabel",
+    "type" : "text",
+    "wire" : "outboundTrackLabel"
+   },
+   {
+    "about" : "Indicates if partial results are going to be send to the customer",
+    "method" : "set_partial_results",
+    "name" : "partial_results",
+    "php_type" : "bool",
+    "php_wire" : "partialResults",
+    "setter" : "setPartialResults",
+    "type" : "boolean",
+    "wire" : "partialResults"
+   },
+   {
+    "about" : "Enable Profanity Filter",
+    "method" : "set_profanity_filter",
+    "name" : "profanity_filter",
+    "php_type" : "bool",
+    "php_wire" : "profanityFilter",
+    "setter" : "setProfanityFilter",
+    "type" : "boolean",
+    "wire" : "profanityFilter"
+   },
+   {
+    "about" : "Speech Model used by the transcription engine",
+    "method" : "set_speech_model",
+    "name" : "speech_model",
+    "php_type" : "string",
+    "php_wire" : "speechModel",
+    "setter" : "setSpeechModel",
+    "type" : "text",
+    "wire" : "speechModel"
+   },
+   {
+    "about" : "Status Callback URL method",
+    "method" : "set_status_callback_method",
+    "name" : "status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "statusCallbackMethod",
+    "setter" : "setStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "statusCallbackMethod"
+   },
+   {
+    "about" : "Status Callback URL",
+    "method" : "set_status_callback_url",
+    "name" : "status_callback_url",
+    "php_type" : "string",
+    "php_wire" : "statusCallbackUrl",
+    "setter" : "setStatusCallbackUrl",
+    "type" : "text",
+    "wire" : "statusCallbackUrl"
+   },
+   {
+    "about" : "Track to be analyze by the provider",
+    "method" : "set_track",
+    "name" : "track",
+    "php_type" : "string",
+    "php_wire" : "track",
+    "setter" : "setTrack",
+    "type" : "text",
+    "wire" : "track"
+   },
+   {
+    "about" : "Transcription Engine to be used",
+    "method" : "set_transcription_engine",
+    "name" : "transcription_engine",
+    "php_type" : "string",
+    "php_wire" : "transcriptionEngine",
+    "setter" : "setTranscriptionEngine",
+    "type" : "text",
+    "wire" : "transcriptionEngine"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Config child.",
+    "class" : "Voice::Config",
+    "has_attributes" : 1,
+    "method" : "config",
+    "php_method" : "config",
+    "value" : null
+   },
+   {
+    "about" : "Add Parameter child.",
+    "class" : "Voice::Parameter",
+    "has_attributes" : 1,
+    "method" : "parameter",
+    "php_method" : "parameter",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::Transcription",
+  "tag" : "Transcription",
+  "value" : null
+ },
+ "Voice::VirtualAgent" : {
+  "attributes" : [
+   {
+    "about" : "Defines the conversation profile Dialogflow needs to use",
+    "method" : "set_connector_name",
+    "name" : "connector_name",
+    "php_type" : "string",
+    "php_wire" : "connectorName",
+    "setter" : "setConnectorName",
+    "type" : "text",
+    "wire" : "connectorName"
+   },
+   {
+    "about" : "Language to be used by Dialogflow to transcribe speech",
+    "method" : "set_language",
+    "name" : "language",
+    "php_type" : "string",
+    "php_wire" : "language",
+    "setter" : "setLanguage",
+    "type" : "text",
+    "wire" : "language"
+   },
+   {
+    "about" : "Whether sentiment analysis needs to be enabled or not",
+    "method" : "set_sentiment_analysis",
+    "name" : "sentiment_analysis",
+    "php_type" : "bool",
+    "php_wire" : "sentimentAnalysis",
+    "setter" : "setSentimentAnalysis",
+    "type" : "boolean",
+    "wire" : "sentimentAnalysis"
+   },
+   {
+    "about" : "URL to post status callbacks from Twilio",
+    "method" : "set_status_callback",
+    "name" : "status_callback",
+    "php_type" : "string",
+    "php_wire" : "statusCallback",
+    "setter" : "setStatusCallback",
+    "type" : "text",
+    "wire" : "statusCallback"
+   },
+   {
+    "about" : "HTTP method to use when requesting the status callback URL",
+    "method" : "set_status_callback_method",
+    "name" : "status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "statusCallbackMethod",
+    "setter" : "setStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "statusCallbackMethod"
+   }
+  ],
+  "children" : [
+   {
+    "about" : "Add Config child.",
+    "class" : "Voice::Config",
+    "has_attributes" : 1,
+    "method" : "config",
+    "php_method" : "config",
+    "value" : null
+   },
+   {
+    "about" : "Add Parameter child.",
+    "class" : "Voice::Parameter",
+    "has_attributes" : 1,
+    "method" : "parameter",
+    "php_method" : "parameter",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 1,
+  "php_class" : "Voice::VirtualAgent",
+  "tag" : "VirtualAgent",
+  "value" : null
+ },
+ "Voice::WhatsApp" : {
+  "attributes" : [
+   {
+    "about" : "TwiML URL Method",
+    "method" : "set_method",
+    "name" : "method",
+    "php_type" : "string",
+    "php_wire" : "method",
+    "setter" : "setMethod",
+    "type" : "text",
+    "wire" : "method"
+   },
+   {
+    "about" : "Status Callback URL",
+    "method" : "set_status_callback",
+    "name" : "status_callback",
+    "php_type" : "string",
+    "php_wire" : "statusCallback",
+    "setter" : "setStatusCallback",
+    "type" : "text",
+    "wire" : "statusCallback"
+   },
+   {
+    "about" : "Events to trigger status callback",
+    "method" : "set_status_callback_event",
+    "name" : "status_callback_event",
+    "php_type" : "string[]",
+    "php_wire" : "statusCallbackEvent",
+    "setter" : "setStatusCallbackEvent",
+    "type" : "list",
+    "wire" : "statusCallbackEvent"
+   },
+   {
+    "about" : "Status Callback URL Method",
+    "method" : "set_status_callback_method",
+    "name" : "status_callback_method",
+    "php_type" : "string",
+    "php_wire" : "statusCallbackMethod",
+    "setter" : "setStatusCallbackMethod",
+    "type" : "text",
+    "wire" : "statusCallbackMethod"
+   },
+   {
+    "about" : "TwiML URL",
+    "method" : "set_url",
+    "name" : "url",
+    "php_type" : "string",
+    "php_wire" : "url",
+    "setter" : "setUrl",
+    "type" : "text",
+    "wire" : "url"
+   }
+  ],
+  "children" : [],
+  "has_attributes" : 1,
+  "php_class" : "Voice::WhatsApp",
+  "tag" : "WhatsApp",
+  "value" : "phone_number"
+ },
+ "VoiceResponse" : {
+  "attributes" : [],
+  "children" : [
+   {
+    "about" : "Add Connect child.",
+    "class" : "Voice::Connect",
+    "has_attributes" : 1,
+    "method" : "connect",
+    "php_method" : "connect",
+    "value" : null
+   },
+   {
+    "about" : "Add Dial child.",
+    "class" : "Voice::Dial",
+    "has_attributes" : 1,
+    "method" : "dial",
+    "php_method" : "dial",
+    "value" : "number"
+   },
+   {
+    "about" : "Add Echo child.",
+    "class" : "Voice::Echo",
+    "has_attributes" : 0,
+    "method" : "echo",
+    "php_method" : "echo_",
+    "value" : null
+   },
+   {
+    "about" : "Add Enqueue child.",
+    "class" : "Voice::Enqueue",
+    "has_attributes" : 1,
+    "method" : "enqueue",
+    "php_method" : "enqueue",
+    "value" : "name"
+   },
+   {
+    "about" : "Add Gather child.",
+    "class" : "Voice::Gather",
+    "has_attributes" : 1,
+    "method" : "gather",
+    "php_method" : "gather",
+    "value" : null
+   },
+   {
+    "about" : "Add Hangup child.",
+    "class" : "Voice::Hangup",
+    "has_attributes" : 0,
+    "method" : "hangup",
+    "php_method" : "hangup",
+    "value" : null
+   },
+   {
+    "about" : "Add Leave child.",
+    "class" : "Voice::Leave",
+    "has_attributes" : 0,
+    "method" : "leave",
+    "php_method" : "leave",
+    "value" : null
+   },
+   {
+    "about" : "Add Pause child.",
+    "class" : "Voice::Pause",
+    "has_attributes" : 1,
+    "method" : "pause",
+    "php_method" : "pause",
+    "value" : null
+   },
+   {
+    "about" : "Add Pay child.",
+    "class" : "Voice::Pay",
+    "has_attributes" : 1,
+    "method" : "pay",
+    "php_method" : "pay",
+    "value" : null
+   },
+   {
+    "about" : "Add Play child.",
+    "class" : "Voice::Play",
+    "has_attributes" : 1,
+    "method" : "play",
+    "php_method" : "play",
+    "value" : "url"
+   },
+   {
+    "about" : "Add Prompt child.",
+    "class" : "Voice::Prompt",
+    "has_attributes" : 1,
+    "method" : "prompt",
+    "php_method" : "prompt",
+    "value" : null
+   },
+   {
+    "about" : "Add Queue child.",
+    "class" : "Voice::Queue",
+    "has_attributes" : 1,
+    "method" : "queue",
+    "php_method" : "queue",
+    "value" : "name"
+   },
+   {
+    "about" : "Add Record child.",
+    "class" : "Voice::Record",
+    "has_attributes" : 1,
+    "method" : "record",
+    "php_method" : "record",
+    "value" : null
+   },
+   {
+    "about" : "Add Redirect child.",
+    "class" : "Voice::Redirect",
+    "has_attributes" : 1,
+    "method" : "redirect",
+    "php_method" : "redirect",
+    "value" : "url"
+   },
+   {
+    "about" : "Add Refer child.",
+    "class" : "Voice::Refer",
+    "has_attributes" : 1,
+    "method" : "refer",
+    "php_method" : "refer",
+    "value" : null
+   },
+   {
+    "about" : "Add Reject child.",
+    "class" : "Voice::Reject",
+    "has_attributes" : 1,
+    "method" : "reject",
+    "php_method" : "reject",
+    "value" : null
+   },
+   {
+    "about" : "Add Say child.",
+    "class" : "Voice::Say",
+    "has_attributes" : 1,
+    "method" : "say",
+    "php_method" : "say",
+    "value" : "message"
+   },
+   {
+    "about" : "Add Sms child.",
+    "class" : "Voice::Sms",
+    "has_attributes" : 1,
+    "method" : "sms",
+    "php_method" : "sms",
+    "value" : "message"
+   },
+   {
+    "about" : "Add Start child.",
+    "class" : "Voice::Start",
+    "has_attributes" : 1,
+    "method" : "start",
+    "php_method" : "start",
+    "value" : null
+   },
+   {
+    "about" : "Add Stop child.",
+    "class" : "Voice::Stop",
+    "has_attributes" : 0,
+    "method" : "stop",
+    "php_method" : "stop",
+    "value" : null
+   }
+  ],
+  "has_attributes" : 0,
+  "php_class" : "VoiceResponse",
+  "tag" : "Response",
+  "value" : null
+ }
+}
