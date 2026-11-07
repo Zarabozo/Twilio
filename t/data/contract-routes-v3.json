@@ -1,0 +1,123 @@
+[
+ {
+  "chain" : [
+   [
+    "routes",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "phone_numbers",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchPhoneNumber",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://routes.twilio.com/v3/PhoneNumbers/id1"
+ },
+ {
+  "chain" : [
+   [
+    "routes",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "iso_country_code",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchShortCode",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://routes.twilio.com/v3/ShortCodes/id1/id2"
+ },
+ {
+  "chain" : [
+   [
+    "routes",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "phone_numbers",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "friendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "messagingRegion",
+    "v_messaging_region"
+   ],
+   [
+    "voiceRegion",
+    "v_voice_region"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdatePhoneNumber",
+  "method" : "update",
+  "options" : {
+   "friendly_name" : "v_friendly_name",
+   "messaging_region" : "v_messaging_region",
+   "voice_region" : "v_voice_region"
+  },
+  "required" : [],
+  "url" : "https://routes.twilio.com/v3/PhoneNumbers/id1"
+ },
+ {
+  "chain" : [
+   [
+    "routes",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "iso_country_code",
+    2
+   ]
+  ],
+  "expected" : [
+   [
+    "friendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "messagingRegion",
+    "v_messaging_region"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateShortCode",
+  "method" : "update",
+  "options" : {
+   "friendly_name" : "v_friendly_name",
+   "messaging_region" : "v_messaging_region"
+  },
+  "required" : [],
+  "url" : "https://routes.twilio.com/v3/ShortCodes/id1/id2"
+ }
+]

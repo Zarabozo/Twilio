@@ -1,0 +1,285 @@
+[
+ {
+  "chain" : [
+   [
+    "bulkexports",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "exports",
+    1
+   ],
+   [
+    "export_custom_jobs",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "StartDay",
+    "v_start_day"
+   ],
+   [
+    "EndDay",
+    "v_end_day"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Email",
+    "v_email"
+   ],
+   [
+    "WebhookMethod",
+    "v_webhook_method"
+   ],
+   [
+    "WebhookUrl",
+    "v_webhook_url"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateExportCustomJob",
+  "method" : "create",
+  "options" : {
+   "email" : "v_email",
+   "webhook_method" : "v_webhook_method",
+   "webhook_url" : "v_webhook_url"
+  },
+  "required" : [
+   "v_start_day",
+   "v_end_day",
+   "v_friendly_name"
+  ],
+  "url" : "https://bulkexports.twilio.com/v1/Exports/id1/Jobs"
+ },
+ {
+  "chain" : [
+   [
+    "bulkexports",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "exports",
+    0
+   ],
+   [
+    "jobs",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteJob",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://bulkexports.twilio.com/v1/Exports/Jobs/id1"
+ },
+ {
+  "chain" : [
+   [
+    "bulkexports",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "exports",
+    1
+   ],
+   [
+    "days",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchDay",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://bulkexports.twilio.com/v1/Exports/id1/Days/id2"
+ },
+ {
+  "chain" : [
+   [
+    "bulkexports",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "exports",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchExport",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://bulkexports.twilio.com/v1/Exports/id1"
+ },
+ {
+  "chain" : [
+   [
+    "bulkexports",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "export_configuration",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchExportConfiguration",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://bulkexports.twilio.com/v1/Exports/id1/Configuration"
+ },
+ {
+  "chain" : [
+   [
+    "bulkexports",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "exports",
+    0
+   ],
+   [
+    "jobs",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchJob",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://bulkexports.twilio.com/v1/Exports/Jobs/id1"
+ },
+ {
+  "chain" : [
+   [
+    "bulkexports",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "exports",
+    1
+   ],
+   [
+    "days",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListDay",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "days",
+  "required" : [],
+  "url" : "https://bulkexports.twilio.com/v1/Exports/id1/Days"
+ },
+ {
+  "chain" : [
+   [
+    "bulkexports",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "exports",
+    1
+   ],
+   [
+    "export_custom_jobs",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListExportCustomJob",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "jobs",
+  "required" : [],
+  "url" : "https://bulkexports.twilio.com/v1/Exports/id1/Jobs"
+ },
+ {
+  "chain" : [
+   [
+    "bulkexports",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "export_configuration",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Enabled",
+    "true"
+   ],
+   [
+    "WebhookMethod",
+    "v_webhook_method"
+   ],
+   [
+    "WebhookUrl",
+    "v_webhook_url"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateExportConfiguration",
+  "method" : "update",
+  "options" : {
+   "enabled" : 1,
+   "webhook_method" : "v_webhook_method",
+   "webhook_url" : "v_webhook_url"
+  },
+  "required" : [],
+  "url" : "https://bulkexports.twilio.com/v1/Exports/id1/Configuration"
+ }
+]

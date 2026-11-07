@@ -3,6 +3,7 @@ use warnings;
 
 use Scalar::Util qw(weaken);
 use Test::More;
+use Time::Piece ();
 
 use Twilio::Http::FakeClient;
 use Twilio::Rest::Client;
@@ -252,20 +253,25 @@ subtest 'every domain that is ready' => sub {
   my ($client) = client();
 
   my %class = (
+    bulkexports  => 'Bulkexports',
     chat         => 'Chat',
     content      => 'Content',
     events       => 'Events',
+    insights     => 'Insights',
     ip_messaging => 'IpMessaging',
     lookups      => 'Lookups',
     monitor      => 'Monitor',
     notify       => 'Notify',
+    numbers      => 'Numbers',
     oauth        => 'Oauth',
+    pricing      => 'Pricing',
     proxy        => 'Proxy',
     routes       => 'Routes',
     serverless   => 'Serverless',
     studio       => 'Studio',
     supersim     => 'Supersim',
     trunking     => 'Trunking',
+    voice        => 'Voice',
     wireless     => 'Wireless',
   );
   isa_ok($client->$_, "Twilio::Rest::$class{$_}") for sort keys %class;
@@ -330,6 +336,57 @@ subtest 'names that follow twilio-php' => sub {
   $http->mock(200, { sims => [], meta => {} });
   $client->wireless->v1->sims->read({ e_id => 'E1' }, 1);
   like(last_url($http), qr/EId=E1/, 'e_id, as Python and Ruby call it');
+};
+
+subtest 'ids that no parent holds' => sub {
+  my ($client, $http) = client();
+
+  $http->mock(204, q{});
+  my $day = Time::Piece->strptime('2026-01-02', '%Y-%m-%d');
+  $client->voice->v1->archived_calls($day, 'CA1')->delete;
+  is(
+    last_url($http),
+    'https://voice.twilio.com/v1/Archives/2026-01-02/Calls/CA1',
+    'in the order of the URL, and a date as twilio-php writes it'
+  );
+
+  $http->mock(200, { shortCode => '12345', isoCountryCode => 'US' });
+  my $code = $client->routes->v3->iso_country_code('US', '12345')->fetch;
+  is(last_url($http),   'https://routes.twilio.com/v3/ShortCodes/US/12345', 'two ids');
+  is($code->short_code, '12345', 'a field in camelCase has a method in snake case');
+
+  $http->mock(200, { resource_type => 'Messages' });
+  $client->bulkexports->v1->export_configuration('Messages')->fetch;
+  is(
+    last_url($http),
+    'https://bulkexports.twilio.com/v1/Exports/Messages/Configuration',
+    'a singleton with an id'
+  );
+};
+
+subtest 'an instance finds its own id in a camelCase payload' => sub {
+  my ($client, $http) = client();
+  $http->mock(200, { phoneNumber => '+15005550006', friendlyName => 'Mine' });
+
+  my $number = $client->routes->v3->phone_numbers('+15005550006')->fetch;
+  is($number->friendly_name, 'Mine', 'the field');
+
+  $http->mock(200, { phoneNumber => '+15005550006' });
+  $number->fetch;
+  is(last_url($http), 'https://routes.twilio.com/v3/PhoneNumbers/%2B15005550006',
+    'and its own URL');
+};
+
+subtest 'children of a singleton and of a parent outside the path' => sub {
+  my ($client, $http) = client();
+
+  $http->mock(200, { iso_country => 'US' });
+  $client->pricing->v1->messaging->countries('US')->fetch;
+  is(last_url($http), 'https://pricing.twilio.com/v1/Messaging/Countries/US', 'below a singleton');
+
+  $http->mock(200, { dialing_permissions_inheritance => \1 });
+  $client->voice->v1->dialing_permissions->settings->fetch;
+  is(last_url($http), 'https://voice.twilio.com/v1/Settings', 'reached through its parent');
 };
 
 subtest 'shortcuts' => sub {
