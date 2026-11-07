@@ -7,6 +7,8 @@ use Carp           qw(croak);
 use File::Basename qw(basename);
 use JSON::PP       ();
 
+use Twilio::Generator::Scope;
+
 our $VERSION = '2.000000';
 
 my $VERSION_PREFIX = qr{\A/(?:[0-9]{4}-[0-9]{2}-[0-9]{2}|v[0-9][a-z0-9]*)(?=/)};
@@ -19,14 +21,16 @@ sub new {
 sub load {
   my ($class, $file) = @_;
 
-  my ($domain, $version) = basename($file) =~ /\Atwilio_([a-z0-9_]+)_(v[a-z0-9]+)[.]json\z/;
+  # Two specs have no version in their name, because each holds several versions.
+  my ($domain, $version) = basename($file) =~ /\Atwilio_([a-z0-9_]+?)(?:_(v[a-z0-9]+))?[.]json\z/;
   croak "Not a spec file name: $file" if !defined $domain;
 
   open my $handle, '<:raw', $file or croak "Cannot read $file: $!";
   my $content = do { local $/ = undef; <$handle> };
   close $handle or croak "Cannot read $file: $!";
 
-  return $class->new($domain, $version, JSON::PP->new->utf8->decode($content));
+  my $name = Twilio::Generator::Scope::domain_name($domain);
+  return $class->new($name, $version, JSON::PP->new->utf8->decode($content));
 }
 
 # The first path segment, which is the version in Twilio's URLs.

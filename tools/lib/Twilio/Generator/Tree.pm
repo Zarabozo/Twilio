@@ -20,11 +20,14 @@ my %IS_VERB      = map { $_ => 1 } qw(create delete fetch list update);
 sub build {
   my ($spec) = @_;
 
+  croak 'a spec with several versions in it' if !defined $spec->version;
+
   my %nodes;
   my $paths = $spec->paths;
   _add_path(\%nodes, $_, $paths->{$_}) for sort keys %{$paths};
   _link_parents(\%nodes);
   _split_by_noun(\%nodes);
+  _add_missing_lists(\%nodes);
 
   my $mounts = _dependent_mounts($paths);
   my @ordered =
@@ -132,6 +135,21 @@ sub _link_parents {
 
     $nodes->{$key} = { key => $key, segments => [split m{/}, $key] };
     push @pending, $nodes->{$key};
+  }
+  return;
+}
+
+# A list is what turns an id into a context, so an instance with an id needs one even when no
+# path declares it. twilio-php generates the same empty class.
+sub _add_missing_lists {
+  my ($nodes) = @_;
+
+  for my $node (values %{$nodes}) {
+    my $instance = $node->{instance} or next;
+    next if $node->{list} || !defined $instance->{key};
+
+    my $path = $instance->{path} =~ s{/[{]\w+[}]((?:[.]json)?)\z}{$1}r;
+    $node->{list} = { path => $path, operations => [], implied => 1 };
   }
   return;
 }
