@@ -23,6 +23,15 @@ my @modules = qw(
   Twilio::InstanceContext
   Twilio::InstanceResource
   Twilio::Json
+  Twilio::Jwt::AccessToken
+  Twilio::Jwt::Grants::ChatGrant
+  Twilio::Jwt::Grants::Grant
+  Twilio::Jwt::Grants::PlaybackGrant
+  Twilio::Jwt::Grants::SyncGrant
+  Twilio::Jwt::Grants::TaskRouterGrant
+  Twilio::Jwt::Grants::VideoGrant
+  Twilio::Jwt::Grants::VoiceGrant
+  Twilio::Jwt::JWT
   Twilio::ListResource
   Twilio::Page
   Twilio::Rest::Api

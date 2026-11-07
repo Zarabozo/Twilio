@@ -8,6 +8,8 @@ if ($argc !== 2) {
 }
 require $argv[1] . '/src/Twilio/autoload.php';
 
+use Twilio\Jwt\AccessToken;
+use Twilio\Jwt\JWT;
 use Twilio\Security\RequestValidator;
 use Twilio\TwiML\VoiceResponse;
 
@@ -147,3 +149,54 @@ $cases['settings_headers'] = array_map(
 file_put_contents("$output/vectors-request-validator.json", json_encode($cases, $flags) . "\n");
 echo count($cases['signatures']) + count($cases['validations']) + count($cases['bodies'])
     + count($cases['body_validations']) + count($cases['settings_headers']), " request validator vectors\n";
+
+// Tokens signed by twilio-php. The Perl tests read them, and build the same ones.
+function camel(string $name): string {
+    return lcfirst(str_replace(' ', '', ucwords(str_replace('_', ' ', $name))));
+}
+
+function buildToken(array $case): AccessToken {
+    $token = new AccessToken('ACxxxx', 'SKxxxx', 'secret', $case['ttl'] ?? 3600, $case['identity'] ?? null, $case['region'] ?? null);
+    if (isset($case['nbf'])) {
+        $token->setNbf($case['nbf']);
+    }
+    foreach ($case['claims'] ?? [] as $name => $value) {
+        $token->addClaim($name, $value);
+    }
+    foreach ($case['grants'] ?? [] as $definition) {
+        $class = 'Twilio\\Jwt\\Grants\\' . $definition['class'];
+        $grant = new $class();
+        foreach ($definition['calls'] as $call) {
+            $method = camel(array_shift($call));
+            $grant->$method(...$call);
+        }
+        $token->addGrant($grant);
+    }
+    return $token;
+}
+
+$cases = json_decode(file_get_contents(__DIR__ . '/access-tokens.json'), true, 512, JSON_THROW_ON_ERROR);
+
+foreach ($cases['tokens'] as &$case) {
+    // Only the content is kept: a whole token looks like a real credential to secret scanners,
+    // and it would not belong in a public repository even when it is fake.
+    $token = buildToken($case)->toJWT($case['algorithm'] ?? 'HS256');
+    [$header, $payload] = explode('.', $token);
+    $case['header'] = json_decode(JWT::urlsafeB64Decode($header));
+    $case['payload'] = json_decode(JWT::urlsafeB64Decode($payload));
+    unset($case['payload']->jti, $case['payload']->exp);
+}
+unset($case);
+
+foreach ($cases['signatures'] as &$case) {
+    $case['expected'] = JWT::urlsafeB64Encode(JWT::sign($case['message'], $case['key'], $case['algorithm']));
+}
+unset($case);
+
+$cases['base64'] = array_map(
+    fn(string $text): array => ['text' => $text, 'expected' => JWT::urlsafeB64Encode(mb_convert_encoding($text, 'ISO-8859-1', 'UTF-8'))],
+    $cases['base64']
+);
+
+file_put_contents("$output/vectors-access-tokens.json", json_encode($cases, $flags) . "\n");
+echo count($cases['tokens']) + count($cases['signatures']) + count($cases['base64']), " access token vectors\n";
