@@ -228,6 +228,26 @@ subtest 'accounts' => sub {
   like(last_url($http), qr{/Accounts/AC1/Messages/SM1[.]json}, 'from an instance');
 };
 
+subtest 'a domain with no account' => sub {
+  my ($client, $http) = client();
+
+  isa_ok($client->frontline_api,     'Twilio::Rest::FrontlineApi');
+  isa_ok($client->frontline_api->v1, 'Twilio::Rest::FrontlineApi::V1');
+
+  my $users = $client->frontline_api->v1->users;
+  isa_ok($users, 'Twilio::Rest::FrontlineApi::V1::UserList');
+  ok(!$users->can('read'), 'a list no path declares cannot read');
+
+  $http->mock(200, { sid => 'US1' });
+  my $user = $users->get_context('US1')->fetch;
+  is(last_url($http), 'https://frontline-api.twilio.com/v1/Users/US1', 'its own host');
+  is($user->sid,      'US1',                                           'the record');
+
+  $http->mock(200, { sid => 'US1' });
+  $client->frontline_api->v1->users('US1')->fetch;
+  is(last_url($http), 'https://frontline-api.twilio.com/v1/Users/US1', 'with the id on the method');
+};
+
 subtest 'shortcuts' => sub {
   my ($client) = client();
 

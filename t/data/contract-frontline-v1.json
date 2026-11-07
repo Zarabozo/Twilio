@@ -1,0 +1,70 @@
+[
+ {
+  "chain" : [
+   [
+    "frontline_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "users",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchUser",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://frontline-api.twilio.com/v1/Users/id1"
+ },
+ {
+  "chain" : [
+   [
+    "frontline_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "users",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Avatar",
+    "v_avatar"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "IsAvailable",
+    "true"
+   ],
+   [
+    "State",
+    "deactivated"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateUser",
+  "method" : "update",
+  "options" : {
+   "avatar" : "v_avatar",
+   "friendly_name" : "v_friendly_name",
+   "is_available" : 1,
+   "state" : "deactivated"
+  },
+  "required" : [],
+  "url" : "https://frontline-api.twilio.com/v1/Users/id1"
+ }
+]

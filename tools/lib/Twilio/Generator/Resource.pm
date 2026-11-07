@@ -25,6 +25,9 @@ my %IS_RESERVED_MOUNT = map { $_ => 1 } qw(
 sub build {
   my ($spec, $tree, $resource) = @_;
 
+  croak "$resource->{key}: a level with no operations of its own"
+    if !$resource->{list} && !$resource->{instance};
+
   my $model = _names($tree, $resource);
   $model->{description} = _description($spec, $resource);
   $model->{variable}    = snake($resource->{class_parts}[-1]);
@@ -63,7 +66,7 @@ sub _calls {
   my ($tree, $resource) = @_;
 
   my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
-  my $list     = _list_call(\%by_class, $resource);
+  my $list     = _list_call($tree, \%by_class, $resource);
   my $instance = $resource->{instance} // {};
   return {
     list    => $list,
@@ -72,17 +75,32 @@ sub _calls {
 }
 
 sub _list_call {
-  my ($by_class, $resource) = @_;
+  my ($tree, $by_class, $resource) = @_;
 
   my $mount = $resource->{mount};
-  return "\$client->api->$mount" if !defined $resource->{parent};
+  return _root_call($tree) . "->$mount" if !defined $resource->{parent};
 
   my $parent = $by_class->{ $resource->{parent} };
-  return "\$client->$mount" if $parent->{class} eq 'Account' && _hangs_from_instance($resource);
+  return "\$client->$mount" if _is_account_shortcut($tree, $parent, $resource);
 
-  my $from = _list_call($by_class, $parent);
+  my $from = _list_call($tree, $by_class, $parent);
   return "$from->$mount" if !_hangs_from_instance($resource);
   return "$from(\$" . _parent_id($resource) . ")->$mount";
+}
+
+# Only the main API has shortcuts, and other specs have resources called Account as well.
+sub _is_account_shortcut {
+  my ($tree, $parent, $resource) = @_;
+  return
+       $tree->{domain} eq 'api'
+    && $parent->{class} eq 'Account'
+    && _hangs_from_instance($resource);
+}
+
+sub _root_call {
+  my ($tree) = @_;
+  return '$client->api' if $tree->{domain} eq 'api';
+  return "\$client->$tree->{domain}->$tree->{version}";
 }
 
 sub _hangs_from_instance {
@@ -94,8 +112,10 @@ sub _hangs_from_instance {
 sub _parent_id {
   my ($resource) = @_;
 
-  my $path = ($resource->{list} // $resource->{instance})->{path};
-  my ($name) = $path =~ /.*[{](\w+)[}]/;
+  my $side = $resource->{list} // $resource->{instance}
+    // croak "$resource->{key}: a level with no operations of its own";
+  my ($name) = $side->{path} =~ /.*[{](\w+)[}]/;
+  croak "$resource->{key}: its parent needs an id that its path does not have" if !defined $name;
   return snake($name);
 }
 
@@ -106,8 +126,9 @@ sub root_class {
 
 sub _description {
   my ($spec, $resource) = @_;
-  my $side = $resource->{list}                            // $resource->{instance};
-  my $text = $spec->paths->{ $side->{path} }{description} // q{};
+  my $list = $resource->{list};
+  my $side = $list && !$list->{implied} ? $list : $resource->{instance} // $list;
+  my $text = $spec->paths->{ $side->{path} }{description}               // q{};
   return $text;
 }
 
@@ -329,6 +350,15 @@ sub _fields {
   ];
 }
 
+# The resources with no parent hang from the version, which has no parameters of its own.
+sub root_children {
+  my ($spec, $tree) = @_;
+
+  my $model = { fields => [], context => { parameters => [] } };
+  _add_children($spec, $tree, { class => q{} }, $model);
+  return $model->{context}{children} // [];
+}
+
 sub _add_children {
   my ($spec, $tree, $resource, $model) = @_;
 
@@ -340,11 +370,6 @@ sub _add_children {
     my $mount = $child->{mount};
     croak "$child->{key}: method $mount is reserved"     if $IS_RESERVED_MOUNT{$mount};
     croak "$child->{key}: method $mount is also a field" if $is_field{$mount} && $side->{own};
-
-    # Only a list can turn an id into a context, so without one there is no way to reach it.
-    if (!$child->{list} && defined $child->{instance}{key}) {
-      croak "$child->{key}: an instance with an id needs a list";
-    }
 
     my $target = $child->{list} // $child->{instance};
     my $count  = () = $target->{path} =~ /[{]/g;

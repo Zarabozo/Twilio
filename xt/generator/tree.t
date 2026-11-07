@@ -247,6 +247,48 @@ subtest 'anything that cannot be placed stops the build' => sub {
   }
 };
 
+subtest 'an instance with an id gets a list' => sub {
+  my $tree = build('/Things/{Sid}.json' => instance());
+  my ($thing) = @{ $tree->{resources} };
+
+  is($thing->{list}{path}, '/Things.json', 'at the path before the id');
+  is_deeply($thing->{list}{operations}, [], 'with no operations');
+  ok($thing->{list}{implied}, 'and it says no path declared it');
+
+  my $plain = build('/Things/{Sid}' => instance());
+  is($plain->{resources}[0]{list}{path}, '/Things', 'without .json as well');
+};
+
+subtest 'a singleton gets no list' => sub {
+  my $tree = build('/Things/{Sid}.json' => instance(), '/Things/{Sid}/Data.json' => instance());
+  my ($data) = grep { $_->{class} eq 'Thing::Data' } @{ $tree->{resources} };
+
+  ok($data,          'the singleton is there');
+  ok(!$data->{list}, 'with no list');
+};
+
+subtest 'spec files without a version in their name' => sub {
+  my $dir = tempdir(CLEANUP => 1);
+  for my $name (qw(preview iam_organizations)) {
+    my $file = "$dir/twilio_$name.json";
+    open my $handle, '>', $file or croak "$file: $!";
+    print {$handle} '{"paths":{}}';
+    close $handle or croak "$file: $!";
+
+    my $spec = Twilio::Generator::Spec->load($file);
+    ok(!defined $spec->version, "$name: no version");
+
+    my $ok    = eval { Twilio::Generator::Tree::build($spec); 1 };
+    my $error = $@;
+    ok(!$ok, "$name: refused for now");
+    like($error, qr/several versions/, "$name: says why");
+  }
+
+  is(Twilio::Generator::Spec->load("$dir/twilio_preview.json")->domain, 'preview', 'the name');
+  is(Twilio::Generator::Spec->load("$dir/twilio_iam_organizations.json")->domain,
+    'preview_iam', 'the name in twilio-php');
+};
+
 subtest 'loading a spec file' => sub {
   my $dir  = tempdir(CLEANUP => 1);
   my $file = "$dir/twilio_api_v2010.json";
