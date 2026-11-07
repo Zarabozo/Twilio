@@ -25,6 +25,8 @@ subtest 'names' => sub {
     Branches   => 'Branch',
     Dishes     => 'Dish',
     Conference => 'Conference',
+    Status     => 'Status',
+    Statuses   => 'Status',
   );
   is(singular($_), $singular{$_}, "singular of $_") for sort keys %singular;
 
@@ -35,6 +37,7 @@ subtest 'names' => sub {
   is(snake('Calls'),                   'calls',          'snake of one word');
   is(segment_class('SIP'),             'Sip',            'class of an acronym');
   is(segment_class('CredentialLists'), 'CredentialList', 'class of a plural');
+  is(segment_class('token'),           'Token',          'class of a lowercase segment');
 };
 
 subtest 'list and instance form one resource' => sub {
@@ -134,6 +137,28 @@ subtest 'the class name in the spec wins' => sub {
   is($tree->{resources}[1]{mount}, 'auth', 'the mount still comes from the path');
 };
 
+subtest 'the mount name in the spec names the class' => sub {
+  my $tree = build(
+    '/Users/{Sid}.json'                 => instance(),
+    '/Users/{UserSid}/Channels.json'    => list(mount_name => 'user_channels'),
+    '/Builds/{Sid}/Status.json'         => instance(mount_name => 'build_status'),
+    '/Builds/{Sid}.json'                => instance(),
+    '/Users/{UserSid}/Plain/{Sid}.json' => instance(),
+  );
+  my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
+
+  ok($by_class{'User::UserChannel'}, 'a user channel, as twilio-php names it');
+  is($by_class{'User::UserChannel'}{mount}, 'user_channels', 'and the mount');
+  ok($by_class{'Build::BuildStatus'}, 'a singleton too');
+  ok($by_class{'User::Plain'},        'with no mount name, the path names it');
+};
+
+subtest 'the class name in the spec wins over the mount name' => sub {
+  my $tree = build('/Things.json' => list(class_name => 'stuff', mount_name => 'many_things'));
+  is($tree->{resources}[0]{class}, 'Stuff',       'class');
+  is($tree->{resources}[0]{mount}, 'many_things', 'mount');
+};
+
 subtest 'the mount named in the spec wins' => sub {
   my $tree = build(
     '/Things/{Sid}.json' => instance(
@@ -209,6 +234,12 @@ subtest 'anything that cannot be placed stops the build' => sub {
       'unknown entry', qr/unknown path entry 'options'/, '/A.json' => { %{ list() }, options => {} }
     ],
     ['second list', qr/a second list/, '/A/{P}/B.json' => list(), '/A/{Q}/B.json' => list()],
+    [
+      'mount name conflict',
+      qr/mount name b conflicts with a/,
+      '/A.json'       => list(mount_name => 'a'),
+      '/A/{Sid}.json' => instance(mount_name => 'b'),
+    ],
     [
       'class name conflict',
       qr/class name b conflicts with a/,
@@ -289,6 +320,33 @@ subtest 'spec files without a version in their name' => sub {
     'preview_iam', 'the name in twilio-php');
 };
 
+subtest 'references to shared schemas and parameters' => sub {
+  my $page = { name => 'PageSize', in => 'query', schema => { type => 'integer' } };
+  my $spec = Twilio::Generator::Spec->new(
+    'demo', 'v1',
+    {
+      paths      => {},
+      components =>
+        { schemas => { thing => { type => 'object' } }, parameters => { page => $page } },
+    }
+  );
+
+  is_deeply(
+    $spec->resolve({ '$ref' => '#/components/schemas/thing' }),
+    { type => 'object' },
+    'a schema'
+  );
+  is($spec->resolve({ '$ref' => '#/components/parameters/page' }), $page, 'a parameter');
+
+  my $plain = { type => 'string' };
+  is($spec->resolve($plain), $plain, 'anything else is returned as it is');
+
+  my $ok    = eval { $spec->resolve({ '$ref' => '#/components/parameters/none' }); 1 };
+  my $error = $@;
+  ok(!$ok, 'a missing parameter is refused');
+  like($error, qr/No parameter none/, 'says why');
+};
+
 subtest 'loading a spec file' => sub {
   my $dir  = tempdir(CLEANUP => 1);
   my $file = "$dir/twilio_api_v2010.json";
@@ -355,9 +413,13 @@ sub instance {
 sub path_item {
   my ($type, @arguments) = @_;
 
-  my %item = ('x-twilio' => { pathType => $type });
-  my %note_for =
-    (parent => 'parent', class_name => 'className', dependents => 'dependentProperties');
+  my %item     = ('x-twilio' => { pathType => $type });
+  my %note_for = (
+    parent     => 'parent',
+    class_name => 'className',
+    mount_name => 'mountName',
+    dependents => 'dependentProperties'
+  );
 
   while (my $argument = shift @arguments) {
     if (ref $argument) {
