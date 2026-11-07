@@ -53,6 +53,56 @@ foreach ($cases as &$case) {
 }
 unset($case);
 
+// These two names are wrong in twilio-php, whose tests do not cover them: twilio-python and
+// Twilio's documentation use the corrected ones, and so does tools/extract-twiml.pl.
+function corrected(string $xml): string {
+    return str_replace([' for_="', ' xml:Lang="'], [' for="', ' xml:lang="'], $xml);
+}
+
+// Each element, with every attribute and child, so nothing depends on the extraction being right.
+$elements = json_decode(file_get_contents(__DIR__ . '/../twiml-elements.json'), true, 512, JSON_THROW_ON_ERROR);
+$vectors = [];
+foreach ($elements as $name => $element) {
+    // The autoloader reads an underscore as a directory, so it cannot find Echo_.
+    require_once $argv[1] . '/src/Twilio/TwiML/' . str_replace('::', '/', $element['php_class']) . '.php';
+    $class = 'Twilio\\TwiML\\' . str_replace('::', '\\', $element['php_class']);
+    $arguments = $element['value'] !== null ? ["text of $name"] : [];
+    $object = new $class(...$arguments);
+
+    $vector = ['class' => $name, 'arguments' => $arguments, 'attributes' => [], 'setters' => [], 'children' => []];
+    foreach ($element['attributes'] as $attribute) {
+        $text = 'v_' . $attribute['name'];
+        if ($attribute['type'] === 'boolean') {
+            // A setter takes a string, so PHP would turn true into "1". The attributes array
+            // writes "true", which is what Twilio documents.
+            $object->{$attribute['setter']}('true');
+            $given = 1;
+        } elseif ($attribute['type'] === 'list') {
+            $object->{$attribute['setter']}("$text second");
+            $given = [$text, 'second'];
+        } else {
+            $object->{$attribute['setter']}($text);
+            $given = $text;
+        }
+        $vector['attributes'][$attribute['name']] = $given;
+        $vector['setters'][$attribute['method']] = $given;
+    }
+    foreach ($element['children'] as $child) {
+        $childArguments = $child['value'] !== null ? ['text of ' . $child['method']] : [];
+        if ($child['has_attributes']) {
+            $childArguments[] = ['extra' => 'one'];
+        }
+        $object->{$child['php_method']}(...$childArguments);
+        $vector['children'][] = ['method' => $child['method'], 'arguments' => $childArguments];
+    }
+    $vector['attributes'] = (object) $vector['attributes'];
+    $vector['setters'] = (object) $vector['setters'];
+    $vector['expected'] = sortedXml(corrected((string) $object));
+    $vectors[] = $vector;
+}
+
 $flags = JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR;
 file_put_contents("$output/vectors-twiml-core.json", json_encode($cases, $flags) . "\n");
 echo count($cases), " TwiML core vectors\n";
+file_put_contents("$output/vectors-twiml-elements.json", json_encode($vectors, $flags) . "\n");
+echo count($vectors), " TwiML element vectors\n";

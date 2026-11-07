@@ -12,8 +12,11 @@ use Twilio::Generator::Emit;
 use Twilio::Generator::Resource;
 use Twilio::Generator::Spec;
 use Twilio::Generator::Tree;
+use Twilio::Generator::TwiML;
 
 our $VERSION = '2.000000';
+
+my $TWIML_ELEMENTS = dirname(dirname(dirname(__FILE__))) . '/twiml-elements.json';
 
 sub generated_files {
   my ($spec_file, $tidy_config) = @_;
@@ -36,6 +39,9 @@ sub generated_files {
   $files{ _file_name($top->{domain_class}) } =
     tidy(Twilio::Generator::Emit::domain($top), $tidy_config);
   $files{'Twilio/Rest/Client.pm'} = tidy(Twilio::Generator::Emit::client($top), $tidy_config);
+
+  my $twiml = Twilio::Generator::TwiML::modules(Twilio::Generator::TwiML::load($TWIML_ELEMENTS));
+  $files{$_} = tidy($twiml->{$_}, $tidy_config) for keys %{$twiml};
   return \%files;
 }
 
