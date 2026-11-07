@@ -7,11 +7,11 @@ use Twilio::Http::FakeClient;
 use Twilio::Json;
 use Twilio::Rest::Client;
 
-# t/data/contract-api-v2010.json is written from Twilio's spec by tools/generate.pl. It says what
-# each operation must send, and this test checks that the real classes send exactly that.
-my $FILE = 't/data/contract-api-v2010.json';
+# The t/data/contract-*.json files are written from Twilio's specs by tools/generate.pl. They say
+# what each operation must send, and this test checks that the real classes send exactly that.
+my @FILES = glob 't/data/contract-*.json';
 
-my $operations = read_rules($FILE);
+my $operations = [map { @{ read_rules($_) } } @FILES];
 ok(@{$operations} > 190, 'the contract covers the API');
 
 for my $entry (@{$operations}) {
@@ -56,7 +56,7 @@ sub with_dates {
 sub object_for {
   my ($client, $chain) = @_;
 
-  my $object  = $client->api;
+  my $object  = $client;
   my $next_id = 0;
   for my $link (@{$chain}) {
     my ($mount, $takes_id) = @{$link};

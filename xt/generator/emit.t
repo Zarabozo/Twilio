@@ -312,14 +312,22 @@ subtest 'a family that does not fit stops generation' => sub {
       sub { delete $_[0]{paths}{'/v1/Things/{Sid}.json'} },
     ],
     [
-      'an instance with an id and no list',
-      qr/an instance with an id needs a list/,
-      sub { delete $_[0]{paths}{'/v1/Things/{ThingSid}/Parts.json'} },
+      'a level with no operations',
+      qr/a level with no operations of its own/,
+      sub {
+        delete $_[0]{paths}{'/v1/Things.json'};
+        delete $_[0]{paths}{'/v1/Things/{Sid}.json'};
+      },
     ],
     [
-      'a child of a list that does not exist',
+      'a child of a list, when its parent is a singleton',
       qr/its parent has no list/,
-      sub { delete $_[0]{paths}{'/v1/Things.json'} },
+      sub {
+        my ($document) = @_;
+        my $paths = $document->{paths};
+        delete $paths->{$_} for grep { /ThingSid/ } keys %{$paths};
+        $paths->{'/v1/Things.json'} = delete $paths->{'/v1/Things/{Sid}.json'};
+      },
     ],
   );
 
@@ -338,14 +346,29 @@ subtest 'a family that does not fit stops generation' => sub {
 subtest 'top-level modules' => sub {
   my $top = {
     account_context => 'Demo::AccountContext',
-    account_list    => 'Demo::AccountList',
     account_module  => 'Demo::Account',
     base_url        => 'https://demo.test',
     domain_class    => 'Twilio::Rest::Demo',
-    shortcuts       => [{ mount => 'things', module => 'Demo::Thing' }],
-    version_class   => 'Twilio::Rest::Demo::V1',
-    version_method  => 'v1',
-    version_path    => '2026-01-01',
+    roots           => [
+      {
+        mount   => 'accounts',
+        module  => 'Demo::Account',
+        list    => 'Demo::AccountList',
+        context => 'Demo::AccountContext',
+        own     => 'sid',
+      }
+    ],
+    shortcuts      => [{ mount => 'things', module => 'Demo::Thing' }],
+    version_class  => 'Twilio::Rest::Demo::V1',
+    version_method => 'v1',
+    version_path   => '2026-01-01',
+  };
+  my $model = {
+    method   => 'demo',
+    class    => 'Twilio::Rest::Demo',
+    base_url => 'https://demo.test',
+    versions => [$top],
+    main     => $top,
   };
 
   my $version = Twilio::Generator::Emit::version($top);
@@ -354,13 +377,13 @@ subtest 'top-level modules' => sub {
   like($version, qr/return \$self->account->things\(\@arguments\)/, 'forwarded to the account');
   like($version, qr/get_account_sid/,                               'the account of the client');
 
-  my $domain = Twilio::Generator::Emit::domain($top);
+  my $domain = Twilio::Generator::Emit::domain($model);
   like($domain, qr/\{base_url\} = 'https:\/\/demo.test'/,       'the host');
   like($domain, qr/sub v1 /,                                    'the version');
   like($domain, qr/return \$self->v1->accounts\(\@arguments\)/, 'forwarded to the version');
   like($domain, qr/=head2 things/,                              'documented');
 
-  my $client = Twilio::Generator::Emit::client($top);
+  my $client = Twilio::Generator::Emit::client([$model]);
   like($client, qr/require Twilio::Rest::Demo;/,                'the domain');
   like($client, qr/return \$self->api->things\(\@arguments\)/,  'forwarded to the domain');
   like($client, qr/return \$self->api->account\(\@arguments\)/, 'with the account');
@@ -400,41 +423,41 @@ subtest 'descriptions reach the documentation' => sub {
   like($code, qr/=item C<status>\n\nOnly with this status[.]/, 'a query parameter');
   like($code, qr/=item name\n\nWhat it is called[.]/,          'a field');
   like($code, qr/=item mode\n\nOne of C<fast> or C<slow>[.]/,  'the choices of a field');
-  like($code, qr/\$client->things->create/, 'how to reach it, from the shortcut of an account');
+  like($code, qr/\$client->demo->v1->accounts/,                'how to reach it');
 };
 
 subtest 'a resource of an account has a shortcut, and others do not' => sub {
-  my $model = model(document());
+  my $model = model(document(), 'api');
   is($model->{calls}{list}, '$client->things', 'the account');
 
-  my %models = map { ($_->{module} =~ s/.*V1:://r) => $_ } all_models(family());
+  my %models = map { ($_->{module} =~ s/.*V1:://r) => $_ } all_models(family(), 'api');
   like($models{'Thing::Part'}{calls}{list}, qr/\A\$client->api->/, 'another root');
 };
 
 subtest 'how a resource is reached' => sub {
   my %models = map { ($_->{module} =~ s/.*V1:://r) => $_ } all_models(family());
 
-  is($models{Thing}{calls}{list},    '$client->api->things',       'the root');
-  is($models{Thing}{calls}{context}, '$client->api->things($sid)', 'one of them');
+  is($models{Thing}{calls}{list},    '$client->demo->v1->things',       'the root');
+  is($models{Thing}{calls}{context}, '$client->demo->v1->things($sid)', 'one of them');
   is(
     $models{'Thing::Part'}{calls}{list},
-    '$client->api->things($thing_sid)->parts',
+    '$client->demo->v1->things($thing_sid)->parts',
     'below the root'
   );
   is(
     $models{'Thing::Part'}{calls}{context},
-    '$client->api->things($thing_sid)->parts($sid)',
+    '$client->demo->v1->things($thing_sid)->parts($sid)',
     'one of those'
   );
   is(
     $models{'Thing::Data'}{calls}{context},
-    '$client->api->things($thing_sid)->data',
+    '$client->demo->v1->things($thing_sid)->data',
     'a singleton'
   );
-  is($models{'Thing::Kind'}{calls}{list}, '$client->api->things->kinds', 'below a list');
+  is($models{'Thing::Kind'}{calls}{list}, '$client->demo->v1->things->kinds', 'below a list');
   is(
     $models{'Thing::Section::Row'}{calls}{list},
-    '$client->api->things($thing_sid)->sections->rows',
+    '$client->demo->v1->things($thing_sid)->sections->rows',
     'below a section'
   );
 };
@@ -619,9 +642,9 @@ subtest 'anything with no rule stops generation' => sub {
 done_testing;
 
 sub model {
-  my ($document) = @_;
+  my ($document, $domain) = @_;
 
-  my $spec    = Twilio::Generator::Spec->new('demo', 'v1', $document);
+  my $spec    = Twilio::Generator::Spec->new($domain // 'demo', 'v1', $document);
   my $tree    = Twilio::Generator::Tree::build($spec);
   my ($thing) = grep { $_->{class} eq 'Account::Thing' } @{ $tree->{resources} };
   return Twilio::Generator::Resource::build($spec, $tree, $thing);
@@ -657,9 +680,9 @@ sub list {
 }
 
 sub all_models {
-  my ($document) = @_;
+  my ($document, $domain) = @_;
 
-  my $spec = Twilio::Generator::Spec->new('demo', 'v1', $document);
+  my $spec = Twilio::Generator::Spec->new($domain // 'demo', 'v1', $document);
   my $tree = Twilio::Generator::Tree::build($spec);
   return map { Twilio::Generator::Resource::build($spec, $tree, $_) } @{ $tree->{resources} };
 }

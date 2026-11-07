@@ -26,11 +26,12 @@ sub entries {
   my ($spec, $tree) = @_;
 
   my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
+  my @root     = ([$tree->{domain}, 0], [$tree->{version}, 0]);
   my @entries;
   for my $resource (@{ $tree->{resources} }) {
     for my $type (qw(list instance)) {
       my $side  = $resource->{$type} or next;
-      my $chain = _chain(\%by_class, $resource, $type);
+      my $chain = _chain(\%by_class, \@root, $resource, $type);
       push @entries,
         map { _entry($spec, $tree, $resource, $side, $chain, $_) } @{ $side->{operations} };
     }
@@ -45,14 +46,14 @@ sub to_json {
 
 # The calls that lead from the client to the object, each with whether it takes an id.
 sub _chain {
-  my ($by_class, $resource, $type) = @_;
+  my ($by_class, $root, $resource, $type) = @_;
 
   my $takes_id = $type eq 'instance' && defined $resource->{instance}{key} ? 1 : 0;
   my $link     = [$resource->{mount}, $takes_id];
-  return [$link] if !defined $resource->{parent};
+  return [@{$root}, $link] if !defined $resource->{parent};
 
   my $parent = $by_class->{ $resource->{parent} } // croak "No parent for $resource->{key}";
-  return [@{ _chain($by_class, $parent, $resource->{parent_side} // 'instance') }, $link];
+  return [@{ _chain($by_class, $root, $parent, $resource->{parent_side} // 'instance') }, $link];
 }
 
 sub _entry {
