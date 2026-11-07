@@ -9,7 +9,9 @@ if ($argc !== 2) {
 require $argv[1] . '/src/Twilio/autoload.php';
 
 use Twilio\Jwt\AccessToken;
+use Twilio\Jwt\ClientToken;
 use Twilio\Jwt\JWT;
+use Twilio\Jwt\TaskRouter\Policy;
 use Twilio\Security\RequestValidator;
 use Twilio\TwiML\VoiceResponse;
 
@@ -200,3 +202,57 @@ $cases['base64'] = array_map(
 
 file_put_contents("$output/vectors-access-tokens.json", json_encode($cases, $flags) . "\n");
 echo count($cases['tokens']) + count($cases['signatures']) + count($cases['base64']), " access token vectors\n";
+
+// Capability tokens, kept as content for the same reason as access tokens.
+function contentOf(string $token): array {
+    [$header, $payload] = explode('.', $token);
+    $content = json_decode(JWT::urlsafeB64Decode($payload));
+    unset($content->exp);
+    return ['header' => json_decode(JWT::urlsafeB64Decode($header)), 'payload' => $content];
+}
+
+$cases = json_decode(file_get_contents(__DIR__ . '/capability-tokens.json'), true, 512, JSON_THROW_ON_ERROR);
+
+foreach ($cases['client'] as &$case) {
+    $capability = new ClientToken('AC123', 'foobar');
+    foreach ($case['calls'] as $call) {
+        $method = camel(array_shift($call));
+        $capability->$method(...$call);
+    }
+    $case += contentOf($capability->generateToken($case['ttl'] ?? 3600));
+}
+unset($case);
+
+foreach ($cases['task_router'] as &$case) {
+    $class = 'Twilio\\Jwt\\TaskRouter\\' . $case['class'];
+    $arguments = ['AC123', 'foobar', 'WS456'];
+    if (isset($case['channel'])) {
+        $arguments[] = $case['channel'];
+    }
+    $arguments[] = $case['base_url'] ?? null;
+    $arguments[] = $case['base_ws_url'] ?? null;
+    $capability = new $class(...$arguments);
+    foreach ($case['calls'] as $call) {
+        $method = camel(array_shift($call));
+        $capability->$method(...$call);
+    }
+    $case += contentOf($capability->generateToken($case['ttl'] ?? 3600, $case['extra'] ?? []));
+}
+unset($case);
+
+foreach ($cases['policies'] as &$case) {
+    $policy = new Policy($case['url'], $case['method'], $case['query'], $case['post'], $case['allow']);
+    if (isset($case['add_query'])) {
+        $policy->addQueryFilter($case['add_query']);
+    }
+    if (isset($case['add_post'])) {
+        $policy->addPostFilter($case['add_post']);
+    }
+    $case['query'] = $case['query'] === null ? null : (object) $case['query'];
+    $case['post'] = $case['post'] === null ? null : (object) $case['post'];
+    $case['expected'] = json_decode(json_encode($policy->toArray()));
+}
+unset($case);
+
+file_put_contents("$output/vectors-capability-tokens.json", json_encode($cases, $flags) . "\n");
+echo count($cases['client']) + count($cases['task_router']) + count($cases['policies']), " capability token vectors\n";
