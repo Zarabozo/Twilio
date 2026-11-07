@@ -18,6 +18,19 @@ my $message = $client->messages->create('+15558675309', {
 });
 ```
 
+TwiML is built the same way:
+
+```perl
+use Twilio::TwiML::VoiceResponse;
+
+my $response = Twilio::TwiML::VoiceResponse->new;
+$response->say('Hola', { language => 'es-MX', voice => 'alice' });
+my $dial = $response->dial(q{}, { timeout => 20 });
+$dial->number('+15551234567', { send_digits => 'ww1' });
+
+print $response;
+```
+
 The interface mirrors `twilio-php`, so a Twilio documentation example translates
 to Perl with a few simple rules.
 

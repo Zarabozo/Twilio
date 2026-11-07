@@ -13,10 +13,11 @@ find(
     my $module = $File::Find::name =~ s{\Alib/}{}r =~ s{[.]pm\z}{}r =~ s{/}{::}gr;
     push @modules, $module;
   },
-  'lib/Twilio/Rest'
+  'lib/Twilio/Rest',
+  'lib/Twilio/TwiML'
 );
 
-ok(@modules > 80, 'the generated modules are there');
+ok(@modules > 140, 'the generated modules are there');
 
 for my $module (sort @modules) {
   my @warnings;

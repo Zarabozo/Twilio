@@ -32,6 +32,9 @@ Twilio documentation example can be translated to Perl with a few simple rules:
     body => 'Hello',
   });
 
+TwiML is built with L<Twilio::TwiML::VoiceResponse>,
+L<Twilio::TwiML::MessagingResponse> and L<Twilio::TwiML::FaxResponse>.
+
 =head1 COMMUNITY LIBRARY
 
 This is an independent, community-maintained library. It is not written,
