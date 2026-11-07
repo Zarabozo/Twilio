@@ -16,23 +16,28 @@ our $VERSION = '2.000000';
 # guessing would either send a value in a form Twilio rejects, or hide a date behind a string.
 # The rules are twilio-php's, and xt/generator/formats.t checks that every spec in scope has one.
 my %REQUEST_WRITER = (
-  q{}                => 'json_object',         # a schema with no type holds free-form data
-  'Sid'              => undef,
-  'boolean'          => 'boolean_to_string',
-  'date'             => 'iso8601_date',
-  'date-time'        => 'iso8601_date_time',
-  'endpoint'         => undef,
-  'http-method'      => undef,
-  'int32'            => undef,
-  'int64'            => undef,
-  'integer'          => undef,
-  'iso-country-code' => undef,
-  'number'           => undef,
-  'object'           => 'json_object',
-  'phone-number'     => undef,
-  'string'           => undef,
-  'twiml'            => undef,
-  'uri'              => undef,
+  q{}                    => 'json_object',         # a schema with no type holds free-form data
+  'AccountSid'           => undef,
+  'IamRoleAssignmentSid' => undef,
+  'OrganizationSid'      => undef,
+  'Proc_JobTtid'         => undef,
+  'Sid'                  => undef,
+  'UserSid'              => undef,
+  'boolean'              => 'boolean_to_string',
+  'date'                 => 'iso8601_date',
+  'date-time'            => 'iso8601_date_time',
+  'endpoint'             => undef,
+  'http-method'          => undef,
+  'int32'                => undef,
+  'int64'                => undef,
+  'integer'              => undef,
+  'iso-country-code'     => undef,
+  'number'               => undef,
+  'object'               => 'json_object',
+  'phone-number'         => undef,
+  'string'               => undef,
+  'twiml'                => undef,
+  'uri'                  => undef,
 );
 
 # Formats named after a kind of id, like Sid or IamRoleSid, are plain strings.

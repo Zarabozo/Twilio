@@ -75,36 +75,26 @@ sub _new_instance {
   return "$model->{class}{instance}->new($arguments)";
 }
 
+# A child whose URL has ids its parent does not hold, like Voice's /Archives/{Date}/Calls/{Sid},
+# takes them first, in the order of the URL: archived_calls($date, $sid).
 sub _child_method {
   my ($side, $child) = @_;
 
+  my @extra     = map { "\$$_" } @{ $child->{extra_ids} // [] };
+  my @held      = @{ $side->{parameters} };
+  my $used      = $child->{used_ids} // scalar @held;
   my $arguments = join q{, }, $side->{owner} // '$self->{version}',
-    map { "\$self->{solution}{$_}" } @{ $side->{parameters} };
+    (map { "\$self->{solution}{$_}" } @held[0 .. $used - 1]), @extra;
   my $load = "  require $child->{module};\n";
 
-  if ($child->{singleton}) {
-    return <<"END_CODE";
-sub $child->{mount} {
-  my (\$self) = \@_;
-$load  return $child->{context}->new($arguments);
-}
-END_CODE
-  }
+  my $own       = $child->{own};
+  my $signature = join q{, }, '$self', @extra, defined $own && !$child->{singleton} ? "\$$own" : ();
+  my $start     = "sub $child->{mount} {\n  my ($signature) = \@_;\n$load";
 
-  my $own = $child->{own};
-  if (!defined $own) {
-    return <<"END_CODE";
-sub $child->{mount} {
-  my (\$self) = \@_;
-$load  return $child->{list}->new($arguments);
-}
-END_CODE
-  }
-
+  return "$start  return $child->{context}->new($arguments);\n}\n" if $child->{singleton};
+  return "$start  return $child->{list}->new($arguments);\n}\n"    if !defined $own;
   return <<"END_CODE";
-sub $child->{mount} {
-  my (\$self, \$$own) = \@_;
-$load  my \$list = $child->{list}->new($arguments);
+$start  my \$list = $child->{list}->new($arguments);
   return defined \$$own ? \$list->get_context(\$$own) : \$list;
 }
 END_CODE
@@ -133,8 +123,9 @@ sub _uri_expression {
   my ($uri) = @_;
 
   my @pieces = map {
-    defined $_->{literal}
-      ? _quoted($_->{literal})
+        defined $_->{literal} ? _quoted($_->{literal})
+      : defined $_->{writer}
+      ? "Twilio::Serialize::path_segment(Twilio::Serialize::$_->{writer}(\$$_->{parameter}))"
       : "Twilio::Serialize::path_segment(\$$_->{parameter})"
   } @{$uri};
   return @pieces == 1 ? $pieces[0] : join q{, }, 'join q{}', @pieces;
@@ -322,12 +313,14 @@ sub _instance {
   my ($model) = @_;
   return q{} if !$model->{has_instance};
 
-  my @names = @{ ($model->{context} // $model->{list})->{parameters} };
-  my $own   = ($model->{context} // {})->{own};
+  my @names     = @{ ($model->{context} // $model->{list})->{parameters} };
+  my $own       = ($model->{context} // {})->{own};
+  my $own_field = ($model->{context} // {})->{own_field} // $own;
 
   my @pairs =
-    map { defined $own && $_ eq $own ? "$_ => \$$_ // \$self->{properties}{$_}" : "$_ => \$$_" }
-    @names;
+    map {
+    defined $own && $_ eq $own ? "$_ => \$$_ // \$self->{properties}{$own_field}" : "$_ => \$$_"
+    } @names;
   my $signature = join q{, }, '$class', '$version', '$payload', map { "\$$_" } @names;
   my $solution  = join q{, }, @pairs;
 
@@ -390,7 +383,7 @@ sub _accessor {
 
   my $value = "\$_[0]{properties}{$field->{name}}";
   $value = "Twilio::Deserialize::$field->{reader}($value)" if defined $field->{reader};
-  return "sub $field->{name} { return $value }\n";
+  return "sub $field->{method} { return $value }\n";
 }
 
 sub version {

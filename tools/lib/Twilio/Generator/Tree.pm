@@ -13,7 +13,9 @@ our $VERSION = '2.000000';
 my @HTTP_METHODS = qw(get post put patch delete);
 my %IS_HTTP      = map { $_ => 1 } @HTTP_METHODS;
 my %IS_PATH_NOTE = map { $_ => 1 } qw(description parameters servers summary x-maturity x-twilio);
-my %IS_VERB      = map { $_ => 1 } qw(create delete fetch list update);
+
+# twilio-php has a patch method of its own, next to update. Building it is a resource's job.
+my %IS_VERB = map { $_ => 1 } qw(create delete fetch list patch update);
 
 # A resource's place comes from the parent in x-twilio, not from its path: SMS/ShortCodes is a
 # direct child of Account, with no Sms level, in every official library.
@@ -26,8 +28,9 @@ sub build {
   my $paths = $spec->paths;
   _add_path(\%nodes, $_, $paths->{$_}) for sort keys %{$paths};
   _link_parents(\%nodes);
-  _split_by_noun(\%nodes);
+  _split_by_names(\%nodes);
   _add_missing_lists(\%nodes);
+  _hang_on_singletons(\%nodes);
 
   my $mounts = _dependent_mounts($paths);
   my @ordered =
@@ -68,24 +71,36 @@ sub _add_path {
   my ($nodes, $path, $item) = @_;
 
   my $notes = $item->{'x-twilio'} // {};
-  my $type  = $notes->{pathType}  // q{};
+
+  # An instance with no parameter at the end is a singleton, like a payload's Data. A path that
+  # does not say what it is ends in a parameter when it is an instance, as twilio-php reads it.
+  my $key  = _instance_key($path);
+  my $type = $notes->{pathType} // (defined $key ? 'instance' : 'list');
   croak "$path: unknown path type '$type'" if $type ne 'list' && $type ne 'instance';
 
-  # An instance with no parameter at the end is a singleton, like a payload's Data.
-  my $key = _instance_key($path);
-  croak "$path: a list cannot end in a parameter" if $type eq 'list' && defined $key;
+  # A list can end in an id, as Insights' /Voice/Reports/PhoneNumbers/Inbound/{reportId} does:
+  # the id is part of where the list is, and the list's records have none of their own.
+  undef $key if $type eq 'list';
 
   my @segments    = _segments($path);
-  my $key_of_node = join q{/}, @segments;
-  my $node        = $nodes->{$key_of_node} //= { key => $key_of_node, segments => \@segments };
+  my $declared    = _declared_class($notes);
+  my $key_of_node = _node_key($nodes, join(q{/}, @segments), $declared);
+  my $node        = $nodes->{$key_of_node} //=
+    { key => $key_of_node, segments => \@segments, declared => $declared };
   croak "$path: a second $type for $node->{key}" if $node->{$type};
 
-  _set_parent($node, $path, $notes->{parent});
+  # A parent written with the version, like IAM's /v1/Roles/{Sid}, is not one twilio-php finds,
+  # so its child hangs from the version: RolePermission, not Role::Permission.
+  my $parent = $notes->{parent};
+  undef $parent if defined $parent && Twilio::Generator::Spec::strip_version($parent) ne $parent;
+  _set_parent($node, $path, $parent);
 
   $node->{$type} = { path => $path, operations => _operations($path, $item) };
   $node->{$type}{key} = $key if defined $key;
   _set_class_name($node, $path, $notes->{className});
-  _set_mount_name($node, $path, $notes->{mountName});
+
+  # Most mount names are in snake case, but a few are not, like Lookups' lookupOverrides.
+  _set_mount_name($node, $path, defined $notes->{mountName} ? snake($notes->{mountName}) : undef);
   return;
 }
 
@@ -119,35 +134,40 @@ sub _set_parent {
   my ($node, $path, $parent) = @_;
   return if !defined $parent;
 
+  # The parent is usually part of the path, but not always: Voice's /Settings belongs to
+  # /DialingPermissions in twilio-php. Only a parent at or below the path itself is refused.
   my @own    = @{ $node->{segments} };
   my @theirs = _segments($parent);
   my $key    = join q{/}, @theirs;
-  if (@theirs >= @own || $key ne join q{/}, @own[0 .. $#theirs]) {
+  if (@theirs >= @own && join(q{/}, @theirs[0 .. $#own]) eq join q{/}, @own) {
     croak "$path: parent $parent does not contain it";
   }
   if (defined $node->{parent_key} && $node->{parent_key} ne $key) {
     croak "$path: parent $key conflicts with $node->{parent_key}";
   }
   $node->{parent_key}  = $key;
+  $node->{parent_path} = $parent;
   $node->{parent_side} = defined _instance_key($parent) ? 'instance' : 'list';
   return;
 }
 
-# Only the path around a resource can place a section that no path declares, like a parent
-# with no operations of its own.
+# A path that declares no parent hangs from the version, wherever it is: twilio-php has
+# /Configuration/Addresses as AddressConfiguration, next to Configuration and not below it. Only
+# a declared parent that no path describes, like v2010's SIP, becomes a section, and the path
+# around a section is all that can place it.
 sub _link_parents {
   my ($nodes) = @_;
 
   my @pending = map { $nodes->{$_} } sort keys %{$nodes};
   while (my $node = shift @pending) {
     my @segments = @{ $node->{segments} };
-    next if @segments == 1;
+    next if @segments == 1 || (!defined $node->{parent_key} && !$node->{section});
 
     pop @segments;
     my $key = $node->{parent_key} //= join q{/}, @segments;
     next if $nodes->{$key};
 
-    $nodes->{$key} = { key => $key, segments => [split m{/}, $key] };
+    $nodes->{$key} = _section($key, $node->{parent_path});
     push @pending, $nodes->{$key};
   }
   return;
@@ -164,6 +184,38 @@ sub _add_missing_lists {
 
     my $path = $instance->{path} =~ s{/[{]\w+[}]((?:[.]json)?)\z}{$1}r;
     $node->{list} = { path => $path, operations => [], implied => 1 };
+
+    # twilio-php names a resource after the end of its list's URL, even an id: Routes v3's
+    # /ShortCodes/{IsoCountryCode}/{ShortCode} is IsoCountryCode.
+    my ($id) = $path =~ m{/[{](\w+)[}](?:[.]json)?\z};
+    $node->{named_by_id} = $id if defined $id;
+  }
+  return;
+}
+
+# A parent path with no id, like /Configuration, reads as a list, but when only a singleton
+# lives there its children go on the singleton. twilio-php puts them on a list class that only
+# offers getContext, and calls read the same: configuration->webhooks and configuration->fetch.
+# A parent that no path describes. When the child's link ends in an id, as iam_organizations'
+# /Organizations/{OrganizationSid} does, it is an instance with no operations, so that the id has
+# a place: organizations($organization_sid)->users, as in twilio-php.
+sub _section {
+  my ($key, $parent_path) = @_;
+
+  my $section = { key => $key, segments => [split m{/}, $key], section => 1 };
+  my $id      = defined $parent_path ? _instance_key($parent_path) : undef;
+  $section->{instance} = { path => $parent_path, operations => [], key => $id } if defined $id;
+  return $section;
+}
+
+sub _hang_on_singletons {
+  my ($nodes) = @_;
+
+  for my $node (values %{$nodes}) {
+    next if ($node->{parent_side} // q{}) ne 'list';
+    my $parent = $nodes->{ $node->{parent_key} } or next;
+    next if $parent->{list} || !$parent->{instance} || defined $parent->{instance}{key};
+    $node->{parent_side} = 'instance';
   }
   return;
 }
@@ -181,11 +233,19 @@ sub _operation {
   my ($path, $method, $operation) = @_;
 
   my $id = $operation->{operationId} // q{};
-  my ($verb, $noun) = $id =~ /\A([A-Z][a-z]+)([A-Z]\w*)\z/;
+  my ($verb) = $id =~ /\A([A-Z][a-z]+)[A-Z]/;
   $verb = lc($verb // q{});
   croak "$path: cannot read a verb from operation '$id'" if !$IS_VERB{$verb};
 
-  return { verb => $verb, noun => $noun, method => uc $method, id => $id, spec => $operation };
+  my $notes = $operation->{'x-twilio'} // {};
+  return {
+    verb   => $verb,
+    method => uc $method,
+    id     => $id,
+    spec   => $operation,
+    class  => scalar _declared_class($notes),
+    notes  => $notes,
+  };
 }
 
 sub _set_class_name {
@@ -200,48 +260,71 @@ sub _set_class_name {
 }
 
 # One path can hold two resources: POST on /Keys creates a NewKey, and GET lists Key objects.
-# Twilio's libraries give each its own classes, so an operation with a noun that is not the
-# resource's own moves to a sibling.
-sub _split_by_noun {
+# The spec says so by naming a class or a mount on the operation itself, and twilio-oai-generator
+# groups operations by those names, so an operation that names another resource moves to it.
+sub _split_by_names {
   my ($nodes) = @_;
 
   for my $key (sort keys %{$nodes}) {
     my $node = $nodes->{$key};
-    my %nouns =
-      map { $_->{noun} => 1 } map { @{ $_->{operations} } } grep { $_ } @{$node}{qw(list instance)};
-    next if keys %nouns < 2;
-
-    my $own = segment_class($node->{segments}[-1]);
-    croak "$key: no operation is named after $own" if !$nouns{$own};
-    _move_operations($nodes, $node, $_) for sort grep { $_ ne $own } keys %nouns;
+    my $own  = $node->{declared} // segment_class($node->{segments}[-1]);
+    my %elsewhere;
+    for my $operation (map { @{ $_->{operations} } } grep { $_ } @{$node}{qw(list instance)}) {
+      my $class = $operation->{class} // next;
+      $elsewhere{$class} = $operation->{notes} if $class ne $own;
+    }
+    _move_operations($nodes, $node, $_, $elsewhere{$_}) for sort keys %elsewhere;
   }
   return;
 }
 
 sub _move_operations {
-  my ($nodes, $node, $noun) = @_;
+  my ($nodes, $node, $class, $notes) = @_;
 
   my %sibling = (
-    key         => "$node->{key}:$noun",
+    key         => "$node->{key}:$class",
     segments    => $node->{segments},
     parent_key  => $node->{parent_key},
     parent_side => $node->{parent_side},
-    class_name  => snake($noun),
+    class_name  => $notes->{className} // snake($class),
+    mount_name  => defined $notes->{mountName} ? snake($notes->{mountName}) : undef,
   );
+  my $is_moved = sub { ($_[0]{class} // q{}) eq $class };
   for my $type (qw(list instance)) {
     my $side  = $node->{$type} or next;
-    my @moved = grep { $_->{noun} eq $noun } @{ $side->{operations} };
+    my @moved = grep { $is_moved->($_) } @{ $side->{operations} };
     next if !@moved;
 
-    $side->{operations} = [grep { $_->{noun} ne $noun } @{ $side->{operations} }];
+    $side->{operations} = [grep { !$is_moved->($_) } @{ $side->{operations} }];
     $sibling{$type} = { %{$side}, operations => \@moved };
   }
   $nodes->{ $sibling{key} } = \%sibling;
   return;
 }
 
+# The class that a path or an operation names: className, or else mountName made singular, as
+# twilio-oai-generator does.
+sub _declared_class {
+  my ($notes) = @_;
+  return camelize($notes->{className})                  if defined $notes->{className};
+  return singular(camelize(snake($notes->{mountName}))) if defined $notes->{mountName};
+  return;
+}
+
+# A list and an instance on the same segments are one resource when they agree on its name.
+# When they do not, twilio-php makes two, like IAM's GetApiKeys list and ApiKey instance.
+sub _node_key {
+  my ($nodes, $key, $declared) = @_;
+
+  my $node = $nodes->{$key} or return $key;
+  return $key if ($node->{declared} // q{}) eq ($declared // q{});
+  return "$key#" . ($declared // 'plain');
+}
+
 # When Twilio names the method that reaches a child, that name wins over one built from the
-# path. Names are kept by class because resources split by noun share a URL.
+# path. Names are kept by class because resources split by noun share a URL, and by the shape of
+# the URL, ids included, because two resources can share their segments: Bulk Exports names the
+# jobs of an export, /Exports/{ResourceType}/Jobs, and /Exports/Jobs/{JobSid} is another one.
 sub _dependent_mounts {
   my ($paths) = @_;
 
@@ -250,41 +333,67 @@ sub _dependent_mounts {
     my $dependents = $paths->{$path}{'x-twilio'}{dependentProperties} // {};
     for my $mount (sort keys %{$dependents}) {
       my $url = Twilio::Generator::Spec::strip_version($dependents->{$mount}{resource_url} // q{});
-      my $key = join q{/}, _segments($url);
-      $mounts{$key}{ singular(camelize($mount)) } = $mount;
+      $mounts{ _shape($url) }{ singular(camelize($mount)) } = $mount;
     }
   }
   return \%mounts;
 }
 
+# A list's URL, or an instance's without its own id, with every id the same.
+sub _list_shape {
+  my ($node) = @_;
+
+  return _shape($node->{list}{path}) if $node->{list};
+  my $instance = $node->{instance} or return q{};
+  my $path     = $instance->{path};
+  $path =~ s{/[{]\w+[}]((?:[.]json)?)\z}{$1} if defined $instance->{key};
+  return _shape($path);
+}
+
+sub _shape {
+  my ($path) = @_;
+  return $path =~ s/[.]json\z//r =~ s/[{]\w+[}]/{}/gr;
+}
+
+# A parent is named first, because its name starts the child's. It can come later in the order,
+# since a parent need not be part of the path, as Voice's /Settings shows.
 sub _name_node {
   my ($nodes, $node, $mounts) = @_;
+  return if $node->{class_parts};
 
   my $final_segment = $node->{segments}[-1];
   my $class =
-      defined $node->{class_name} ? camelize($node->{class_name})
-    : defined $node->{mount_name} ? singular(camelize($node->{mount_name}))
-    :                               segment_class($final_segment);
+      defined $node->{class_name}  ? camelize($node->{class_name})
+    : defined $node->{mount_name}  ? singular(camelize($node->{mount_name}))
+    : defined $node->{named_by_id} ? ucfirst $node->{named_by_id}
+    :                                segment_class($final_segment);
 
   my @parents;
   if (defined $node->{parent_key}) {
     my $parent = $nodes->{ $node->{parent_key} };
+    _name_node($nodes, $parent, $mounts);
     @parents = @{ $parent->{class_parts} };
     $node->{parent} = $parent->{class};
   }
   $node->{class_parts} = [@parents, $class];
   $node->{class}       = join q{::}, @{ $node->{class_parts} };
-  $node->{mount}       = _mount($node, $mounts->{ join q{/}, @{ $node->{segments} } }, $class);
+  $node->{mount}       = _mount($node, $mounts->{ _list_shape($node) }, $class);
   return;
 }
 
 sub _mount {
   my ($node, $names, $class) = @_;
 
+  # A name the parent gives this very class wins. Otherwise the resource's own mount name does,
+  # because two resources can share the segments: TaskRouter's queue statistics hang from both a
+  # queue and the list of queues.
   my @all = sort values %{ $names // {} };
-  return $node->{mount_name} // snake($node->{segments}[-1]) if !@all;
-  return $all[0]                                             if @all == 1;
-  return $names->{$class} // croak "$node->{key}: called both $all[0] and $all[1]";
+  return $names->{$class}             if defined $names->{$class};
+  return $node->{mount_name}          if defined $node->{mount_name};
+  return snake($node->{named_by_id})  if defined $node->{named_by_id} && !@all;
+  return snake($node->{segments}[-1]) if !@all;
+  return $all[0]                      if @all == 1;
+  croak "$node->{key}: called both $all[0] and $all[1]";
 }
 
 sub _check_unique {
@@ -296,7 +405,11 @@ sub _check_unique {
     croak "$resource->{key} and $classes{$class} are both $class" if $classes{$class};
     $classes{$class} = $resource->{key};
 
+    # A list and its instances can each have a child by the same name, as TaskRouter's queues
+    # and each queue have their own statistics.
+    my $side  = $resource->{parent_side} // 'instance';
     my $mount = join q{.}, $resource->{parent} // q{}, $resource->{mount};
+    $mount .= " on the $side"                                    if defined $resource->{parent};
     croak "$resource->{key} and $mounts{$mount} are both $mount" if $mounts{$mount};
     $mounts{$mount} = $resource->{key};
   }

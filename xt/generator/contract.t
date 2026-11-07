@@ -136,20 +136,59 @@ subtest 'the order is stable' => sub {
   is($json, Twilio::Generator::Contract::to_json(entries(document())), 'the same text each time');
 };
 
-subtest 'a path that does not fit the calls stops generation' => sub {
+subtest 'ids the parent does not hold go to the child' => sub {
   my $document = document();
-
-  # With no list of things, nothing else has to look at the parent and find this first.
-  delete $document->{paths}{'/v1/Things.json'}{get};
   $document->{paths}{'/v1/Things/{Sid}/{Extra}/More/{MoreSid}.json'} = {
     'x-twilio' => { pathType    => 'instance',  parent    => '/Things/{Sid}.json' },
     get        => { operationId => 'FetchMore', responses => { 200 => answer() } },
+  };
+  my %entries = map { $_->{id} => $_ } @{ entries($document) };
+
+  is_deeply(
+    $entries{FetchMore}{chain},
+    [@ROOT, ['things', 1], ['more', 2]],
+    'the extra, then its own'
+  );
+  is(
+    $entries{FetchMore}{url},
+    'https://demo.test/v1/Things/id1/id2/More/id3.json',
+    'in the order of the URL'
+  );
+};
+
+subtest 'a child can leave out an id of its parent' => sub {
+  my $document = document();
+  $document->{paths}{'/v1/Things/Totals.json'} = {
+    'x-twilio' => { pathType    => 'instance',   parent    => '/Things/{Sid}.json' },
+    get        => { operationId => 'FetchTotal', responses => { 200 => answer() } },
+  };
+  my %entries = map { $_->{id} => $_ } @{ entries($document) };
+
+  is_deeply(
+    $entries{FetchTotal}{chain},
+    [@ROOT, ['things', 1], ['totals', 0]],
+    'reached through a thing, as TaskRouter\'s worker statistics are'
+  );
+  is($entries{FetchTotal}{url}, 'https://demo.test/v1/Things/Totals.json', 'with no id in the URL');
+};
+
+subtest 'calls that do not fit the path stop generation' => sub {
+
+  # The list and the instance of one resource disagree on the ids before the instance's own.
+  my $document = document();
+  $document->{paths}{'/v1/Odds/{A}.json'} = {
+    'x-twilio' => { pathType    => 'list',    parent    => '/Things.json' },
+    get        => { operationId => 'ListOdd', responses => { 200 => records('odds') } },
+  };
+  $document->{paths}{'/v1/Odds/{A}/{B}/{Sid}.json'} = {
+    'x-twilio' => { pathType    => 'instance', parent    => '/Things.json' },
+    get        => { operationId => 'FetchOdd', responses => { 200 => answer() } },
   };
 
   my $ok    = eval { entries($document); 1 };
   my $error = $@;
   ok(!$ok, 'refused');
-  like($error, qr/FetchMore: 3 parameters in the path and 2 in the calls/, 'says why');
+  like($error, qr/FetchOdd: 3 parameters in the path and 2 in the calls/, 'says why');
 };
 
 done_testing;

@@ -58,9 +58,12 @@ sub object_for {
 
   my $object  = $client;
   my $next_id = 0;
+
+  # Each link says how many ids its call takes. Most take none or one, and a few take more, like
+  # archived_calls($date, $sid).
   for my $link (@{$chain}) {
-    my ($mount, $takes_id) = @{$link};
-    $object = $takes_id ? $object->$mount('id' . ++$next_id) : $object->$mount;
+    my ($mount, $ids) = @{$link};
+    $object = $object->$mount(map { 'id' . ++$next_id } 1 .. $ids);
   }
   return $object;
 }
