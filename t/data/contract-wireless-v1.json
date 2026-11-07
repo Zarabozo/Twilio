@@ -1,0 +1,686 @@
+[
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "commands",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Command",
+    "v_command"
+   ],
+   [
+    "CallbackMethod",
+    "GET"
+   ],
+   [
+    "CallbackUrl",
+    "v_callback_url"
+   ],
+   [
+    "CommandMode",
+    "text"
+   ],
+   [
+    "DeliveryReceiptRequested",
+    "true"
+   ],
+   [
+    "IncludeSid",
+    "v_include_sid"
+   ],
+   [
+    "Sim",
+    "v_sim"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateCommand",
+  "method" : "create",
+  "options" : {
+   "callback_method" : "GET",
+   "callback_url" : "v_callback_url",
+   "command_mode" : "text",
+   "delivery_receipt_requested" : 1,
+   "include_sid" : "v_include_sid",
+   "sim" : "v_sim"
+  },
+  "required" : [
+   "v_command"
+  ],
+  "url" : "https://wireless.twilio.com/v1/Commands"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rate_plans",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "DataEnabled",
+    "true"
+   ],
+   [
+    "DataLimit",
+    "889"
+   ],
+   [
+    "DataLimitStrategy",
+    "block"
+   ],
+   [
+    "DataMetering",
+    "v_data_metering"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "InternationalRoaming",
+    "v_international_roaming_1"
+   ],
+   [
+    "InternationalRoaming",
+    "v_international_roaming_2"
+   ],
+   [
+    "InternationalRoamingDataLimit",
+    "2974"
+   ],
+   [
+    "MessagingEnabled",
+    "true"
+   ],
+   [
+    "NationalRoamingDataLimit",
+    "2428"
+   ],
+   [
+    "NationalRoamingEnabled",
+    "true"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ],
+   [
+    "VoiceEnabled",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateRatePlan",
+  "method" : "create",
+  "options" : {
+   "data_enabled" : 1,
+   "data_limit" : 889,
+   "data_limit_strategy" : "block",
+   "data_metering" : "v_data_metering",
+   "friendly_name" : "v_friendly_name",
+   "international_roaming" : [
+    "v_international_roaming_1",
+    "v_international_roaming_2"
+   ],
+   "international_roaming_data_limit" : 2974,
+   "messaging_enabled" : 1,
+   "national_roaming_data_limit" : 2428,
+   "national_roaming_enabled" : 1,
+   "unique_name" : "v_unique_name",
+   "voice_enabled" : 1
+  },
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/RatePlans"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "commands",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteCommand",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/Commands/id1"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rate_plans",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteRatePlan",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/RatePlans/id1"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sims",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteSim",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/Sims/id1"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "commands",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchCommand",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/Commands/id1"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rate_plans",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchRatePlan",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/RatePlans/id1"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sims",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSim",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/Sims/id1"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "usage_records",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "End",
+    "2026-01-28T03:04:05Z"
+   ],
+   [
+    "Start",
+    "2026-01-23T03:04:05Z"
+   ],
+   [
+    "Granularity",
+    "hourly"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListAccountUsageRecord",
+  "method" : "page",
+  "options" : {
+   "end" : {
+    "epoch" : 1769569445
+   },
+   "granularity" : "hourly",
+   "start" : {
+    "epoch" : 1769137445
+   }
+  },
+  "records_key" : "usage_records",
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/UsageRecords"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "commands",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Sim",
+    "v_sim"
+   ],
+   [
+    "Status",
+    "failed"
+   ],
+   [
+    "Direction",
+    "to_sim"
+   ],
+   [
+    "Transport",
+    "ip"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListCommand",
+  "method" : "page",
+  "options" : {
+   "direction" : "to_sim",
+   "sim" : "v_sim",
+   "status" : "failed",
+   "transport" : "ip"
+  },
+  "records_key" : "commands",
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/Commands"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sims",
+    1
+   ],
+   [
+    "data_sessions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListDataSession",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "data_sessions",
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/Sims/id1/DataSessions"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rate_plans",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListRatePlan",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "rate_plans",
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/RatePlans"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sims",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "deactivated"
+   ],
+   [
+    "Iccid",
+    "v_iccid"
+   ],
+   [
+    "RatePlan",
+    "v_rate_plan"
+   ],
+   [
+    "EId",
+    "v_e_id"
+   ],
+   [
+    "SimRegistrationCode",
+    "v_sim_registration_code"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListSim",
+  "method" : "page",
+  "options" : {
+   "e_id" : "v_e_id",
+   "iccid" : "v_iccid",
+   "rate_plan" : "v_rate_plan",
+   "sim_registration_code" : "v_sim_registration_code",
+   "status" : "deactivated"
+  },
+  "records_key" : "sims",
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/Sims"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sims",
+    1
+   ],
+   [
+    "usage_records",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "End",
+    "2026-01-28T03:04:05Z"
+   ],
+   [
+    "Start",
+    "2026-01-23T03:04:05Z"
+   ],
+   [
+    "Granularity",
+    "hourly"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListUsageRecord",
+  "method" : "page",
+  "options" : {
+   "end" : {
+    "epoch" : 1769569445
+   },
+   "granularity" : "hourly",
+   "start" : {
+    "epoch" : 1769137445
+   }
+  },
+  "records_key" : "usage_records",
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/Sims/id1/UsageRecords"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rate_plans",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateRatePlan",
+  "method" : "update",
+  "options" : {
+   "friendly_name" : "v_friendly_name",
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/RatePlans/id1"
+ },
+ {
+  "chain" : [
+   [
+    "wireless",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "sims",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "AccountSid",
+    "v_account_sid"
+   ],
+   [
+    "CallbackMethod",
+    "GET"
+   ],
+   [
+    "CallbackUrl",
+    "v_callback_url"
+   ],
+   [
+    "CommandsCallbackMethod",
+    "GET"
+   ],
+   [
+    "CommandsCallbackUrl",
+    "v_commands_callback_url"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "RatePlan",
+    "v_rate_plan"
+   ],
+   [
+    "ResetStatus",
+    "resetting"
+   ],
+   [
+    "SmsFallbackMethod",
+    "GET"
+   ],
+   [
+    "SmsFallbackUrl",
+    "v_sms_fallback_url"
+   ],
+   [
+    "SmsMethod",
+    "GET"
+   ],
+   [
+    "SmsUrl",
+    "v_sms_url"
+   ],
+   [
+    "Status",
+    "deactivated"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ],
+   [
+    "VoiceFallbackMethod",
+    "POST"
+   ],
+   [
+    "VoiceFallbackUrl",
+    "v_voice_fallback_url"
+   ],
+   [
+    "VoiceMethod",
+    "POST"
+   ],
+   [
+    "VoiceUrl",
+    "v_voice_url"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateSim",
+  "method" : "update",
+  "options" : {
+   "account_sid" : "v_account_sid",
+   "callback_method" : "GET",
+   "callback_url" : "v_callback_url",
+   "commands_callback_method" : "GET",
+   "commands_callback_url" : "v_commands_callback_url",
+   "friendly_name" : "v_friendly_name",
+   "rate_plan" : "v_rate_plan",
+   "reset_status" : "resetting",
+   "sms_fallback_method" : "GET",
+   "sms_fallback_url" : "v_sms_fallback_url",
+   "sms_method" : "GET",
+   "sms_url" : "v_sms_url",
+   "status" : "deactivated",
+   "unique_name" : "v_unique_name",
+   "voice_fallback_method" : "POST",
+   "voice_fallback_url" : "v_voice_fallback_url",
+   "voice_method" : "POST",
+   "voice_url" : "v_voice_url"
+  },
+  "required" : [],
+  "url" : "https://wireless.twilio.com/v1/Sims/id1"
+ }
+]

@@ -3,6 +3,7 @@ package Twilio::Serialize;
 use 5.016;
 use warnings;
 
+use Carp         qw(croak);
 use POSIX        ();
 use Scalar::Util qw(blessed);
 
@@ -46,6 +47,40 @@ sub json_object {
   # An object could encode to anything, so only plain data is turned into JSON here.
   my $type = ref $value;
   return $type eq 'HASH' || $type eq 'ARRAY' ? Twilio::Json::encode($value) : $value;
+}
+
+sub map_values {
+  my ($values, $writer) = @_;
+  return $values if ref $values ne 'ARRAY';
+  return [map { $writer->($_) } @{$values}];
+}
+
+sub prefixed_collapsible_map {
+  my ($map, $prefix) = @_;
+  return {}                                                  if !defined $map;
+  croak "A value sent as $prefix.* must be a hash reference" if ref $map ne 'HASH';
+
+  my %flat;
+  _flatten(\%flat, $prefix, $map);
+  return \%flat;
+}
+
+# Arrays are walked by index, as twilio-php walks PHP's arrays, so no reference is ever sent as
+# its address.
+sub _flatten {
+  my ($flat, $name, $value) = @_;
+
+  my $type = ref $value;
+  if ($type eq 'HASH') {
+    _flatten($flat, "$name.$_", $value->{$_}) for sort keys %{$value};
+  }
+  elsif ($type eq 'ARRAY') {
+    _flatten($flat, "$name.$_", $value->[$_]) for 0 .. $#{$value};
+  }
+  else {
+    $flat->{$name} = $value;
+  }
+  return;
 }
 
 sub path_segment {
@@ -108,6 +143,25 @@ C<2026-11-06>, for values that have no time. Anything else is returned as it is.
 
 Returns a hash or array reference as JSON. Anything else is returned as it is, so
 a value can also be given as text that is already JSON.
+
+=head2 map_values
+
+  my $sent = Twilio::Serialize::map_values($types, \&Twilio::Serialize::json_object);
+
+Returns a new array reference with the function applied to each element. Anything
+that is not an array reference is returned as it is.
+
+=head2 prefixed_collapsible_map
+
+  my $params = Twilio::Serialize::prefixed_collapsible_map(
+    { payfone_tcpa_compliance => { RightPartyContactedDate => '20160101' } }, 'AddOns');
+
+  # { 'AddOns.payfone_tcpa_compliance.RightPartyContactedDate' => '20160101' }
+
+Returns a hash reference with one entry for each value in a nested hash, named by
+the prefix and the keys that lead to it, joined with dots. Arrays inside are
+walked by index, as twilio-php does. C<undef> returns an empty hash, and anything
+else that is not a hash reference dies.
 
 =head2 path_segment
 

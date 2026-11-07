@@ -18,10 +18,100 @@ sub api {
   return Twilio::Rest::Api->new($self);
 }
 
+sub chat {
+  my ($self) = @_;
+  require Twilio::Rest::Chat;
+  return Twilio::Rest::Chat->new($self);
+}
+
+sub content {
+  my ($self) = @_;
+  require Twilio::Rest::Content;
+  return Twilio::Rest::Content->new($self);
+}
+
+sub events {
+  my ($self) = @_;
+  require Twilio::Rest::Events;
+  return Twilio::Rest::Events->new($self);
+}
+
 sub frontline_api {
   my ($self) = @_;
   require Twilio::Rest::FrontlineApi;
   return Twilio::Rest::FrontlineApi->new($self);
+}
+
+sub ip_messaging {
+  my ($self) = @_;
+  require Twilio::Rest::IpMessaging;
+  return Twilio::Rest::IpMessaging->new($self);
+}
+
+sub lookups {
+  my ($self) = @_;
+  require Twilio::Rest::Lookups;
+  return Twilio::Rest::Lookups->new($self);
+}
+
+sub monitor {
+  my ($self) = @_;
+  require Twilio::Rest::Monitor;
+  return Twilio::Rest::Monitor->new($self);
+}
+
+sub notify {
+  my ($self) = @_;
+  require Twilio::Rest::Notify;
+  return Twilio::Rest::Notify->new($self);
+}
+
+sub oauth {
+  my ($self) = @_;
+  require Twilio::Rest::Oauth;
+  return Twilio::Rest::Oauth->new($self);
+}
+
+sub proxy {
+  my ($self) = @_;
+  require Twilio::Rest::Proxy;
+  return Twilio::Rest::Proxy->new($self);
+}
+
+sub routes {
+  my ($self) = @_;
+  require Twilio::Rest::Routes;
+  return Twilio::Rest::Routes->new($self);
+}
+
+sub serverless {
+  my ($self) = @_;
+  require Twilio::Rest::Serverless;
+  return Twilio::Rest::Serverless->new($self);
+}
+
+sub studio {
+  my ($self) = @_;
+  require Twilio::Rest::Studio;
+  return Twilio::Rest::Studio->new($self);
+}
+
+sub supersim {
+  my ($self) = @_;
+  require Twilio::Rest::Supersim;
+  return Twilio::Rest::Supersim->new($self);
+}
+
+sub trunking {
+  my ($self) = @_;
+  require Twilio::Rest::Trunking;
+  return Twilio::Rest::Trunking->new($self);
+}
+
+sub wireless {
+  my ($self) = @_;
+  require Twilio::Rest::Wireless;
+  return Twilio::Rest::Wireless->new($self);
 }
 
 sub account {
@@ -191,9 +281,69 @@ C<< $client->api->accounts($sid) >>.
 
 Returns L<Twilio::Rest::Api>, the domain of the main API.
 
+=head2 chat
+
+Returns L<Twilio::Rest::Chat>.
+
+=head2 content
+
+Returns L<Twilio::Rest::Content>.
+
+=head2 events
+
+Returns L<Twilio::Rest::Events>.
+
 =head2 frontline_api
 
 Returns L<Twilio::Rest::FrontlineApi>.
+
+=head2 ip_messaging
+
+Returns L<Twilio::Rest::IpMessaging>.
+
+=head2 lookups
+
+Returns L<Twilio::Rest::Lookups>.
+
+=head2 monitor
+
+Returns L<Twilio::Rest::Monitor>.
+
+=head2 notify
+
+Returns L<Twilio::Rest::Notify>.
+
+=head2 oauth
+
+Returns L<Twilio::Rest::Oauth>.
+
+=head2 proxy
+
+Returns L<Twilio::Rest::Proxy>.
+
+=head2 routes
+
+Returns L<Twilio::Rest::Routes>.
+
+=head2 serverless
+
+Returns L<Twilio::Rest::Serverless>.
+
+=head2 studio
+
+Returns L<Twilio::Rest::Studio>.
+
+=head2 supersim
+
+Returns L<Twilio::Rest::Supersim>.
+
+=head2 trunking
+
+Returns L<Twilio::Rest::Trunking>.
+
+=head2 wireless
+
+Returns L<Twilio::Rest::Wireless>.
 
 =head2 account
 

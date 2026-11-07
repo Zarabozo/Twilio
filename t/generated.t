@@ -248,6 +248,90 @@ subtest 'a domain with no account' => sub {
   is(last_url($http), 'https://frontline-api.twilio.com/v1/Users/US1', 'with the id on the method');
 };
 
+subtest 'every domain that is ready' => sub {
+  my ($client) = client();
+
+  my %class = (
+    chat         => 'Chat',
+    content      => 'Content',
+    events       => 'Events',
+    ip_messaging => 'IpMessaging',
+    lookups      => 'Lookups',
+    monitor      => 'Monitor',
+    notify       => 'Notify',
+    oauth        => 'Oauth',
+    proxy        => 'Proxy',
+    routes       => 'Routes',
+    serverless   => 'Serverless',
+    studio       => 'Studio',
+    supersim     => 'Supersim',
+    trunking     => 'Trunking',
+    wireless     => 'Wireless',
+  );
+  isa_ok($client->$_, "Twilio::Rest::$class{$_}") for sort keys %class;
+};
+
+subtest 'a map sent as one parameter for each key' => sub {
+  my ($client, $http) = client();
+  $http->mock(200, { phone_number => '+15108675310' });
+
+  # Add-on data is keyed by add-on, then by the add-on's own field.
+  $client->lookups->v1->phone_numbers('+15108675310')->fetch(
+    {
+      add_ons      => ['payfone_tcpa_compliance'],
+      add_ons_data => { 'payfone_tcpa_compliance.RightPartyContactedDate' => '20160101' },
+    }
+  );
+
+  my ($url, $query) = split /[?]/, last_url($http), 2;
+  is($url, 'https://lookups.twilio.com/v1/PhoneNumbers/%2B15108675310', 'url');
+  like($query, qr/(?:\A|&)AddOns=payfone_tcpa_compliance(?:&|\z)/, 'the add-on');
+  my $add_on = qr/AddOns[.]payfone_tcpa_compliance/;
+  like(
+    $query,
+    qr/(?:\A|&)$add_on[.]RightPartyContactedDate=20160101(?:&|\z)/,
+    'its data, under the prefix'
+  );
+  unlike($query, qr/AddOnsData/, 'never under its own name');
+};
+
+subtest 'an array of free-form data' => sub {
+  my ($client, $http) = client();
+  $http->mock(201, { sid => 'DF1' });
+
+  $client->events->v1->subscriptions->create('Mine', 'DG1',
+    [{ type => 'com.twilio.messaging.message.delivered' }, '{"type":"other"}']);
+
+  my $content   = ($http->requests)[-1]{content};
+  my $delivered = qr/com[.]twilio[.]messaging[.]message[.]delivered/;
+  like($content, qr/Types=%7B%22type%22%3A%22$delivered%22%7D/, 'each element as JSON');
+  like($content, qr/Types=%7B%22type%22%3A%22other%22%7D/,      'and text as it is');
+};
+
+subtest 'an ISO 8601 date' => sub {
+  my ($client, $http) = client();
+  $http->mock(200, { sid => 'ZS1', date_created => '2018-11-10T20:00:00Z' });
+
+  my $service = $client->serverless->v1->services('ZS1')->fetch;
+  isa_ok($service->date_created, 'Time::Piece');
+  is($service->date_created->datetime, '2018-11-10T20:00:00', 'read in UTC');
+};
+
+subtest 'names that follow twilio-php' => sub {
+  my ($client, $http) = client();
+
+  isa_ok(
+    $client->chat->v1->services('IS1')->users('US1')->user_channels,
+    'Twilio::Rest::Chat::V1::Service::User::UserChannelList',
+    'a class named after its mount'
+  );
+  isa_ok($client->oauth->v1->token, 'Twilio::Rest::Oauth::V1::TokenList', 'a lowercase path');
+
+  $http->mock(200, { sims => [], meta => {} });
+  $client->wireless->v1->sims->read({ e_id => 'E1' }, 1);
+  like(last_url($http), qr/EId=E1/, 'e_id, as Python and Ruby call it');
+};
+
 subtest 'shortcuts' => sub {
   my ($client) = client();
 
