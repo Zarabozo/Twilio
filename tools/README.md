@@ -40,7 +40,7 @@ exactly one:
   `xt/generator/scope.t` fails when a pending spec starts to work, so the list only
   shrinks. Phase 4 ends when it's empty.
 - **Excluded** specs are never downloaded, and each one says why. The scope follows what
-  twilio-php ships, so check this at each spec sync.
+  the official libraries ship, so check this at each spec sync.
 
 A domain takes twilio-php's name, which isn't always the spec's: `flex` is `flex_api`.
 
@@ -57,7 +57,10 @@ operations:
 
 - The `parent` in `x-twilio` places a resource, not its path: `SMS/ShortCodes` is a
   direct child of `Account`.
-- `className` in `x-twilio` overrides the name built from the last path segment.
+- `className` in `x-twilio` names the class. Without it, `mountName` does, as twilio-php
+  does: a user's `user_channels` are `UserChannel`, not `Channel`. Without either, the
+  last path segment does.
+- A `mountName` also names the method that reaches the resource.
 - A key in `dependentProperties` overrides the method name built from the path.
 - One path can hold two resources: `POST` on `Keys` creates a `NewKey`. An operation
   whose noun isn't the resource's own moves to a sibling resource.
@@ -65,6 +68,18 @@ operations:
 
 The generator stops on anything it can't place, because a guess would become
 wrong public API.
+
+## Value types
+
+`Twilio::Generator::Types` says how each format is sent and read, following
+twilio-php. A format with no rule stops generation, and `xt/generator/formats.t`
+checks every value in every spec in scope, including specs that stop for other
+reasons, so a new format shows up there first.
+
+- An array sends each element with its element's rule, as twilio-php's
+  `Serialize::map` does.
+- A `prefixed-collapsible-map-<Prefix>` is never sent under its own name: each key
+  becomes a parameter, as in `AddOns.lookup.Key`.
 
 ## Test vectors
 

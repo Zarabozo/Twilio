@@ -72,6 +72,14 @@ subtest 'reading a list' => sub {
   like($request->{url}, qr/Status=on/,                           'filter');
   like($request->{url}, qr/Created%3C=1970-01-01T00%3A00%3A07Z/, 'date filter with a wire name');
   like($request->{url}, qr/PageSize=50/,                         'page size');
+  unlike($request->{url}, qr/AddOns/, 'no map, no parameters');
+
+  $http->mock(200, { things => [], meta => {} });
+  $list->read({ add_ons_data => { lookup => { Key => 'v', List => [1, 2] } } });
+  my $url = ($http->requests)[-1]{url};
+  like($url, qr/AddOns[.]lookup[.]Key=v(?:&|\z)/,      'a map, one parameter for each key');
+  like($url, qr/AddOns[.]lookup[.]List[.]1=2(?:&|\z)/, 'arrays inside by index');
+  unlike($url, qr/AddOnsData/, 'its own name is never sent');
 };
 
 subtest 'stream, page and get_page' => sub {
@@ -164,12 +172,17 @@ subtest 'the other value types' => sub {
   my $body       = $document->{paths}{$path}{post}{requestBody}{content}{$form}{schema}{properties};
   my $properties = $document->{components}{schemas}{thing}{properties};
 
-  $body->{Day}                = { type => 'string', format => 'date' };
-  $body->{Parameter}          = {};
-  $body->{'Parameter1.Name'}  = { type => 'string' };
-  $properties->{capabilities} = { type => 'object', format => 'phone-number-capabilities' };
-  $properties->{start_date}   = { type => 'string', format => 'date' };
-  $properties->{tags}         = { type => 'array',  items  => { type => 'string' } };
+  $body->{Day}               = { type => 'string', format => 'date' };
+  $body->{Parameter}         = {};
+  $body->{'Parameter1.Name'} = { type => 'string' };
+  $body->{Settings}          = { type => 'object' };
+  $body->{Items}   = { type => 'array', items => {} };
+  $body->{Moments} = { type => 'array', items => { type => 'string', format => 'date-time' } };
+  $properties->{capabilities} = { type => 'object',  format => 'phone-number-capabilities' };
+  $properties->{start_date}   = { type => 'string',  format => 'date' };
+  $properties->{tags}         = { type => 'array',   items  => { type => 'string' } };
+  $properties->{created_at}   = { type => 'string',  format => 'date-time' };
+  $properties->{expires_in}   = { type => 'integer', format => 'int64' };
 
   local $NAMESPACE = 'Twilio::Rest::Demo::V1::Other::';
   my $code = emit($document) =~ s/V1::Account::/V1::Other::/gr;
@@ -182,6 +195,8 @@ subtest 'the other value types' => sub {
       capabilities => { MMS => \1 },
       start_date   => '2026-11-06',
       tags         => ['a'],
+      created_at   => '2026-11-06T10:20:30Z',
+      expires_in   => 3600,
     }
   );
 
@@ -191,6 +206,9 @@ subtest 'the other value types' => sub {
       day             => bless({}, 'Local::Date'),
       parameter       => { a => 1 },
       parameter1_name => 'first',
+      settings        => { b => 2 },
+      items           => [{ c => 3 },               '{"d":4}'],
+      moments         => [bless({}, 'Local::Date'), '2026-11-06T00:00:00Z'],
     }
   );
 
@@ -198,11 +216,23 @@ subtest 'the other value types' => sub {
   like($request->{content}, qr/Day=1970-01-01(?:&|\z)/,      'date with no time');
   like($request->{content}, qr/Parameter=%7B%22a%22%3A1%7D/, 'free-form data as JSON');
   like($request->{content}, qr/Parameter1[.]Name=first/,     'a dotted wire name');
+  like($request->{content}, qr/Settings=%7B%22b%22%3A2%7D/,  'an object as JSON');
+  like(
+    $request->{content},
+    qr/Items=%7B%22c%22%3A3%7D&Items=%7B%22d%22%3A4%7D/,
+    'each element of an array of free-form data as JSON, and text as it is'
+  );
+  my $first_moment  = qr/Moments=1970-01-01T00%3A00%3A07Z/;
+  my $second_moment = qr/Moments=2026-11-06T00%3A00%3A00Z/;
+  like($request->{content}, qr/$first_moment&$second_moment/, 'each date in an array');
 
   isa_ok($thing->capabilities, 'Twilio::Base::PhoneNumberCapabilities');
   is($thing->capabilities->mms, 1,            'capabilities are read');
   is($thing->start_date->ymd,   '2026-11-06', 'a date field is read');
   is_deeply($thing->tags, ['a'], 'an array field stays as it is');
+  isa_ok($thing->created_at, 'Time::Piece');
+  is($thing->created_at->datetime, '2026-11-06T10:20:30', 'an ISO 8601 date field is read');
+  is($thing->expires_in,           3600,                  'a 64-bit integer stays as it is');
 
 };
 
@@ -468,6 +498,7 @@ subtest 'option names' => sub {
   is(option_name('DateSent>'),      'date_sent_after',  'after');
 
   is(option_name('Parameter1.Name'), 'parameter1_name', 'dot');
+  is(option_name('EId'),             'e_id',            'two capitals at the start, as in Python');
 
   my $ok    = eval { option_name('X-Header'); 1 };
   my $error = $@;
@@ -495,11 +526,27 @@ subtest 'anything with no rule stops generation' => sub {
       sub { $_[0]{components}{schemas}{thing}{properties}{name}{format} = 'secret' },
     ],
     [
-      'array of converted values',
-      qr/no rule for an array of converted values/,
+      'array of arrays',
+      qr/CreateThing Tags: no rule for an array of arrays/,
+      sub {
+        $_[0]{paths}{$list_path}{post}{requestBody}{content}{$form}{schema}{properties}{Tags}{items}
+          = { type => 'array', items => { type => 'string' } };
+      },
+    ],
+    [
+      'array of maps',
+      qr/CreateThing Tags: no rule for an array of maps/,
+      sub {
+        $_[0]{paths}{$list_path}{post}{requestBody}{content}{$form}{schema}{properties}{Tags}{items}
+          = { type => 'object', format => 'prefixed-collapsible-map-Tags' };
+      },
+    ],
+    [
+      'unknown format in an array',
+      qr/CreateThing Tags: no rule for format 'secret'/,
       sub {
         $_[0]{paths}{$list_path}{post}{requestBody}{content}{$form}{schema}{properties}{Tags}
-          {items}{format} = 'date-time';
+          {items}{format} = 'secret';
       },
     ],
     [
@@ -776,9 +823,13 @@ sub document {
         get         => {
           operationId => 'ListThing',
           parameters  => [
-            @{ path_parameters('AccountSid') },          $query->('Status'),
-            $query->('Created<', format => 'date-time'), $query->('PageSize'),
-            $query->('Page'),                            $query->('PageToken'),
+            @{ path_parameters('AccountSid') },
+            $query->('Status'),
+            $query->('Created<', format => 'date-time'),
+            $query->('PageSize'),
+            $query->('Page'),
+            $query->('PageToken'),
+            $query->('AddOnsData', type => 'object', format => 'prefixed-collapsible-map-AddOns'),
           ],
           responses => {
             200 => response(

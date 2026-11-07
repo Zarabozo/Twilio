@@ -186,9 +186,21 @@ END_CODE
 sub _pair {
   my ($argument, $value) = @_;
 
-  my $wire = $argument->{wire} =~ /\A\w+\z/ ? $argument->{wire} : _quoted($argument->{wire});
+  # Its own name is never sent: each key becomes a parameter, as in AddOns.lookup.Key.
+  my $prefix = $argument->{map_prefix};
+  if (defined $prefix) {
+    return
+        '    %{ Twilio::Serialize::prefixed_collapsible_map('
+      . "$value, "
+      . _quoted($prefix) . ') }';
+  }
+
+  my $wire   = $argument->{wire} =~ /\A\w+\z/ ? $argument->{wire} : _quoted($argument->{wire});
+  my $writer = $argument->{writer};
   my $written =
-    defined $argument->{writer} ? "Twilio::Serialize::$argument->{writer}($value)" : $value;
+      !defined $writer   ? $value
+    : $argument->{array} ? "Twilio::Serialize::map_values($value, \\&Twilio::Serialize::$writer)"
+    :                      "Twilio::Serialize::$writer($value)";
   return "    $wire => $written";
 }
 

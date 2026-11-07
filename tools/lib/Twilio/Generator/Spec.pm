@@ -64,9 +64,11 @@ sub resolve {
   my $reference = $schema->{'$ref'};
   return $schema if !defined $reference;
 
-  my ($name) = $reference =~ m{\A#/components/schemas/(.+)\z};
+  # Parameters can be shared too, under components/parameters.
+  my ($kind, $name) = $reference =~ m{\A#/components/(schemas|parameters)/(.+)\z};
   croak "Cannot follow $reference" if !defined $name;
-  return $self->{document}{components}{schemas}{$name} // croak "No schema $name";
+  my $noun = $kind eq 'schemas' ? 'schema' : 'parameter';
+  return $self->{document}{components}{$kind}{$name} // croak "No $noun $name";
 }
 
 sub strip_version {

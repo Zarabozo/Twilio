@@ -82,6 +82,45 @@ subtest 'json_object' => sub {
   is(Twilio::Serialize::json_object($object), $object, 'an object stays the same');
 };
 
+# The expected values are what twilio-php 8.14.0 returns for the same input.
+subtest 'map_values' => sub {
+  my $json = \&Twilio::Serialize::json_object;
+
+  is_deeply(
+    Twilio::Serialize::map_values([{ a => 1 }, '{"b":2}'], $json),
+    ['{"a":1}', '{"b":2}'],
+    'each element'
+  );
+  is(Twilio::Serialize::map_values('plain', $json), 'plain', 'anything else stays the same');
+  is(Twilio::Serialize::map_values(undef,   $json), undef,   'undef stays undef');
+
+  my $values = [{ a => 1 }];
+  Twilio::Serialize::map_values($values, $json);
+  is_deeply($values, [{ a => 1 }], 'the caller keeps its array');
+};
+
+subtest 'prefixed_collapsible_map' => sub {
+  is_deeply(
+    Twilio::Serialize::prefixed_collapsible_map(
+      { lookup => { Key => 'v', List => ['x', 'y'] }, top => '2' }, 'AddOns'
+    ),
+    {
+      'AddOns.lookup.Key'    => 'v',
+      'AddOns.lookup.List.0' => 'x',
+      'AddOns.lookup.List.1' => 'y',
+      'AddOns.top'           => '2',
+    },
+    'nested keys joined with dots, and arrays by index'
+  );
+  is_deeply(Twilio::Serialize::prefixed_collapsible_map({},    'AddOns'), {}, 'an empty hash');
+  is_deeply(Twilio::Serialize::prefixed_collapsible_map(undef, 'AddOns'), {}, 'undef');
+
+  my $ok    = eval { Twilio::Serialize::prefixed_collapsible_map('text', 'AddOns'); 1 };
+  my $error = $@;
+  ok(!$ok, 'anything else is refused');
+  like($error, qr/A value sent as AddOns[.][*] must be a hash reference/, 'says why');
+};
+
 done_testing;
 
 package Local::Moment;

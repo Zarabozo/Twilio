@@ -73,8 +73,10 @@ subtest 'values' => sub {
     {
       active => 1,
       amount => 628.5,
-      day    => { epoch => timegm(5, 4, 3, 7, 0, 2026) },
-      free   => { a     => 1 },
+      config => { v_config => 11 },
+      day    => { epoch    => timegm(5, 4, 3, 7, 0, 2026) },
+      free   => { v_free   => 23 },
+      items  => [{ v_items => 1 }, { v_items => 2 }],
       mode   => 'slow',
       tags   => ['v_tags_1', 'v_tags_2'],
       when   => { epoch => timegm(5, 4, 3, 11, 0, 2026) },
@@ -89,8 +91,10 @@ subtest 'values' => sub {
     {
       Active => ['true'],
       Amount => [628.5],
+      Config => ['{"v_config":11}'],
       Day    => ['2026-01-07'],
-      Free   => ['{"a":1}'],
+      Free   => ['{"v_free":23}'],
+      Items  => ['{"v_items":1}', '{"v_items":2}'],
       Mode   => ['slow'],
       Name   => ['v_name'],
       Size   => ['411'],
@@ -101,13 +105,24 @@ subtest 'values' => sub {
   );
 
   my $read = $entries{ListThing};
-  is_deeply($read->{options},
-    { status => 'v_status', created_before => { epoch => timegm(5, 4, 3, 1, 0, 2026) } },
-    'filters');
+  is_deeply(
+    $read->{options},
+    {
+      status         => 'v_status',
+      created_before => { epoch => timegm(5, 4, 3, 1, 0, 2026) },
+      add_ons_data   => { one   => { two => 'v_add_ons_data' } },
+    },
+    'filters'
+  );
   is_deeply(
     [sort map { $_->[0] } @{ $read->{expected} }],
-    ['Created<', 'Status'],
+    ['AddOns.one.two', 'Created<', 'Status'],
     'paging is left out, and wire names stay'
+  );
+  is_deeply(
+    [grep { $_->[0] =~ /\AAddOns/ } @{ $read->{expected} }],
+    [['AddOns.one.two', 'v_add_ons_data']],
+    'a map is sent as one parameter for each key, under its prefix'
   );
 };
 
@@ -167,7 +182,9 @@ sub document {
     Active => { type => 'boolean' },
     Amount => { type => 'number' },
     Day    => { type => 'string', format => 'date' },
+    Config => { type => 'object' },
     Free   => {},
+    Items  => { type   => 'array', items => {} },
     Mode   => { '$ref' => '#/components/schemas/thing_enum_mode' },
     Name   => { type   => 'string' },
     Size   => { type   => 'integer' },
@@ -189,6 +206,11 @@ sub document {
             { name => 'PageSize', in => 'query', schema => { type => 'integer' } },
             { name => 'Page',     in => 'query', schema => { type => 'integer' } },
             { name => 'PageToken', in => 'query', schema => { type => 'string' } },
+            {
+              name   => 'AddOnsData',
+              in     => 'query',
+              schema => { type => 'object', format => 'prefixed-collapsible-map-AddOns' },
+            },
           ],
           responses => { 200 => records('things') },
         },

@@ -85,6 +85,20 @@ sub _add_path {
   $node->{$type} = { path => $path, operations => _operations($path, $item) };
   $node->{$type}{key} = $key if defined $key;
   _set_class_name($node, $path, $notes->{className});
+  _set_mount_name($node, $path, $notes->{mountName});
+  return;
+}
+
+# twilio-php names a class after its mount when the spec gives one: a user's channels are
+# user_channels, so the class is UserChannel and not Channel.
+sub _set_mount_name {
+  my ($node, $path, $name) = @_;
+  return if !defined $name;
+
+  if (defined $node->{mount_name} && $node->{mount_name} ne $name) {
+    croak "$path: mount name $name conflicts with $node->{mount_name}";
+  }
+  $node->{mount_name} = $name;
   return;
 }
 
@@ -248,7 +262,9 @@ sub _name_node {
 
   my $final_segment = $node->{segments}[-1];
   my $class =
-    defined $node->{class_name} ? camelize($node->{class_name}) : segment_class($final_segment);
+      defined $node->{class_name} ? camelize($node->{class_name})
+    : defined $node->{mount_name} ? singular(camelize($node->{mount_name}))
+    :                               segment_class($final_segment);
 
   my @parents;
   if (defined $node->{parent_key}) {
@@ -266,8 +282,8 @@ sub _mount {
   my ($node, $names, $class) = @_;
 
   my @all = sort values %{ $names // {} };
-  return snake($node->{segments}[-1]) if !@all;
-  return $all[0]                      if @all == 1;
+  return $node->{mount_name} // snake($node->{segments}[-1]) if !@all;
+  return $all[0]                                             if @all == 1;
   return $names->{$class} // croak "$node->{key}: called both $all[0] and $all[1]";
 }
 
