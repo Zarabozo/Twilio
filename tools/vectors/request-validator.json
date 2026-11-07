@@ -1,0 +1,161 @@
+{
+  "token": "12345",
+  "signatures": [
+    {
+      "description": "parameters",
+      "url": "https://mycompany.com/myapp.php?foo=1&bar=2",
+      "data": {
+        "CallSid": "CA1234567890ABCDE",
+        "Caller": "+14158675309",
+        "Digits": "1234",
+        "From": "+14158675309",
+        "To": "+18005551212"
+      }
+    },
+    { "description": "no parameters", "url": "https://mycompany.com/myapp.php", "data": {} },
+    {
+      "description": "keys are sorted",
+      "url": "https://a.test/x",
+      "data": { "b": "1", "a": "2", "Z": "3", "aa": "4" }
+    },
+    {
+      "description": "several values, with a repeat",
+      "url": "https://a.test/x",
+      "data": { "Tag": ["pear", "apple", "pear"], "A": "1" }
+    },
+    { "description": "an empty value", "url": "https://a.test/x", "data": { "A": "", "B": "1" } },
+    { "description": "non-ASCII values", "url": "https://a.test/é", "data": { "Body": "código 日本語 😀" } },
+    {
+      "description": "SHA-256",
+      "algorithm": "HMAC_SHA256",
+      "url": "https://mycompany.com/myapp.php?foo=1&bar=2",
+      "data": { "From": "+14158675309", "To": "+18005551212" }
+    },
+    { "description": "lower case algorithm", "algorithm": "hmac_sha256", "url": "https://a.test/x", "data": {} }
+  ],
+  "validations": [
+    {
+      "description": "the same URL",
+      "signed": "https://mycompany.com/myapp.php?foo=1&bar=2",
+      "url": "https://mycompany.com/myapp.php?foo=1&bar=2"
+    },
+    {
+      "description": "the request has a port and the signature does not",
+      "signed": "https://mycompany.com/myapp.php?foo=1&bar=2",
+      "url": "https://mycompany.com:1234/myapp.php?foo=1&bar=2"
+    },
+    {
+      "description": "the same with http",
+      "signed": "http://mycompany.com/myapp.php?foo=1&bar=2",
+      "url": "http://mycompany.com:1234/myapp.php?foo=1&bar=2"
+    },
+    {
+      "description": "the signature has the default https port",
+      "signed": "https://mycompany.com:443/myapp.php?foo=1&bar=2",
+      "url": "https://mycompany.com/myapp.php?foo=1&bar=2"
+    },
+    {
+      "description": "the signature has the default http port",
+      "signed": "http://mycompany.com:80/myapp.php?foo=1&bar=2",
+      "url": "http://mycompany.com/myapp.php?foo=1&bar=2"
+    },
+    {
+      "description": "a custom port on both",
+      "signed": "https://mycompany.com:8443/x",
+      "url": "https://mycompany.com:8443/x"
+    },
+    {
+      "description": "a different port does not match",
+      "signed": "https://mycompany.com:8443/x",
+      "url": "https://mycompany.com:9443/x"
+    },
+    {
+      "description": "a user and password",
+      "signed": "https://user:pass@mycompany.com/myapp.php?foo=1&bar=2",
+      "url": "https://user:pass@mycompany.com/myapp.php?foo=1&bar=2"
+    },
+    {
+      "description": "a user",
+      "signed": "https://user@mycompany.com/myapp.php?foo=1&bar=2",
+      "url": "https://user@mycompany.com/myapp.php?foo=1&bar=2"
+    },
+    {
+      "description": "a password and an added port",
+      "signed": "https://user:pass@mycompany.com:443/myapp.php?foo=1&bar=2",
+      "url": "https://user:pass@mycompany.com/myapp.php?foo=1&bar=2"
+    },
+    {
+      "description": "a fragment",
+      "signed": "https://mycompany.com:443/x?a=1#top",
+      "url": "https://mycompany.com/x?a=1#top"
+    },
+    { "description": "another URL", "signed": "https://a.test/x", "url": "https://a.test/y" },
+    { "description": "another query", "signed": "https://a.test/x?a=1", "url": "https://a.test/x?a=2" },
+    { "description": "another scheme", "signed": "http://a.test/x", "url": "https://a.test/x" },
+    {
+      "description": "changed parameters",
+      "signed": "https://a.test/x",
+      "url": "https://a.test/x",
+      "signed_data": { "Body": "one" },
+      "data": { "Body": "two" }
+    },
+    {
+      "description": "the same parameters",
+      "signed": "https://a.test/x",
+      "url": "https://a.test/x",
+      "signed_data": { "Body": "one" },
+      "data": { "Body": "one" }
+    },
+    {
+      "description": "another token",
+      "signed": "https://a.test/x",
+      "url": "https://a.test/x",
+      "signed_token": "other"
+    },
+    {
+      "description": "SHA-256 used for both",
+      "signed": "https://a.test/x",
+      "url": "https://a.test/x",
+      "signed_algorithm": "HMAC_SHA256",
+      "algorithm": "HMAC_SHA256"
+    },
+    {
+      "description": "SHA-256 checked as SHA-1",
+      "signed": "https://a.test/x",
+      "url": "https://a.test/x",
+      "signed_algorithm": "HMAC_SHA256"
+    },
+    {
+      "description": "SHA-1 checked as SHA-256",
+      "signed": "https://a.test/x",
+      "url": "https://a.test/x",
+      "algorithm": "HMAC_SHA256"
+    }
+  ],
+  "bodies": [
+    { "description": "a body", "body": "{\"property\": \"value\", \"boolean\": true}" },
+    { "description": "non-ASCII", "body": "{\"text\":\"código\"}" },
+    { "description": "an empty body", "body": "" }
+  ],
+  "body_validations": [
+    {
+      "description": "the right body",
+      "body": "{\"a\":1}",
+      "url_body": "{\"a\":1}"
+    },
+    {
+      "description": "a changed body",
+      "body": "{\"a\":2}",
+      "url_body": "{\"a\":1}"
+    }
+  ],
+  "settings_headers": [
+    "key=webhooks_sharedkey_abc,algorithm=HMAC_SHA256",
+    "algorithm=HMAC_SHA256,key=x",
+    " key = x , algorithm = HMAC_SHA256 ",
+    "key=x",
+    "algorithm=",
+    "",
+    "algorithm"
+  ]
+}
