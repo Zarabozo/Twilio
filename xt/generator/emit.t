@@ -328,15 +328,6 @@ subtest 'a family that does not fit stops generation' => sub {
       },
     ],
     [
-      'a child with an extra parameter',
-      qr/its path does not fit the parameters of its parent/,
-      sub {
-        my ($document) = @_;
-        $document->{paths}{'/v1/Things/{ThingSid}/{Extra}/Parts.json'} =
-          delete $document->{paths}{'/v1/Things/{ThingSid}/Parts.json'};
-      },
-    ],
-    [
       'a child of an instance that does not exist',
       qr/its parent has no context/,
       sub { delete $_[0]{paths}{'/v1/Things/{Sid}.json'} },
@@ -345,18 +336,9 @@ subtest 'a family that does not fit stops generation' => sub {
       'a level with no operations',
       qr/a level with no operations of its own/,
       sub {
-        delete $_[0]{paths}{'/v1/Things.json'};
-        delete $_[0]{paths}{'/v1/Things/{Sid}.json'};
-      },
-    ],
-    [
-      'a child of a list, when its parent is a singleton',
-      qr/its parent has no list/,
-      sub {
         my ($document) = @_;
         my $paths = $document->{paths};
-        delete $paths->{$_} for grep { /ThingSid/ } keys %{$paths};
-        $paths->{'/v1/Things.json'} = delete $paths->{'/v1/Things/{Sid}.json'};
+        delete $paths->{$_} for grep { /Things[.]json|ThingSid|[{]Sid[}]/ } keys %{$paths};
       },
     ],
   );
@@ -371,6 +353,87 @@ subtest 'a family that does not fit stops generation' => sub {
     ok(!$ok, "$name: refused");
     like($error, $expected, "$name: says why");
   }
+};
+
+# Shapes that twilio-php reaches, and that used to stop generation here.
+subtest 'a child with ids its parent does not hold' => sub {
+  my $document = family();
+  $document->{paths}{'/v1/Things/{ThingSid}/{Extra}/Parts.json'} =
+    delete $document->{paths}{'/v1/Things/{ThingSid}/Parts.json'};
+  $document->{paths}{'/v1/Things/{ThingSid}/{Extra}/Parts/{Sid}.json'} =
+    delete $document->{paths}{'/v1/Things/{ThingSid}/Parts/{Sid}.json'};
+
+  my ($thing) = grep { $_->{class}{list} =~ /::ThingList\z/ } all_models($document);
+  my $code = Twilio::Generator::Emit::module($thing);
+  like($code, qr/^  my \(\$self, \$extra, \$sid\) = \@_;$/m, 'the extra id comes first');
+  my $held = qr/\$self->\{version\}, \$self->\{solution\}\{sid\}/;
+  like(
+    $code,
+    qr/PartList->new\($held, \$extra\)/,
+    'and goes to the list after the ids of the parent'
+  );
+};
+
+subtest 'an id in the URL of a list has its rule' => sub {
+  my $day      = { name => 'Day', in => 'path', schema => { type => 'string', format => 'date' } };
+  my $document = {
+    paths => {
+      '/v1/Days/{Day}/Things.json' => {
+        'x-twilio' => { pathType => 'list' },
+        get        => {
+          operationId => 'ListThing',
+          parameters  => [$day],
+          responses   => { 200 => response({ properties => { things => array_of_things() } }) },
+        },
+      },
+    },
+    components => document()->{components},
+  };
+
+  my ($thing) = all_models($document);
+  like(
+    Twilio::Generator::Emit::module($thing),
+    qr/path_segment\(Twilio::Serialize::iso8601_date\(\$day\)\)/,
+    'a date, as twilio-php writes it'
+  );
+};
+
+subtest 'a child that leaves out an id of its parent' => sub {
+  my $document = family();
+  $document->{paths}{'/v1/Things/Totals.json'} = {
+    'x-twilio' => { pathType => 'instance', parent => '/Things/{Sid}.json' },
+    get => { operationId => 'FetchTotal', responses => { 200 => response(thing_reference()) } },
+  };
+
+  my ($thing) = grep { $_->{class}{list} =~ /::ThingList\z/ } all_models($document);
+  like(
+    Twilio::Generator::Emit::module($thing),
+    qr/TotalContext->new\(\$self->\{version\}\);/,
+    'none of its parent\'s ids go to it'
+  );
+};
+
+subtest 'a parent that no path describes' => sub {
+  my $document = family();
+  delete $document->{paths}{'/v1/Things.json'};
+  delete $document->{paths}{'/v1/Things/{Sid}.json'};
+
+  my %models = map { $_->{class}{list} => $_ } all_models($document);
+  my ($thing) = grep { /::ThingList\z/ } keys %models;
+  ok($thing, 'it is still there');
+  like(Twilio::Generator::Emit::module($models{$thing}), qr/^sub parts \{/m, 'with its children');
+  unlike(Twilio::Generator::Emit::module($models{$thing}), qr/^sub fetch \{/m, 'and nothing else');
+};
+
+subtest 'children of a singleton' => sub {
+  my $document = family();
+  my $paths    = $document->{paths};
+  delete $paths->{$_} for grep { /ThingSid/ } keys %{$paths};
+  $paths->{'/v1/Things.json'} = delete $paths->{'/v1/Things/{Sid}.json'};
+
+  my ($thing) = grep { $_->{class}{context} =~ /::ThingContext\z/ } all_models($document);
+  my $code = Twilio::Generator::Emit::module($thing);
+  like($code, qr/^package \S+ThingContext;.*^sub kinds \{/ms, 'they hang from the singleton');
 };
 
 subtest 'top-level modules' => sub {
@@ -657,6 +720,15 @@ subtest 'anything with no rule stops generation' => sub {
       sub { $_[0]{components}{schemas}{thing}{properties}{fetch} = { type => 'string' } }
     ],
     [
+      'two fields with one method',
+      qr/fields friendlyName and friendly_name are both friendly_name/,
+      sub {
+        my $properties = $_[0]{components}{schemas}{thing}{properties};
+        $properties->{friendlyName}  = { type => 'string' };
+        $properties->{friendly_name} = { type => 'string' };
+      }
+    ],
+    [
       'reference outside the schemas',
       qr/Cannot follow #\/other/,
       sub {
@@ -819,7 +891,7 @@ sub document {
     paths => {
       '/v1/Accounts/{AccountSid}/Things.json' => {
         description => 'A list of <things >.',
-        'x-twilio'  => { pathType => 'list' },
+        'x-twilio'  => { pathType => 'list', parent => '/Accounts/{Sid}.json' },
         get         => {
           operationId => 'ListThing',
           parameters  => [
@@ -848,7 +920,7 @@ sub document {
         },
       },
       '/v1/Accounts/{AccountSid}/Things/{Sid}.json' => {
-        'x-twilio' => { pathType => 'instance' },
+        'x-twilio' => { pathType => 'instance', parent => '/Accounts/{Sid}.json' },
         get        => {
           operationId => 'FetchThing',
           parameters  => path_parameters(qw(AccountSid Sid)),

@@ -15,7 +15,25 @@ my $VERSION_PREFIX = qr{\A/(?:[0-9]{4}-[0-9]{2}-[0-9]{2}|v[0-9][a-z0-9]*)(?=/)};
 
 sub new {
   my ($class, $domain, $version, $document) = @_;
-  return bless { domain => $domain, version => $version, document => $document }, $class;
+
+  my $self = bless { domain => $domain, version => $version, document => $document }, $class;
+  $self->_resolve_parameters;
+  return $self;
+}
+
+# Some specs share parameters under components/parameters. Each operation gets them in place, so
+# that nothing after this has to tell a reference from a parameter.
+sub _resolve_parameters {
+  my ($self) = @_;
+
+  for my $item (values %{ $self->{document}{paths} // {} }) {
+    for my $operation (grep { ref eq 'HASH' } values %{$item}) {
+      my $listed = $operation->{parameters} or next;
+      next if ref $listed ne 'ARRAY';
+      $operation->{parameters} = [map { $self->resolve($_) } @{$listed}];
+    }
+  }
+  return;
 }
 
 sub load {

@@ -44,26 +44,67 @@ sub to_json {
   return JSON::PP->new->utf8->canonical->pretty->indent_length(1)->encode($entries);
 }
 
-# The calls that lead from the client to the object, each with whether it takes an id.
+# The calls that lead from the client to the object, each with how many ids it takes: the ids in
+# the resource's URL that its parent does not hold, and its own when it is an instance.
 sub _chain {
   my ($by_class, $root, $resource, $type) = @_;
 
-  my $takes_id = $type eq 'instance' && defined $resource->{instance}{key} ? 1 : 0;
-  my $link     = [$resource->{mount}, $takes_id];
-  return [@{$root}, $link] if !defined $resource->{parent};
+  my $parent = defined $resource->{parent} ? $by_class->{ $resource->{parent} } : undef;
+  croak "No parent for $resource->{key}" if defined $resource->{parent} && !$parent;
 
-  my $parent = $by_class->{ $resource->{parent} } // croak "No parent for $resource->{key}";
-  return [@{ _chain($by_class, $root, $parent, $resource->{parent_side} // 'instance') }, $link];
+  my $own   = $type eq 'instance' && defined $resource->{instance}{key} ? 1 : 0;
+  my $side  = $resource->{parent_side} // 'instance';
+  my $held  = $parent ? _ids_in(_host_path($parent, $side)) : 0;
+  my $extra = _ids_in(_own_path($resource)) - $held;
+  my $link  = [$resource->{mount}, ($extra > 0 ? $extra : 0) + $own];
+  return [@{$root}, $link] if !$parent;
+  return [@{ _chain($by_class, $root, $parent, $side) }, $link];
+}
+
+# The parent ids a resource's URL leaves out, here and above it. TaskRouter's
+# Workers/CumulativeStatistics is reached through a worker, and its URL has no worker id.
+sub _skipped_ids {
+  my ($by_class, $resource) = @_;
+
+  my $skipped = 0;
+  while (defined $resource->{parent}) {
+    my $parent = $by_class->{ $resource->{parent} };
+    my $held   = _ids_in(_host_path($parent, $resource->{parent_side} // 'instance'));
+    my $used   = _ids_in(_own_path($resource));
+    $skipped += $held - $used if $used < $held;
+    $resource = $parent;
+  }
+  return $skipped;
+}
+
+sub _own_path {
+  my ($resource) = @_;
+  return ($resource->{list} // $resource->{instance})->{path};
+}
+
+sub _host_path {
+  my ($parent, $side) = @_;
+  my $host = $side eq 'list' ? $parent->{list} // $parent->{instance} : $parent->{instance};
+  return $host->{path};
+}
+
+sub _ids_in {
+  my ($path) = @_;
+  my $count = () = ($path // q{}) =~ /[{]/g;
+  return $count;
 }
 
 sub _entry {
   my ($spec, $tree, $resource, $side, $chain, $operation) = @_;
 
-  my $id_count = grep { $_->[1] } @{$chain};
+  my $id_count = 0;
+  $id_count += $_->[1] for @{$chain};
+  my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
+  my $skipped  = _skipped_ids(\%by_class, $resource);
   my $next_id  = 0;
   my $url      = $side->{path} =~ s/[{]\w+[}]/'id' . ++$next_id/ger;
   croak "$operation->{id}: $next_id parameters in the path and $id_count in the calls"
-    if $next_id != $id_count;
+    if $next_id + $skipped != $id_count;
 
   my $body = _body($spec, $operation);
   my $list = $operation->{verb} eq 'list';

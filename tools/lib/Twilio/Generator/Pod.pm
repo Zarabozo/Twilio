@@ -299,7 +299,7 @@ sub _instance {
   }
   if (my @fields = @{ $model->{fields} }) {
     push @pod, "Its fields are:\n", "=over\n",
-      (map { ("=item $_->{name}\n", _field_text($_)) } @fields), "=back\n";
+      (map { ("=item $_->{method}\n", _field_text($_)) } @fields), "=back\n";
   }
   return join "\n", @pod;
 }

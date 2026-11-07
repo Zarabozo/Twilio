@@ -1,0 +1,168 @@
+[
+ {
+  "chain" : [
+   [
+    "pricing",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "countries",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchTrunkingCountry",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://pricing.twilio.com/v2/Trunking/Countries/id1"
+ },
+ {
+  "chain" : [
+   [
+    "pricing",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "numbers",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "OriginationNumber",
+    "v_origination_number"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchTrunkingNumber",
+  "method" : "fetch",
+  "options" : {
+   "origination_number" : "v_origination_number"
+  },
+  "required" : [],
+  "url" : "https://pricing.twilio.com/v2/Trunking/Numbers/id1"
+ },
+ {
+  "chain" : [
+   [
+    "pricing",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "voice",
+    0
+   ],
+   [
+    "countries",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchVoiceCountry",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://pricing.twilio.com/v2/Voice/Countries/id1"
+ },
+ {
+  "chain" : [
+   [
+    "pricing",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "voice",
+    0
+   ],
+   [
+    "numbers",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "OriginationNumber",
+    "v_origination_number"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchVoiceNumber",
+  "method" : "fetch",
+  "options" : {
+   "origination_number" : "v_origination_number"
+  },
+  "required" : [],
+  "url" : "https://pricing.twilio.com/v2/Voice/Numbers/id1"
+ },
+ {
+  "chain" : [
+   [
+    "pricing",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "countries",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListTrunkingCountry",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "countries",
+  "required" : [],
+  "url" : "https://pricing.twilio.com/v2/Trunking/Countries"
+ },
+ {
+  "chain" : [
+   [
+    "pricing",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "voice",
+    0
+   ],
+   [
+    "countries",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListVoiceCountry",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "countries",
+  "required" : [],
+  "url" : "https://pricing.twilio.com/v2/Voice/Countries"
+ }
+]
