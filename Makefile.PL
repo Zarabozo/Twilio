@@ -14,6 +14,7 @@ WriteMakefile(
   TEST_REQUIRES      => { 'Test::More'          => '0.98' },
   PREREQ_PM          => {
     'Carp'            => '0',
+    'Digest::SHA'     => '0',
     'HTTP::Tiny'      => '0.076',
     'IO::Socket::SSL' => '1.968',
     'JSON::PP'        => '0',
