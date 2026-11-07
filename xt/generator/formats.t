@@ -44,8 +44,10 @@ sub check_operation {
 
   my @failures;
   for my $listed (@{ $operation->{parameters} // [] }) {
+
+    # Ids in the URL have rules too, like the date in Voice's /Archives/{Date}.
     my $parameter = $spec->resolve($listed);
-    next if $parameter->{in} eq 'path' || $IS_LEFT_FOR_LATER{ $parameter->{in} };
+    next if $IS_LEFT_FOR_LATER{ $parameter->{in} };
     push @failures, check_request($spec, $operation, $parameter->{name}, $parameter->{schema});
   }
 

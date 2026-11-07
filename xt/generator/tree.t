@@ -93,8 +93,11 @@ subtest 'one path can hold two resources' => sub {
         new_keys => { resource_url => '/v1/Things/{thing_sid}/Keys.json' },
       }
     ),
-    '/Things/{ThingSid}/Keys.json' =>
-      list([get => 'ListKey'], [post => 'CreateNewKey'], parent => '/Things/{Sid}.json'),
+    '/Things/{ThingSid}/Keys.json' => list(
+      [get  => 'ListKey'],
+      [post => 'CreateNewKey', { mountName => 'new_keys' }],
+      parent => '/Things/{Sid}.json'
+    ),
     '/Things/{ThingSid}/Keys/{Sid}.json' =>
       instance([get => 'FetchKey'], parent => '/Things/{Sid}.json'),
   );
@@ -114,18 +117,170 @@ subtest 'one path can hold two resources' => sub {
   ok(!$new_key->{instance}, 'and does not move');
 };
 
+# twilio-oai-generator splits by the names on the operation, not by the noun in its id.
+subtest 'an operation id alone does not split a path' => sub {
+  my $tree = build('/Applications.json' =>
+      list([get => 'ListShortCodeApplication'], [post => 'CreateShortCodeApplication']));
+
+  is(scalar @{ $tree->{resources} }, 1,             'one resource');
+  is($tree->{resources}[0]{class},   'Application', 'named after the path');
+};
+
+subtest 'a list and an instance that name themselves apart are two resources' => sub {
+  my $tree = build(
+    '/Keys.json'       => list([get => 'ListGetKeys'], class_name => 'get_api_keys'),
+    '/Keys/{Sid}.json' => instance([get => 'FetchKey'], mount_name => 'api_key'),
+  );
+  my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
+
+  is_deeply([sort keys %by_class], ['ApiKey', 'GetApiKeys'], 'as in IAM v1');
+  ok($by_class{ApiKey}{list}{implied}, 'the instance gets a list of its own');
+};
+
 subtest 'a section with no path of its own' => sub {
-  my $tree     = build('/Usage/Records.json' => list());
+  my $tree     = build('/Usage/Records.json' => list(parent => '/Usage.json'));
   my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
 
   is_deeply([sort keys %by_class], ['Usage', 'Usage::Record'], 'the section exists');
   ok(!$by_class{Usage}{list} && !$by_class{Usage}{instance}, 'it has no operations');
 };
 
+subtest 'a parent that no path describes keeps its id' => sub {
+  my $tree = build('/Organizations/{OrganizationSid}/Users.json' =>
+      list(parent => '/Organizations/{OrganizationSid}'));
+  my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
+
+  my $organization = $by_class{Organization};
+  is($organization->{instance}{key}, 'OrganizationSid', 'an instance with its id');
+  is_deeply($organization->{instance}{operations}, [], 'and no operations');
+  is($by_class{'Organization::User'}{parent_side}, 'instance', 'the child hangs from it');
+};
+
+subtest 'a path that declares no parent hangs from the version' => sub {
+  my $tree = build(
+    '/Configuration.json'           => instance([get => 'FetchConfiguration']),
+    '/Configuration/Addresses.json' => list([get => 'ListAddress']),
+  );
+  my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
+
+  is_deeply([sort keys %by_class], ['Address', 'Configuration'], 'next to the other, as in PHP');
+  is($by_class{Address}{parent}, undef, 'with no parent');
+};
+
+subtest 'a parent written with the version is not one' => sub {
+  my $tree = build('/Roles/{RoleSid}/Permissions.json' => list(parent => '/v1/Roles/{Sid}'));
+  is_deeply([map { $_->{class} } @{ $tree->{resources} }],
+    ['Permission'], 'twilio-php puts IAM\'s RolePermission at the root');
+};
+
+subtest 'a parent need not be part of the path' => sub {
+  my $tree = build(
+    '/DialingPermissions.json' => list(),
+    '/Settings.json' => instance([get => 'FetchSettings'], parent => '/DialingPermissions.json'),
+  );
+  my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
+
+  is($by_class{'DialingPermission::Setting'}{parent}, 'DialingPermission', 'as Voice has it');
+};
+
+subtest 'children of a singleton hang from it' => sub {
+  my $tree = build(
+    '/Configuration.json'          => instance([get => 'FetchConfiguration']),
+    '/Configuration/Webhooks.json' =>
+      instance([get => 'FetchWebhook'], parent => '/Configuration.json'),
+  );
+  my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
+
+  is($by_class{'Configuration::Webhook'}{parent_side}, 'instance', 'not from a list it lacks');
+};
+
+subtest 'what a path does not say' => sub {
+  my $tree = build(
+    '/Plain.json'       => { get => { operationId => 'ListPlain' } },
+    '/Plain/{Sid}.json' => { get => { operationId => 'FetchPlain' } },
+  );
+  my ($plain) = @{ $tree->{resources} };
+
+  ok($plain->{list}, 'a path with no id is a list');
+  is($plain->{instance}{key}, 'Sid', 'and one with an id is an instance');
+};
+
+subtest 'patch is a verb' => sub {
+  my $tree = build('/Things/{Sid}.json' => instance([patch => 'PatchThing']));
+  is($tree->{resources}[0]{instance}{operations}[0]{verb}, 'patch', 'as twilio-php has it');
+};
+
+subtest 'a list can end in an id' => sub {
+  my $tree = build('/Reports/{ReportId}.json' => list([get => 'ListReport']));
+  my ($report) = @{ $tree->{resources} };
+
+  ok($report->{list},      'it is a list');
+  ok(!$report->{instance}, 'and not an instance');
+  is($report->{list}{key}, undef, 'the id is not a key of its own');
+};
+
+subtest 'a list that ends in an id names its resource' => sub {
+  my $tree =
+    build('/ShortCodes/{IsoCountryCode}/{ShortCode}.json' => instance([get => 'FetchShortCode']));
+  my ($code) = @{ $tree->{resources} };
+
+  is($code->{class}, 'IsoCountryCode',   'as twilio-php names Routes v3\'s short codes');
+  is($code->{mount}, 'iso_country_code', 'and the method');
+};
+
+subtest 'a mount name in camelCase' => sub {
+  my $tree = build('/Overrides/{Field}.json' =>
+      instance([get => 'FetchOverride'], mount_name => 'lookupOverrides'));
+  is($tree->{resources}[0]{mount}, 'lookup_overrides', 'is in snake case like the others');
+  is($tree->{resources}[0]{class}, 'LookupOverride',   'and names the class');
+};
+
+subtest 'names match the URL a parent gives, ids included' => sub {
+  my $tree = build(
+    '/Exports.json' =>
+      list(dependents => { custom_jobs => { resource_url => '/v1/Exports/{type}/Jobs' } }),
+    '/Exports/{Type}.json'      => instance([get => 'FetchExport']),
+    '/Exports/{Type}/Jobs.json' =>
+      list([get => 'ListCustomJob'], parent => '/Exports/{Type}.json', class_name => 'custom_job'),
+    '/Exports/Jobs/{Sid}.json' => instance([get => 'FetchJob'], parent => '/Exports.json'),
+  );
+  my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
+
+  is($by_class{'Export::CustomJob'}{mount}, 'custom_jobs', 'the jobs of an export');
+  is($by_class{'Export::Job'}{mount},       'jobs',        'and not the jobs below the list');
+};
+
+subtest 'a list and its instances can each have a child by the same name' => sub {
+  my $tree = build(
+    '/Queues.json'            => list([get => 'ListQueue']),
+    '/Queues/{Sid}.json'      => instance([get => 'FetchQueue']),
+    '/Queues/Statistics.json' => list(
+      [get => 'ListQueuesStatistics'],
+      parent     => '/Queues.json',
+      class_name => 'queues_statistics'
+    ),
+    '/Queues/{QueueSid}/Statistics.json' => instance(
+      [get => 'FetchQueueStatistics'],
+      parent     => '/Queues/{Sid}.json',
+      class_name => 'queue_statistics'
+    ),
+  );
+  my @mounts = sort map { "$_->{class} $_->{mount} $_->{parent_side}" }
+    grep { $_->{parent} } @{ $tree->{resources} };
+
+  is_deeply(
+    \@mounts,
+    ['Queue::QueueStatistics statistics instance', 'Queue::QueuesStatistics statistics list'],
+    'as TaskRouter\'s queues have'
+  );
+};
+
 subtest 'the class name in the spec wins' => sub {
   my $tree = build(
-    '/Domains/{DomainSid}/Auth.json'       => list(class_name => 'auth_types'),
-    '/Domains/{DomainSid}/Auth/Calls.json' => list(class_name => 'auth_type_calls'),
+    '/Domains/{DomainSid}/Auth.json' =>
+      list(class_name => 'auth_types', parent => '/Domains/{Sid}.json'),
+    '/Domains/{DomainSid}/Auth/Calls.json' =>
+      list(class_name => 'auth_type_calls', parent => '/Domains/{DomainSid}/Auth.json'),
   );
   my @classes = map { $_->{class} } @{ $tree->{resources} };
 
@@ -139,11 +294,13 @@ subtest 'the class name in the spec wins' => sub {
 
 subtest 'the mount name in the spec names the class' => sub {
   my $tree = build(
-    '/Users/{Sid}.json'                 => instance(),
-    '/Users/{UserSid}/Channels.json'    => list(mount_name => 'user_channels'),
-    '/Builds/{Sid}/Status.json'         => instance(mount_name => 'build_status'),
+    '/Users/{Sid}.json'              => instance(),
+    '/Users/{UserSid}/Channels.json' =>
+      list(mount_name => 'user_channels', parent => '/Users/{Sid}.json'),
+    '/Builds/{Sid}/Status.json' =>
+      instance(mount_name => 'build_status', parent => '/Builds/{Sid}.json'),
     '/Builds/{Sid}.json'                => instance(),
-    '/Users/{UserSid}/Plain/{Sid}.json' => instance(),
+    '/Users/{UserSid}/Plain/{Sid}.json' => instance(parent => '/Users/{Sid}.json'),
   );
   my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
 
@@ -164,7 +321,7 @@ subtest 'the mount named in the spec wins' => sub {
     '/Things/{Sid}.json' => instance(
       dependents => { best_parts => { resource_url => '/v1/Things/{thing_sid}/Parts.json' } }
     ),
-    '/Things/{ThingSid}/Parts.json' => list(),
+    '/Things/{ThingSid}/Parts.json' => list(parent => '/Things/{Sid}.json'),
   );
   my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
 
@@ -179,7 +336,8 @@ subtest 'paths with no JSON suffix' => sub {
 };
 
 subtest 'an instance with no key is a singleton' => sub {
-  my $tree     = build('/Things/{ThingSid}/Data.json' => instance([get => 'FetchData']));
+  my $tree = build('/Things/{ThingSid}/Data.json' =>
+      instance([get => 'FetchData'], parent => '/Things/{Sid}.json'));
   my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
 
   ok($by_class{'Thing::Data'}{instance}, 'it is an instance');
@@ -190,8 +348,9 @@ subtest 'render' => sub {
   my $tree = build(
     '/Things.json'                 => list([post => 'CreateThing'], [get => 'ListThing']),
     '/Things/{Sid}.json'           => instance([get => 'FetchThing']),
-    '/Things/{ThingSid}/Data.json' => instance([get => 'FetchData']),
-    '/Usage/Records.json'          => list(),
+    '/Things/{ThingSid}/Data.json' =>
+      instance([get => 'FetchData'], parent => '/Things/{Sid}.json'),
+    '/Usage/Records.json' => list(parent => '/Usage.json'),
   );
 
   is_deeply(
@@ -213,13 +372,6 @@ subtest 'anything that cannot be placed stops the build' => sub {
       qr/unknown path type 'other'/,
       '/A.json' => { 'x-twilio' => { pathType => 'other' } }
     ],
-    ['missing path type', qr/unknown path type ''/,      '/A.json'       => {}],
-    ['list with a key',   qr/cannot end in a parameter/, '/A/{Sid}.json' => list()],
-    [
-      'wrong parent',
-      qr/parent \/C.json does not contain it/,
-      '/A/B.json' => list(parent => '/C.json')
-    ],
     ['parent is itself', qr/does not contain it/, '/A/B.json' => list(parent => '/A/B.json')],
     ['parent below it',  qr/does not contain it/, '/A.json'   => list(parent => '/A/B.json')],
     [
@@ -235,23 +387,12 @@ subtest 'anything that cannot be placed stops the build' => sub {
     ],
     ['second list', qr/a second list/, '/A/{P}/B.json' => list(), '/A/{Q}/B.json' => list()],
     [
-      'mount name conflict',
-      qr/mount name b conflicts with a/,
-      '/A.json'       => list(mount_name => 'a'),
-      '/A/{Sid}.json' => instance(mount_name => 'b'),
-    ],
-    [
-      'class name conflict',
-      qr/class name b conflicts with a/,
+      'two resources by one name',
+      qr/are both [.]a/,
       '/A.json'       => list(class_name => 'a'),
       '/A/{Sid}.json' => instance(class_name => 'b'),
     ],
     ['same class twice', qr/are both A/, '/As.json' => list(), '/A.json' => list()],
-    [
-      'two nouns, neither its own',
-      qr/no operation is named after A/,
-      '/As.json' => list([get => 'ListB'], [post => 'CreateC'])
-    ],
     [
       'same mount twice',
       qr/are both [.]same/,
@@ -291,7 +432,10 @@ subtest 'an instance with an id gets a list' => sub {
 };
 
 subtest 'a singleton gets no list' => sub {
-  my $tree = build('/Things/{Sid}.json' => instance(), '/Things/{Sid}/Data.json' => instance());
+  my $tree = build(
+    '/Things/{Sid}.json'      => instance(),
+    '/Things/{Sid}/Data.json' => instance(parent => '/Things/{Sid}.json'),
+  );
   my ($data) = grep { $_->{class} eq 'Thing::Data' } @{ $tree->{resources} };
 
   ok($data,          'the singleton is there');
@@ -423,8 +567,8 @@ sub path_item {
 
   while (my $argument = shift @arguments) {
     if (ref $argument) {
-      my ($method, $id) = @{$argument};
-      $item{$method} = { operationId => $id };
+      my ($method, $id, $notes) = @{$argument};
+      $item{$method} = { operationId => $id, $notes ? ('x-twilio' => $notes) : () };
     }
     else {
       $item{'x-twilio'}{ $note_for{$argument} } = shift @arguments;

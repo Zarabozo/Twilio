@@ -111,7 +111,7 @@ subtest 'an implied list keeps the description of the instance' => sub {
   is($model->{description}, 'A thing', 'the description');
 };
 
-subtest 'a level with no resource of its own is named' => sub {
+subtest 'a child that leaves out an id of its parent' => sub {
   my $document = {
     components => $COMPONENTS,
     servers    => [{ url => $HOST }],
@@ -120,18 +120,25 @@ subtest 'a level with no resource of its own is named' => sub {
         { 'x-twilio' => { pathType => 'instance' }, get => operation('FetchThing') },
       '/v1/Things' =>
         { 'x-twilio' => { pathType => 'list' }, get => listing('ListThing', 'things') },
-      '/v1/Things/Parts' =>
-        { 'x-twilio' => { pathType => 'list' }, get => listing('ListPart', 'parts') },
+      '/v1/Things/Parts' => {
+        'x-twilio' => { pathType => 'list', parent => '/Things/{Sid}' },
+        get        => listing('ListPart', 'parts')
+      },
     },
   };
-  my $spec   = Twilio::Generator::Spec->new('other', 'v1', $document);
-  my $tree   = Twilio::Generator::Tree::build($spec);
-  my ($part) = grep { $_->{class} eq 'Thing::Part' } @{ $tree->{resources} };
+  my $spec    = Twilio::Generator::Spec->new('other', 'v1', $document);
+  my $tree    = Twilio::Generator::Tree::build($spec);
+  my %by      = map { $_->{class} => $_ } @{ $tree->{resources} };
+  my $part    = Twilio::Generator::Resource::build($spec, $tree, $by{'Thing::Part'});
+  my $thing   = Twilio::Generator::Resource::build($spec, $tree, $by{Thing});
+  my ($child) = @{ $thing->{context}{children} };
 
-  my $ok    = eval { Twilio::Generator::Resource::build($spec, $tree, $part); 1 };
-  my $error = $@;
-  ok(!$ok, 'a child with no id for its parent: refused');
-  like($error, qr/its parent needs an id/, 'says why');
+  is(
+    $part->{calls}{list},
+    '$client->other->v1->things($sid)->parts',
+    'reached through the parent, as twilio-php has TaskRouter\'s worker statistics'
+  );
+  is($child->{used_ids}, 0, 'and none of its ids go to the URL');
 };
 
 subtest 'the report' => sub {
