@@ -1,0 +1,176 @@
+[
+ {
+  "chain" : [
+   [
+    "routes",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "phone_numbers",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchPhoneNumber",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://routes.twilio.com/v2/PhoneNumbers/id1"
+ },
+ {
+  "chain" : [
+   [
+    "routes",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "sip_domains",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSipDomain",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://routes.twilio.com/v2/SipDomains/id1"
+ },
+ {
+  "chain" : [
+   [
+    "routes",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "trunks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchTrunks",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://routes.twilio.com/v2/Trunks/id1"
+ },
+ {
+  "chain" : [
+   [
+    "routes",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "phone_numbers",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "VoiceRegion",
+    "v_voice_region"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdatePhoneNumber",
+  "method" : "update",
+  "options" : {
+   "friendly_name" : "v_friendly_name",
+   "voice_region" : "v_voice_region"
+  },
+  "required" : [],
+  "url" : "https://routes.twilio.com/v2/PhoneNumbers/id1"
+ },
+ {
+  "chain" : [
+   [
+    "routes",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "sip_domains",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "VoiceRegion",
+    "v_voice_region"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateSipDomain",
+  "method" : "update",
+  "options" : {
+   "friendly_name" : "v_friendly_name",
+   "voice_region" : "v_voice_region"
+  },
+  "required" : [],
+  "url" : "https://routes.twilio.com/v2/SipDomains/id1"
+ },
+ {
+  "chain" : [
+   [
+    "routes",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "trunks",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "VoiceRegion",
+    "v_voice_region"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateTrunks",
+  "method" : "update",
+  "options" : {
+   "friendly_name" : "v_friendly_name",
+   "voice_region" : "v_voice_region"
+  },
+  "required" : [],
+  "url" : "https://routes.twilio.com/v2/Trunks/id1"
+ }
+]
