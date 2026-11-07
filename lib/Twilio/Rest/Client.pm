@@ -18,6 +18,12 @@ sub api {
   return Twilio::Rest::Api->new($self);
 }
 
+sub frontline_api {
+  my ($self) = @_;
+  require Twilio::Rest::FrontlineApi;
+  return Twilio::Rest::FrontlineApi->new($self);
+}
+
 sub account {
   my ($self, @arguments) = @_;
   return $self->api->account(@arguments);
@@ -184,6 +190,10 @@ C<< $client->api->accounts($sid) >>.
 =head2 api
 
 Returns L<Twilio::Rest::Api>, the domain of the main API.
+
+=head2 frontline_api
+
+Returns L<Twilio::Rest::FrontlineApi>.
 
 =head2 account
 

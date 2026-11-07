@@ -11,27 +11,33 @@ use Twilio::Generator::Contract;
 use Twilio::Generator::Spec;
 use Twilio::Generator::Tree;
 
+my @ROOT = (['demo', 0], ['v1', 0]);
+
 subtest 'the walk from the client' => sub {
   my %entries = map { $_->{id} => $_ } @{ entries(document()) };
 
   is_deeply(
     $entries{ListKind}{chain},
-    [['things', 0], ['kinds', 0]],
+    [@ROOT, ['things', 0], ['kinds', 0]],
     'a child of a list leaves out the id, though its parent can take one'
   );
-  is_deeply($entries{ListThing}{chain},  [['things', 0]], 'a list takes no id');
-  is_deeply($entries{FetchThing}{chain}, [['things', 1]], 'an instance takes one');
+  is_deeply($entries{ListThing}{chain},  [@ROOT, ['things', 0]], 'a list takes no id');
+  is_deeply($entries{FetchThing}{chain}, [@ROOT, ['things', 1]], 'an instance takes one');
   is_deeply(
     $entries{FetchPart}{chain},
-    [['things', 1], ['parts', 1]],
+    [@ROOT, ['things', 1], ['parts', 1]],
     'a child passes through its parent'
   );
   is_deeply(
     $entries{ListRow}{chain},
-    [['things', 1], ['sections', 0], ['rows', 0]],
+    [@ROOT, ['things', 1], ['sections', 0], ['rows', 0]],
     'a section takes no id'
   );
-  is_deeply($entries{FetchData}{chain}, [['things', 1], ['data', 0]], 'a singleton takes no id');
+  is_deeply(
+    $entries{FetchData}{chain},
+    [@ROOT, ['things', 1], ['data', 0]],
+    'a singleton takes no id'
+  );
 };
 
 subtest 'URLs come from the path in the spec' => sub {

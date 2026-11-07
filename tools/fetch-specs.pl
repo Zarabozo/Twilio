@@ -6,10 +6,13 @@ use FindBin qw($Bin);
 use File::Path qw(make_path);
 use HTTP::Tiny;
 
+use lib "$Bin/lib";
+
+use Twilio::Generator::Scope;
+
 # Pinned to a release, so the same input always generates the same code. The specs stay out of
 # the repository: the license of the Voice specs is an open question, and they can always be
-# downloaded again.
-my @SPECS    = qw(twilio_api_v2010.json);
+# downloaded again. Specs that are out of scope are not downloaded at all.
 my $BASE_URL = 'https://raw.githubusercontent.com/twilio/twilio-oai';
 
 my $tag = read_tag("$Bin/twilio-oai.version");
@@ -17,7 +20,8 @@ my $dir = "$Bin/../spec";
 make_path($dir);
 
 my $http = HTTP::Tiny->new(agent => 'twilio-perl-generator', verify_SSL => 1);
-for my $name (@SPECS) {
+for my $name (map { Twilio::Generator::Scope::spec_file($_) } Twilio::Generator::Scope::in_scope())
+{
   my $response = $http->get("$BASE_URL/$tag/spec/json/$name");
   die "$name: $response->{status} $response->{reason}\n" if !$response->{success};
 

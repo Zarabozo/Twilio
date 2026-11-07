@@ -12,15 +12,37 @@ To write the generated classes into `lib/`:
 
     perl tools/generate.pl
 
+To see what still stops each spec, without writing anything:
+
+    perl tools/generate.pl --report
+
 Generated files start with a comment saying so, and they shouldn't be edited by
 hand. `xt/generator/up-to-date.t` fails when `lib/` differs from what the generator
 writes.
 
-It also writes `t/data/contract-api-v2010.json`, which holds what each operation must
-send, taken straight from the spec. `t/contract.t` checks the real classes against it.
+It also writes a `t/data/contract-*.json` for each spec, which holds what each operation
+must send, taken straight from the spec. `t/contract.t` checks the real classes against
+them.
 
-Besides the resources, it writes `Twilio::Rest::Client`, `Twilio::Rest::Api` and
-`Twilio::Rest::Api::V2010`, which offer a shortcut to each resource of an account.
+Besides the resources, it writes a class for each domain and version, and
+`Twilio::Rest::Client`. Only the main API offers a shortcut to each resource of an
+account: `$client->messages` is `$client->api->v2010->account->messages`. Elsewhere the
+path has the version in it, as in `$client->frontline_api->v1->users`.
+
+## Which specs become code
+
+`Twilio::Generator::Scope` holds three lists, and every spec of `twilio-oai` belongs to
+exactly one:
+
+- **Ready** specs are generated. If one stops, generation stops.
+- **Pending** specs still have something the generator cannot do. They are named because
+  skipping whatever fails would let a spec sync silently delete a whole product.
+  `xt/generator/scope.t` fails when a pending spec starts to work, so the list only
+  shrinks. Phase 4 ends when it's empty.
+- **Excluded** specs are never downloaded, and each one says why. The scope follows what
+  twilio-php ships, so check this at each spec sync.
+
+A domain takes twilio-php's name, which isn't always the spec's: `flex` is `flex_api`.
 
 To print the resource tree of an API:
 
