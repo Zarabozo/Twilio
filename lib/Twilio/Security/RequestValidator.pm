@@ -102,13 +102,13 @@ sub compare {
 
   return 0 if !length($one // q{}) || !length($other // q{});
 
-  my $left  = _bytes($one);
-  my $right = _bytes($other);
-  return 0 if length $left != length $right;
+  my $one_bytes   = _bytes($one);
+  my $other_bytes = _bytes($other);
+  return 0 if length $one_bytes != length $other_bytes;
 
   my $difference = 0;
-  for my $position (0 .. length($left) - 1) {
-    $difference |= ord(substr $left, $position, 1) ^ ord(substr $right, $position, 1);
+  for my $position (0 .. length($one_bytes) - 1) {
+    $difference |= ord(substr $one_bytes, $position, 1) ^ ord(substr $other_bytes, $position, 1);
   }
   return $difference == 0 ? 1 : 0;
 }
