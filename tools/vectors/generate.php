@@ -8,6 +8,7 @@ if ($argc !== 2) {
 }
 require $argv[1] . '/src/Twilio/autoload.php';
 
+use Twilio\Security\RequestValidator;
 use Twilio\TwiML\VoiceResponse;
 
 $output = __DIR__ . '/../../t/data';
@@ -106,3 +107,43 @@ file_put_contents("$output/vectors-twiml-core.json", json_encode($cases, $flags)
 echo count($cases), " TwiML core vectors\n";
 file_put_contents("$output/vectors-twiml-elements.json", json_encode($vectors, $flags) . "\n");
 echo count($vectors), " TwiML element vectors\n";
+
+// What the request validator must produce.
+$cases = json_decode(file_get_contents(__DIR__ . '/request-validator.json'), true, 512, JSON_THROW_ON_ERROR);
+$validator = new RequestValidator($cases['token']);
+
+foreach ($cases['signatures'] as &$case) {
+    $case['data'] = (object) $case['data'];
+    $case['expected'] = $validator->computeSignature($case['url'], (array) $case['data'], $case['algorithm'] ?? null);
+}
+unset($case);
+
+foreach ($cases['validations'] as &$case) {
+    $signer = new RequestValidator($case['signed_token'] ?? $cases['token']);
+    $signature = $signer->computeSignature($case['signed'], $case['signed_data'] ?? [], $case['signed_algorithm'] ?? null);
+    $case['signature'] = $signature;
+    $case['expected'] = $validator->validate($signature, $case['url'], $case['data'] ?? [], $case['algorithm'] ?? null);
+}
+unset($case);
+
+foreach ($cases['bodies'] as &$case) {
+    $case['expected'] = RequestValidator::computeBodyHash($case['body']);
+}
+unset($case);
+
+foreach ($cases['body_validations'] as &$case) {
+    $url = 'https://a.test/x?foo=1&bodySHA256=' . RequestValidator::computeBodyHash($case['url_body']);
+    $case['url'] = $url;
+    $case['signature'] = $validator->computeSignature($url);
+    $case['expected'] = $validator->validate($case['signature'], $url, $case['body']);
+}
+unset($case);
+
+$cases['settings_headers'] = array_map(
+    fn(string $header): array => ['header' => $header, 'expected' => RequestValidator::getSignatureAlgorithm($header)],
+    $cases['settings_headers']
+);
+
+file_put_contents("$output/vectors-request-validator.json", json_encode($cases, $flags) . "\n");
+echo count($cases['signatures']) + count($cases['validations']) + count($cases['bodies'])
+    + count($cases['body_validations']) + count($cases['settings_headers']), " request validator vectors\n";
