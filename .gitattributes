@@ -1,2 +1,6 @@
 # Keep LF on every platform so the perltidy check gives the same answer on Windows.
 * text=auto eol=lf
+
+# This script runs real twilio-php to make the expected test outputs, so it has to stay in PHP.
+# It is left out of GitHub's language bar because it isn't part of the module.
+tools/vectors/*.php linguist-detectable=false
