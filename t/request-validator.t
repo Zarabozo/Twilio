@@ -118,7 +118,8 @@ subtest 'the last hash in the URL counts' => sub {
   my $later   = "https://a.test/x?bodySHA256=wrong&bodySHA256=$hash";
   my $earlier = "https://a.test/x?bodySHA256=$hash&bodySHA256=wrong";
 
-  is($checker->validate($checker->compute_signature($last), $last, 'body'), 1, 'as in twilio-php');
+  is($checker->validate($checker->compute_signature($later), $later, 'body'), 1,
+    'as in twilio-php');
   is($checker->validate($checker->compute_signature($earlier), $earlier, 'body'),
     0, 'and not the first');
 };
