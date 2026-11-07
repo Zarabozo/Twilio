@@ -1,0 +1,119 @@
+{
+  "client": [
+    { "description": "nothing allowed", "calls": [] },
+    { "description": "incoming", "calls": [["allow_client_incoming", "andrew"]] },
+    { "description": "outgoing", "calls": [["allow_client_outgoing", "AP123"]] },
+    {
+      "description": "outgoing with parameters",
+      "calls": [["allow_client_outgoing", "AP123", { "city": "Mexico City", "plan": "a&b=c" }]]
+    },
+    {
+      "description": "outgoing, then incoming",
+      "calls": [["allow_client_outgoing", "AP123"], ["allow_client_incoming", "andrew"]]
+    },
+    {
+      "description": "incoming, then outgoing",
+      "calls": [["allow_client_incoming", "andrew"], ["allow_client_outgoing", "AP123", { "a": "1" }]]
+    },
+    { "description": "the event stream", "calls": [["allow_event_stream"]] },
+    {
+      "description": "the name of a client only goes to outgoing scopes",
+      "calls": [["allow_event_stream"], ["allow_client_incoming", "andrew"]]
+    },
+    {
+      "description": "the event stream with filters",
+      "calls": [["allow_event_stream", { "foobar": "good value", "sid": "CA1" }]]
+    },
+    {
+      "description": "characters in a query",
+      "calls": [["allow_client_outgoing", "AP123", { "text": "~ * ' ( ) ! - _ . + / : ó" }]]
+    },
+    { "description": "a claim", "calls": [["add_claim", "foo", "bar"]] },
+    { "description": "a claim cannot replace the issuer", "calls": [["add_claim", "iss", "someone"]] },
+    { "description": "another lifetime", "ttl": 60, "calls": [["allow_client_incoming", "a_b1"]] }
+  ],
+  "task_router": [
+    { "description": "a workspace", "class": "WorkspaceCapability", "calls": [] },
+    { "description": "a worker", "class": "WorkerCapability", "channel": "WK123", "calls": [] },
+    { "description": "a task queue", "class": "TaskQueueCapability", "channel": "WQ123", "calls": [] },
+    {
+      "description": "worker updates",
+      "class": "WorkerCapability",
+      "channel": "WK123",
+      "calls": [["allow_activity_updates"], ["allow_reservation_updates"]]
+    },
+    {
+      "description": "everything on a resource",
+      "class": "WorkspaceCapability",
+      "calls": [
+        ["allow_fetch_subresources"],
+        ["allow_updates"],
+        ["allow_updates_subresources"],
+        ["allow_delete"],
+        ["allow_delete_subresources"]
+      ]
+    },
+    {
+      "description": "allow and deny",
+      "class": "TaskQueueCapability",
+      "channel": "WQ123",
+      "calls": [
+        ["allow", "https://a.test/x", "GET"],
+        ["allow", "https://a.test/y", "POST", { "a": { "required": true } }, { "b": { "required": false } }],
+        ["deny", "https://a.test/z", "DELETE"]
+      ]
+    },
+    {
+      "description": "extra attributes",
+      "class": "WorkspaceCapability",
+      "extra": { "custom": "value" },
+      "ttl": 120,
+      "calls": []
+    },
+    {
+      "description": "an extra attribute can replace a standard one",
+      "class": "WorkspaceCapability",
+      "extra": { "friendly_name": "mine" },
+      "calls": []
+    },
+    {
+      "description": "other hosts",
+      "class": "WorkerCapability",
+      "channel": "WK123",
+      "base_url": "https://event.test/v2",
+      "base_ws_url": "https://ws.test/v2",
+      "calls": []
+    }
+  ],
+  "policies": [
+    { "description": "empty filters", "url": "https://a.test", "method": "GET", "query": {}, "post": {}, "allow": true },
+    { "description": "no filters", "url": "https://a.test", "method": "GET", "query": null, "post": null, "allow": false },
+    {
+      "description": "filters",
+      "url": "https://a.test",
+      "method": "POST",
+      "query": { "a": { "required": true } },
+      "post": { "b": { "required": false } },
+      "allow": true
+    },
+    {
+      "description": "a filter added to an empty one",
+      "url": "https://a.test",
+      "method": "GET",
+      "query": {},
+      "post": {},
+      "allow": true,
+      "add_query": { "x": 1 },
+      "add_post": { "y": 2 }
+    },
+    {
+      "description": "a filter added to a named one",
+      "url": "https://a.test",
+      "method": "GET",
+      "query": { "a": 1 },
+      "post": { "a": 1 },
+      "allow": true,
+      "add_query": { "x": 1 }
+    }
+  ]
+}
