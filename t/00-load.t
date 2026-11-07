@@ -24,6 +24,8 @@ my @modules = qw(
   Twilio::InstanceResource
   Twilio::Json
   Twilio::Jwt::AccessToken
+  Twilio::Jwt::Client::ScopeURI
+  Twilio::Jwt::ClientToken
   Twilio::Jwt::Grants::ChatGrant
   Twilio::Jwt::Grants::Grant
   Twilio::Jwt::Grants::PlaybackGrant
@@ -32,6 +34,11 @@ my @modules = qw(
   Twilio::Jwt::Grants::VideoGrant
   Twilio::Jwt::Grants::VoiceGrant
   Twilio::Jwt::JWT
+  Twilio::Jwt::TaskRouter::CapabilityToken
+  Twilio::Jwt::TaskRouter::Policy
+  Twilio::Jwt::TaskRouter::TaskQueueCapability
+  Twilio::Jwt::TaskRouter::WorkerCapability
+  Twilio::Jwt::TaskRouter::WorkspaceCapability
   Twilio::ListResource
   Twilio::Page
   Twilio::Rest::Api
