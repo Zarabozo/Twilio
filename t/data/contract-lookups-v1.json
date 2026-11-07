@@ -1,0 +1,65 @@
+[
+ {
+  "chain" : [
+   [
+    "lookups",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "phone_numbers",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "CountryCode",
+    "v_country_code"
+   ],
+   [
+    "Type",
+    "v_type_1"
+   ],
+   [
+    "Type",
+    "v_type_2"
+   ],
+   [
+    "AddOns",
+    "v_add_ons_1"
+   ],
+   [
+    "AddOns",
+    "v_add_ons_2"
+   ],
+   [
+    "AddOns.one.two",
+    "v_add_ons_data"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchPhoneNumber",
+  "method" : "fetch",
+  "options" : {
+   "add_ons" : [
+    "v_add_ons_1",
+    "v_add_ons_2"
+   ],
+   "add_ons_data" : {
+    "one" : {
+     "two" : "v_add_ons_data"
+    }
+   },
+   "country_code" : "v_country_code",
+   "type" : [
+    "v_type_1",
+    "v_type_2"
+   ]
+  },
+  "required" : [],
+  "url" : "https://lookups.twilio.com/v1/PhoneNumbers/id1"
+ }
+]
