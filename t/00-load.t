@@ -30,6 +30,7 @@ my @modules = qw(
   Twilio::Rest::Api::V2010::Account
   Twilio::Rest::Api::V2010::Account::Message
   Twilio::Rest::Client
+  Twilio::Security::RequestValidator
   Twilio::Serialize
   Twilio::Stream
   Twilio::TokenPaginationPage
