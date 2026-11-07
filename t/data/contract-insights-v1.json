@@ -1,0 +1,831 @@
+[
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "settings",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "SubaccountSid",
+    "v_subaccount_sid"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchAccountSettings",
+  "method" : "fetch",
+  "options" : {
+   "subaccount_sid" : "v_subaccount_sid"
+  },
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Voice/Settings"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "calls",
+    1
+   ],
+   [
+    "annotation",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchAnnotation",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Voice/id1/Annotation"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "calls",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchCall",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Voice/id1"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conferences",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchConference",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Conferences/id1"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conferences",
+    1
+   ],
+   [
+    "conference_participants",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Events",
+    "v_events"
+   ],
+   [
+    "Metrics",
+    "v_metrics"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchConferenceParticipant",
+  "method" : "fetch",
+  "options" : {
+   "events" : "v_events",
+   "metrics" : "v_metrics"
+  },
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Conferences/id1/Participants/id2"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "calls",
+    1
+   ],
+   [
+    "summary",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "ProcessingState",
+    "complete"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchSummary",
+  "method" : "fetch",
+  "options" : {
+   "processing_state" : "complete"
+  },
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Voice/id1/Summary"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "participants",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchVideoParticipantSummary",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Video/Rooms/id1/Participants/id2"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchVideoRoomSummary",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Video/Rooms/id1"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "call_summaries",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "From",
+    "v_from"
+   ],
+   [
+    "To",
+    "v_to"
+   ],
+   [
+    "FromCarrier",
+    "v_from_carrier"
+   ],
+   [
+    "ToCarrier",
+    "v_to_carrier"
+   ],
+   [
+    "FromCountryCode",
+    "v_from_country_code"
+   ],
+   [
+    "ToCountryCode",
+    "v_to_country_code"
+   ],
+   [
+    "VerifiedCaller",
+    "true"
+   ],
+   [
+    "HasTag",
+    "true"
+   ],
+   [
+    "StartTime",
+    "v_start_time"
+   ],
+   [
+    "EndTime",
+    "v_end_time"
+   ],
+   [
+    "CallType",
+    "v_call_type"
+   ],
+   [
+    "CallState",
+    "v_call_state"
+   ],
+   [
+    "Direction",
+    "v_direction"
+   ],
+   [
+    "ProcessingState",
+    "partial"
+   ],
+   [
+    "SortBy",
+    "end_time"
+   ],
+   [
+    "Subaccount",
+    "v_subaccount"
+   ],
+   [
+    "AbnormalSession",
+    "true"
+   ],
+   [
+    "AnsweredBy",
+    "machine_end_other"
+   ],
+   [
+    "AnsweredByAnnotation",
+    "v_answered_by_annotation"
+   ],
+   [
+    "ConnectivityIssueAnnotation",
+    "v_connectivity_issue_annotation"
+   ],
+   [
+    "QualityIssueAnnotation",
+    "v_quality_issue_annotation"
+   ],
+   [
+    "SpamAnnotation",
+    "true"
+   ],
+   [
+    "CallScoreAnnotation",
+    "v_call_score_annotation"
+   ],
+   [
+    "BrandedEnabled",
+    "true"
+   ],
+   [
+    "VoiceIntegrityEnabled",
+    "true"
+   ],
+   [
+    "BrandedBundleSid",
+    "v_branded_bundle_sid"
+   ],
+   [
+    "BrandedLogo",
+    "true"
+   ],
+   [
+    "BrandedType",
+    "v_branded_type"
+   ],
+   [
+    "BrandedUseCase",
+    "v_branded_use_case"
+   ],
+   [
+    "BrandedCallReason",
+    "v_branded_call_reason"
+   ],
+   [
+    "VoiceIntegrityBundleSid",
+    "v_voice_integrity_bundle_sid"
+   ],
+   [
+    "VoiceIntegrityUseCase",
+    "v_voice_integrity_use_case"
+   ],
+   [
+    "BusinessProfileIdentity",
+    "v_business_profile_identity"
+   ],
+   [
+    "BusinessProfileIndustry",
+    "v_business_profile_industry"
+   ],
+   [
+    "BusinessProfileBundleSid",
+    "v_business_profile_bundle_sid"
+   ],
+   [
+    "BusinessProfileType",
+    "v_business_profile_type"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListCallSummaries",
+  "method" : "page",
+  "options" : {
+   "abnormal_session" : 1,
+   "answered_by" : "machine_end_other",
+   "answered_by_annotation" : "v_answered_by_annotation",
+   "branded_bundle_sid" : "v_branded_bundle_sid",
+   "branded_call_reason" : "v_branded_call_reason",
+   "branded_enabled" : 1,
+   "branded_logo" : 1,
+   "branded_type" : "v_branded_type",
+   "branded_use_case" : "v_branded_use_case",
+   "business_profile_bundle_sid" : "v_business_profile_bundle_sid",
+   "business_profile_identity" : "v_business_profile_identity",
+   "business_profile_industry" : "v_business_profile_industry",
+   "business_profile_type" : "v_business_profile_type",
+   "call_score_annotation" : "v_call_score_annotation",
+   "call_state" : "v_call_state",
+   "call_type" : "v_call_type",
+   "connectivity_issue_annotation" : "v_connectivity_issue_annotation",
+   "direction" : "v_direction",
+   "end_time" : "v_end_time",
+   "from" : "v_from",
+   "from_carrier" : "v_from_carrier",
+   "from_country_code" : "v_from_country_code",
+   "has_tag" : 1,
+   "processing_state" : "partial",
+   "quality_issue_annotation" : "v_quality_issue_annotation",
+   "sort_by" : "end_time",
+   "spam_annotation" : 1,
+   "start_time" : "v_start_time",
+   "subaccount" : "v_subaccount",
+   "to" : "v_to",
+   "to_carrier" : "v_to_carrier",
+   "to_country_code" : "v_to_country_code",
+   "verified_caller" : 1,
+   "voice_integrity_bundle_sid" : "v_voice_integrity_bundle_sid",
+   "voice_integrity_enabled" : 1,
+   "voice_integrity_use_case" : "v_voice_integrity_use_case"
+  },
+  "records_key" : "call_summaries",
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Voice/Summaries"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conferences",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "ConferenceSid",
+    "v_conference_sid"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Status",
+    "v_status"
+   ],
+   [
+    "CreatedAfter",
+    "v_created_after"
+   ],
+   [
+    "CreatedBefore",
+    "v_created_before"
+   ],
+   [
+    "MixerRegion",
+    "v_mixer_region"
+   ],
+   [
+    "Tags",
+    "v_tags"
+   ],
+   [
+    "Subaccount",
+    "v_subaccount"
+   ],
+   [
+    "DetectedIssues",
+    "v_detected_issues"
+   ],
+   [
+    "EndReason",
+    "v_end_reason"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListConference",
+  "method" : "page",
+  "options" : {
+   "conference_sid" : "v_conference_sid",
+   "created_after" : "v_created_after",
+   "created_before" : "v_created_before",
+   "detected_issues" : "v_detected_issues",
+   "end_reason" : "v_end_reason",
+   "friendly_name" : "v_friendly_name",
+   "mixer_region" : "v_mixer_region",
+   "status" : "v_status",
+   "subaccount" : "v_subaccount",
+   "tags" : "v_tags"
+  },
+  "records_key" : "conferences",
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Conferences"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conferences",
+    1
+   ],
+   [
+    "conference_participants",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "ParticipantSid",
+    "v_participant_sid"
+   ],
+   [
+    "Label",
+    "v_label"
+   ],
+   [
+    "Events",
+    "v_events"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListConferenceParticipant",
+  "method" : "page",
+  "options" : {
+   "events" : "v_events",
+   "label" : "v_label",
+   "participant_sid" : "v_participant_sid"
+  },
+  "records_key" : "participants",
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Conferences/id1/Participants"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "calls",
+    1
+   ],
+   [
+    "events",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Edge",
+    "sdk_edge"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListEvent",
+  "method" : "page",
+  "options" : {
+   "edge" : "sdk_edge"
+  },
+  "records_key" : "events",
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Voice/id1/Events"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "calls",
+    1
+   ],
+   [
+    "metrics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Edge",
+    "sdk_edge"
+   ],
+   [
+    "Direction",
+    "inbound"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListMetric",
+  "method" : "page",
+  "options" : {
+   "direction" : "inbound",
+   "edge" : "sdk_edge"
+  },
+  "records_key" : "metrics",
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Voice/id1/Metrics"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "participants",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListVideoParticipantSummary",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "participants",
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Video/Rooms/id1/Participants"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "RoomType",
+    "v_room_type_1"
+   ],
+   [
+    "RoomType",
+    "v_room_type_2"
+   ],
+   [
+    "Codec",
+    "v_codec_1"
+   ],
+   [
+    "Codec",
+    "v_codec_2"
+   ],
+   [
+    "RoomName",
+    "v_room_name"
+   ],
+   [
+    "CreatedAfter",
+    "2026-01-19T03:04:05Z"
+   ],
+   [
+    "CreatedBefore",
+    "2026-01-04T03:04:05Z"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListVideoRoomSummary",
+  "method" : "page",
+  "options" : {
+   "codec" : [
+    "v_codec_1",
+    "v_codec_2"
+   ],
+   "created_after" : {
+    "epoch" : 1768791845
+   },
+   "created_before" : {
+    "epoch" : 1767495845
+   },
+   "room_name" : "v_room_name",
+   "room_type" : [
+    "v_room_type_1",
+    "v_room_type_2"
+   ]
+  },
+  "records_key" : "rooms",
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Video/Rooms"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "settings",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "AdvancedFeatures",
+    "true"
+   ],
+   [
+    "SubaccountSid",
+    "v_subaccount_sid"
+   ],
+   [
+    "VoiceTrace",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateAccountSettings",
+  "method" : "update",
+  "options" : {
+   "advanced_features" : 1,
+   "subaccount_sid" : "v_subaccount_sid",
+   "voice_trace" : 1
+  },
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Voice/Settings"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "calls",
+    1
+   ],
+   [
+    "annotation",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "AnsweredBy",
+    "human"
+   ],
+   [
+    "CallScore",
+    "888"
+   ],
+   [
+    "Comment",
+    "v_comment"
+   ],
+   [
+    "ConnectivityIssue",
+    "unknown_connectivity_issue"
+   ],
+   [
+    "Incident",
+    "v_incident"
+   ],
+   [
+    "QualityIssues",
+    "v_quality_issues"
+   ],
+   [
+    "Spam",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateAnnotation",
+  "method" : "update",
+  "options" : {
+   "answered_by" : "human",
+   "call_score" : 888,
+   "comment" : "v_comment",
+   "connectivity_issue" : "unknown_connectivity_issue",
+   "incident" : "v_incident",
+   "quality_issues" : "v_quality_issues",
+   "spam" : 1
+  },
+  "required" : [],
+  "url" : "https://insights.twilio.com/v1/Voice/id1/Annotation"
+ }
+]

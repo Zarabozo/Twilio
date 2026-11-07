@@ -21,6 +21,12 @@ sub v2 {
   return Twilio::Rest::Routes::V2->new($self);
 }
 
+sub v3 {
+  my ($self) = @_;
+  require Twilio::Rest::Routes::V3;
+  return Twilio::Rest::Routes::V3->new($self);
+}
+
 1;
 
 __END__
@@ -44,6 +50,10 @@ See L<Twilio::Domain> for the inherited methods.
 =head2 v2
 
 Returns L<Twilio::Rest::Routes::V2>.
+
+=head2 v3
+
+Returns L<Twilio::Rest::Routes::V3>.
 
 =head1 LICENSE
 

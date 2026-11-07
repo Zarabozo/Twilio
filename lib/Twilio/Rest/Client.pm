@@ -18,6 +18,12 @@ sub api {
   return Twilio::Rest::Api->new($self);
 }
 
+sub bulkexports {
+  my ($self) = @_;
+  require Twilio::Rest::Bulkexports;
+  return Twilio::Rest::Bulkexports->new($self);
+}
+
 sub chat {
   my ($self) = @_;
   require Twilio::Rest::Chat;
@@ -40,6 +46,12 @@ sub frontline_api {
   my ($self) = @_;
   require Twilio::Rest::FrontlineApi;
   return Twilio::Rest::FrontlineApi->new($self);
+}
+
+sub insights {
+  my ($self) = @_;
+  require Twilio::Rest::Insights;
+  return Twilio::Rest::Insights->new($self);
 }
 
 sub ip_messaging {
@@ -66,10 +78,22 @@ sub notify {
   return Twilio::Rest::Notify->new($self);
 }
 
+sub numbers {
+  my ($self) = @_;
+  require Twilio::Rest::Numbers;
+  return Twilio::Rest::Numbers->new($self);
+}
+
 sub oauth {
   my ($self) = @_;
   require Twilio::Rest::Oauth;
   return Twilio::Rest::Oauth->new($self);
+}
+
+sub pricing {
+  my ($self) = @_;
+  require Twilio::Rest::Pricing;
+  return Twilio::Rest::Pricing->new($self);
 }
 
 sub proxy {
@@ -106,6 +130,12 @@ sub trunking {
   my ($self) = @_;
   require Twilio::Rest::Trunking;
   return Twilio::Rest::Trunking->new($self);
+}
+
+sub voice {
+  my ($self) = @_;
+  require Twilio::Rest::Voice;
+  return Twilio::Rest::Voice->new($self);
 }
 
 sub wireless {
@@ -281,6 +311,10 @@ C<< $client->api->accounts($sid) >>.
 
 Returns L<Twilio::Rest::Api>, the domain of the main API.
 
+=head2 bulkexports
+
+Returns L<Twilio::Rest::Bulkexports>.
+
 =head2 chat
 
 Returns L<Twilio::Rest::Chat>.
@@ -296,6 +330,10 @@ Returns L<Twilio::Rest::Events>.
 =head2 frontline_api
 
 Returns L<Twilio::Rest::FrontlineApi>.
+
+=head2 insights
+
+Returns L<Twilio::Rest::Insights>.
 
 =head2 ip_messaging
 
@@ -313,9 +351,17 @@ Returns L<Twilio::Rest::Monitor>.
 
 Returns L<Twilio::Rest::Notify>.
 
+=head2 numbers
+
+Returns L<Twilio::Rest::Numbers>.
+
 =head2 oauth
 
 Returns L<Twilio::Rest::Oauth>.
+
+=head2 pricing
+
+Returns L<Twilio::Rest::Pricing>.
 
 =head2 proxy
 
@@ -340,6 +386,10 @@ Returns L<Twilio::Rest::Supersim>.
 =head2 trunking
 
 Returns L<Twilio::Rest::Trunking>.
+
+=head2 voice
+
+Returns L<Twilio::Rest::Voice>.
 
 =head2 wireless
 

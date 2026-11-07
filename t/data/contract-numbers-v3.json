@@ -1,0 +1,120 @@
+[
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "hosted_number_orders",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "phoneNumber",
+    "v_phone_number"
+   ],
+   [
+    "smsCapability",
+    "true"
+   ],
+   [
+    "accountSid",
+    "v_account_sid"
+   ],
+   [
+    "addressSid",
+    "v_address_sid"
+   ],
+   [
+    "ccEmails",
+    "v_cc_emails_1"
+   ],
+   [
+    "ccEmails",
+    "v_cc_emails_2"
+   ],
+   [
+    "email",
+    "v_email"
+   ],
+   [
+    "friendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "smsApplicationSid",
+    "v_sms_application_sid"
+   ],
+   [
+    "smsFallbackMethod",
+    "GET"
+   ],
+   [
+    "smsFallbackUrl",
+    "v_sms_fallback_url"
+   ],
+   [
+    "smsMethod",
+    "GET"
+   ],
+   [
+    "smsUrl",
+    "v_sms_url"
+   ],
+   [
+    "statusCallbackMethod",
+    "GET"
+   ],
+   [
+    "statusCallbackUrl",
+    "v_status_callback_url"
+   ],
+   [
+    "uniqueName",
+    "v_unique_name"
+   ],
+   [
+    "verificationDocumentSid",
+    "v_verification_document_sid"
+   ],
+   [
+    "verificationType",
+    "phone-bill"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateHostedNumbersHostedNumberOrder",
+  "method" : "create",
+  "options" : {
+   "account_sid" : "v_account_sid",
+   "address_sid" : "v_address_sid",
+   "cc_emails" : [
+    "v_cc_emails_1",
+    "v_cc_emails_2"
+   ],
+   "email" : "v_email",
+   "friendly_name" : "v_friendly_name",
+   "sms_application_sid" : "v_sms_application_sid",
+   "sms_fallback_method" : "GET",
+   "sms_fallback_url" : "v_sms_fallback_url",
+   "sms_method" : "GET",
+   "sms_url" : "v_sms_url",
+   "status_callback_method" : "GET",
+   "status_callback_url" : "v_status_callback_url",
+   "unique_name" : "v_unique_name",
+   "verification_document_sid" : "v_verification_document_sid",
+   "verification_type" : "phone-bill"
+  },
+  "required" : [
+   "v_phone_number",
+   1
+  ],
+  "url" : "https://numbers.twilio.com/v3/HostedNumbers/HostedNumberOrders"
+ }
+]
