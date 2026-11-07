@@ -41,6 +41,9 @@ sub build {
   my @schemas = _instance_schemas($spec, $resource, $records);
   $model->{has_instance} = @schemas ? 1 : 0;
   $model->{fields}       = _fields($spec, $resource, \@schemas);
+  if (defined(my $own = ($model->{context} // {})->{own})) {
+    $model->{context}{own_field} = _own_field($model->{fields}, $own);
+  }
 
   _add_children($spec, $tree, $resource, $model);
   return $model;
@@ -66,26 +69,41 @@ sub _calls {
   my ($tree, $resource) = @_;
 
   my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
-  my $list     = _list_call($tree, \%by_class, $resource);
+  my ($method, @ids) = _reach($tree, \%by_class, $resource);
   my $instance = $resource->{instance} // {};
-  return {
-    list    => $list,
-    context => defined $instance->{key} ? "$list(\$" . snake($instance->{key}) . ')' : $list
-  };
+  my @own      = defined $instance->{key} ? '$' . snake($instance->{key}) : ();
+  return { list => _call($method, @ids), context => _call($method, @ids, @own) };
 }
 
-sub _list_call {
+sub _call {
+  my ($method, @ids) = @_;
+  return @ids ? "$method(" . join(q{, }, @ids) . ')' : $method;
+}
+
+# The method that reaches a resource, and the ids it takes before the resource's own.
+sub _reach {
   my ($tree, $by_class, $resource) = @_;
 
   my $mount = $resource->{mount};
-  return _root_call($tree) . "->$mount" if !defined $resource->{parent};
+  if (!defined $resource->{parent}) {
+    return (_root_call($tree) . "->$mount", map { "\$$_" } @{ extra_ids($resource, 0) });
+  }
 
   my $parent = $by_class->{ $resource->{parent} };
   return "\$client->$mount" if _is_account_shortcut($tree, $parent, $resource);
 
-  my $from = _list_call($tree, $by_class, $parent);
-  return "$from->$mount" if !_hangs_from_instance($resource);
-  return "$from(\$" . _parent_id($resource) . ")->$mount";
+  my $from_instance = _hangs_from_instance($resource) && !_is_singleton($parent);
+  my $host      = $from_instance || _is_singleton($parent) ? $parent->{instance} : $parent->{list};
+  my $host_path = ($host // {})->{path} // q{};
+  my $held      = () = $host_path =~ /[{]/g;
+  my ($method, @ids) = _reach($tree, $by_class, $parent);
+  push @ids, '$' . _parent_id($resource, $parent, $held) if $from_instance;
+  return (_call($method, @ids) . "->$mount", map { "\$$_" } @{ extra_ids($resource, $held) });
+}
+
+sub _is_singleton {
+  my ($resource) = @_;
+  return $resource->{instance} && !$resource->{list} && !defined $resource->{instance}{key};
 }
 
 # Only the main API has shortcuts, and other specs have resources called Account as well.
@@ -108,15 +126,20 @@ sub _hangs_from_instance {
   return ($resource->{parent_side} // q{}) ne 'list';
 }
 
-# The id of the parent is the last parameter of the child's list, or of a singleton's path.
+# The id of the parent is the last one it holds in the child's list, or in a singleton's path. The
+# child's name for it reads better than the parent's own Sid: $call_sid, not $sid. A child whose
+# URL does not use it gets the parent's own name.
 sub _parent_id {
-  my ($resource) = @_;
+  my ($resource, $parent, $held) = @_;
 
   my $side = $resource->{list} // $resource->{instance}
     // croak "$resource->{key}: a level with no operations of its own";
-  my ($name) = $side->{path} =~ /.*[{](\w+)[}]/;
-  croak "$resource->{key}: its parent needs an id that its path does not have" if !defined $name;
-  return snake($name);
+  my @names = $side->{path} =~ /[{](\w+)[}]/g;
+  return snake($names[$held - 1]) if $held && @names >= $held;
+
+  my $key = ($parent->{instance} // {})->{key};
+  croak "$resource->{key}: its parent needs an id that its path does not have" if !defined $key;
+  return snake($key);
 }
 
 sub root_class {
@@ -135,7 +158,7 @@ sub _description {
 sub _list_side {
   my ($spec, $resource) = @_;
 
-  my $side = _side($resource->{list});
+  my $side = _side($spec, $resource, $resource->{list});
   for my $operation (@{ $resource->{list}{operations} }) {
     my $verb = $operation->{verb};
     if    ($verb eq 'create') { $side->{create} = _body_operation($spec, $operation) }
@@ -149,7 +172,7 @@ sub _list_side {
 sub _context_side {
   my ($spec, $resource) = @_;
 
-  my $side = _side($resource->{instance});
+  my $side = _side($spec, $resource, $resource->{instance});
   $side->{own} = $side->{parameters}[-1] if defined $resource->{instance}{key};
 
   for my $operation (@{ $resource->{instance}{operations} }) {
@@ -162,13 +185,35 @@ sub _context_side {
   return $side;
 }
 
+# An id in a URL has a rule like any other value: Voice's /Archives/{Date} takes a date, which
+# twilio-php writes as 2026-11-07. The rules come from both sides of the resource, because a list
+# with no operations of its own still builds its URL.
 sub _side {
-  my ($side) = @_;
+  my ($spec, $resource, $side) = @_;
 
+  my %writer = _path_writers($spec, $resource);
   my @tokens = split /([{]\w+[}])/, $side->{path};
-  my @uri    = map { /\A[{](\w+)[}]\z/ ? { parameter => snake($1) } : { literal => $_ } }
-    grep { length } @tokens;
+  my @uri    = map {
+    /\A[{](\w+)[}]\z/
+      ? { parameter => snake($1), defined $writer{$1} ? (writer => $writer{$1}) : () }
+      : { literal   => $_ }
+  } grep { length } @tokens;
   return { parameters => [map { $_->{parameter} // () } @uri], uri => \@uri };
+}
+
+sub _path_writers {
+  my ($spec, $resource) = @_;
+
+  my %writer;
+  for my $operation (map { @{ $_->{operations} } } grep { $_ } @{$resource}{qw(list instance)}) {
+    for my $listed (@{ $operation->{spec}{parameters} // [] }) {
+      my $parameter = $spec->resolve($listed);
+      next if ($parameter->{in} // q{}) ne 'path';
+      my $where = "$operation->{id} $parameter->{name}";
+      $writer{ $parameter->{name} } = request_writer($spec, $where, $parameter->{schema} // {});
+    }
+  }
+  return %writer;
 }
 
 sub _delete_operation {
@@ -334,7 +379,7 @@ sub _fields {
   for my $schema (@{$schemas}) {
     my $properties = $schema->{properties} // {};
     for my $name (sort keys %{$properties}) {
-      croak "Field $name is reserved" if $IS_RESERVED_FIELD{$name};
+      croak "Field $name is reserved" if $IS_RESERVED_FIELD{ snake($name) };
 
       my $reader = field_reader($spec, "Field $name", $properties->{$name}) // q{};
       if (exists $readers{$name} && $readers{$name} ne $reader) {
@@ -345,10 +390,34 @@ sub _fields {
       $notes{$name}{enum}        //= _enum_of($spec, $properties->{$name});
     }
   }
+
+  # Newer APIs answer in camelCase, like Routes v3's friendlyName, and the method is still
+  # friendly_name, as in every other resource and in twilio-python.
+  my %by_method;
+  for my $name (sort keys %readers) {
+    my $method = snake($name);
+    croak "$resource->{key}: fields $by_method{$method} and $name are both $method"
+      if $by_method{$method};
+    $by_method{$method} = $name;
+  }
   return [
-    map { { name => $_, reader => length $readers{$_} ? $readers{$_} : undef, %{ $notes{$_} } } }
-    sort keys %readers
+    map {
+      {
+        name   => $_,
+        method => snake($_),
+        reader => length $readers{$_} ? $readers{$_} : undef,
+        %{ $notes{$_} }
+      }
+    } sort keys %readers
   ];
+}
+
+# The field that holds an instance's own id: sid, or phoneNumber when the API answers in
+# camelCase and the URL calls it {PhoneNumber}.
+sub _own_field {
+  my ($fields, $own) = @_;
+  my ($field) = grep { $_->{method} eq $own } @{$fields};
+  return $field ? $field->{name} : $own;
 }
 
 # The resources with no parent hang from the version, which has no parameters of its own.
@@ -363,7 +432,7 @@ sub root_children {
 sub _add_children {
   my ($spec, $tree, $resource, $model) = @_;
 
-  my %is_field = map { $_->{name} => 1 } @{ $model->{fields} };
+  my %is_field = map { $_->{method} => 1 } @{ $model->{fields} };
   for my $child (grep { ($_->{parent} // q{}) eq $resource->{class} } @{ $tree->{resources} }) {
     my $names = _names($tree, $child);
     my $side  = _host_side($model, $child);
@@ -371,12 +440,6 @@ sub _add_children {
     my $mount = $child->{mount};
     croak "$child->{key}: method $mount is reserved"     if $IS_RESERVED_MOUNT{$mount};
     croak "$child->{key}: method $mount is also a field" if $is_field{$mount} && $side->{own};
-
-    my $target = $child->{list} // $child->{instance};
-    my $count  = () = $target->{path} =~ /[{]/g;
-    if ($count != @{ $side->{parameters} }) {
-      croak "$child->{key}: its path does not fit the parameters of its parent";
-    }
 
     my $key = ($child->{instance} // {})->{key};
     push @{ $side->{children} },
@@ -386,10 +449,37 @@ sub _add_children {
       list      => $names->{class}{list},
       context   => $names->{class}{context},
       singleton => $child->{list} ? 0 : 1,
+      extra_ids => extra_ids($child, scalar @{ $side->{parameters} }),
+      used_ids  => used_ids($child, scalar @{ $side->{parameters} }),
       defined $key ? (own => snake($key)) : (),
       };
   }
   return;
+}
+
+# The ids in a child's list URL, or in a singleton's, beyond the ones its parent holds. These come
+# after the parent's in every URL. The order is the URL's, though twilio-php sorts them by name:
+# lookup_overrides($phone_number, $field) reads like the URL it builds.
+sub extra_ids {
+  my ($child, $held) = @_;
+
+  my @ids = _ids_of($child);
+  return [@ids > $held ? @ids[$held .. $#ids] : ()];
+}
+
+# How many of its parent's ids a child's URL uses. Usually all of them, but TaskRouter's
+# Workers/CumulativeStatistics hangs from a worker, as in twilio-php, and has no worker id.
+sub used_ids {
+  my ($child, $held) = @_;
+
+  my @ids = _ids_of($child);
+  return @ids < $held ? scalar @ids : $held;
+}
+
+sub _ids_of {
+  my ($child) = @_;
+  my $target = $child->{list} // $child->{instance};
+  return map { snake($_) } $target->{path} =~ /[{](\w+)[}]/g;
 }
 
 # A child hangs from the object its parent link names: /Things/{Sid} is one thing, and /Things

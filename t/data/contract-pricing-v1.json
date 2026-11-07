@@ -1,0 +1,194 @@
+[
+ {
+  "chain" : [
+   [
+    "pricing",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "messaging",
+    0
+   ],
+   [
+    "countries",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchMessagingCountry",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://pricing.twilio.com/v1/Messaging/Countries/id1"
+ },
+ {
+  "chain" : [
+   [
+    "pricing",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "phone_numbers",
+    0
+   ],
+   [
+    "countries",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchPhoneNumberCountry",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://pricing.twilio.com/v1/PhoneNumbers/Countries/id1"
+ },
+ {
+  "chain" : [
+   [
+    "pricing",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "voice",
+    0
+   ],
+   [
+    "countries",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchVoiceCountry",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://pricing.twilio.com/v1/Voice/Countries/id1"
+ },
+ {
+  "chain" : [
+   [
+    "pricing",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "voice",
+    0
+   ],
+   [
+    "numbers",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchVoiceNumber",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://pricing.twilio.com/v1/Voice/Numbers/id1"
+ },
+ {
+  "chain" : [
+   [
+    "pricing",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "messaging",
+    0
+   ],
+   [
+    "countries",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListMessagingCountry",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "countries",
+  "required" : [],
+  "url" : "https://pricing.twilio.com/v1/Messaging/Countries"
+ },
+ {
+  "chain" : [
+   [
+    "pricing",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "phone_numbers",
+    0
+   ],
+   [
+    "countries",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListPhoneNumberCountry",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "countries",
+  "required" : [],
+  "url" : "https://pricing.twilio.com/v1/PhoneNumbers/Countries"
+ },
+ {
+  "chain" : [
+   [
+    "pricing",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "voice",
+    0
+   ],
+   [
+    "countries",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListVoiceCountry",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "countries",
+  "required" : [],
+  "url" : "https://pricing.twilio.com/v1/Voice/Countries"
+ }
+]

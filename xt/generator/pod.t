@@ -67,7 +67,8 @@ subtest 'a document' => sub {
   like($pod, qr/=item C<data>\n\nA hash or array reference/,               'free-form data');
   like($pod, qr/=item C<blank>\n\nNo description in the specification[.]/, 'nothing to say');
 
-  like($pod, qr/=item sid\n\nThe id[.]/,                    'a field');
+  like($pod, qr/=item sid\n\nThe id[.]/, 'a field');
+  like($pod, qr/=item friendly_name\n/,  'a field is listed by its method, not its wire name');
   like($pod, qr/=item status\n\nOne of C<on> or C<off>[.]/, 'a field with choices');
   my %passages = (
     'a date field' => "=item date_created\n\nCreated. A L<Time::Piece> object in UTC",
@@ -157,10 +158,16 @@ sub model {
       ],
     },
     fields => [
-      { name => 'capabilities', reader      => 'phone_number_capabilities' },
-      { name => 'date_created', reader      => 'date_time', description => 'Created.' },
-      { name => 'sid',          description => 'The id.' },
-      { name => 'status',       enum        => [qw(on off)] },
+      { name => 'capabilities', method => 'capabilities', reader => 'phone_number_capabilities' },
+      {
+        name        => 'date_created',
+        method      => 'date_created',
+        reader      => 'date_time',
+        description => 'Created.'
+      },
+      { name => 'sid',          method => 'sid',    description => 'The id.' },
+      { name => 'status',       method => 'status', enum        => [qw(on off)] },
+      { name => 'friendlyName', method => 'friendly_name' },
     ],
   };
 }
