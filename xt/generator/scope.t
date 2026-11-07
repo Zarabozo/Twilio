@@ -25,6 +25,11 @@ subtest 'a spec has one place' => sub {
 
 # Spelled out here, so that letting one of these in takes a deliberate change in two places.
 # Voice v2 and v3 wait for Twilio's answer about their license.
+subtest 'versions named apart from their segment' => sub {
+  is(Twilio::Generator::Scope::version_name('preview_iam', 'Organizations'), 'versionless', 'one');
+  is(Twilio::Generator::Scope::version_name('preview', 'HostedNumbers'), undef, 'and no others');
+};
+
 subtest 'what stays out' => sub {
   is_deeply([sort keys %{$excluded}], [qw(monitor_v2 voice_v2 voice_v3)], 'the list');
 };

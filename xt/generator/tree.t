@@ -455,13 +455,77 @@ subtest 'spec files without a version in their name' => sub {
 
     my $ok    = eval { Twilio::Generator::Tree::build($spec); 1 };
     my $error = $@;
-    ok(!$ok, "$name: refused for now");
+    ok(!$ok, "$name: not one tree");
     like($error, qr/several versions/, "$name: says why");
   }
 
   is(Twilio::Generator::Spec->load("$dir/twilio_preview.json")->domain, 'preview', 'the name');
   is(Twilio::Generator::Spec->load("$dir/twilio_iam_organizations.json")->domain,
     'preview_iam', 'the name in twilio-php');
+};
+
+subtest 'a spec with several versions is split' => sub {
+  my $list = { 'x-twilio' => { pathType => 'list' }, get => { operationId => 'ListDocument' } };
+  my $spec = Twilio::Generator::Spec->new(
+    'preview',
+    undef,
+    {
+      paths => {
+        '/HostedNumbers/AuthorizationDocuments' => {
+          %{$list},
+          'x-twilio' => {
+            pathType            => 'list',
+            dependentProperties =>
+              { documents => { resource_url => '/HostedNumbers/AuthorizationDocuments' } },
+          },
+        },
+        '/marketplace/AvailableAddOns' => $list,
+      },
+    }
+  );
+  my %by_version = map { $_->version => $_ } $spec->versions;
+
+  is_deeply([sort keys %by_version], ['hosted_numbers', 'marketplace'], 'each first segment');
+  my $hosted = $by_version{hosted_numbers};
+  is($hosted->version_path, 'HostedNumbers', 'which goes in the URL');
+  is_deeply([keys %{ $hosted->paths }], ['/AuthorizationDocuments'], 'and not in the paths');
+  is($hosted->domain, 'preview', 'in the same domain');
+
+  my ($resource) = @{ Twilio::Generator::Tree::build($hosted)->{resources} };
+  is($resource->{mount}, 'documents', 'its own version leaves the URLs of dependents too');
+};
+
+subtest 'a version that twilio-php names apart' => sub {
+  my $spec = Twilio::Generator::Spec->new(
+    'preview_iam',
+    undef,
+    {
+      paths => {
+        '/v1/token' =>
+          { 'x-twilio' => { pathType => 'list' }, post => { operationId => 'CreateToken' } },
+        '/Organizations/{OrganizationSid}/Users' => {
+          'x-twilio' => { pathType    => 'list', parent => '/Organizations/{OrganizationSid}' },
+          get        => { operationId => 'ListUser' },
+        },
+      },
+    }
+  );
+  my %by_version = map { $_->version => $_ } $spec->versions;
+
+  is_deeply([sort keys %by_version], ['v1', 'versionless'], 'as PreviewIam has them');
+  my $versionless = $by_version{versionless};
+  is($versionless->version_path, q{}, 'with nothing of its own in the URL');
+  is_deeply(
+    [keys %{ $versionless->paths }],
+    ['/Organizations/{OrganizationSid}/Users'],
+    'so its paths keep their first segment'
+  );
+
+  my %by_class =
+    map { $_->{class} => $_ } @{ Twilio::Generator::Tree::build($versionless)->{resources} };
+  is($by_class{Organization}{mount},
+    'organization', 'named as twilio-php and twilio-python name it');
+  is($by_class{'Organization::User'}{mount}, 'users', 'with its children below');
 };
 
 subtest 'references to shared schemas and parameters' => sub {

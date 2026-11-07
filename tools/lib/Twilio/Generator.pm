@@ -24,8 +24,8 @@ sub generated_files {
 
   my %files;
   my %versions_of;
-  for my $name (Twilio::Generator::Scope::ready()) {
-    my ($spec, $tree) = load_spec($spec_dir, $name);
+  for my $version (map { load_versions($spec_dir, $_) } Twilio::Generator::Scope::ready()) {
+    my ($spec, $tree) = @{$version};
 
     my %models;
     for my $resource (@{ $tree->{resources} }) {
@@ -52,12 +52,13 @@ sub generated_files {
   return \%files;
 }
 
-sub load_spec {
+# Each version in a spec, with its tree. Most specs hold one.
+sub load_versions {
   my ($spec_dir, $name) = @_;
 
   my $file = "$spec_dir/" . Twilio::Generator::Scope::spec_file($name);
   my $spec = Twilio::Generator::Spec->load($file);
-  return ($spec, Twilio::Generator::Tree::build($spec));
+  return map { [$_, Twilio::Generator::Tree::build($_)] } $spec->versions;
 }
 
 # What the version and its domain need. Only the main API has an account to offer shortcuts of.
@@ -117,8 +118,10 @@ sub contract_files {
 
   my %files;
   for my $name (Twilio::Generator::Scope::ready()) {
-    my ($spec, $tree) = load_spec($spec_dir, $name);
-    my $entries = Twilio::Generator::Contract::entries($spec, $tree);
+    my $entries = [
+      sort { $a->{id} cmp $b->{id} }
+      map  { @{ Twilio::Generator::Contract::entries(@{$_}) } } load_versions($spec_dir, $name)
+    ];
     $files{ 'contract-' . ($name =~ tr/_/-/r) . '.json' } =
       Twilio::Generator::Contract::to_json($entries);
   }
