@@ -6,6 +6,7 @@ use Test::More;
 use Time::Piece ();
 
 use Twilio::Http::FakeClient;
+use Twilio::Json;
 use Twilio::Rest::Client;
 
 my $ACCOUNT = 'https://api.twilio.com/2010-04-01/Accounts/ACxx';
@@ -253,27 +254,32 @@ subtest 'every domain that is ready' => sub {
   my ($client) = client();
 
   my %class = (
-    bulkexports  => 'Bulkexports',
-    chat         => 'Chat',
-    content      => 'Content',
-    events       => 'Events',
-    insights     => 'Insights',
-    ip_messaging => 'IpMessaging',
-    lookups      => 'Lookups',
-    monitor      => 'Monitor',
-    notify       => 'Notify',
-    numbers      => 'Numbers',
-    oauth        => 'Oauth',
-    preview      => 'Preview',
-    pricing      => 'Pricing',
-    proxy        => 'Proxy',
-    routes       => 'Routes',
-    serverless   => 'Serverless',
-    studio       => 'Studio',
-    supersim     => 'Supersim',
-    trunking     => 'Trunking',
-    voice        => 'Voice',
-    wireless     => 'Wireless',
+    bulkexports   => 'Bulkexports',
+    chat          => 'Chat',
+    content       => 'Content',
+    conversations => 'Conversations',
+    events        => 'Events',
+    flex_api      => 'FlexApi',
+    iam           => 'Iam',
+    insights      => 'Insights',
+    ip_messaging  => 'IpMessaging',
+    lookups       => 'Lookups',
+    monitor       => 'Monitor',
+    notify        => 'Notify',
+    numbers       => 'Numbers',
+    oauth         => 'Oauth',
+    preview       => 'Preview',
+    pricing       => 'Pricing',
+    proxy         => 'Proxy',
+    routes        => 'Routes',
+    serverless    => 'Serverless',
+    studio        => 'Studio',
+    supersim      => 'Supersim',
+    sync          => 'Sync',
+    taskrouter    => 'Taskrouter',
+    trunking      => 'Trunking',
+    voice         => 'Voice',
+    wireless      => 'Wireless',
   );
   isa_ok($client->$_, "Twilio::Rest::$class{$_}") for sort keys %class;
 };
@@ -405,6 +411,43 @@ subtest 'versions named after a product' => sub {
   $http->mock(200, { sims => [], meta => {} });
   $client->preview->wireless->sims->read({}, 1);
   like(last_url($http), qr{\Ahttps://preview[.]twilio[.]com/wireless/Sims\?}, 'in lowercase too');
+};
+
+subtest 'a header is an option' => sub {
+  my ($client, $http) = client();
+  $http->mock(201, { sid => 'CH1' });
+
+  $client->conversations->v1->conversations->create(
+    { friendly_name => 'Mine', x_twilio_webhook_enabled => 'true' });
+  my $request = ($http->requests)[-1];
+  is($request->{headers}{'X-Twilio-Webhook-Enabled'}, 'true', 'sent as a header');
+  like($request->{content}, qr/FriendlyName=Mine/, 'and the rest in the body');
+  unlike($request->{content}, qr/Webhook/, 'not in the body');
+};
+
+subtest 'a JSON body' => sub {
+  my ($client, $http) = client();
+  $http->mock(201, { sid => 'OQ1' });
+
+  my $app = $client->iam->v1->oauth_apps->create(
+    { type => 'client_credentials', friendly_name => 'Mine', policy => { allow => ['x'] } });
+  my $request = ($http->requests)[-1];
+  is($request->{url},                     'https://iam.twilio.com/v1/Account/OAuthApps', 'url');
+  is($request->{headers}{'Content-Type'}, 'application/json', 'sent as JSON');
+  is_deeply(
+    Twilio::Json::decode($request->{content}),
+    { type => 'client_credentials', friendly_name => 'Mine', policy => { allow => ['x'] } },
+    'with the names the caller wrote'
+  );
+  is($app->sid, 'OQ1', 'the record');
+};
+
+subtest 'a required value with the name of a variable' => sub {
+  my ($client, $http) = client();
+  $http->mock(201, { index => 0 });
+
+  $client->sync->v1->services('IS1')->sync_lists('ES1')->sync_list_items->create({ a => 1 });
+  like(($http->requests)[-1]{content}, qr/Data=%7B%22a%22%3A1%7D/, 'Sync\'s Data');
 };
 
 subtest 'shortcuts' => sub {

@@ -21,6 +21,12 @@ sub v1 {
   return Twilio::Rest::Oauth::V1->new($self);
 }
 
+sub v2 {
+  my ($self) = @_;
+  require Twilio::Rest::Oauth::V2;
+  return Twilio::Rest::Oauth::V2->new($self);
+}
+
 1;
 
 __END__
@@ -44,6 +50,10 @@ See L<Twilio::Domain> for the inherited methods.
 =head2 v1
 
 Returns L<Twilio::Rest::Oauth::V1>.
+
+=head2 v2
+
+Returns L<Twilio::Rest::Oauth::V2>.
 
 =head1 LICENSE
 

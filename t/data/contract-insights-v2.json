@@ -1,0 +1,203 @@
+[
+ {
+  "body" : {
+   "filters" : [
+    "v_filters"
+   ],
+   "time_range" : {
+    "v_time_range" : 1
+   }
+  },
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "reports",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateAccountReport",
+  "json" : {
+   "filters" : [
+    "v_filters"
+   ],
+   "time_range" : {
+    "v_time_range" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v2/Voice/Reports"
+ },
+ {
+  "body" : {
+   "filters" : [
+    "v_filters"
+   ],
+   "size" : 443,
+   "time_range" : {
+    "v_time_range" : 1
+   }
+  },
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "inbound_reports",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateInboundPhoneNumbersReport",
+  "json" : {
+   "filters" : [
+    "v_filters"
+   ],
+   "size" : 443,
+   "time_range" : {
+    "v_time_range" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v2/Voice/Reports/PhoneNumbers/Inbound"
+ },
+ {
+  "body" : {
+   "filters" : [
+    "v_filters"
+   ],
+   "size" : 443,
+   "time_range" : {
+    "v_time_range" : 1
+   }
+  },
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "outbound_reports",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateOutboundPhoneNumbersReport",
+  "json" : {
+   "filters" : [
+    "v_filters"
+   ],
+   "size" : 443,
+   "time_range" : {
+    "v_time_range" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v2/Voice/Reports/PhoneNumbers/Outbound"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "reports",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchAccountReport",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v2/Voice/Reports/id1"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "inbound",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListInboundPhoneNumbersReport",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "reports",
+  "required" : [],
+  "url" : "https://insights.twilio.com/v2/Voice/Reports/PhoneNumbers/Inbound/id1"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "outbound",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListOutboundPhoneNumbersReport",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "reports",
+  "required" : [],
+  "url" : "https://insights.twilio.com/v2/Voice/Reports/PhoneNumbers/Outbound/id1"
+ }
+]

@@ -1,0 +1,120 @@
+[
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "web_channels",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "AddressSid",
+    "v_address_sid"
+   ],
+   [
+    "ChatFriendlyName",
+    "v_chat_friendly_name"
+   ],
+   [
+    "CustomerFriendlyName",
+    "v_customer_friendly_name"
+   ],
+   [
+    "Identity",
+    "v_identity"
+   ],
+   [
+    "PreEngagementData",
+    "v_pre_engagement_data"
+   ]
+  ],
+  "headers" : {
+   "Ui-Version" : "v_ui_version"
+  },
+  "http" : "POST",
+  "id" : "CreateWebChannel",
+  "method" : "create",
+  "options" : {
+   "chat_friendly_name" : "v_chat_friendly_name",
+   "customer_friendly_name" : "v_customer_friendly_name",
+   "identity" : "v_identity",
+   "pre_engagement_data" : "v_pre_engagement_data",
+   "ui_version" : "v_ui_version"
+  },
+  "required" : [
+   "v_address_sid"
+  ],
+  "url" : "https://flex-api.twilio.com/v2/WebChats"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "flex_user",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchFlexUser",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v2/Instances/id1/Users/id2"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "flex_user",
+    2
+   ]
+  ],
+  "expected" : [
+   [
+    "Email",
+    "v_email"
+   ],
+   [
+    "Locale",
+    "v_locale"
+   ],
+   [
+    "UserSid",
+    "v_user_sid"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateFlexUser",
+  "method" : "update",
+  "options" : {
+   "email" : "v_email",
+   "locale" : "v_locale",
+   "user_sid" : "v_user_sid"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v2/Instances/id1/Users/id2"
+ }
+]
