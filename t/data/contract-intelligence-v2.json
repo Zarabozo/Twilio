@@ -1,0 +1,1002 @@
+[
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "custom_operators",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "OperatorType",
+    "v_operator_type"
+   ],
+   [
+    "Config",
+    "{\"v_config\":11}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateCustomOperator",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   "v_friendly_name",
+   "v_operator_type",
+   {
+    "v_config" : 11
+   }
+  ],
+  "url" : "https://intelligence.twilio.com/v2/Operators/Custom"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "operator_attachment",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "POST",
+  "id" : "CreateOperatorAttachment",
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Services/id1/Operators/id2"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "services",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "UniqueName",
+    "v_unique_name"
+   ],
+   [
+    "AutoRedaction",
+    "true"
+   ],
+   [
+    "AutoTranscribe",
+    "true"
+   ],
+   [
+    "DataLogging",
+    "true"
+   ],
+   [
+    "EncryptionCredentialSid",
+    "v_encryption_credential_sid"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "LanguageCode",
+    "v_language_code"
+   ],
+   [
+    "MediaRedaction",
+    "true"
+   ],
+   [
+    "WebhookHttpMethod",
+    "POST"
+   ],
+   [
+    "WebhookUrl",
+    "v_webhook_url"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateService",
+  "method" : "create",
+  "options" : {
+   "auto_redaction" : 1,
+   "auto_transcribe" : 1,
+   "data_logging" : 1,
+   "encryption_credential_sid" : "v_encryption_credential_sid",
+   "friendly_name" : "v_friendly_name",
+   "language_code" : "v_language_code",
+   "media_redaction" : 1,
+   "webhook_http_method" : "POST",
+   "webhook_url" : "v_webhook_url"
+  },
+  "required" : [
+   "v_unique_name"
+  ],
+  "url" : "https://intelligence.twilio.com/v2/Services"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "transcripts",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "ServiceSid",
+    "v_service_sid"
+   ],
+   [
+    "Channel",
+    "{\"v_channel\":26}"
+   ],
+   [
+    "CustomerKey",
+    "v_customer_key"
+   ],
+   [
+    "MediaStartTime",
+    "2026-01-06T03:04:05Z"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateTranscript",
+  "method" : "create",
+  "options" : {
+   "customer_key" : "v_customer_key",
+   "media_start_time" : {
+    "epoch" : 1767668645
+   }
+  },
+  "required" : [
+   "v_service_sid",
+   {
+    "v_channel" : 26
+   }
+  ],
+  "url" : "https://intelligence.twilio.com/v2/Transcripts"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "custom_operators",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteCustomOperator",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Operators/Custom/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "operator_attachment",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteOperatorAttachment",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Services/id1/Operators/id2"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "services",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteService",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Services/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "transcripts",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteTranscript",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Transcripts/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "custom_operators",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchCustomOperator",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Operators/Custom/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "transcripts",
+    1
+   ],
+   [
+    "encrypted_operator_results",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Redacted",
+    "true"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchEncryptedOperatorResults",
+  "method" : "fetch",
+  "options" : {
+   "redacted" : 1
+  },
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Transcripts/id1/OperatorResults/Encrypted"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "transcripts",
+    1
+   ],
+   [
+    "encrypted_sentences",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Redacted",
+    "true"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchEncryptedSentences",
+  "method" : "fetch",
+  "options" : {
+   "redacted" : 1
+  },
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Transcripts/id1/Sentences/Encrypted"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "transcripts",
+    1
+   ],
+   [
+    "media",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Redacted",
+    "true"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchMedia",
+  "method" : "fetch",
+  "options" : {
+   "redacted" : 1
+  },
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Transcripts/id1/Media"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "operators",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchOperator",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Operators/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "operator_attachments",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchOperatorAttachments",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Services/id1/Operators"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "transcripts",
+    1
+   ],
+   [
+    "operator_results",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Redacted",
+    "true"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchOperatorResult",
+  "method" : "fetch",
+  "options" : {
+   "redacted" : 1
+  },
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Transcripts/id1/OperatorResults/id2"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "operator_type",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchOperatorType",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/OperatorTypes/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "prebuilt_operators",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchPrebuiltOperator",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Operators/PreBuilt/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "services",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchService",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Services/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "transcripts",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchTranscript",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Transcripts/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "custom_operators",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Availability",
+    "beta"
+   ],
+   [
+    "LanguageCode",
+    "v_language_code"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListCustomOperator",
+  "method" : "page",
+  "options" : {
+   "availability" : "beta",
+   "language_code" : "v_language_code"
+  },
+  "records_key" : "operators",
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Operators/Custom"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "operators",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Availability",
+    "beta"
+   ],
+   [
+    "LanguageCode",
+    "v_language_code"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListOperator",
+  "method" : "page",
+  "options" : {
+   "availability" : "beta",
+   "language_code" : "v_language_code"
+  },
+  "records_key" : "operators",
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Operators"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "transcripts",
+    1
+   ],
+   [
+    "operator_results",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Redacted",
+    "true"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListOperatorResult",
+  "method" : "page",
+  "options" : {
+   "redacted" : 1
+  },
+  "records_key" : "operator_results",
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Transcripts/id1/OperatorResults"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "operator_type",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "LanguageCode",
+    "v_language_code"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListOperatorType",
+  "method" : "page",
+  "options" : {
+   "language_code" : "v_language_code"
+  },
+  "records_key" : "operator_types",
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/OperatorTypes"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "prebuilt_operators",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Availability",
+    "retired"
+   ],
+   [
+    "LanguageCode",
+    "v_language_code"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListPrebuiltOperator",
+  "method" : "page",
+  "options" : {
+   "availability" : "retired",
+   "language_code" : "v_language_code"
+  },
+  "records_key" : "operators",
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Operators/PreBuilt"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "transcripts",
+    1
+   ],
+   [
+    "sentences",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Redacted",
+    "true"
+   ],
+   [
+    "WordTimestamps",
+    "true"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListSentence",
+  "method" : "page",
+  "options" : {
+   "redacted" : 1,
+   "word_timestamps" : 1
+  },
+  "records_key" : "sentences",
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Transcripts/id1/Sentences"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "services",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListService",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "services",
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Services"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "transcripts",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "ServiceSid",
+    "v_service_sid"
+   ],
+   [
+    "BeforeStartTime",
+    "v_before_start_time"
+   ],
+   [
+    "AfterStartTime",
+    "v_after_start_time"
+   ],
+   [
+    "BeforeDateCreated",
+    "v_before_date_created"
+   ],
+   [
+    "AfterDateCreated",
+    "v_after_date_created"
+   ],
+   [
+    "Status",
+    "v_status"
+   ],
+   [
+    "LanguageCode",
+    "v_language_code"
+   ],
+   [
+    "SourceSid",
+    "v_source_sid"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListTranscript",
+  "method" : "page",
+  "options" : {
+   "after_date_created" : "v_after_date_created",
+   "after_start_time" : "v_after_start_time",
+   "before_date_created" : "v_before_date_created",
+   "before_start_time" : "v_before_start_time",
+   "language_code" : "v_language_code",
+   "service_sid" : "v_service_sid",
+   "source_sid" : "v_source_sid",
+   "status" : "v_status"
+  },
+  "records_key" : "transcripts",
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Transcripts"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "custom_operators",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Config",
+    "{\"v_config\":11}"
+   ]
+  ],
+  "headers" : {
+   "If-Match" : "v_if_match"
+  },
+  "http" : "POST",
+  "id" : "UpdateCustomOperator",
+  "method" : "update",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [
+   "v_friendly_name",
+   {
+    "v_config" : 11
+   }
+  ],
+  "url" : "https://intelligence.twilio.com/v2/Operators/Custom/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "services",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "AutoRedaction",
+    "true"
+   ],
+   [
+    "AutoTranscribe",
+    "true"
+   ],
+   [
+    "DataLogging",
+    "true"
+   ],
+   [
+    "EncryptionCredentialSid",
+    "v_encryption_credential_sid"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "MediaRedaction",
+    "true"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ],
+   [
+    "WebhookHttpMethod",
+    "POST"
+   ],
+   [
+    "WebhookUrl",
+    "v_webhook_url"
+   ]
+  ],
+  "headers" : {
+   "If-Match" : "v_if_match"
+  },
+  "http" : "POST",
+  "id" : "UpdateService",
+  "method" : "update",
+  "options" : {
+   "auto_redaction" : 1,
+   "auto_transcribe" : 1,
+   "data_logging" : 1,
+   "encryption_credential_sid" : "v_encryption_credential_sid",
+   "friendly_name" : "v_friendly_name",
+   "if_match" : "v_if_match",
+   "media_redaction" : 1,
+   "unique_name" : "v_unique_name",
+   "webhook_http_method" : "POST",
+   "webhook_url" : "v_webhook_url"
+  },
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v2/Services/id1"
+ }
+]

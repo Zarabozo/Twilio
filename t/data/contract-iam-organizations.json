@@ -1,0 +1,588 @@
+[
+ {
+  "body" : {
+   "active" : 1,
+   "displayName" : "v_displayName",
+   "emails" : [
+    "v_emails"
+   ],
+   "externalId" : "v_externalId",
+   "id" : "v_id",
+   "locale" : "v_locale",
+   "meta" : {
+    "v_meta" : 1
+   },
+   "name" : {
+    "v_name" : 1
+   },
+   "schemas" : [
+    "v_schemas"
+   ],
+   "timezone" : "v_timezone",
+   "userName" : "v_userName"
+  },
+  "chain" : [
+   [
+    "preview_iam",
+    0
+   ],
+   [
+    "versionless",
+    0
+   ],
+   [
+    "organization",
+    1
+   ],
+   [
+    "users",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Accept" : "application/scim+json",
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateOrganizationUser",
+  "json" : {
+   "active" : true,
+   "displayName" : "v_displayName",
+   "emails" : [
+    "v_emails"
+   ],
+   "externalId" : "v_externalId",
+   "id" : "v_id",
+   "locale" : "v_locale",
+   "meta" : {
+    "v_meta" : 1
+   },
+   "name" : {
+    "v_name" : 1
+   },
+   "schemas" : [
+    "v_schemas"
+   ],
+   "timezone" : "v_timezone",
+   "userName" : "v_userName"
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview-iam.twilio.com/Organizations/id1/scim/Users"
+ },
+ {
+  "body" : {
+   "identity" : "v_identity",
+   "resource_id" : "v_resource_id",
+   "resource_type" : "v_resource_type",
+   "role_sid" : "v_role_sid",
+   "scope" : "v_scope"
+  },
+  "chain" : [
+   [
+    "preview_iam",
+    0
+   ],
+   [
+    "versionless",
+    0
+   ],
+   [
+    "organization",
+    1
+   ],
+   [
+    "role_assignments",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateRoleAssignment",
+  "json" : {
+   "identity" : "v_identity",
+   "resource_id" : "v_resource_id",
+   "resource_type" : "v_resource_type",
+   "role_sid" : "v_role_sid",
+   "scope" : "v_scope"
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview-iam.twilio.com/Organizations/id1/RoleAssignments"
+ },
+ {
+  "chain" : [
+   [
+    "preview_iam",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "token",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "grant_type",
+    "v_grant_type"
+   ],
+   [
+    "client_id",
+    "v_client_id"
+   ],
+   [
+    "audience",
+    "v_audience"
+   ],
+   [
+    "client_secret",
+    "v_client_secret"
+   ],
+   [
+    "code",
+    "v_code"
+   ],
+   [
+    "redirect_uri",
+    "v_redirect_uri"
+   ],
+   [
+    "refresh_token",
+    "v_refresh_token"
+   ],
+   [
+    "scope",
+    "v_scope"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateToken",
+  "method" : "create",
+  "options" : {
+   "audience" : "v_audience",
+   "client_secret" : "v_client_secret",
+   "code" : "v_code",
+   "redirect_uri" : "v_redirect_uri",
+   "refresh_token" : "v_refresh_token",
+   "scope" : "v_scope"
+  },
+  "required" : [
+   "v_grant_type",
+   "v_client_id"
+  ],
+  "url" : "https://preview-iam.twilio.com/v1/token"
+ },
+ {
+  "chain" : [
+   [
+    "preview_iam",
+    0
+   ],
+   [
+    "versionless",
+    0
+   ],
+   [
+    "organization",
+    1
+   ],
+   [
+    "users",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteOrganizationUser",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview-iam.twilio.com/Organizations/id1/scim/Users/id2"
+ },
+ {
+  "chain" : [
+   [
+    "preview_iam",
+    0
+   ],
+   [
+    "versionless",
+    0
+   ],
+   [
+    "organization",
+    1
+   ],
+   [
+    "role_assignments",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteRoleAssignment",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview-iam.twilio.com/Organizations/id1/RoleAssignments/id2"
+ },
+ {
+  "chain" : [
+   [
+    "preview_iam",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "authorize",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "response_type",
+    "v_response_type"
+   ],
+   [
+    "client_id",
+    "v_client_id"
+   ],
+   [
+    "redirect_uri",
+    "v_redirect_uri"
+   ],
+   [
+    "scope",
+    "v_scope"
+   ],
+   [
+    "state",
+    "v_state"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchAuthorize",
+  "method" : "fetch",
+  "options" : {
+   "client_id" : "v_client_id",
+   "redirect_uri" : "v_redirect_uri",
+   "response_type" : "v_response_type",
+   "scope" : "v_scope",
+   "state" : "v_state"
+  },
+  "required" : [],
+  "url" : "https://preview-iam.twilio.com/v1/authorize"
+ },
+ {
+  "chain" : [
+   [
+    "preview_iam",
+    0
+   ],
+   [
+    "versionless",
+    0
+   ],
+   [
+    "organization",
+    1
+   ],
+   [
+    "accounts",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchOrganizationAccount",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview-iam.twilio.com/Organizations/id1/Accounts/id2"
+ },
+ {
+  "chain" : [
+   [
+    "preview_iam",
+    0
+   ],
+   [
+    "versionless",
+    0
+   ],
+   [
+    "organization",
+    1
+   ],
+   [
+    "users",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Accept" : "application/scim+json"
+  },
+  "http" : "GET",
+  "id" : "FetchOrganizationUser",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://preview-iam.twilio.com/Organizations/id1/scim/Users/id2"
+ },
+ {
+  "chain" : [
+   [
+    "preview_iam",
+    0
+   ],
+   [
+    "versionless",
+    0
+   ],
+   [
+    "organization",
+    1
+   ],
+   [
+    "accounts",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListOrganizationAccounts",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "content",
+  "required" : [],
+  "url" : "https://preview-iam.twilio.com/Organizations/id1/Accounts"
+ },
+ {
+  "chain" : [
+   [
+    "preview_iam",
+    0
+   ],
+   [
+    "versionless",
+    0
+   ],
+   [
+    "organization",
+    1
+   ],
+   [
+    "users",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "filter",
+    "v_filter"
+   ]
+  ],
+  "headers" : {
+   "Accept" : "application/scim+json"
+  },
+  "http" : "GET",
+  "id" : "ListOrganizationUsers",
+  "method" : "page",
+  "options" : {
+   "filter" : "v_filter"
+  },
+  "records_key" : "Resources",
+  "required" : [],
+  "url" : "https://preview-iam.twilio.com/Organizations/id1/scim/Users"
+ },
+ {
+  "chain" : [
+   [
+    "preview_iam",
+    0
+   ],
+   [
+    "versionless",
+    0
+   ],
+   [
+    "organization",
+    1
+   ],
+   [
+    "role_assignments",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Identity",
+    "v_identity"
+   ],
+   [
+    "Scope",
+    "v_scope"
+   ],
+   [
+    "ResourceType",
+    "v_resource_type"
+   ],
+   [
+    "ResourceId",
+    "v_resource_id"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListRoleAssignments",
+  "method" : "page",
+  "options" : {
+   "identity" : "v_identity",
+   "resource_id" : "v_resource_id",
+   "resource_type" : "v_resource_type",
+   "scope" : "v_scope"
+  },
+  "records_key" : "content",
+  "required" : [],
+  "url" : "https://preview-iam.twilio.com/Organizations/id1/RoleAssignments"
+ },
+ {
+  "body" : {
+   "Operations" : [
+    "v_Operations"
+   ],
+   "schemas" : [
+    "v_schemas"
+   ]
+  },
+  "chain" : [
+   [
+    "preview_iam",
+    0
+   ],
+   [
+    "versionless",
+    0
+   ],
+   [
+    "organization",
+    1
+   ],
+   [
+    "users",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Accept" : "application/scim+json",
+   "Content-Type" : "application/json",
+   "If-Match" : "v_if_match"
+  },
+  "http" : "PATCH",
+  "id" : "PatchOrganizationUser",
+  "json" : {
+   "Operations" : [
+    "v_Operations"
+   ],
+   "schemas" : [
+    "v_schemas"
+   ]
+  },
+  "method" : "patch",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [],
+  "url" : "https://preview-iam.twilio.com/Organizations/id1/scim/Users/id2"
+ },
+ {
+  "body" : {
+   "active" : 1,
+   "displayName" : "v_displayName",
+   "emails" : [
+    "v_emails"
+   ],
+   "externalId" : "v_externalId",
+   "id" : "v_id",
+   "locale" : "v_locale",
+   "meta" : {
+    "v_meta" : 1
+   },
+   "name" : {
+    "v_name" : 1
+   },
+   "schemas" : [
+    "v_schemas"
+   ],
+   "timezone" : "v_timezone",
+   "userName" : "v_userName"
+  },
+  "chain" : [
+   [
+    "preview_iam",
+    0
+   ],
+   [
+    "versionless",
+    0
+   ],
+   [
+    "organization",
+    1
+   ],
+   [
+    "users",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Accept" : "application/scim+json",
+   "Content-Type" : "application/json",
+   "If-Match" : "v_if_match"
+  },
+  "http" : "PUT",
+  "id" : "UpdateOrganizationUser",
+  "json" : {
+   "active" : true,
+   "displayName" : "v_displayName",
+   "emails" : [
+    "v_emails"
+   ],
+   "externalId" : "v_externalId",
+   "id" : "v_id",
+   "locale" : "v_locale",
+   "meta" : {
+    "v_meta" : 1
+   },
+   "name" : {
+    "v_name" : 1
+   },
+   "schemas" : [
+    "v_schemas"
+   ],
+   "timezone" : "v_timezone",
+   "userName" : "v_userName"
+  },
+  "method" : "update",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [],
+  "url" : "https://preview-iam.twilio.com/Organizations/id1/scim/Users/id2"
+ }
+]

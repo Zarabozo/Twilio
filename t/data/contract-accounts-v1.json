@@ -1,0 +1,657 @@
+[
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "bulk_consents",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Items",
+    "{\"v_items\":1}"
+   ],
+   [
+    "Items",
+    "{\"v_items\":2}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateBulkConsents",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   [
+    {
+     "v_items" : 1
+    },
+    {
+     "v_items" : 2
+    }
+   ]
+  ],
+  "url" : "https://accounts.twilio.com/v1/Consents/Bulk"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "bulk_contacts",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Items",
+    "{\"v_items\":1}"
+   ],
+   [
+    "Items",
+    "{\"v_items\":2}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateBulkContacts",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   [
+    {
+     "v_items" : 1
+    },
+    {
+     "v_items" : 2
+    }
+   ]
+  ],
+  "url" : "https://accounts.twilio.com/v1/Contacts/Bulk"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    0
+   ],
+   [
+    "aws",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Credentials",
+    "v_credentials"
+   ],
+   [
+    "AccountSid",
+    "v_account_sid"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateCredentialAws",
+  "method" : "create",
+  "options" : {
+   "account_sid" : "v_account_sid",
+   "friendly_name" : "v_friendly_name"
+  },
+  "required" : [
+   "v_credentials"
+  ],
+  "url" : "https://accounts.twilio.com/v1/Credentials/AWS"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    0
+   ],
+   [
+    "public_key",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "PublicKey",
+    "v_public_key"
+   ],
+   [
+    "AccountSid",
+    "v_account_sid"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateCredentialPublicKey",
+  "method" : "create",
+  "options" : {
+   "account_sid" : "v_account_sid",
+   "friendly_name" : "v_friendly_name"
+  },
+  "required" : [
+   "v_public_key"
+  ],
+  "url" : "https://accounts.twilio.com/v1/Credentials/PublicKeys"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "safelist",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "PhoneNumber",
+    "v_phone_number"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateSafelist",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   "v_phone_number"
+  ],
+  "url" : "https://accounts.twilio.com/v1/SafeList/Numbers"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "secondary_auth_token",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "SuppressEmailNotification",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateSecondaryAuthToken",
+  "method" : "create",
+  "options" : {
+   "suppress_email_notification" : 1
+  },
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/AuthTokens/Secondary"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    0
+   ],
+   [
+    "aws",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteCredentialAws",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/Credentials/AWS/id1"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    0
+   ],
+   [
+    "public_key",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteCredentialPublicKey",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/Credentials/PublicKeys/id1"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "safelist",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "PhoneNumber",
+    "v_phone_number"
+   ]
+  ],
+  "http" : "DELETE",
+  "id" : "DeleteSafelist",
+  "method" : "delete",
+  "options" : {
+   "phone_number" : "v_phone_number"
+  },
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/SafeList/Numbers"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "secondary_auth_token",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "SuppressEmailNotification",
+    "true"
+   ]
+  ],
+  "http" : "DELETE",
+  "id" : "DeleteSecondaryAuthToken",
+  "method" : "delete",
+  "options" : {
+   "suppress_email_notification" : 1
+  },
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/AuthTokens/Secondary"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    0
+   ],
+   [
+    "aws",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchCredentialAws",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/Credentials/AWS/id1"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    0
+   ],
+   [
+    "public_key",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchCredentialPublicKey",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/Credentials/PublicKeys/id1"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "messaging_geopermissions",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "CountryCode",
+    "v_country_code"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchMessagingGeopermissions",
+  "method" : "fetch",
+  "options" : {
+   "country_code" : "v_country_code"
+  },
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/Messaging/GeoPermissions"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "safelist",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "PhoneNumber",
+    "v_phone_number"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchSafelist",
+  "method" : "fetch",
+  "options" : {
+   "phone_number" : "v_phone_number"
+  },
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/SafeList/Numbers"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    0
+   ],
+   [
+    "aws",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListCredentialAws",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "credentials",
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/Credentials/AWS"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    0
+   ],
+   [
+    "public_key",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListCredentialPublicKey",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "credentials",
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/Credentials/PublicKeys"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "auth_token_promotion",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "SuppressEmailNotification",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateAuthTokenPromotion",
+  "method" : "update",
+  "options" : {
+   "suppress_email_notification" : 1
+  },
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/AuthTokens/Promote"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    0
+   ],
+   [
+    "aws",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateCredentialAws",
+  "method" : "update",
+  "options" : {
+   "friendly_name" : "v_friendly_name"
+  },
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/Credentials/AWS/id1"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    0
+   ],
+   [
+    "public_key",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateCredentialPublicKey",
+  "method" : "update",
+  "options" : {
+   "friendly_name" : "v_friendly_name"
+  },
+  "required" : [],
+  "url" : "https://accounts.twilio.com/v1/Credentials/PublicKeys/id1"
+ },
+ {
+  "chain" : [
+   [
+    "accounts",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "messaging_geopermissions",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Permissions",
+    "{\"v_permissions\":1}"
+   ],
+   [
+    "Permissions",
+    "{\"v_permissions\":2}"
+   ]
+  ],
+  "http" : "PATCH",
+  "id" : "UpdateMessagingGeopermissions",
+  "method" : "update",
+  "options" : {},
+  "required" : [
+   [
+    {
+     "v_permissions" : 1
+    },
+    {
+     "v_permissions" : 2
+    }
+   ]
+  ],
+  "url" : "https://accounts.twilio.com/v1/Messaging/GeoPermissions"
+ }
+]
