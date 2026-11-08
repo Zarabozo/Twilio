@@ -105,6 +105,13 @@ sub base_url {
 sub domain  { return $_[0]{domain} }
 sub version { return $_[0]{version} }
 
+# Twilio's newer APIs follow its v1.0 standard: errors of another shape, and pages that move by
+# token. twilio-php uses ApiV1Version and TokenPaginationPage for exactly these specs.
+sub follows_v1_standard {
+  my ($self) = @_;
+  return (($self->{document}{info}{'x-twilio'} // {})->{apiStandards} // q{}) eq 'v1.0' ? 1 : 0;
+}
+
 # The parent links in x-twilio are written without the version.
 sub paths {
   my ($self) = @_;
