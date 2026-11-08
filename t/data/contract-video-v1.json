@@ -1,0 +1,1606 @@
+[
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "compositions",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "RoomSid",
+    "v_room_sid"
+   ],
+   [
+    "AudioSources",
+    "v_audio_sources_1"
+   ],
+   [
+    "AudioSources",
+    "v_audio_sources_2"
+   ],
+   [
+    "AudioSourcesExcluded",
+    "v_audio_sources_excluded_1"
+   ],
+   [
+    "AudioSourcesExcluded",
+    "v_audio_sources_excluded_2"
+   ],
+   [
+    "Format",
+    "webm"
+   ],
+   [
+    "Resolution",
+    "v_resolution"
+   ],
+   [
+    "StatusCallback",
+    "v_status_callback"
+   ],
+   [
+    "StatusCallbackMethod",
+    "GET"
+   ],
+   [
+    "Trim",
+    "true"
+   ],
+   [
+    "VideoLayout",
+    "{\"v_video_layout\":22}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateComposition",
+  "method" : "create",
+  "options" : {
+   "audio_sources" : [
+    "v_audio_sources_1",
+    "v_audio_sources_2"
+   ],
+   "audio_sources_excluded" : [
+    "v_audio_sources_excluded_1",
+    "v_audio_sources_excluded_2"
+   ],
+   "format" : "webm",
+   "resolution" : "v_resolution",
+   "status_callback" : "v_status_callback",
+   "status_callback_method" : "GET",
+   "trim" : 1,
+   "video_layout" : {
+    "v_video_layout" : 22
+   }
+  },
+  "required" : [
+   "v_room_sid"
+  ],
+  "url" : "https://video.twilio.com/v1/Compositions"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "composition_hooks",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "AudioSources",
+    "v_audio_sources_1"
+   ],
+   [
+    "AudioSources",
+    "v_audio_sources_2"
+   ],
+   [
+    "AudioSourcesExcluded",
+    "v_audio_sources_excluded_1"
+   ],
+   [
+    "AudioSourcesExcluded",
+    "v_audio_sources_excluded_2"
+   ],
+   [
+    "Enabled",
+    "true"
+   ],
+   [
+    "Format",
+    "webm"
+   ],
+   [
+    "Resolution",
+    "v_resolution"
+   ],
+   [
+    "StatusCallback",
+    "v_status_callback"
+   ],
+   [
+    "StatusCallbackMethod",
+    "GET"
+   ],
+   [
+    "Trim",
+    "true"
+   ],
+   [
+    "VideoLayout",
+    "{\"v_video_layout\":22}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateCompositionHook",
+  "method" : "create",
+  "options" : {
+   "audio_sources" : [
+    "v_audio_sources_1",
+    "v_audio_sources_2"
+   ],
+   "audio_sources_excluded" : [
+    "v_audio_sources_excluded_1",
+    "v_audio_sources_excluded_2"
+   ],
+   "enabled" : 1,
+   "format" : "webm",
+   "resolution" : "v_resolution",
+   "status_callback" : "v_status_callback",
+   "status_callback_method" : "GET",
+   "trim" : 1,
+   "video_layout" : {
+    "v_video_layout" : 22
+   }
+  },
+  "required" : [
+   "v_friendly_name"
+  ],
+  "url" : "https://video.twilio.com/v1/CompositionHooks"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "composition_settings",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "AwsCredentialsSid",
+    "v_aws_credentials_sid"
+   ],
+   [
+    "AwsS3Url",
+    "v_aws_s3_url"
+   ],
+   [
+    "AwsStorageEnabled",
+    "true"
+   ],
+   [
+    "EncryptionEnabled",
+    "true"
+   ],
+   [
+    "EncryptionKeySid",
+    "v_encryption_key_sid"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateCompositionSettings",
+  "method" : "create",
+  "options" : {
+   "aws_credentials_sid" : "v_aws_credentials_sid",
+   "aws_s3_url" : "v_aws_s3_url",
+   "aws_storage_enabled" : 1,
+   "encryption_enabled" : 1,
+   "encryption_key_sid" : "v_encryption_key_sid"
+  },
+  "required" : [
+   "v_friendly_name"
+  ],
+  "url" : "https://video.twilio.com/v1/CompositionSettings/Default"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "recording_settings",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "AwsCredentialsSid",
+    "v_aws_credentials_sid"
+   ],
+   [
+    "AwsS3Url",
+    "v_aws_s3_url"
+   ],
+   [
+    "AwsStorageEnabled",
+    "true"
+   ],
+   [
+    "EncryptionEnabled",
+    "true"
+   ],
+   [
+    "EncryptionKeySid",
+    "v_encryption_key_sid"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateRecordingSettings",
+  "method" : "create",
+  "options" : {
+   "aws_credentials_sid" : "v_aws_credentials_sid",
+   "aws_s3_url" : "v_aws_s3_url",
+   "aws_storage_enabled" : 1,
+   "encryption_enabled" : 1,
+   "encryption_key_sid" : "v_encryption_key_sid"
+  },
+  "required" : [
+   "v_friendly_name"
+  ],
+  "url" : "https://video.twilio.com/v1/RecordingSettings/Default"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "AudioOnly",
+    "true"
+   ],
+   [
+    "EmptyRoomTimeout",
+    "1683"
+   ],
+   [
+    "EnableTurn",
+    "true"
+   ],
+   [
+    "LargeRoom",
+    "true"
+   ],
+   [
+    "MaxParticipantDuration",
+    "2283"
+   ],
+   [
+    "MaxParticipants",
+    "1560"
+   ],
+   [
+    "MediaRegion",
+    "v_media_region"
+   ],
+   [
+    "RecordParticipantsOnConnect",
+    "true"
+   ],
+   [
+    "RecordingRules",
+    "{\"v_recording_rules\":21}"
+   ],
+   [
+    "StatusCallback",
+    "v_status_callback"
+   ],
+   [
+    "StatusCallbackMethod",
+    "GET"
+   ],
+   [
+    "TranscribeParticipantsOnConnect",
+    "true"
+   ],
+   [
+    "TranscriptionsConfiguration",
+    "{\"v_transcriptions_configuration\":20}"
+   ],
+   [
+    "Type",
+    "peer-to-peer"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ],
+   [
+    "UnusedRoomTimeout",
+    "1784"
+   ],
+   [
+    "VideoCodecs",
+    "v_video_codecs_1"
+   ],
+   [
+    "VideoCodecs",
+    "v_video_codecs_2"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateRoom",
+  "method" : "create",
+  "options" : {
+   "audio_only" : 1,
+   "empty_room_timeout" : 1683,
+   "enable_turn" : 1,
+   "large_room" : 1,
+   "max_participant_duration" : 2283,
+   "max_participants" : 1560,
+   "media_region" : "v_media_region",
+   "record_participants_on_connect" : 1,
+   "recording_rules" : {
+    "v_recording_rules" : 21
+   },
+   "status_callback" : "v_status_callback",
+   "status_callback_method" : "GET",
+   "transcribe_participants_on_connect" : 1,
+   "transcriptions_configuration" : {
+    "v_transcriptions_configuration" : 20
+   },
+   "type" : "peer-to-peer",
+   "unique_name" : "v_unique_name",
+   "unused_room_timeout" : 1784,
+   "video_codecs" : [
+    "v_video_codecs_1",
+    "v_video_codecs_2"
+   ]
+  },
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "transcriptions",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Configuration",
+    "{\"v_configuration\":25}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateRoomTranscriptions",
+  "method" : "create",
+  "options" : {
+   "configuration" : {
+    "v_configuration" : 25
+   }
+  },
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Transcriptions"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "compositions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteComposition",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Compositions/id1"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "composition_hooks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteCompositionHook",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/CompositionHooks/id1"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "recordings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteRecording",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Recordings/id1"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "recordings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteRoomRecording",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Recordings/id2"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "compositions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchComposition",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Compositions/id1"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "composition_hooks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchCompositionHook",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/CompositionHooks/id1"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "composition_settings",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchCompositionSettings",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/CompositionSettings/Default"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "recordings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchRecording",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Recordings/id1"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "recording_settings",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchRecordingSettings",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/RecordingSettings/Default"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchRoom",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "participants",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchRoomParticipant",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Participants/id2"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "participants",
+    1
+   ],
+   [
+    "published_tracks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchRoomParticipantPublishedTrack",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Participants/id2/PublishedTracks/id3"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "participants",
+    1
+   ],
+   [
+    "subscribe_rules",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchRoomParticipantSubscribeRule",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Participants/id2/SubscribeRules"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "participants",
+    1
+   ],
+   [
+    "subscribed_tracks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchRoomParticipantSubscribedTrack",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Participants/id2/SubscribedTracks/id3"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "recordings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchRoomRecording",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Recordings/id2"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "recording_rules",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchRoomRecordingRule",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/RecordingRules"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "transcriptions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchRoomTranscriptions",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Transcriptions/id2"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "compositions",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "failed"
+   ],
+   [
+    "DateCreatedAfter",
+    "2026-01-09T03:04:05Z"
+   ],
+   [
+    "DateCreatedBefore",
+    "2026-01-22T03:04:05Z"
+   ],
+   [
+    "RoomSid",
+    "v_room_sid"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListComposition",
+  "method" : "page",
+  "options" : {
+   "date_created_after" : {
+    "epoch" : 1767927845
+   },
+   "date_created_before" : {
+    "epoch" : 1769051045
+   },
+   "room_sid" : "v_room_sid",
+   "status" : "failed"
+  },
+  "records_key" : "compositions",
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Compositions"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "composition_hooks",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Enabled",
+    "true"
+   ],
+   [
+    "DateCreatedAfter",
+    "2026-01-09T03:04:05Z"
+   ],
+   [
+    "DateCreatedBefore",
+    "2026-01-22T03:04:05Z"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListCompositionHook",
+  "method" : "page",
+  "options" : {
+   "date_created_after" : {
+    "epoch" : 1767927845
+   },
+   "date_created_before" : {
+    "epoch" : 1769051045
+   },
+   "enabled" : 1,
+   "friendly_name" : "v_friendly_name"
+  },
+  "records_key" : "composition_hooks",
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/CompositionHooks"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "recordings",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "processing"
+   ],
+   [
+    "SourceSid",
+    "v_source_sid"
+   ],
+   [
+    "GroupingSid",
+    "v_grouping_sid_1"
+   ],
+   [
+    "GroupingSid",
+    "v_grouping_sid_2"
+   ],
+   [
+    "DateCreatedAfter",
+    "2026-01-09T03:04:05Z"
+   ],
+   [
+    "DateCreatedBefore",
+    "2026-01-22T03:04:05Z"
+   ],
+   [
+    "MediaType",
+    "video"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListRecording",
+  "method" : "page",
+  "options" : {
+   "date_created_after" : {
+    "epoch" : 1767927845
+   },
+   "date_created_before" : {
+    "epoch" : 1769051045
+   },
+   "grouping_sid" : [
+    "v_grouping_sid_1",
+    "v_grouping_sid_2"
+   ],
+   "media_type" : "video",
+   "source_sid" : "v_source_sid",
+   "status" : "processing"
+  },
+  "records_key" : "recordings",
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Recordings"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "failed"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ],
+   [
+    "DateCreatedAfter",
+    "2026-01-09T03:04:05Z"
+   ],
+   [
+    "DateCreatedBefore",
+    "2026-01-22T03:04:05Z"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListRoom",
+  "method" : "page",
+  "options" : {
+   "date_created_after" : {
+    "epoch" : 1767927845
+   },
+   "date_created_before" : {
+    "epoch" : 1769051045
+   },
+   "status" : "failed",
+   "unique_name" : "v_unique_name"
+  },
+  "records_key" : "rooms",
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "participants",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "reconnecting"
+   ],
+   [
+    "Identity",
+    "v_identity"
+   ],
+   [
+    "DateCreatedAfter",
+    "2026-01-09T03:04:05Z"
+   ],
+   [
+    "DateCreatedBefore",
+    "2026-01-22T03:04:05Z"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListRoomParticipant",
+  "method" : "page",
+  "options" : {
+   "date_created_after" : {
+    "epoch" : 1767927845
+   },
+   "date_created_before" : {
+    "epoch" : 1769051045
+   },
+   "identity" : "v_identity",
+   "status" : "reconnecting"
+  },
+  "records_key" : "participants",
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Participants"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "participants",
+    1
+   ],
+   [
+    "published_tracks",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListRoomParticipantPublishedTrack",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "published_tracks",
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Participants/id2/PublishedTracks"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "participants",
+    1
+   ],
+   [
+    "subscribed_tracks",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListRoomParticipantSubscribedTrack",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "subscribed_tracks",
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Participants/id2/SubscribedTracks"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "recordings",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "processing"
+   ],
+   [
+    "SourceSid",
+    "v_source_sid"
+   ],
+   [
+    "DateCreatedAfter",
+    "2026-01-09T03:04:05Z"
+   ],
+   [
+    "DateCreatedBefore",
+    "2026-01-22T03:04:05Z"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListRoomRecording",
+  "method" : "page",
+  "options" : {
+   "date_created_after" : {
+    "epoch" : 1767927845
+   },
+   "date_created_before" : {
+    "epoch" : 1769051045
+   },
+   "source_sid" : "v_source_sid",
+   "status" : "processing"
+  },
+  "records_key" : "recordings",
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Recordings"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "transcriptions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListRoomTranscriptions",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "transcriptions",
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Transcriptions"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "composition_hooks",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "AudioSources",
+    "v_audio_sources_1"
+   ],
+   [
+    "AudioSources",
+    "v_audio_sources_2"
+   ],
+   [
+    "AudioSourcesExcluded",
+    "v_audio_sources_excluded_1"
+   ],
+   [
+    "AudioSourcesExcluded",
+    "v_audio_sources_excluded_2"
+   ],
+   [
+    "Enabled",
+    "true"
+   ],
+   [
+    "Format",
+    "webm"
+   ],
+   [
+    "Resolution",
+    "v_resolution"
+   ],
+   [
+    "StatusCallback",
+    "v_status_callback"
+   ],
+   [
+    "StatusCallbackMethod",
+    "GET"
+   ],
+   [
+    "Trim",
+    "true"
+   ],
+   [
+    "VideoLayout",
+    "{\"v_video_layout\":22}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateCompositionHook",
+  "method" : "update",
+  "options" : {
+   "audio_sources" : [
+    "v_audio_sources_1",
+    "v_audio_sources_2"
+   ],
+   "audio_sources_excluded" : [
+    "v_audio_sources_excluded_1",
+    "v_audio_sources_excluded_2"
+   ],
+   "enabled" : 1,
+   "format" : "webm",
+   "resolution" : "v_resolution",
+   "status_callback" : "v_status_callback",
+   "status_callback_method" : "GET",
+   "trim" : 1,
+   "video_layout" : {
+    "v_video_layout" : 22
+   }
+  },
+  "required" : [
+   "v_friendly_name"
+  ],
+  "url" : "https://video.twilio.com/v1/CompositionHooks/id1"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "failed"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateRoom",
+  "method" : "update",
+  "options" : {},
+  "required" : [
+   "failed"
+  ],
+  "url" : "https://video.twilio.com/v1/Rooms/id1"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "participants",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "reconnecting"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateRoomParticipant",
+  "method" : "update",
+  "options" : {
+   "status" : "reconnecting"
+  },
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Participants/id2"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "participants",
+    1
+   ],
+   [
+    "anonymize",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "POST",
+  "id" : "UpdateRoomParticipantAnonymize",
+  "method" : "update",
+  "options" : {},
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Participants/id2/Anonymize"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "participants",
+    1
+   ],
+   [
+    "subscribe_rules",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Rules",
+    "{\"v_rules\":20}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateRoomParticipantSubscribeRule",
+  "method" : "update",
+  "options" : {
+   "rules" : {
+    "v_rules" : 20
+   }
+  },
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Participants/id2/SubscribeRules"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "recording_rules",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Rules",
+    "{\"v_rules\":20}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateRoomRecordingRule",
+  "method" : "update",
+  "options" : {
+   "rules" : {
+    "v_rules" : 20
+   }
+  },
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/RecordingRules"
+ },
+ {
+  "chain" : [
+   [
+    "video",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rooms",
+    1
+   ],
+   [
+    "transcriptions",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Configuration",
+    "{\"v_configuration\":25}"
+   ],
+   [
+    "Status",
+    "failed"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateRoomTranscriptions",
+  "method" : "update",
+  "options" : {
+   "configuration" : {
+    "v_configuration" : 25
+   },
+   "status" : "failed"
+  },
+  "required" : [],
+  "url" : "https://video.twilio.com/v1/Rooms/id1/Transcriptions/id2"
+ }
+]

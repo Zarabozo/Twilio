@@ -119,11 +119,16 @@ sub _synopsis {
       if $side->{create};
     push @lines, "  my $name = $list->fetch;\n"                           if $side->{fetch};
     push @lines, "  for my $name ($list->read({}, 20)) {\n    ...\n  }\n" if $side->{read};
+    push @lines, "  my $name = $list->update(" . _call_arguments($side->{update}) . ");\n"
+      if $side->{update};
+    push @lines, "  $list->delete;\n" if $side->{delete};
   }
   if (my $side = $model->{context}) {
+    push @lines, "  my $name = $context->create(" . _call_arguments($side->{create}) . ");\n"
+      if $side->{create};
     push @lines, "  my $name = $context->fetch;\n" if $side->{fetch};
-    push @lines, "  $context->update(" . _call_arguments($side->{update}) . ");\n"
-      if $side->{update};
+    push @lines, "  $context->$_(" . _call_arguments($side->{$_}) . ");\n"
+      for grep { $side->{$_} } qw(patch update);
     push @lines, "  $context->delete;\n" if $side->{delete};
   }
   return if !@lines;
@@ -151,6 +156,8 @@ sub _list {
   push @pod, _body_method($model, 'create', $call, $side->{create}) if $side->{create};
   push @pod, _fetch_method($model, $call, $side->{fetch})           if $side->{fetch};
   push @pod, _reading($model, $call)                                if $side->{read};
+  push @pod, _body_method($model, 'update', $call, $side->{update}) if $side->{update};
+  push @pod, _delete_method($call, $side->{delete})                 if $side->{delete};
   if (my $own = ($model->{context} // {})->{own}) {
     push @pod, "=head2 get_context\n", "  my \$context = $call->get_context(\$$own);\n",
       "Returns a C<$model->{name}Context>, and makes no request.\n";
@@ -305,16 +312,21 @@ sub _context {
       "Returned by C<< $call >>. It makes no request until one of these methods is called.")
   );
 
+  push @pod, _body_method($model, 'create', $call, $side->{create}) if $side->{create};
   push @pod, _fetch_method($model, $call, $side->{fetch})           if $side->{fetch};
-  push @pod, _body_method($model, 'update', $call, $side->{update}) if $side->{update};
-  if (my $delete = $side->{delete}) {
-    my @options = @{ $delete->{options} // [] };
-    my $list    = @options ? '(\%options)' : q{};
-    push @pod, join "\n", "=head2 delete\n", "  $call->delete$list;\n",
-      _method_intro($delete, 'Returns true.'), _arguments('options', \@options);
-  }
+  push @pod, _body_method($model, $_, $call, $side->{$_}) for grep { $side->{$_} } qw(patch update);
+  push @pod, _delete_method($call, $side->{delete}) if $side->{delete};
   push @pod, map { _child($_) } @{ $side->{children} // [] };
   return join "\n", @pod;
+}
+
+sub _delete_method {
+  my ($call, $delete) = @_;
+
+  my @options = @{ $delete->{options} // [] };
+  my $list    = @options ? '(\%options)' : q{};
+  return join "\n", "=head2 delete\n", "  $call->delete$list;\n",
+    _method_intro($delete, 'Returns true.'), _arguments('options', \@options);
 }
 
 sub _instance {
@@ -323,7 +335,8 @@ sub _instance {
 
   my @pod = ("=head1 $model->{name}Instance\n", "See also L<Twilio::InstanceResource>.\n");
   if ($model->{context}) {
-    my @methods = map { "C<$_>" } grep { $model->{context}{$_} } qw(fetch update delete);
+    my @methods =
+      map { "C<$_>" } grep { $model->{context}{$_} } qw(create fetch patch update delete);
     push @methods, map { "C<$_->{mount}>" } @{ $model->{context}{children} // [] };
     push @pod,
       _paragraph('It has ' . _sentence(@methods) . ', which work as they do on the context.')

@@ -10,10 +10,11 @@ program-extensions = .pl .t
 [-RegularExpressions::RequireExtendedFormatting]
 
 # The object itself should not count. Generated methods take one argument for each part of a
-# path and each required value, as in Twilio's libraries, and Address needs six of those.
+# path and each required value, as in Twilio's libraries. Flex's Assessments takes ten required
+# values and its options, as in twilio-php.
 [Subroutines::ProhibitManyArgs]
 skip_object = 1
-max_arguments = 8
+max_arguments = 11
 
 # One-line accessors are clearer without unpacking @_.
 [Subroutines::RequireArgUnpacking]
