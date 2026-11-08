@@ -73,6 +73,7 @@ sub top_level {
     version_class  => Twilio::Generator::Resource::root_class($tree),
     version_method => $tree->{version},
     version_path   => $spec->version_path,
+    v1_standard    => $spec->follows_v1_standard,
   );
   return \%top if !$account || $tree->{domain} ne 'api';
 
