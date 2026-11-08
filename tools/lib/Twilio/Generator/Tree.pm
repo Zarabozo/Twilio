@@ -32,7 +32,7 @@ sub build {
   _add_missing_lists(\%nodes);
   _hang_on_singletons(\%nodes);
 
-  my $mounts = _dependent_mounts($paths);
+  my $mounts = _dependent_mounts($spec, $paths);
   my @ordered =
     sort { @{ $a->{segments} } <=> @{ $b->{segments} } || $a->{key} cmp $b->{key} } values %nodes;
   _name_node(\%nodes, $_, $mounts) for @ordered;
@@ -204,7 +204,11 @@ sub _section {
 
   my $section = { key => $key, segments => [split m{/}, $key], section => 1 };
   my $id      = defined $parent_path ? _instance_key($parent_path) : undef;
-  $section->{instance} = { path => $parent_path, operations => [], key => $id } if defined $id;
+  return $section if !defined $id;
+
+  # Its method is named after its class, as twilio-php and twilio-python have organization.
+  $section->{instance}       = { path => $parent_path, operations => [], key => $id };
+  $section->{mount_by_class} = 1;
   return $section;
 }
 
@@ -326,13 +330,13 @@ sub _node_key {
 # the URL, ids included, because two resources can share their segments: Bulk Exports names the
 # jobs of an export, /Exports/{ResourceType}/Jobs, and /Exports/Jobs/{JobSid} is another one.
 sub _dependent_mounts {
-  my ($paths) = @_;
+  my ($spec, $paths) = @_;
 
   my %mounts;
   for my $path (sort keys %{$paths}) {
     my $dependents = $paths->{$path}{'x-twilio'}{dependentProperties} // {};
     for my $mount (sort keys %{$dependents}) {
-      my $url = Twilio::Generator::Spec::strip_version($dependents->{$mount}{resource_url} // q{});
+      my $url = $spec->strip($dependents->{$mount}{resource_url} // q{});
       $mounts{ _shape($url) }{ singular(camelize($mount)) } = $mount;
     }
   }
@@ -390,6 +394,7 @@ sub _mount {
   my @all = sort values %{ $names // {} };
   return $names->{$class}             if defined $names->{$class};
   return $node->{mount_name}          if defined $node->{mount_name};
+  return snake($class)                if $node->{mount_by_class};
   return snake($node->{named_by_id})  if defined $node->{named_by_id} && !@all;
   return snake($node->{segments}[-1]) if !@all;
   return $all[0]                      if @all == 1;

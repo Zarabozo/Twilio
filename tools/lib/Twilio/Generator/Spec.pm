@@ -51,9 +51,46 @@ sub load {
   return $class->new($name, $version, JSON::PP->new->utf8->decode($content));
 }
 
+# A spec with no version in its name holds several, and twilio-oai-generator makes each first
+# path segment one: preview's /HostedNumbers/... is Preview::HostedNumbers. Each is a spec of
+# its own from here on.
+sub versions {
+  my ($self) = @_;
+  return ($self) if defined $self->{version};
+
+  my %paths_of;
+  for my $path (sort keys %{ $self->{document}{paths} // {} }) {
+    my ($first) = $path =~ m{\A/([^/]+)} or croak "No version in path $path";
+    $paths_of{$first}{$path} = $self->{document}{paths}{$path};
+  }
+  return map { $self->_version_spec($_, $paths_of{$_}) } sort keys %paths_of;
+}
+
+# A version named apart from its segment keeps the segment in its paths and has no URL of its
+# own, as twilio-php's PreviewIam::Versionless keeps /Organizations.
+sub _version_spec {
+  my ($self, $segment, $paths) = @_;
+
+  my $named = Twilio::Generator::Scope::version_name($self->{domain}, $segment);
+  my $class = ref $self;
+  my $spec  = $class->new(
+    $self->{domain},
+    $named // _version_id($segment),
+    { %{ $self->{document} }, paths => $paths }
+  );
+  $spec->{version_path} = defined $named ? q{} : $segment;
+  return $spec;
+}
+
+sub _version_id {
+  my ($segment) = @_;
+  return lc $segment =~ s/([a-z0-9])([A-Z])/$1_$2/gr;
+}
+
 # The first path segment, which is the version in Twilio's URLs.
 sub version_path {
   my ($self) = @_;
+  return $self->{version_path} if exists $self->{version_path};
 
   my ($first)   = sort keys %{ $self->{document}{paths} // {} };
   my ($segment) = ($first // q{}) =~ $VERSION_PREFIX ? $first =~ m{\A/([^/]+)} : ();
@@ -72,7 +109,16 @@ sub version { return $_[0]{version} }
 sub paths {
   my ($self) = @_;
   my $paths = $self->{document}{paths} // {};
-  return { map { strip_version($_) => $paths->{$_} } keys %{$paths} };
+  return { map { $self->strip($_) => $paths->{$_} } keys %{$paths} };
+}
+
+# A path without this spec's version, which is not always one like v1: preview has HostedNumbers.
+sub strip {
+  my ($self, $path) = @_;
+  return strip_version($path) if !exists $self->{version_path};
+
+  my $segment = $self->{version_path};
+  return length $segment ? $path =~ s{\A/\Q$segment\E(?=/)}{}r : $path;
 }
 
 # An enum lives in components, and what matters here is the type it has there.
