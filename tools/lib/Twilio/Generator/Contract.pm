@@ -9,13 +9,15 @@ use Time::Local qw(timegm);
 
 use Twilio::Generator::Resource;
 use Twilio::Generator::Spec;
-use Twilio::Generator::Types qw(option_name);
+use Twilio::Generator::Types qw(header_option_name option_name);
 
 our $VERSION = '2.000000';
 
 my %IS_PAGE_PARAMETER = map { $_ => 1 } qw(Page PageSize PageToken);
 my %METHOD_FOR_VERB   = (list => 'page');
 my $FORM_CONTENT      = 'application/x-www-form-urlencoded';
+my $JSON_CONTENT      = 'application/json';
+my $SCIM_CONTENT      = 'application/scim+json';
 
 my $DAYS_IN_A_SHORT_MONTH = 28;
 my $HALF                  = 0.5;
@@ -129,10 +131,24 @@ sub _entry {
     next if grep { $_ eq $name } @{ $body->{required} };
     _add_option(\%entry, $spec, $name, $body->{properties}{$name});
   }
+
+  # A required query value comes after the required body values, except in a list, which keeps
+  # it with the options for page.
+  my @required_query;
   for my $parameter (@{ $operation->{spec}{parameters} // [] }) {
-    next if $parameter->{in} ne 'query' || $IS_PAGE_PARAMETER{ $parameter->{name} };
-    _add_option(\%entry, $spec, $parameter->{name}, $parameter->{schema});
+    my $place = $parameter->{in};
+    next if $place eq 'path' || ($place eq 'query' && $IS_PAGE_PARAMETER{ $parameter->{name} });
+    if    ($place eq 'header')               { _add_header(\%entry, $spec, $parameter) }
+    elsif ($parameter->{required} && !$list) { push @required_query, $parameter }
+    else { _add_option(\%entry, $spec, $parameter->{name}, $parameter->{schema}) }
   }
+  for my $parameter (sort { $a->{name} cmp $b->{name} } @required_query) {
+    my ($input, @pairs) = _sample($spec, $parameter->{name}, $parameter->{schema});
+    push @{ $entry{required} }, $input;
+    push @{ $entry{expected} }, @pairs;
+  }
+  _add_json_body(\%entry, $spec, $operation);
+  _add_accept(\%entry, $operation);
 
   if ($list) {
     my $model = Twilio::Generator::Resource::build($spec, $tree, $resource);
@@ -147,6 +163,69 @@ sub _body {
   my $content = $operation->{spec}{requestBody}{content} // {};
   my $schema  = $content->{$FORM_CONTENT} ? $spec->resolve($content->{$FORM_CONTENT}{schema}) : {};
   return { properties => $schema->{properties} // {}, required => $schema->{required} // [] };
+}
+
+sub _add_header {
+  my ($entry, $spec, $parameter) = @_;
+
+  my ($input, $pair) = _sample($spec, $parameter->{name}, $parameter->{schema});
+  $entry->{options}{ header_option_name($parameter->{name}) } = $input;
+  $entry->{headers}{ $pair->[0] } = $pair->[1];
+  return;
+}
+
+sub _add_accept {
+  my ($entry, $operation) = @_;
+
+  my %types;
+  for my $response (values %{ $operation->{spec}{responses} // {} }) {
+    $types{$_}++ for keys %{ $response->{content} // {} };
+  }
+  my @types = keys %types;
+  $entry->{headers}{Accept} = $SCIM_CONTENT if @types == 1 && $types[0] eq $SCIM_CONTENT;
+  return;
+}
+
+# A JSON body goes in as one hash reference, and must arrive as JSON with the same names.
+sub _add_json_body {
+  my ($entry, $spec, $operation) = @_;
+
+  my $content = $operation->{spec}{requestBody}{content} // {};
+  my $json    = $content->{$JSON_CONTENT} or return;
+
+  my $properties = $spec->resolve($json->{schema} // {})->{properties} // {};
+  my (%input, %expected);
+  for my $name (sort keys %{$properties}) {
+    ($input{$name}, $expected{$name}) = _json_sample($spec, $name, $properties->{$name});
+  }
+  $entry->{body}                    = \%input;
+  $entry->{json}                    = \%expected;
+  $entry->{headers}{'Content-Type'} = $JSON_CONTENT;
+  return;
+}
+
+sub _json_sample {
+  my ($spec, $name, $schema) = @_;
+
+  my $resolved = $spec->resolve($schema // {});
+  my $type     = $resolved->{type}   // q{};
+  my $format   = $resolved->{format} // $type;
+  my $number   = unpack '%32C*', $name;
+  my $day      = $number % $DAYS_IN_A_SHORT_MONTH + 1;
+  my $date     = sprintf '2026-01-%02d', $day;
+  my $text     = "v_$name";
+
+  return (1,               JSON::PP::true)      if $type eq 'boolean';
+  return (_moment($day),   $date)               if $format eq 'date';
+  return (_moment($day),   "${date}T03:04:05Z") if $format eq 'date-time';
+  return ($number,         $number)             if $type eq 'integer';
+  return ($number + $HALF, $number + $HALF)     if $type eq 'number';
+  return ([$text],         [$text])             if $type eq 'array';
+  return ({ $text => 1 },  { $text => 1 })      if $type eq 'object' || $type eq q{};
+
+  my @choices = @{ $resolved->{enum} // [] };
+  my $value   = @choices ? $choices[$number % @choices] : $text;
+  return ($value, $value);
 }
 
 sub _add_option {
@@ -172,7 +251,7 @@ sub _sample {
   my ($spec, $wire_name, $schema) = @_;
 
   my $resolved = $spec->resolve($schema // {});
-  my $text     = 'v_' . option_name($wire_name);
+  my $text = 'v_' . ($wire_name =~ /-/ ? header_option_name($wire_name) : option_name($wire_name));
 
   # Its own name is never sent: each key in the map becomes a parameter.
   if (my ($prefix) = ($resolved->{format} // q{}) =~ /\Aprefixed-collapsible-map-(\w+)\z/) {

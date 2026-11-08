@@ -8,13 +8,12 @@ use lib 'tools/lib';
 
 use Twilio::Generator::Scope;
 use Twilio::Generator::Spec;
-use Twilio::Generator::Types qw(field_reader option_name request_writer);
+use Twilio::Generator::Types
+  qw(field_reader header_option_name json_rule option_name request_writer);
 
 my $SPECS = 'spec';
 my $FORM  = 'application/x-www-form-urlencoded';
-
-# Headers and JSON bodies follow other rules, and TWIL-36 adds them.
-my %IS_LEFT_FOR_LATER = (header => 1);
+my $JSON  = 'application/json';
 
 my @files =
   map { "$SPECS/" . Twilio::Generator::Scope::spec_file($_) } Twilio::Generator::Scope::in_scope();
@@ -45,10 +44,18 @@ sub check_operation {
   my @failures;
   for my $listed (@{ $operation->{parameters} // [] }) {
 
-    # Ids in the URL have rules too, like the date in Voice's /Archives/{Date}.
+    # Ids in the URL have rules too, like the date in Voice's /Archives/{Date}, and so do headers.
     my $parameter = $spec->resolve($listed);
-    next if $IS_LEFT_FOR_LATER{ $parameter->{in} };
-    push @failures, check_request($spec, $operation, $parameter->{name}, $parameter->{schema});
+    push @failures,
+      check_request($spec, $operation, $parameter->{name}, $parameter->{schema}, $parameter->{in});
+  }
+
+  # Only the top-level fields of a JSON body have rules.
+  if (my $json = ($operation->{requestBody}{content} // {})->{$JSON}) {
+    my $properties = $spec->resolve($json->{schema} // {})->{properties} // {};
+    push @failures,
+      check(sub { json_rule($spec, "$operation->{operationId} $_", $properties->{$_}) })
+      for keys %{$properties};
   }
 
   my $form       = ($operation->{requestBody}{content} // {})->{$FORM} or return @failures;
@@ -58,10 +65,10 @@ sub check_operation {
 }
 
 sub check_request {
-  my ($spec, $operation, $name, $schema) = @_;
+  my ($spec, $operation, $name, $schema, $place) = @_;
   return check(
     sub {
-      option_name($name);
+      ($place // q{}) eq 'header' ? header_option_name($name) : option_name($name);
       request_writer($spec, "$operation->{operationId} $name", $schema);
     }
   );

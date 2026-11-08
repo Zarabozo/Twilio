@@ -236,6 +236,109 @@ subtest 'the other value types' => sub {
 
 };
 
+subtest 'headers, query options and JSON bodies' => sub {
+  my $document = document();
+  my $paths    = $document->{paths};
+  my $list     = $paths->{'/v1/Accounts/{AccountSid}/Things.json'};
+  my $item     = $paths->{'/v1/Accounts/{AccountSid}/Things/{Sid}.json'};
+  my $header   = sub { { in => 'header', name => $_[0], schema => { type => 'string' } } };
+
+  push @{ $list->{post}{parameters} }, $header->('X-Twilio-Webhook-Enabled'),
+    { in => 'query', name => 'Extra', schema => { type => 'string' } },
+    { in => 'query', name => 'Region', required => 1, schema => { type => 'string' } };
+  push @{ $list->{get}{parameters} }, $header->('Ui-Version'),
+    { in => 'query', name => 'Channel', required => 1, schema => { type => 'string' } };
+  push @{ $item->{delete}{parameters} }, $header->('If-Match');
+  $item->{post}{requestBody} = {
+    required => 1,
+    content  => {
+      'application/json' => {
+        schema => {
+          required   => ['friendlyName'],
+          properties => {
+            friendlyName => { type => 'string', description => 'Its name.' },
+            enabled      => { type => 'boolean' },
+            sendAt       => { type => 'string', format => 'date-time' },
+            settings     => { type => 'object' },
+          },
+        },
+      },
+    },
+  };
+
+  local $NAMESPACE = 'Twilio::Rest::Demo::V1::Sent::';
+  my $code = emit($document) =~ s/V1::Account::/V1::Sent::/gr;
+  load_generated($code);
+
+  my ($things, $http) = list();
+  $http->mock(201, { sid => 'TH1' });
+  $things->create('one', 3, 'eu', { x_twilio_webhook_enabled => 'true', extra => 'e' });
+  my $request = ($http->requests)[-1];
+  is($request->{headers}{'X-Twilio-Webhook-Enabled'}, 'true', 'a header, from an option');
+  like($request->{url}, qr/[?]Extra=e&Region=eu\z/,
+    'query values on a create, required ones after the body\'s');
+  like($request->{content}, qr/Name=one/, 'and the body stays');
+
+  $http->mock(201, { sid => 'TH2' });
+  $things->create('two', 4, 'us');
+  ok(!exists(($http->requests)[-1]{headers}{'X-Twilio-Webhook-Enabled'}), 'no option, no header');
+
+  $http->mock(200, { things => [], meta => {} });
+  $things->read('sms', { ui_version => '2' }, 5);
+  $request = ($http->requests)[-1];
+  like($request->{url}, qr/Channel=sms/, 'a required filter comes first');
+  is($request->{headers}{'Ui-Version'}, '2', 'and a header on a list');
+
+  $http->mock(200, { things => [], meta => {} });
+  $things->page({ channel => 'voice' });
+  like(($http->requests)[-1]{url}, qr/Channel=voice/, 'page takes it with the options');
+
+  my $thing = $things->get_context('TH1');
+  $http->mock(200, { sid => 'TH1' });
+  my $moment = bless {}, 'Local::Date';
+  $thing->update(
+    { friendlyName => 'Mine', enabled => 1, sendAt => $moment, settings => { at => $moment } });
+  $request = ($http->requests)[-1];
+  is($request->{headers}{'Content-Type'}, 'application/json', 'a JSON body says so');
+  like($request->{content}, qr/"enabled":true/, 'a boolean is a JSON boolean, not 1');
+  is_deeply(
+    Twilio::Json::decode($request->{content}),
+    {
+      friendlyName => 'Mine',
+      enabled      => Twilio::Json::decode('true'),
+      sendAt       => '1970-01-01T00:00:07Z',
+      settings     => { at => '1970-01-01T00:00:07Z' },
+    },
+    'with Twilio\'s names, a JSON boolean, and dates written as text'
+  );
+
+  $http->mock(204, q{});
+  $thing->delete({ if_match => 'abc' });
+  is(($http->requests)[-1]{headers}{'If-Match'}, 'abc', 'a header on a delete');
+
+  like(
+    $code,
+    qr/=item C<friendlyName>\n\nRequired[.] Its name[.]/,
+    'the fields of the body are documented'
+  );
+  like($code, qr/->update\(\\%body\)/, 'and how to pass it');
+};
+
+subtest 'an answer in SCIM is asked for by name' => sub {
+  my $document = document();
+  my $fetch    = $document->{paths}{'/v1/Accounts/{AccountSid}/Things/{Sid}.json'}{get};
+  $fetch->{responses}{200}{content} =
+    { 'application/scim+json' => delete $fetch->{responses}{200}{content}{'application/json'} };
+
+  local $NAMESPACE = 'Twilio::Rest::Demo::V1::Scim::';
+  load_generated(emit($document) =~ s/V1::Account::/V1::Scim::/gr);
+
+  my ($things, $http) = list();
+  $http->mock(200, { sid => 'TH1' });
+  $things->get_context('TH1')->fetch;
+  is(($http->requests)[-1]{headers}{Accept}, 'application/scim+json', 'Accept');
+};
+
 subtest 'parents and their children' => sub {
   my $document = family();
   my %models   = map { ($_->{module} =~ s/.*V1:://r) => $_ } all_models($document);
@@ -566,9 +669,12 @@ subtest 'how a resource is reached' => sub {
 };
 
 subtest 'option names' => sub {
-  is(option_name('StatusCallback'), 'status_callback',  'plain');
-  is(option_name('DateSent<'),      'date_sent_before', 'before');
-  is(option_name('DateSent>'),      'date_sent_after',  'after');
+  is(Twilio::Generator::Types::header_option_name('X-Twilio-Webhook-Enabled'),
+    'x_twilio_webhook_enabled', 'a header, as Python names it');
+  is(Twilio::Generator::Types::header_option_name('If-Match'), 'if_match',         'another');
+  is(option_name('StatusCallback'),                            'status_callback',  'plain');
+  is(option_name('DateSent<'),                                 'date_sent_before', 'before');
+  is(option_name('DateSent>'),                                 'date_sent_after',  'after');
 
   is(option_name('Parameter1.Name'), 'parameter1_name', 'dot');
   is(option_name('EId'),             'e_id',            'two capitals at the start, as in Python');
@@ -623,33 +729,31 @@ subtest 'anything with no rule stops generation' => sub {
       },
     ],
     [
-      'header parameter',
-      qr/CreateThing: no rule for header parameter X-Thing/,
+      'required header',
+      qr/CreateThing X-Thing: no rule for a required header parameter/,
       sub {
         push @{ $_[0]{paths}{$list_path}{post}{parameters} },
-          { in => 'header', name => 'X-Thing', schema => {} };
+          { in => 'header', name => 'X-Thing', required => 1, schema => { type => 'string' } };
       },
     ],
     [
-      'query parameter on create',
-      qr/CreateThing: no rule for query parameter Extra/,
+      'cookie parameter',
+      qr/CreateThing: no rule for cookie parameter Crumb/,
       sub {
         push @{ $_[0]{paths}{$list_path}{post}{parameters} },
-          { in => 'query', name => 'Extra', schema => {} };
+          { in => 'cookie', name => 'Crumb', schema => { type => 'string' } };
       },
     ],
     [
-      'header parameter on a list',
-      qr/ListThing: no rule for header parameter X-Thing/,
+      'unknown format in a JSON body',
+      qr/CreateThing Code: no rule for format 'secret'/,
       sub {
-        push @{ $_[0]{paths}{$list_path}{get}{parameters} },
-          { in => 'header', name => 'X-Thing', schema => {} };
+        $_[0]{paths}{$list_path}{post}{requestBody}{content} = {
+          'application/json' => {
+            schema => { properties => { Code => { type => 'string', format => 'secret' } } }
+          }
+        };
       },
-    ],
-    [
-      'JSON body',
-      qr/CreateThing: no rule for a body of application\/json/,
-      sub { $_[0]{paths}{$list_path}{post}{requestBody}{content} = { 'application/json' => {} } },
     ],
     [
       'two kinds of body',
@@ -657,11 +761,11 @@ subtest 'anything with no rule stops generation' => sub {
       sub { $_[0]{paths}{$list_path}{post}{requestBody}{content}{'text/plain'} = {} },
     ],
     [
-      'query parameter on a delete',
-      qr/DeleteThing: no rule for query parameter Extra/,
+      'required query parameter on a delete',
+      qr/DeleteThing Extra: no rule for a required query parameter/,
       sub {
         push @{ $_[0]{paths}{$item_path}{delete}{parameters} },
-          { in => 'query', name => 'Extra', schema => {} };
+          { in => 'query', name => 'Extra', required => 1, schema => {} };
       },
     ],
     [
@@ -698,14 +802,6 @@ subtest 'anything with no rule stops generation' => sub {
       sub {
         $_[0]{paths}{$list_path}{get}{responses}{200}{content}{'application/json'}{schema}
           {properties}{others} = array_of_things();
-      },
-    ],
-    [
-      'required query parameter',
-      qr/ListThing Extra: no rule for a required query parameter/,
-      sub {
-        push @{ $_[0]{paths}{$list_path}{get}{parameters} },
-          { in => 'query', name => 'Extra', required => 1, schema => {} };
       },
     ],
     [

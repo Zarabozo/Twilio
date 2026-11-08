@@ -6,11 +6,14 @@ use warnings;
 use Carp qw(croak);
 
 use Twilio::Generator::Names qw(camelize snake);
-use Twilio::Generator::Types qw(field_reader map_prefix option_name request_writer);
+use Twilio::Generator::Types
+  qw(field_reader header_option_name json_rule map_prefix option_name request_writer);
 
 our $VERSION = '2.000000';
 
 my $FORM_CONTENT      = 'application/x-www-form-urlencoded';
+my $JSON_CONTENT      = 'application/json';
+my $SCIM_CONTENT      = 'application/scim+json';
 my %IS_PAGE_PARAMETER = map { $_ => 1 } qw(Page PageSize PageToken);
 
 # These methods exist on every object of their kind, so a name from the spec would replace them.
@@ -178,7 +181,7 @@ sub _context_side {
   for my $operation (@{ $resource->{instance}{operations} }) {
     my $verb = $operation->{verb};
     if    ($verb eq 'update') { $side->{update} = _body_operation($spec, $operation) }
-    elsif ($verb eq 'delete') { $side->{delete} = _delete_operation($operation) }
+    elsif ($verb eq 'delete') { $side->{delete} = _delete_operation($spec, $operation) }
     elsif ($verb eq 'fetch')  { $side->{fetch} = _fetch_operation($spec, $operation) }
     else                      { croak "$operation->{id}: no rule for $verb on an instance" }
   }
@@ -217,59 +220,101 @@ sub _path_writers {
 }
 
 sub _delete_operation {
-  my ($operation) = @_;
+  my ($spec, $operation) = @_;
 
-  _refuse_parameters($operation, sub { 0 });
   croak "$operation->{id}: no rule for a body here" if $operation->{spec}{requestBody};
-  return { method => $operation->{method}, description => $operation->{spec}{description} };
+  my $parameters = _parameters($spec, $operation, 'no required');
+  return {
+    method      => $operation->{method},
+    description => $operation->{spec}{description},
+    options     => $parameters->{optional},
+    _accept($operation),
+  };
 }
 
 sub _fetch_operation {
   my ($spec, $operation) = @_;
 
-  _refuse_parameters($operation, sub { $_[0]{in} eq 'query' });
   croak "$operation->{id}: no rule for a body here" if $operation->{spec}{requestBody};
+  my $parameters = _parameters($spec, $operation, 'no required');
   return {
     method      => $operation->{method},
     description => $operation->{spec}{description},
-    options     => _query_arguments($spec, $operation),
+    options     => $parameters->{optional},
+    _accept($operation),
   };
 }
 
+# A required query parameter comes before the options, as in twilio-php's read($channel, ...).
 sub _read_operation {
   my ($spec, $operation) = @_;
 
-  _refuse_parameters($operation, sub { $_[0]{in} eq 'query' });
+  my $parameters = _parameters($spec, $operation);
   return {
     method      => $operation->{method},
     description => $operation->{spec}{description},
-    filters     => _query_arguments($spec, $operation),
+    required    => $parameters->{required},
+    filters     => $parameters->{optional},
+    _accept($operation),
   };
 }
 
-sub _query_arguments {
-  my ($spec, $operation) = @_;
+# What an operation takes besides its body and its path: query parameters, and headers, which
+# twilio-php takes as options too, like X-Twilio-Webhook-Enabled.
+sub _parameters {
+  my ($spec, $operation, $no_required) = @_;
 
-  my @parameters = sort { $a->{name} cmp $b->{name} }
-    grep { !$IS_PAGE_PARAMETER{ $_->{name} } && $_->{in} eq 'query' }
-    @{ $operation->{spec}{parameters} // [] };
+  my (@required, @optional);
+  for my $parameter (sort { $a->{name} cmp $b->{name} } @{ $operation->{spec}{parameters} // [] }) {
+    my $place = $parameter->{in};
+    next if $place eq 'path' || ($place eq 'query' && $IS_PAGE_PARAMETER{ $parameter->{name} });
+    croak "$operation->{id}: no rule for $place parameter $parameter->{name}"
+      if $place ne 'query' && $place ne 'header';
 
-  my @arguments;
-  for my $parameter (@parameters) {
     my $where = "$operation->{id} $parameter->{name}";
-    croak "$where: no rule for a required query parameter" if $parameter->{required};
-    push @arguments,
-      _argument($spec, $where, $parameter->{name}, $parameter->{schema}, $parameter->{description});
+    croak "$where: no rule for a required $place parameter"
+      if $parameter->{required} && ($no_required || $place eq 'header');
+    my $argument = _argument($spec, $where, $parameter->{name}, $parameter->{schema},
+      $parameter->{description}, $place);
+    push @{ $parameter->{required} ? \@required : \@optional }, $argument;
   }
-  return \@arguments;
+  return { required => \@required, optional => \@optional };
+}
+
+# twilio-php asks for what an operation answers in. Only SCIM differs from the JSON every other
+# operation gets.
+sub _accept {
+  my ($operation) = @_;
+
+  my %types;
+  for my $response (values %{ $operation->{spec}{responses} // {} }) {
+    $types{$_}++ for keys %{ $response->{content} // {} };
+  }
+  my @types = sort keys %types;
+  return @types == 1 && $types[0] eq $SCIM_CONTENT ? (accept => $SCIM_CONTENT) : ();
 }
 
 sub _body_operation {
   my ($spec, $operation) = @_;
 
-  _refuse_parameters($operation, sub { 0 });
-  my $content = $operation->{spec}{requestBody}{content} // {};
-  my @types   = sort keys %{$content};
+  my $content    = $operation->{spec}{requestBody}{content} // {};
+  my @types      = sort keys %{$content};
+  my $parameters = _parameters($spec, $operation);
+  my %operation  = (
+    method      => $operation->{method},
+    description => $operation->{spec}{description},
+    _accept($operation),
+  );
+
+  # A body that can also be SCIM is sent as JSON, as twilio-php sends it.
+  if ($content->{$JSON_CONTENT} && !grep { $_ ne $JSON_CONTENT && $_ ne $SCIM_CONTENT } @types) {
+    return {
+      %operation,
+      required => $parameters->{required},
+      options  => $parameters->{optional},
+      json     => _json_body($spec, $operation, $content->{$JSON_CONTENT}{schema}),
+    };
+  }
   if (@types > 1 || (@types && $types[0] ne $FORM_CONTENT)) {
     croak "$operation->{id}: no rule for a body of @types";
   }
@@ -280,36 +325,52 @@ sub _body_operation {
   my %is_required = map { $_ => 1 } @required;
 
   my $argument =
-    sub { _argument($spec, "$operation->{id} $_[0]", $_[0], $properties->{ $_[0] }) };
+    sub { _argument($spec, "$operation->{id} $_[0]", $_[0], $properties->{ $_[0] }, undef, 'body') };
 
+  my @options = map { $argument->($_) } sort grep { !$is_required{$_} } keys %{$properties};
   return {
-    method      => $operation->{method},
-    description => $operation->{spec}{description},
-    required    => [map { $argument->($_) } @required],
-    options     => [map { $argument->($_) } sort grep { !$is_required{$_} } keys %{$properties}],
+    %operation,
+    required => [(map { $argument->($_) } @required), @{ $parameters->{required} }],
+    options  => [@options,                            @{ $parameters->{optional} }],
   };
 }
 
-# Parameters in the path are already in the object. Anything else needs a rule of its own, and
-# it is better to stop than to drop a parameter of Twilio's API without saying so.
-sub _refuse_parameters {
-  my ($operation, $is_expected) = @_;
+# The caller writes a JSON body as a hash reference, with the names Twilio's documentation uses.
+# Only its top-level fields have rules, and they are listed for the documentation.
+sub _json_body {
+  my ($spec, $operation, $schema) = @_;
 
-  for my $parameter (@{ $operation->{spec}{parameters} // [] }) {
-    next if $parameter->{in} eq 'path' || $is_expected->($parameter);
-    croak "$operation->{id}: no rule for $parameter->{in} parameter $parameter->{name}";
+  my $resolved    = $spec->resolve($schema // {});
+  my $properties  = $resolved->{properties} // {};
+  my %is_required = map { $_ => 1 } @{ $resolved->{required} // [] };
+  my (%rules, @fields);
+  for my $name (sort keys %{$properties}) {
+    my $rule = json_rule($spec, "$operation->{id} $name", $properties->{$name});
+    $rules{$name} = $rule if defined $rule;
+    push @fields,
+      {
+      name        => $name,
+      required    => $is_required{$name} ? 1 : 0,
+      description => $properties->{$name}{description},
+      enum        => _enum_of($spec, $properties->{$name}),
+      };
   }
-  return;
+  return {
+    required => $operation->{spec}{requestBody}{required} ? 1 : 0,
+    rules    => \%rules,
+    fields   => \@fields,
+  };
 }
 
 sub _argument {
-  my ($spec, $where, $wire_name, $schema, $description) = @_;
+  my ($spec, $where, $wire_name, $schema, $description, $place) = @_;
 
   my $resolved = $spec->resolve($schema);
   my $is_array = ($resolved->{type} // q{}) eq 'array';
   return {
     wire        => $wire_name,
-    name        => option_name($wire_name),
+    place       => $place,
+    name        => $place eq 'header' ? header_option_name($wire_name) : option_name($wire_name),
     writer      => scalar request_writer($spec, $where, $schema),
     map_prefix  => scalar map_prefix($spec, $schema),
     array       => $is_array ? 1 : 0,
