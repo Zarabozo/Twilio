@@ -29,6 +29,7 @@ sub build {
   _add_path(\%nodes, $_, $paths->{$_}) for sort keys %{$paths};
   _link_parents(\%nodes);
   _split_by_names(\%nodes);
+  _key_inner_ids(\%nodes);
   _add_missing_lists(\%nodes);
   _hang_on_singletons(\%nodes);
 
@@ -169,6 +170,26 @@ sub _link_parents {
 
     $nodes->{$key} = _section($key, $node->{parent_path});
     push @pending, $nodes->{$key};
+  }
+  return;
+}
+
+# An instance's own id need not end its path: TrustHub's /ComplianceInquiries/Customers/Initialize
+# lists, and /ComplianceInquiries/Customers/{CustomerId}/Initialize is one inquiry. twilio-php
+# gives a context every id its list does not hold, so that id is the instance's own. A singleton
+# has no list, and every id in its path belongs to a parent.
+sub _key_inner_ids {
+  my ($nodes) = @_;
+
+  for my $node (values %{$nodes}) {
+    my ($list, $instance) = @{$node}{qw(list instance)};
+    next if !$list || !$instance || defined $instance->{key};
+
+    my @ids  = $instance->{path}  =~ /[{](\w+)[}]/g;
+    my $held = () = $list->{path} =~ /[{]/g;
+    next                                                          if @ids <= $held;
+    croak "$instance->{path}: more than one id beyond its list's" if @ids > $held + 1;
+    $instance->{key} = $ids[-1];
   }
   return;
 }
