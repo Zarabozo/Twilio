@@ -531,6 +531,37 @@ subtest 'update and delete on a list, create and patch on an instance' => sub {
   is($inquiry->inquiry_id, 'IN1', 'and the answer');
 };
 
+subtest 'the v1.0 standard' => sub {
+  my ($client, $http) = client();
+  my $insights = 'https://insights.twilio.com/v3';
+
+  $http->mock(200, { items => [{ id => 'M1' }], meta => { pageSize => 1, nextToken => 'T2' } });
+  $http->mock(200, { items => [{ id => 'M2' }], meta => { pageSize => 1 } });
+  my @mappings = $client->insights->v3->custom_field_mappings->read({}, undef, 1);
+  is_deeply([map { $_->id } @mappings], [qw(M1 M2)], 'a list is read by token');
+  my ($first_page, $next_page) = $http->requests;
+  is(
+    $first_page->{url},
+    "$insights/ControlPlane/ConversationInsights/CustomFieldMappings?pageSize=1",
+    'its first page asks for a size'
+  );
+  like($next_page->{url}, qr/[?]pageSize=1&pageToken=T2\z/, 'and the next one uses the token');
+
+  $http->mock(200, { items => [], meta => {} });
+  $client->insights->v3->results('OP1')->fetch({ page_token => 'T3' });
+  like(
+    last_url($http),
+    qr{/QueryJobs/OP1/Results[?]pageToken=T3\z},
+    'a fetch takes the token as an option'
+  );
+
+  $http->mock(404, { code => 20404, message => 'Not found', httpStatusCode => 404 });
+  my $ok    = eval { $client->routes->v3->phone_numbers('+15558675310')->fetch; 1 };
+  my $error = $@;
+  ok(!$ok, 'an error dies');
+  isa_ok($error, 'Twilio::Exceptions::RestExceptionV1', 'in the v1.0 shape');
+};
+
 subtest 'children do not keep the client alive' => sub {
   my ($client, $http) = client();
   $http->mock(201, { sid => 'SM1' });

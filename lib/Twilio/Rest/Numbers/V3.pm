@@ -4,7 +4,7 @@ package Twilio::Rest::Numbers::V3;
 use 5.016;
 use warnings;
 
-use parent 'Twilio::Version';
+use parent 'Twilio::ApiV1Version';
 
 our $VERSION = '2.000000';
 
@@ -34,7 +34,7 @@ Twilio::Rest::Numbers::V3 - Version v3 of the Twilio REST API
 
 =head1 DESCRIPTION
 
-See L<Twilio::Version> for the inherited methods.
+See L<Twilio::ApiV1Version> for the inherited methods.
 
 =head1 METHODS
 

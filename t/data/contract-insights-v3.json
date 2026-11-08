@@ -1,0 +1,381 @@
+[
+ {
+  "body" : {
+   "category" : "MEASURE",
+   "description" : "v_description",
+   "entityMetadata" : {
+    "v_entityMetadata" : 1
+   },
+   "name" : "v_name"
+  },
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "custom_field_mappings",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateCustomFieldMapping",
+  "json" : {
+   "category" : "MEASURE",
+   "description" : "v_description",
+   "entityMetadata" : {
+    "v_entityMetadata" : 1
+   },
+   "name" : "v_name"
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v3/ControlPlane/ConversationInsights/CustomFieldMappings"
+ },
+ {
+  "body" : {
+   "domain" : "v_domain",
+   "query" : {
+    "v_query" : 1
+   }
+  },
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "query_jobs",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json",
+   "Idempotency-Key" : "v_idempotency_key"
+  },
+  "http" : "POST",
+  "id" : "CreateQueryJob",
+  "json" : {
+   "domain" : "v_domain",
+   "query" : {
+    "v_query" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {
+   "idempotency_key" : "v_idempotency_key"
+  },
+  "required" : [],
+  "url" : "https://insights.twilio.com/v3/InsightsDomains/Conversations/QueryJobs"
+ },
+ {
+  "body" : {
+   "domain" : "v_domain",
+   "query" : {
+    "v_query" : 1
+   }
+  },
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "query",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "pageSize",
+    "824"
+   ]
+  ],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateQueryResults",
+  "json" : {
+   "domain" : "v_domain",
+   "query" : {
+    "v_query" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {
+   "page_size" : 824
+  },
+  "required" : [],
+  "url" : "https://insights.twilio.com/v3/InsightsDomains/Conversations/Query"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "custom_field_mappings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchCustomFieldMapping",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v3/ControlPlane/ConversationInsights/CustomFieldMappings/id1"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "custom_field_mappings_capacity",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchCustomFieldMappingCapacity",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v3/ControlPlane/ConversationInsights/CustomFieldMappingsCapacity"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "metadata",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchMetadata",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v3/InsightsDomains/Conversations/Metadata"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "results",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "pageSize",
+    "824"
+   ],
+   [
+    "pageToken",
+    "v_page_token"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchQueryJobResults",
+  "method" : "fetch",
+  "options" : {
+   "page_size" : 824,
+   "page_token" : "v_page_token"
+  },
+  "required" : [],
+  "url" : "https://insights.twilio.com/v3/InsightsDomains/Conversations/QueryJobs/id1/Results"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "query_jobs",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchQueryJobStatus",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://insights.twilio.com/v3/InsightsDomains/Conversations/QueryJobs/id1"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "query",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "pageToken",
+    "v_page_token"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchQueryResults",
+  "method" : "fetch",
+  "options" : {
+   "page_token" : "v_page_token"
+  },
+  "required" : [],
+  "url" : "https://insights.twilio.com/v3/InsightsDomains/Conversations/Query"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "custom_field_mappings",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListCustomFieldMappings",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://insights.twilio.com/v3/ControlPlane/ConversationInsights/CustomFieldMappings"
+ },
+ {
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "query_jobs",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "status",
+    "RUNNING"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListQueryJobs",
+  "method" : "page",
+  "options" : {
+   "status" : "RUNNING"
+  },
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://insights.twilio.com/v3/InsightsDomains/Conversations/QueryJobs"
+ },
+ {
+  "body" : {
+   "entityMetadata" : {
+    "v_entityMetadata" : 1
+   }
+  },
+  "chain" : [
+   [
+    "insights",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "custom_field_mappings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json",
+   "If-Match" : "v_if_match"
+  },
+  "http" : "PATCH",
+  "id" : "PatchCustomFieldMapping",
+  "json" : {
+   "entityMetadata" : {
+    "v_entityMetadata" : 1
+   }
+  },
+  "method" : "patch",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [],
+  "url" : "https://insights.twilio.com/v3/ControlPlane/ConversationInsights/CustomFieldMappings/id1"
+ }
+]
