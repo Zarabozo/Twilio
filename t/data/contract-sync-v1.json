@@ -1,0 +1,1783 @@
+[
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "documents",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Data",
+    "{\"v_data\":15}"
+   ],
+   [
+    "Ttl",
+    "308"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateDocument",
+  "method" : "create",
+  "options" : {
+   "data" : {
+    "v_data" : 15
+   },
+   "ttl" : 308,
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Documents"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "AclEnabled",
+    "true"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "ReachabilityDebouncingEnabled",
+    "true"
+   ],
+   [
+    "ReachabilityDebouncingWindow",
+    "2887"
+   ],
+   [
+    "ReachabilityWebhooksEnabled",
+    "true"
+   ],
+   [
+    "WebhookUrl",
+    "v_webhook_url"
+   ],
+   [
+    "WebhooksFromRestEnabled",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateService",
+  "method" : "create",
+  "options" : {
+   "acl_enabled" : 1,
+   "friendly_name" : "v_friendly_name",
+   "reachability_debouncing_enabled" : 1,
+   "reachability_debouncing_window" : 2887,
+   "reachability_webhooks_enabled" : 1,
+   "webhook_url" : "v_webhook_url",
+   "webhooks_from_rest_enabled" : 1
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_streams",
+    1
+   ],
+   [
+    "stream_messages",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Data",
+    "{\"v_data\":15}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateStreamMessage",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   {
+    "v_data" : 15
+   }
+  ],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Streams/id2/Messages"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "CollectionTtl",
+    "1344"
+   ],
+   [
+    "Ttl",
+    "308"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateSyncList",
+  "method" : "create",
+  "options" : {
+   "collection_ttl" : 1344,
+   "ttl" : 308,
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    1
+   ],
+   [
+    "sync_list_items",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Data",
+    "{\"v_data\":15}"
+   ],
+   [
+    "CollectionTtl",
+    "1344"
+   ],
+   [
+    "ItemTtl",
+    "707"
+   ],
+   [
+    "Ttl",
+    "308"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateSyncListItem",
+  "method" : "create",
+  "options" : {
+   "collection_ttl" : 1344,
+   "item_ttl" : 707,
+   "ttl" : 308
+  },
+  "required" : [
+   {
+    "v_data" : 15
+   }
+  ],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Items"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "CollectionTtl",
+    "1344"
+   ],
+   [
+    "Ttl",
+    "308"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateSyncMap",
+  "method" : "create",
+  "options" : {
+   "collection_ttl" : 1344,
+   "ttl" : 308,
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    1
+   ],
+   [
+    "sync_map_items",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Key",
+    "v_key"
+   ],
+   [
+    "Data",
+    "{\"v_data\":15}"
+   ],
+   [
+    "CollectionTtl",
+    "1344"
+   ],
+   [
+    "ItemTtl",
+    "707"
+   ],
+   [
+    "Ttl",
+    "308"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateSyncMapItem",
+  "method" : "create",
+  "options" : {
+   "collection_ttl" : 1344,
+   "item_ttl" : 707,
+   "ttl" : 308
+  },
+  "required" : [
+   "v_key",
+   {
+    "v_data" : 15
+   }
+  ],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Items"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_streams",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Ttl",
+    "308"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateSyncStream",
+  "method" : "create",
+  "options" : {
+   "ttl" : 308,
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Streams"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "documents",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteDocument",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "documents",
+    1
+   ],
+   [
+    "document_permissions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteDocumentPermission",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2/Permissions/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteService",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteSyncList",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    1
+   ],
+   [
+    "sync_list_items",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "If-Match" : "v_if_match"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteSyncListItem",
+  "method" : "delete",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Items/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    1
+   ],
+   [
+    "sync_list_permissions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteSyncListPermission",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Permissions/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteSyncMap",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    1
+   ],
+   [
+    "sync_map_items",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "If-Match" : "v_if_match"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteSyncMapItem",
+  "method" : "delete",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Items/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    1
+   ],
+   [
+    "sync_map_permissions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteSyncMapPermission",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Permissions/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_streams",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteSyncStream",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Streams/id2"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "documents",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchDocument",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "documents",
+    1
+   ],
+   [
+    "document_permissions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchDocumentPermission",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2/Permissions/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchService",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSyncList",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    1
+   ],
+   [
+    "sync_list_items",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSyncListItem",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Items/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    1
+   ],
+   [
+    "sync_list_permissions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSyncListPermission",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Permissions/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSyncMap",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    1
+   ],
+   [
+    "sync_map_items",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSyncMapItem",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Items/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    1
+   ],
+   [
+    "sync_map_permissions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSyncMapPermission",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Permissions/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_streams",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSyncStream",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Streams/id2"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "documents",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListDocument",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "documents",
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Documents"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "documents",
+    1
+   ],
+   [
+    "document_permissions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListDocumentPermission",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "permissions",
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2/Permissions"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListService",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "services",
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListSyncList",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "lists",
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    1
+   ],
+   [
+    "sync_list_items",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Order",
+    "asc"
+   ],
+   [
+    "From",
+    "v_from"
+   ],
+   [
+    "Bounds",
+    "exclusive"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListSyncListItem",
+  "method" : "page",
+  "options" : {
+   "bounds" : "exclusive",
+   "from" : "v_from",
+   "order" : "asc"
+  },
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Items"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    1
+   ],
+   [
+    "sync_list_permissions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListSyncListPermission",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "permissions",
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Permissions"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListSyncMap",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "maps",
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    1
+   ],
+   [
+    "sync_map_items",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Order",
+    "asc"
+   ],
+   [
+    "From",
+    "v_from"
+   ],
+   [
+    "Bounds",
+    "exclusive"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListSyncMapItem",
+  "method" : "page",
+  "options" : {
+   "bounds" : "exclusive",
+   "from" : "v_from",
+   "order" : "asc"
+  },
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Items"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    1
+   ],
+   [
+    "sync_map_permissions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListSyncMapPermission",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "permissions",
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Permissions"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_streams",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListSyncStream",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "streams",
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Streams"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "documents",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Data",
+    "{\"v_data\":15}"
+   ],
+   [
+    "Ttl",
+    "308"
+   ]
+  ],
+  "headers" : {
+   "If-Match" : "v_if_match"
+  },
+  "http" : "POST",
+  "id" : "UpdateDocument",
+  "method" : "update",
+  "options" : {
+   "data" : {
+    "v_data" : 15
+   },
+   "if_match" : "v_if_match",
+   "ttl" : 308
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "documents",
+    1
+   ],
+   [
+    "document_permissions",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Read",
+    "true"
+   ],
+   [
+    "Write",
+    "true"
+   ],
+   [
+    "Manage",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateDocumentPermission",
+  "method" : "update",
+  "options" : {},
+  "required" : [
+   1,
+   1,
+   1
+  ],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2/Permissions/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "AclEnabled",
+    "true"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "ReachabilityDebouncingEnabled",
+    "true"
+   ],
+   [
+    "ReachabilityDebouncingWindow",
+    "2887"
+   ],
+   [
+    "ReachabilityWebhooksEnabled",
+    "true"
+   ],
+   [
+    "WebhookUrl",
+    "v_webhook_url"
+   ],
+   [
+    "WebhooksFromRestEnabled",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateService",
+  "method" : "update",
+  "options" : {
+   "acl_enabled" : 1,
+   "friendly_name" : "v_friendly_name",
+   "reachability_debouncing_enabled" : 1,
+   "reachability_debouncing_window" : 2887,
+   "reachability_webhooks_enabled" : 1,
+   "webhook_url" : "v_webhook_url",
+   "webhooks_from_rest_enabled" : 1
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "CollectionTtl",
+    "1344"
+   ],
+   [
+    "Ttl",
+    "308"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateSyncList",
+  "method" : "update",
+  "options" : {
+   "collection_ttl" : 1344,
+   "ttl" : 308
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    1
+   ],
+   [
+    "sync_list_items",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "CollectionTtl",
+    "1344"
+   ],
+   [
+    "Data",
+    "{\"v_data\":15}"
+   ],
+   [
+    "ItemTtl",
+    "707"
+   ],
+   [
+    "Ttl",
+    "308"
+   ]
+  ],
+  "headers" : {
+   "If-Match" : "v_if_match"
+  },
+  "http" : "POST",
+  "id" : "UpdateSyncListItem",
+  "method" : "update",
+  "options" : {
+   "collection_ttl" : 1344,
+   "data" : {
+    "v_data" : 15
+   },
+   "if_match" : "v_if_match",
+   "item_ttl" : 707,
+   "ttl" : 308
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Items/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_lists",
+    1
+   ],
+   [
+    "sync_list_permissions",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Read",
+    "true"
+   ],
+   [
+    "Write",
+    "true"
+   ],
+   [
+    "Manage",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateSyncListPermission",
+  "method" : "update",
+  "options" : {},
+  "required" : [
+   1,
+   1,
+   1
+  ],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Permissions/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "CollectionTtl",
+    "1344"
+   ],
+   [
+    "Ttl",
+    "308"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateSyncMap",
+  "method" : "update",
+  "options" : {
+   "collection_ttl" : 1344,
+   "ttl" : 308
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    1
+   ],
+   [
+    "sync_map_items",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "CollectionTtl",
+    "1344"
+   ],
+   [
+    "Data",
+    "{\"v_data\":15}"
+   ],
+   [
+    "ItemTtl",
+    "707"
+   ],
+   [
+    "Ttl",
+    "308"
+   ]
+  ],
+  "headers" : {
+   "If-Match" : "v_if_match"
+  },
+  "http" : "POST",
+  "id" : "UpdateSyncMapItem",
+  "method" : "update",
+  "options" : {
+   "collection_ttl" : 1344,
+   "data" : {
+    "v_data" : 15
+   },
+   "if_match" : "v_if_match",
+   "item_ttl" : 707,
+   "ttl" : 308
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Items/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_maps",
+    1
+   ],
+   [
+    "sync_map_permissions",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Read",
+    "true"
+   ],
+   [
+    "Write",
+    "true"
+   ],
+   [
+    "Manage",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateSyncMapPermission",
+  "method" : "update",
+  "options" : {},
+  "required" : [
+   1,
+   1,
+   1
+  ],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Permissions/id3"
+ },
+ {
+  "chain" : [
+   [
+    "sync",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "sync_streams",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Ttl",
+    "308"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateSyncStream",
+  "method" : "update",
+  "options" : {
+   "ttl" : 308
+  },
+  "required" : [],
+  "url" : "https://sync.twilio.com/v1/Services/id1/Streams/id2"
+ }
+]

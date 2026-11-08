@@ -63,7 +63,10 @@ sub request {
   Twilio::Exceptions::ConfigurationException->throw('username is required') if !$username;
   Twilio::Exceptions::ConfigurationException->throw('password is required') if !$password;
 
-  my %headers = %{ $options->{headers} // {} };
+  # Header options the caller did not set are left out, like any other option.
+  my %headers =
+    map { $_ => $options->{headers}{$_} } grep { defined $options->{headers}{$_} }
+    keys %{ $options->{headers} // {} };
   $headers{'User-Agent'}     = $self->_user_agent;
   $headers{'Accept-Charset'} = 'utf-8';
 

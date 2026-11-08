@@ -1,6 +1,7 @@
 use 5.016;
 use warnings;
 
+use JSON::PP ();
 use Test::More;
 
 use Twilio::Http::FakeClient;
@@ -33,6 +34,8 @@ sub check {
   ok($target->can($method), "the object has $method") or return;
 
   my @arguments = map { with_dates($_) } @{ $entry->{required} };
+  push @arguments, { map { $_ => with_dates($entry->{body}{$_}) } keys %{ $entry->{body} } }
+    if $entry->{body};
   push @arguments, { map { $_ => with_dates($entry->{options}{$_}) } keys %{ $entry->{options} } }
     if %{ $entry->{options} };
   $target->$method(@arguments);
@@ -40,10 +43,30 @@ sub check {
   my ($request) = $http->requests;
   is($request->{method}, $entry->{http}, 'HTTP method');
 
+  # Values can arrive in the query string and in a form body at once.
   my ($url, $query) = split /[?]/, $request->{url}, 2;
   is($url, $entry->{url}, 'URL');
-  is_deeply(pairs($query // $request->{content}), sorted($entry->{expected}), 'values on the wire');
+  my $form = $entry->{json} ? undef : $request->{content};
+  is_deeply(
+    sorted([@{ pairs($query) }, @{ pairs($form) }]),
+    sorted($entry->{expected}),
+    'values on the wire'
+  );
+
+  # As text, because 1 and true are equal to is_deeply, and not to Twilio.
+  is(
+    canonical(Twilio::Json::decode($request->{content})),
+    canonical($entry->{json}),
+    'the JSON body'
+  ) if $entry->{json};
+  is($request->{headers}{$_}, $entry->{headers}{$_}, "header $_")
+    for sort keys %{ $entry->{headers} // {} };
   return;
+}
+
+sub canonical {
+  my ($data) = @_;
+  return JSON::PP->new->canonical->encode($data);
 }
 
 sub with_dates {

@@ -50,8 +50,8 @@ sub _fetch_method {
   my @options   = @{ $side->{fetch}{options} };
   my $signature = join q{, }, '$self', @options ? '$options' : ();
   my $defaults  = @options ? "  \$options //= {};\n" : q{};
-  my $pairs     = join q{}, map { _pair($_, "\$options->{$_->{name}}") . ",\n" } @options;
-  my $extra     = @options ? ", { params => { $pairs } }" : q{};
+  my @parts     = _request_parts(_pairs_by_place($side->{fetch}), $side->{fetch});
+  my $extra     = @parts ? ', { ' . join(q{, }, @parts) . ' }' : q{};
   my $result =
     $where eq 'list'
     ? _new_instance($model, '$response->get_content', $side->{parameters})
@@ -63,6 +63,23 @@ sub fetch {
 $defaults
   my \$response = \$self->{version}->handle_request('$side->{fetch}{method}', \$self->{uri}, 'fetch'$extra);
   return $result;
+}
+END_CODE
+}
+
+sub _delete_method {
+  my ($operation) = @_;
+
+  my @options = @{ $operation->{options} // [] };
+  my @parts   = _request_parts(_pairs_by_place($operation), $operation);
+  my $extra   = @parts ? ', { ' . join(q{, }, @parts) . ' }' : q{};
+  my $start =
+    @options ? "  my (\$self, \$options) = \@_;\n  \$options //= {};\n" : "  my (\$self) = \@_;\n";
+
+  return <<"END_CODE";
+sub delete {
+$start  \$self->{version}->handle_request('$operation->{method}', \$self->{uri}, 'delete'$extra);
+  return 1;
 }
 END_CODE
 }
@@ -149,29 +166,73 @@ END_CODE
 }
 
 # Ends just after the request, so each caller only adds how the result is returned.
+# A JSON body comes as one hash reference, after the required values and before the options.
 sub _body_method {
   my ($verb, $operation) = @_;
 
-  my @required  = map { "\$$_->{name}" } @{ $operation->{required} };
+  my $json      = $operation->{json};
+  my @required  = map { _variable($_->{name}) } @{ $operation->{required} };
   my @options   = @{ $operation->{options} };
-  my $signature = join q{, }, '$self', @required, @options ? '$options' : ();
+  my $signature = join q{, }, '$self', @required, $json ? '$body' : (), @options ? '$options' : ();
   my $defaults  = @options ? "  \$options //= {};\n" : q{};
 
-  my @pairs = (
-    (map { _pair($_, "\$$_->{name}") } @{ $operation->{required} }),
-    (map { _pair($_, "\$options->{$_->{name}}") } @options),
-  );
-  my $data = join q{}, map { "$_,\n" } @pairs;
+  my $pairs = _pairs_by_place($operation);
+  my $data =
+    $json
+    ? '  my $data = Twilio::Serialize::json_body($body, ' . _rules_code($json->{rules}) . ");\n"
+    : "  my \$data = {\n" . join(q{}, map { "$_,\n" } @{ $pairs->{body} // [] }) . "  };\n";
+  my $extra = join q{}, map { ", $_" } _request_parts($pairs, $operation);
 
   return <<"END_CODE";
 sub $verb {
   my ($signature) = \@_;
 $defaults
-  my \$data = {
-$data  };
-
-  my \$response = \$self->{version}->handle_request('$operation->{method}', \$self->{uri}, '$verb', { data => \$data });
+$data
+  my \$response = \$self->{version}->handle_request('$operation->{method}', \$self->{uri}, '$verb', { data => \$data$extra });
 END_CODE
+}
+
+# A required value named like a variable of the method itself, as Sync's Data is, gets a name
+# of its own in the code. The documentation keeps the name.
+my %IS_LOCAL = map { $_ => 1 } qw(arguments data options response self);
+
+sub _variable {
+  my ($name) = @_;
+  return $IS_LOCAL{$name} ? "\$${name}_value" : "\$$name";
+}
+
+# Each argument as code, by where it goes: the body, the query string or the headers.
+sub _pairs_by_place {
+  my ($operation) = @_;
+
+  my %pairs;
+  push @{ $pairs{ $_->{place} } }, _pair($_, _variable($_->{name}))
+    for @{ $operation->{required} // [] };
+  push @{ $pairs{ $_->{place} } }, _pair($_, "\$options->{$_->{name}}")
+    for @{ $operation->{options} // $operation->{filters} // [] };
+  return \%pairs;
+}
+
+# What a request sends besides its body. A JSON body says so in its headers, and SCIM answers
+# are asked for by name, as twilio-php does.
+sub _request_parts {
+  my ($pairs, $operation) = @_;
+
+  my @headers = @{ $pairs->{header} // [] };
+  unshift @headers, q{    'Content-Type' => 'application/json'}      if $operation->{json};
+  unshift @headers, '    Accept => ' . _quoted($operation->{accept}) if $operation->{accept};
+
+  my @parts;
+  push @parts, 'params => { ' . join(q{}, map { "$_,\n" } @{ $pairs->{query} }) . ' }'
+    if $pairs->{query};
+  push @parts, 'headers => { ' . join(q{}, map { "$_,\n" } @headers) . ' }' if @headers;
+  return @parts;
+}
+
+sub _rules_code {
+  my ($rules) = @_;
+  my @pairs = map { _quoted($_) . ' => ' . _quoted($rules->{$_}) } sort keys %{$rules};
+  return '{ ' . join(q{, }, @pairs) . ' }';
 }
 
 sub _pair {
@@ -198,20 +259,34 @@ sub _pair {
 sub _reading {
   my ($model) = @_;
 
+  # A required filter is taken first, and kept with the other options, so that page has it too.
   my $operation = $model->{list}{read};
-  my @pairs     = map { _pair($_, "\$options->{$_->{name}}") } @{ $operation->{filters} };
-  my $params    = join q{}, map { "$_,\n" } @pairs, '    PageToken => $page_token',
+  my @required  = map { $_->{name} } @{ $operation->{required} // [] };
+  my $pairs =
+    _pairs_by_place({ filters => [@{ $operation->{required} // [] }, @{ $operation->{filters} }] });
+  my $params = join q{}, map { "$_,\n" } @{ $pairs->{query} // [] }, '    PageToken => $page_token',
     '    Page => $page_number', '    PageSize => $page_size';
+  my @parts = _request_parts({ header => $pairs->{header} }, $operation);
+  my $extra = join q{}, map { ", $_" } @parts;
 
-  return <<"END_CODE";
+  my $taken     = join q{}, map { q{, } . _variable($_) } @required;
+  my $arguments = @required ? '$options, @arguments' : '@arguments';
+  my $forwarded =
+    @required
+    ? '{ %{ $options // {} }, '
+    . join(q{, }, map { "$_ => " . _variable($_) } @required)
+    . ' }, @arguments'
+    : '@arguments';
+
+  my $code = <<"END_CODE";
 sub read {
-  my (\$self, \@arguments) = \@_;
-  return \$self->read_records(\@arguments);
+  my (\$self$taken, $arguments) = \@_;
+  return \$self->read_records($forwarded);
 }
 
 sub stream {
-  my (\$self, \@arguments) = \@_;
-  return \$self->stream_records(\@arguments);
+  my (\$self$taken, $arguments) = \@_;
+  return \$self->stream_records($forwarded);
 }
 
 sub page {
@@ -221,7 +296,7 @@ sub page {
   my \$params = {
 $params  };
 
-  my \$response = \$self->{version}->page('$operation->{method}', \$self->{uri}, { params => \$params });
+  my \$response = \$self->{version}->page('$operation->{method}', \$self->{uri}, { params => \$params$extra });
   return \$self->_build_page(\$response);
 }
 
@@ -236,6 +311,7 @@ sub _build_page {
   return $model->{class}{page}->new(\$self->{version}, \$response, \$self->{solution});
 }
 END_CODE
+  return $code;
 }
 
 sub _get_context {
@@ -277,15 +353,7 @@ sub _context {
   my $side = $model->{context} or return q{};
 
   my @methods = (_constructor($side));
-  if ($side->{delete}) {
-    push @methods, <<"END_CODE";
-sub delete {
-  my (\$self) = \@_;
-  \$self->{version}->handle_request('$side->{delete}{method}', \$self->{uri}, 'delete');
-  return 1;
-}
-END_CODE
-  }
+  push @methods, _delete_method($side->{delete})         if $side->{delete};
   push @methods, _fetch_method($model, $side, 'context') if $side->{fetch};
   if ($side->{update}) {
     push @methods, _body_method('update', $side->{update}) . <<'END_CODE';

@@ -1,0 +1,41 @@
+[
+ {
+  "chain" : [
+   [
+    "chat",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "channels",
+    2
+   ]
+  ],
+  "expected" : [
+   [
+    "MessagingServiceSid",
+    "v_messaging_service_sid"
+   ],
+   [
+    "Type",
+    "public"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "UpdateChannel",
+  "method" : "update",
+  "options" : {
+   "messaging_service_sid" : "v_messaging_service_sid",
+   "type" : "public",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://chat.twilio.com/v3/Services/id1/Channels/id2"
+ }
+]

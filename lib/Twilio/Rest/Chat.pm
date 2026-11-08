@@ -21,6 +21,18 @@ sub v1 {
   return Twilio::Rest::Chat::V1->new($self);
 }
 
+sub v2 {
+  my ($self) = @_;
+  require Twilio::Rest::Chat::V2;
+  return Twilio::Rest::Chat::V2->new($self);
+}
+
+sub v3 {
+  my ($self) = @_;
+  require Twilio::Rest::Chat::V3;
+  return Twilio::Rest::Chat::V3->new($self);
+}
+
 1;
 
 __END__
@@ -44,6 +56,14 @@ See L<Twilio::Domain> for the inherited methods.
 =head2 v1
 
 Returns L<Twilio::Rest::Chat::V1>.
+
+=head2 v2
+
+Returns L<Twilio::Rest::Chat::V2>.
+
+=head2 v3
+
+Returns L<Twilio::Rest::Chat::V3>.
 
 =head1 LICENSE
 
