@@ -254,6 +254,7 @@ subtest 'every domain that is ready' => sub {
   my ($client) = client();
 
   my %class = (
+    accounts      => 'Accounts',
     bulkexports   => 'Bulkexports',
     chat          => 'Chat',
     content       => 'Content',
@@ -262,6 +263,7 @@ subtest 'every domain that is ready' => sub {
     flex_api      => 'FlexApi',
     iam           => 'Iam',
     insights      => 'Insights',
+    intelligence  => 'Intelligence',
     ip_messaging  => 'IpMessaging',
     lookups       => 'Lookups',
     monitor       => 'Monitor',
@@ -269,6 +271,7 @@ subtest 'every domain that is ready' => sub {
     numbers       => 'Numbers',
     oauth         => 'Oauth',
     preview       => 'Preview',
+    preview_iam   => 'PreviewIam',
     pricing       => 'Pricing',
     proxy         => 'Proxy',
     routes        => 'Routes',
@@ -278,6 +281,8 @@ subtest 'every domain that is ready' => sub {
     sync          => 'Sync',
     taskrouter    => 'Taskrouter',
     trunking      => 'Trunking',
+    trusthub      => 'Trusthub',
+    video         => 'Video',
     voice         => 'Voice',
     wireless      => 'Wireless',
   );
@@ -453,7 +458,7 @@ subtest 'a required value with the name of a variable' => sub {
 subtest 'shortcuts' => sub {
   my ($client) = client();
 
-  ok(!$client->can('accounts'), 'accounts is left for the accounts.twilio.com domain');
+  isa_ok($client->accounts, 'Twilio::Rest::Accounts', 'accounts is the accounts.twilio.com domain');
 
   for my $object ($client, $client->api, $client->api->v2010, $client->account) {
     isa_ok($object->calls,        'Twilio::Rest::Api::V2010::Account::CallList');
@@ -467,6 +472,63 @@ subtest 'shortcuts' => sub {
     transcriptions usage validation_requests
   );
   ok($client->can($_), "client has $_") for @names;
+};
+
+subtest 'update and delete on a list, create and patch on an instance' => sub {
+  my ($client, $http) = client();
+  my $accounts = 'https://accounts.twilio.com/v1';
+
+  $http->mock(204, q{});
+  is($client->accounts->v1->safelist->delete({ phone_number => '+1' }), 1, 'delete on a list');
+  my $request = ($http->requests)[-1];
+  is($request->{method}, 'DELETE',                                      'sends DELETE');
+  is($request->{url},    "$accounts/SafeList/Numbers?PhoneNumber=%2B1", 'with its query option');
+
+  $http->mock(200, { permissions => [] });
+  $client->accounts->v1->messaging_geopermissions->update([{ country_code => 'MX' }]);
+  $request = ($http->requests)[-1];
+  is($request->{method}, 'PATCH', 'update on a list sends the spec\'s PATCH');
+  is($request->{url},    "$accounts/Messaging/GeoPermissions", 'to the list');
+
+  $http->mock(201, { account_sid => 'AC1', secondary_auth_token => 'x' });
+  my $token = $client->accounts->v1->secondary_auth_token->create;
+  is(($http->requests)[-1]{url},   "$accounts/AuthTokens/Secondary", 'create on a singleton');
+  is($token->secondary_auth_token, 'x',                              'and its answer');
+
+  $http->mock(200, { id => 'US1', userName => 'me' });
+  my $user = $client->preview_iam->versionless->organization('OR1')->users('US1');
+  $user->patch({ userName => 'me' }, { if_match => 'v1' });
+  $request = ($http->requests)[-1];
+  is($request->{method}, 'PATCH', 'patch');
+  is($request->{url},    'https://preview-iam.twilio.com/Organizations/OR1/scim/Users/US1', 'url');
+  is($request->{headers}{'If-Match'}, 'v1',                'with its header');
+  is($request->{content},             '{"userName":"me"}', 'and its JSON body');
+
+  $http->mock(200, { id => 'US1' });
+  $user->update({ userName => 'me' });
+  is(($http->requests)[-1]{method}, 'PUT', 'update next to it sends PUT');
+
+  $http->mock(201, { id => 'US9', userName => 'new' });
+  my $created = $client->preview_iam->versionless->organization('OR1')->users->create({});
+  $http->mock(200, { id => 'US9' });
+  $created->fetch;
+  like(($http->requests)[-1]{url}, qr{/scim/Users/US9\z}, 'a new user knows its own id');
+
+  my $user_class = 'Twilio::Rest::PreviewIam::Versionless::Organization::UserInstance';
+  ok($user_class->can('user_name'),  'a user has the fields of a user');
+  ok(!$user_class->can('scim_type'), 'and none of a SCIM error');
+  $http->mock(204, q{});
+  $user->delete;
+  ok(!exists(($http->requests)[-1]{headers}{Accept}), 'its delete asks for nothing');
+
+  $http->mock(200, { inquiry_id => 'IN1', customer_id => 'CU1' });
+  my $inquiry = $client->trusthub->v1->compliance_inquiries('CU1')->update('BU1');
+  is(
+    ($http->requests)[-1]{url},
+    'https://trusthub.twilio.com/v1/ComplianceInquiries/Customers/CU1/Initialize',
+    'an id inside the URL of an instance'
+  );
+  is($inquiry->inquiry_id, 'IN1', 'and the answer');
 };
 
 subtest 'children do not keep the client alive' => sub {

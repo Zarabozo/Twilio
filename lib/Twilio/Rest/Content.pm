@@ -15,6 +15,12 @@ sub new {
   return $self;
 }
 
+sub v1 {
+  my ($self) = @_;
+  require Twilio::Rest::Content::V1;
+  return Twilio::Rest::Content::V1->new($self);
+}
+
 sub v2 {
   my ($self) = @_;
   require Twilio::Rest::Content::V2;
@@ -40,6 +46,10 @@ See L<Twilio::Domain> for the inherited methods.
 =head2 new
 
   my $object = Twilio::Rest::Content->new($parent);
+
+=head2 v1
+
+Returns L<Twilio::Rest::Content::V1>.
 
 =head2 v2
 

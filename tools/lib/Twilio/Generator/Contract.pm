@@ -177,9 +177,11 @@ sub _add_header {
 sub _add_accept {
   my ($entry, $operation) = @_;
 
+  # Errors do not count: a delete that answers 204 asks for nothing, even when its errors are SCIM.
   my %types;
-  for my $response (values %{ $operation->{spec}{responses} // {} }) {
-    $types{$_}++ for keys %{ $response->{content} // {} };
+  my $responses = $operation->{spec}{responses} // {};
+  for my $code (grep { !/\A[45]/ } keys %{$responses}) {
+    $types{$_}++ for keys %{ $responses->{$code}{content} // {} };
   }
   my @types = keys %types;
   $entry->{headers}{Accept} = $SCIM_CONTENT if @types == 1 && $types[0] eq $SCIM_CONTENT;

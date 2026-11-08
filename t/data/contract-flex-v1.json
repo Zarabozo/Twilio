@@ -1,0 +1,2776 @@
+[
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "channel",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FlexFlowSid",
+    "v_flex_flow_sid"
+   ],
+   [
+    "Identity",
+    "v_identity"
+   ],
+   [
+    "ChatUserFriendlyName",
+    "v_chat_user_friendly_name"
+   ],
+   [
+    "ChatFriendlyName",
+    "v_chat_friendly_name"
+   ],
+   [
+    "ChatUniqueName",
+    "v_chat_unique_name"
+   ],
+   [
+    "LongLived",
+    "true"
+   ],
+   [
+    "PreEngagementData",
+    "v_pre_engagement_data"
+   ],
+   [
+    "Target",
+    "v_target"
+   ],
+   [
+    "TaskAttributes",
+    "v_task_attributes"
+   ],
+   [
+    "TaskSid",
+    "v_task_sid"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateChannel",
+  "method" : "create",
+  "options" : {
+   "chat_unique_name" : "v_chat_unique_name",
+   "long_lived" : 1,
+   "pre_engagement_data" : "v_pre_engagement_data",
+   "target" : "v_target",
+   "task_attributes" : "v_task_attributes",
+   "task_sid" : "v_task_sid"
+  },
+  "required" : [
+   "v_flex_flow_sid",
+   "v_identity",
+   "v_chat_user_friendly_name",
+   "v_chat_friendly_name"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Channels"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flex_flow",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "ChatServiceSid",
+    "v_chat_service_sid"
+   ],
+   [
+    "ChannelType",
+    "custom"
+   ],
+   [
+    "ContactIdentity",
+    "v_contact_identity"
+   ],
+   [
+    "Enabled",
+    "true"
+   ],
+   [
+    "Integration.Channel",
+    "v_integration_channel"
+   ],
+   [
+    "Integration.CreationOnMessage",
+    "true"
+   ],
+   [
+    "Integration.FlowSid",
+    "v_integration_flow_sid"
+   ],
+   [
+    "Integration.Priority",
+    "2068"
+   ],
+   [
+    "Integration.RetryCount",
+    "2257"
+   ],
+   [
+    "Integration.Timeout",
+    "1945"
+   ],
+   [
+    "Integration.Url",
+    "v_integration_url"
+   ],
+   [
+    "Integration.WorkflowSid",
+    "v_integration_workflow_sid"
+   ],
+   [
+    "Integration.WorkspaceSid",
+    "v_integration_workspace_sid"
+   ],
+   [
+    "IntegrationType",
+    "task"
+   ],
+   [
+    "JanitorEnabled",
+    "true"
+   ],
+   [
+    "LongLived",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateFlexFlow",
+  "method" : "create",
+  "options" : {
+   "contact_identity" : "v_contact_identity",
+   "enabled" : 1,
+   "integration_channel" : "v_integration_channel",
+   "integration_creation_on_message" : 1,
+   "integration_flow_sid" : "v_integration_flow_sid",
+   "integration_priority" : 2068,
+   "integration_retry_count" : 2257,
+   "integration_timeout" : 1945,
+   "integration_type" : "task",
+   "integration_url" : "v_integration_url",
+   "integration_workflow_sid" : "v_integration_workflow_sid",
+   "integration_workspace_sid" : "v_integration_workspace_sid",
+   "janitor_enabled" : 1,
+   "long_lived" : 1
+  },
+  "required" : [
+   "v_friendly_name",
+   "v_chat_service_sid",
+   "custom"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/FlexFlows"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "assessments",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "CategorySid",
+    "v_category_sid"
+   ],
+   [
+    "CategoryName",
+    "v_category_name"
+   ],
+   [
+    "SegmentId",
+    "v_segment_id"
+   ],
+   [
+    "AgentId",
+    "v_agent_id"
+   ],
+   [
+    "Offset",
+    615.5
+   ],
+   [
+    "MetricId",
+    "v_metric_id"
+   ],
+   [
+    "MetricName",
+    "v_metric_name"
+   ],
+   [
+    "AnswerText",
+    "v_answer_text"
+   ],
+   [
+    "AnswerId",
+    "v_answer_id"
+   ],
+   [
+    "QuestionnaireSid",
+    "v_questionnaire_sid"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "POST",
+  "id" : "CreateInsightsAssessments",
+  "method" : "create",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "required" : [
+   "v_category_sid",
+   "v_category_name",
+   "v_segment_id",
+   "v_agent_id",
+   615.5,
+   "v_metric_id",
+   "v_metric_name",
+   "v_answer_text",
+   "v_answer_id",
+   "v_questionnaire_sid"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Assessments"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_assessments_comment",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "CategoryId",
+    "v_category_id"
+   ],
+   [
+    "CategoryName",
+    "v_category_name"
+   ],
+   [
+    "Comment",
+    "v_comment"
+   ],
+   [
+    "SegmentId",
+    "v_segment_id"
+   ],
+   [
+    "AgentId",
+    "v_agent_id"
+   ],
+   [
+    "Offset",
+    615.5
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "POST",
+  "id" : "CreateInsightsAssessmentsComment",
+  "method" : "create",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "required" : [
+   "v_category_id",
+   "v_category_name",
+   "v_comment",
+   "v_segment_id",
+   "v_agent_id",
+   615.5
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Assessments/Comments"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_questionnaires",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Name",
+    "v_name"
+   ],
+   [
+    "Active",
+    "true"
+   ],
+   [
+    "Description",
+    "v_description"
+   ],
+   [
+    "QuestionSids",
+    "v_question_sids_1"
+   ],
+   [
+    "QuestionSids",
+    "v_question_sids_2"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "POST",
+  "id" : "CreateInsightsQuestionnaires",
+  "method" : "create",
+  "options" : {
+   "active" : 1,
+   "authorization" : "v_authorization",
+   "description" : "v_description",
+   "question_sids" : [
+    "v_question_sids_1",
+    "v_question_sids_2"
+   ]
+  },
+  "required" : [
+   "v_name"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Questionnaires"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_questionnaires_category",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Name",
+    "v_name"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "POST",
+  "id" : "CreateInsightsQuestionnairesCategory",
+  "method" : "create",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "required" : [
+   "v_name"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Categories"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_questionnaires_question",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "CategorySid",
+    "v_category_sid"
+   ],
+   [
+    "Question",
+    "v_question"
+   ],
+   [
+    "AnswerSetId",
+    "v_answer_set_id"
+   ],
+   [
+    "AllowNa",
+    "true"
+   ],
+   [
+    "Description",
+    "v_description"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "POST",
+  "id" : "CreateInsightsQuestionnairesQuestion",
+  "method" : "create",
+  "options" : {
+   "authorization" : "v_authorization",
+   "description" : "v_description"
+  },
+  "required" : [
+   "v_category_sid",
+   "v_question",
+   "v_answer_set_id",
+   1
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Questions"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_session",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "POST",
+  "id" : "CreateInsightsSession",
+  "method" : "create",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/Session"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Channel",
+    "{\"v_channel\":26}"
+   ],
+   [
+    "InteractionContextSid",
+    "v_interaction_context_sid"
+   ],
+   [
+    "Routing",
+    "{\"v_routing\":17}"
+   ],
+   [
+    "WebhookTtid",
+    "v_webhook_ttid"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateInteraction",
+  "method" : "create",
+  "options" : {
+   "interaction_context_sid" : "v_interaction_context_sid",
+   "routing" : {
+    "v_routing" : 17
+   },
+   "webhook_ttid" : "v_webhook_ttid"
+  },
+  "required" : [
+   {
+    "v_channel" : 26
+   }
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Interactions"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    1
+   ],
+   [
+    "channels",
+    1
+   ],
+   [
+    "invites",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Routing",
+    "{\"v_routing\":17}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateInteractionChannelInvite",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   {
+    "v_routing" : 17
+   }
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Interactions/id1/Channels/id2/Invites"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    1
+   ],
+   [
+    "channels",
+    1
+   ],
+   [
+    "participants",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Type",
+    "agent"
+   ],
+   [
+    "MediaProperties",
+    "{\"v_media_properties\":10}"
+   ],
+   [
+    "RoutingProperties",
+    "{\"v_routing_properties\":22}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateInteractionChannelParticipant",
+  "method" : "create",
+  "options" : {
+   "routing_properties" : {
+    "v_routing_properties" : 22
+   }
+  },
+  "required" : [
+   "agent",
+   {
+    "v_media_properties" : 10
+   }
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Interactions/id1/Channels/id2/Participants"
+ },
+ {
+  "body" : {},
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    1
+   ],
+   [
+    "channels",
+    1
+   ],
+   [
+    "transfers",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateInteractionTransfer",
+  "json" : {},
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Interactions/id1/Channels/id2/Transfers"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugins",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "UniqueName",
+    "v_unique_name"
+   ],
+   [
+    "Description",
+    "v_description"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "POST",
+  "id" : "CreatePlugin",
+  "method" : "create",
+  "options" : {
+   "description" : "v_description",
+   "flex_metadata" : "v_flex_metadata",
+   "friendly_name" : "v_friendly_name"
+  },
+  "required" : [
+   "v_unique_name"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Plugins"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugin_configurations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Name",
+    "v_name"
+   ],
+   [
+    "Description",
+    "v_description"
+   ],
+   [
+    "Plugins",
+    "{\"v_plugins\":1}"
+   ],
+   [
+    "Plugins",
+    "{\"v_plugins\":2}"
+   ]
+  ],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "POST",
+  "id" : "CreatePluginConfiguration",
+  "method" : "create",
+  "options" : {
+   "description" : "v_description",
+   "flex_metadata" : "v_flex_metadata",
+   "plugins" : [
+    {
+     "v_plugins" : 1
+    },
+    {
+     "v_plugins" : 2
+    }
+   ]
+  },
+  "required" : [
+   "v_name"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Configurations"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugin_releases",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "ConfigurationId",
+    "v_configuration_id"
+   ]
+  ],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "POST",
+  "id" : "CreatePluginRelease",
+  "method" : "create",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "required" : [
+   "v_configuration_id"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Releases"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugins",
+    1
+   ],
+   [
+    "plugin_versions",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Version",
+    "v_version"
+   ],
+   [
+    "PluginUrl",
+    "v_plugin_url"
+   ],
+   [
+    "Changelog",
+    "v_changelog"
+   ],
+   [
+    "CliVersion",
+    "v_cli_version"
+   ],
+   [
+    "Private",
+    "true"
+   ],
+   [
+    "ValidateStatus",
+    "v_validate_status"
+   ]
+  ],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "POST",
+  "id" : "CreatePluginVersion",
+  "method" : "create",
+  "options" : {
+   "changelog" : "v_changelog",
+   "cli_version" : "v_cli_version",
+   "flex_metadata" : "v_flex_metadata",
+   "private" : 1,
+   "validate_status" : "v_validate_status"
+  },
+  "required" : [
+   "v_version",
+   "v_plugin_url"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Plugins/id1/Versions"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "web_channel",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FlexFlowSid",
+    "v_flex_flow_sid"
+   ],
+   [
+    "Identity",
+    "v_identity"
+   ],
+   [
+    "CustomerFriendlyName",
+    "v_customer_friendly_name"
+   ],
+   [
+    "ChatFriendlyName",
+    "v_chat_friendly_name"
+   ],
+   [
+    "ChatUniqueName",
+    "v_chat_unique_name"
+   ],
+   [
+    "PreEngagementData",
+    "v_pre_engagement_data"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateWebChannel",
+  "method" : "create",
+  "options" : {
+   "chat_unique_name" : "v_chat_unique_name",
+   "pre_engagement_data" : "v_pre_engagement_data"
+  },
+  "required" : [
+   "v_flex_flow_sid",
+   "v_identity",
+   "v_customer_friendly_name",
+   "v_chat_friendly_name"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/WebChannels"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "channel",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteChannel",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Channels/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flex_flow",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteFlexFlow",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/FlexFlows/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_questionnaires",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteInsightsQuestionnaires",
+  "method" : "delete",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Questionnaires/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_questionnaires_category",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteInsightsQuestionnairesCategory",
+  "method" : "delete",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Categories/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_questionnaires_question",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteInsightsQuestionnairesQuestion",
+  "method" : "delete",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Questions/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "web_channel",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteWebChannel",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/WebChannels/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "channel",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchChannel",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Channels/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "configuration",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "UiVersion",
+    "v_ui_version"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchConfiguration",
+  "method" : "fetch",
+  "options" : {
+   "ui_version" : "v_ui_version"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Configuration"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugin_configurations",
+    1
+   ],
+   [
+    "plugins",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "GET",
+  "id" : "FetchConfiguredPlugin",
+  "method" : "fetch",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Configurations/id1/Plugins/id2"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flex_flow",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchFlexFlow",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/FlexFlows/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_questionnaires",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "GET",
+  "id" : "FetchInsightsQuestionnaires",
+  "method" : "fetch",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Questionnaires/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_settings_answer_sets",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "GET",
+  "id" : "FetchInsightsSettingsAnswersets",
+  "method" : "fetch",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Settings/AnswerSets"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_settings_comment",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "GET",
+  "id" : "FetchInsightsSettingsComment",
+  "method" : "fetch",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Settings/CommentTags"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_user_roles",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "GET",
+  "id" : "FetchInsightsUserRoles",
+  "method" : "fetch",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/UserRoles"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchInteraction",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Interactions/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    1
+   ],
+   [
+    "channels",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchInteractionChannel",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Interactions/id1/Channels/id2"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    1
+   ],
+   [
+    "channels",
+    1
+   ],
+   [
+    "transfers",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchInteractionTransfer",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Interactions/id1/Channels/id2/Transfers/id3"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugins",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "GET",
+  "id" : "FetchPlugin",
+  "method" : "fetch",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Plugins/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugin_configurations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "GET",
+  "id" : "FetchPluginConfiguration",
+  "method" : "fetch",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Configurations/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugin_releases",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "GET",
+  "id" : "FetchPluginRelease",
+  "method" : "fetch",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Releases/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugins",
+    1
+   ],
+   [
+    "plugin_versions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "GET",
+  "id" : "FetchPluginVersion",
+  "method" : "fetch",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Plugins/id1/Versions/id2"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "provisioning_status",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchProvisioningStatus",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/account/provision/status"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "web_channel",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchWebChannel",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/WebChannels/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "channel",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListChannel",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "flex_chat_channels",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Channels"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugin_configurations",
+    1
+   ],
+   [
+    "plugins",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "GET",
+  "id" : "ListConfiguredPlugin",
+  "method" : "page",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "records_key" : "plugins",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Configurations/id1/Plugins"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flex_flow",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListFlexFlow",
+  "method" : "page",
+  "options" : {
+   "friendly_name" : "v_friendly_name"
+  },
+  "records_key" : "flex_flows",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/FlexFlows"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "assessments",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "SegmentId",
+    "v_segment_id"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "GET",
+  "id" : "ListInsightsAssessments",
+  "method" : "page",
+  "options" : {
+   "authorization" : "v_authorization",
+   "segment_id" : "v_segment_id"
+  },
+  "records_key" : "assessments",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Assessments"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_assessments_comment",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "SegmentId",
+    "v_segment_id"
+   ],
+   [
+    "AgentId",
+    "v_agent_id"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "GET",
+  "id" : "ListInsightsAssessmentsComment",
+  "method" : "page",
+  "options" : {
+   "agent_id" : "v_agent_id",
+   "authorization" : "v_authorization",
+   "segment_id" : "v_segment_id"
+  },
+  "records_key" : "comments",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Assessments/Comments"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_conversations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "SegmentId",
+    "v_segment_id"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "GET",
+  "id" : "ListInsightsConversations",
+  "method" : "page",
+  "options" : {
+   "authorization" : "v_authorization",
+   "segment_id" : "v_segment_id"
+  },
+  "records_key" : "conversations",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/Conversations"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_questionnaires",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "IncludeInactive",
+    "true"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "GET",
+  "id" : "ListInsightsQuestionnaires",
+  "method" : "page",
+  "options" : {
+   "authorization" : "v_authorization",
+   "include_inactive" : 1
+  },
+  "records_key" : "questionnaires",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Questionnaires"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_questionnaires_category",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "GET",
+  "id" : "ListInsightsQuestionnairesCategory",
+  "method" : "page",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "records_key" : "categories",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Categories"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_questionnaires_question",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "CategorySid",
+    "v_category_sid_1"
+   ],
+   [
+    "CategorySid",
+    "v_category_sid_2"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "GET",
+  "id" : "ListInsightsQuestionnairesQuestion",
+  "method" : "page",
+  "options" : {
+   "authorization" : "v_authorization",
+   "category_sid" : [
+    "v_category_sid_1",
+    "v_category_sid_2"
+   ]
+  },
+  "records_key" : "questions",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Questions"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_segments",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "SegmentId",
+    "v_segment_id"
+   ],
+   [
+    "ReservationId",
+    "v_reservation_id_1"
+   ],
+   [
+    "ReservationId",
+    "v_reservation_id_2"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "GET",
+  "id" : "ListInsightsSegments",
+  "method" : "page",
+  "options" : {
+   "authorization" : "v_authorization",
+   "reservation_id" : [
+    "v_reservation_id_1",
+    "v_reservation_id_2"
+   ],
+   "segment_id" : "v_segment_id"
+  },
+  "records_key" : "segments",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Insights/Segments"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    1
+   ],
+   [
+    "channels",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListInteractionChannel",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "channels",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Interactions/id1/Channels"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    1
+   ],
+   [
+    "channels",
+    1
+   ],
+   [
+    "invites",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListInteractionChannelInvite",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "invites",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Interactions/id1/Channels/id2/Invites"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    1
+   ],
+   [
+    "channels",
+    1
+   ],
+   [
+    "participants",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListInteractionChannelParticipant",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "participants",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Interactions/id1/Channels/id2/Participants"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugins",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "GET",
+  "id" : "ListPlugin",
+  "method" : "page",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "records_key" : "plugins",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Plugins"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugin_configurations",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "GET",
+  "id" : "ListPluginConfiguration",
+  "method" : "page",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "records_key" : "configurations",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Configurations"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugin_releases",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "GET",
+  "id" : "ListPluginRelease",
+  "method" : "page",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "records_key" : "releases",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Releases"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugins",
+    1
+   ],
+   [
+    "plugin_versions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "GET",
+  "id" : "ListPluginVersion",
+  "method" : "page",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "records_key" : "plugin_versions",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Plugins/id1/Versions"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "web_channel",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListWebChannel",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "flex_chat_channels",
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/WebChannels"
+ },
+ {
+  "body" : {},
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "configuration",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "UpdateConfiguration",
+  "json" : {},
+  "method" : "update",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Configuration"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "flex_flow",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "ChannelType",
+    "custom"
+   ],
+   [
+    "ChatServiceSid",
+    "v_chat_service_sid"
+   ],
+   [
+    "ContactIdentity",
+    "v_contact_identity"
+   ],
+   [
+    "Enabled",
+    "true"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Integration.Channel",
+    "v_integration_channel"
+   ],
+   [
+    "Integration.CreationOnMessage",
+    "true"
+   ],
+   [
+    "Integration.FlowSid",
+    "v_integration_flow_sid"
+   ],
+   [
+    "Integration.Priority",
+    "2068"
+   ],
+   [
+    "Integration.RetryCount",
+    "2257"
+   ],
+   [
+    "Integration.Timeout",
+    "1945"
+   ],
+   [
+    "Integration.Url",
+    "v_integration_url"
+   ],
+   [
+    "Integration.WorkflowSid",
+    "v_integration_workflow_sid"
+   ],
+   [
+    "Integration.WorkspaceSid",
+    "v_integration_workspace_sid"
+   ],
+   [
+    "IntegrationType",
+    "task"
+   ],
+   [
+    "JanitorEnabled",
+    "true"
+   ],
+   [
+    "LongLived",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateFlexFlow",
+  "method" : "update",
+  "options" : {
+   "channel_type" : "custom",
+   "chat_service_sid" : "v_chat_service_sid",
+   "contact_identity" : "v_contact_identity",
+   "enabled" : 1,
+   "friendly_name" : "v_friendly_name",
+   "integration_channel" : "v_integration_channel",
+   "integration_creation_on_message" : 1,
+   "integration_flow_sid" : "v_integration_flow_sid",
+   "integration_priority" : 2068,
+   "integration_retry_count" : 2257,
+   "integration_timeout" : 1945,
+   "integration_type" : "task",
+   "integration_url" : "v_integration_url",
+   "integration_workflow_sid" : "v_integration_workflow_sid",
+   "integration_workspace_sid" : "v_integration_workspace_sid",
+   "janitor_enabled" : 1,
+   "long_lived" : 1
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/FlexFlows/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "assessments",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Offset",
+    615.5
+   ],
+   [
+    "AnswerText",
+    "v_answer_text"
+   ],
+   [
+    "AnswerId",
+    "v_answer_id"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "POST",
+  "id" : "UpdateInsightsAssessments",
+  "method" : "update",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "required" : [
+   615.5,
+   "v_answer_text",
+   "v_answer_id"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Assessments/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_questionnaires",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Active",
+    "true"
+   ],
+   [
+    "Description",
+    "v_description"
+   ],
+   [
+    "Name",
+    "v_name"
+   ],
+   [
+    "QuestionSids",
+    "v_question_sids_1"
+   ],
+   [
+    "QuestionSids",
+    "v_question_sids_2"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "POST",
+  "id" : "UpdateInsightsQuestionnaires",
+  "method" : "update",
+  "options" : {
+   "authorization" : "v_authorization",
+   "description" : "v_description",
+   "name" : "v_name",
+   "question_sids" : [
+    "v_question_sids_1",
+    "v_question_sids_2"
+   ]
+  },
+  "required" : [
+   1
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Questionnaires/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_questionnaires_category",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Name",
+    "v_name"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "POST",
+  "id" : "UpdateInsightsQuestionnairesCategory",
+  "method" : "update",
+  "options" : {
+   "authorization" : "v_authorization"
+  },
+  "required" : [
+   "v_name"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Categories/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "insights_questionnaires_question",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "AllowNa",
+    "true"
+   ],
+   [
+    "AnswerSetId",
+    "v_answer_set_id"
+   ],
+   [
+    "CategorySid",
+    "v_category_sid"
+   ],
+   [
+    "Description",
+    "v_description"
+   ],
+   [
+    "Question",
+    "v_question"
+   ]
+  ],
+  "headers" : {
+   "Authorization" : "v_authorization"
+  },
+  "http" : "POST",
+  "id" : "UpdateInsightsQuestionnairesQuestion",
+  "method" : "update",
+  "options" : {
+   "answer_set_id" : "v_answer_set_id",
+   "authorization" : "v_authorization",
+   "category_sid" : "v_category_sid",
+   "description" : "v_description",
+   "question" : "v_question"
+  },
+  "required" : [
+   1
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Insights/QualityManagement/Questions/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "WebhookTtid",
+    "v_webhook_ttid"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateInteraction",
+  "method" : "update",
+  "options" : {
+   "webhook_ttid" : "v_webhook_ttid"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Interactions/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    1
+   ],
+   [
+    "channels",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "closed"
+   ],
+   [
+    "Routing",
+    "{\"v_routing\":17}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateInteractionChannel",
+  "method" : "update",
+  "options" : {
+   "routing" : {
+    "v_routing" : 17
+   }
+  },
+  "required" : [
+   "closed"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Interactions/id1/Channels/id2"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    1
+   ],
+   [
+    "channels",
+    1
+   ],
+   [
+    "participants",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "closed"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateInteractionChannelParticipant",
+  "method" : "update",
+  "options" : {},
+  "required" : [
+   "closed"
+  ],
+  "url" : "https://flex-api.twilio.com/v1/Interactions/id1/Channels/id2/Participants/id3"
+ },
+ {
+  "body" : {},
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "interaction",
+    1
+   ],
+   [
+    "channels",
+    1
+   ],
+   [
+    "transfers",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "UpdateInteractionTransfer",
+  "json" : {},
+  "method" : "update",
+  "options" : {},
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/Interactions/id1/Channels/id2/Transfers/id3"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugins",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Description",
+    "v_description"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "POST",
+  "id" : "UpdatePlugin",
+  "method" : "update",
+  "options" : {
+   "description" : "v_description",
+   "flex_metadata" : "v_flex_metadata",
+   "friendly_name" : "v_friendly_name"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Plugins/id1"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugin_archive",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "POST",
+  "id" : "UpdatePluginArchive",
+  "method" : "update",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Plugins/id1/Archive"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugin_configuration_archive",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "POST",
+  "id" : "UpdatePluginConfigurationArchive",
+  "method" : "update",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Configurations/id1/Archive"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "plugin_version_archive",
+    2
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Flex-Metadata" : "v_flex_metadata"
+  },
+  "http" : "POST",
+  "id" : "UpdatePluginVersionArchive",
+  "method" : "update",
+  "options" : {
+   "flex_metadata" : "v_flex_metadata"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/PluginService/Plugins/id1/Versions/id2/Archive"
+ },
+ {
+  "chain" : [
+   [
+    "flex_api",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "web_channel",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "ChatStatus",
+    "inactive"
+   ],
+   [
+    "PostEngagementData",
+    "v_post_engagement_data"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateWebChannel",
+  "method" : "update",
+  "options" : {
+   "chat_status" : "inactive",
+   "post_engagement_data" : "v_post_engagement_data"
+  },
+  "required" : [],
+  "url" : "https://flex-api.twilio.com/v1/WebChannels/id1"
+ }
+]

@@ -1,7 +1,8 @@
 use 5.016;
 use warnings;
 
-use Carp qw(croak);
+use Carp       qw(croak);
+use File::Find qw(find);
 use Test::More;
 
 use lib 'tools/lib';
@@ -23,6 +24,14 @@ for my $name (sort keys %{$files}) {
   ok($same, "lib/$name is what the generator writes");
 }
 
+# Names are compared as the disk spells them. On Windows, writing A2PBrandRegistration.pm over
+# A2pBrandRegistration.pm keeps the old spelling, which Linux then cannot require.
+is_deeply(
+  [sort map { s{\Alib/}{}r } files_under('lib/Twilio/Rest')],
+  [sort grep { m{\ATwilio/Rest/} } keys %{$files}],
+  'every file under lib/Twilio/Rest is generated, under the name the generator gives it'
+);
+
 my $contracts = Twilio::Generator::contract_files($SPECS);
 is_deeply(
   [sort map { s{.*/}{}r } glob 't/data/contract-*.json'],
@@ -36,6 +45,14 @@ for my $name (sort keys %{$contracts}) {
 }
 
 done_testing;
+
+sub files_under {
+  my ($directory) = @_;
+
+  my @found;
+  find({ wanted => sub { push @found, $File::Find::name if -f }, no_chdir => 1 }, $directory);
+  return @found;
+}
 
 sub slurp {
   my ($file) = @_;

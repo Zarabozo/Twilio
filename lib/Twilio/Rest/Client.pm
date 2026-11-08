@@ -12,6 +12,12 @@ our $VERSION = '2.000000';
 # a parent that also held its child would be a reference cycle, which Perl never frees, and
 # long-running processes would leak every client they create. Requiring on demand keeps
 # startup fast when hundreds of resources exist.
+sub accounts {
+  my ($self) = @_;
+  require Twilio::Rest::Accounts;
+  return Twilio::Rest::Accounts->new($self);
+}
+
 sub api {
   my ($self) = @_;
   require Twilio::Rest::Api;
@@ -72,6 +78,12 @@ sub insights {
   return Twilio::Rest::Insights->new($self);
 }
 
+sub intelligence {
+  my ($self) = @_;
+  require Twilio::Rest::Intelligence;
+  return Twilio::Rest::Intelligence->new($self);
+}
+
 sub ip_messaging {
   my ($self) = @_;
   require Twilio::Rest::IpMessaging;
@@ -112,6 +124,12 @@ sub preview {
   my ($self) = @_;
   require Twilio::Rest::Preview;
   return Twilio::Rest::Preview->new($self);
+}
+
+sub preview_iam {
+  my ($self) = @_;
+  require Twilio::Rest::PreviewIam;
+  return Twilio::Rest::PreviewIam->new($self);
 }
 
 sub pricing {
@@ -166,6 +184,18 @@ sub trunking {
   my ($self) = @_;
   require Twilio::Rest::Trunking;
   return Twilio::Rest::Trunking->new($self);
+}
+
+sub trusthub {
+  my ($self) = @_;
+  require Twilio::Rest::Trusthub;
+  return Twilio::Rest::Trusthub->new($self);
+}
+
+sub video {
+  my ($self) = @_;
+  require Twilio::Rest::Video;
+  return Twilio::Rest::Video->new($self);
 }
 
 sub voice {
@@ -343,6 +373,10 @@ C<< $client->api->accounts($sid) >>.
 
 =head1 METHODS
 
+=head2 accounts
+
+Returns L<Twilio::Rest::Accounts>.
+
 =head2 api
 
 Returns L<Twilio::Rest::Api>, the domain of the main API.
@@ -383,6 +417,10 @@ Returns L<Twilio::Rest::Iam>.
 
 Returns L<Twilio::Rest::Insights>.
 
+=head2 intelligence
+
+Returns L<Twilio::Rest::Intelligence>.
+
 =head2 ip_messaging
 
 Returns L<Twilio::Rest::IpMessaging>.
@@ -410,6 +448,10 @@ Returns L<Twilio::Rest::Oauth>.
 =head2 preview
 
 Returns L<Twilio::Rest::Preview>.
+
+=head2 preview_iam
+
+Returns L<Twilio::Rest::PreviewIam>.
 
 =head2 pricing
 
@@ -446,6 +488,14 @@ Returns L<Twilio::Rest::Taskrouter>.
 =head2 trunking
 
 Returns L<Twilio::Rest::Trunking>.
+
+=head2 trusthub
+
+Returns L<Twilio::Rest::Trusthub>.
+
+=head2 video
+
+Returns L<Twilio::Rest::Video>.
 
 =head2 voice
 

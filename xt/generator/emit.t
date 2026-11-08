@@ -339,6 +339,169 @@ subtest 'an answer in SCIM is asked for by name' => sub {
   is(($http->requests)[-1]{headers}{Accept}, 'application/scim+json', 'Accept');
 };
 
+subtest 'update and delete on a list, create and patch on an instance' => sub {
+  my $document = document();
+  my $paths    = $document->{paths};
+  my $list     = $paths->{'/v1/Accounts/{AccountSid}/Things.json'};
+  my $item     = $paths->{'/v1/Accounts/{AccountSid}/Things/{Sid}.json'};
+  my $answer   = { 200 => response(thing_reference()) };
+  my $before   = { in  => 'query', name => 'Before', schema => { type => 'string' } };
+
+  $list->{patch} = {
+    operationId => 'UpdateThings',
+    parameters  => path_parameters('AccountSid'),
+    requestBody => form('Mode'),
+    responses   => $answer,
+  };
+  $list->{delete} = {
+    operationId => 'DeleteThings',
+    parameters  => [@{ path_parameters('AccountSid') }, $before],
+
+    # An error with a body is still a delete that returns true.
+    responses => { 204 => {}, 400 => response({ type => 'object' }) },
+  };
+  $item->{put}  = { %{ delete $item->{post} }, requestBody => form('Name') };
+  $item->{post} = {
+    operationId => 'CreateThingCopy',
+    parameters  => path_parameters(qw(AccountSid Sid)),
+    responses   => { 201 => response(thing_reference()) },
+  };
+  $item->{patch} = {
+    operationId => 'PatchThing',
+    parameters  => path_parameters(qw(AccountSid Sid)),
+    requestBody => {
+      content => {
+        'application/json' => { schema => { properties => { name => { type => 'string' } } } }
+      }
+    },
+    responses => $answer,
+  };
+
+  local $NAMESPACE = 'Twilio::Rest::Demo::V1::Verbs::';
+  my $code = emit($document) =~ s/V1::Account::/V1::Verbs::/gr;
+  load_generated($code);
+
+  my ($things, $http) = list();
+  $http->mock(200, { sid => 'TH0', mode => 'slow' });
+  my $updated = $things->update('slow', { name => 'all' });
+  my $request = ($http->requests)[-1];
+  is($request->{method}, 'PATCH', 'update on a list sends the spec\'s method');
+  like($request->{url}, qr{/Accounts/AC1/Things[.]json\z}, 'to the list\'s URL');
+  is($request->{content}, 'Mode=slow&Name=all', 'with its required value first');
+  isa_ok($updated, "${NAMESPACE}ThingInstance");
+
+  $http->mock(204, q{});
+  is($things->delete({ before => 'x' }), 1, 'delete on a list returns true');
+  $request = ($http->requests)[-1];
+  is($request->{method}, 'DELETE', 'delete on a list');
+  like($request->{url}, qr{/Things[.]json[?]Before=x\z}, 'with its query option');
+
+  my $context = $things->get_context('TH1');
+  $http->mock(201, { sid => 'TH2' });
+  is($context->create->sid, 'TH2', 'create on an instance builds the answer');
+  $request = ($http->requests)[-1];
+  is($request->{method}, 'POST', 'create on an instance');
+  like($request->{url}, qr{/Things/TH1[.]json\z}, 'to the instance\'s URL');
+
+  $http->mock(200, { sid => 'TH1', name => 'p' });
+  is($context->patch({ name => 'p' })->name, 'p', 'patch builds the answer');
+  $request = ($http->requests)[-1];
+  is($request->{method},                  'PATCH',            'patch sends PATCH');
+  is($request->{headers}{'Content-Type'}, 'application/json', 'with its JSON body');
+  is($request->{content},                 '{"name":"p"}',     'as given');
+
+  $http->mock(200, { sid => 'TH1', name => 'u' });
+  is($context->update('u')->name,   'u',   'update next to patch');
+  is(($http->requests)[-1]{method}, 'PUT', 'update sends PUT when the spec says so');
+
+  $http->mock(200, { sid => 'TH1' });
+  my $thing = $context->fetch;
+  $http->mock(201, { sid => 'TH3' });
+  is($thing->create->sid, 'TH3', 'an instance has create');
+  $http->mock(200, { sid => 'TH1', name => 'q' });
+  is($thing->patch({ name => 'q' })->name, 'q', 'and patch');
+  like(($http->requests)[-1]{url}, qr{/Things/TH1[.]json\z}, 'on its own URL');
+
+  like($code, qr/^=head2 patch\n\n  my \$thing = \S+->patch\(\\%body\);/m, 'patch is documented');
+  like($code, qr/^=head2 update\n\n  my \$thing = \S+->things->update/m, 'and update on the list');
+  like($code, qr/->things->update\(\$mode, \\%options\);/,               'with its arguments');
+  like($code, qr/^=head2 delete\n\n  \S+->things->delete\(\\%options\);/m, 'and delete on it');
+  my $listed = 'It has C<create>, C<fetch>, C<patch>, C<update> and C<delete>';
+  ok(index($code, $listed) >= 0, 'the instance lists them');
+};
+
+subtest 'only answers below 400 give fields and Accept' => sub {
+  my $document = document();
+  my $item     = $document->{paths}{'/v1/Accounts/{AccountSid}/Things/{Sid}.json'};
+  $document->{components}{schemas}{problem} =
+    { properties => { scimType => { type => 'string' }, detail => { type => 'string' } } };
+  my $problem = { '$ref' => '#/components/schemas/problem' };
+
+  $item->{get}{responses} = { 302 => response(thing_reference()), 404 => response($problem) };
+  $item->{delete}{responses} =
+    { 204 => {}, 404 => { content => { 'application/scim+json' => { schema => $problem } } } };
+
+  my $model  = model($document);
+  my @fields = map { $_->{name} } @{ $model->{fields} };
+  ok(!grep({ $_ eq 'scimType' } @fields),   'an error schema gives no fields');
+  ok(scalar(grep { $_ eq 'name' } @fields), 'a redirect does, as Bulk Exports\' FetchDay needs');
+  ok(!exists $model->{context}{delete}{accept}, 'a delete with SCIM errors asks for nothing');
+};
+
+subtest 'an instance finds its own id in its sid or id' => sub {
+  my $document   = document();
+  my $properties = $document->{components}{schemas}{thing}{properties};
+  $properties->{id} = delete $properties->{sid};
+  is(model($document)->{context}{own_field}, 'id', 'a SCIM user\'s {UserSid} is its id');
+
+  delete $properties->{id};
+  my $ok = eval { model($document); 1 };
+  ok(!$ok, 'with neither, it stops');
+  like($@, qr{Accounts/Things: no field holds its own id sid}, 'and says why');
+};
+
+subtest 'an instance id need not end its path' => sub {
+  my $document = {
+    paths => {
+      '/v1/Inquiries/Initialize' => {
+        'x-twilio' => { pathType => 'list' },
+        post       => {
+          operationId => 'CreateInquiry',
+          responses   => { 201 => response(thing_reference()) }
+        },
+      },
+      '/v1/Inquiries/{InquiryId}/Initialize' => {
+        'x-twilio' => { pathType => 'instance' },
+        post       => {
+          operationId => 'UpdateInquiry',
+          parameters  => path_parameters('InquiryId'),
+          responses   => { 200 => response(thing_reference()) },
+        },
+      },
+    },
+    components => { schemas => { thing => { properties => { sid => { type => 'string' } } } } },
+  };
+
+  my $spec = Twilio::Generator::Spec->new('demo', 'v1', $document);
+  my ($inquiry) = @{ Twilio::Generator::Tree::build($spec)->{resources} };
+  is($inquiry->{instance}{key}, 'InquiryId', 'the id its list does not hold is its own');
+
+  my $model =
+    Twilio::Generator::Resource::build($spec, Twilio::Generator::Tree::build($spec), $inquiry);
+  is($model->{context}{own}, 'inquiry_id', 'and the context takes it');
+  is_deeply(
+    [map { $_->{literal} // "{$_->{parameter}}" } @{ $model->{context}{uri} }],
+    ['/Inquiries/', '{inquiry_id}', '/Initialize'],
+    'in the middle of its URL'
+  );
+
+  $document->{paths}{'/v1/Inquiries/{InquiryId}/{Step}/Initialize'} =
+    delete $document->{paths}{'/v1/Inquiries/{InquiryId}/Initialize'};
+  my $ok = eval { Twilio::Generator::Tree::build($spec); 1 };
+  ok(!$ok, 'two ids beyond the list\'s are refused');
+  like($@, qr/more than one id beyond its list's/, 'and it says why');
+};
+
 subtest 'parents and their children' => sub {
   my $document = family();
   my %models   = map { ($_->{module} =~ s/.*V1:://r) => $_ } all_models($document);
@@ -420,6 +583,14 @@ subtest 'a family that does not fit stops generation' => sub {
       sub {
         $_[0]{paths}{'/v1/Things/{Sid}.json'}{'x-twilio'}{dependentProperties} =
           { read => { resource_url => '/v1/Things/{thing_sid}/Parts.json' } };
+      },
+    ],
+    [
+      'a child named like the new verbs',
+      qr/method patch is reserved/,
+      sub {
+        $_[0]{paths}{'/v1/Things/{Sid}.json'}{'x-twilio'}{dependentProperties} =
+          { patch => { resource_url => '/v1/Things/{thing_sid}/Parts.json' } };
       },
     ],
     [
@@ -779,14 +950,39 @@ subtest 'anything with no rule stops generation' => sub {
       sub { $_[0]{paths}{$item_path}{delete}{requestBody} = {} },
     ],
     [
-      'update on a list',
-      qr/UpdateThing: no rule for update on a list/,
-      sub { $_[0]{paths}{$list_path}{put} = { operationId => 'UpdateThing' } },
+      'patch on a list',
+      qr/PatchThings: no rule for patch on a list/,
+      sub { $_[0]{paths}{$list_path}{patch} = { operationId => 'PatchThings' } },
     ],
     [
-      'create on an instance',
-      qr/CreateThing: no rule for create on an instance/,
-      sub { $_[0]{paths}{$item_path}{put} = { operationId => 'CreateThing' } },
+      'list on an instance',
+      qr/ListThingParts: no rule for list on an instance/,
+      sub { $_[0]{paths}{$item_path}{put} = { operationId => 'ListThingParts' } },
+    ],
+    [
+      'a delete that answers with a body',
+      qr/DeleteThing: no rule for a delete that answers with a body/,
+      sub { $_[0]{paths}{$item_path}{delete}{responses} = { 202 => response(thing_reference()) } },
+    ],
+    [
+      'a response that is oneOf',
+      qr{Accounts/Things: no rule for a response that is oneOf},
+      sub {
+        my $schemas = $_[0]{components}{schemas};
+        $schemas->{other} = { properties => { size => { type => 'integer' } } };
+        $schemas->{thing} =
+          { oneOf => [{ '$ref' => '#/components/schemas/other' }, { %{ $schemas->{thing} } }] };
+      },
+    ],
+    [
+      'reserved field patch',
+      qr/Field patch is reserved/,
+      sub { $_[0]{components}{schemas}{thing}{properties}{patch} = { type => 'string' } }
+    ],
+    [
+      'reserved field create',
+      qr/Field create is reserved/,
+      sub { $_[0]{components}{schemas}{thing}{properties}{create} = { type => 'string' } }
     ],
     [
       'no records',

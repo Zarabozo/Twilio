@@ -1,0 +1,317 @@
+[
+ {
+  "body" : {
+   "bid_amount" : 1058,
+   "category" : "v_category",
+   "name" : "v_name",
+   "send_ttl_seconds" : 1707
+  },
+  "chain" : [
+   [
+    "content",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "contents",
+    1
+   ],
+   [
+    "approval_create",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateApprovalCreate",
+  "json" : {
+   "bid_amount" : 1058,
+   "category" : "v_category",
+   "name" : "v_name",
+   "send_ttl_seconds" : 1707
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://content.twilio.com/v1/Content/id1/ApprovalRequests/whatsapp"
+ },
+ {
+  "body" : {
+   "friendly_name" : "v_friendly_name",
+   "language" : "v_language",
+   "types" : {
+    "v_types" : 1
+   },
+   "variables" : {
+    "v_variables" : 1
+   }
+  },
+  "chain" : [
+   [
+    "content",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "contents",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateContent",
+  "json" : {
+   "friendly_name" : "v_friendly_name",
+   "language" : "v_language",
+   "types" : {
+    "v_types" : 1
+   },
+   "variables" : {
+    "v_variables" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://content.twilio.com/v1/Content"
+ },
+ {
+  "chain" : [
+   [
+    "content",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "contents",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteContent",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://content.twilio.com/v1/Content/id1"
+ },
+ {
+  "chain" : [
+   [
+    "content",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "contents",
+    1
+   ],
+   [
+    "approval_fetch",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchApprovalFetch",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://content.twilio.com/v1/Content/id1/ApprovalRequests"
+ },
+ {
+  "chain" : [
+   [
+    "content",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "contents",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchContent",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://content.twilio.com/v1/Content/id1"
+ },
+ {
+  "chain" : [
+   [
+    "content",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "contents",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListContent",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "contents",
+  "required" : [],
+  "url" : "https://content.twilio.com/v1/Content"
+ },
+ {
+  "chain" : [
+   [
+    "content",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "content_and_approvals",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListContentAndApprovals",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "contents",
+  "required" : [],
+  "url" : "https://content.twilio.com/v1/ContentAndApprovals"
+ },
+ {
+  "chain" : [
+   [
+    "content",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "legacy_contents",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListLegacyContent",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "contents",
+  "required" : [],
+  "url" : "https://content.twilio.com/v1/LegacyContent"
+ },
+ {
+  "body" : {
+   "bid_amount" : 1058
+  },
+  "chain" : [
+   [
+    "content",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "contents",
+    1
+   ],
+   [
+    "approval_create",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "PATCH",
+  "id" : "UpdateApprovalCreate",
+  "json" : {
+   "bid_amount" : 1058
+  },
+  "method" : "update",
+  "options" : {},
+  "required" : [],
+  "url" : "https://content.twilio.com/v1/Content/id1/ApprovalRequests/whatsapp"
+ },
+ {
+  "body" : {
+   "friendly_name" : "v_friendly_name",
+   "language" : "v_language",
+   "types" : {
+    "v_types" : 1
+   },
+   "variables" : {
+    "v_variables" : 1
+   }
+  },
+  "chain" : [
+   [
+    "content",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "contents",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "PUT",
+  "id" : "UpdateContent",
+  "json" : {
+   "friendly_name" : "v_friendly_name",
+   "language" : "v_language",
+   "types" : {
+    "v_types" : 1
+   },
+   "variables" : {
+    "v_variables" : 1
+   }
+  },
+  "method" : "update",
+  "options" : {},
+  "required" : [],
+  "url" : "https://content.twilio.com/v1/Content/id1"
+ }
+]

@@ -1,0 +1,1816 @@
+[
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "authorization_documents",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "AddressSid",
+    "v_address_sid"
+   ],
+   [
+    "Email",
+    "v_email"
+   ],
+   [
+    "ContactPhoneNumber",
+    "v_contact_phone_number"
+   ],
+   [
+    "HostedNumberOrderSids",
+    "v_hosted_number_order_sids_1"
+   ],
+   [
+    "HostedNumberOrderSids",
+    "v_hosted_number_order_sids_2"
+   ],
+   [
+    "CcEmails",
+    "v_cc_emails_1"
+   ],
+   [
+    "CcEmails",
+    "v_cc_emails_2"
+   ],
+   [
+    "ContactTitle",
+    "v_contact_title"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateAuthorizationDocument",
+  "method" : "create",
+  "options" : {
+   "cc_emails" : [
+    "v_cc_emails_1",
+    "v_cc_emails_2"
+   ],
+   "contact_title" : "v_contact_title"
+  },
+  "required" : [
+   "v_address_sid",
+   "v_email",
+   "v_contact_phone_number",
+   [
+    "v_hosted_number_order_sids_1",
+    "v_hosted_number_order_sids_2"
+   ]
+  ],
+  "url" : "https://numbers.twilio.com/v2/HostedNumber/AuthorizationDocuments"
+ },
+ {
+  "body" : {},
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "bulk_hosted_number_orders",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateBulkHostedNumberOrder",
+  "json" : {},
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/HostedNumber/Orders/Bulk"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Email",
+    "v_email"
+   ],
+   [
+    "EndUserType",
+    "individual"
+   ],
+   [
+    "IsTest",
+    "true"
+   ],
+   [
+    "IsoCountry",
+    "v_iso_country"
+   ],
+   [
+    "NumberType",
+    "v_number_type"
+   ],
+   [
+    "RegulationSid",
+    "v_regulation_sid"
+   ],
+   [
+    "StatusCallback",
+    "v_status_callback"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateBundle",
+  "method" : "create",
+  "options" : {
+   "end_user_type" : "individual",
+   "is_test" : 1,
+   "iso_country" : "v_iso_country",
+   "number_type" : "v_number_type",
+   "regulation_sid" : "v_regulation_sid",
+   "status_callback" : "v_status_callback"
+  },
+  "required" : [
+   "v_friendly_name",
+   "v_email"
+  ],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "bundle_clone",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "TargetAccountSid",
+    "v_target_account_sid"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "MoveToDraft",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateBundleClone",
+  "method" : "create",
+  "options" : {
+   "friendly_name" : "v_friendly_name",
+   "move_to_draft" : 1
+  },
+  "required" : [
+   "v_target_account_sid"
+  ],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1/Clones"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    1
+   ],
+   [
+    "bundle_copies",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateBundleCopy",
+  "method" : "create",
+  "options" : {
+   "friendly_name" : "v_friendly_name"
+  },
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1/Copies"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "end_users",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Type",
+    "individual"
+   ],
+   [
+    "Attributes",
+    "{\"v_attributes\":28}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateEndUser",
+  "method" : "create",
+  "options" : {
+   "attributes" : {
+    "v_attributes" : 28
+   }
+  },
+  "required" : [
+   "v_friendly_name",
+   "individual"
+  ],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/EndUsers"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    1
+   ],
+   [
+    "evaluations",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "POST",
+  "id" : "CreateEvaluation",
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1/Evaluations"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "hosted_number_orders",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "PhoneNumber",
+    "v_phone_number"
+   ],
+   [
+    "ContactPhoneNumber",
+    "v_contact_phone_number"
+   ],
+   [
+    "AddressSid",
+    "v_address_sid"
+   ],
+   [
+    "Email",
+    "v_email"
+   ],
+   [
+    "AccountSid",
+    "v_account_sid"
+   ],
+   [
+    "CcEmails",
+    "v_cc_emails_1"
+   ],
+   [
+    "CcEmails",
+    "v_cc_emails_2"
+   ],
+   [
+    "ContactTitle",
+    "v_contact_title"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "SmsApplicationSid",
+    "v_sms_application_sid"
+   ],
+   [
+    "SmsCapability",
+    "true"
+   ],
+   [
+    "SmsFallbackMethod",
+    "GET"
+   ],
+   [
+    "SmsFallbackUrl",
+    "v_sms_fallback_url"
+   ],
+   [
+    "SmsMethod",
+    "GET"
+   ],
+   [
+    "SmsUrl",
+    "v_sms_url"
+   ],
+   [
+    "StatusCallbackMethod",
+    "GET"
+   ],
+   [
+    "StatusCallbackUrl",
+    "v_status_callback_url"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateHostedNumberOrder",
+  "method" : "create",
+  "options" : {
+   "account_sid" : "v_account_sid",
+   "cc_emails" : [
+    "v_cc_emails_1",
+    "v_cc_emails_2"
+   ],
+   "contact_title" : "v_contact_title",
+   "friendly_name" : "v_friendly_name",
+   "sms_application_sid" : "v_sms_application_sid",
+   "sms_capability" : 1,
+   "sms_fallback_method" : "GET",
+   "sms_fallback_url" : "v_sms_fallback_url",
+   "sms_method" : "GET",
+   "sms_url" : "v_sms_url",
+   "status_callback_method" : "GET",
+   "status_callback_url" : "v_status_callback_url"
+  },
+  "required" : [
+   "v_phone_number",
+   "v_contact_phone_number",
+   "v_address_sid",
+   "v_email"
+  ],
+  "url" : "https://numbers.twilio.com/v2/HostedNumber/Orders"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    1
+   ],
+   [
+    "item_assignments",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "ObjectSid",
+    "v_object_sid"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateItemAssignment",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   "v_object_sid"
+  ],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1/ItemAssignments"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    1
+   ],
+   [
+    "replace_items",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FromBundleSid",
+    "v_from_bundle_sid"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateReplaceItems",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   "v_from_bundle_sid"
+  ],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1/ReplaceItems"
+ },
+ {
+  "body" : {
+   "business_information" : {
+    "v_business_information" : 1
+   },
+   "friendly_name" : "v_friendly_name",
+   "iso_country" : "v_iso_country",
+   "setup" : {
+    "v_setup" : 1
+   }
+  },
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "applications",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateShortCodeApplication",
+  "json" : {
+   "business_information" : {
+    "v_business_information" : 1
+   },
+   "friendly_name" : "v_friendly_name",
+   "iso_country" : "v_iso_country",
+   "setup" : {
+    "v_setup" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/ShortCodes/Applications"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "supporting_documents",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Type",
+    "v_type"
+   ],
+   [
+    "Attributes",
+    "{\"v_attributes\":28}"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateSupportingDocument",
+  "method" : "create",
+  "options" : {
+   "attributes" : {
+    "v_attributes" : 28
+   }
+  },
+  "required" : [
+   "v_friendly_name",
+   "v_type"
+  ],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/SupportingDocuments"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "authorization_documents",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteAuthorizationDocument",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/HostedNumber/AuthorizationDocuments/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteBundle",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "end_users",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteEndUser",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/EndUsers/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "hosted_number_orders",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteHostedNumberOrder",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/HostedNumber/Orders/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    1
+   ],
+   [
+    "item_assignments",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteItemAssignment",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1/ItemAssignments/id2"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "supporting_documents",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteSupportingDocument",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/SupportingDocuments/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "authorization_documents",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchAuthorizationDocument",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/HostedNumber/AuthorizationDocuments/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "bulk_hosted_number_orders",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "OrderStatus",
+    "v_order_status"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchBulkHostedNumberOrder",
+  "method" : "fetch",
+  "options" : {
+   "order_status" : "v_order_status"
+  },
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/HostedNumber/Orders/Bulk/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchBundle",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "end_users",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchEndUser",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/EndUsers/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "end_user_types",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchEndUserType",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/EndUserTypes/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    1
+   ],
+   [
+    "evaluations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchEvaluation",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1/Evaluations/id2"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "hosted_number_orders",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchHostedNumberOrder",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/HostedNumber/Orders/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    1
+   ],
+   [
+    "item_assignments",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchItemAssignment",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1/ItemAssignments/id2"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "regulations",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "IncludeConstraints",
+    "true"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchRegulation",
+  "method" : "fetch",
+  "options" : {
+   "include_constraints" : 1
+  },
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Regulations/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "applications",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchShortCodeApplication",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/ShortCodes/Applications/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "supporting_documents",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSupportingDocument",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/SupportingDocuments/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "supporting_document_types",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSupportingDocumentType",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/SupportingDocumentTypes/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "authorization_documents",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Email",
+    "v_email"
+   ],
+   [
+    "Status",
+    "failed"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListAuthorizationDocument",
+  "method" : "page",
+  "options" : {
+   "email" : "v_email",
+   "status" : "failed"
+  },
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/HostedNumber/AuthorizationDocuments"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "in-review"
+   ],
+   [
+    "BundleSids",
+    "v_bundle_sids"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "RegulationSid",
+    "v_regulation_sid"
+   ],
+   [
+    "IsoCountry",
+    "v_iso_country"
+   ],
+   [
+    "NumberType",
+    "v_number_type"
+   ],
+   [
+    "EndUserType",
+    "business"
+   ],
+   [
+    "HasValidUntilDate",
+    "true"
+   ],
+   [
+    "SortBy",
+    "date-updated"
+   ],
+   [
+    "SortDirection",
+    "DESC"
+   ],
+   [
+    "ValidUntilDate",
+    "2026-01-03T03:04:05Z"
+   ],
+   [
+    "ValidUntilDate<",
+    "2026-01-07T03:04:05Z"
+   ],
+   [
+    "ValidUntilDate>",
+    "2026-01-09T03:04:05Z"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListBundle",
+  "method" : "page",
+  "options" : {
+   "bundle_sids" : "v_bundle_sids",
+   "end_user_type" : "business",
+   "friendly_name" : "v_friendly_name",
+   "has_valid_until_date" : 1,
+   "iso_country" : "v_iso_country",
+   "number_type" : "v_number_type",
+   "regulation_sid" : "v_regulation_sid",
+   "sort_by" : "date-updated",
+   "sort_direction" : "DESC",
+   "status" : "in-review",
+   "valid_until_date" : {
+    "epoch" : 1767409445
+   },
+   "valid_until_date_after" : {
+    "epoch" : 1767927845
+   },
+   "valid_until_date_before" : {
+    "epoch" : 1767755045
+   }
+  },
+  "records_key" : "results",
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    1
+   ],
+   [
+    "bundle_copies",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListBundleCopy",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "results",
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1/Copies"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "authorization_documents",
+    1
+   ],
+   [
+    "dependent_hosted_number_orders",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "received"
+   ],
+   [
+    "PhoneNumber",
+    "v_phone_number"
+   ],
+   [
+    "IncomingPhoneNumberSid",
+    "v_incoming_phone_number_sid"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListDependentHostedNumberOrder",
+  "method" : "page",
+  "options" : {
+   "friendly_name" : "v_friendly_name",
+   "incoming_phone_number_sid" : "v_incoming_phone_number_sid",
+   "phone_number" : "v_phone_number",
+   "status" : "received"
+  },
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/HostedNumber/AuthorizationDocuments/id1/DependentHostedNumberOrders"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "end_users",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListEndUser",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "results",
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/EndUsers"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "end_user_types",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListEndUserType",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "end_user_types",
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/EndUserTypes"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    1
+   ],
+   [
+    "evaluations",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListEvaluation",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "results",
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1/Evaluations"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "hosted_number_orders",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "pending-loa"
+   ],
+   [
+    "SmsCapability",
+    "true"
+   ],
+   [
+    "PhoneNumber",
+    "v_phone_number"
+   ],
+   [
+    "IncomingPhoneNumberSid",
+    "v_incoming_phone_number_sid"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListHostedNumberOrder",
+  "method" : "page",
+  "options" : {
+   "friendly_name" : "v_friendly_name",
+   "incoming_phone_number_sid" : "v_incoming_phone_number_sid",
+   "phone_number" : "v_phone_number",
+   "sms_capability" : 1,
+   "status" : "pending-loa"
+  },
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/HostedNumber/Orders"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    1
+   ],
+   [
+    "item_assignments",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListItemAssignment",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "results",
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1/ItemAssignments"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "regulations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "EndUserType",
+    "individual"
+   ],
+   [
+    "IsoCountry",
+    "v_iso_country"
+   ],
+   [
+    "NumberType",
+    "v_number_type"
+   ],
+   [
+    "IncludeConstraints",
+    "true"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListRegulation",
+  "method" : "page",
+  "options" : {
+   "end_user_type" : "individual",
+   "include_constraints" : 1,
+   "iso_country" : "v_iso_country",
+   "number_type" : "v_number_type"
+  },
+  "records_key" : "results",
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Regulations"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "applications",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "AccountSid",
+    "v_account_sid"
+   ],
+   [
+    "IsoCountry",
+    "v_iso_country"
+   ],
+   [
+    "Status",
+    "v_status"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Sid",
+    "v_sid"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListShortCodeApplications",
+  "method" : "page",
+  "options" : {
+   "account_sid" : "v_account_sid",
+   "friendly_name" : "v_friendly_name",
+   "iso_country" : "v_iso_country",
+   "sid" : "v_sid",
+   "status" : "v_status"
+  },
+  "records_key" : "results",
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/ShortCodes/Applications"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "supporting_documents",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListSupportingDocument",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "results",
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/SupportingDocuments"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "supporting_document_types",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListSupportingDocumentType",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "supporting_document_types",
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/SupportingDocumentTypes"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "bundles",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Email",
+    "v_email"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Status",
+    "in-review"
+   ],
+   [
+    "StatusCallback",
+    "v_status_callback"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateBundle",
+  "method" : "update",
+  "options" : {
+   "email" : "v_email",
+   "friendly_name" : "v_friendly_name",
+   "status" : "in-review",
+   "status_callback" : "v_status_callback"
+  },
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/Bundles/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "end_users",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "{\"v_attributes\":28}"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateEndUser",
+  "method" : "update",
+  "options" : {
+   "attributes" : {
+    "v_attributes" : 28
+   },
+   "friendly_name" : "v_friendly_name"
+  },
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/EndUsers/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "hosted_number_orders",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Status",
+    "pending-loa"
+   ],
+   [
+    "VerificationCallDelay",
+    "2126"
+   ],
+   [
+    "VerificationCallExtension",
+    "v_verification_call_extension"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateHostedNumberOrder",
+  "method" : "update",
+  "options" : {
+   "verification_call_delay" : 2126,
+   "verification_call_extension" : "v_verification_call_extension"
+  },
+  "required" : [
+   "pending-loa"
+  ],
+  "url" : "https://numbers.twilio.com/v2/HostedNumber/Orders/id1"
+ },
+ {
+  "chain" : [
+   [
+    "numbers",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "regulatory_compliance",
+    0
+   ],
+   [
+    "supporting_documents",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "{\"v_attributes\":28}"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateSupportingDocument",
+  "method" : "update",
+  "options" : {
+   "attributes" : {
+    "v_attributes" : 28
+   },
+   "friendly_name" : "v_friendly_name"
+  },
+  "required" : [],
+  "url" : "https://numbers.twilio.com/v2/RegulatoryCompliance/SupportingDocuments/id1"
+ }
+]
