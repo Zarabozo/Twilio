@@ -112,7 +112,7 @@ sub _entry {
   my %entry = (
     id       => $operation->{id},
     http     => $operation->{method},
-    url      => $spec->base_url . q{/} . $spec->version_path . $url,
+    url      => join(q{/}, $spec->base_url, grep { length } $spec->version_path) . $url,
     chain    => $chain,
     method   => $METHOD_FOR_VERB{ $operation->{verb} } // $operation->{verb},
     required => [],

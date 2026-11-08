@@ -264,6 +264,7 @@ subtest 'every domain that is ready' => sub {
     notify       => 'Notify',
     numbers      => 'Numbers',
     oauth        => 'Oauth',
+    preview      => 'Preview',
     pricing      => 'Pricing',
     proxy        => 'Proxy',
     routes       => 'Routes',
@@ -387,6 +388,23 @@ subtest 'children of a singleton and of a parent outside the path' => sub {
   $http->mock(200, { dialing_permissions_inheritance => \1 });
   $client->voice->v1->dialing_permissions->settings->fetch;
   is(last_url($http), 'https://voice.twilio.com/v1/Settings', 'reached through its parent');
+};
+
+subtest 'versions named after a product' => sub {
+  my ($client, $http) = client();
+
+  isa_ok($client->preview->hosted_numbers, 'Twilio::Rest::Preview::HostedNumbers');
+  $http->mock(200, { sid => 'PX1' });
+  $client->preview->hosted_numbers->authorization_documents('PX1')->fetch;
+  is(
+    last_url($http),
+    'https://preview.twilio.com/HostedNumbers/AuthorizationDocuments/PX1',
+    'the product is where a version would be'
+  );
+
+  $http->mock(200, { sims => [], meta => {} });
+  $client->preview->wireless->sims->read({}, 1);
+  like(last_url($http), qr{\Ahttps://preview[.]twilio[.]com/wireless/Sims\?}, 'in lowercase too');
 };
 
 subtest 'shortcuts' => sub {

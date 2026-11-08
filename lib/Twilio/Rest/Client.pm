@@ -90,6 +90,12 @@ sub oauth {
   return Twilio::Rest::Oauth->new($self);
 }
 
+sub preview {
+  my ($self) = @_;
+  require Twilio::Rest::Preview;
+  return Twilio::Rest::Preview->new($self);
+}
+
 sub pricing {
   my ($self) = @_;
   require Twilio::Rest::Pricing;
@@ -358,6 +364,10 @@ Returns L<Twilio::Rest::Numbers>.
 =head2 oauth
 
 Returns L<Twilio::Rest::Oauth>.
+
+=head2 preview
+
+Returns L<Twilio::Rest::Preview>.
 
 =head2 pricing
 

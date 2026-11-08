@@ -416,7 +416,9 @@ END_CODE
 
   my @pod = (
     $class,
-    "Version $top->{version_path} of the Twilio REST API",
+    'Version '
+      . (length $top->{version_path} ? $top->{version_path} : $top->{version_method})
+      . ' of the Twilio REST API',
     "See L<Twilio::Version> for the inherited methods."
   );
   return $code . _pod_shortcuts(@pod, $top->{roots}) if !$top->{account_context};
