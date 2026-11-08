@@ -1,0 +1,4524 @@
+[
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "address_configurations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Type",
+    "messenger"
+   ],
+   [
+    "Address",
+    "v_address"
+   ],
+   [
+    "AddressCountry",
+    "v_address_country"
+   ],
+   [
+    "AutoCreation.ConversationServiceSid",
+    "v_auto_creation_conversation_service_sid"
+   ],
+   [
+    "AutoCreation.Enabled",
+    "true"
+   ],
+   [
+    "AutoCreation.StudioFlowSid",
+    "v_auto_creation_studio_flow_sid"
+   ],
+   [
+    "AutoCreation.StudioRetryCount",
+    "2963"
+   ],
+   [
+    "AutoCreation.Type",
+    "default"
+   ],
+   [
+    "AutoCreation.WebhookFilters",
+    "v_auto_creation_webhook_filters_1"
+   ],
+   [
+    "AutoCreation.WebhookFilters",
+    "v_auto_creation_webhook_filters_2"
+   ],
+   [
+    "AutoCreation.WebhookMethod",
+    "get"
+   ],
+   [
+    "AutoCreation.WebhookUrl",
+    "v_auto_creation_webhook_url"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateConfigurationAddress",
+  "method" : "create",
+  "options" : {
+   "address_country" : "v_address_country",
+   "auto_creation_conversation_service_sid" : "v_auto_creation_conversation_service_sid",
+   "auto_creation_enabled" : 1,
+   "auto_creation_studio_flow_sid" : "v_auto_creation_studio_flow_sid",
+   "auto_creation_studio_retry_count" : 2963,
+   "auto_creation_type" : "default",
+   "auto_creation_webhook_filters" : [
+    "v_auto_creation_webhook_filters_1",
+    "v_auto_creation_webhook_filters_2"
+   ],
+   "auto_creation_webhook_method" : "get",
+   "auto_creation_webhook_url" : "v_auto_creation_webhook_url",
+   "friendly_name" : "v_friendly_name"
+  },
+  "required" : [
+   "messenger",
+   "v_address"
+  ],
+  "url" : "https://conversations.twilio.com/v1/Configuration/Addresses"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "Bindings.Email.Address",
+    "v_bindings_email_address"
+   ],
+   [
+    "Bindings.Email.Name",
+    "v_bindings_email_name"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "MessagingServiceSid",
+    "v_messaging_service_sid"
+   ],
+   [
+    "State",
+    "inactive"
+   ],
+   [
+    "Timers.Closed",
+    "v_timers_closed"
+   ],
+   [
+    "Timers.Inactive",
+    "v_timers_inactive"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "CreateConversation",
+  "method" : "create",
+  "options" : {
+   "attributes" : "v_attributes",
+   "bindings_email_address" : "v_bindings_email_address",
+   "bindings_email_name" : "v_bindings_email_name",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "friendly_name" : "v_friendly_name",
+   "messaging_service_sid" : "v_messaging_service_sid",
+   "state" : "inactive",
+   "timers_closed" : "v_timers_closed",
+   "timers_inactive" : "v_timers_inactive",
+   "unique_name" : "v_unique_name",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "Author",
+    "v_author"
+   ],
+   [
+    "Body",
+    "v_body"
+   ],
+   [
+    "ContentSid",
+    "v_content_sid"
+   ],
+   [
+    "ContentVariables",
+    "v_content_variables"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "MediaSid",
+    "v_media_sid"
+   ],
+   [
+    "Subject",
+    "v_subject"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "CreateConversationMessage",
+  "method" : "create",
+  "options" : {
+   "attributes" : "v_attributes",
+   "author" : "v_author",
+   "body" : "v_body",
+   "content_sid" : "v_content_sid",
+   "content_variables" : "v_content_variables",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "media_sid" : "v_media_sid",
+   "subject" : "v_subject",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Messages"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "participants",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "Identity",
+    "v_identity"
+   ],
+   [
+    "MessagingBinding.Address",
+    "v_messaging_binding_address"
+   ],
+   [
+    "MessagingBinding.ProjectedAddress",
+    "v_messaging_binding_projected_address"
+   ],
+   [
+    "MessagingBinding.ProxyAddress",
+    "v_messaging_binding_proxy_address"
+   ],
+   [
+    "RoleSid",
+    "v_role_sid"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "CreateConversationParticipant",
+  "method" : "create",
+  "options" : {
+   "attributes" : "v_attributes",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "identity" : "v_identity",
+   "messaging_binding_address" : "v_messaging_binding_address",
+   "messaging_binding_projected_address" : "v_messaging_binding_projected_address",
+   "messaging_binding_proxy_address" : "v_messaging_binding_proxy_address",
+   "role_sid" : "v_role_sid",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Participants"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "webhooks",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Target",
+    "webhook"
+   ],
+   [
+    "Configuration.Filters",
+    "v_configuration_filters_1"
+   ],
+   [
+    "Configuration.Filters",
+    "v_configuration_filters_2"
+   ],
+   [
+    "Configuration.FlowSid",
+    "v_configuration_flow_sid"
+   ],
+   [
+    "Configuration.Method",
+    "post"
+   ],
+   [
+    "Configuration.ReplayAfter",
+    "2533"
+   ],
+   [
+    "Configuration.Triggers",
+    "v_configuration_triggers_1"
+   ],
+   [
+    "Configuration.Triggers",
+    "v_configuration_triggers_2"
+   ],
+   [
+    "Configuration.Url",
+    "v_configuration_url"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateConversationScopedWebhook",
+  "method" : "create",
+  "options" : {
+   "configuration_filters" : [
+    "v_configuration_filters_1",
+    "v_configuration_filters_2"
+   ],
+   "configuration_flow_sid" : "v_configuration_flow_sid",
+   "configuration_method" : "post",
+   "configuration_replay_after" : 2533,
+   "configuration_triggers" : [
+    "v_configuration_triggers_1",
+    "v_configuration_triggers_2"
+   ],
+   "configuration_url" : "v_configuration_url"
+  },
+  "required" : [
+   "webhook"
+  ],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Webhooks"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversation_with_participants",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "Bindings.Email.Address",
+    "v_bindings_email_address"
+   ],
+   [
+    "Bindings.Email.Name",
+    "v_bindings_email_name"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "MessagingServiceSid",
+    "v_messaging_service_sid"
+   ],
+   [
+    "Participant",
+    "v_participant_1"
+   ],
+   [
+    "Participant",
+    "v_participant_2"
+   ],
+   [
+    "State",
+    "inactive"
+   ],
+   [
+    "Timers.Closed",
+    "v_timers_closed"
+   ],
+   [
+    "Timers.Inactive",
+    "v_timers_inactive"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "CreateConversationWithParticipants",
+  "method" : "create",
+  "options" : {
+   "attributes" : "v_attributes",
+   "bindings_email_address" : "v_bindings_email_address",
+   "bindings_email_name" : "v_bindings_email_name",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "friendly_name" : "v_friendly_name",
+   "messaging_service_sid" : "v_messaging_service_sid",
+   "participant" : [
+    "v_participant_1",
+    "v_participant_2"
+   ],
+   "state" : "inactive",
+   "timers_closed" : "v_timers_closed",
+   "timers_inactive" : "v_timers_inactive",
+   "unique_name" : "v_unique_name",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/ConversationWithParticipants"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Type",
+    "gcm"
+   ],
+   [
+    "ApiKey",
+    "v_api_key"
+   ],
+   [
+    "Certificate",
+    "v_certificate"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "PrivateKey",
+    "v_private_key"
+   ],
+   [
+    "Sandbox",
+    "true"
+   ],
+   [
+    "Secret",
+    "v_secret"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateCredential",
+  "method" : "create",
+  "options" : {
+   "api_key" : "v_api_key",
+   "certificate" : "v_certificate",
+   "friendly_name" : "v_friendly_name",
+   "private_key" : "v_private_key",
+   "sandbox" : 1,
+   "secret" : "v_secret"
+  },
+  "required" : [
+   "gcm"
+  ],
+  "url" : "https://conversations.twilio.com/v1/Credentials"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "roles",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Type",
+    "conversation"
+   ],
+   [
+    "Permission",
+    "v_permission_1"
+   ],
+   [
+    "Permission",
+    "v_permission_2"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateRole",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   "v_friendly_name",
+   "conversation",
+   [
+    "v_permission_1",
+    "v_permission_2"
+   ]
+  ],
+  "url" : "https://conversations.twilio.com/v1/Roles"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateService",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   "v_friendly_name"
+  ],
+  "url" : "https://conversations.twilio.com/v1/Services"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "Bindings.Email.Address",
+    "v_bindings_email_address"
+   ],
+   [
+    "Bindings.Email.Name",
+    "v_bindings_email_name"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "MessagingServiceSid",
+    "v_messaging_service_sid"
+   ],
+   [
+    "State",
+    "active"
+   ],
+   [
+    "Timers.Closed",
+    "v_timers_closed"
+   ],
+   [
+    "Timers.Inactive",
+    "v_timers_inactive"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "CreateServiceConversation",
+  "method" : "create",
+  "options" : {
+   "attributes" : "v_attributes",
+   "bindings_email_address" : "v_bindings_email_address",
+   "bindings_email_name" : "v_bindings_email_name",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "friendly_name" : "v_friendly_name",
+   "messaging_service_sid" : "v_messaging_service_sid",
+   "state" : "active",
+   "timers_closed" : "v_timers_closed",
+   "timers_inactive" : "v_timers_inactive",
+   "unique_name" : "v_unique_name",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "Author",
+    "v_author"
+   ],
+   [
+    "Body",
+    "v_body"
+   ],
+   [
+    "ContentSid",
+    "v_content_sid"
+   ],
+   [
+    "ContentVariables",
+    "v_content_variables"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "MediaSid",
+    "v_media_sid"
+   ],
+   [
+    "Subject",
+    "v_subject"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "CreateServiceConversationMessage",
+  "method" : "create",
+  "options" : {
+   "attributes" : "v_attributes",
+   "author" : "v_author",
+   "body" : "v_body",
+   "content_sid" : "v_content_sid",
+   "content_variables" : "v_content_variables",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "media_sid" : "v_media_sid",
+   "subject" : "v_subject",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Messages"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "participants",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "Identity",
+    "v_identity"
+   ],
+   [
+    "MessagingBinding.Address",
+    "v_messaging_binding_address"
+   ],
+   [
+    "MessagingBinding.ProjectedAddress",
+    "v_messaging_binding_projected_address"
+   ],
+   [
+    "MessagingBinding.ProxyAddress",
+    "v_messaging_binding_proxy_address"
+   ],
+   [
+    "RoleSid",
+    "v_role_sid"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "CreateServiceConversationParticipant",
+  "method" : "create",
+  "options" : {
+   "attributes" : "v_attributes",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "identity" : "v_identity",
+   "messaging_binding_address" : "v_messaging_binding_address",
+   "messaging_binding_projected_address" : "v_messaging_binding_projected_address",
+   "messaging_binding_proxy_address" : "v_messaging_binding_proxy_address",
+   "role_sid" : "v_role_sid",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Participants"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "webhooks",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Target",
+    "webhook"
+   ],
+   [
+    "Configuration.Filters",
+    "v_configuration_filters_1"
+   ],
+   [
+    "Configuration.Filters",
+    "v_configuration_filters_2"
+   ],
+   [
+    "Configuration.FlowSid",
+    "v_configuration_flow_sid"
+   ],
+   [
+    "Configuration.Method",
+    "post"
+   ],
+   [
+    "Configuration.ReplayAfter",
+    "2533"
+   ],
+   [
+    "Configuration.Triggers",
+    "v_configuration_triggers_1"
+   ],
+   [
+    "Configuration.Triggers",
+    "v_configuration_triggers_2"
+   ],
+   [
+    "Configuration.Url",
+    "v_configuration_url"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateServiceConversationScopedWebhook",
+  "method" : "create",
+  "options" : {
+   "configuration_filters" : [
+    "v_configuration_filters_1",
+    "v_configuration_filters_2"
+   ],
+   "configuration_flow_sid" : "v_configuration_flow_sid",
+   "configuration_method" : "post",
+   "configuration_replay_after" : 2533,
+   "configuration_triggers" : [
+    "v_configuration_triggers_1",
+    "v_configuration_triggers_2"
+   ],
+   "configuration_url" : "v_configuration_url"
+  },
+  "required" : [
+   "webhook"
+  ],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Webhooks"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversation_with_participants",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "Bindings.Email.Address",
+    "v_bindings_email_address"
+   ],
+   [
+    "Bindings.Email.Name",
+    "v_bindings_email_name"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "MessagingServiceSid",
+    "v_messaging_service_sid"
+   ],
+   [
+    "Participant",
+    "v_participant_1"
+   ],
+   [
+    "Participant",
+    "v_participant_2"
+   ],
+   [
+    "State",
+    "inactive"
+   ],
+   [
+    "Timers.Closed",
+    "v_timers_closed"
+   ],
+   [
+    "Timers.Inactive",
+    "v_timers_inactive"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "CreateServiceConversationWithParticipants",
+  "method" : "create",
+  "options" : {
+   "attributes" : "v_attributes",
+   "bindings_email_address" : "v_bindings_email_address",
+   "bindings_email_name" : "v_bindings_email_name",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "friendly_name" : "v_friendly_name",
+   "messaging_service_sid" : "v_messaging_service_sid",
+   "participant" : [
+    "v_participant_1",
+    "v_participant_2"
+   ],
+   "state" : "inactive",
+   "timers_closed" : "v_timers_closed",
+   "timers_inactive" : "v_timers_inactive",
+   "unique_name" : "v_unique_name",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/ConversationWithParticipants"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "roles",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Type",
+    "conversation"
+   ],
+   [
+    "Permission",
+    "v_permission_1"
+   ],
+   [
+    "Permission",
+    "v_permission_2"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateServiceRole",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   "v_friendly_name",
+   "conversation",
+   [
+    "v_permission_1",
+    "v_permission_2"
+   ]
+  ],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Roles"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "users",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Identity",
+    "v_identity"
+   ],
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "RoleSid",
+    "v_role_sid"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "CreateServiceUser",
+  "method" : "create",
+  "options" : {
+   "attributes" : "v_attributes",
+   "friendly_name" : "v_friendly_name",
+   "role_sid" : "v_role_sid",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [
+   "v_identity"
+  ],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Users"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "users",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Identity",
+    "v_identity"
+   ],
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "RoleSid",
+    "v_role_sid"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "CreateUser",
+  "method" : "create",
+  "options" : {
+   "attributes" : "v_attributes",
+   "friendly_name" : "v_friendly_name",
+   "role_sid" : "v_role_sid",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [
+   "v_identity"
+  ],
+  "url" : "https://conversations.twilio.com/v1/Users"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "address_configurations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteConfigurationAddress",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Configuration/Addresses/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteConversation",
+  "method" : "delete",
+  "options" : {
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteConversationMessage",
+  "method" : "delete",
+  "options" : {
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Messages/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "participants",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteConversationParticipant",
+  "method" : "delete",
+  "options" : {
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Participants/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "webhooks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteConversationScopedWebhook",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Webhooks/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteCredential",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Credentials/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "roles",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteRole",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Roles/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteService",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "bindings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteServiceBinding",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Bindings/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteServiceConversation",
+  "method" : "delete",
+  "options" : {
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteServiceConversationMessage",
+  "method" : "delete",
+  "options" : {
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Messages/id3"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "participants",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteServiceConversationParticipant",
+  "method" : "delete",
+  "options" : {
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Participants/id3"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "webhooks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteServiceConversationScopedWebhook",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Webhooks/id3"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "roles",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteServiceRole",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Roles/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "users",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteServiceUser",
+  "method" : "delete",
+  "options" : {
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Users/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "users",
+    1
+   ],
+   [
+    "user_conversations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteServiceUserConversation",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Users/id2/Conversations/id3"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "users",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteUser",
+  "method" : "delete",
+  "options" : {
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Users/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "users",
+    1
+   ],
+   [
+    "user_conversations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteUserConversation",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Users/id1/Conversations/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "configuration",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchConfiguration",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Configuration"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "address_configurations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchConfigurationAddress",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Configuration/Addresses/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "configuration",
+    0
+   ],
+   [
+    "webhooks",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchConfigurationWebhook",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Configuration/Webhooks"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchConversation",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchConversationMessage",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Messages/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    1
+   ],
+   [
+    "delivery_receipts",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchConversationMessageReceipt",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Messages/id2/Receipts/id3"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "participants",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchConversationParticipant",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Participants/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "webhooks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchConversationScopedWebhook",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Webhooks/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchCredential",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Credentials/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "roles",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchRole",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Roles/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchService",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "bindings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchServiceBinding",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Bindings/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "configuration",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchServiceConfiguration",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Configuration"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchServiceConversation",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchServiceConversationMessage",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Messages/id3"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    1
+   ],
+   [
+    "delivery_receipts",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchServiceConversationMessageReceipt",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Messages/id3/Receipts/id4"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "participants",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchServiceConversationParticipant",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Participants/id3"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "webhooks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchServiceConversationScopedWebhook",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Webhooks/id3"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "configuration",
+    0
+   ],
+   [
+    "notifications",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchServiceNotification",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Configuration/Notifications"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "roles",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchServiceRole",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Roles/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "users",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchServiceUser",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Users/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "users",
+    1
+   ],
+   [
+    "user_conversations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchServiceUserConversation",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Users/id2/Conversations/id3"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "configuration",
+    0
+   ],
+   [
+    "webhooks",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchServiceWebhookConfiguration",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Configuration/Webhooks"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "users",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchUser",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Users/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "users",
+    1
+   ],
+   [
+    "user_conversations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchUserConversation",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Users/id1/Conversations/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "address_configurations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Type",
+    "v_type"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListConfigurationAddress",
+  "method" : "page",
+  "options" : {
+   "type" : "v_type"
+  },
+  "records_key" : "address_configurations",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Configuration/Addresses"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "StartDate",
+    "v_start_date"
+   ],
+   [
+    "EndDate",
+    "v_end_date"
+   ],
+   [
+    "State",
+    "inactive"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListConversation",
+  "method" : "page",
+  "options" : {
+   "end_date" : "v_end_date",
+   "start_date" : "v_start_date",
+   "state" : "inactive"
+  },
+  "records_key" : "conversations",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Order",
+    "asc"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListConversationMessage",
+  "method" : "page",
+  "options" : {
+   "order" : "asc"
+  },
+  "records_key" : "messages",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Messages"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    1
+   ],
+   [
+    "delivery_receipts",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListConversationMessageReceipt",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "delivery_receipts",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Messages/id2/Receipts"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "participants",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListConversationParticipant",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "participants",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Participants"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "webhooks",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListConversationScopedWebhook",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "webhooks",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Webhooks"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListCredential",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "credentials",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Credentials"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "participant_conversations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Identity",
+    "v_identity"
+   ],
+   [
+    "Address",
+    "v_address"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListParticipantConversation",
+  "method" : "page",
+  "options" : {
+   "address" : "v_address",
+   "identity" : "v_identity"
+  },
+  "records_key" : "conversations",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/ParticipantConversations"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "roles",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListRole",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "roles",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Roles"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListService",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "services",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "bindings",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "BindingType",
+    "v_binding_type_1"
+   ],
+   [
+    "BindingType",
+    "v_binding_type_2"
+   ],
+   [
+    "Identity",
+    "v_identity_1"
+   ],
+   [
+    "Identity",
+    "v_identity_2"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListServiceBinding",
+  "method" : "page",
+  "options" : {
+   "binding_type" : [
+    "v_binding_type_1",
+    "v_binding_type_2"
+   ],
+   "identity" : [
+    "v_identity_1",
+    "v_identity_2"
+   ]
+  },
+  "records_key" : "bindings",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Bindings"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "StartDate",
+    "v_start_date"
+   ],
+   [
+    "EndDate",
+    "v_end_date"
+   ],
+   [
+    "State",
+    "active"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListServiceConversation",
+  "method" : "page",
+  "options" : {
+   "end_date" : "v_end_date",
+   "start_date" : "v_start_date",
+   "state" : "active"
+  },
+  "records_key" : "conversations",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Order",
+    "asc"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListServiceConversationMessage",
+  "method" : "page",
+  "options" : {
+   "order" : "asc"
+  },
+  "records_key" : "messages",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Messages"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    1
+   ],
+   [
+    "delivery_receipts",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListServiceConversationMessageReceipt",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "delivery_receipts",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Messages/id3/Receipts"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "participants",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListServiceConversationParticipant",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "participants",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Participants"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "webhooks",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListServiceConversationScopedWebhook",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "webhooks",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Webhooks"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "participant_conversations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Identity",
+    "v_identity"
+   ],
+   [
+    "Address",
+    "v_address"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListServiceParticipantConversation",
+  "method" : "page",
+  "options" : {
+   "address" : "v_address",
+   "identity" : "v_identity"
+  },
+  "records_key" : "conversations",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/ParticipantConversations"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "roles",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListServiceRole",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "roles",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Roles"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "users",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListServiceUser",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "users",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Users"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "users",
+    1
+   ],
+   [
+    "user_conversations",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListServiceUserConversation",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "conversations",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Users/id2/Conversations"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "users",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListUser",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "users",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Users"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "users",
+    1
+   ],
+   [
+    "user_conversations",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListUserConversation",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "conversations",
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Users/id1/Conversations"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "configuration",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "DefaultChatServiceSid",
+    "v_default_chat_service_sid"
+   ],
+   [
+    "DefaultClosedTimer",
+    "v_default_closed_timer"
+   ],
+   [
+    "DefaultInactiveTimer",
+    "v_default_inactive_timer"
+   ],
+   [
+    "DefaultMessagingServiceSid",
+    "v_default_messaging_service_sid"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateConfiguration",
+  "method" : "update",
+  "options" : {
+   "default_chat_service_sid" : "v_default_chat_service_sid",
+   "default_closed_timer" : "v_default_closed_timer",
+   "default_inactive_timer" : "v_default_inactive_timer",
+   "default_messaging_service_sid" : "v_default_messaging_service_sid"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Configuration"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "address_configurations",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "AutoCreation.ConversationServiceSid",
+    "v_auto_creation_conversation_service_sid"
+   ],
+   [
+    "AutoCreation.Enabled",
+    "true"
+   ],
+   [
+    "AutoCreation.StudioFlowSid",
+    "v_auto_creation_studio_flow_sid"
+   ],
+   [
+    "AutoCreation.StudioRetryCount",
+    "2963"
+   ],
+   [
+    "AutoCreation.Type",
+    "default"
+   ],
+   [
+    "AutoCreation.WebhookFilters",
+    "v_auto_creation_webhook_filters_1"
+   ],
+   [
+    "AutoCreation.WebhookFilters",
+    "v_auto_creation_webhook_filters_2"
+   ],
+   [
+    "AutoCreation.WebhookMethod",
+    "get"
+   ],
+   [
+    "AutoCreation.WebhookUrl",
+    "v_auto_creation_webhook_url"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateConfigurationAddress",
+  "method" : "update",
+  "options" : {
+   "auto_creation_conversation_service_sid" : "v_auto_creation_conversation_service_sid",
+   "auto_creation_enabled" : 1,
+   "auto_creation_studio_flow_sid" : "v_auto_creation_studio_flow_sid",
+   "auto_creation_studio_retry_count" : 2963,
+   "auto_creation_type" : "default",
+   "auto_creation_webhook_filters" : [
+    "v_auto_creation_webhook_filters_1",
+    "v_auto_creation_webhook_filters_2"
+   ],
+   "auto_creation_webhook_method" : "get",
+   "auto_creation_webhook_url" : "v_auto_creation_webhook_url",
+   "friendly_name" : "v_friendly_name"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Configuration/Addresses/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "configuration",
+    0
+   ],
+   [
+    "webhooks",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Filters",
+    "v_filters_1"
+   ],
+   [
+    "Filters",
+    "v_filters_2"
+   ],
+   [
+    "Method",
+    "v_method"
+   ],
+   [
+    "PostWebhookUrl",
+    "v_post_webhook_url"
+   ],
+   [
+    "PreWebhookUrl",
+    "v_pre_webhook_url"
+   ],
+   [
+    "Target",
+    "flex"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateConfigurationWebhook",
+  "method" : "update",
+  "options" : {
+   "filters" : [
+    "v_filters_1",
+    "v_filters_2"
+   ],
+   "method" : "v_method",
+   "post_webhook_url" : "v_post_webhook_url",
+   "pre_webhook_url" : "v_pre_webhook_url",
+   "target" : "flex"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Configuration/Webhooks"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "Bindings.Email.Address",
+    "v_bindings_email_address"
+   ],
+   [
+    "Bindings.Email.Name",
+    "v_bindings_email_name"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "MessagingServiceSid",
+    "v_messaging_service_sid"
+   ],
+   [
+    "State",
+    "inactive"
+   ],
+   [
+    "Timers.Closed",
+    "v_timers_closed"
+   ],
+   [
+    "Timers.Inactive",
+    "v_timers_inactive"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "UpdateConversation",
+  "method" : "update",
+  "options" : {
+   "attributes" : "v_attributes",
+   "bindings_email_address" : "v_bindings_email_address",
+   "bindings_email_name" : "v_bindings_email_name",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "friendly_name" : "v_friendly_name",
+   "messaging_service_sid" : "v_messaging_service_sid",
+   "state" : "inactive",
+   "timers_closed" : "v_timers_closed",
+   "timers_inactive" : "v_timers_inactive",
+   "unique_name" : "v_unique_name",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "Author",
+    "v_author"
+   ],
+   [
+    "Body",
+    "v_body"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "Subject",
+    "v_subject"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "UpdateConversationMessage",
+  "method" : "update",
+  "options" : {
+   "attributes" : "v_attributes",
+   "author" : "v_author",
+   "body" : "v_body",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "subject" : "v_subject",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Messages/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "participants",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "Identity",
+    "v_identity"
+   ],
+   [
+    "LastReadMessageIndex",
+    "1997"
+   ],
+   [
+    "LastReadTimestamp",
+    "v_last_read_timestamp"
+   ],
+   [
+    "MessagingBinding.ProjectedAddress",
+    "v_messaging_binding_projected_address"
+   ],
+   [
+    "MessagingBinding.ProxyAddress",
+    "v_messaging_binding_proxy_address"
+   ],
+   [
+    "RoleSid",
+    "v_role_sid"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "UpdateConversationParticipant",
+  "method" : "update",
+  "options" : {
+   "attributes" : "v_attributes",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "identity" : "v_identity",
+   "last_read_message_index" : 1997,
+   "last_read_timestamp" : "v_last_read_timestamp",
+   "messaging_binding_projected_address" : "v_messaging_binding_projected_address",
+   "messaging_binding_proxy_address" : "v_messaging_binding_proxy_address",
+   "role_sid" : "v_role_sid",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Participants/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "webhooks",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Configuration.Filters",
+    "v_configuration_filters_1"
+   ],
+   [
+    "Configuration.Filters",
+    "v_configuration_filters_2"
+   ],
+   [
+    "Configuration.FlowSid",
+    "v_configuration_flow_sid"
+   ],
+   [
+    "Configuration.Method",
+    "post"
+   ],
+   [
+    "Configuration.Triggers",
+    "v_configuration_triggers_1"
+   ],
+   [
+    "Configuration.Triggers",
+    "v_configuration_triggers_2"
+   ],
+   [
+    "Configuration.Url",
+    "v_configuration_url"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateConversationScopedWebhook",
+  "method" : "update",
+  "options" : {
+   "configuration_filters" : [
+    "v_configuration_filters_1",
+    "v_configuration_filters_2"
+   ],
+   "configuration_flow_sid" : "v_configuration_flow_sid",
+   "configuration_method" : "post",
+   "configuration_triggers" : [
+    "v_configuration_triggers_1",
+    "v_configuration_triggers_2"
+   ],
+   "configuration_url" : "v_configuration_url"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Conversations/id1/Webhooks/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "credentials",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "ApiKey",
+    "v_api_key"
+   ],
+   [
+    "Certificate",
+    "v_certificate"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "PrivateKey",
+    "v_private_key"
+   ],
+   [
+    "Sandbox",
+    "true"
+   ],
+   [
+    "Secret",
+    "v_secret"
+   ],
+   [
+    "Type",
+    "gcm"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateCredential",
+  "method" : "update",
+  "options" : {
+   "api_key" : "v_api_key",
+   "certificate" : "v_certificate",
+   "friendly_name" : "v_friendly_name",
+   "private_key" : "v_private_key",
+   "sandbox" : 1,
+   "secret" : "v_secret",
+   "type" : "gcm"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Credentials/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "roles",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Permission",
+    "v_permission_1"
+   ],
+   [
+    "Permission",
+    "v_permission_2"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateRole",
+  "method" : "update",
+  "options" : {},
+  "required" : [
+   [
+    "v_permission_1",
+    "v_permission_2"
+   ]
+  ],
+  "url" : "https://conversations.twilio.com/v1/Roles/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "configuration",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "DefaultChatServiceRoleSid",
+    "v_default_chat_service_role_sid"
+   ],
+   [
+    "DefaultConversationCreatorRoleSid",
+    "v_default_conversation_creator_role_sid"
+   ],
+   [
+    "DefaultConversationRoleSid",
+    "v_default_conversation_role_sid"
+   ],
+   [
+    "ReachabilityEnabled",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateServiceConfiguration",
+  "method" : "update",
+  "options" : {
+   "default_chat_service_role_sid" : "v_default_chat_service_role_sid",
+   "default_conversation_creator_role_sid" : "v_default_conversation_creator_role_sid",
+   "default_conversation_role_sid" : "v_default_conversation_role_sid",
+   "reachability_enabled" : 1
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Configuration"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "Bindings.Email.Address",
+    "v_bindings_email_address"
+   ],
+   [
+    "Bindings.Email.Name",
+    "v_bindings_email_name"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "MessagingServiceSid",
+    "v_messaging_service_sid"
+   ],
+   [
+    "State",
+    "active"
+   ],
+   [
+    "Timers.Closed",
+    "v_timers_closed"
+   ],
+   [
+    "Timers.Inactive",
+    "v_timers_inactive"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "UpdateServiceConversation",
+  "method" : "update",
+  "options" : {
+   "attributes" : "v_attributes",
+   "bindings_email_address" : "v_bindings_email_address",
+   "bindings_email_name" : "v_bindings_email_name",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "friendly_name" : "v_friendly_name",
+   "messaging_service_sid" : "v_messaging_service_sid",
+   "state" : "active",
+   "timers_closed" : "v_timers_closed",
+   "timers_inactive" : "v_timers_inactive",
+   "unique_name" : "v_unique_name",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "messages",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "Author",
+    "v_author"
+   ],
+   [
+    "Body",
+    "v_body"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "Subject",
+    "v_subject"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "UpdateServiceConversationMessage",
+  "method" : "update",
+  "options" : {
+   "attributes" : "v_attributes",
+   "author" : "v_author",
+   "body" : "v_body",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "subject" : "v_subject",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Messages/id3"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "participants",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "DateCreated",
+    "2026-01-15T03:04:05Z"
+   ],
+   [
+    "DateUpdated",
+    "2026-01-02T03:04:05Z"
+   ],
+   [
+    "Identity",
+    "v_identity"
+   ],
+   [
+    "LastReadMessageIndex",
+    "1997"
+   ],
+   [
+    "LastReadTimestamp",
+    "v_last_read_timestamp"
+   ],
+   [
+    "MessagingBinding.ProjectedAddress",
+    "v_messaging_binding_projected_address"
+   ],
+   [
+    "MessagingBinding.ProxyAddress",
+    "v_messaging_binding_proxy_address"
+   ],
+   [
+    "RoleSid",
+    "v_role_sid"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "UpdateServiceConversationParticipant",
+  "method" : "update",
+  "options" : {
+   "attributes" : "v_attributes",
+   "date_created" : {
+    "epoch" : 1768446245
+   },
+   "date_updated" : {
+    "epoch" : 1767323045
+   },
+   "identity" : "v_identity",
+   "last_read_message_index" : 1997,
+   "last_read_timestamp" : "v_last_read_timestamp",
+   "messaging_binding_projected_address" : "v_messaging_binding_projected_address",
+   "messaging_binding_proxy_address" : "v_messaging_binding_proxy_address",
+   "role_sid" : "v_role_sid",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Participants/id3"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "conversations",
+    1
+   ],
+   [
+    "webhooks",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Configuration.Filters",
+    "v_configuration_filters_1"
+   ],
+   [
+    "Configuration.Filters",
+    "v_configuration_filters_2"
+   ],
+   [
+    "Configuration.FlowSid",
+    "v_configuration_flow_sid"
+   ],
+   [
+    "Configuration.Method",
+    "post"
+   ],
+   [
+    "Configuration.Triggers",
+    "v_configuration_triggers_1"
+   ],
+   [
+    "Configuration.Triggers",
+    "v_configuration_triggers_2"
+   ],
+   [
+    "Configuration.Url",
+    "v_configuration_url"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateServiceConversationScopedWebhook",
+  "method" : "update",
+  "options" : {
+   "configuration_filters" : [
+    "v_configuration_filters_1",
+    "v_configuration_filters_2"
+   ],
+   "configuration_flow_sid" : "v_configuration_flow_sid",
+   "configuration_method" : "post",
+   "configuration_triggers" : [
+    "v_configuration_triggers_1",
+    "v_configuration_triggers_2"
+   ],
+   "configuration_url" : "v_configuration_url"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Conversations/id2/Webhooks/id3"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "configuration",
+    0
+   ],
+   [
+    "notifications",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "AddedToConversation.Enabled",
+    "true"
+   ],
+   [
+    "AddedToConversation.Sound",
+    "v_added_to_conversation_sound"
+   ],
+   [
+    "AddedToConversation.Template",
+    "v_added_to_conversation_template"
+   ],
+   [
+    "LogEnabled",
+    "true"
+   ],
+   [
+    "NewMessage.BadgeCountEnabled",
+    "true"
+   ],
+   [
+    "NewMessage.Enabled",
+    "true"
+   ],
+   [
+    "NewMessage.Sound",
+    "v_new_message_sound"
+   ],
+   [
+    "NewMessage.Template",
+    "v_new_message_template"
+   ],
+   [
+    "NewMessage.WithMedia.Enabled",
+    "true"
+   ],
+   [
+    "NewMessage.WithMedia.Template",
+    "v_new_message_with_media_template"
+   ],
+   [
+    "RemovedFromConversation.Enabled",
+    "true"
+   ],
+   [
+    "RemovedFromConversation.Sound",
+    "v_removed_from_conversation_sound"
+   ],
+   [
+    "RemovedFromConversation.Template",
+    "v_removed_from_conversation_template"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateServiceNotification",
+  "method" : "update",
+  "options" : {
+   "added_to_conversation_enabled" : 1,
+   "added_to_conversation_sound" : "v_added_to_conversation_sound",
+   "added_to_conversation_template" : "v_added_to_conversation_template",
+   "log_enabled" : 1,
+   "new_message_badge_count_enabled" : 1,
+   "new_message_enabled" : 1,
+   "new_message_sound" : "v_new_message_sound",
+   "new_message_template" : "v_new_message_template",
+   "new_message_with_media_enabled" : 1,
+   "new_message_with_media_template" : "v_new_message_with_media_template",
+   "removed_from_conversation_enabled" : 1,
+   "removed_from_conversation_sound" : "v_removed_from_conversation_sound",
+   "removed_from_conversation_template" : "v_removed_from_conversation_template"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Configuration/Notifications"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "roles",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Permission",
+    "v_permission_1"
+   ],
+   [
+    "Permission",
+    "v_permission_2"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateServiceRole",
+  "method" : "update",
+  "options" : {},
+  "required" : [
+   [
+    "v_permission_1",
+    "v_permission_2"
+   ]
+  ],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Roles/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "users",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "RoleSid",
+    "v_role_sid"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "UpdateServiceUser",
+  "method" : "update",
+  "options" : {
+   "attributes" : "v_attributes",
+   "friendly_name" : "v_friendly_name",
+   "role_sid" : "v_role_sid",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Users/id2"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "users",
+    1
+   ],
+   [
+    "user_conversations",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "LastReadMessageIndex",
+    "1997"
+   ],
+   [
+    "LastReadTimestamp",
+    "2026-01-25T03:04:05Z"
+   ],
+   [
+    "NotificationLevel",
+    "muted"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateServiceUserConversation",
+  "method" : "update",
+  "options" : {
+   "last_read_message_index" : 1997,
+   "last_read_timestamp" : {
+    "epoch" : 1769310245
+   },
+   "notification_level" : "muted"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Users/id2/Conversations/id3"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "services",
+    1
+   ],
+   [
+    "configuration",
+    0
+   ],
+   [
+    "webhooks",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Filters",
+    "v_filters_1"
+   ],
+   [
+    "Filters",
+    "v_filters_2"
+   ],
+   [
+    "Method",
+    "v_method"
+   ],
+   [
+    "PostWebhookUrl",
+    "v_post_webhook_url"
+   ],
+   [
+    "PreWebhookUrl",
+    "v_pre_webhook_url"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateServiceWebhookConfiguration",
+  "method" : "update",
+  "options" : {
+   "filters" : [
+    "v_filters_1",
+    "v_filters_2"
+   ],
+   "method" : "v_method",
+   "post_webhook_url" : "v_post_webhook_url",
+   "pre_webhook_url" : "v_pre_webhook_url"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Services/id1/Configuration/Webhooks"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "users",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "RoleSid",
+    "v_role_sid"
+   ]
+  ],
+  "headers" : {
+   "X-Twilio-Webhook-Enabled" : "false"
+  },
+  "http" : "POST",
+  "id" : "UpdateUser",
+  "method" : "update",
+  "options" : {
+   "attributes" : "v_attributes",
+   "friendly_name" : "v_friendly_name",
+   "role_sid" : "v_role_sid",
+   "x_twilio_webhook_enabled" : "false"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Users/id1"
+ },
+ {
+  "chain" : [
+   [
+    "conversations",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "users",
+    1
+   ],
+   [
+    "user_conversations",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "LastReadMessageIndex",
+    "1997"
+   ],
+   [
+    "LastReadTimestamp",
+    "2026-01-25T03:04:05Z"
+   ],
+   [
+    "NotificationLevel",
+    "muted"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateUserConversation",
+  "method" : "update",
+  "options" : {
+   "last_read_message_index" : 1997,
+   "last_read_timestamp" : {
+    "epoch" : 1769310245
+   },
+   "notification_level" : "muted"
+  },
+  "required" : [],
+  "url" : "https://conversations.twilio.com/v1/Users/id1/Conversations/id2"
+ }
+]

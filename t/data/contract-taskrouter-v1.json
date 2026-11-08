@@ -1,0 +1,3284 @@
+[
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "activities",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Available",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateActivity",
+  "method" : "create",
+  "options" : {
+   "available" : 1
+  },
+  "required" : [
+   "v_friendly_name"
+  ],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Activities"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "tasks",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "IgnoreCapacity",
+    "v_ignore_capacity"
+   ],
+   [
+    "Priority",
+    "866"
+   ],
+   [
+    "RoutingTarget",
+    "v_routing_target"
+   ],
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ],
+   [
+    "TaskQueueSid",
+    "v_task_queue_sid"
+   ],
+   [
+    "Timeout",
+    "743"
+   ],
+   [
+    "VirtualStartTime",
+    "2026-01-17T03:04:05Z"
+   ],
+   [
+    "WorkflowSid",
+    "v_workflow_sid"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateTask",
+  "method" : "create",
+  "options" : {
+   "attributes" : "v_attributes",
+   "ignore_capacity" : "v_ignore_capacity",
+   "priority" : 866,
+   "routing_target" : "v_routing_target",
+   "task_channel" : "v_task_channel",
+   "task_queue_sid" : "v_task_queue_sid",
+   "timeout" : 743,
+   "virtual_start_time" : {
+    "epoch" : 1768619045
+   },
+   "workflow_sid" : "v_workflow_sid"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_channels",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ],
+   [
+    "ChannelOptimizedRouting",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateTaskChannel",
+  "method" : "create",
+  "options" : {
+   "channel_optimized_routing" : 1
+  },
+  "required" : [
+   "v_friendly_name",
+   "v_unique_name"
+  ],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskChannels"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_queues",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "AssignmentActivitySid",
+    "v_assignment_activity_sid"
+   ],
+   [
+    "MaxReservedWorkers",
+    "1875"
+   ],
+   [
+    "ReservationActivitySid",
+    "v_reservation_activity_sid"
+   ],
+   [
+    "TargetWorkers",
+    "v_target_workers"
+   ],
+   [
+    "TaskOrder",
+    "LIFO"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateTaskQueue",
+  "method" : "create",
+  "options" : {
+   "assignment_activity_sid" : "v_assignment_activity_sid",
+   "max_reserved_workers" : 1875,
+   "reservation_activity_sid" : "v_reservation_activity_sid",
+   "target_workers" : "v_target_workers",
+   "task_order" : "LIFO"
+  },
+  "required" : [
+   "v_friendly_name"
+  ],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues"
+ },
+ {
+  "body" : {},
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_queues",
+    0
+   ],
+   [
+    "bulk_real_time_statistics",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateTaskQueueBulkRealTimeStatistics",
+  "json" : {},
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/RealTimeStatistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "ActivitySid",
+    "v_activity_sid"
+   ],
+   [
+    "Attributes",
+    "v_attributes"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateWorker",
+  "method" : "create",
+  "options" : {
+   "activity_sid" : "v_activity_sid",
+   "attributes" : "v_attributes"
+  },
+  "required" : [
+   "v_friendly_name"
+  ],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workflows",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Configuration",
+    "v_configuration"
+   ],
+   [
+    "AssignmentCallbackUrl",
+    "v_assignment_callback_url"
+   ],
+   [
+    "FallbackAssignmentCallbackUrl",
+    "v_fallback_assignment_callback_url"
+   ],
+   [
+    "TaskReservationTimeout",
+    "2316"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateWorkflow",
+  "method" : "create",
+  "options" : {
+   "assignment_callback_url" : "v_assignment_callback_url",
+   "fallback_assignment_callback_url" : "v_fallback_assignment_callback_url",
+   "task_reservation_timeout" : 2316
+  },
+  "required" : [
+   "v_friendly_name",
+   "v_configuration"
+  ],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "EventCallbackUrl",
+    "v_event_callback_url"
+   ],
+   [
+    "EventsFilter",
+    "v_events_filter"
+   ],
+   [
+    "MultiTaskEnabled",
+    "true"
+   ],
+   [
+    "PrioritizeQueueOrder",
+    "FIFO"
+   ],
+   [
+    "Template",
+    "v_template"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateWorkspace",
+  "method" : "create",
+  "options" : {
+   "event_callback_url" : "v_event_callback_url",
+   "events_filter" : "v_events_filter",
+   "multi_task_enabled" : 1,
+   "prioritize_queue_order" : "FIFO",
+   "template" : "v_template"
+  },
+  "required" : [
+   "v_friendly_name"
+  ],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "activities",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteActivity",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Activities/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "tasks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "If-Match" : "v_if_match"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteTask",
+  "method" : "delete",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_channels",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteTaskChannel",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskChannels/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_queues",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteTaskQueue",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "If-Match" : "v_if_match"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteWorker",
+  "method" : "delete",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workflows",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteWorkflow",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteWorkspace",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "activities",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchActivity",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Activities/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "events",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchEvent",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Events/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "tasks",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchTask",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_channels",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchTaskChannel",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskChannels/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_queues",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchTaskQueue",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_queues",
+    1
+   ],
+   [
+    "cumulative_statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "EndDate",
+    "2026-01-18T03:04:05Z"
+   ],
+   [
+    "Minutes",
+    "741"
+   ],
+   [
+    "StartDate",
+    "2026-01-13T03:04:05Z"
+   ],
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ],
+   [
+    "SplitByWaitTime",
+    "v_split_by_wait_time"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchTaskQueueCumulativeStatistics",
+  "method" : "fetch",
+  "options" : {
+   "end_date" : {
+    "epoch" : 1768705445
+   },
+   "minutes" : 741,
+   "split_by_wait_time" : "v_split_by_wait_time",
+   "start_date" : {
+    "epoch" : 1768273445
+   },
+   "task_channel" : "v_task_channel"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/id2/CumulativeStatistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_queues",
+    1
+   ],
+   [
+    "real_time_statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchTaskQueueRealTimeStatistics",
+  "method" : "fetch",
+  "options" : {
+   "task_channel" : "v_task_channel"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/id2/RealTimeStatistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_queues",
+    1
+   ],
+   [
+    "statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "EndDate",
+    "2026-01-18T03:04:05Z"
+   ],
+   [
+    "Minutes",
+    "741"
+   ],
+   [
+    "StartDate",
+    "2026-01-13T03:04:05Z"
+   ],
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ],
+   [
+    "SplitByWaitTime",
+    "v_split_by_wait_time"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchTaskQueueStatistics",
+  "method" : "fetch",
+  "options" : {
+   "end_date" : {
+    "epoch" : 1768705445
+   },
+   "minutes" : 741,
+   "split_by_wait_time" : "v_split_by_wait_time",
+   "start_date" : {
+    "epoch" : 1768273445
+   },
+   "task_channel" : "v_task_channel"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/id2/Statistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "tasks",
+    1
+   ],
+   [
+    "reservations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchTaskReservation",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks/id2/Reservations/id3"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchWorker",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    1
+   ],
+   [
+    "worker_channels",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchWorkerChannel",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Channels/id3"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    1
+   ],
+   [
+    "statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Minutes",
+    "741"
+   ],
+   [
+    "StartDate",
+    "2026-01-13T03:04:05Z"
+   ],
+   [
+    "EndDate",
+    "2026-01-18T03:04:05Z"
+   ],
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchWorkerInstanceStatistics",
+  "method" : "fetch",
+  "options" : {
+   "end_date" : {
+    "epoch" : 1768705445
+   },
+   "minutes" : 741,
+   "start_date" : {
+    "epoch" : 1768273445
+   },
+   "task_channel" : "v_task_channel"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Statistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    1
+   ],
+   [
+    "reservations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchWorkerReservation",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Reservations/id3"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    0
+   ],
+   [
+    "statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Minutes",
+    "741"
+   ],
+   [
+    "StartDate",
+    "2026-01-13T03:04:05Z"
+   ],
+   [
+    "EndDate",
+    "2026-01-18T03:04:05Z"
+   ],
+   [
+    "TaskQueueSid",
+    "v_task_queue_sid"
+   ],
+   [
+    "TaskQueueName",
+    "v_task_queue_name"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchWorkerStatistics",
+  "method" : "fetch",
+  "options" : {
+   "end_date" : {
+    "epoch" : 1768705445
+   },
+   "friendly_name" : "v_friendly_name",
+   "minutes" : 741,
+   "start_date" : {
+    "epoch" : 1768273445
+   },
+   "task_channel" : "v_task_channel",
+   "task_queue_name" : "v_task_queue_name",
+   "task_queue_sid" : "v_task_queue_sid"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/Statistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    1
+   ],
+   [
+    "cumulative_statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "EndDate",
+    "2026-01-18T03:04:05Z"
+   ],
+   [
+    "Minutes",
+    "741"
+   ],
+   [
+    "StartDate",
+    "2026-01-13T03:04:05Z"
+   ],
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchWorkersCumulativeStatistics",
+  "method" : "fetch",
+  "options" : {
+   "end_date" : {
+    "epoch" : 1768705445
+   },
+   "minutes" : 741,
+   "start_date" : {
+    "epoch" : 1768273445
+   },
+   "task_channel" : "v_task_channel"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/CumulativeStatistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    1
+   ],
+   [
+    "real_time_statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchWorkersRealTimeStatistics",
+  "method" : "fetch",
+  "options" : {
+   "task_channel" : "v_task_channel"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/RealTimeStatistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workflows",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchWorkflow",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workflows",
+    1
+   ],
+   [
+    "cumulative_statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "EndDate",
+    "2026-01-18T03:04:05Z"
+   ],
+   [
+    "Minutes",
+    "741"
+   ],
+   [
+    "StartDate",
+    "2026-01-13T03:04:05Z"
+   ],
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ],
+   [
+    "SplitByWaitTime",
+    "v_split_by_wait_time"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchWorkflowCumulativeStatistics",
+  "method" : "fetch",
+  "options" : {
+   "end_date" : {
+    "epoch" : 1768705445
+   },
+   "minutes" : 741,
+   "split_by_wait_time" : "v_split_by_wait_time",
+   "start_date" : {
+    "epoch" : 1768273445
+   },
+   "task_channel" : "v_task_channel"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows/id2/CumulativeStatistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workflows",
+    1
+   ],
+   [
+    "real_time_statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchWorkflowRealTimeStatistics",
+  "method" : "fetch",
+  "options" : {
+   "task_channel" : "v_task_channel"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows/id2/RealTimeStatistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workflows",
+    1
+   ],
+   [
+    "statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Minutes",
+    "741"
+   ],
+   [
+    "StartDate",
+    "2026-01-13T03:04:05Z"
+   ],
+   [
+    "EndDate",
+    "2026-01-18T03:04:05Z"
+   ],
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ],
+   [
+    "SplitByWaitTime",
+    "v_split_by_wait_time"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchWorkflowStatistics",
+  "method" : "fetch",
+  "options" : {
+   "end_date" : {
+    "epoch" : 1768705445
+   },
+   "minutes" : 741,
+   "split_by_wait_time" : "v_split_by_wait_time",
+   "start_date" : {
+    "epoch" : 1768273445
+   },
+   "task_channel" : "v_task_channel"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows/id2/Statistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchWorkspace",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "cumulative_statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "EndDate",
+    "2026-01-18T03:04:05Z"
+   ],
+   [
+    "Minutes",
+    "741"
+   ],
+   [
+    "StartDate",
+    "2026-01-13T03:04:05Z"
+   ],
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ],
+   [
+    "SplitByWaitTime",
+    "v_split_by_wait_time"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchWorkspaceCumulativeStatistics",
+  "method" : "fetch",
+  "options" : {
+   "end_date" : {
+    "epoch" : 1768705445
+   },
+   "minutes" : 741,
+   "split_by_wait_time" : "v_split_by_wait_time",
+   "start_date" : {
+    "epoch" : 1768273445
+   },
+   "task_channel" : "v_task_channel"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/CumulativeStatistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "real_time_statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchWorkspaceRealTimeStatistics",
+  "method" : "fetch",
+  "options" : {
+   "task_channel" : "v_task_channel"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/RealTimeStatistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Minutes",
+    "741"
+   ],
+   [
+    "StartDate",
+    "2026-01-13T03:04:05Z"
+   ],
+   [
+    "EndDate",
+    "2026-01-18T03:04:05Z"
+   ],
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ],
+   [
+    "SplitByWaitTime",
+    "v_split_by_wait_time"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchWorkspaceStatistics",
+  "method" : "fetch",
+  "options" : {
+   "end_date" : {
+    "epoch" : 1768705445
+   },
+   "minutes" : 741,
+   "split_by_wait_time" : "v_split_by_wait_time",
+   "start_date" : {
+    "epoch" : 1768273445
+   },
+   "task_channel" : "v_task_channel"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Statistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "activities",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Available",
+    "v_available"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListActivity",
+  "method" : "page",
+  "options" : {
+   "available" : "v_available",
+   "friendly_name" : "v_friendly_name"
+  },
+  "records_key" : "activities",
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Activities"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "events",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "EndDate",
+    "2026-01-18T03:04:05Z"
+   ],
+   [
+    "EventType",
+    "v_event_type"
+   ],
+   [
+    "Minutes",
+    "741"
+   ],
+   [
+    "ReservationSid",
+    "v_reservation_sid"
+   ],
+   [
+    "StartDate",
+    "2026-01-13T03:04:05Z"
+   ],
+   [
+    "TaskQueueSid",
+    "v_task_queue_sid"
+   ],
+   [
+    "TaskSid",
+    "v_task_sid"
+   ],
+   [
+    "WorkerSid",
+    "v_worker_sid"
+   ],
+   [
+    "WorkflowSid",
+    "v_workflow_sid"
+   ],
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ],
+   [
+    "Sid",
+    "v_sid"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListEvent",
+  "method" : "page",
+  "options" : {
+   "end_date" : {
+    "epoch" : 1768705445
+   },
+   "event_type" : "v_event_type",
+   "minutes" : 741,
+   "reservation_sid" : "v_reservation_sid",
+   "sid" : "v_sid",
+   "start_date" : {
+    "epoch" : 1768273445
+   },
+   "task_channel" : "v_task_channel",
+   "task_queue_sid" : "v_task_queue_sid",
+   "task_sid" : "v_task_sid",
+   "worker_sid" : "v_worker_sid",
+   "workflow_sid" : "v_workflow_sid"
+  },
+  "records_key" : "events",
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Events"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "tasks",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Priority",
+    "866"
+   ],
+   [
+    "AssignmentStatus",
+    "v_assignment_status_1"
+   ],
+   [
+    "AssignmentStatus",
+    "v_assignment_status_2"
+   ],
+   [
+    "WorkflowSid",
+    "v_workflow_sid"
+   ],
+   [
+    "WorkflowName",
+    "v_workflow_name"
+   ],
+   [
+    "TaskQueueSid",
+    "v_task_queue_sid"
+   ],
+   [
+    "TaskQueueName",
+    "v_task_queue_name"
+   ],
+   [
+    "EvaluateTaskAttributes",
+    "v_evaluate_task_attributes"
+   ],
+   [
+    "RoutingTarget",
+    "v_routing_target"
+   ],
+   [
+    "Ordering",
+    "v_ordering"
+   ],
+   [
+    "HasAddons",
+    "true"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListTask",
+  "method" : "page",
+  "options" : {
+   "assignment_status" : [
+    "v_assignment_status_1",
+    "v_assignment_status_2"
+   ],
+   "evaluate_task_attributes" : "v_evaluate_task_attributes",
+   "has_addons" : 1,
+   "ordering" : "v_ordering",
+   "priority" : 866,
+   "routing_target" : "v_routing_target",
+   "task_queue_name" : "v_task_queue_name",
+   "task_queue_sid" : "v_task_queue_sid",
+   "workflow_name" : "v_workflow_name",
+   "workflow_sid" : "v_workflow_sid"
+  },
+  "records_key" : "tasks",
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_channels",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListTaskChannel",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "channels",
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskChannels"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_queues",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "EvaluateWorkerAttributes",
+    "v_evaluate_worker_attributes"
+   ],
+   [
+    "WorkerSid",
+    "v_worker_sid"
+   ],
+   [
+    "Ordering",
+    "v_ordering"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListTaskQueue",
+  "method" : "page",
+  "options" : {
+   "evaluate_worker_attributes" : "v_evaluate_worker_attributes",
+   "friendly_name" : "v_friendly_name",
+   "ordering" : "v_ordering",
+   "worker_sid" : "v_worker_sid"
+  },
+  "records_key" : "task_queues",
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_queues",
+    0
+   ],
+   [
+    "statistics",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "EndDate",
+    "2026-01-18T03:04:05Z"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "Minutes",
+    "741"
+   ],
+   [
+    "StartDate",
+    "2026-01-13T03:04:05Z"
+   ],
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ],
+   [
+    "SplitByWaitTime",
+    "v_split_by_wait_time"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListTaskQueuesStatistics",
+  "method" : "page",
+  "options" : {
+   "end_date" : {
+    "epoch" : 1768705445
+   },
+   "friendly_name" : "v_friendly_name",
+   "minutes" : 741,
+   "split_by_wait_time" : "v_split_by_wait_time",
+   "start_date" : {
+    "epoch" : 1768273445
+   },
+   "task_channel" : "v_task_channel"
+  },
+  "records_key" : "task_queues_statistics",
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/Statistics"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "tasks",
+    1
+   ],
+   [
+    "reservations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "ReservationStatus",
+    "wrapping"
+   ],
+   [
+    "WorkerSid",
+    "v_worker_sid"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListTaskReservation",
+  "method" : "page",
+  "options" : {
+   "reservation_status" : "wrapping",
+   "worker_sid" : "v_worker_sid"
+  },
+  "records_key" : "reservations",
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks/id2/Reservations"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "ActivityName",
+    "v_activity_name"
+   ],
+   [
+    "ActivitySid",
+    "v_activity_sid"
+   ],
+   [
+    "Available",
+    "v_available"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "TargetWorkersExpression",
+    "v_target_workers_expression"
+   ],
+   [
+    "TaskQueueName",
+    "v_task_queue_name"
+   ],
+   [
+    "TaskQueueSid",
+    "v_task_queue_sid"
+   ],
+   [
+    "Ordering",
+    "v_ordering"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListWorker",
+  "method" : "page",
+  "options" : {
+   "activity_name" : "v_activity_name",
+   "activity_sid" : "v_activity_sid",
+   "available" : "v_available",
+   "friendly_name" : "v_friendly_name",
+   "ordering" : "v_ordering",
+   "target_workers_expression" : "v_target_workers_expression",
+   "task_queue_name" : "v_task_queue_name",
+   "task_queue_sid" : "v_task_queue_sid"
+  },
+  "records_key" : "workers",
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    1
+   ],
+   [
+    "worker_channels",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListWorkerChannel",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "channels",
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Channels"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    1
+   ],
+   [
+    "reservations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "ReservationStatus",
+    "wrapping"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListWorkerReservation",
+  "method" : "page",
+  "options" : {
+   "reservation_status" : "wrapping"
+  },
+  "records_key" : "reservations",
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Reservations"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workflows",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListWorkflow",
+  "method" : "page",
+  "options" : {
+   "friendly_name" : "v_friendly_name"
+  },
+  "records_key" : "workflows",
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListWorkspace",
+  "method" : "page",
+  "options" : {
+   "friendly_name" : "v_friendly_name"
+  },
+  "records_key" : "workspaces",
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "activities",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateActivity",
+  "method" : "update",
+  "options" : {
+   "friendly_name" : "v_friendly_name"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Activities/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "tasks",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "AssignmentStatus",
+    "reserved"
+   ],
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "Priority",
+    "866"
+   ],
+   [
+    "Reason",
+    "v_reason"
+   ],
+   [
+    "TaskChannel",
+    "v_task_channel"
+   ],
+   [
+    "VirtualStartTime",
+    "2026-01-17T03:04:05Z"
+   ]
+  ],
+  "headers" : {
+   "If-Match" : "v_if_match"
+  },
+  "http" : "POST",
+  "id" : "UpdateTask",
+  "method" : "update",
+  "options" : {
+   "assignment_status" : "reserved",
+   "attributes" : "v_attributes",
+   "if_match" : "v_if_match",
+   "priority" : 866,
+   "reason" : "v_reason",
+   "task_channel" : "v_task_channel",
+   "virtual_start_time" : {
+    "epoch" : 1768619045
+   }
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_channels",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "ChannelOptimizedRouting",
+    "true"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateTaskChannel",
+  "method" : "update",
+  "options" : {
+   "channel_optimized_routing" : 1,
+   "friendly_name" : "v_friendly_name"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskChannels/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "task_queues",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "AssignmentActivitySid",
+    "v_assignment_activity_sid"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "MaxReservedWorkers",
+    "1875"
+   ],
+   [
+    "ReservationActivitySid",
+    "v_reservation_activity_sid"
+   ],
+   [
+    "TargetWorkers",
+    "v_target_workers"
+   ],
+   [
+    "TaskOrder",
+    "LIFO"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateTaskQueue",
+  "method" : "update",
+  "options" : {
+   "assignment_activity_sid" : "v_assignment_activity_sid",
+   "friendly_name" : "v_friendly_name",
+   "max_reserved_workers" : 1875,
+   "reservation_activity_sid" : "v_reservation_activity_sid",
+   "target_workers" : "v_target_workers",
+   "task_order" : "LIFO"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "tasks",
+    1
+   ],
+   [
+    "reservations",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Beep",
+    "v_beep"
+   ],
+   [
+    "BeepOnCustomerEntrance",
+    "true"
+   ],
+   [
+    "CallAccept",
+    "true"
+   ],
+   [
+    "CallFrom",
+    "v_call_from"
+   ],
+   [
+    "CallRecord",
+    "v_call_record"
+   ],
+   [
+    "CallStatusCallbackUrl",
+    "v_call_status_callback_url"
+   ],
+   [
+    "CallTimeout",
+    "1123"
+   ],
+   [
+    "CallTo",
+    "v_call_to"
+   ],
+   [
+    "CallUrl",
+    "v_call_url"
+   ],
+   [
+    "ConferenceRecord",
+    "v_conference_record"
+   ],
+   [
+    "ConferenceRecordingStatusCallback",
+    "v_conference_recording_status_callback"
+   ],
+   [
+    "ConferenceRecordingStatusCallbackMethod",
+    "POST"
+   ],
+   [
+    "ConferenceStatusCallback",
+    "v_conference_status_callback"
+   ],
+   [
+    "ConferenceStatusCallbackEvent",
+    "v_conference_status_callback_event_1"
+   ],
+   [
+    "ConferenceStatusCallbackEvent",
+    "v_conference_status_callback_event_2"
+   ],
+   [
+    "ConferenceStatusCallbackMethod",
+    "GET"
+   ],
+   [
+    "ConferenceTrim",
+    "v_conference_trim"
+   ],
+   [
+    "DequeueFrom",
+    "v_dequeue_from"
+   ],
+   [
+    "DequeuePostWorkActivitySid",
+    "v_dequeue_post_work_activity_sid"
+   ],
+   [
+    "DequeueRecord",
+    "v_dequeue_record"
+   ],
+   [
+    "DequeueStatusCallbackEvent",
+    "v_dequeue_status_callback_event_1"
+   ],
+   [
+    "DequeueStatusCallbackEvent",
+    "v_dequeue_status_callback_event_2"
+   ],
+   [
+    "DequeueStatusCallbackUrl",
+    "v_dequeue_status_callback_url"
+   ],
+   [
+    "DequeueTimeout",
+    "1461"
+   ],
+   [
+    "DequeueTo",
+    "v_dequeue_to"
+   ],
+   [
+    "EarlyMedia",
+    "true"
+   ],
+   [
+    "EndConferenceOnCustomerExit",
+    "true"
+   ],
+   [
+    "EndConferenceOnExit",
+    "true"
+   ],
+   [
+    "From",
+    "v_from"
+   ],
+   [
+    "Instruction",
+    "v_instruction"
+   ],
+   [
+    "JitterBufferSize",
+    "v_jitter_buffer_size"
+   ],
+   [
+    "MaxParticipants",
+    "1560"
+   ],
+   [
+    "Muted",
+    "true"
+   ],
+   [
+    "PostWorkActivitySid",
+    "v_post_work_activity_sid"
+   ],
+   [
+    "Record",
+    "true"
+   ],
+   [
+    "RecordingChannels",
+    "v_recording_channels"
+   ],
+   [
+    "RecordingStatusCallback",
+    "v_recording_status_callback"
+   ],
+   [
+    "RecordingStatusCallbackMethod",
+    "POST"
+   ],
+   [
+    "RedirectAccept",
+    "true"
+   ],
+   [
+    "RedirectCallSid",
+    "v_redirect_call_sid"
+   ],
+   [
+    "RedirectUrl",
+    "v_redirect_url"
+   ],
+   [
+    "Region",
+    "v_region"
+   ],
+   [
+    "ReservationStatus",
+    "wrapping"
+   ],
+   [
+    "SipAuthPassword",
+    "v_sip_auth_password"
+   ],
+   [
+    "SipAuthUsername",
+    "v_sip_auth_username"
+   ],
+   [
+    "StartConferenceOnEnter",
+    "true"
+   ],
+   [
+    "StatusCallback",
+    "v_status_callback"
+   ],
+   [
+    "StatusCallbackEvent",
+    "v_status_callback_event_1"
+   ],
+   [
+    "StatusCallbackEvent",
+    "v_status_callback_event_2"
+   ],
+   [
+    "StatusCallbackMethod",
+    "GET"
+   ],
+   [
+    "Supervisor",
+    "v_supervisor"
+   ],
+   [
+    "SupervisorMode",
+    "monitor"
+   ],
+   [
+    "Timeout",
+    "743"
+   ],
+   [
+    "To",
+    "v_to"
+   ],
+   [
+    "WaitMethod",
+    "GET"
+   ],
+   [
+    "WaitUrl",
+    "v_wait_url"
+   ],
+   [
+    "WorkerActivitySid",
+    "v_worker_activity_sid"
+   ]
+  ],
+  "headers" : {
+   "If-Match" : "v_if_match"
+  },
+  "http" : "POST",
+  "id" : "UpdateTaskReservation",
+  "method" : "update",
+  "options" : {
+   "beep" : "v_beep",
+   "beep_on_customer_entrance" : 1,
+   "call_accept" : 1,
+   "call_from" : "v_call_from",
+   "call_record" : "v_call_record",
+   "call_status_callback_url" : "v_call_status_callback_url",
+   "call_timeout" : 1123,
+   "call_to" : "v_call_to",
+   "call_url" : "v_call_url",
+   "conference_record" : "v_conference_record",
+   "conference_recording_status_callback" : "v_conference_recording_status_callback",
+   "conference_recording_status_callback_method" : "POST",
+   "conference_status_callback" : "v_conference_status_callback",
+   "conference_status_callback_event" : [
+    "v_conference_status_callback_event_1",
+    "v_conference_status_callback_event_2"
+   ],
+   "conference_status_callback_method" : "GET",
+   "conference_trim" : "v_conference_trim",
+   "dequeue_from" : "v_dequeue_from",
+   "dequeue_post_work_activity_sid" : "v_dequeue_post_work_activity_sid",
+   "dequeue_record" : "v_dequeue_record",
+   "dequeue_status_callback_event" : [
+    "v_dequeue_status_callback_event_1",
+    "v_dequeue_status_callback_event_2"
+   ],
+   "dequeue_status_callback_url" : "v_dequeue_status_callback_url",
+   "dequeue_timeout" : 1461,
+   "dequeue_to" : "v_dequeue_to",
+   "early_media" : 1,
+   "end_conference_on_customer_exit" : 1,
+   "end_conference_on_exit" : 1,
+   "from" : "v_from",
+   "if_match" : "v_if_match",
+   "instruction" : "v_instruction",
+   "jitter_buffer_size" : "v_jitter_buffer_size",
+   "max_participants" : 1560,
+   "muted" : 1,
+   "post_work_activity_sid" : "v_post_work_activity_sid",
+   "record" : 1,
+   "recording_channels" : "v_recording_channels",
+   "recording_status_callback" : "v_recording_status_callback",
+   "recording_status_callback_method" : "POST",
+   "redirect_accept" : 1,
+   "redirect_call_sid" : "v_redirect_call_sid",
+   "redirect_url" : "v_redirect_url",
+   "region" : "v_region",
+   "reservation_status" : "wrapping",
+   "sip_auth_password" : "v_sip_auth_password",
+   "sip_auth_username" : "v_sip_auth_username",
+   "start_conference_on_enter" : 1,
+   "status_callback" : "v_status_callback",
+   "status_callback_event" : [
+    "v_status_callback_event_1",
+    "v_status_callback_event_2"
+   ],
+   "status_callback_method" : "GET",
+   "supervisor" : "v_supervisor",
+   "supervisor_mode" : "monitor",
+   "timeout" : 743,
+   "to" : "v_to",
+   "wait_method" : "GET",
+   "wait_url" : "v_wait_url",
+   "worker_activity_sid" : "v_worker_activity_sid"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks/id2/Reservations/id3"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "ActivitySid",
+    "v_activity_sid"
+   ],
+   [
+    "Attributes",
+    "v_attributes"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "RejectPendingReservations",
+    "true"
+   ]
+  ],
+  "headers" : {
+   "If-Match" : "v_if_match"
+  },
+  "http" : "POST",
+  "id" : "UpdateWorker",
+  "method" : "update",
+  "options" : {
+   "activity_sid" : "v_activity_sid",
+   "attributes" : "v_attributes",
+   "friendly_name" : "v_friendly_name",
+   "if_match" : "v_if_match",
+   "reject_pending_reservations" : 1
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    1
+   ],
+   [
+    "worker_channels",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Available",
+    "true"
+   ],
+   [
+    "Capacity",
+    "814"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateWorkerChannel",
+  "method" : "update",
+  "options" : {
+   "available" : 1,
+   "capacity" : 814
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Channels/id3"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workers",
+    1
+   ],
+   [
+    "reservations",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Beep",
+    "v_beep"
+   ],
+   [
+    "BeepOnCustomerEntrance",
+    "true"
+   ],
+   [
+    "CallAccept",
+    "true"
+   ],
+   [
+    "CallFrom",
+    "v_call_from"
+   ],
+   [
+    "CallRecord",
+    "v_call_record"
+   ],
+   [
+    "CallStatusCallbackUrl",
+    "v_call_status_callback_url"
+   ],
+   [
+    "CallTimeout",
+    "1123"
+   ],
+   [
+    "CallTo",
+    "v_call_to"
+   ],
+   [
+    "CallUrl",
+    "v_call_url"
+   ],
+   [
+    "ConferenceRecord",
+    "v_conference_record"
+   ],
+   [
+    "ConferenceRecordingStatusCallback",
+    "v_conference_recording_status_callback"
+   ],
+   [
+    "ConferenceRecordingStatusCallbackMethod",
+    "POST"
+   ],
+   [
+    "ConferenceStatusCallback",
+    "v_conference_status_callback"
+   ],
+   [
+    "ConferenceStatusCallbackEvent",
+    "v_conference_status_callback_event_1"
+   ],
+   [
+    "ConferenceStatusCallbackEvent",
+    "v_conference_status_callback_event_2"
+   ],
+   [
+    "ConferenceStatusCallbackMethod",
+    "GET"
+   ],
+   [
+    "ConferenceTrim",
+    "v_conference_trim"
+   ],
+   [
+    "DequeueFrom",
+    "v_dequeue_from"
+   ],
+   [
+    "DequeuePostWorkActivitySid",
+    "v_dequeue_post_work_activity_sid"
+   ],
+   [
+    "DequeueRecord",
+    "v_dequeue_record"
+   ],
+   [
+    "DequeueStatusCallbackEvent",
+    "v_dequeue_status_callback_event_1"
+   ],
+   [
+    "DequeueStatusCallbackEvent",
+    "v_dequeue_status_callback_event_2"
+   ],
+   [
+    "DequeueStatusCallbackUrl",
+    "v_dequeue_status_callback_url"
+   ],
+   [
+    "DequeueTimeout",
+    "1461"
+   ],
+   [
+    "DequeueTo",
+    "v_dequeue_to"
+   ],
+   [
+    "EarlyMedia",
+    "true"
+   ],
+   [
+    "EndConferenceOnCustomerExit",
+    "true"
+   ],
+   [
+    "EndConferenceOnExit",
+    "true"
+   ],
+   [
+    "From",
+    "v_from"
+   ],
+   [
+    "Instruction",
+    "v_instruction"
+   ],
+   [
+    "JitterBufferSize",
+    "v_jitter_buffer_size"
+   ],
+   [
+    "MaxParticipants",
+    "1560"
+   ],
+   [
+    "Muted",
+    "true"
+   ],
+   [
+    "PostWorkActivitySid",
+    "v_post_work_activity_sid"
+   ],
+   [
+    "Record",
+    "true"
+   ],
+   [
+    "RecordingChannels",
+    "v_recording_channels"
+   ],
+   [
+    "RecordingStatusCallback",
+    "v_recording_status_callback"
+   ],
+   [
+    "RecordingStatusCallbackMethod",
+    "POST"
+   ],
+   [
+    "RedirectAccept",
+    "true"
+   ],
+   [
+    "RedirectCallSid",
+    "v_redirect_call_sid"
+   ],
+   [
+    "RedirectUrl",
+    "v_redirect_url"
+   ],
+   [
+    "Region",
+    "v_region"
+   ],
+   [
+    "ReservationStatus",
+    "wrapping"
+   ],
+   [
+    "SipAuthPassword",
+    "v_sip_auth_password"
+   ],
+   [
+    "SipAuthUsername",
+    "v_sip_auth_username"
+   ],
+   [
+    "StartConferenceOnEnter",
+    "true"
+   ],
+   [
+    "StatusCallback",
+    "v_status_callback"
+   ],
+   [
+    "StatusCallbackEvent",
+    "v_status_callback_event_1"
+   ],
+   [
+    "StatusCallbackEvent",
+    "v_status_callback_event_2"
+   ],
+   [
+    "StatusCallbackMethod",
+    "GET"
+   ],
+   [
+    "Timeout",
+    "743"
+   ],
+   [
+    "To",
+    "v_to"
+   ],
+   [
+    "WaitMethod",
+    "GET"
+   ],
+   [
+    "WaitUrl",
+    "v_wait_url"
+   ],
+   [
+    "WorkerActivitySid",
+    "v_worker_activity_sid"
+   ]
+  ],
+  "headers" : {
+   "If-Match" : "v_if_match"
+  },
+  "http" : "POST",
+  "id" : "UpdateWorkerReservation",
+  "method" : "update",
+  "options" : {
+   "beep" : "v_beep",
+   "beep_on_customer_entrance" : 1,
+   "call_accept" : 1,
+   "call_from" : "v_call_from",
+   "call_record" : "v_call_record",
+   "call_status_callback_url" : "v_call_status_callback_url",
+   "call_timeout" : 1123,
+   "call_to" : "v_call_to",
+   "call_url" : "v_call_url",
+   "conference_record" : "v_conference_record",
+   "conference_recording_status_callback" : "v_conference_recording_status_callback",
+   "conference_recording_status_callback_method" : "POST",
+   "conference_status_callback" : "v_conference_status_callback",
+   "conference_status_callback_event" : [
+    "v_conference_status_callback_event_1",
+    "v_conference_status_callback_event_2"
+   ],
+   "conference_status_callback_method" : "GET",
+   "conference_trim" : "v_conference_trim",
+   "dequeue_from" : "v_dequeue_from",
+   "dequeue_post_work_activity_sid" : "v_dequeue_post_work_activity_sid",
+   "dequeue_record" : "v_dequeue_record",
+   "dequeue_status_callback_event" : [
+    "v_dequeue_status_callback_event_1",
+    "v_dequeue_status_callback_event_2"
+   ],
+   "dequeue_status_callback_url" : "v_dequeue_status_callback_url",
+   "dequeue_timeout" : 1461,
+   "dequeue_to" : "v_dequeue_to",
+   "early_media" : 1,
+   "end_conference_on_customer_exit" : 1,
+   "end_conference_on_exit" : 1,
+   "from" : "v_from",
+   "if_match" : "v_if_match",
+   "instruction" : "v_instruction",
+   "jitter_buffer_size" : "v_jitter_buffer_size",
+   "max_participants" : 1560,
+   "muted" : 1,
+   "post_work_activity_sid" : "v_post_work_activity_sid",
+   "record" : 1,
+   "recording_channels" : "v_recording_channels",
+   "recording_status_callback" : "v_recording_status_callback",
+   "recording_status_callback_method" : "POST",
+   "redirect_accept" : 1,
+   "redirect_call_sid" : "v_redirect_call_sid",
+   "redirect_url" : "v_redirect_url",
+   "region" : "v_region",
+   "reservation_status" : "wrapping",
+   "sip_auth_password" : "v_sip_auth_password",
+   "sip_auth_username" : "v_sip_auth_username",
+   "start_conference_on_enter" : 1,
+   "status_callback" : "v_status_callback",
+   "status_callback_event" : [
+    "v_status_callback_event_1",
+    "v_status_callback_event_2"
+   ],
+   "status_callback_method" : "GET",
+   "timeout" : 743,
+   "to" : "v_to",
+   "wait_method" : "GET",
+   "wait_url" : "v_wait_url",
+   "worker_activity_sid" : "v_worker_activity_sid"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Reservations/id3"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ],
+   [
+    "workflows",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "AssignmentCallbackUrl",
+    "v_assignment_callback_url"
+   ],
+   [
+    "Configuration",
+    "v_configuration"
+   ],
+   [
+    "FallbackAssignmentCallbackUrl",
+    "v_fallback_assignment_callback_url"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "ReEvaluateTasks",
+    "v_re_evaluate_tasks"
+   ],
+   [
+    "TaskReservationTimeout",
+    "2316"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateWorkflow",
+  "method" : "update",
+  "options" : {
+   "assignment_callback_url" : "v_assignment_callback_url",
+   "configuration" : "v_configuration",
+   "fallback_assignment_callback_url" : "v_fallback_assignment_callback_url",
+   "friendly_name" : "v_friendly_name",
+   "re_evaluate_tasks" : "v_re_evaluate_tasks",
+   "task_reservation_timeout" : 2316
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows/id2"
+ },
+ {
+  "chain" : [
+   [
+    "taskrouter",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "workspaces",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "DefaultActivitySid",
+    "v_default_activity_sid"
+   ],
+   [
+    "EventCallbackUrl",
+    "v_event_callback_url"
+   ],
+   [
+    "EventsFilter",
+    "v_events_filter"
+   ],
+   [
+    "FriendlyName",
+    "v_friendly_name"
+   ],
+   [
+    "MultiTaskEnabled",
+    "true"
+   ],
+   [
+    "PrioritizeQueueOrder",
+    "FIFO"
+   ],
+   [
+    "TimeoutActivitySid",
+    "v_timeout_activity_sid"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateWorkspace",
+  "method" : "update",
+  "options" : {
+   "default_activity_sid" : "v_default_activity_sid",
+   "event_callback_url" : "v_event_callback_url",
+   "events_filter" : "v_events_filter",
+   "friendly_name" : "v_friendly_name",
+   "multi_task_enabled" : 1,
+   "prioritize_queue_order" : "FIFO",
+   "timeout_activity_sid" : "v_timeout_activity_sid"
+  },
+  "required" : [],
+  "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1"
+ }
+]
