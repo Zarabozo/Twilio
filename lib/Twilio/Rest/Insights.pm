@@ -27,6 +27,12 @@ sub v2 {
   return Twilio::Rest::Insights::V2->new($self);
 }
 
+sub v3 {
+  my ($self) = @_;
+  require Twilio::Rest::Insights::V3;
+  return Twilio::Rest::Insights::V3->new($self);
+}
+
 1;
 
 __END__
@@ -54,6 +60,10 @@ Returns L<Twilio::Rest::Insights::V1>.
 =head2 v2
 
 Returns L<Twilio::Rest::Insights::V2>.
+
+=head2 v3
+
+Returns L<Twilio::Rest::Insights::V3>.
 
 =head1 LICENSE
 
