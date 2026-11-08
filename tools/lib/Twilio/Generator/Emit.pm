@@ -32,9 +32,11 @@ sub _list {
   my $side = $model->{list} or return q{};
 
   my @methods = (_constructor($side));
-  push @methods, _create($model)                      if $side->{create};
+  push @methods, _list_body_method($model, 'create')  if $side->{create};
+  push @methods, _delete_method($side->{delete})      if $side->{delete};
   push @methods, _fetch_method($model, $side, 'list') if $side->{fetch};
   push @methods, _reading($model)                     if $side->{read};
+  push @methods, _list_body_method($model, 'update')  if $side->{update};
   push @methods, _get_context($model)                 if ($model->{context} // {})->{own};
   push @methods, map { _child_method($side, $_) } @{ $side->{children} // [] };
 
@@ -154,12 +156,13 @@ sub _quoted {
   return "'$text'";
 }
 
-sub _create {
-  my ($model)   = @_;
-  my $operation = $model->{list}{create};
+# A list has no instance URI of its own, so what it creates or updates is built from the list's ids.
+sub _list_body_method {
+  my ($model, $verb) = @_;
+  my $operation = $model->{list}{$verb};
   my $result    = _new_instance($model, '$response->get_content', $model->{list}{parameters});
 
-  return _body_method('create', $operation) . <<"END_CODE";
+  return _body_method($verb, $operation) . <<"END_CODE";
   return $result;
 }
 END_CODE
@@ -353,16 +356,12 @@ sub _context {
   my $side = $model->{context} or return q{};
 
   my @methods = (_constructor($side));
+  push @methods, _context_body_method($side, 'create')   if $side->{create};
   push @methods, _delete_method($side->{delete})         if $side->{delete};
   push @methods, _fetch_method($model, $side, 'context') if $side->{fetch};
-  if ($side->{update}) {
-    push @methods, _body_method('update', $side->{update}) . <<'END_CODE';
-  return $self->_build_instance($response);
-}
-END_CODE
-  }
+  push @methods, _context_body_method($side, $_) for grep { $side->{$_} } qw(patch update);
 
-  if ($side->{fetch} || $side->{update}) {
+  if (grep { $side->{$_} } qw(create fetch patch update)) {
     my $result = _new_instance($model, '$response->get_content', $side->{parameters});
     push @methods, <<"END_CODE";
 sub _build_instance {
@@ -375,6 +374,14 @@ END_CODE
 
   return join "\n", "package $model->{class}{context};\n",
     "use parent 'Twilio::InstanceContext';\n", "use Twilio::Serialize;\n", @methods;
+}
+
+sub _context_body_method {
+  my ($side, $verb) = @_;
+  return _body_method($verb, $side->{$verb}) . <<'END_CODE';
+  return $self->_build_instance($response);
+}
+END_CODE
 }
 
 sub _instance {
@@ -417,7 +424,7 @@ sub _context_shortcuts {
 
   my $side = $model->{context};
   my @code;
-  for my $verb (grep { $side->{$_} } qw(delete fetch update)) {
+  for my $verb (grep { $side->{$_} } qw(create delete fetch patch update)) {
     push @code, <<"END_CODE";
 sub $verb {
   my (\$self, \@arguments) = \@_;

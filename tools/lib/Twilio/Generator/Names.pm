@@ -9,9 +9,11 @@ our @EXPORT_OK = qw(camelize segment_class singular snake);
 
 our $VERSION = '2.000000';
 
+# A letter after a digit starts a word, as in Twilio's generator: TrustHub's a2p_brand_registrations
+# are A2PBrandRegistration in twilio-php, twilio-python and twilio-node.
 sub camelize {
   my ($name) = @_;
-  return join q{}, map { ucfirst } split /_/, $name;
+  return join q{}, map { ucfirst =~ s/([0-9])([a-z])/$1\u$2/gr } split /_/, $name;
 }
 
 sub snake {

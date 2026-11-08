@@ -90,12 +90,36 @@ unclear, twilio-php decides.
 - A path that doesn't say what it is ends in an id when it's an instance. A list can end
   in an id as well, which is part of where the list is.
 - An instance path with no parameter at the end is a singleton. A singleton's children
-  hang from it.
+  hang from it. But when the resource also has a list, the one id the list doesn't hold is
+  the instance's own, wherever it is: TrustHub's
+  `/ComplianceInquiries/Customers/{CustomerId}/Initialize` is
+  `compliance_inquiries($customer_id)`, as in twilio-php.
+- An instance's own id comes from the field with the URL's name, or else from its `sid`
+  or `id`: Preview IAM's `{UserSid}` is a SCIM user's `id`.
 - When a URL has ids that its parent doesn't hold, the method that reaches it takes them
   first, in the order of the URL: `archived_calls($date, $sid)`. twilio-php sorts them by
   name instead, and this order was chosen on purpose. A URL can also leave out an id of
   its parent, as TaskRouter's `Workers/CumulativeStatistics` does.
 - A field's method is its name in snake case: `friendlyName` is `friendly_name`.
+- A letter after a digit starts a word in a class name: `a2p_brand_registrations` is
+  `A2PBrandRegistration`, as in all of Twilio's libraries.
+- Fields come only from answers below 400. An error dies before any object is built, so
+  SCIM's `ScimError` doesn't give users a `scim_type`. A redirect counts, because Bulk
+  Exports' `FetchDay` describes its answer only under 307. A response that is a `oneOf`,
+  `anyOf` or `allOf` stops for now, because it has no properties to read.
+
+## Verbs
+
+The verb comes from the start of the `operationId`, and the HTTP method from the spec, so
+an update can send PUT or PATCH.
+
+- A list can have `create`, `fetch`, `read`, `update` and `delete`, as Studio's
+  `flow_validate->update` and Accounts' `safelist->delete` do.
+- A context can have `create`, `fetch`, `patch`, `update` and `delete`. twilio-php has a
+  `patch` of its own, next to `update`, for the APIs that have both. The instance offers
+  the same methods.
+- A delete returns true. One that answers with a body stops for now, because twilio-php
+  returns that object.
 
 The generator stops on anything it can't place, because a guess would become
 wrong public API.
@@ -124,8 +148,8 @@ reasons, so a new format shows up there first.
   the options, with the names Twilio's documentation uses. Its top-level fields have
   rules (dates, and booleans sent as JSON booleans), and any date object deeper in it is
   written as ISO 8601. The owner chose this over twilio-php's model classes.
-- **SCIM**: an operation that only answers in SCIM asks for it in `Accept`, as
-  twilio-php does.
+- **SCIM**: an operation whose answers below 400 are only in SCIM asks for it in
+  `Accept`, as twilio-php does.
 
 ## Test vectors
 

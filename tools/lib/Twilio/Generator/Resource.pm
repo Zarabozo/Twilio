@@ -17,9 +17,10 @@ my $SCIM_CONTENT      = 'application/scim+json';
 my %IS_PAGE_PARAMETER = map { $_ => 1 } qw(Page PageSize PageToken);
 
 # These methods exist on every object of their kind, so a name from the spec would replace them.
-my %IS_RESERVED_FIELD = map { $_ => 1 } qw(DESTROY can delete fetch isa new to_hash update);
+my %IS_RESERVED_FIELD =
+  map { $_ => 1 } qw(DESTROY can create delete fetch isa new patch to_hash update);
 my %IS_RESERVED_MOUNT = map { $_ => 1 } qw(
-  DESTROY can create delete fetch get_context get_page isa new page read read_records stream
+  DESTROY can create delete fetch get_context get_page isa new page patch read read_records stream
   stream_records update
 );
 
@@ -45,7 +46,7 @@ sub build {
   $model->{has_instance} = @schemas ? 1 : 0;
   $model->{fields}       = _fields($spec, $resource, \@schemas);
   if (defined(my $own = ($model->{context} // {})->{own})) {
-    $model->{context}{own_field} = _own_field($model->{fields}, $own);
+    $model->{context}{own_field} = _own_field($model->{fields}, $own, $resource->{key});
   }
 
   _add_children($spec, $tree, $resource, $model);
@@ -158,17 +159,28 @@ sub _description {
   return $text;
 }
 
+# Each verb a side can have: the method it becomes, and how its operation is read. twilio-php
+# has a patch method of its own, next to update, for the APIs that have both.
+my %LIST_VERB = (
+  create => [create => \&_body_operation],
+  delete => [delete => \&_delete_operation],
+  fetch  => [fetch  => \&_fetch_operation],
+  list   => [read   => \&_read_operation],
+  update => [update => \&_body_operation],
+);
+my %INSTANCE_VERB = (
+  create => [create => \&_body_operation],
+  delete => [delete => \&_delete_operation],
+  fetch  => [fetch  => \&_fetch_operation],
+  patch  => [patch  => \&_body_operation],
+  update => [update => \&_body_operation],
+);
+
 sub _list_side {
   my ($spec, $resource) = @_;
 
   my $side = _side($spec, $resource, $resource->{list});
-  for my $operation (@{ $resource->{list}{operations} }) {
-    my $verb = $operation->{verb};
-    if    ($verb eq 'create') { $side->{create} = _body_operation($spec, $operation) }
-    elsif ($verb eq 'fetch')  { $side->{fetch} = _fetch_operation($spec, $operation) }
-    elsif ($verb eq 'list')   { $side->{read} = _read_operation($spec, $operation) }
-    else                      { croak "$operation->{id}: no rule for $verb on a list" }
-  }
+  _add_operations($spec, $side, $resource->{list}{operations}, \%LIST_VERB, 'a list');
   return $side;
 }
 
@@ -177,15 +189,20 @@ sub _context_side {
 
   my $side = _side($spec, $resource, $resource->{instance});
   $side->{own} = $side->{parameters}[-1] if defined $resource->{instance}{key};
-
-  for my $operation (@{ $resource->{instance}{operations} }) {
-    my $verb = $operation->{verb};
-    if    ($verb eq 'update') { $side->{update} = _body_operation($spec, $operation) }
-    elsif ($verb eq 'delete') { $side->{delete} = _delete_operation($spec, $operation) }
-    elsif ($verb eq 'fetch')  { $side->{fetch} = _fetch_operation($spec, $operation) }
-    else                      { croak "$operation->{id}: no rule for $verb on an instance" }
-  }
+  _add_operations($spec, $side, $resource->{instance}{operations}, \%INSTANCE_VERB, 'an instance');
   return $side;
+}
+
+sub _add_operations {
+  my ($spec, $side, $operations, $rules, $where) = @_;
+
+  for my $operation (@{$operations}) {
+    my $rule = $rules->{ $operation->{verb} }
+      or croak "$operation->{id}: no rule for $operation->{verb} on $where";
+    my ($method, $reader) = @{$rule};
+    $side->{$method} = $reader->($spec, $operation);
+  }
+  return;
 }
 
 # An id in a URL has a rule like any other value: Voice's /Archives/{Date} takes a date, which
@@ -219,10 +236,14 @@ sub _path_writers {
   return %writer;
 }
 
+# A delete returns true. Some answer with an object instead, which twilio-php returns, and
+# returning true there would lose it, so those stop until they have a rule.
 sub _delete_operation {
   my ($spec, $operation) = @_;
 
   croak "$operation->{id}: no rule for a body here" if $operation->{spec}{requestBody};
+  croak "$operation->{id}: no rule for a delete that answers with a body"
+    if grep { %{ $_->{content} // {} } } _successes($operation);
   my $parameters = _parameters($spec, $operation, 'no required');
   return {
     method      => $operation->{method},
@@ -287,7 +308,7 @@ sub _accept {
   my ($operation) = @_;
 
   my %types;
-  for my $response (values %{ $operation->{spec}{responses} // {} }) {
+  for my $response (_successes($operation)) {
     $types{$_}++ for keys %{ $response->{content} // {} };
   }
   my @types = sort keys %types;
@@ -384,13 +405,21 @@ sub _enum_of {
   return $spec->resolve($schema // {})->{enum};
 }
 
+# An error, from 400 up, dies before any object is built, so only the other answers count: SCIM's
+# ScimError would otherwise give every user an always-empty scim_type, as twilio-python's has.
+# A redirect counts, because Bulk Exports' FetchDay describes its answer only under 307.
+sub _successes {
+  my ($operation) = @_;
+  my $responses = $operation->{spec}{responses} // {};
+  return map { $responses->{$_} } grep { !/\A[45]/ } sort keys %{$responses};
+}
+
 sub _response_schemas {
   my ($operation) = @_;
 
   my @schemas;
-  my $responses = $operation->{spec}{responses} // {};
-  for my $code (sort keys %{$responses}) {
-    my $content = $responses->{$code}{content} // {};
+  for my $response (_successes($operation)) {
+    my $content = $response->{content} // {};
     push @schemas, map { $content->{$_}{schema} } sort keys %{$content};
   }
   return @schemas;
@@ -430,7 +459,16 @@ sub _instance_schemas {
       $references{ $_->{'$ref'} } = 1 for @found;
     }
   }
-  return map { $spec->resolve({ '$ref' => $_ }) } sort keys %references;
+
+  # Messaging's UsAppToPerson answers with a oneOf, which has no properties to read, so it would
+  # silently get no fields at all.
+  my @schemas = map { [$_, $spec->resolve({ '$ref' => $_ })] } sort keys %references;
+  for my $pair (@schemas) {
+    my ($reference, $schema) = @{$pair};
+    my @composed = grep { $schema->{$_} } qw(allOf anyOf oneOf);
+    croak "$resource->{key}: no rule for a response that is @composed ($reference)" if @composed;
+  }
+  return map { $_->[1] } @schemas;
 }
 
 sub _fields {
@@ -474,11 +512,17 @@ sub _fields {
 }
 
 # The field that holds an instance's own id: sid, or phoneNumber when the API answers in
-# camelCase and the URL calls it {PhoneNumber}.
+# camelCase and the URL calls it {PhoneNumber}. When no field has the URL's name, the record's
+# sid or id holds it, as in twilio-php and twilio-python: IAM's {UserSid} is a SCIM user's id.
 sub _own_field {
-  my ($fields, $own) = @_;
-  my ($field) = grep { $_->{method} eq $own } @{$fields};
-  return $field ? $field->{name} : $own;
+  my ($fields, $own, $key) = @_;
+
+  my %by_method = map { $_->{method} => $_->{name} } @{$fields};
+  return $own if !@{$fields};
+  for my $method ($own, qw(sid id)) {
+    return $by_method{$method} if defined $by_method{$method};
+  }
+  croak "$key: no field holds its own id $own";
 }
 
 # The resources with no parent hang from the version, which has no parameters of its own.

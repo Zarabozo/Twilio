@@ -184,6 +184,29 @@ subtest 'request details' => sub {
   );
 };
 
+subtest 'PUT and PATCH send their bodies, as forms or as JSON' => sub {
+  my $client = client('ACxx', 'token');
+  my $http   = $client->get_http_client;
+
+  for my $method (qw(PUT PATCH)) {
+    $http->mock(200, {})->mock(200, {});
+    $client->request(lc $method, $api, { data => { Name => 'a b' } });
+    $client->request($method, $api,
+      { data => { name => 'a' }, headers => { 'Content-Type' => 'application/json' } });
+    my ($form, $json) = ($http->requests)[-2, -1];
+
+    is($form->{method},  $method,    "$method, whatever its case");
+    is($form->{content}, 'Name=a+b', "$method sends a form");
+    is(
+      $form->{headers}{'Content-Type'},
+      'application/x-www-form-urlencoded',
+      "$method says it is a form"
+    );
+    is($json->{content},         '{"name":"a"}',     "$method sends JSON");
+    is($json->{headers}{Accept}, 'application/json', "$method asks for JSON");
+  }
+};
+
 subtest 'request applies edge and region' => sub {
   my $client = client('ACxx', 'token', { edge => 'sydney', region => 'au1' });
   $client->get_http_client->mock(200, {});
