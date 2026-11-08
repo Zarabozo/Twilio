@@ -133,8 +133,9 @@ sub _synopsis {
 sub _call_arguments {
   my ($operation) = @_;
 
-  my @required = map { "\$$_->{name}" } @{ $operation->{required} };
-  return join q{, }, @required, @{ $operation->{options} } ? '\%options' : ();
+  my @required = map { "\$$_->{name}" } @{ $operation->{required} // [] };
+  return join q{, }, @required, $operation->{json} ? '\%body' : (),
+    @{ $operation->{options} // [] } ? '\%options' : ();
 }
 
 sub _list {
@@ -172,7 +173,22 @@ sub _body_method {
   my $arguments = _call_arguments($operation);
   return join "\n", "=head2 $verb\n", "  my \$$model->{variable} = $call->$verb($arguments);\n",
     _method_intro($operation, "Returns a C<$model->{name}Instance>."),
-    _arguments('required', $operation->{required}), _arguments('options', $operation->{options});
+    _arguments('required', $operation->{required}), _json_fields($operation->{json}),
+    _arguments('options', $operation->{options});
+}
+
+# A JSON body is a hash reference with Twilio's own names, so its fields are listed as they are.
+sub _json_fields {
+  my ($json) = @_;
+  return () if !$json;
+
+  my $kind = $json->{required} ? 'It' : 'It can be left out. When given, it';
+  my @intro =
+    _paragraph("C<%body> is sent as JSON. $kind takes the names Twilio's API documentation uses.");
+  return @intro if !@{ $json->{fields} };
+
+  my @items = map { _json_field($_) } @{ $json->{fields} };
+  return @intro, "Its fields are:\n", "=over\n", @items, "=back\n";
 }
 
 sub _fetch_method {
@@ -183,6 +199,13 @@ sub _fetch_method {
   return join "\n", "=head2 fetch\n", "  my \$$model->{variable} = $call->fetch$list;\n",
     _method_intro($operation, "Returns a C<$model->{name}Instance>."),
     _arguments('options', \@options);
+}
+
+sub _json_field {
+  my ($field) = @_;
+  my $note = $field->{required} ? 'Required. ' : q{};
+  return "=item C<$field->{name}>\n",
+    _paragraph($note . _or_nothing(text($field->{description}), _choices($field->{enum})));
 }
 
 sub _arguments {
@@ -229,11 +252,18 @@ sub _reading {
   my ($model, $call) = @_;
 
   my $operation = $model->{list}{read};
+  my @required  = @{ $operation->{required} // [] };
+  my $taken     = join q{}, map { "\$$_->{name}, " } @required;
+  my @kept =
+    @required
+    ? _paragraph('The required values are kept with the options, so C<page> takes them there.')
+    : ();
   return join "\n", "=head2 read\n",
-    "  my \@records = $call->read(\\%options, \$limit, \$page_size);\n",
+    "  my \@records = $call->read($taken\\%options, \$limit, \$page_size);\n",
     _method_intro($operation, 'Returns the records as a list, fetching as many pages as it needs.'),
+    _arguments('required', \@required), @kept,
     _arguments('options', $operation->{filters}), "=head2 stream\n",
-    "  my \$stream = $call->stream(\\%options, \$limit, \$page_size);\n",
+    "  my \$stream = $call->stream($taken\\%options, \$limit, \$page_size);\n",
     "Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.\n", "=head2 page\n",
     "  my \$page = $call->page(\\%options, \$page_size, \$page_token, \$page_number);\n",
     "Fetches one page, and returns a L<Twilio::Page>.\n", "=head2 get_page\n",
@@ -277,9 +307,11 @@ sub _context {
 
   push @pod, _fetch_method($model, $call, $side->{fetch})           if $side->{fetch};
   push @pod, _body_method($model, 'update', $call, $side->{update}) if $side->{update};
-  if ($side->{delete}) {
-    push @pod, join "\n", "=head2 delete\n", "  $call->delete;\n",
-      _method_intro($side->{delete}, 'Returns true.');
+  if (my $delete = $side->{delete}) {
+    my @options = @{ $delete->{options} // [] };
+    my $list    = @options ? '(\%options)' : q{};
+    push @pod, join "\n", "=head2 delete\n", "  $call->delete$list;\n",
+      _method_intro($delete, 'Returns true.'), _arguments('options', \@options);
   }
   push @pod, map { _child($_) } @{ $side->{children} // [] };
   return join "\n", @pod;

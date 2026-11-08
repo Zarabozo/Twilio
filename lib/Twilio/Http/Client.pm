@@ -38,8 +38,11 @@ sub prepare_request {
   my ($self, $method, $url, $options) = @_;
   $options //= {};
 
+  # Flex Insights takes a token of its own in Authorization, as an option of the operation, and
+  # that one is sent instead of the account's credentials.
   my %headers = %{ $options->{headers} // {} };
-  if (length($options->{username} // q{}) && length($options->{password} // q{})) {
+  my $given   = grep { lc eq 'authorization' } keys %headers;
+  if (!$given && length($options->{username} // q{}) && length($options->{password} // q{})) {
     $headers{Authorization} = _basic_auth($options->{username}, $options->{password});
   }
 

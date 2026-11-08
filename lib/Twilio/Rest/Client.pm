@@ -36,16 +36,34 @@ sub content {
   return Twilio::Rest::Content->new($self);
 }
 
+sub conversations {
+  my ($self) = @_;
+  require Twilio::Rest::Conversations;
+  return Twilio::Rest::Conversations->new($self);
+}
+
 sub events {
   my ($self) = @_;
   require Twilio::Rest::Events;
   return Twilio::Rest::Events->new($self);
 }
 
+sub flex_api {
+  my ($self) = @_;
+  require Twilio::Rest::FlexApi;
+  return Twilio::Rest::FlexApi->new($self);
+}
+
 sub frontline_api {
   my ($self) = @_;
   require Twilio::Rest::FrontlineApi;
   return Twilio::Rest::FrontlineApi->new($self);
+}
+
+sub iam {
+  my ($self) = @_;
+  require Twilio::Rest::Iam;
+  return Twilio::Rest::Iam->new($self);
 }
 
 sub insights {
@@ -130,6 +148,18 @@ sub supersim {
   my ($self) = @_;
   require Twilio::Rest::Supersim;
   return Twilio::Rest::Supersim->new($self);
+}
+
+sub sync {
+  my ($self) = @_;
+  require Twilio::Rest::Sync;
+  return Twilio::Rest::Sync->new($self);
+}
+
+sub taskrouter {
+  my ($self) = @_;
+  require Twilio::Rest::Taskrouter;
+  return Twilio::Rest::Taskrouter->new($self);
 }
 
 sub trunking {
@@ -329,13 +359,25 @@ Returns L<Twilio::Rest::Chat>.
 
 Returns L<Twilio::Rest::Content>.
 
+=head2 conversations
+
+Returns L<Twilio::Rest::Conversations>.
+
 =head2 events
 
 Returns L<Twilio::Rest::Events>.
 
+=head2 flex_api
+
+Returns L<Twilio::Rest::FlexApi>.
+
 =head2 frontline_api
 
 Returns L<Twilio::Rest::FrontlineApi>.
+
+=head2 iam
+
+Returns L<Twilio::Rest::Iam>.
 
 =head2 insights
 
@@ -392,6 +434,14 @@ Returns L<Twilio::Rest::Studio>.
 =head2 supersim
 
 Returns L<Twilio::Rest::Supersim>.
+
+=head2 sync
+
+Returns L<Twilio::Rest::Sync>.
+
+=head2 taskrouter
+
+Returns L<Twilio::Rest::Taskrouter>.
 
 =head2 trunking
 

@@ -5,6 +5,7 @@ use Test::More;
 
 use Time::Piece ();
 
+use Twilio::Json;
 use Twilio::Serialize;
 
 subtest 'boolean_to_string' => sub {
@@ -80,6 +81,39 @@ subtest 'json_object' => sub {
 
   my $object = bless {}, 'Local::NoEpoch';
   is(Twilio::Serialize::json_object($object), $object, 'an object stays the same');
+};
+
+subtest 'json_body' => sub {
+  my $moment = Local::Moment->new(1_438_287_151);
+  my $rules =
+    { day => 'iso8601_date', at => 'iso8601_date_time', on => 'boolean', off => 'boolean' };
+  my $body = {
+    day  => $moment,
+    at   => $moment,
+    on   => 1,
+    off  => 'false',
+    name => 'x',
+    deep => { when => $moment, list => [$moment, 'y'], flag => \1 },
+  };
+  my $sent = Twilio::Serialize::json_body($body, $rules);
+
+  is($sent->{day}, '2015-07-30',           'a date');
+  is($sent->{at},  '2015-07-30T20:12:31Z', 'a date and time');
+  is_deeply([$sent->{on}, $sent->{off}], [\1, \0], 'booleans for JSON');
+  is($sent->{name}, 'x', 'a field with no rule stays');
+  is_deeply(
+    $sent->{deep},
+    { when => '2015-07-30T20:12:31Z', list => ['2015-07-30T20:12:31Z', 'y'], flag => \1 },
+    'dates below the top level are written as text'
+  );
+  is(ref $body->{deep}{when},           'Local::Moment', 'the caller keeps its data');
+  is(Twilio::Json::encode($sent->{on}), 'true',          'a boolean encodes as JSON true');
+
+  is_deeply(Twilio::Serialize::json_body(undef), {}, 'no body is an empty one');
+  my $ok    = eval { Twilio::Serialize::json_body('{"a":1}'); 1 };
+  my $error = $@;
+  ok(!$ok, 'anything else is refused');
+  like($error, qr/A JSON body must be a hash reference/, 'says why');
 };
 
 # The expected values are what twilio-php 8.14.0 returns for the same input.
