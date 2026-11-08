@@ -17,20 +17,20 @@ my %DOMAIN_NAME =
   (flex => 'flex_api', frontline => 'frontline_api', iam_organizations => 'preview_iam');
 
 my @READY = qw(
-  api_v2010 bulkexports_v1 chat_v1 content_v2 events_v1 frontline_v1 insights_v1 ip_messaging_v1
-  lookups_v1 monitor_v1 notify_v1 numbers_v3 oauth_v1 preview pricing_v1 pricing_v2 proxy_v1
-  routes_v2 routes_v3 serverless_v1 studio_v1 supersim_v1 trunking_v1 voice_v1 wireless_v1
+  api_v2010 bulkexports_v1 chat_v1 chat_v2 chat_v3 content_v2 conversations_v1 events_v1 flex_v2
+  frontline_v1 iam_v1 insights_v1 insights_v2 ip_messaging_v1 ip_messaging_v2 lookups_v1
+  monitor_v1 notify_v1 numbers_v1 numbers_v3 oauth_v1 oauth_v2 preview pricing_v1 pricing_v2
+  proxy_v1 routes_v2 routes_v3 serverless_v1 studio_v1 supersim_v1 sync_v1 taskrouter_v1
+  trunking_v1 voice_v1 wireless_v1
 );
 
 # Specs the generator cannot finish yet. They are named, and not skipped when they fail, because
 # then a spec sync that broke one resource would silently delete a whole product from the
 # library. xt/generator/scope.t fails when a spec here starts to work, so this list only shrinks.
 my @PENDING = qw(
-  accounts_v1 chat_v2 chat_v3 content_v1 conversations_v1 conversations_v2 flex_v1 flex_v2
-  iam_organizations iam_v1 insights_v2 insights_v3 intelligence_v2 intelligence_v3 ip_messaging_v2
-  knowledge_v1 knowledge_v2 lookups_v2 marketplace_v1 memory_v1 messaging_v1 messaging_v2
-  messaging_v3 numbers_v1 numbers_v2 oauth_v2 studio_v2 sync_v1 taskrouter_v1 trusthub_v1
-  verify_v2 video_v1 webhooks_v1
+  accounts_v1 content_v1 conversations_v2 flex_v1 iam_organizations insights_v3 intelligence_v2
+  intelligence_v3 knowledge_v1 knowledge_v2 lookups_v2 marketplace_v1 memory_v1 messaging_v1
+  messaging_v2 messaging_v3 numbers_v2 studio_v2 trusthub_v1 verify_v2 video_v1 webhooks_v1
 );
 
 sub ready    { return @READY }

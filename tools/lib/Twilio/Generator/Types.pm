@@ -8,7 +8,8 @@ use Exporter qw(import);
 
 use Twilio::Generator::Names qw(snake);
 
-our @EXPORT_OK = qw(field_reader map_prefix option_name request_writer);
+our @EXPORT_OK =
+  qw(field_reader header_option_name json_rule map_prefix option_name request_writer);
 
 our $VERSION = '2.000000';
 
@@ -38,6 +39,7 @@ my %REQUEST_WRITER = (
   'string'               => undef,
   'twiml'                => undef,
   'uri'                  => undef,
+  'uuid'                 => undef,
 );
 
 # Formats named after a kind of id, like Sid or IamRoleSid, are plain strings.
@@ -91,6 +93,42 @@ sub option_name {
 
   # They lower the first letter before splitting words, so EId is e_id and not eid.
   return snake(lcfirst $name);
+}
+
+# A JSON body is sent as the caller writes it, so only its top-level fields have rules: dates are
+# written as twilio-php writes them, and a boolean becomes a JSON boolean, which 1 and 0 are not.
+my %JSON_RULE = (
+  q{}            => undef,
+  'IamRoleSid'   => undef,
+  'Sid'          => undef,
+  'array'        => undef,
+  'boolean'      => 'boolean',
+  'date'         => 'iso8601_date',
+  'date-time'    => 'iso8601_date_time',
+  'double'       => undef,
+  'email'        => undef,
+  'int32'        => undef,
+  'integer'      => undef,
+  'number'       => undef,
+  'object'       => undef,
+  'phone-number' => undef,
+  'string'       => undef,
+  'uri'          => undef,
+);
+
+sub json_rule {
+  my ($spec, $where, $schema) = @_;
+  return _rule(\%JSON_RULE, $where, $spec->resolve($schema));
+}
+
+# Python names a header option the way it is written: X-Twilio-Webhook-Enabled is
+# x_twilio_webhook_enabled.
+sub header_option_name {
+  my ($wire_name) = @_;
+
+  my $name = lc $wire_name =~ tr/-/_/r;
+  croak "Cannot name an option from '$wire_name'" if $name !~ /\A\w+\z/;
+  return $name;
 }
 
 # For an array, the writer of each element, as twilio-php maps it over the array.

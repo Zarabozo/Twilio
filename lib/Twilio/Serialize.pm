@@ -49,6 +49,44 @@ sub json_object {
   return $type eq 'HASH' || $type eq 'ARRAY' ? Twilio::Json::encode($value) : $value;
 }
 
+my %JSON_RULE = (
+  boolean           => \&_json_boolean,
+  iso8601_date      => \&iso8601_date,
+  iso8601_date_time => \&iso8601_date_time,
+);
+
+sub json_body {
+  my ($body, $rules) = @_;
+  return {}                                    if !defined $body;
+  croak 'A JSON body must be a hash reference' if ref $body ne 'HASH';
+
+  my %sent;
+  for my $name (keys %{$body}) {
+    my $rule = $JSON_RULE{ ($rules // {})->{$name} // q{} };
+    $sent{$name} = $rule ? $rule->($body->{$name}) : _json_value($body->{$name});
+  }
+  return \%sent;
+}
+
+# A copy, so that the caller's data stays as it was, with every date object written as text.
+sub _json_value {
+  my ($value) = @_;
+
+  my $type = ref $value;
+  return { map { $_ => _json_value($value->{$_}) } keys %{$value} } if $type eq 'HASH';
+  return [map { _json_value($_) } @{$value}]                        if $type eq 'ARRAY';
+  return iso8601_date_time($value) if blessed($value) && $value->can('epoch');
+  return $value;
+}
+
+# JSON has booleans of its own, and Twilio does not take 1 or "true" for them.
+sub _json_boolean {
+  my ($value) = @_;
+  return $value if !defined $value || ref $value;
+  return \0     if $value eq 'false';
+  return $value ? \1 : \0;
+}
+
 sub map_values {
   my ($values, $writer) = @_;
   return $values if ref $values ne 'ARRAY';
@@ -143,6 +181,18 @@ C<2026-11-06>, for values that have no time. Anything else is returned as it is.
 
 Returns a hash or array reference as JSON. Anything else is returned as it is, so
 a value can also be given as text that is already JSON.
+
+=head2 json_body
+
+  my $sent = Twilio::Serialize::json_body($body, { sendAt => 'iso8601_date_time' });
+
+Returns a copy of a JSON body, ready to be encoded. The rules name the top-level
+fields that need a conversion: C<iso8601_date>, C<iso8601_date_time>, or C<boolean>,
+which turns a Perl boolean, or the text C<true> or C<false>, into a JSON boolean.
+Below the top level, any object with an C<epoch> method is written as an ISO 8601
+date and time, and everything else is sent as it is, so use C<\1> and C<\0> for
+booleans there. C<undef> is an empty body, and anything else that is not a hash
+reference dies.
 
 =head2 map_values
 

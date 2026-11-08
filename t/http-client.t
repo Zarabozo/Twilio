@@ -64,6 +64,11 @@ subtest 'auth is sent up front' => sub {
 
   $request = $http->prepare_request('GET', $url);
   ok(!exists $request->{headers}{Authorization}, 'no header without credentials');
+
+  # Flex Insights takes a token of its own, as an option of the operation.
+  $request = $http->prepare_request('GET', $url,
+    { username => 'ACxx', password => 's3cret', headers => { Authorization => 'Token abc' } });
+  is($request->{headers}{Authorization}, 'Token abc', 'one from the caller is sent instead');
 };
 
 subtest 'form bodies' => sub {

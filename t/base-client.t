@@ -168,6 +168,12 @@ subtest 'request details' => sub {
   my ($delete, $custom, $override) = $http->requests;
 
   ok(!exists $delete->{headers}{Accept}, 'DELETE sends no Accept');
+
+  $http->mock(200, {});
+  $client->request('GET', $api, { headers => { 'If-Match' => undef, 'Ui-Version' => '2' } });
+  my $headers = ($http->requests)[-1]{headers};
+  ok(!exists $headers->{'If-Match'}, 'a header option that is not set is left out');
+  is($headers->{'Ui-Version'},   '2',          'and one that is set is sent');
   is($custom->{headers}{Accept}, 'text/plain', 'caller Accept kept');
   like($delete->{headers}{'User-Agent'}, qr{ my-app/1[.]0 x/2\z}, 'user agent extensions');
   is($override->{timeout}, 3, 'timeout passed on');

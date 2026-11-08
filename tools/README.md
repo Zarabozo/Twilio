@@ -112,6 +112,21 @@ reasons, so a new format shows up there first.
 - A `prefixed-collapsible-map-<Prefix>` is never sent under its own name: each key
   becomes a parameter, as in `AddOns.lookup.Key`.
 
+## What a request takes
+
+- **Headers** are options, as in twilio-php and twilio-python:
+  `X-Twilio-Webhook-Enabled` is `x_twilio_webhook_enabled`. An `Authorization` option
+  is sent instead of the account's credentials.
+- **Query parameters** are options on any operation. A required one comes before the
+  options: `read($channel, \%options)`. A list keeps it with the options, so `page`
+  takes it there too.
+- **A JSON body** is one hash reference, `\%body`, after the required values and before
+  the options, with the names Twilio's documentation uses. Its top-level fields have
+  rules (dates, and booleans sent as JSON booleans), and any date object deeper in it is
+  written as ISO 8601. The owner chose this over twilio-php's model classes.
+- **SCIM**: an operation that only answers in SCIM asks for it in `Accept`, as
+  twilio-php does.
+
 ## Test vectors
 
 `tools/vectors/generate.php` runs real twilio-php and writes what it produces into
