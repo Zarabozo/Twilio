@@ -81,7 +81,9 @@ subtest 'what is ready finishes' => sub {
 };
 
 subtest 'what is pending still has a reason to be' => sub {
-  for my $name (Twilio::Generator::Scope::pending()) {
+  my @pending = Twilio::Generator::Scope::pending();
+  pass('nothing is pending') if !@pending;
+  for my $name (@pending) {
     ok(scalar @{ $report->{$name}{stops} }, "$name still stops");
   }
 };

@@ -89,6 +89,10 @@ sub option_name {
   $name =~ s/>\z/_after/;
   $name =~ s/[.]/_/g;
 
+  # A2P is one word, as in the class names: A2PProfileBundleSid is a2p_profile_bundle_sid, as in
+  # twilio-python, where twilio-php has a2_p_profile_bundle_sid.
+  $name =~ s/A2P(?=[A-Z])/A2p/g;
+
   croak "Cannot name an option from '$wire_name'" if $name !~ /\A\w+\z/;
 
   # They lower the first letter before splitting words, so EId is e_id and not eid.

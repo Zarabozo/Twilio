@@ -38,7 +38,7 @@ exactly one:
 - **Pending** specs still have something the generator cannot do. They are named because
   skipping whatever fails would let a spec sync silently delete a whole product.
   `xt/generator/scope.t` fails when a pending spec starts to work, so the list only
-  shrinks. Phase 4 ends when it's empty.
+  shrinks. It has been empty since TWIL-38, and a new spec that doesn't finish goes here.
 - **Excluded** specs are never downloaded, and each one says why. The scope follows what
   the official libraries ship, so check this at each spec sync.
 
@@ -95,7 +95,13 @@ unclear, twilio-php decides.
   `/ComplianceInquiries/Customers/{CustomerId}/Initialize` is
   `compliance_inquiries($customer_id)`, as in twilio-php.
 - An instance's own id comes from the field with the URL's name, or else from its `sid`
-  or `id`: Preview IAM's `{UserSid}` is a SCIM user's `id`.
+  or `id`: Preview IAM's `{UserSid}` is a SCIM user's `id`. Memory's
+  `TraitGroups/{traitGroupName}` is the `displayName`, which the spec says only in words,
+  so `Twilio::Generator::Resource` names it by hand. A resource with no list needs no such
+  field, because only a list builds an instance without its context: Lookups'
+  `Overrides/{Field}`.
+- An id named like an argument every class takes, `version`, is `path_version`, as
+  twilio-php's `$pathVersion`.
 - When a URL has ids that its parent doesn't hold, the method that reaches it takes them
   first, in the order of the URL: `archived_calls($date, $sid)`. twilio-php sorts them by
   name instead, and this order was chosen on purpose. A URL can also leave out an id of
@@ -105,8 +111,15 @@ unclear, twilio-php decides.
   `A2PBrandRegistration`, as in all of Twilio's libraries.
 - Fields come only from answers below 400. An error dies before any object is built, so
   SCIM's `ScimError` doesn't give users a `scim_type`. A redirect counts, because Bulk
-  Exports' `FetchDay` describes its answer only under 307. A response that is a `oneOf`,
-  `anyOf` or `allOf` stops for now, because it has no properties to read.
+  Exports' `FetchDay` describes its answer only under 307, and the HTTP client doesn't
+  follow redirects.
+- A schema written in place reads like one under `components`, for fields and for
+  records. A `oneOf`, `anyOf` or `allOf` has the fields of each of its schemas, as
+  twilio-php's UsAppToPerson has 30. A shared response under `components/responses`, like
+  Memory's redirects, reads like one written in the operation.
+- Records are the one array of objects in a list's answer. Under the v1.0 standard they
+  can be plain values instead, like Memory's store ids, and each becomes an instance with
+  an `id`, as `Twilio::TokenPaginationPage` builds it.
 
 ## Verbs
 
@@ -118,8 +131,9 @@ an update can send PUT or PATCH.
 - A context can have `create`, `fetch`, `patch`, `update` and `delete`. twilio-php has a
   `patch` of its own, next to `update`, for the APIs that have both. The instance offers
   the same methods.
-- A delete returns true. One that answers with a body stops for now, because twilio-php
-  returns that object.
+- A delete returns true, or the object it answers with, as twilio-php does. Any other
+  operation that answers with no body returns true as well, like Intelligence v3's
+  `CreateRuleExecution`.
 
 The generator stops on anything it can't place, because a guess would become
 wrong public API.
@@ -164,6 +178,18 @@ as twilio-php reads it:
 - `pageSize` and `pageToken` are never required values or filters of a list. On any other
   operation they are options, even when the spec says required, as twilio-php has them on
   Insights v3's `FetchQueryJobResults`.
+- An answer can be another object than the resource. The resource is what its records
+  have, or what its fetch answers with when it has no list. An answer that shares no field
+  with it gets a class of its own, with twilio-php's name: the schema's, or
+  `<OperationId><Code>ResponseInstance` for one written in place, like
+  `CreateStore202ResponseInstance` for Memory's `{ message, statusUrl }`. Answers that are
+  the same schema share the class of the first, within a resource; twilio-php shares them
+  across the whole version.
+- When one operation answers with both, the status code chooses: Knowledge's
+  `UpdateKnowledge` returns an `UpdateKnowledge202ResponseInstance` for 202 and a
+  `KnowledgeInstance` for 200. twilio-php always builds the second.
+- Older APIs have one object per resource, and every answer is that object, as in
+  twilio-php.
 
 ## Test vectors
 

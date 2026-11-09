@@ -90,10 +90,34 @@ sub ip_messaging {
   return Twilio::Rest::IpMessaging->new($self);
 }
 
+sub knowledge {
+  my ($self) = @_;
+  require Twilio::Rest::Knowledge;
+  return Twilio::Rest::Knowledge->new($self);
+}
+
 sub lookups {
   my ($self) = @_;
   require Twilio::Rest::Lookups;
   return Twilio::Rest::Lookups->new($self);
+}
+
+sub marketplace {
+  my ($self) = @_;
+  require Twilio::Rest::Marketplace;
+  return Twilio::Rest::Marketplace->new($self);
+}
+
+sub memory {
+  my ($self) = @_;
+  require Twilio::Rest::Memory;
+  return Twilio::Rest::Memory->new($self);
+}
+
+sub messaging {
+  my ($self) = @_;
+  require Twilio::Rest::Messaging;
+  return Twilio::Rest::Messaging->new($self);
 }
 
 sub monitor {
@@ -192,6 +216,12 @@ sub trusthub {
   return Twilio::Rest::Trusthub->new($self);
 }
 
+sub verify {
+  my ($self) = @_;
+  require Twilio::Rest::Verify;
+  return Twilio::Rest::Verify->new($self);
+}
+
 sub video {
   my ($self) = @_;
   require Twilio::Rest::Video;
@@ -202,6 +232,12 @@ sub voice {
   my ($self) = @_;
   require Twilio::Rest::Voice;
   return Twilio::Rest::Voice->new($self);
+}
+
+sub webhooks {
+  my ($self) = @_;
+  require Twilio::Rest::Webhooks;
+  return Twilio::Rest::Webhooks->new($self);
 }
 
 sub wireless {
@@ -425,9 +461,25 @@ Returns L<Twilio::Rest::Intelligence>.
 
 Returns L<Twilio::Rest::IpMessaging>.
 
+=head2 knowledge
+
+Returns L<Twilio::Rest::Knowledge>.
+
 =head2 lookups
 
 Returns L<Twilio::Rest::Lookups>.
+
+=head2 marketplace
+
+Returns L<Twilio::Rest::Marketplace>.
+
+=head2 memory
+
+Returns L<Twilio::Rest::Memory>.
+
+=head2 messaging
+
+Returns L<Twilio::Rest::Messaging>.
 
 =head2 monitor
 
@@ -493,6 +545,10 @@ Returns L<Twilio::Rest::Trunking>.
 
 Returns L<Twilio::Rest::Trusthub>.
 
+=head2 verify
+
+Returns L<Twilio::Rest::Verify>.
+
 =head2 video
 
 Returns L<Twilio::Rest::Video>.
@@ -500,6 +556,10 @@ Returns L<Twilio::Rest::Video>.
 =head2 voice
 
 Returns L<Twilio::Rest::Voice>.
+
+=head2 webhooks
+
+Returns L<Twilio::Rest::Webhooks>.
 
 =head2 wireless
 

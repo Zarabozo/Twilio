@@ -324,6 +324,12 @@ sub _move_operations {
     $sibling{$type} = { %{$side}, operations => \@moved };
   }
   $nodes->{ $sibling{key} } = \%sibling;
+
+  # Verify's /Passkeys/Challenges holds only NewChallenge's create, and twilio-php has no
+  # Challenge left there: nothing would reach it but an object with no methods.
+  my @remaining = map  { @{ $_->{operations} } } grep { $_ } @{$node}{qw(list instance)};
+  my $is_parent = grep { ($_->{parent_key} // q{}) eq $node->{key} } values %{$nodes};
+  delete $nodes->{ $node->{key} } if !@remaining && !$is_parent;
   return;
 }
 
