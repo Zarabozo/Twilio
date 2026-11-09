@@ -11,7 +11,8 @@ our $VERSION = '2.000000';
 sub module {
   my ($model) = @_;
   return join "\n", _header($model), _list($model), _page($model), _context($model),
-    _instance($model), "1;\n", '__END__', q{}, Twilio::Generator::Pod::document($model);
+    _instance($model), _answer_classes($model), "1;\n", '__END__', q{},
+    Twilio::Generator::Pod::document($model);
 }
 
 sub _header {
@@ -32,12 +33,12 @@ sub _list {
   my $side = $model->{list} or return q{};
 
   my @methods = (_constructor($side));
-  push @methods, _list_body_method($model, 'create')  if $side->{create};
-  push @methods, _delete_method($side->{delete})      if $side->{delete};
-  push @methods, _fetch_method($model, $side, 'list') if $side->{fetch};
-  push @methods, _reading($model)                     if $side->{read};
-  push @methods, _list_body_method($model, 'update')  if $side->{update};
-  push @methods, _get_context($model)                 if ($model->{context} // {})->{own};
+  push @methods, _list_body_method($model, 'create')             if $side->{create};
+  push @methods, _delete_method($model, $side->{delete}, 'list') if $side->{delete};
+  push @methods, _fetch_method($model, $side, 'list')            if $side->{fetch};
+  push @methods, _reading($model)                                if $side->{read};
+  push @methods, _list_body_method($model, 'update')             if $side->{update};
+  push @methods, _get_context($model) if ($model->{context} // {})->{own};
   push @methods, map { _child_method($side, $_) } @{ $side->{children} // [] };
 
   return join "\n", "package $model->{class}{list};\n", "use parent 'Twilio::ListResource';\n",
@@ -54,36 +55,63 @@ sub _fetch_method {
   my $defaults  = @options ? "  \$options //= {};\n" : q{};
   my @parts     = _request_parts(_pairs_by_place($side->{fetch}), $side->{fetch});
   my $extra     = @parts ? ', { ' . join(q{, }, @parts) . ' }' : q{};
-  my $result =
-    $where eq 'list'
-    ? _new_instance($model, '$response->get_content', $side->{parameters})
-    : '$self->_build_instance($response)';
+  my $returned  = _returned($side->{fetch}, _instance_code($model, $side, $where));
 
   return <<"END_CODE";
 sub fetch {
   my ($signature) = \@_;
 $defaults
   my \$response = \$self->{version}->handle_request('$side->{fetch}{method}', \$self->{uri}, 'fetch'$extra);
-  return $result;
-}
+$returned}
 END_CODE
 }
 
+sub _instance_code {
+  my ($model, $side, $where) = @_;
+  return '$self->_build_instance($response)' if $where ne 'list';
+  return _new_instance($model, '$response->get_content', $side->{parameters});
+}
+
+# What a method returns: true when Twilio answers with no body, or else what it answers with,
+# chosen by status code when that can be more than one kind of object.
+sub _returned {
+  my ($operation, $instance) = @_;
+
+  my $result  = $operation->{result} or return "  return 1;\n";
+  my @others  = @{ $result->{others} };
+  my $payload = '$self->{version}, $response->get_content';
+  my $final =
+    $result->{instance}
+    ? "  return $instance;\n"
+    : '  return ' . (pop @others)->{class} . "->new($payload);\n";
+
+  my @chosen;
+  for my $other (@others) {
+    my $test = join q{ || }, map { "\$status == $_" } @{ $other->{codes} };
+    push @chosen, "  return $other->{class}->new($payload) if $test;\n";
+  }
+  return $final if !@chosen;
+  return join q{}, "  my \$status = \$response->get_status_code;\n", @chosen, $final;
+}
+
 sub _delete_method {
-  my ($operation) = @_;
+  my ($model, $operation, $where) = @_;
 
   my @options = @{ $operation->{options} // [] };
   my @parts   = _request_parts(_pairs_by_place($operation), $operation);
   my $extra   = @parts ? ', { ' . join(q{, }, @parts) . ' }' : q{};
   my $start =
     @options ? "  my (\$self, \$options) = \@_;\n  \$options //= {};\n" : "  my (\$self) = \@_;\n";
+  my $request =
+    "\$self->{version}->handle_request('$operation->{method}', \$self->{uri}, 'delete'$extra)";
 
-  return <<"END_CODE";
-sub delete {
-$start  \$self->{version}->handle_request('$operation->{method}', \$self->{uri}, 'delete'$extra);
-  return 1;
-}
-END_CODE
+  if (!$operation->{result}) {
+    return "sub delete {\n$start  $request;\n  return 1;\n}\n";
+  }
+  my $side = $where eq 'list' ? $model->{list} : $model->{context};
+  return
+    "sub delete {\n$start  my \$response = $request;\n"
+    . _returned($operation, _instance_code($model, $side, $where)) . "}\n";
 }
 
 sub _new_instance {
@@ -160,12 +188,8 @@ sub _quoted {
 sub _list_body_method {
   my ($model, $verb) = @_;
   my $operation = $model->{list}{$verb};
-  my $result    = _new_instance($model, '$response->get_content', $model->{list}{parameters});
-
-  return _body_method($verb, $operation) . <<"END_CODE";
-  return $result;
-}
-END_CODE
+  my $returned  = _returned($operation, _instance_code($model, $model->{list}, 'list'));
+  return _body_method($verb, $operation) . "$returned}\n";
 }
 
 # Ends just after the request, so each caller only adds how the result is returned.
@@ -365,12 +389,14 @@ sub _context {
   my $side = $model->{context} or return q{};
 
   my @methods = (_constructor($side));
-  push @methods, _context_body_method($side, 'create')   if $side->{create};
-  push @methods, _delete_method($side->{delete})         if $side->{delete};
-  push @methods, _fetch_method($model, $side, 'context') if $side->{fetch};
+  push @methods, _context_body_method($side, 'create')              if $side->{create};
+  push @methods, _delete_method($model, $side->{delete}, 'context') if $side->{delete};
+  push @methods, _fetch_method($model, $side, 'context')            if $side->{fetch};
   push @methods, _context_body_method($side, $_) for grep { $side->{$_} } qw(patch update);
 
-  if (grep { $side->{$_} } qw(create fetch patch update)) {
+  if (grep { (($side->{$_} // {})->{result} // {})->{instance} }
+    qw(create delete fetch patch update))
+  {
     my $result = _new_instance($model, '$response->get_content', $side->{parameters});
     push @methods, <<"END_CODE";
 sub _build_instance {
@@ -387,10 +413,8 @@ END_CODE
 
 sub _context_body_method {
   my ($side, $verb) = @_;
-  return _body_method($verb, $side->{$verb}) . <<'END_CODE';
-  return $self->_build_instance($response);
-}
-END_CODE
+  my $returned = _returned($side->{$verb}, '$self->_build_instance($response)');
+  return _body_method($verb, $side->{$verb}) . "$returned}\n";
 }
 
 sub _instance {
@@ -460,6 +484,24 @@ sub _context {
 }
 END_CODE
   return join "\n", @code;
+}
+
+# An object that is not the resource, like an acknowledgment, has fields and nothing else.
+sub _answer_classes {
+  my ($model) = @_;
+
+  my @code;
+  for my $answer (@{ $model->{answer_classes} // [] }) {
+    push @code, join q{}, <<"END_CODE", map { _accessor($_) } @{ $answer->{fields} };
+package $answer->{class};
+
+use parent 'Twilio::InstanceResource';
+
+use Twilio::Deserialize;
+
+END_CODE
+  }
+  return @code;
 }
 
 sub _accessor {

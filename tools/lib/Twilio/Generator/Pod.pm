@@ -21,7 +21,7 @@ my %ESCAPE = ('<' => 'E<lt>', '>' => 'E<gt>');
 sub document {
   my ($model) = @_;
   return join "\n", _top($model), _list($model), _page($model), _context($model),
-    _instance($model), _constructors(), end();
+    _instance($model), _answer_classes($model), _constructors(), end();
 }
 
 sub end {
@@ -83,6 +83,7 @@ sub _top {
   my ($model) = @_;
 
   my @classes = map { $model->{class}{$_} =~ s/.*:://r } _classes_in_file($model);
+  push @classes, map { $_->{name} } @{ $model->{answer_classes} // [] };
   my $names   = _sentence(map { "C<$_>" } @classes);
   my $about   = text($model->{description});
   my @example = _synopsis($model);
@@ -157,7 +158,7 @@ sub _list {
   push @pod, _fetch_method($model, $call, $side->{fetch})           if $side->{fetch};
   push @pod, _reading($model, $call)                                if $side->{read};
   push @pod, _body_method($model, 'update', $call, $side->{update}) if $side->{update};
-  push @pod, _delete_method($call, $side->{delete})                 if $side->{delete};
+  push @pod, _delete_method($model, $call, $side->{delete})         if $side->{delete};
   if (my $own = ($model->{context} // {})->{own}) {
     push @pod, "=head2 get_context\n", "  my \$context = $call->get_context(\$$own);\n",
       "Returns a C<$model->{name}Context>, and makes no request.\n";
@@ -179,7 +180,7 @@ sub _body_method {
 
   my $arguments = _call_arguments($operation);
   return join "\n", "=head2 $verb\n", "  my \$$model->{variable} = $call->$verb($arguments);\n",
-    _method_intro($operation, "Returns a C<$model->{name}Instance>."),
+    _method_intro($operation, _returns($model, $operation)),
     _arguments('required', $operation->{required}), _json_fields($operation->{json}),
     _arguments('options', $operation->{options});
 }
@@ -204,8 +205,23 @@ sub _fetch_method {
   my @options = @{ $operation->{options} };
   my $list    = @options ? '(\%options)' : q{};
   return join "\n", "=head2 fetch\n", "  my \$$model->{variable} = $call->fetch$list;\n",
-    _method_intro($operation, "Returns a C<$model->{name}Instance>."),
+    _method_intro($operation, _returns($model, $operation)),
     _arguments('options', \@options);
+}
+
+# Under the v1.0 standard, an answer can be another object than the resource, like
+# Knowledge's UpdateKnowledge, which acknowledges with 202 what it does not finish at once.
+sub _returns {
+  my ($model, $operation) = @_;
+
+  my $result = $operation->{result} or return 'Returns true.';
+  my @others = map { [$_->{class} =~ s/.*:://r, $_->{codes}] } @{ $result->{others} };
+  my $final  = $result->{instance} ? "$model->{name}Instance" : (pop @others)->[0];
+  return "Returns a C<$final>." if !@others;
+
+  my @chosen =
+    map { "a C<$_->[0]> when Twilio answers " . _sentence(@{ $_->[1] }) =~ s/ and / or /r } @others;
+  return 'Returns ' . join(q{, }, @chosen) . ", and a C<$final> otherwise.";
 }
 
 sub _json_field {
@@ -327,18 +343,18 @@ sub _context {
   push @pod, _body_method($model, 'create', $call, $side->{create}) if $side->{create};
   push @pod, _fetch_method($model, $call, $side->{fetch})           if $side->{fetch};
   push @pod, _body_method($model, $_, $call, $side->{$_}) for grep { $side->{$_} } qw(patch update);
-  push @pod, _delete_method($call, $side->{delete}) if $side->{delete};
+  push @pod, _delete_method($model, $call, $side->{delete}) if $side->{delete};
   push @pod, map { _child($_) } @{ $side->{children} // [] };
   return join "\n", @pod;
 }
 
 sub _delete_method {
-  my ($call, $delete) = @_;
+  my ($model, $call, $delete) = @_;
 
   my @options = @{ $delete->{options} // [] };
   my $list    = @options ? '(\%options)' : q{};
   return join "\n", "=head2 delete\n", "  $call->delete$list;\n",
-    _method_intro($delete, 'Returns true.'), _arguments('options', \@options);
+    _method_intro($delete, _returns($model, $delete)), _arguments('options', \@options);
 }
 
 sub _instance {
@@ -354,11 +370,29 @@ sub _instance {
       _paragraph('It has ' . _sentence(@methods) . ', which work as they do on the context.')
       if @methods;
   }
-  if (my @fields = @{ $model->{fields} }) {
-    push @pod, "Its fields are:\n", "=over\n",
-      (map { ("=item $_->{method}\n", _field_text($_)) } @fields), "=back\n";
-  }
+  push @pod, _field_list($model->{fields});
   return join "\n", @pod;
+}
+
+sub _field_list {
+  my ($fields) = @_;
+  return () if !@{$fields};
+  return "Its fields are:\n", "=over\n",
+    (map { ("=item $_->{method}\n", _field_text($_)) } @{$fields}), "=back\n";
+}
+
+sub _answer_classes {
+  my ($model) = @_;
+
+  my @pod;
+  for my $answer (@{ $model->{answer_classes} // [] }) {
+    my $methods = _sentence(map { "C<$_>" } @{ $answer->{methods} });
+    push @pod, join "\n", "=head1 $answer->{name}\n",
+      _paragraph("Returned by $methods, for an answer that is not a $model->{name}. "
+        . 'See also L<Twilio::InstanceResource>.'),
+      _field_list($answer->{fields});
+  }
+  return @pod;
 }
 
 sub _field_text {

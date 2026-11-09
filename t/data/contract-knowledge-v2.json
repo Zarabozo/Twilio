@@ -1,0 +1,401 @@
+[
+ {
+  "body" : {
+   "description" : "v_description",
+   "name" : "v_name",
+   "source" : {
+    "v_source" : 1
+   }
+  },
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "knowledge",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateKnowledge",
+  "json" : {
+   "description" : "v_description",
+   "name" : "v_name",
+   "source" : {
+    "v_source" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v2/KnowledgeBases/id1/Knowledge"
+ },
+ {
+  "body" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName"
+  },
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "knowledge_bases",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateKnowledgeBase",
+  "json" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName"
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v2/ControlPlane/KnowledgeBases"
+ },
+ {
+  "body" : {
+   "knowledgeIds" : [
+    "v_knowledgeIds"
+   ],
+   "query" : "v_query",
+   "top" : 339
+  },
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "search",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateKnowledgeSearch",
+  "json" : {
+   "knowledgeIds" : [
+    "v_knowledgeIds"
+   ],
+   "query" : "v_query",
+   "top" : 339
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v2/KnowledgeBases/id1/Search"
+ },
+ {
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "knowledge",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteKnowledge",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v2/KnowledgeBases/id1/Knowledge/id2"
+ },
+ {
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "knowledge_bases",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteKnowledgeBase",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v2/ControlPlane/KnowledgeBases/id1"
+ },
+ {
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "knowledge",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchKnowledge",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v2/KnowledgeBases/id1/Knowledge/id2"
+ },
+ {
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "knowledge_bases",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchKnowledgeBase",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v2/ControlPlane/KnowledgeBases/id1"
+ },
+ {
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "operations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchOperation",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v2/ControlPlane/Operations/id1"
+ },
+ {
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "knowledge",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "page",
+    "413"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListKnowledge",
+  "method" : "page",
+  "options" : {
+   "page" : 413
+  },
+  "records_key" : "knowledge",
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v2/KnowledgeBases/id1/Knowledge"
+ },
+ {
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "knowledge_bases",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "orderBy",
+    "DESC"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListKnowledgeBases",
+  "method" : "page",
+  "options" : {
+   "order_by" : "DESC"
+  },
+  "records_key" : "knowledgeBases",
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v2/ControlPlane/KnowledgeBases"
+ },
+ {
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "chunks",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListKnowledgeChunks",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "chunks",
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v2/KnowledgeBases/id1/Knowledge/id2/Chunks"
+ },
+ {
+  "body" : {
+   "description" : "v_description",
+   "name" : "v_name",
+   "source" : {
+    "v_source" : 1
+   }
+  },
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "knowledge",
+    2
+   ]
+  ],
+  "expected" : [
+   [
+    "refresh",
+    "true"
+   ]
+  ],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "PATCH",
+  "id" : "UpdateKnowledge",
+  "json" : {
+   "description" : "v_description",
+   "name" : "v_name",
+   "source" : {
+    "v_source" : 1
+   }
+  },
+  "method" : "update",
+  "options" : {
+   "refresh" : 1
+  },
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v2/KnowledgeBases/id1/Knowledge/id2"
+ },
+ {
+  "body" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName"
+  },
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "knowledge_bases",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json",
+   "If-Match" : "v_if_match"
+  },
+  "http" : "PATCH",
+  "id" : "UpdateKnowledgeBase",
+  "json" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName"
+  },
+  "method" : "update",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v2/ControlPlane/KnowledgeBases/id1"
+ }
+]

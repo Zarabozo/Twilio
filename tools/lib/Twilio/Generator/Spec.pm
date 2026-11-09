@@ -17,20 +17,24 @@ sub new {
   my ($class, $domain, $version, $document) = @_;
 
   my $self = bless { domain => $domain, version => $version, document => $document }, $class;
-  $self->_resolve_parameters;
+  $self->_resolve_shared;
   return $self;
 }
 
-# Some specs share parameters under components/parameters. Each operation gets them in place, so
-# that nothing after this has to tell a reference from a parameter.
-sub _resolve_parameters {
+# Some specs share parameters under components/parameters, and Memory shares its redirects under
+# components/responses. Each operation gets them in place, so that nothing after this has to tell
+# a reference from what it names.
+sub _resolve_shared {
   my ($self) = @_;
 
   for my $item (values %{ $self->{document}{paths} // {} }) {
     for my $operation (grep { ref eq 'HASH' } values %{$item}) {
-      my $listed = $operation->{parameters} or next;
-      next if ref $listed ne 'ARRAY';
-      $operation->{parameters} = [map { $self->resolve($_) } @{$listed}];
+      my $listed = $operation->{parameters};
+      $operation->{parameters} = [map { $self->resolve($_) } @{$listed}] if ref $listed eq 'ARRAY';
+
+      my $responses = $operation->{responses};
+      next if ref $responses ne 'HASH';
+      $responses->{$_} = $self->resolve($responses->{$_}) for keys %{$responses};
     }
   }
   return;
@@ -135,10 +139,10 @@ sub resolve {
   my $reference = $schema->{'$ref'};
   return $schema if !defined $reference;
 
-  # Parameters can be shared too, under components/parameters.
-  my ($kind, $name) = $reference =~ m{\A#/components/(schemas|parameters)/(.+)\z};
+  # Parameters and responses can be shared too.
+  my ($kind, $name) = $reference =~ m{\A#/components/(schemas|parameters|responses)/(.+)\z};
   croak "Cannot follow $reference" if !defined $name;
-  my $noun = $kind eq 'schemas' ? 'schema' : 'parameter';
+  my $noun = $kind =~ s/s\z//r;
   return $self->{document}{components}{$kind}{$name} // croak "No $noun $name";
 }
 

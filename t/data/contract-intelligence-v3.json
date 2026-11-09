@@ -1,0 +1,583 @@
+[
+ {
+  "body" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName",
+   "rules" : [
+    "v_rules"
+   ]
+  },
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "configurations",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateConfiguration",
+  "json" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName",
+   "rules" : [
+    "v_rules"
+   ]
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/ControlPlane/Configurations"
+ },
+ {
+  "body" : {},
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "operators",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateOperator",
+  "json" : {},
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/ControlPlane/Operators"
+ },
+ {
+  "body" : {
+   "conversationId" : {
+    "v_conversationId" : 1
+   },
+   "intelligenceConfigurationId" : {
+    "v_intelligenceConfigurationId" : 1
+   },
+   "rule" : {
+    "v_rule" : 1
+   },
+   "ruleId" : {
+    "v_ruleId" : 1
+   }
+  },
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "rule_executions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateRuleExecution",
+  "json" : {
+   "conversationId" : {
+    "v_conversationId" : 1
+   },
+   "intelligenceConfigurationId" : {
+    "v_intelligenceConfigurationId" : 1
+   },
+   "rule" : {
+    "v_rule" : 1
+   },
+   "ruleId" : {
+    "v_ruleId" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/RuleExecutions"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "configurations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteConfiguration",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/ControlPlane/Configurations/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "operators",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteOperator",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/ControlPlane/Operators/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "operator_results",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteOperatorResult",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/OperatorResults/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "configurations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchConfiguration",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/ControlPlane/Configurations/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "conversations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchConversation",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/Conversations/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "operators",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchOperator",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/ControlPlane/Operators/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "operator_results",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchOperatorResult",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/OperatorResults/id1"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "versions",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchOperatorVersion",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/ControlPlane/Operators/id1/Versions/id2"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "configurations",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListConfigurations",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/ControlPlane/Configurations"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "conversations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "createdAtBefore",
+    "2026-01-21T03:04:05Z"
+   ],
+   [
+    "createdAtAfter",
+    "2026-01-08T03:04:05Z"
+   ],
+   [
+    "status",
+    "INACTIVE"
+   ],
+   [
+    "channelId",
+    "v_channel_id"
+   ],
+   [
+    "channels",
+    "v_channels_1"
+   ],
+   [
+    "channels",
+    "v_channels_2"
+   ],
+   [
+    "conversationConfigurationId",
+    "v_conversation_configuration_id"
+   ],
+   [
+    "intelligenceConfigurationIds",
+    "v_intelligence_configuration_ids_1"
+   ],
+   [
+    "intelligenceConfigurationIds",
+    "v_intelligence_configuration_ids_2"
+   ],
+   [
+    "operatorIds",
+    "v_operator_ids_1"
+   ],
+   [
+    "operatorIds",
+    "v_operator_ids_2"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListConversations",
+  "method" : "page",
+  "options" : {
+   "channel_id" : "v_channel_id",
+   "channels" : [
+    "v_channels_1",
+    "v_channels_2"
+   ],
+   "conversation_configuration_id" : "v_conversation_configuration_id",
+   "created_at_after" : {
+    "epoch" : 1767841445
+   },
+   "created_at_before" : {
+    "epoch" : 1768964645
+   },
+   "intelligence_configuration_ids" : [
+    "v_intelligence_configuration_ids_1",
+    "v_intelligence_configuration_ids_2"
+   ],
+   "operator_ids" : [
+    "v_operator_ids_1",
+    "v_operator_ids_2"
+   ],
+   "status" : "INACTIVE"
+  },
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/Conversations"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "operator_results",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "conversationId",
+    "v_conversation_id"
+   ],
+   [
+    "intelligenceConfigurationId",
+    "v_intelligence_configuration_id"
+   ],
+   [
+    "operatorId",
+    "v_operator_id"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListOperatorResults",
+  "method" : "page",
+  "options" : {
+   "conversation_id" : "v_conversation_id",
+   "intelligence_configuration_id" : "v_intelligence_configuration_id",
+   "operator_id" : "v_operator_id"
+  },
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/OperatorResults"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "versions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListOperatorVersions",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/ControlPlane/Operators/id1/Versions"
+ },
+ {
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "operators",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListOperators",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "items",
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/ControlPlane/Operators"
+ },
+ {
+  "body" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName",
+   "rules" : [
+    "v_rules"
+   ]
+  },
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "configurations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "PUT",
+  "id" : "UpdateConfiguration",
+  "json" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName",
+   "rules" : [
+    "v_rules"
+   ]
+  },
+  "method" : "update",
+  "options" : {},
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/ControlPlane/Configurations/id1"
+ },
+ {
+  "body" : {},
+  "chain" : [
+   [
+    "intelligence",
+    0
+   ],
+   [
+    "v3",
+    0
+   ],
+   [
+    "operators",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json",
+   "If-Match" : "v_if_match"
+  },
+  "http" : "PUT",
+  "id" : "UpdateOperator",
+  "json" : {},
+  "method" : "update",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [],
+  "url" : "https://intelligence.twilio.com/v3/ControlPlane/Operators/id1"
+ }
+]

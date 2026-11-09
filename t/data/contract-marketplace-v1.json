@@ -1,0 +1,563 @@
+[
+ {
+  "body" : {
+   "billable_items" : [
+    "v_billable_items"
+   ],
+   "total_submitted" : 1620.5
+  },
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "installed_add_ons",
+    1
+   ],
+   [
+    "usage",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateBillingUsage",
+  "json" : {
+   "billable_items" : [
+    "v_billable_items"
+   ],
+   "total_submitted" : 1620.5
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1/Usage"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "installed_add_ons",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "AvailableAddOnSid",
+    "v_available_add_on_sid"
+   ],
+   [
+    "AcceptTermsOfService",
+    "true"
+   ],
+   [
+    "Configuration",
+    "{\"v_configuration\":25}"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateInstalledAddOn",
+  "method" : "create",
+  "options" : {
+   "configuration" : {
+    "v_configuration" : 25
+   },
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [
+   "v_available_add_on_sid",
+   1
+  ],
+  "url" : "https://marketplace.twilio.com/v1/InstalledAddOns"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "module_data",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Configuration",
+    "v_configuration"
+   ],
+   [
+    "ModuleInfo",
+    "v_module_info"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateModuleData",
+  "method" : "create",
+  "options" : {
+   "configuration" : "v_configuration",
+   "module_info" : "v_module_info"
+  },
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/Listings"
+ },
+ {
+  "body" : {
+   "referral_account_sid" : "v_referral_account_sid"
+  },
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "referral_conversion",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateReferralConversion",
+  "json" : {
+   "referral_account_sid" : "v_referral_account_sid"
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/ReferralConversion"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "installed_add_ons",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteInstalledAddOn",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "available_add_ons",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchAvailableAddOn",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/AvailableAddOns/id1"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "available_add_ons",
+    1
+   ],
+   [
+    "extensions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchAvailableAddOnExtension",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/AvailableAddOns/id1/Extensions/id2"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "installed_add_ons",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchInstalledAddOn",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "installed_add_ons",
+    1
+   ],
+   [
+    "extensions",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchInstalledAddOnExtension",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1/Extensions/id2"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "module_data",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchModuleDataForListingOwner",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/Listings"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "module_data_management",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchModuleDataManagement",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/Listing/id1"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "available_add_ons",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListAvailableAddOn",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "available_add_ons",
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/AvailableAddOns"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "available_add_ons",
+    1
+   ],
+   [
+    "extensions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListAvailableAddOnExtension",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "extensions",
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/AvailableAddOns/id1/Extensions"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "installed_add_ons",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListInstalledAddOn",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "installed_add_ons",
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/InstalledAddOns"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "installed_add_ons",
+    1
+   ],
+   [
+    "extensions",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListInstalledAddOnExtension",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "extensions",
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1/Extensions"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "installed_add_ons",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Configuration",
+    "{\"v_configuration\":25}"
+   ],
+   [
+    "UniqueName",
+    "v_unique_name"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateInstalledAddOn",
+  "method" : "update",
+  "options" : {
+   "configuration" : {
+    "v_configuration" : 25
+   },
+   "unique_name" : "v_unique_name"
+  },
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "installed_add_ons",
+    1
+   ],
+   [
+    "extensions",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Enabled",
+    "true"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateInstalledAddOnExtension",
+  "method" : "update",
+  "options" : {},
+  "required" : [
+   1
+  ],
+  "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1/Extensions/id2"
+ },
+ {
+  "chain" : [
+   [
+    "marketplace",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "module_data_management",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "Configuration",
+    "v_configuration"
+   ],
+   [
+    "Description",
+    "v_description"
+   ],
+   [
+    "Documentation",
+    "v_documentation"
+   ],
+   [
+    "ModuleInfo",
+    "v_module_info"
+   ],
+   [
+    "Policies",
+    "v_policies"
+   ],
+   [
+    "Pricing",
+    "v_pricing"
+   ],
+   [
+    "Support",
+    "v_support"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "UpdateModuleDataManagement",
+  "method" : "update",
+  "options" : {
+   "configuration" : "v_configuration",
+   "description" : "v_description",
+   "documentation" : "v_documentation",
+   "module_info" : "v_module_info",
+   "policies" : "v_policies",
+   "pricing" : "v_pricing",
+   "support" : "v_support"
+  },
+  "required" : [],
+  "url" : "https://marketplace.twilio.com/v1/Listing/id1"
+ }
+]

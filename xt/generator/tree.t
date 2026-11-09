@@ -13,20 +13,23 @@ use Twilio::Generator::Tree;
 
 subtest 'names' => sub {
   my %singular = (
-    Messages   => 'Message',
-    Addresses  => 'Address',
-    Address    => 'Address',
-    Entities   => 'Entity',
-    Keys       => 'Key',
-    Queues     => 'Queue',
-    Media      => 'Media',
-    Feedback   => 'Feedback',
-    Boxes      => 'Box',
-    Branches   => 'Branch',
-    Dishes     => 'Dish',
-    Conference => 'Conference',
-    Status     => 'Status',
-    Statuses   => 'Status',
+    Messages       => 'Message',
+    Addresses      => 'Address',
+    Address        => 'Address',
+    Entities       => 'Entity',
+    Keys           => 'Key',
+    Queues         => 'Queue',
+    Media          => 'Media',
+    Feedback       => 'Feedback',
+    Boxes          => 'Box',
+    Branches       => 'Branch',
+    Dishes         => 'Dish',
+    Conference     => 'Conference',
+    Status         => 'Status',
+    Statuses       => 'Status',
+    Bases          => 'Basis',
+    KnowledgeBases => 'KnowledgeBasis',
+    Databases      => 'Database',
   );
   is(singular($_), $singular{$_}, "singular of $_") for sort keys %singular;
 
@@ -115,6 +118,25 @@ subtest 'one path can hold two resources' => sub {
     ['CreateNewKey'], 'the create moves');
   ok($key->{instance},      'the instance stays');
   ok(!$new_key->{instance}, 'and does not move');
+};
+
+# Verify's /Passkeys/Challenges holds only NewChallenge's create.
+subtest 'a path left with nothing after a move is no resource' => sub {
+  my $tree = build(
+    '/Things/{Sid}.json'      => instance([get => 'FetchThing']),
+    '/Things/{Sid}/Keys.json' =>
+      list([post => 'CreateNewKey', { mountName => 'new_keys' }], parent => '/Things/{Sid}.json'),
+    '/Things/{Sid}/Tags.json' => list(
+      [post => 'CreateNewTag', { mountName => 'new_tags' }], parent => '/Things/{Sid}.json'
+    ),
+    '/Things/{Sid}/Tags/{TagSid}/Notes.json' =>
+      list([get => 'ListNote'], parent => '/Things/{Sid}/Tags.json'),
+  );
+  my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
+
+  ok($by_class{'Thing::NewKey'}, 'what moved is there');
+  ok(!$by_class{'Thing::Key'},   'and the empty path is gone');
+  ok($by_class{'Thing::Tag'},    'unless a child hangs from it');
 };
 
 # twilio-oai-generator splits by the names on the operation, not by the noun in its id.
