@@ -1,0 +1,239 @@
+[
+ {
+  "body" : {
+   "configuration" : {
+    "v_configuration" : 1
+   },
+   "friendly_name" : "v_friendly_name",
+   "profile" : {
+    "v_profile" : 1
+   },
+   "sender_id" : "v_sender_id",
+   "webhook" : {
+    "v_webhook" : 1
+   }
+  },
+  "chain" : [
+   [
+    "messaging",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "channels_senders",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateChannelsSender",
+  "json" : {
+   "configuration" : {
+    "v_configuration" : 1
+   },
+   "friendly_name" : "v_friendly_name",
+   "profile" : {
+    "v_profile" : 1
+   },
+   "sender_id" : "v_sender_id",
+   "webhook" : {
+    "v_webhook" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://messaging.twilio.com/v2/Channels/Senders"
+ },
+ {
+  "chain" : [
+   [
+    "messaging",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "typing_indicator",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "channel",
+    "whatsapp"
+   ],
+   [
+    "messageId",
+    "v_message_id"
+   ]
+  ],
+  "http" : "POST",
+  "id" : "CreateTypingIndicator",
+  "method" : "create",
+  "options" : {},
+  "required" : [
+   "whatsapp",
+   "v_message_id"
+  ],
+  "url" : "https://messaging.twilio.com/v2/Indicators/Typing.json"
+ },
+ {
+  "chain" : [
+   [
+    "messaging",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "channels_senders",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteChannelsSender",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://messaging.twilio.com/v2/Channels/Senders/id1"
+ },
+ {
+  "chain" : [
+   [
+    "messaging",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "channels_senders",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchChannelsSender",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://messaging.twilio.com/v2/Channels/Senders/id1"
+ },
+ {
+  "chain" : [
+   [
+    "messaging",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "domain_certs",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchDomainCertV4",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://messaging.twilio.com/v2/LinkShortening/Domains/id1/Certificate"
+ },
+ {
+  "chain" : [
+   [
+    "messaging",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "channels_senders",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Channel",
+    "v_channel"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListChannelsSender",
+  "method" : "page",
+  "options" : {
+   "channel" : "v_channel"
+  },
+  "records_key" : "senders",
+  "required" : [],
+  "url" : "https://messaging.twilio.com/v2/Channels/Senders"
+ },
+ {
+  "body" : {
+   "configuration" : {
+    "v_configuration" : 1
+   },
+   "friendly_name" : "v_friendly_name",
+   "profile" : {
+    "v_profile" : 1
+   },
+   "webhook" : {
+    "v_webhook" : 1
+   }
+  },
+  "chain" : [
+   [
+    "messaging",
+    0
+   ],
+   [
+    "v2",
+    0
+   ],
+   [
+    "channels_senders",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "UpdateChannelsSender",
+  "json" : {
+   "configuration" : {
+    "v_configuration" : 1
+   },
+   "friendly_name" : "v_friendly_name",
+   "profile" : {
+    "v_profile" : 1
+   },
+   "webhook" : {
+    "v_webhook" : 1
+   }
+  },
+  "method" : "update",
+  "options" : {},
+  "required" : [],
+  "url" : "https://messaging.twilio.com/v2/Channels/Senders/id1"
+ }
+]

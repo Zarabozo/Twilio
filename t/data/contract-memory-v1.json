@@ -1,0 +1,1526 @@
+[
+ {
+  "body" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName",
+   "isEnabled" : 1,
+   "mappingFrom" : {
+    "v_mappingFrom" : 1
+   },
+   "mappingTo" : {
+    "v_mappingTo" : 1
+   }
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "data_mappings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateDataMapping",
+  "json" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName",
+   "isEnabled" : true,
+   "mappingFrom" : {
+    "v_mappingFrom" : 1
+   },
+   "mappingTo" : {
+    "v_mappingTo" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/DataMappings"
+ },
+ {
+  "body" : {
+   "beginDate" : {
+    "epoch" : 1767495845
+   },
+   "communicationsLimit" : 2024,
+   "conversationId" : "v_conversationId",
+   "endDate" : {
+    "epoch" : 1769051045
+   },
+   "observationsLimit" : 1822,
+   "query" : "v_query",
+   "relevanceThreshold" : 1890.5,
+   "summariesLimit" : 1493
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "recall",
+    2
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Accept-Encoding" : "v_accept_encoding",
+   "Content-Encoding" : "compress",
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateFetchProfileMemory",
+  "json" : {
+   "beginDate" : "2026-01-04T03:04:05Z",
+   "communicationsLimit" : 2024,
+   "conversationId" : "v_conversationId",
+   "endDate" : "2026-01-22T03:04:05Z",
+   "observationsLimit" : 1822,
+   "query" : "v_query",
+   "relevanceThreshold" : 1890.5,
+   "summariesLimit" : 1493
+  },
+  "method" : "create",
+  "options" : {
+   "accept_encoding" : "v_accept_encoding",
+   "content_encoding" : "compress"
+  },
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Recall"
+ },
+ {
+  "body" : {
+   "traits" : {
+    "v_traits" : 1
+   }
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "profiles",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateProfile",
+  "json" : {
+   "traits" : {
+    "v_traits" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles"
+ },
+ {
+  "body" : {
+   "summaries" : [
+    "v_summaries"
+   ]
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversation_summaries",
+    2
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Accept-Encoding" : "v_accept_encoding",
+   "Content-Encoding" : "compress",
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateProfileConversationSummary",
+  "json" : {
+   "summaries" : [
+    "v_summaries"
+   ]
+  },
+  "method" : "create",
+  "options" : {
+   "accept_encoding" : "v_accept_encoding",
+   "content_encoding" : "compress"
+  },
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/ConversationSummaries"
+ },
+ {
+  "body" : {
+   "idType" : "v_idType",
+   "value" : "v_value"
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "identifiers",
+    2
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateProfileIdentifier",
+  "json" : {
+   "idType" : "v_idType",
+   "value" : "v_value"
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Identifiers"
+ },
+ {
+  "body" : {
+   "observations" : [
+    "v_observations"
+   ]
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "observations",
+    2
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Accept-Encoding" : "v_accept_encoding",
+   "Content-Encoding" : "compress",
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateProfileObservation",
+  "json" : {
+   "observations" : [
+    "v_observations"
+   ]
+  },
+  "method" : "create",
+  "options" : {
+   "accept_encoding" : "v_accept_encoding",
+   "content_encoding" : "compress"
+  },
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Observations"
+ },
+ {
+  "body" : {
+   "columnMappings" : [
+    "v_columnMappings"
+   ],
+   "fileSize" : 827,
+   "filename" : "v_filename"
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "imports",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateProfilesImportV2",
+  "json" : {
+   "columnMappings" : [
+    "v_columnMappings"
+   ],
+   "fileSize" : 827,
+   "filename" : "v_filename"
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/Imports"
+ },
+ {
+  "body" : {
+   "idType" : "v_idType",
+   "value" : "v_value"
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "lookup",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateProfilesLookup",
+  "json" : {
+   "idType" : "v_idType",
+   "value" : "v_value"
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/Lookup"
+ },
+ {
+  "body" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName"
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "stores",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateStore",
+  "json" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName"
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores"
+ },
+ {
+  "body" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName",
+   "traits" : {
+    "v_traits" : 1
+   }
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "trait_groups",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateTraitGroup",
+  "json" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName",
+   "traits" : {
+    "v_traits" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/TraitGroups"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "data_mappings",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteDataMapping",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/DataMappings/id2"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "profiles",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteProfile",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversation_summaries",
+    3
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteProfileConversationSummary",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/ConversationSummaries/id3"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "identifiers",
+    3
+   ]
+  ],
+  "expected" : [
+   [
+    "removeAll",
+    "true"
+   ]
+  ],
+  "http" : "DELETE",
+  "id" : "DeleteProfileIdentifier",
+  "method" : "delete",
+  "options" : {
+   "remove_all" : 1
+  },
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Identifiers/id3"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "observations",
+    3
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteProfileObservation",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Observations/id3"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "stores",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteStore",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "trait_groups",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteTraitGroup",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/TraitGroups/id2"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "data_mappings",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchDataMapping",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/DataMappings/id2"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "identity_resolution_settings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchIdentityResolutionSettings",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/IdentityResolutionSettings"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "operations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchOperation",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Operations/id1"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "profiles",
+    2
+   ]
+  ],
+  "expected" : [
+   [
+    "traitGroups",
+    "v_trait_groups"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchProfile",
+  "method" : "fetch",
+  "options" : {
+   "trait_groups" : "v_trait_groups"
+  },
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversation_summaries",
+    3
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchProfileConversationSummary",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/ConversationSummaries/id3"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "identifiers",
+    3
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchProfileIdentifier",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Identifiers/id3"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "imports",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchProfileImportV2",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/Imports/id2"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "observations",
+    3
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchProfileObservation",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Observations/id3"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "stores",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchStore",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "trait_groups",
+    2
+   ]
+  ],
+  "expected" : [
+   [
+    "includeTraits",
+    "true"
+   ],
+   [
+    "pageSize",
+    "824"
+   ],
+   [
+    "pageToken",
+    "v_page_token"
+   ],
+   [
+    "orderBy",
+    "DESC"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "FetchTraitGroup",
+  "method" : "fetch",
+  "options" : {
+   "include_traits" : 1,
+   "order_by" : "DESC",
+   "page_size" : 824,
+   "page_token" : "v_page_token"
+  },
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/TraitGroups/id2"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "data_mappings",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "orderBy",
+    "DESC"
+   ],
+   [
+    "type",
+    "INGRESS"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListDataMappings",
+  "method" : "page",
+  "options" : {
+   "order_by" : "DESC",
+   "type" : "INGRESS"
+  },
+  "records_key" : "dataMappings",
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/DataMappings"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "revisions",
+    3
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Accept-Encoding" : "v_accept_encoding"
+  },
+  "http" : "GET",
+  "id" : "ListObservationRevisions",
+  "method" : "page",
+  "options" : {
+   "accept_encoding" : "v_accept_encoding"
+  },
+  "records_key" : "revisions",
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Observations/id3/Revisions"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversation_summaries",
+    2
+   ]
+  ],
+  "expected" : [
+   [
+    "conversationId",
+    "v_conversation_id"
+   ]
+  ],
+  "headers" : {
+   "Accept-Encoding" : "v_accept_encoding"
+  },
+  "http" : "GET",
+  "id" : "ListProfileConversationSummaries",
+  "method" : "page",
+  "options" : {
+   "accept_encoding" : "v_accept_encoding",
+   "conversation_id" : "v_conversation_id"
+  },
+  "records_key" : "summaries",
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/ConversationSummaries"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "identifiers",
+    2
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListProfileIdentifiers",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "identifiers",
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Identifiers"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "imports",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "orderBy",
+    "DESC"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListProfileImportsV2",
+  "method" : "page",
+  "options" : {
+   "order_by" : "DESC"
+  },
+  "records_key" : "imports",
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/Imports"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "observations",
+    2
+   ]
+  ],
+  "expected" : [
+   [
+    "orderBy",
+    "DESC"
+   ],
+   [
+    "source",
+    "v_source"
+   ],
+   [
+    "createdAfter",
+    "2026-01-23T03:04:05Z"
+   ],
+   [
+    "createdBefore",
+    "2026-01-08T03:04:05Z"
+   ],
+   [
+    "conversationId",
+    "v_conversation_id"
+   ]
+  ],
+  "headers" : {
+   "Accept-Encoding" : "v_accept_encoding"
+  },
+  "http" : "GET",
+  "id" : "ListProfileObservations",
+  "method" : "page",
+  "options" : {
+   "accept_encoding" : "v_accept_encoding",
+   "conversation_id" : "v_conversation_id",
+   "created_after" : {
+    "epoch" : 1769137445
+   },
+   "created_before" : {
+    "epoch" : 1767841445
+   },
+   "order_by" : "DESC",
+   "source" : "v_source"
+  },
+  "records_key" : "observations",
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Observations"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "traits",
+    2
+   ]
+  ],
+  "expected" : [
+   [
+    "orderBy",
+    "DESC"
+   ],
+   [
+    "traitGroups",
+    "v_trait_groups"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListProfileTraits",
+  "method" : "page",
+  "options" : {
+   "order_by" : "DESC",
+   "trait_groups" : "v_trait_groups"
+  },
+  "records_key" : "traits",
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Traits"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "profiles",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "orderBy",
+    "DESC"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListProfiles",
+  "method" : "page",
+  "options" : {
+   "order_by" : "DESC"
+  },
+  "records_key" : "profiles",
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "stores",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "orderBy",
+    "DESC"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListStores",
+  "method" : "page",
+  "options" : {
+   "order_by" : "DESC"
+  },
+  "records_key" : "stores",
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores"
+ },
+ {
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "trait_groups",
+    1
+   ]
+  ],
+  "expected" : [
+   [
+    "includeTraits",
+    "true"
+   ],
+   [
+    "orderBy",
+    "DESC"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListTraitGroups",
+  "method" : "page",
+  "options" : {
+   "include_traits" : 1,
+   "order_by" : "DESC"
+  },
+  "records_key" : "traitGroups",
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/TraitGroups"
+ },
+ {
+  "body" : {},
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "data_mappings",
+    2
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json",
+   "If-Match" : "v_if_match"
+  },
+  "http" : "PATCH",
+  "id" : "PatchDataMapping",
+  "json" : {},
+  "method" : "patch",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/DataMappings/id2"
+ },
+ {
+  "body" : {
+   "content" : "v_content",
+   "conversationId" : "v_conversationId",
+   "occurredAt" : {
+    "epoch" : 1767236645
+   },
+   "source" : "v_source"
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "conversation_summaries",
+    3
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "PATCH",
+  "id" : "PatchProfileConversationSummary",
+  "json" : {
+   "content" : "v_content",
+   "conversationId" : "v_conversationId",
+   "occurredAt" : "2026-01-01T03:04:05Z",
+   "source" : "v_source"
+  },
+  "method" : "patch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/ConversationSummaries/id3"
+ },
+ {
+  "body" : {
+   "idType" : "v_idType",
+   "newValue" : "v_newValue",
+   "oldValue" : "v_oldValue"
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "identifiers",
+    3
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "PATCH",
+  "id" : "PatchProfileIdentifier",
+  "json" : {
+   "idType" : "v_idType",
+   "newValue" : "v_newValue",
+   "oldValue" : "v_oldValue"
+  },
+  "method" : "patch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Identifiers/id3"
+ },
+ {
+  "body" : {
+   "content" : "v_content",
+   "conversationIds" : [
+    "v_conversationIds"
+   ],
+   "occurredAt" : {
+    "epoch" : 1767236645
+   },
+   "source" : "v_source"
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "observations",
+    3
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "PATCH",
+  "id" : "PatchProfileObservation",
+  "json" : {
+   "content" : "v_content",
+   "conversationIds" : [
+    "v_conversationIds"
+   ],
+   "occurredAt" : "2026-01-01T03:04:05Z",
+   "source" : "v_source"
+  },
+  "method" : "patch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Observations/id3"
+ },
+ {
+  "body" : {
+   "traits" : {
+    "v_traits" : 1
+   }
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "profiles",
+    2
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "PATCH",
+  "id" : "PatchProfileTraits",
+  "json" : {
+   "traits" : {
+    "v_traits" : 1
+   }
+  },
+  "method" : "patch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2"
+ },
+ {
+  "body" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName"
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "stores",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json",
+   "If-Match" : "v_if_match"
+  },
+  "http" : "PATCH",
+  "id" : "PatchStore",
+  "json" : {
+   "description" : "v_description",
+   "displayName" : "v_displayName"
+  },
+  "method" : "patch",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1"
+ },
+ {
+  "body" : {
+   "description" : "v_description",
+   "traits" : {
+    "v_traits" : 1
+   }
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "trait_groups",
+    2
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json",
+   "If-Match" : "v_if_match"
+  },
+  "http" : "PATCH",
+  "id" : "PatchTraitGroup",
+  "json" : {
+   "description" : "v_description",
+   "traits" : {
+    "v_traits" : 1
+   }
+  },
+  "method" : "patch",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/TraitGroups/id2"
+ },
+ {
+  "body" : {
+   "identifierConfigs" : [
+    "v_identifierConfigs"
+   ],
+   "matchingRules" : [
+    "v_matchingRules"
+   ]
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "identity_resolution_settings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json",
+   "If-Match" : "v_if_match"
+  },
+  "http" : "PUT",
+  "id" : "UpdateIdentityResolutionSettings",
+  "json" : {
+   "identifierConfigs" : [
+    "v_identifierConfigs"
+   ],
+   "matchingRules" : [
+    "v_matchingRules"
+   ]
+  },
+  "method" : "update",
+  "options" : {
+   "if_match" : "v_if_match"
+  },
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/IdentityResolutionSettings"
+ },
+ {
+  "body" : {
+   "profiles" : [
+    "v_profiles"
+   ]
+  },
+  "chain" : [
+   [
+    "memory",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "bulk",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "PUT",
+  "id" : "UpdateProfilesBulk",
+  "json" : {
+   "profiles" : [
+    "v_profiles"
+   ]
+  },
+  "method" : "update",
+  "options" : {},
+  "required" : [],
+  "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/Bulk"
+ }
+]
