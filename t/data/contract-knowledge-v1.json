@@ -1,0 +1,234 @@
+[
+ {
+  "body" : {
+   "description" : "v_description",
+   "embedding_model" : "v_embedding_model",
+   "knowledge_source_details" : {
+    "v_knowledge_source_details" : 1
+   },
+   "name" : "v_name",
+   "policy" : {
+    "v_policy" : 1
+   },
+   "type" : "v_type"
+  },
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "knowledge",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateKnowledge",
+  "json" : {
+   "description" : "v_description",
+   "embedding_model" : "v_embedding_model",
+   "knowledge_source_details" : {
+    "v_knowledge_source_details" : 1
+   },
+   "name" : "v_name",
+   "policy" : {
+    "v_policy" : 1
+   },
+   "type" : "v_type"
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v1/Knowledge"
+ },
+ {
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "knowledge",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteKnowledge",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v1/Knowledge/id1"
+ },
+ {
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "knowledge",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchKnowledge",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v1/Knowledge/id1"
+ },
+ {
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "knowledge",
+    1
+   ],
+   [
+    "knowledge_status",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchKnowledgeStatus",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v1/Knowledge/id1/Status"
+ },
+ {
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "knowledge",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "Tags",
+    "v_tags"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListKnowledge",
+  "method" : "page",
+  "options" : {
+   "tags" : "v_tags"
+  },
+  "records_key" : "knowledge",
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v1/Knowledge"
+ },
+ {
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "knowledge",
+    1
+   ],
+   [
+    "chunks",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListKnowledgeChunks",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "chunks",
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v1/Knowledge/id1/Chunks"
+ },
+ {
+  "body" : {
+   "description" : "v_description",
+   "embedding_model" : "v_embedding_model",
+   "knowledge_source_details" : {
+    "v_knowledge_source_details" : 1
+   },
+   "name" : "v_name",
+   "policy" : {
+    "v_policy" : 1
+   },
+   "type" : "v_type"
+  },
+  "chain" : [
+   [
+    "knowledge",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "knowledge",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "PUT",
+  "id" : "UpdateKnowledge",
+  "json" : {
+   "description" : "v_description",
+   "embedding_model" : "v_embedding_model",
+   "knowledge_source_details" : {
+    "v_knowledge_source_details" : 1
+   },
+   "name" : "v_name",
+   "policy" : {
+    "v_policy" : 1
+   },
+   "type" : "v_type"
+  },
+  "method" : "update",
+  "options" : {},
+  "required" : [],
+  "url" : "https://knowledge.twilio.com/v1/Knowledge/id1"
+ }
+]

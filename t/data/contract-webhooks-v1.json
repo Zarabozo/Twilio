@@ -1,0 +1,717 @@
+[
+ {
+  "body" : {},
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "auth_profiles",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json",
+   "Idempotency-Key" : "v_idempotency_key"
+  },
+  "http" : "POST",
+  "id" : "CreateAuthProfile",
+  "json" : {},
+  "method" : "create",
+  "options" : {
+   "idempotency_key" : "v_idempotency_key"
+  },
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/AuthProfiles"
+ },
+ {
+  "body" : {},
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rules",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json",
+   "Idempotency-Key" : "v_idempotency_key"
+  },
+  "http" : "POST",
+  "id" : "CreateRule",
+  "json" : {},
+  "method" : "create",
+  "options" : {
+   "idempotency_key" : "v_idempotency_key"
+  },
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/Rules"
+ },
+ {
+  "body" : {
+   "auth" : {
+    "v_auth" : 1
+   },
+   "connection" : {
+    "v_connection" : 1
+   },
+   "description" : "v_description",
+   "edgeZones" : {
+    "v_edgeZones" : 1
+   },
+   "friendlyName" : "v_friendlyName",
+   "signature" : {
+    "v_signature" : 1
+   }
+  },
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "settings",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json",
+   "Idempotency-Key" : "v_idempotency_key"
+  },
+  "http" : "POST",
+  "id" : "CreateSetting",
+  "json" : {
+   "auth" : {
+    "v_auth" : 1
+   },
+   "connection" : {
+    "v_connection" : 1
+   },
+   "description" : "v_description",
+   "edgeZones" : {
+    "v_edgeZones" : 1
+   },
+   "friendlyName" : "v_friendlyName",
+   "signature" : {
+    "v_signature" : 1
+   }
+  },
+  "method" : "create",
+  "options" : {
+   "idempotency_key" : "v_idempotency_key"
+  },
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/Settings"
+ },
+ {
+  "body" : {
+   "friendlyName" : "v_friendlyName"
+  },
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "shared_keys",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json",
+   "Idempotency-Key" : "v_idempotency_key"
+  },
+  "http" : "POST",
+  "id" : "CreateSharedKey",
+  "json" : {
+   "friendlyName" : "v_friendlyName"
+  },
+  "method" : "create",
+  "options" : {
+   "idempotency_key" : "v_idempotency_key"
+  },
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/SharedKeys"
+ },
+ {
+  "body" : {
+   "method" : "POST",
+   "settingId" : "v_settingId",
+   "url" : "v_url"
+  },
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "tests",
+    0
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "POST",
+  "id" : "CreateTest",
+  "json" : {
+   "method" : "POST",
+   "settingId" : "v_settingId",
+   "url" : "v_url"
+  },
+  "method" : "create",
+  "options" : {},
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/Tests"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "auth_profiles",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteAuthProfile",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/AuthProfiles/id1"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rules",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Idempotency-Key" : "v_idempotency_key"
+  },
+  "http" : "DELETE",
+  "id" : "DeleteRule",
+  "method" : "delete",
+  "options" : {
+   "idempotency_key" : "v_idempotency_key"
+  },
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/Rules/id1"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "settings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteSetting",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/Settings/id1"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "shared_keys",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "DELETE",
+  "id" : "DeleteSharedKey",
+  "method" : "delete",
+  "options" : {},
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/SharedKeys/id1"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "auth_profiles",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchAuthProfile",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/AuthProfiles/id1"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "operations",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchOperation",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/Operations/id1"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rules",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchRule",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/Rules/id1"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "settings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSetting",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/Settings/id1"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "shared_keys",
+    1
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "FetchSharedKey",
+  "method" : "fetch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/SharedKeys/id1"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "auth_profiles",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListAuthProfile",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "authProfiles",
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/AuthProfiles"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "edge_zones",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListEdgeZone",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "edgeZones",
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/EdgeZones"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "operations",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "status",
+    "RUNNING"
+   ],
+   [
+    "resourceId",
+    "v_resource_id"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListOperation",
+  "method" : "page",
+  "options" : {
+   "resource_id" : "v_resource_id",
+   "status" : "RUNNING"
+  },
+  "records_key" : "operations",
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/Operations"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rules",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "settingId",
+    "v_setting_id"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListRule",
+  "method" : "page",
+  "options" : {
+   "setting_id" : "v_setting_id"
+  },
+  "records_key" : "rules",
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/Rules"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "settings",
+    0
+   ]
+  ],
+  "expected" : [
+   [
+    "authProfileId",
+    "v_auth_profile_id"
+   ],
+   [
+    "sharedKeyId",
+    "v_shared_key_id"
+   ],
+   [
+    "type",
+    "CUSTOMER"
+   ]
+  ],
+  "http" : "GET",
+  "id" : "ListSetting",
+  "method" : "page",
+  "options" : {
+   "auth_profile_id" : "v_auth_profile_id",
+   "shared_key_id" : "v_shared_key_id",
+   "type" : "CUSTOMER"
+  },
+  "records_key" : "settings",
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/Settings"
+ },
+ {
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "shared_keys",
+    0
+   ]
+  ],
+  "expected" : [],
+  "http" : "GET",
+  "id" : "ListSharedKey",
+  "method" : "page",
+  "options" : {},
+  "records_key" : "sharedKeys",
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/SharedKeys"
+ },
+ {
+  "body" : {
+   "friendlyName" : "v_friendlyName"
+  },
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "auth_profiles",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "PATCH",
+  "id" : "PatchAuthProfile",
+  "json" : {
+   "friendlyName" : "v_friendlyName"
+  },
+  "method" : "patch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/AuthProfiles/id1"
+ },
+ {
+  "body" : {},
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "rules",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json",
+   "Idempotency-Key" : "v_idempotency_key"
+  },
+  "http" : "PATCH",
+  "id" : "PatchRule",
+  "json" : {},
+  "method" : "patch",
+  "options" : {
+   "idempotency_key" : "v_idempotency_key"
+  },
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/Rules/id1"
+ },
+ {
+  "body" : {
+   "description" : "v_description",
+   "friendlyName" : "v_friendlyName"
+  },
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "settings",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "PATCH",
+  "id" : "PatchSetting",
+  "json" : {
+   "description" : "v_description",
+   "friendlyName" : "v_friendlyName"
+  },
+  "method" : "patch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/Settings/id1"
+ },
+ {
+  "body" : {
+   "friendlyName" : "v_friendlyName"
+  },
+  "chain" : [
+   [
+    "webhooks",
+    0
+   ],
+   [
+    "v1",
+    0
+   ],
+   [
+    "shared_keys",
+    1
+   ]
+  ],
+  "expected" : [],
+  "headers" : {
+   "Content-Type" : "application/json"
+  },
+  "http" : "PATCH",
+  "id" : "PatchSharedKey",
+  "json" : {
+   "friendlyName" : "v_friendlyName"
+  },
+  "method" : "patch",
+  "options" : {},
+  "required" : [],
+  "url" : "https://webhooks.twilio.com/v1/Webhooks/SharedKeys/id1"
+ }
+]

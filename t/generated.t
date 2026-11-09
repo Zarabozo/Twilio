@@ -562,6 +562,82 @@ subtest 'the v1.0 standard' => sub {
   isa_ok($error, 'Twilio::Exceptions::RestExceptionV1', 'in the v1.0 shape');
 };
 
+subtest 'another object than the resource has its own class' => sub {
+  my ($client, $http) = client();
+  my $stores = $client->memory->v1->stores;
+
+  $http->mock(202, { message => 'Accepted', statusUrl => 'https://memory.twilio.com/v1/x' });
+  my $created = $stores->create({ displayName => 'Main' });
+  isa_ok($created, 'Twilio::Rest::Memory::V1::CreateStore202ResponseInstance', 'a new store');
+  is($created->status_url, 'https://memory.twilio.com/v1/x', 'with its fields');
+  ok(!Twilio::Rest::Memory::V1::StoreInstance->can('status_url'), 'which the store does not have');
+
+  $http->mock(202, { message => 'Deleting' });
+  isa_ok(
+    $stores->get_context('mem_store_1')->delete,
+    'Twilio::Rest::Memory::V1::DeleteStore202ResponseInstance',
+    'a delete answers too'
+  );
+
+  my $knowledge = $client->knowledge->v2->knowledge('KB1', 'K1');
+  $http->mock(202, { message => 'Reprocessing' });
+  isa_ok(
+    $knowledge->update({}, { refresh => 1 }),
+    'Twilio::Rest::Knowledge::V2::UpdateKnowledge202ResponseInstance',
+    'an update answered with 202'
+  );
+  $http->mock(200, { id => 'K1', name => 'Docs' });
+  is($knowledge->update({ name => 'Docs' })->name, 'Docs', 'and with 200, the knowledge itself');
+
+  $http->mock(301, { message => 'Moved', uri => '/v1/Stores/S1/Profiles/P2' });
+  my $moved = $client->memory->v1->profiles('S1', 'P1')->fetch;
+  isa_ok($moved, 'Twilio::Rest::Memory::V1::FetchProfile301ResponseInstance', 'a merged profile');
+  is($moved->uri, '/v1/Stores/S1/Profiles/P2', 'says where it went');
+
+  $http->mock(202, q{});
+  is($client->intelligence->v3->rule_executions->create({ ruleId => 'R1' }),
+    1, 'an answer with no body is true');
+};
+
+subtest 'shapes of an answer' => sub {
+  my ($client, $http) = client();
+
+  $http->mock(200, { stores => [qw(mem_store_1 mem_store_2)], meta => {} });
+  my @stores = $client->memory->v1->stores->read;
+  is_deeply([map { $_->id } @stores], [qw(mem_store_1 mem_store_2)], 'records that are plain ids');
+  $http->mock(200, { id => 'mem_store_2', displayName => 'Main' });
+  is($stores[1]->fetch->display_name, 'Main', 'each reaches its own store');
+  like(last_url($http), qr{/ControlPlane/Stores/mem_store_2\z}, 'at its URL');
+
+  $http->mock(200, { traitGroups => [{ displayName => 'Contact', version => 1 }], meta => {} });
+  my ($group) = $client->memory->v1->trait_groups('S1')->read;
+  $http->mock(202, { message => 'Deleting' });
+  $group->delete;
+  like(
+    last_url($http),
+    qr{/Stores/S1/TraitGroups/Contact\z},
+    'a trait group is named by its displayName'
+  );
+
+  $http->mock(200, { sid => 'QE1', privacy_policy_url => 'https://a.test' });
+  my $sender = $client->messaging->v1->services('MG1')->us_app_to_person('QE1')->fetch;
+  is($sender->privacy_policy_url, 'https://a.test',
+    'a oneOf has the fields of each of its schemas');
+
+  $http->mock(202, { operation => 'delete', rule => { id => 'R1' } });
+  my $deleted = $client->webhooks->v1->rules('R1')->delete;
+  isa_ok(
+    $deleted,
+    'Twilio::Rest::Webhooks::V1::RuleOperationResponseInstance',
+    'a delete with a body'
+  );
+  is($deleted->operation, 'delete', 'returns it');
+
+  $http->mock(200, { id => 'OP1', version => 3 });
+  $client->intelligence->v3->versions('OP1', 3)->fetch;
+  like(last_url($http), qr{/Operators/OP1/Versions/3\z}, 'an id called version is path_version');
+};
+
 subtest 'children do not keep the client alive' => sub {
   my ($client, $http) = client();
   $http->mock(201, { sid => 'SM1' });
