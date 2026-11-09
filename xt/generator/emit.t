@@ -6,6 +6,7 @@ use Test::More;
 use lib 'tools/lib';
 
 use Twilio::Domain;
+use Twilio::Generator;
 use Twilio::Generator::Emit;
 use Twilio::Generator::Resource;
 use Twilio::Generator::Spec;
@@ -428,6 +429,65 @@ subtest 'update and delete on a list, create and patch on an instance' => sub {
   like($code, qr/^=head2 delete\n\n  \S+->things->delete\(\\%options\);/m, 'and delete on it');
   my $listed = 'It has C<create>, C<fetch>, C<patch>, C<update> and C<delete>';
   ok(index($code, $listed) >= 0, 'the instance lists them');
+};
+
+subtest 'the v1.0 standard pages by token and has its own errors' => sub {
+  my $document = document();
+  my $paths    = $document->{paths};
+  my $list     = $paths->{'/v1/Accounts/{AccountSid}/Things.json'};
+  my $item     = $paths->{'/v1/Accounts/{AccountSid}/Things/{Sid}.json'};
+  my $paging   = sub {
+    my ($name, %extra) = @_;
+    return { in => 'query', name => $name, schema => { type => 'string' }, %extra };
+  };
+  $document->{info}    = { 'x-twilio' => { apiStandards => 'v1.0' } };
+  $document->{servers} = [{ url => 'https://demo.test' }];
+  push @{ $list->{get}{parameters} }, $paging->('pageSize'), $paging->('pageToken');
+  push @{ $item->{get}{parameters} }, $paging->('pageToken', required => 1);
+
+  my $model = model($document);
+  ok($model->{v1_standard}, 'the spec says v1.0');
+  my @filters = map { $_->{wire} } @{ $model->{list}{read}{filters} };
+  ok(!grep({ /\Apage(?:Size|Token)\z/ } @filters), 'a list sends its paging values from page');
+  is_deeply([map { $_->{wire} } @{ $model->{context}{fetch}{options} }],
+    ['pageToken'], 'a fetch takes them as options, even when required');
+
+  local $NAMESPACE = 'Twilio::Rest::Demo::V1::Tokens::';
+  my $code = emit($document) =~ s/V1::Account::/V1::Tokens::/gr;
+  like($code, qr/use parent 'Twilio::TokenPaginationPage';/, 'its page moves by token');
+  like(
+    $code,
+    qr/my \(\$self, \$options, \$page_size, \$page_token\) = \@_;/,
+    'page takes no page number'
+  );
+  unlike($code, qr/PageSize|PageToken/, 'nor the classic names');
+  like($code, qr/TokenPaginationPage>[.] This API pages by token/, 'which is documented');
+  load_generated($code);
+
+  my ($things, $http) = list();
+  $http->mock(200, { things => [{ sid => 'TH1' }], meta => { pageSize => 1, nextToken => 'T2' } });
+  $http->mock(200, { things => [{ sid => 'TH2' }], meta => { pageSize => 1 } });
+  my @read = $things->read({ status => 'on' }, undef, 1);
+  is_deeply([map { $_->sid } @read], [qw(TH1 TH2)], 'both pages are read');
+  my ($first_page, $next_page) = $http->requests;
+  like($first_page->{url}, qr/[?]Status=on&pageSize=1\z/,           'the first asks for a size');
+  like($next_page->{url},  qr/Status=on&pageSize=1&pageToken=T2\z/, 'the next one uses the token');
+
+  my $spec = Twilio::Generator::Spec->new('demo', 'v1', $document);
+  my $top  = Twilio::Generator::top_level($spec, Twilio::Generator::Tree::build($spec));
+  like(
+    Twilio::Generator::Emit::version($top),
+    qr/use parent 'Twilio::ApiV1Version';/,
+    'its version raises v1.0 errors'
+  );
+  delete $document->{info};
+  $spec = Twilio::Generator::Spec->new('demo', 'v1', $document);
+  $top  = Twilio::Generator::top_level($spec, Twilio::Generator::Tree::build($spec));
+  like(
+    Twilio::Generator::Emit::version($top),
+    qr/use parent 'Twilio::Version';/,
+    'and other versions keep the classic ones'
+  );
 };
 
 subtest 'only answers below 400 give fields and Accept' => sub {

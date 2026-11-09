@@ -132,21 +132,7 @@ sub _entry {
     _add_option(\%entry, $spec, $name, $body->{properties}{$name});
   }
 
-  # A required query value comes after the required body values, except in a list, which keeps
-  # it with the options for page.
-  my @required_query;
-  for my $parameter (@{ $operation->{spec}{parameters} // [] }) {
-    my $place = $parameter->{in};
-    next if $place eq 'path' || ($place eq 'query' && $IS_PAGE_PARAMETER{ $parameter->{name} });
-    if    ($place eq 'header')               { _add_header(\%entry, $spec, $parameter) }
-    elsif ($parameter->{required} && !$list) { push @required_query, $parameter }
-    else { _add_option(\%entry, $spec, $parameter->{name}, $parameter->{schema}) }
-  }
-  for my $parameter (sort { $a->{name} cmp $b->{name} } @required_query) {
-    my ($input, @pairs) = _sample($spec, $parameter->{name}, $parameter->{schema});
-    push @{ $entry{required} }, $input;
-    push @{ $entry{expected} }, @pairs;
-  }
+  _add_parameters(\%entry, $spec, $operation, $list);
   _add_json_body(\%entry, $spec, $operation);
   _add_accept(\%entry, $operation);
 
@@ -155,6 +141,34 @@ sub _entry {
     $entry{records_key} = $model->{records_key};
   }
   return \%entry;
+}
+
+# A required query value comes after the required body values, except in a list, which keeps it
+# with the options for page.
+sub _add_parameters {
+  my ($entry, $spec, $operation, $list) = @_;
+
+  my @required_query;
+  for my $parameter (@{ $operation->{spec}{parameters} // [] }) {
+    my $place = $parameter->{in};
+    next if $place eq 'path' || ($place eq 'query' && $IS_PAGE_PARAMETER{ $parameter->{name} });
+
+    # The v1.0 standard's paging values: a list's page sends them, and elsewhere they are options.
+    my $paging =
+         $spec->follows_v1_standard
+      && $place eq 'query'
+      && $parameter->{name} =~ /\Apage(?:Size|Token)\z/;
+    next if $paging && $list;
+    if    ($place eq 'header')                           { _add_header($entry, $spec, $parameter) }
+    elsif ($parameter->{required} && !$list && !$paging) { push @required_query, $parameter }
+    else { _add_option($entry, $spec, $parameter->{name}, $parameter->{schema}) }
+  }
+  for my $parameter (sort { $a->{name} cmp $b->{name} } @required_query) {
+    my ($input, @pairs) = _sample($spec, $parameter->{name}, $parameter->{schema});
+    push @{ $entry->{required} }, $input;
+    push @{ $entry->{expected} }, @pairs;
+  }
+  return;
 }
 
 sub _body {

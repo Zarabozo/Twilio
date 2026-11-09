@@ -16,6 +16,10 @@ my $JSON_CONTENT      = 'application/json';
 my $SCIM_CONTENT      = 'application/scim+json';
 my %IS_PAGE_PARAMETER = map { $_ => 1 } qw(Page PageSize PageToken);
 
+# The v1.0 standard pages with these. A list sends them from page, and any other operation
+# takes them as options, as twilio-php does with Insights v3's FetchQueryJobResults.
+my %IS_TOKEN_PAGE_PARAMETER = map { $_ => 1 } qw(pageSize pageToken);
+
 # These methods exist on every object of their kind, so a name from the spec would replace them.
 my %IS_RESERVED_FIELD =
   map { $_ => 1 } qw(DESTROY can create delete fetch isa new patch to_hash update);
@@ -33,6 +37,7 @@ sub build {
     if !$resource->{list} && !$resource->{instance};
 
   my $model = _names($tree, $resource);
+  $model->{v1_standard} = $spec->follows_v1_standard;
   $model->{description} = _description($spec, $resource);
   $model->{variable}    = snake($resource->{class_parts}[-1]);
   $model->{calls}       = _calls($tree, $resource);
@@ -292,14 +297,26 @@ sub _parameters {
     croak "$operation->{id}: no rule for $place parameter $parameter->{name}"
       if $place ne 'query' && $place ne 'header';
 
+    my $paging = _is_token_page_parameter($spec, $parameter);
+    next if $paging && $operation->{verb} eq 'list';
+    my $required = $parameter->{required} && !$paging;
+
     my $where = "$operation->{id} $parameter->{name}";
     croak "$where: no rule for a required $place parameter"
-      if $parameter->{required} && ($no_required || $place eq 'header');
+      if $required && ($no_required || $place eq 'header');
     my $argument = _argument($spec, $where, $parameter->{name}, $parameter->{schema},
       $parameter->{description}, $place);
-    push @{ $parameter->{required} ? \@required : \@optional }, $argument;
+    push @{ $required ? \@required : \@optional }, $argument;
   }
   return { required => \@required, optional => \@optional };
+}
+
+sub _is_token_page_parameter {
+  my ($spec, $parameter) = @_;
+  return
+       $spec->follows_v1_standard
+    && $parameter->{in} eq 'query'
+    && $IS_TOKEN_PAGE_PARAMETER{ $parameter->{name} };
 }
 
 # twilio-php asks for what an operation answers in. Only SCIM differs from the JSON every other
