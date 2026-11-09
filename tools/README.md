@@ -151,6 +151,20 @@ reasons, so a new format shows up there first.
 - **SCIM**: an operation whose answers below 400 are only in SCIM asks for it in
   `Accept`, as twilio-php does.
 
+## The v1.0 standard
+
+A spec whose `info.x-twilio.apiStandards` is `v1.0` follows Twilio's newer standard,
+as twilio-php reads it:
+
+- Its version inherits `Twilio::ApiV1Version`, so errors come as
+  `Twilio::Exceptions::RestExceptionV1`.
+- Its pages are `Twilio::TokenPaginationPage`s. `page` sends `pageSize` and `pageToken`,
+  as twilio-python does, and takes no page number. twilio-php also sends a `PageSize`
+  there, which these APIs don't read.
+- `pageSize` and `pageToken` are never required values or filters of a list. On any other
+  operation they are options, even when the spec says required, as twilio-php has them on
+  Insights v3's `FetchQueryJobResults`.
+
 ## Test vectors
 
 `tools/vectors/generate.php` runs real twilio-php and writes what it produces into

@@ -272,9 +272,21 @@ sub _reading {
     _arguments('options', $operation->{filters}), "=head2 stream\n",
     "  my \$stream = $call->stream($taken\\%options, \$limit, \$page_size);\n",
     "Takes the same arguments as L</read>, and returns a L<Twilio::Stream>.\n", "=head2 page\n",
-    "  my \$page = $call->page(\\%options, \$page_size, \$page_token, \$page_number);\n",
-    "Fetches one page, and returns a L<Twilio::Page>.\n", "=head2 get_page\n",
+    _page_pod($model, $call), "=head2 get_page\n",
     "  my \$page = $call->get_page(\$url);\n", "Fetches the page at a URL given by Twilio.\n";
+}
+
+sub _page_pod {
+  my ($model, $call) = @_;
+
+  return ("  my \$page = $call->page(\\%options, \$page_size, \$page_token, \$page_number);\n",
+    "Fetches one page, and returns a L<Twilio::Page>.\n")
+    if !$model->{v1_standard};
+  return (
+    "  my \$page = $call->page(\\%options, \$page_size, \$page_token);\n",
+    "Fetches one page, and returns a L<Twilio::TokenPaginationPage>. This API pages by token, "
+      . "so there is no page number.\n"
+  );
 }
 
 sub _child {
