@@ -518,6 +518,163 @@ subtest 'an instance finds its own id in its sid or id' => sub {
   my $ok = eval { model($document); 1 };
   ok(!$ok, 'with neither, it stops');
   like($@, qr{Accounts/Things: no field holds its own id sid}, 'and says why');
+
+  my $paths = $document->{paths};
+  delete $paths->{'/v1/Accounts/{AccountSid}/Things.json'};
+  $paths->{'/v1/Accounts/{AccountSid}/Things/{Sid}.json'}{'x-twilio'}{mountName} = 'things';
+  is(model($document)->{context}{own_field}, 'sid', 'without a list, its context knows the id');
+};
+
+subtest 'answers written in place, oneOf, and a delete with a body' => sub {
+  my $document = document();
+  my $paths    = $document->{paths};
+  my $schemas  = $document->{components}{schemas};
+  my $list     = $paths->{'/v1/Accounts/{AccountSid}/Things.json'};
+  my $item     = $paths->{'/v1/Accounts/{AccountSid}/Things/{Sid}.json'};
+  $schemas->{other} = { properties => { size => { type => 'integer' } } };
+  $list->{get}{responses}{200} = response(
+    {
+      properties => {
+        things   => { type => 'array', items => { %{ $schemas->{thing} } } },
+        warnings => { type => 'array', items => { type => 'string' } },
+      }
+    }
+  );
+  $item->{get}{responses}{200} =
+    response({ oneOf => [thing_reference(), { '$ref' => '#/components/schemas/other' }] });
+  $item->{delete}{responses} = { 202 => response(thing_reference()) };
+
+  my $model = model($document);
+  is($model->{records_key}, 'things', 'records written in place are records, not plain values');
+  is_deeply(
+    [map { $_->{name} } @{ $model->{fields} }],
+    [qw(date_created mode name sid size)],
+    'a oneOf gives the fields of each of its objects'
+  );
+
+  local $NAMESPACE = 'Twilio::Rest::Demo::V1::Shapes::';
+  my $code = emit($document) =~ s/V1::Account::/V1::Shapes::/gr;
+  my $text = $code           =~ s/\s+/ /gr;
+  ok(
+    index($text, '->delete; Returns a C<ThingInstance>.') >= 0,
+    'a delete with a body documents what it returns'
+  );
+  load_generated($code);
+
+  my ($things, $http) = list();
+  $http->mock(202, { sid => 'TH1', size => 3 });
+  my $deleted = $things->get_context('TH1')->delete;
+  isa_ok($deleted, "${NAMESPACE}ThingInstance", 'what the delete returns');
+  is($deleted->size, 3, 'with its fields');
+};
+
+subtest 'a delete can be all that builds the resource' => sub {
+  my $document = document();
+  my $item     = $document->{paths}{'/v1/Accounts/{AccountSid}/Things/{Sid}.json'};
+  delete @{$item}{qw(get post)};
+  $item->{delete}{responses} = { 202 => response(thing_reference()) };
+
+  local $NAMESPACE = 'Twilio::Rest::Demo::V1::DeleteOnly::';
+  load_generated(emit($document) =~ s/V1::Account::/V1::DeleteOnly::/gr);
+
+  my ($things, $http) = list();
+  $http->mock(202, { sid => 'TH1', name => 'gone' });
+  my $deleted = $things->get_context('TH1')->delete;
+  isa_ok($deleted, "${NAMESPACE}ThingInstance", 'what the delete returns');
+  is($deleted->name, 'gone', 'with its fields');
+};
+
+subtest 'under the v1.0 standard, another object has a class of its own' => sub {
+  my $document = document();
+  my $paths    = $document->{paths};
+  my $list     = $paths->{'/v1/Accounts/{AccountSid}/Things.json'};
+  my $item     = $paths->{'/v1/Accounts/{AccountSid}/Things/{Sid}.json'};
+  my $note     = { type => 'object', properties => { message => { type => 'string' } } };
+  $document->{info}          = { 'x-twilio' => { apiStandards => 'v1.0' } };
+  $document->{servers}       = [{ url => 'https://demo.test' }];
+  $item->{post}{responses}   = { 200 => response(thing_reference()), 202 => response($note) };
+  $item->{delete}{responses} = { 202 => response({ %{$note} }) };
+  $list->{post}{responses}   = { 202 => {} };
+
+  my $model = model($document);
+  is_deeply(
+    [map { $_->{name} } @{ $model->{answer_classes} }],
+    ['UpdateThing202ResponseInstance'],
+    'one class for one object, named as twilio-php names it'
+  );
+  is_deeply($model->{answer_classes}[0]{methods}, [qw(update delete)], 'which both return');
+  ok(!grep({ $_->{name} eq 'message' } @{ $model->{fields} }), 'the resource keeps its own fields');
+
+  local $NAMESPACE = 'Twilio::Rest::Demo::V1::Notes::';
+  my $code = emit($document) =~ s/V1::Account::/V1::Notes::/gr;
+  my $text = $code           =~ s/\s+/ /gr;
+  my $told = 'Returns a C<UpdateThing202ResponseInstance> when Twilio answers 202, and a '
+    . 'C<ThingInstance> otherwise.';
+  ok(index($text, $told) >= 0, 'the choice is documented');
+  ok(
+    index($text, '=head1 UpdateThing202ResponseInstance Returned by C<update> and C<delete>') >= 0,
+    'and so is the class'
+  );
+  load_generated($code);
+
+  my ($things, $http) = list();
+  my $thing = $things->get_context('TH1');
+  $http->mock(202, { message => 'later' });
+  my $noted = $thing->update;
+  isa_ok($noted, "${NAMESPACE}UpdateThing202ResponseInstance", 'an update answered with 202');
+  is($noted->message, 'later', 'which has its field');
+  $http->mock(200, { sid => 'TH1', name => 'done' });
+  isa_ok($thing->update, "${NAMESPACE}ThingInstance", 'and answered with 200');
+  $http->mock(202, { message => 'gone' });
+  is($thing->delete->message, 'gone', 'a delete returns the same kind of object');
+  $http->mock(202, q{});
+  is($things->create('a', 1), 1, 'a create answered with no body returns true');
+
+  $document->{paths} = { %{$paths} };
+  delete $document->{info};
+  ok(!model($document)->{answer_classes}, 'older APIs have one object per resource');
+};
+
+subtest 'records that are plain values' => sub {
+  my $document = document();
+  my $list     = $document->{paths}{'/v1/Accounts/{AccountSid}/Things.json'};
+  $document->{info} = { 'x-twilio' => { apiStandards => 'v1.0' } };
+  $list->{get}{responses}{200} = response(
+    {
+      properties =>
+        { things => { type => 'array', items => { type => 'string', description => 'An id.' } } }
+    }
+  );
+  delete $document->{components}{schemas}{thing}{properties}{sid};
+  $document->{components}{schemas}{thing}{properties}{id} = { type => 'string' };
+
+  my $model = model($document);
+  my ($id) = grep { $_->{name} eq 'id' } @{ $model->{fields} };
+  ok($id, 'each is an instance with an id');
+  is($model->{context}{own_field}, 'id', 'which reaches its context');
+
+  delete $document->{info};
+  my $ok = eval { model($document); 1 };
+  ok(!$ok, 'outside the v1.0 standard, they stop');
+  like($@, qr/ListThing: no rule for records that are plain values/, 'and say why');
+};
+
+subtest 'an id named like a variable of every class' => sub {
+  my $document = document();
+  my $paths    = $document->{paths};
+  my $item     = delete $paths->{'/v1/Accounts/{AccountSid}/Things/{Sid}.json'};
+  $item->{$_}{parameters} = path_parameters(qw(AccountSid Version)) for qw(get post delete);
+  $paths->{'/v1/Accounts/{AccountSid}/Things/{Version}.json'}  = $item;
+  $document->{components}{schemas}{thing}{properties}{version} = { type => 'string' };
+
+  my $model = model($document);
+  is($model->{context}{own}, 'path_version', 'gets the name twilio-php gives it');
+
+  my @warnings;
+  local $SIG{__WARN__} = sub { push @warnings, @_ };
+  ok(compiles(Twilio::Generator::Emit::module($model) =~ s/V1::Account::/V1::Versions::/gr),
+    'the code compiles');
+  is_deeply(\@warnings, [], 'and no variable hides another');
 };
 
 subtest 'an instance id need not end its path' => sub {
@@ -909,6 +1066,7 @@ subtest 'option names' => sub {
 
   is(option_name('Parameter1.Name'), 'parameter1_name', 'dot');
   is(option_name('EId'),             'e_id',            'two capitals at the start, as in Python');
+  is(option_name('A2PProfileBundleSid'), 'a2p_profile_bundle_sid', 'A2P is one word, as in Python');
 
   my $ok    = eval { option_name('X-Header'); 1 };
   my $error = $@;
@@ -1020,18 +1178,17 @@ subtest 'anything with no rule stops generation' => sub {
       sub { $_[0]{paths}{$item_path}{put} = { operationId => 'ListThingParts' } },
     ],
     [
-      'a delete that answers with a body',
-      qr/DeleteThing: no rule for a delete that answers with a body/,
-      sub { $_[0]{paths}{$item_path}{delete}{responses} = { 202 => response(thing_reference()) } },
+      'an answer that is not an object',
+      qr/FetchThing: no rule for an answer that is not an object/,
+      sub { $_[0]{paths}{$item_path}{get}{responses} = { 200 => response({ type => 'string' }) } },
     ],
     [
-      'a response that is oneOf',
-      qr{Accounts/Things: no rule for a response that is oneOf},
+      'one status code with two objects',
+      qr/FetchThing: answers 200 with two objects/,
       sub {
-        my $schemas = $_[0]{components}{schemas};
-        $schemas->{other} = { properties => { size => { type => 'integer' } } };
-        $schemas->{thing} =
-          { oneOf => [{ '$ref' => '#/components/schemas/other' }, { %{ $schemas->{thing} } }] };
+        $_[0]{info} = { 'x-twilio' => { apiStandards => 'v1.0' } };
+        $_[0]{paths}{$item_path}{get}{responses}{200}{content}{'application/scim+json'} =
+          { schema => { properties => { message => { type => 'string' } } } };
       },
     ],
     [
@@ -1059,11 +1216,6 @@ subtest 'anything with no rule stops generation' => sub {
         $_[0]{paths}{$list_path}{get}{responses}{200}{content}{'application/json'}{schema}
           {properties}{others} = array_of_things();
       },
-    ],
-    [
-      'no schema for a response',
-      qr/FetchThing: no schema for its response/,
-      sub { $_[0]{paths}{$item_path}{get}{responses} = { 200 => {} } },
     ],
     [
       'a field read in two ways',

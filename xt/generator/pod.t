@@ -120,8 +120,10 @@ sub argument {
 }
 
 sub model {
-  my $create = {
+  my $instance = { instance => 1, others => [] };
+  my $create   = {
     method      => 'POST',
+    result      => $instance,
     description => 'Make a thing',
     required    => [argument('name', description => 'Its name.')],
     options     => [
@@ -148,9 +150,10 @@ sub model {
       read   => { method => 'GET', description => 'List things', filters => [argument('status')] },
     },
     context => {
-      own      => 'sid',
-      fetch    => { method => 'GET',    options     => [] },
-      update   => { method => 'POST',   required    => [], options => [argument('mode')] },
+      own    => 'sid',
+      fetch  => { method => 'GET', options => [], result => $instance },
+      update =>
+        { method => 'POST', required => [], options => [argument('mode')], result => $instance },
       delete   => { method => 'DELETE', description => 'Removes it.' },
       children => [
         { mount => 'parts', module => 'Demo::Part', own => 'sid', singleton => 0 },

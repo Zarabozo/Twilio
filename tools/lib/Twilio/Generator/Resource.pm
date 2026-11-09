@@ -3,7 +3,8 @@ package Twilio::Generator::Resource;
 use 5.016;
 use warnings;
 
-use Carp qw(croak);
+use Carp     qw(croak);
+use JSON::PP ();
 
 use Twilio::Generator::Names qw(camelize snake);
 use Twilio::Generator::Types
@@ -23,6 +24,12 @@ my %IS_TOKEN_PAGE_PARAMETER = map { $_ => 1 } qw(pageSize pageToken);
 # These methods exist on every object of their kind, so a name from the spec would replace them.
 my %IS_RESERVED_FIELD =
   map { $_ => 1 } qw(DESTROY can create delete fetch isa new patch to_hash update);
+
+# Records whose own id the spec names only in words. Memory's TraitGroups/{traitGroupName} is the
+# displayName, "a unique and addressable name", and twilio-php reads a traitGroupName field that
+# the records do not have, so a listed trait group builds a URL with no name in it there.
+my %OWN_FIELD_OF = ('ControlPlane/Stores/TraitGroups' => 'display_name');
+
 my %IS_RESERVED_MOUNT = map { $_ => 1 } qw(
   DESTROY can create delete fetch get_context get_page isa new page patch read read_records stream
   stream_records update
@@ -47,11 +54,17 @@ sub build {
   my $records = _records($spec, $resource);
   $model->{records_key} = $records->{key} if $records;
 
-  my @schemas = _instance_schemas($spec, $resource, $records);
-  $model->{has_instance} = @schemas ? 1 : 0;
-  $model->{fields}       = _fields($spec, $resource, \@schemas);
+  my $shapes = _shapes($spec, $resource, $records);
+  $model->{has_instance} = @{ $shapes->{instance} } ? 1 : 0;
+  $model->{fields}       = _fields($spec, $resource, $shapes->{instance});
+  _add_plain_id($spec, $model, $records) if $records && $records->{plain};
+  _add_answer_classes($spec, $resource, $model, $shapes);
+
+  # Only a list builds an instance without its context, which knows the id already.
   if (defined(my $own = ($model->{context} // {})->{own})) {
-    $model->{context}{own_field} = _own_field($model->{fields}, $own, $resource->{key});
+    my $listed =
+      $records || grep { $_->{kind} eq 'list' && !defined $_->{class} } @{ $shapes->{answered} };
+    $model->{context}{own_field} = _own_field($model->{fields}, $own, $resource->{key}, $listed);
   }
 
   _add_children($spec, $tree, $resource, $model);
@@ -80,8 +93,18 @@ sub _calls {
   my %by_class = map { $_->{class} => $_ } @{ $tree->{resources} };
   my ($method, @ids) = _reach($tree, \%by_class, $resource);
   my $instance = $resource->{instance} // {};
-  my @own      = defined $instance->{key} ? '$' . snake($instance->{key}) : ();
+  my @own      = defined $instance->{key} ? '$' . _id_name($instance->{key}) : ();
   return { list => _call($method, @ids), context => _call($method, @ids, @own) };
+}
+
+# Every class takes the API version as $version, so Intelligence's /Versions/{version} is
+# $path_version, as twilio-php's $pathVersion.
+my %IS_TAKEN_NAME = map { $_ => 1 } qw(class payload self version);
+
+sub _id_name {
+  my ($name) = @_;
+  my $snake = snake($name);
+  return $IS_TAKEN_NAME{$snake} ? "path_$snake" : $snake;
 }
 
 sub _call {
@@ -144,11 +167,11 @@ sub _parent_id {
   my $side = $resource->{list} // $resource->{instance}
     // croak "$resource->{key}: a level with no operations of its own";
   my @names = $side->{path} =~ /[{](\w+)[}]/g;
-  return snake($names[$held - 1]) if $held && @names >= $held;
+  return _id_name($names[$held - 1]) if $held && @names >= $held;
 
   my $key = ($parent->{instance} // {})->{key};
   croak "$resource->{key}: its parent needs an id that its path does not have" if !defined $key;
-  return snake($key);
+  return _id_name($key);
 }
 
 sub root_class {
@@ -220,7 +243,7 @@ sub _side {
   my @tokens = split /([{]\w+[}])/, $side->{path};
   my @uri    = map {
     /\A[{](\w+)[}]\z/
-      ? { parameter => snake($1), defined $writer{$1} ? (writer => $writer{$1}) : () }
+      ? { parameter => _id_name($1), defined $writer{$1} ? (writer => $writer{$1}) : () }
       : { literal   => $_ }
   } grep { length } @tokens;
   return { parameters => [map { $_->{parameter} // () } @uri], uri => \@uri };
@@ -241,14 +264,11 @@ sub _path_writers {
   return %writer;
 }
 
-# A delete returns true. Some answer with an object instead, which twilio-php returns, and
-# returning true there would lose it, so those stop until they have a rule.
+# A delete returns true, or the object it answers with, as twilio-php returns it.
 sub _delete_operation {
   my ($spec, $operation) = @_;
 
   croak "$operation->{id}: no rule for a body here" if $operation->{spec}{requestBody};
-  croak "$operation->{id}: no rule for a delete that answers with a body"
-    if grep { %{ $_->{content} // {} } } _successes($operation);
   my $parameters = _parameters($spec, $operation, 'no required');
   return {
     method      => $operation->{method},
@@ -431,17 +451,22 @@ sub _successes {
   return map { $responses->{$_} } grep { !/\A[45]/ } sort keys %{$responses};
 }
 
-sub _response_schemas {
+# Each answer with a body, with its status code.
+sub _answers {
   my ($operation) = @_;
 
-  my @schemas;
-  for my $response (_successes($operation)) {
-    my $content = $response->{content} // {};
-    push @schemas, map { $content->{$_}{schema} } sort keys %{$content};
+  my $responses = $operation->{spec}{responses} // {};
+  my @answers;
+  for my $code (grep { !/\A[45]/ } sort keys %{$responses}) {
+    my $content = $responses->{$code}{content} // {};
+    push @answers,
+      map { { code => $code, schema => $content->{$_}{schema} // {} } } sort keys %{$content};
   }
-  return @schemas;
+  return @answers;
 }
 
+# Records are the one array of objects in a list's answer, by reference or written in place.
+# Memory's ListStores has ids instead, which TokenPaginationPage turns into { id => ... }.
 sub _records {
   my ($spec, $resource) = @_;
 
@@ -449,43 +474,218 @@ sub _records {
     grep { $_->{verb} eq 'list' } @{ ($resource->{list} // {})->{operations} // [] };
   return if !$operation;
 
-  my @found;
-  for my $schema (_response_schemas($operation)) {
-    my $properties = $spec->resolve($schema)->{properties} // {};
+  my (@found, @plain);
+  for my $answer (_answers($operation)) {
+    my $properties = $spec->resolve($answer->{schema})->{properties} // {};
     for my $key (sort keys %{$properties}) {
-      my $reference = ($properties->{$key}{items} // {})->{'$ref'};
-      push @found, { key => $key, reference => $reference } if defined $reference;
+      my $items = $properties->{$key}{items} or next;
+      my $array = defined $items->{'$ref'} || _is_object($items) ? \@found : \@plain;
+      push @{$array}, { key => $key, items => $items };
     }
   }
+  @found = @plain if !@found;
+
   croak "$operation->{id}: expected one list of records, found " . scalar @found if @found != 1;
-  return $found[0];
+
+  my $records = $found[0];
+  my @names   = _field_names($spec, $records->{items});
+  $records->{plain} = @names ? 0 : 1;
+  croak "$operation->{id}: no rule for records that are plain values, outside the v1.0 standard"
+    if $records->{plain} && !$spec->follows_v1_standard;
+  return $records;
 }
 
-# A list and a fetch can answer with different schemas for the same object.
-sub _instance_schemas {
+sub _is_object {
+  my ($schema) = @_;
+  return 1 if grep { $schema->{$_} } qw(properties allOf anyOf oneOf);
+  return ($schema->{type} // q{}) eq 'object' ? 1 : 0;
+}
+
+# The objects a schema can be. A oneOf gets the fields of every variant, as twilio-php's
+# UsAppToPerson has the 30 fields of its two.
+sub _objects {
+  my ($spec, $schema) = @_;
+
+  my $resolved = $spec->resolve($schema // {});
+  my @parts    = map { @{ $resolved->{$_} // [] } } qw(allOf anyOf oneOf);
+  return $resolved if !@parts;
+  return (%{ $resolved->{properties} // {} } ? $resolved : ()), map { _objects($spec, $_) } @parts;
+}
+
+sub _field_names {
+  my ($spec, $schema) = @_;
+  my %names = map { %{ $_->{properties} // {} } } _objects($spec, $schema);
+  my @names = sort keys %names;
+  return @names;
+}
+
+my $CANONICAL = JSON::PP->new->canonical;
+
+# Which object each answer is. Most share fields with the resource's records, or with its fetch
+# when it has no list, and are the resource's instance. Under the v1.0 standard, one that shares
+# none is another object, like Memory's { message, statusUrl } after a write, and gets a class of
+# its own, as in twilio-php. Older APIs have one object per resource, and twilio-php gives every
+# answer of theirs the resource's class: Bulk Exports' redirect is a Day.
+sub _shapes {
   my ($spec, $resource, $records) = @_;
 
-  my %references;
-  $references{ $records->{reference} } = 1 if $records;
-  for my $side (grep { $_ } @{$resource}{qw(list instance)}) {
-    for my $operation (grep { $_->{verb} ne 'list' && $_->{verb} ne 'delete' }
-      @{ $side->{operations} })
-    {
-      my @found = grep { $_->{'$ref'} } _response_schemas($operation);
-      croak "$operation->{id}: no schema for its response" if !@found;
-      $references{ $_->{'$ref'} } = 1 for @found;
+  my @answered;
+  for my $kind (grep { $resource->{$_} } qw(list instance)) {
+    for my $operation (grep { $_->{verb} ne 'list' } @{ $resource->{$kind}{operations} }) {
+      push @answered,
+        map { +{ %{$_}, kind => $kind, operation => $operation } } _answers($operation);
     }
   }
 
-  # Messaging's UsAppToPerson answers with a oneOf, which has no properties to read, so it would
-  # silently get no fields at all.
-  my @schemas = map { [$_, $spec->resolve({ '$ref' => $_ })] } sort keys %references;
-  for my $pair (@schemas) {
-    my ($reference, $schema) = @{$pair};
-    my @composed = grep { $schema->{$_} } qw(allOf anyOf oneOf);
-    croak "$resource->{key}: no rule for a response that is @composed ($reference)" if @composed;
+  my %base =
+    $spec->follows_v1_standard ? map { $_ => 1 } _base_names($spec, $records, \@answered) : ();
+  my (%instance_schema, %own, @own_keys);
+  $instance_schema{ _schema_key($records->{items}) } = $records->{items} if $records;
+  for my $answer (@answered) {
+    my $schema = $answer->{schema};
+    croak "$answer->{operation}{id}: no rule for an answer that is not an object"
+      if !defined $schema->{'$ref'} && !_is_object($schema);
+
+    my @names = _field_names($spec, $schema);
+    my $key   = _schema_key($schema);
+    if (!%base || !@names || grep { $base{$_} } @names) {
+      $instance_schema{$key} = $schema;
+      next;
+    }
+    push @own_keys, $key if !$own{$key};
+    $own{$key} //= { name => _answer_class_name($answer), schema => $schema };
+    $answer->{class} = $own{$key}{name};
   }
-  return map { $_->[1] } @schemas;
+
+  # Sorted, so that the first description of a field is always the same one.
+  my @instance = map { _objects($spec, $instance_schema{$_}) } sort keys %instance_schema;
+  return { instance => \@instance, own => [@own{@own_keys}], answered => \@answered };
+}
+
+sub _schema_key {
+  my ($schema) = @_;
+  return $schema->{'$ref'} // $CANONICAL->encode($schema);
+}
+
+# What the resource's own object has: its records' fields, or an id when they are plain values,
+# or else what its fetch answers with first.
+sub _base_names {
+  my ($spec, $records, $answered) = @_;
+
+  if ($records) {
+    my @names = _field_names($spec, $records->{items});
+    return @names ? @names : 'id';
+  }
+  my ($fetch) = grep { $_->{operation}{verb} eq 'fetch' } @{$answered};
+  return $fetch ? _field_names($spec, $fetch->{schema}) : ();
+}
+
+# twilio-php's names: the schema's, or the operation's and the status code's for one written in
+# place, like CreateStore202ResponseInstance.
+sub _answer_class_name {
+  my ($answer) = @_;
+
+  my $reference = $answer->{schema}{'$ref'};
+  my $name =
+    defined $reference
+    ? ($reference =~ s{.*/}{}r) . 'Instance'
+    : "$answer->{operation}{id}$answer->{code}ResponseInstance";
+  croak "$answer->{operation}{id}: no rule for a class named $name" if $name !~ /\A[A-Za-z]\w*\z/;
+  return ucfirst $name;
+}
+
+# An id the records hold as plain values, as Memory's ListStores does.
+sub _add_plain_id {
+  my ($spec, $model, $records) = @_;
+
+  return if grep { $_->{name} eq 'id' } @{ $model->{fields} };
+  my $description = $spec->resolve($records->{items})->{description};
+  $model->{fields} = [
+    sort { $a->{name} cmp $b->{name} } @{ $model->{fields} },
+    { name => 'id', method => 'id', reader => undef, description => $description }
+  ];
+  return;
+}
+
+# Each object that is not the resource's gets its class, and each operation says what it returns
+# for each status code.
+sub _add_answer_classes {
+  my ($spec, $resource, $model, $shapes) = @_;
+
+  my $space = $model->{module} =~ s/::[^:]+\z//r;
+  my %taken = map { $_ => 1 } values %{ $model->{class} };
+  my %class_of;
+  for my $own (@{ $shapes->{own} }) {
+    my $class = "${space}::$own->{name}";
+    croak "$resource->{key}: two objects are both $own->{name}" if $taken{$class}++;
+    $class_of{ $own->{name} } = $class;
+    push @{ $model->{answer_classes} },
+      {
+      name   => $own->{name},
+      class  => $class,
+      fields => _fields($spec, $resource, [_objects($spec, $own->{schema})]),
+      };
+  }
+
+  my %answers_of;
+  for my $answer (@{ $shapes->{answered} }) {
+    my $operation = $answer->{operation};
+    push @{ $answers_of{ $answer->{kind} }{ $operation->{verb} } }, $answer;
+  }
+  for my $kind (sort keys %answers_of) {
+    my $side  = $model->{ $kind eq 'list' ? 'list' : 'context' };
+    my $rules = $kind eq 'list' ? \%LIST_VERB : \%INSTANCE_VERB;
+    for my $verb (sort keys %{ $answers_of{$kind} }) {
+      $side->{ $rules->{$verb}[0] }{result} = _result(\%class_of, $answers_of{$kind}{$verb});
+    }
+  }
+
+  for my $answer_class (@{ $model->{answer_classes} // [] }) {
+    $answer_class->{methods} = [_methods_returning($model, $answer_class->{class})];
+  }
+  return;
+}
+
+# What an operation returns: the resource's instance, or another object, chosen by status code
+# when it answers with both, as Knowledge's UpdateKnowledge does with 200 and 202.
+sub _result {
+  my ($class_of, $answers) = @_;
+
+  my (%codes_of, %class_at);
+  my $operation = $answers->[0]{operation};
+  for my $answer (@{$answers}) {
+    my $class = defined $answer->{class} ? $class_of->{ $answer->{class} } : q{};
+    croak "$operation->{id}: answers $answer->{code} with two objects"
+      if exists $class_at{ $answer->{code} } && $class_at{ $answer->{code} } ne $class;
+    $class_at{ $answer->{code} } = $class;
+    push @{ $codes_of{$class} }, $answer->{code}
+      if !grep { $_ eq $answer->{code} } @{ $codes_of{$class} // [] };
+  }
+
+  my @others = grep { length } sort keys %codes_of;
+  if (@others && keys %codes_of > 1) {
+    my @codes = map { @{$_} } values %codes_of;
+    croak "$operation->{id}: no rule for choosing an object by status @codes"
+      if grep { !/\A\d+\z/ } @codes;
+  }
+  return {
+    instance => exists $codes_of{q{}} ? 1 : 0,
+    others   => [map { { class => $_, codes => $codes_of{$_} } } @others],
+  };
+}
+
+sub _methods_returning {
+  my ($model, $class) = @_;
+
+  my @methods;
+  for my $side (grep { $_ } @{$model}{qw(list context)}) {
+    for my $method (qw(create fetch update patch delete)) {
+      my $result = ($side->{$method} // {})->{result} or next;
+      push @methods, $method if grep { $_->{class} eq $class } @{ $result->{others} };
+    }
+  }
+  my %seen;
+  return grep { !$seen{$_}++ } @methods;
 }
 
 sub _fields {
@@ -531,14 +731,16 @@ sub _fields {
 # The field that holds an instance's own id: sid, or phoneNumber when the API answers in
 # camelCase and the URL calls it {PhoneNumber}. When no field has the URL's name, the record's
 # sid or id holds it, as in twilio-php and twilio-python: IAM's {UserSid} is a SCIM user's id.
+# Without a list, its context gives the id, as for Lookups' Overrides/{Field}.
 sub _own_field {
-  my ($fields, $own, $key) = @_;
+  my ($fields, $own, $key, $listed) = @_;
 
   my %by_method = map { $_->{method} => $_->{name} } @{$fields};
   return $own if !@{$fields};
-  for my $method ($own, qw(sid id)) {
+  for my $method ($own, $OWN_FIELD_OF{$key} // (), qw(sid id)) {
     return $by_method{$method} if defined $by_method{$method};
   }
+  return $own if !$listed;
   croak "$key: no field holds its own id $own";
 }
 
@@ -573,7 +775,7 @@ sub _add_children {
       singleton => $child->{list} ? 0 : 1,
       extra_ids => extra_ids($child, scalar @{ $side->{parameters} }),
       used_ids  => used_ids($child, scalar @{ $side->{parameters} }),
-      defined $key ? (own => snake($key)) : (),
+      defined $key ? (own => _id_name($key)) : (),
       };
   }
   return;
@@ -601,7 +803,7 @@ sub used_ids {
 sub _ids_of {
   my ($child) = @_;
   my $target = $child->{list} // $child->{instance};
-  return map { snake($_) } $target->{path} =~ /[{](\w+)[}]/g;
+  return map { _id_name($_) } $target->{path} =~ /[{](\w+)[}]/g;
 }
 
 # A child hangs from the object its parent link names: /Things/{Sid} is one thing, and /Things
