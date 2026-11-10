@@ -18,6 +18,7 @@ my @modules = qw(
   Twilio::Exceptions::TwilioException
   Twilio::Http::Client
   Twilio::Http::FakeClient
+  Twilio::Http::File
   Twilio::Http::Response
   Twilio::Http::TinyClient
   Twilio::InstanceContext
