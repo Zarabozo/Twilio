@@ -1,5 +1,136 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "data" : "a_data",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "inbound_participant_sid" : "a_inbound_participant_sid",
+     "inbound_resource_sid" : "a_inbound_resource_sid",
+     "inbound_resource_status" : "no-answer",
+     "inbound_resource_type" : "a_inbound_resource_type",
+     "inbound_resource_url" : "a_inbound_resource_url",
+     "outbound_participant_sid" : "a_outbound_participant_sid",
+     "outbound_resource_sid" : "a_outbound_resource_sid",
+     "outbound_resource_status" : "receiving",
+     "outbound_resource_type" : "a_outbound_resource_type",
+     "outbound_resource_url" : "a_outbound_resource_url",
+     "participant_sid" : "a_participant_sid",
+     "service_sid" : "a_service_sid",
+     "session_sid" : "a_session_sid",
+     "sid" : "a_sid",
+     "type" : "message",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "inbound_participant_sid",
+      "inbound_participant_sid",
+      "plain"
+     ],
+     [
+      "inbound_resource_sid",
+      "inbound_resource_sid",
+      "plain"
+     ],
+     [
+      "inbound_resource_status",
+      "inbound_resource_status",
+      "plain"
+     ],
+     [
+      "inbound_resource_type",
+      "inbound_resource_type",
+      "plain"
+     ],
+     [
+      "inbound_resource_url",
+      "inbound_resource_url",
+      "plain"
+     ],
+     [
+      "outbound_participant_sid",
+      "outbound_participant_sid",
+      "plain"
+     ],
+     [
+      "outbound_resource_sid",
+      "outbound_resource_sid",
+      "plain"
+     ],
+     [
+      "outbound_resource_status",
+      "outbound_resource_status",
+      "plain"
+     ],
+     [
+      "outbound_resource_type",
+      "outbound_resource_type",
+      "plain"
+     ],
+     [
+      "outbound_resource_url",
+      "outbound_resource_url",
+      "plain"
+     ],
+     [
+      "participant_sid",
+      "participant_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "session_sid",
+      "session_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -54,6 +185,98 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants/id3/MessageInteractions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_deleted" : "2026-01-05T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "identifier" : "a_identifier",
+     "links" : {
+      "a_links" : 1
+     },
+     "proxy_identifier" : "a_proxy_identifier",
+     "proxy_identifier_sid" : "a_proxy_identifier_sid",
+     "service_sid" : "a_service_sid",
+     "session_sid" : "a_session_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_deleted",
+      "date_deleted",
+      "date",
+      1767582245
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identifier",
+      "identifier",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "proxy_identifier",
+      "proxy_identifier",
+      "plain"
+     ],
+     [
+      "proxy_identifier_sid",
+      "proxy_identifier_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "session_sid",
+      "session_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -108,6 +331,94 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "capabilities" : {
+      "MMS" : false,
+      "SMS" : true,
+      "fax" : false,
+      "voice" : true
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "in_use" : 643,
+     "is_reserved" : true,
+     "iso_country" : "a_iso_country",
+     "phone_number" : "a_phone_number",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "capabilities",
+      "capabilities",
+      "capabilities"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "in_use",
+      "in_use",
+      "plain"
+     ],
+     [
+      "is_reserved",
+      "is_reserved",
+      "plain"
+     ],
+     [
+      "iso_country",
+      "iso_country",
+      "plain"
+     ],
+     [
+      "phone_number",
+      "phone_number",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -152,6 +463,103 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/PhoneNumbers"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "callback_url" : "a_callback_url",
+     "chat_instance_sid" : "a_chat_instance_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "default_ttl" : 1176,
+     "geo_match_level" : "radius",
+     "intercept_callback_url" : "a_intercept_callback_url",
+     "links" : {
+      "a_links" : 1
+     },
+     "number_selection_behavior" : "prefer-sticky",
+     "out_of_session_callback_url" : "a_out_of_session_callback_url",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "callback_url",
+      "callback_url",
+      "plain"
+     ],
+     [
+      "chat_instance_sid",
+      "chat_instance_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_ttl",
+      "default_ttl",
+      "plain"
+     ],
+     [
+      "geo_match_level",
+      "geo_match_level",
+      "plain"
+     ],
+     [
+      "intercept_callback_url",
+      "intercept_callback_url",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "number_selection_behavior",
+      "number_selection_behavior",
+      "plain"
+     ],
+     [
+      "out_of_session_callback_url",
+      "out_of_session_callback_url",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -218,6 +626,119 @@
   "url" : "https://proxy.twilio.com/v1/Services"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "closed_reason" : "a_closed_reason",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_ended" : "2026-01-14T03:04:05Z",
+     "date_expiry" : "2026-01-07T03:04:05Z",
+     "date_last_interaction" : "2026-01-13T03:04:05Z",
+     "date_started" : "2026-01-09T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "mode" : "voice-only",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "in-progress",
+     "ttl" : 340,
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "closed_reason",
+      "closed_reason",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_ended",
+      "date_ended",
+      "date",
+      1768359845
+     ],
+     [
+      "date_expiry",
+      "date_expiry",
+      "date",
+      1767755045
+     ],
+     [
+      "date_last_interaction",
+      "date_last_interaction",
+      "date",
+      1768273445
+     ],
+     [
+      "date_started",
+      "date_started",
+      "date",
+      1767927845
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "mode",
+      "mode",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "ttl",
+      "ttl",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -290,6 +811,11 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -321,6 +847,11 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Interactions/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -352,6 +883,11 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -379,6 +915,11 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/PhoneNumbers/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -402,6 +943,11 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -429,6 +975,131 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "data" : "a_data",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "inbound_participant_sid" : "a_inbound_participant_sid",
+     "inbound_resource_sid" : "a_inbound_resource_sid",
+     "inbound_resource_status" : "no-answer",
+     "inbound_resource_type" : "a_inbound_resource_type",
+     "inbound_resource_url" : "a_inbound_resource_url",
+     "outbound_participant_sid" : "a_outbound_participant_sid",
+     "outbound_resource_sid" : "a_outbound_resource_sid",
+     "outbound_resource_status" : "receiving",
+     "outbound_resource_type" : "a_outbound_resource_type",
+     "outbound_resource_url" : "a_outbound_resource_url",
+     "service_sid" : "a_service_sid",
+     "session_sid" : "a_session_sid",
+     "sid" : "a_sid",
+     "type" : "message",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "inbound_participant_sid",
+      "inbound_participant_sid",
+      "plain"
+     ],
+     [
+      "inbound_resource_sid",
+      "inbound_resource_sid",
+      "plain"
+     ],
+     [
+      "inbound_resource_status",
+      "inbound_resource_status",
+      "plain"
+     ],
+     [
+      "inbound_resource_type",
+      "inbound_resource_type",
+      "plain"
+     ],
+     [
+      "inbound_resource_url",
+      "inbound_resource_url",
+      "plain"
+     ],
+     [
+      "outbound_participant_sid",
+      "outbound_participant_sid",
+      "plain"
+     ],
+     [
+      "outbound_resource_sid",
+      "outbound_resource_sid",
+      "plain"
+     ],
+     [
+      "outbound_resource_status",
+      "outbound_resource_status",
+      "plain"
+     ],
+     [
+      "outbound_resource_type",
+      "outbound_resource_type",
+      "plain"
+     ],
+     [
+      "outbound_resource_url",
+      "outbound_resource_url",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "session_sid",
+      "session_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -460,6 +1131,137 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Interactions/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "data" : "a_data",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "inbound_participant_sid" : "a_inbound_participant_sid",
+     "inbound_resource_sid" : "a_inbound_resource_sid",
+     "inbound_resource_status" : "no-answer",
+     "inbound_resource_type" : "a_inbound_resource_type",
+     "inbound_resource_url" : "a_inbound_resource_url",
+     "outbound_participant_sid" : "a_outbound_participant_sid",
+     "outbound_resource_sid" : "a_outbound_resource_sid",
+     "outbound_resource_status" : "receiving",
+     "outbound_resource_type" : "a_outbound_resource_type",
+     "outbound_resource_url" : "a_outbound_resource_url",
+     "participant_sid" : "a_participant_sid",
+     "service_sid" : "a_service_sid",
+     "session_sid" : "a_session_sid",
+     "sid" : "a_sid",
+     "type" : "message",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "inbound_participant_sid",
+      "inbound_participant_sid",
+      "plain"
+     ],
+     [
+      "inbound_resource_sid",
+      "inbound_resource_sid",
+      "plain"
+     ],
+     [
+      "inbound_resource_status",
+      "inbound_resource_status",
+      "plain"
+     ],
+     [
+      "inbound_resource_type",
+      "inbound_resource_type",
+      "plain"
+     ],
+     [
+      "inbound_resource_url",
+      "inbound_resource_url",
+      "plain"
+     ],
+     [
+      "outbound_participant_sid",
+      "outbound_participant_sid",
+      "plain"
+     ],
+     [
+      "outbound_resource_sid",
+      "outbound_resource_sid",
+      "plain"
+     ],
+     [
+      "outbound_resource_status",
+      "outbound_resource_status",
+      "plain"
+     ],
+     [
+      "outbound_resource_type",
+      "outbound_resource_type",
+      "plain"
+     ],
+     [
+      "outbound_resource_url",
+      "outbound_resource_url",
+      "plain"
+     ],
+     [
+      "participant_sid",
+      "participant_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "session_sid",
+      "session_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -495,6 +1297,98 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants/id3/MessageInteractions/id4"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_deleted" : "2026-01-05T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "identifier" : "a_identifier",
+     "links" : {
+      "a_links" : 1
+     },
+     "proxy_identifier" : "a_proxy_identifier",
+     "proxy_identifier_sid" : "a_proxy_identifier_sid",
+     "service_sid" : "a_service_sid",
+     "session_sid" : "a_session_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_deleted",
+      "date_deleted",
+      "date",
+      1767582245
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identifier",
+      "identifier",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "proxy_identifier",
+      "proxy_identifier",
+      "plain"
+     ],
+     [
+      "proxy_identifier_sid",
+      "proxy_identifier_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "session_sid",
+      "session_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -526,6 +1420,94 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "capabilities" : {
+      "MMS" : false,
+      "SMS" : true,
+      "fax" : false,
+      "voice" : true
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "in_use" : 643,
+     "is_reserved" : true,
+     "iso_country" : "a_iso_country",
+     "phone_number" : "a_phone_number",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "capabilities",
+      "capabilities",
+      "capabilities"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "in_use",
+      "in_use",
+      "plain"
+     ],
+     [
+      "is_reserved",
+      "is_reserved",
+      "plain"
+     ],
+     [
+      "iso_country",
+      "iso_country",
+      "plain"
+     ],
+     [
+      "phone_number",
+      "phone_number",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -553,6 +1535,103 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/PhoneNumbers/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "callback_url" : "a_callback_url",
+     "chat_instance_sid" : "a_chat_instance_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "default_ttl" : 1176,
+     "geo_match_level" : "radius",
+     "intercept_callback_url" : "a_intercept_callback_url",
+     "links" : {
+      "a_links" : 1
+     },
+     "number_selection_behavior" : "prefer-sticky",
+     "out_of_session_callback_url" : "a_out_of_session_callback_url",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "callback_url",
+      "callback_url",
+      "plain"
+     ],
+     [
+      "chat_instance_sid",
+      "chat_instance_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_ttl",
+      "default_ttl",
+      "plain"
+     ],
+     [
+      "geo_match_level",
+      "geo_match_level",
+      "plain"
+     ],
+     [
+      "intercept_callback_url",
+      "intercept_callback_url",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "number_selection_behavior",
+      "number_selection_behavior",
+      "plain"
+     ],
+     [
+      "out_of_session_callback_url",
+      "out_of_session_callback_url",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -576,6 +1655,119 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "closed_reason" : "a_closed_reason",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_ended" : "2026-01-14T03:04:05Z",
+     "date_expiry" : "2026-01-07T03:04:05Z",
+     "date_last_interaction" : "2026-01-13T03:04:05Z",
+     "date_started" : "2026-01-09T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "mode" : "voice-only",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "in-progress",
+     "ttl" : 340,
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "closed_reason",
+      "closed_reason",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_ended",
+      "date_ended",
+      "date",
+      1768359845
+     ],
+     [
+      "date_expiry",
+      "date_expiry",
+      "date",
+      1767755045
+     ],
+     [
+      "date_last_interaction",
+      "date_last_interaction",
+      "date",
+      1768273445
+     ],
+     [
+      "date_started",
+      "date_started",
+      "date",
+      1767927845
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "mode",
+      "mode",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "ttl",
+      "ttl",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -603,6 +1795,136 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "interactions" : [
+      {
+       "account_sid" : "a_account_sid",
+       "data" : "a_data",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "inbound_participant_sid" : "a_inbound_participant_sid",
+       "inbound_resource_sid" : "a_inbound_resource_sid",
+       "inbound_resource_status" : "no-answer",
+       "inbound_resource_type" : "a_inbound_resource_type",
+       "inbound_resource_url" : "a_inbound_resource_url",
+       "outbound_participant_sid" : "a_outbound_participant_sid",
+       "outbound_resource_sid" : "a_outbound_resource_sid",
+       "outbound_resource_status" : "receiving",
+       "outbound_resource_type" : "a_outbound_resource_type",
+       "outbound_resource_url" : "a_outbound_resource_url",
+       "service_sid" : "a_service_sid",
+       "session_sid" : "a_session_sid",
+       "sid" : "a_sid",
+       "type" : "message",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "inbound_participant_sid",
+      "inbound_participant_sid",
+      "plain"
+     ],
+     [
+      "inbound_resource_sid",
+      "inbound_resource_sid",
+      "plain"
+     ],
+     [
+      "inbound_resource_status",
+      "inbound_resource_status",
+      "plain"
+     ],
+     [
+      "inbound_resource_type",
+      "inbound_resource_type",
+      "plain"
+     ],
+     [
+      "inbound_resource_url",
+      "inbound_resource_url",
+      "plain"
+     ],
+     [
+      "outbound_participant_sid",
+      "outbound_participant_sid",
+      "plain"
+     ],
+     [
+      "outbound_resource_sid",
+      "outbound_resource_sid",
+      "plain"
+     ],
+     [
+      "outbound_resource_status",
+      "outbound_resource_status",
+      "plain"
+     ],
+     [
+      "outbound_resource_type",
+      "outbound_resource_type",
+      "plain"
+     ],
+     [
+      "outbound_resource_url",
+      "outbound_resource_url",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "session_sid",
+      "session_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -635,6 +1957,142 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Interactions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "interactions" : [
+      {
+       "account_sid" : "a_account_sid",
+       "data" : "a_data",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "inbound_participant_sid" : "a_inbound_participant_sid",
+       "inbound_resource_sid" : "a_inbound_resource_sid",
+       "inbound_resource_status" : "no-answer",
+       "inbound_resource_type" : "a_inbound_resource_type",
+       "inbound_resource_url" : "a_inbound_resource_url",
+       "outbound_participant_sid" : "a_outbound_participant_sid",
+       "outbound_resource_sid" : "a_outbound_resource_sid",
+       "outbound_resource_status" : "receiving",
+       "outbound_resource_type" : "a_outbound_resource_type",
+       "outbound_resource_url" : "a_outbound_resource_url",
+       "participant_sid" : "a_participant_sid",
+       "service_sid" : "a_service_sid",
+       "session_sid" : "a_session_sid",
+       "sid" : "a_sid",
+       "type" : "message",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "inbound_participant_sid",
+      "inbound_participant_sid",
+      "plain"
+     ],
+     [
+      "inbound_resource_sid",
+      "inbound_resource_sid",
+      "plain"
+     ],
+     [
+      "inbound_resource_status",
+      "inbound_resource_status",
+      "plain"
+     ],
+     [
+      "inbound_resource_type",
+      "inbound_resource_type",
+      "plain"
+     ],
+     [
+      "inbound_resource_url",
+      "inbound_resource_url",
+      "plain"
+     ],
+     [
+      "outbound_participant_sid",
+      "outbound_participant_sid",
+      "plain"
+     ],
+     [
+      "outbound_resource_sid",
+      "outbound_resource_sid",
+      "plain"
+     ],
+     [
+      "outbound_resource_status",
+      "outbound_resource_status",
+      "plain"
+     ],
+     [
+      "outbound_resource_type",
+      "outbound_resource_type",
+      "plain"
+     ],
+     [
+      "outbound_resource_url",
+      "outbound_resource_url",
+      "plain"
+     ],
+     [
+      "participant_sid",
+      "participant_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "session_sid",
+      "session_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -671,6 +2129,103 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants/id3/MessageInteractions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "participants" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_deleted" : "2026-01-05T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "identifier" : "a_identifier",
+       "links" : {
+        "a_links" : 1
+       },
+       "proxy_identifier" : "a_proxy_identifier",
+       "proxy_identifier_sid" : "a_proxy_identifier_sid",
+       "service_sid" : "a_service_sid",
+       "session_sid" : "a_session_sid",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_deleted",
+      "date_deleted",
+      "date",
+      1767582245
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identifier",
+      "identifier",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "proxy_identifier",
+      "proxy_identifier",
+      "plain"
+     ],
+     [
+      "proxy_identifier_sid",
+      "proxy_identifier_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "session_sid",
+      "session_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -703,6 +2258,99 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions/id2/Participants"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "phone_numbers" : [
+      {
+       "account_sid" : "a_account_sid",
+       "capabilities" : {
+        "MMS" : false,
+        "SMS" : true,
+        "fax" : false,
+        "voice" : true
+       },
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "in_use" : 643,
+       "is_reserved" : true,
+       "iso_country" : "a_iso_country",
+       "phone_number" : "a_phone_number",
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "capabilities",
+      "capabilities",
+      "capabilities"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "in_use",
+      "in_use",
+      "plain"
+     ],
+     [
+      "is_reserved",
+      "is_reserved",
+      "plain"
+     ],
+     [
+      "iso_country",
+      "iso_country",
+      "plain"
+     ],
+     [
+      "phone_number",
+      "phone_number",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -731,6 +2379,108 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/PhoneNumbers"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "services" : [
+      {
+       "account_sid" : "a_account_sid",
+       "callback_url" : "a_callback_url",
+       "chat_instance_sid" : "a_chat_instance_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "default_ttl" : 1176,
+       "geo_match_level" : "radius",
+       "intercept_callback_url" : "a_intercept_callback_url",
+       "links" : {
+        "a_links" : 1
+       },
+       "number_selection_behavior" : "prefer-sticky",
+       "out_of_session_callback_url" : "a_out_of_session_callback_url",
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "callback_url",
+      "callback_url",
+      "plain"
+     ],
+     [
+      "chat_instance_sid",
+      "chat_instance_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_ttl",
+      "default_ttl",
+      "plain"
+     ],
+     [
+      "geo_match_level",
+      "geo_match_level",
+      "plain"
+     ],
+     [
+      "intercept_callback_url",
+      "intercept_callback_url",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "number_selection_behavior",
+      "number_selection_behavior",
+      "plain"
+     ],
+     [
+      "out_of_session_callback_url",
+      "out_of_session_callback_url",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -755,6 +2505,124 @@
   "url" : "https://proxy.twilio.com/v1/Services"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "sessions" : [
+      {
+       "account_sid" : "a_account_sid",
+       "closed_reason" : "a_closed_reason",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_ended" : "2026-01-14T03:04:05Z",
+       "date_expiry" : "2026-01-07T03:04:05Z",
+       "date_last_interaction" : "2026-01-13T03:04:05Z",
+       "date_started" : "2026-01-09T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "links" : {
+        "a_links" : 1
+       },
+       "mode" : "voice-only",
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "status" : "in-progress",
+       "ttl" : 340,
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "closed_reason",
+      "closed_reason",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_ended",
+      "date_ended",
+      "date",
+      1768359845
+     ],
+     [
+      "date_expiry",
+      "date_expiry",
+      "date",
+      1767755045
+     ],
+     [
+      "date_last_interaction",
+      "date_last_interaction",
+      "date",
+      1768273445
+     ],
+     [
+      "date_started",
+      "date_started",
+      "date",
+      1767927845
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "mode",
+      "mode",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "ttl",
+      "ttl",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -783,6 +2651,94 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/Sessions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "capabilities" : {
+      "MMS" : false,
+      "SMS" : true,
+      "fax" : false,
+      "voice" : true
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "in_use" : 643,
+     "is_reserved" : true,
+     "iso_country" : "a_iso_country",
+     "phone_number" : "a_phone_number",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "capabilities",
+      "capabilities",
+      "capabilities"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "in_use",
+      "in_use",
+      "plain"
+     ],
+     [
+      "is_reserved",
+      "is_reserved",
+      "plain"
+     ],
+     [
+      "iso_country",
+      "iso_country",
+      "plain"
+     ],
+     [
+      "phone_number",
+      "phone_number",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -817,6 +2773,103 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1/PhoneNumbers/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "callback_url" : "a_callback_url",
+     "chat_instance_sid" : "a_chat_instance_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "default_ttl" : 1176,
+     "geo_match_level" : "radius",
+     "intercept_callback_url" : "a_intercept_callback_url",
+     "links" : {
+      "a_links" : 1
+     },
+     "number_selection_behavior" : "prefer-sticky",
+     "out_of_session_callback_url" : "a_out_of_session_callback_url",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "callback_url",
+      "callback_url",
+      "plain"
+     ],
+     [
+      "chat_instance_sid",
+      "chat_instance_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_ttl",
+      "default_ttl",
+      "plain"
+     ],
+     [
+      "geo_match_level",
+      "geo_match_level",
+      "plain"
+     ],
+     [
+      "intercept_callback_url",
+      "intercept_callback_url",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "number_selection_behavior",
+      "number_selection_behavior",
+      "plain"
+     ],
+     [
+      "out_of_session_callback_url",
+      "out_of_session_callback_url",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",
@@ -882,6 +2935,119 @@
   "url" : "https://proxy.twilio.com/v1/Services/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "closed_reason" : "a_closed_reason",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_ended" : "2026-01-14T03:04:05Z",
+     "date_expiry" : "2026-01-07T03:04:05Z",
+     "date_last_interaction" : "2026-01-13T03:04:05Z",
+     "date_started" : "2026-01-09T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "mode" : "voice-only",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "in-progress",
+     "ttl" : 340,
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "closed_reason",
+      "closed_reason",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_ended",
+      "date_ended",
+      "date",
+      1768359845
+     ],
+     [
+      "date_expiry",
+      "date_expiry",
+      "date",
+      1767755045
+     ],
+     [
+      "date_last_interaction",
+      "date_last_interaction",
+      "date",
+      1768273445
+     ],
+     [
+      "date_started",
+      "date_started",
+      "date",
+      1767927845
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "mode",
+      "mode",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "ttl",
+      "ttl",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "proxy",

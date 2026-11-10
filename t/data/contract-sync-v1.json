@@ -1,5 +1,93 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "data" : {
+      "a_data" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -46,6 +134,103 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Documents"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "acl_enabled" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "reachability_debouncing_enabled" : true,
+     "reachability_debouncing_window" : 3173,
+     "reachability_webhooks_enabled" : true,
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "webhook_url" : "a_webhook_url",
+     "webhooks_from_rest_enabled" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "acl_enabled",
+      "acl_enabled",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "reachability_debouncing_enabled",
+      "reachability_debouncing_enabled",
+      "plain"
+     ],
+     [
+      "reachability_debouncing_window",
+      "reachability_debouncing_window",
+      "plain"
+     ],
+     [
+      "reachability_webhooks_enabled",
+      "reachability_webhooks_enabled",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ],
+     [
+      "webhooks_from_rest_enabled",
+      "webhooks_from_rest_enabled",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -106,6 +291,29 @@
   "url" : "https://sync.twilio.com/v1/Services"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "data" : {
+      "a_data" : 1
+     },
+     "sid" : "a_sid"
+    },
+    "fields" : [
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -146,6 +354,86 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Streams/id2/Messages"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -190,6 +478,86 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "data" : {
+      "a_data" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "index" : 536,
+     "list_sid" : "a_list_sid",
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "index",
+      "index",
+      "plain"
+     ],
+     [
+      "list_sid",
+      "list_sid",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -246,6 +614,86 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Items"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -290,6 +738,86 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "data" : {
+      "a_data" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "key" : "a_key",
+     "map_sid" : "a_map_sid",
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "key",
+      "key",
+      "plain"
+     ],
+     [
+      "map_sid",
+      "map_sid",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -351,6 +879,80 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Items"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -390,6 +992,11 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Streams"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -417,6 +1024,11 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -448,6 +1060,11 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2/Permissions/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -471,6 +1088,11 @@
   "url" : "https://sync.twilio.com/v1/Services/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -498,6 +1120,11 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -534,6 +1161,11 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Items/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -565,6 +1197,11 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Permissions/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -592,6 +1229,11 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -628,6 +1270,11 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Items/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -659,6 +1306,11 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Permissions/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -686,6 +1338,94 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Streams/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "data" : {
+      "a_data" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -713,6 +1453,63 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "document_sid" : "a_document_sid",
+     "identity" : "a_identity",
+     "manage" : true,
+     "read" : true,
+     "service_sid" : "a_service_sid",
+     "url" : "a_url",
+     "write" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "document_sid",
+      "document_sid",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "manage",
+      "manage",
+      "plain"
+     ],
+     [
+      "read",
+      "read",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "write",
+      "write",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -744,6 +1541,103 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2/Permissions/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "acl_enabled" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "reachability_debouncing_enabled" : true,
+     "reachability_debouncing_window" : 3173,
+     "reachability_webhooks_enabled" : true,
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "webhook_url" : "a_webhook_url",
+     "webhooks_from_rest_enabled" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "acl_enabled",
+      "acl_enabled",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "reachability_debouncing_enabled",
+      "reachability_debouncing_enabled",
+      "plain"
+     ],
+     [
+      "reachability_debouncing_window",
+      "reachability_debouncing_window",
+      "plain"
+     ],
+     [
+      "reachability_webhooks_enabled",
+      "reachability_webhooks_enabled",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ],
+     [
+      "webhooks_from_rest_enabled",
+      "webhooks_from_rest_enabled",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -767,6 +1661,86 @@
   "url" : "https://sync.twilio.com/v1/Services/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -794,6 +1768,86 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "data" : {
+      "a_data" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "index" : 536,
+     "list_sid" : "a_list_sid",
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "index",
+      "index",
+      "plain"
+     ],
+     [
+      "list_sid",
+      "list_sid",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -825,6 +1879,63 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Items/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "identity" : "a_identity",
+     "list_sid" : "a_list_sid",
+     "manage" : true,
+     "read" : true,
+     "service_sid" : "a_service_sid",
+     "url" : "a_url",
+     "write" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "list_sid",
+      "list_sid",
+      "plain"
+     ],
+     [
+      "manage",
+      "manage",
+      "plain"
+     ],
+     [
+      "read",
+      "read",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "write",
+      "write",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -856,6 +1967,86 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Permissions/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -883,6 +2074,86 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "data" : {
+      "a_data" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "key" : "a_key",
+     "map_sid" : "a_map_sid",
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "key",
+      "key",
+      "plain"
+     ],
+     [
+      "map_sid",
+      "map_sid",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -914,6 +2185,63 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Items/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "identity" : "a_identity",
+     "manage" : true,
+     "map_sid" : "a_map_sid",
+     "read" : true,
+     "service_sid" : "a_service_sid",
+     "url" : "a_url",
+     "write" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "manage",
+      "manage",
+      "plain"
+     ],
+     [
+      "map_sid",
+      "map_sid",
+      "plain"
+     ],
+     [
+      "read",
+      "read",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "write",
+      "write",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -945,6 +2273,80 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Permissions/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -972,6 +2374,99 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Streams/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "documents" : [
+      {
+       "account_sid" : "a_account_sid",
+       "created_by" : "a_created_by",
+       "data" : {
+        "a_data" : 1
+       },
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_expires" : "2026-01-18T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "links" : {
+        "a_links" : 1
+       },
+       "revision" : "a_revision",
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1000,6 +2495,68 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Documents"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "permissions" : [
+      {
+       "account_sid" : "a_account_sid",
+       "document_sid" : "a_document_sid",
+       "identity" : "a_identity",
+       "manage" : true,
+       "read" : true,
+       "service_sid" : "a_service_sid",
+       "url" : "a_url",
+       "write" : true
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "document_sid",
+      "document_sid",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "manage",
+      "manage",
+      "plain"
+     ],
+     [
+      "read",
+      "read",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "write",
+      "write",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1032,6 +2589,108 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2/Permissions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "services" : [
+      {
+       "account_sid" : "a_account_sid",
+       "acl_enabled" : true,
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "reachability_debouncing_enabled" : true,
+       "reachability_debouncing_window" : 3173,
+       "reachability_webhooks_enabled" : true,
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url",
+       "webhook_url" : "a_webhook_url",
+       "webhooks_from_rest_enabled" : true
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "acl_enabled",
+      "acl_enabled",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "reachability_debouncing_enabled",
+      "reachability_debouncing_enabled",
+      "plain"
+     ],
+     [
+      "reachability_debouncing_window",
+      "reachability_debouncing_window",
+      "plain"
+     ],
+     [
+      "reachability_webhooks_enabled",
+      "reachability_webhooks_enabled",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ],
+     [
+      "webhooks_from_rest_enabled",
+      "webhooks_from_rest_enabled",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1056,6 +2715,91 @@
   "url" : "https://sync.twilio.com/v1/Services"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "lists" : [
+      {
+       "account_sid" : "a_account_sid",
+       "created_by" : "a_created_by",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_expires" : "2026-01-18T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "links" : {
+        "a_links" : 1
+       },
+       "revision" : "a_revision",
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1084,6 +2828,91 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "items" : [
+      {
+       "account_sid" : "a_account_sid",
+       "created_by" : "a_created_by",
+       "data" : {
+        "a_data" : 1
+       },
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_expires" : "2026-01-18T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "index" : 536,
+       "list_sid" : "a_list_sid",
+       "revision" : "a_revision",
+       "service_sid" : "a_service_sid",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "index",
+      "index",
+      "plain"
+     ],
+     [
+      "list_sid",
+      "list_sid",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1133,6 +2962,68 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Items"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "permissions" : [
+      {
+       "account_sid" : "a_account_sid",
+       "identity" : "a_identity",
+       "list_sid" : "a_list_sid",
+       "manage" : true,
+       "read" : true,
+       "service_sid" : "a_service_sid",
+       "url" : "a_url",
+       "write" : true
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "list_sid",
+      "list_sid",
+      "plain"
+     ],
+     [
+      "manage",
+      "manage",
+      "plain"
+     ],
+     [
+      "read",
+      "read",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "write",
+      "write",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1165,6 +3056,91 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Permissions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "maps" : [
+      {
+       "account_sid" : "a_account_sid",
+       "created_by" : "a_created_by",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_expires" : "2026-01-18T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "links" : {
+        "a_links" : 1
+       },
+       "revision" : "a_revision",
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1193,6 +3169,91 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "items" : [
+      {
+       "account_sid" : "a_account_sid",
+       "created_by" : "a_created_by",
+       "data" : {
+        "a_data" : 1
+       },
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_expires" : "2026-01-18T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "key" : "a_key",
+       "map_sid" : "a_map_sid",
+       "revision" : "a_revision",
+       "service_sid" : "a_service_sid",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "key",
+      "key",
+      "plain"
+     ],
+     [
+      "map_sid",
+      "map_sid",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1242,6 +3303,68 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Items"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "permissions" : [
+      {
+       "account_sid" : "a_account_sid",
+       "identity" : "a_identity",
+       "manage" : true,
+       "map_sid" : "a_map_sid",
+       "read" : true,
+       "service_sid" : "a_service_sid",
+       "url" : "a_url",
+       "write" : true
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "manage",
+      "manage",
+      "plain"
+     ],
+     [
+      "map_sid",
+      "map_sid",
+      "plain"
+     ],
+     [
+      "read",
+      "read",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "write",
+      "write",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1274,6 +3397,85 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Permissions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "streams" : [
+      {
+       "account_sid" : "a_account_sid",
+       "created_by" : "a_created_by",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_expires" : "2026-01-18T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "links" : {
+        "a_links" : 1
+       },
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1302,6 +3504,94 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Streams"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "data" : {
+      "a_data" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1347,6 +3637,63 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "document_sid" : "a_document_sid",
+     "identity" : "a_identity",
+     "manage" : true,
+     "read" : true,
+     "service_sid" : "a_service_sid",
+     "url" : "a_url",
+     "write" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "document_sid",
+      "document_sid",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "manage",
+      "manage",
+      "plain"
+     ],
+     [
+      "read",
+      "read",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "write",
+      "write",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1395,6 +3742,103 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Documents/id2/Permissions/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "acl_enabled" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "reachability_debouncing_enabled" : true,
+     "reachability_debouncing_window" : 3173,
+     "reachability_webhooks_enabled" : true,
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "webhook_url" : "a_webhook_url",
+     "webhooks_from_rest_enabled" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "acl_enabled",
+      "acl_enabled",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "reachability_debouncing_enabled",
+      "reachability_debouncing_enabled",
+      "plain"
+     ],
+     [
+      "reachability_debouncing_window",
+      "reachability_debouncing_window",
+      "plain"
+     ],
+     [
+      "reachability_webhooks_enabled",
+      "reachability_webhooks_enabled",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ],
+     [
+      "webhooks_from_rest_enabled",
+      "webhooks_from_rest_enabled",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1455,6 +3899,86 @@
   "url" : "https://sync.twilio.com/v1/Services/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1494,6 +4018,86 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "data" : {
+      "a_data" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "index" : 536,
+     "list_sid" : "a_list_sid",
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "index",
+      "index",
+      "plain"
+     ],
+     [
+      "list_sid",
+      "list_sid",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1553,6 +4157,63 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Items/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "identity" : "a_identity",
+     "list_sid" : "a_list_sid",
+     "manage" : true,
+     "read" : true,
+     "service_sid" : "a_service_sid",
+     "url" : "a_url",
+     "write" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "list_sid",
+      "list_sid",
+      "plain"
+     ],
+     [
+      "manage",
+      "manage",
+      "plain"
+     ],
+     [
+      "read",
+      "read",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "write",
+      "write",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1601,6 +4262,86 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Lists/id2/Permissions/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1640,6 +4381,86 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "data" : {
+      "a_data" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "key" : "a_key",
+     "map_sid" : "a_map_sid",
+     "revision" : "a_revision",
+     "service_sid" : "a_service_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "data",
+      "data",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "key",
+      "key",
+      "plain"
+     ],
+     [
+      "map_sid",
+      "map_sid",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1699,6 +4520,63 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Items/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "identity" : "a_identity",
+     "manage" : true,
+     "map_sid" : "a_map_sid",
+     "read" : true,
+     "service_sid" : "a_service_sid",
+     "url" : "a_url",
+     "write" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "manage",
+      "manage",
+      "plain"
+     ],
+     [
+      "map_sid",
+      "map_sid",
+      "plain"
+     ],
+     [
+      "read",
+      "read",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "write",
+      "write",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",
@@ -1747,6 +4625,80 @@
   "url" : "https://sync.twilio.com/v1/Services/id1/Maps/id2/Permissions/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_expires" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_expires",
+      "date_expires",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "sync",

@@ -1,5 +1,106 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "cnam_lookup_enabled" : true,
+     "connection_policy_sid" : "a_connection_policy_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "from_domain_sid" : "a_from_domain_sid",
+     "sid" : "a_sid",
+     "status_callback_method" : "GET",
+     "status_callback_url" : "a_status_callback_url",
+     "url" : "a_url",
+     "voice_fallback_method" : "POST",
+     "voice_fallback_url" : "a_voice_fallback_url",
+     "voice_method" : "GET",
+     "voice_url" : "a_voice_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cnam_lookup_enabled",
+      "cnam_lookup_enabled",
+      "plain"
+     ],
+     [
+      "connection_policy_sid",
+      "connection_policy_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "from_domain_sid",
+      "from_domain_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status_callback_method",
+      "status_callback_method",
+      "plain"
+     ],
+     [
+      "status_callback_url",
+      "status_callback_url",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "voice_fallback_method",
+      "voice_fallback_method",
+      "plain"
+     ],
+     [
+      "voice_fallback_url",
+      "voice_fallback_url",
+      "plain"
+     ],
+     [
+      "voice_method",
+      "voice_method",
+      "plain"
+     ],
+     [
+      "voice_url",
+      "voice_url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -75,6 +176,61 @@
   "url" : "https://voice.twilio.com/v1/ByocTrunks"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -105,6 +261,83 @@
   "url" : "https://voice.twilio.com/v1/ConnectionPolicies"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "connection_policy_sid" : "a_connection_policy_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "enabled" : true,
+     "friendly_name" : "a_friendly_name",
+     "priority" : 898,
+     "sid" : "a_sid",
+     "target" : "a_target",
+     "url" : "a_url",
+     "weight" : 648
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "connection_policy_sid",
+      "connection_policy_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "enabled",
+      "enabled",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "priority",
+      "priority",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "target",
+      "target",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "weight",
+      "weight",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -160,6 +393,27 @@
   "url" : "https://voice.twilio.com/v1/ConnectionPolicies/id1/Targets"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "update_count" : 1291,
+     "update_request" : "a_update_request"
+    },
+    "fields" : [
+     [
+      "update_count",
+      "update_count",
+      "plain"
+     ],
+     [
+      "update_request",
+      "update_request",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -194,6 +448,65 @@
   "url" : "https://voice.twilio.com/v1/DialingPermissions/BulkCountryUpdates"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "cidr_prefix_length" : 1904,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "ip_address" : "a_ip_address",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cidr_prefix_length",
+      "cidr_prefix_length",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "ip_address",
+      "ip_address",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -235,6 +548,53 @@
   "url" : "https://voice.twilio.com/v1/IpRecords"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "ip_record_sid" : "a_ip_record_sid",
+     "sid" : "a_sid",
+     "sip_domain_sid" : "a_sip_domain_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "ip_record_sid",
+      "ip_record_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sip_domain_sid",
+      "sip_domain_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -270,6 +630,11 @@
   "url" : "https://voice.twilio.com/v1/SourceIpMappings"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -293,6 +658,11 @@
   "url" : "https://voice.twilio.com/v1/Archives/id1/Calls/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -316,6 +686,11 @@
   "url" : "https://voice.twilio.com/v1/ByocTrunks/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -339,6 +714,11 @@
   "url" : "https://voice.twilio.com/v1/ConnectionPolicies/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -366,6 +746,11 @@
   "url" : "https://voice.twilio.com/v1/ConnectionPolicies/id1/Targets/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -389,6 +774,11 @@
   "url" : "https://voice.twilio.com/v1/IpRecords/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -412,6 +802,107 @@
   "url" : "https://voice.twilio.com/v1/SourceIpMappings/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "cnam_lookup_enabled" : true,
+     "connection_policy_sid" : "a_connection_policy_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "from_domain_sid" : "a_from_domain_sid",
+     "sid" : "a_sid",
+     "status_callback_method" : "GET",
+     "status_callback_url" : "a_status_callback_url",
+     "url" : "a_url",
+     "voice_fallback_method" : "POST",
+     "voice_fallback_url" : "a_voice_fallback_url",
+     "voice_method" : "GET",
+     "voice_url" : "a_voice_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cnam_lookup_enabled",
+      "cnam_lookup_enabled",
+      "plain"
+     ],
+     [
+      "connection_policy_sid",
+      "connection_policy_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "from_domain_sid",
+      "from_domain_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status_callback_method",
+      "status_callback_method",
+      "plain"
+     ],
+     [
+      "status_callback_url",
+      "status_callback_url",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "voice_fallback_method",
+      "voice_fallback_method",
+      "plain"
+     ],
+     [
+      "voice_fallback_url",
+      "voice_fallback_url",
+      "plain"
+     ],
+     [
+      "voice_method",
+      "voice_method",
+      "plain"
+     ],
+     [
+      "voice_url",
+      "voice_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -435,6 +926,61 @@
   "url" : "https://voice.twilio.com/v1/ByocTrunks/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -458,6 +1004,83 @@
   "url" : "https://voice.twilio.com/v1/ConnectionPolicies/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "connection_policy_sid" : "a_connection_policy_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "enabled" : true,
+     "friendly_name" : "a_friendly_name",
+     "priority" : 898,
+     "sid" : "a_sid",
+     "target" : "a_target",
+     "url" : "a_url",
+     "weight" : 648
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "connection_policy_sid",
+      "connection_policy_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "enabled",
+      "enabled",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "priority",
+      "priority",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "target",
+      "target",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "weight",
+      "weight",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -485,6 +1108,73 @@
   "url" : "https://voice.twilio.com/v1/ConnectionPolicies/id1/Targets/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "continent" : "a_continent",
+     "country_codes" : [
+      "a_country_codes"
+     ],
+     "high_risk_special_numbers_enabled" : true,
+     "high_risk_tollfraud_numbers_enabled" : true,
+     "iso_code" : "a_iso_code",
+     "links" : {
+      "a_links" : 1
+     },
+     "low_risk_numbers_enabled" : true,
+     "name" : "a_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "continent",
+      "continent",
+      "plain"
+     ],
+     [
+      "country_codes",
+      "country_codes",
+      "plain"
+     ],
+     [
+      "high_risk_special_numbers_enabled",
+      "high_risk_special_numbers_enabled",
+      "plain"
+     ],
+     [
+      "high_risk_tollfraud_numbers_enabled",
+      "high_risk_tollfraud_numbers_enabled",
+      "plain"
+     ],
+     [
+      "iso_code",
+      "iso_code",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "low_risk_numbers_enabled",
+      "low_risk_numbers_enabled",
+      "plain"
+     ],
+     [
+      "name",
+      "name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -512,6 +1202,27 @@
   "url" : "https://voice.twilio.com/v1/DialingPermissions/Countries/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "dialing_permissions_inheritance" : true,
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "dialing_permissions_inheritance",
+      "dialing_permissions_inheritance",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -539,6 +1250,65 @@
   "url" : "https://voice.twilio.com/v1/Settings"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "cidr_prefix_length" : 1904,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "ip_address" : "a_ip_address",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cidr_prefix_length",
+      "cidr_prefix_length",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "ip_address",
+      "ip_address",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -562,6 +1332,53 @@
   "url" : "https://voice.twilio.com/v1/IpRecords/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "ip_record_sid" : "a_ip_record_sid",
+     "sid" : "a_sid",
+     "sip_domain_sid" : "a_sip_domain_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "ip_record_sid",
+      "ip_record_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sip_domain_sid",
+      "sip_domain_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -585,6 +1402,112 @@
   "url" : "https://voice.twilio.com/v1/SourceIpMappings/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "byoc_trunks" : [
+      {
+       "account_sid" : "a_account_sid",
+       "cnam_lookup_enabled" : true,
+       "connection_policy_sid" : "a_connection_policy_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "from_domain_sid" : "a_from_domain_sid",
+       "sid" : "a_sid",
+       "status_callback_method" : "GET",
+       "status_callback_url" : "a_status_callback_url",
+       "url" : "a_url",
+       "voice_fallback_method" : "POST",
+       "voice_fallback_url" : "a_voice_fallback_url",
+       "voice_method" : "GET",
+       "voice_url" : "a_voice_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cnam_lookup_enabled",
+      "cnam_lookup_enabled",
+      "plain"
+     ],
+     [
+      "connection_policy_sid",
+      "connection_policy_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "from_domain_sid",
+      "from_domain_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status_callback_method",
+      "status_callback_method",
+      "plain"
+     ],
+     [
+      "status_callback_url",
+      "status_callback_url",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "voice_fallback_method",
+      "voice_fallback_method",
+      "plain"
+     ],
+     [
+      "voice_fallback_url",
+      "voice_fallback_url",
+      "plain"
+     ],
+     [
+      "voice_method",
+      "voice_method",
+      "plain"
+     ],
+     [
+      "voice_url",
+      "voice_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -609,6 +1532,66 @@
   "url" : "https://voice.twilio.com/v1/ByocTrunks"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "connection_policies" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -633,6 +1616,88 @@
   "url" : "https://voice.twilio.com/v1/ConnectionPolicies"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "targets" : [
+      {
+       "account_sid" : "a_account_sid",
+       "connection_policy_sid" : "a_connection_policy_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "enabled" : true,
+       "friendly_name" : "a_friendly_name",
+       "priority" : 898,
+       "sid" : "a_sid",
+       "target" : "a_target",
+       "url" : "a_url",
+       "weight" : 648
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "connection_policy_sid",
+      "connection_policy_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "enabled",
+      "enabled",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "priority",
+      "priority",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "target",
+      "target",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "weight",
+      "weight",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -661,6 +1726,78 @@
   "url" : "https://voice.twilio.com/v1/ConnectionPolicies/id1/Targets"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "content" : [
+      {
+       "continent" : "a_continent",
+       "country_codes" : [
+        "a_country_codes"
+       ],
+       "high_risk_special_numbers_enabled" : true,
+       "high_risk_tollfraud_numbers_enabled" : true,
+       "iso_code" : "a_iso_code",
+       "links" : {
+        "a_links" : 1
+       },
+       "low_risk_numbers_enabled" : true,
+       "name" : "a_name",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "continent",
+      "continent",
+      "plain"
+     ],
+     [
+      "country_codes",
+      "country_codes",
+      "plain"
+     ],
+     [
+      "high_risk_special_numbers_enabled",
+      "high_risk_special_numbers_enabled",
+      "plain"
+     ],
+     [
+      "high_risk_tollfraud_numbers_enabled",
+      "high_risk_tollfraud_numbers_enabled",
+      "plain"
+     ],
+     [
+      "iso_code",
+      "iso_code",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "low_risk_numbers_enabled",
+      "low_risk_numbers_enabled",
+      "plain"
+     ],
+     [
+      "name",
+      "name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -721,6 +1858,26 @@
   "url" : "https://voice.twilio.com/v1/DialingPermissions/Countries"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "content" : [
+      {
+       "prefix" : "a_prefix"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "prefix",
+      "prefix",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -753,6 +1910,70 @@
   "url" : "https://voice.twilio.com/v1/DialingPermissions/Countries/id1/HighRiskSpecialPrefixes"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "ip_records" : [
+      {
+       "account_sid" : "a_account_sid",
+       "cidr_prefix_length" : 1904,
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "ip_address" : "a_ip_address",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cidr_prefix_length",
+      "cidr_prefix_length",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "ip_address",
+      "ip_address",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -777,6 +1998,58 @@
   "url" : "https://voice.twilio.com/v1/IpRecords"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "source_ip_mappings" : [
+      {
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "ip_record_sid" : "a_ip_record_sid",
+       "sid" : "a_sid",
+       "sip_domain_sid" : "a_sip_domain_sid",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "ip_record_sid",
+      "ip_record_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sip_domain_sid",
+      "sip_domain_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -801,6 +2074,107 @@
   "url" : "https://voice.twilio.com/v1/SourceIpMappings"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "cnam_lookup_enabled" : true,
+     "connection_policy_sid" : "a_connection_policy_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "from_domain_sid" : "a_from_domain_sid",
+     "sid" : "a_sid",
+     "status_callback_method" : "GET",
+     "status_callback_url" : "a_status_callback_url",
+     "url" : "a_url",
+     "voice_fallback_method" : "POST",
+     "voice_fallback_url" : "a_voice_fallback_url",
+     "voice_method" : "GET",
+     "voice_url" : "a_voice_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cnam_lookup_enabled",
+      "cnam_lookup_enabled",
+      "plain"
+     ],
+     [
+      "connection_policy_sid",
+      "connection_policy_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "from_domain_sid",
+      "from_domain_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status_callback_method",
+      "status_callback_method",
+      "plain"
+     ],
+     [
+      "status_callback_url",
+      "status_callback_url",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "voice_fallback_method",
+      "voice_fallback_method",
+      "plain"
+     ],
+     [
+      "voice_fallback_url",
+      "voice_fallback_url",
+      "plain"
+     ],
+     [
+      "voice_method",
+      "voice_method",
+      "plain"
+     ],
+     [
+      "voice_url",
+      "voice_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -876,6 +2250,61 @@
   "url" : "https://voice.twilio.com/v1/ByocTrunks/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -906,6 +2335,83 @@
   "url" : "https://voice.twilio.com/v1/ConnectionPolicies/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "connection_policy_sid" : "a_connection_policy_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "enabled" : true,
+     "friendly_name" : "a_friendly_name",
+     "priority" : 898,
+     "sid" : "a_sid",
+     "target" : "a_target",
+     "url" : "a_url",
+     "weight" : 648
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "connection_policy_sid",
+      "connection_policy_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "enabled",
+      "enabled",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "priority",
+      "priority",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "target",
+      "target",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "weight",
+      "weight",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -960,6 +2466,27 @@
   "url" : "https://voice.twilio.com/v1/ConnectionPolicies/id1/Targets/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "dialing_permissions_inheritance" : true,
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "dialing_permissions_inheritance",
+      "dialing_permissions_inheritance",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -994,6 +2521,65 @@
   "url" : "https://voice.twilio.com/v1/Settings"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "cidr_prefix_length" : 1904,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "ip_address" : "a_ip_address",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cidr_prefix_length",
+      "cidr_prefix_length",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "ip_address",
+      "ip_address",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
@@ -1024,6 +2610,53 @@
   "url" : "https://voice.twilio.com/v1/IpRecords/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "ip_record_sid" : "a_ip_record_sid",
+     "sid" : "a_sid",
+     "sip_domain_sid" : "a_sip_domain_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "ip_record_sid",
+      "ip_record_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sip_domain_sid",
+      "sip_domain_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "voice",
