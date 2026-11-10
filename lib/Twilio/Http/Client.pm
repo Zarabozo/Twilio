@@ -5,6 +5,7 @@ use warnings;
 
 use Carp         qw(croak);
 use MIME::Base64 qw(encode_base64);
+use Scalar::Util qw(blessed);
 
 use Twilio::Json;
 
@@ -89,8 +90,84 @@ sub _build_body {
     return Twilio::Json::encode($data // {});
   }
 
+  if (grep { _is_file($_) } _form_values($data)) {
+    my ($boundary, $body) = _multipart($data);
+    $headers->{'Content-Type'} = "multipart/form-data; boundary=$boundary";
+    return $body;
+  }
+
   $headers->{'Content-Type'} //= 'application/x-www-form-urlencoded';
   return $self->build_query($data);
+}
+
+sub _form_values {
+  my ($data) = @_;
+  return map { ref eq 'ARRAY' ? @{$_} : $_ } values %{ $data // {} };
+}
+
+sub _is_file {
+  my ($value) = @_;
+  return blessed($value) && $value->isa('Twilio::Http::File');
+}
+
+# Keys go in sorted order, as in a form, and a list sends one part per item.
+sub _multipart {
+  my ($data) = @_;
+
+  my @parts;
+  for my $key (sort keys %{$data}) {
+    my $value = $data->{$key};
+    for my $item (grep { defined } ref $value eq 'ARRAY' ? @{$value} : $value) {
+      push @parts, _is_file($item) ? _file_part($key, $item) : _text_part($key, $item);
+    }
+  }
+
+  my $boundary = _boundary(@parts);
+  my $body     = join q{}, map { "--$boundary\r\n$_\r\n" } @parts;
+  return ($boundary, "$body--$boundary--\r\n");
+}
+
+sub _text_part {
+  my ($name, $value) = @_;
+  return _disposition($name) . "\r\n\r\n" . _utf8_bytes($value);
+}
+
+sub _file_part {
+  my ($name, $file) = @_;
+
+  my $type = $file->get_content_type // 'application/octet-stream';
+  return
+      _disposition($name)
+    . '; filename="'
+    . _quoted($file->upload_name)
+    . "\"\r\nContent-Type: $type\r\n\r\n"
+    . $file->bytes;
+}
+
+sub _disposition {
+  my ($name) = @_;
+  return 'Content-Disposition: form-data; name="' . _quoted($name) . q{"};
+}
+
+# Escaped as browsers do in a form, so a name cannot end its header or add another.
+sub _quoted {
+  my ($text) = @_;
+  my $bytes = _utf8_bytes($text);
+  $bytes =~ s/(["\r\n])/sprintf('%%%02X', ord $1)/ge;
+  return $bytes;
+}
+
+# The boundary must not occur in any part, which is checked rather than left to chance.
+sub _boundary {
+  my (@parts) = @_;
+
+  my $boundary = _random_boundary();
+  $boundary = _random_boundary() while grep { index($_, $boundary) >= 0 } @parts;
+  return $boundary;
+}
+
+sub _random_boundary {
+  return 'twilio-' . join q{}, map { sprintf '%04x', int rand 0x10000 } 1 .. 8;
 }
 
 sub _basic_auth {
@@ -182,7 +259,9 @@ C<params> or C<data> sends the key once per item, and C<undef> values are left
 out.
 
 The body is sent as a form unless the C<Content-Type> header is
-C<application/json>. The C<Authorization> header is sent on the first request
+C<application/json>. When a value of the form, or an item of a list, is a
+L<Twilio::Http::File>, the form is sent as C<multipart/form-data> instead, with
+one part per value. The C<Authorization> header is sent on the first request
 rather than after a 401 challenge.
 
 =head2 send_request
