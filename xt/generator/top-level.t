@@ -32,6 +32,47 @@ subtest 'a domain with several versions' => sub {
   ok($compiled, 'it compiles') or diag($@);
 };
 
+subtest 'a host shortcut that twilio-php does not deprecate' => sub {
+  my $organization = {
+    mount  => 'organization',
+    module => 'Twilio::Rest::Other::Versionless::Organization',
+    own    => 'organization_sid',
+  };
+  my $versionless = { %{ version('versionless') }, roots => [{ mount => 'other' }, $organization] };
+  my $domain      = Twilio::Generator::domain_model('preview_iam', [version('v1'), $versionless]);
+
+  is_deeply(
+    $domain->{shortcuts},
+    [+{ %{$organization}, version_method => 'versionless' }],
+    'it forwards to the version that has the resource'
+  );
+  my $code      = Twilio::Generator::Emit::domain($domain);
+  my $forwarder = <<'END_CODE';
+sub organization {
+  my ($self, @arguments) = @_;
+  return $self->versionless->organization(@arguments);
+}
+END_CODE
+  like($code, qr/\Q$forwarder\E/,                                               'the method');
+  like($code, qr/=head2 organization\n\nSee L<\Q$organization->{module}\E>[.]/, 'documented');
+  my $compiled = eval "no warnings qw(redefine); $code";    ## no critic (ProhibitStringyEval)
+  ok($compiled, 'it compiles') or diag($@);
+
+  is_deeply(Twilio::Generator::domain_model('other', [version('v1')])->{shortcuts},
+    [], 'other hosts have none');
+
+  for my $case (
+    ['no such version',  [version('v1')],                     qr/no version versionless/],
+    ['no such resource', [+{ %{$versionless}, roots => [] }], qr/no organization in versionless/],
+    )
+  {
+    my ($name, $versions, $error) = @{$case};
+    my $ok = eval { Twilio::Generator::domain_model('preview_iam', $versions); 1 };
+    ok(!$ok, "$name: refused");
+    like($@, $error, "$name: says why");
+  }
+};
+
 subtest 'versions of a domain must share a host' => sub {
   my $elsewhere = version('v2');
   $elsewhere->{base_url} = 'https://elsewhere.test';
