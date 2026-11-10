@@ -497,6 +497,11 @@ subtest 'shortcuts' => sub {
     transcriptions usage validation_requests
   );
   ok($client->can($_), "client has $_") for @names;
+
+  my $organization = $client->preview_iam->organization('OO1');
+  isa_ok($organization, 'Twilio::Rest::PreviewIam::Versionless::OrganizationContext');
+  is($client->preview_iam->organization('OO2')->{solution}{organization_sid},
+    'OO2', 'each organization is its own, unlike in twilio-php');
 };
 
 subtest 'update and delete on a list, create and patch on an instance' => sub {

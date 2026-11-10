@@ -1,5 +1,98 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "contact_channel_address" : "a_contact_channel_address",
+     "contact_sid" : "a_contact_sid",
+     "context" : {
+      "a_context" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "flow_sid" : "a_flow_sid",
+     "flow_version" : 1309,
+     "initiated_by" : "a_initiated_by",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "status" : "active",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "contact_channel_address",
+      "contact_channel_address",
+      "plain"
+     ],
+     [
+      "contact_sid",
+      "contact_sid",
+      "plain"
+     ],
+     [
+      "context",
+      "context",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "flow_sid",
+      "flow_sid",
+      "plain"
+     ],
+     [
+      "flow_version",
+      "flow_version",
+      "plain"
+     ],
+     [
+      "initiated_by",
+      "initiated_by",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -47,6 +140,121 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1/Executions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "author_sid" : "a_author_sid",
+     "commit_message" : "a_commit_message",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "definition" : {
+      "a_definition" : 1
+     },
+     "errors" : [
+      "a_errors"
+     ],
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "revision" : 879,
+     "sid" : "a_sid",
+     "status" : "draft",
+     "url" : "a_url",
+     "valid" : true,
+     "warnings" : [
+      "a_warnings"
+     ],
+     "webhook_url" : "a_webhook_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "author_sid",
+      "author_sid",
+      "plain"
+     ],
+     [
+      "commit_message",
+      "commit_message",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "definition",
+      "definition",
+      "plain"
+     ],
+     [
+      "errors",
+      "errors",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "valid",
+      "valid",
+      "plain"
+     ],
+     [
+      "warnings",
+      "warnings",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -100,6 +308,11 @@
   "url" : "https://studio.twilio.com/v2/Flows"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -127,6 +340,11 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1/Executions/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -150,6 +368,99 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "contact_channel_address" : "a_contact_channel_address",
+     "contact_sid" : "a_contact_sid",
+     "context" : {
+      "a_context" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "flow_sid" : "a_flow_sid",
+     "flow_version" : 1309,
+     "initiated_by" : "a_initiated_by",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "status" : "active",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "contact_channel_address",
+      "contact_channel_address",
+      "plain"
+     ],
+     [
+      "contact_sid",
+      "contact_sid",
+      "plain"
+     ],
+     [
+      "context",
+      "context",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "flow_sid",
+      "flow_sid",
+      "plain"
+     ],
+     [
+      "flow_version",
+      "flow_version",
+      "plain"
+     ],
+     [
+      "initiated_by",
+      "initiated_by",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -177,6 +488,47 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1/Executions/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "context" : {
+      "a_context" : 1
+     },
+     "execution_sid" : "a_execution_sid",
+     "flow_sid" : "a_flow_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "context",
+      "context",
+      "plain"
+     ],
+     [
+      "execution_sid",
+      "execution_sid",
+      "plain"
+     ],
+     [
+      "flow_sid",
+      "flow_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -208,6 +560,105 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1/Executions/id2/Context"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "context" : {
+      "a_context" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "execution_sid" : "a_execution_sid",
+     "flow_sid" : "a_flow_sid",
+     "links" : {
+      "a_links" : 1
+     },
+     "name" : "a_name",
+     "parent_step_sid" : "a_parent_step_sid",
+     "sid" : "a_sid",
+     "transitioned_from" : "a_transitioned_from",
+     "transitioned_to" : "a_transitioned_to",
+     "type" : "a_type",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "context",
+      "context",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "execution_sid",
+      "execution_sid",
+      "plain"
+     ],
+     [
+      "flow_sid",
+      "flow_sid",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "name",
+      "name",
+      "plain"
+     ],
+     [
+      "parent_step_sid",
+      "parent_step_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "transitioned_from",
+      "transitioned_from",
+      "plain"
+     ],
+     [
+      "transitioned_to",
+      "transitioned_to",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -239,6 +690,53 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1/Executions/id2/Steps/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "context" : {
+      "a_context" : 1
+     },
+     "execution_sid" : "a_execution_sid",
+     "flow_sid" : "a_flow_sid",
+     "step_sid" : "a_step_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "context",
+      "context",
+      "plain"
+     ],
+     [
+      "execution_sid",
+      "execution_sid",
+      "plain"
+     ],
+     [
+      "flow_sid",
+      "flow_sid",
+      "plain"
+     ],
+     [
+      "step_sid",
+      "step_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -274,6 +772,121 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1/Executions/id2/Steps/id3/Context"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "author_sid" : "a_author_sid",
+     "commit_message" : "a_commit_message",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "definition" : {
+      "a_definition" : 1
+     },
+     "errors" : [
+      "a_errors"
+     ],
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "revision" : 879,
+     "sid" : "a_sid",
+     "status" : "draft",
+     "url" : "a_url",
+     "valid" : true,
+     "warnings" : [
+      "a_warnings"
+     ],
+     "webhook_url" : "a_webhook_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "author_sid",
+      "author_sid",
+      "plain"
+     ],
+     [
+      "commit_message",
+      "commit_message",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "definition",
+      "definition",
+      "plain"
+     ],
+     [
+      "errors",
+      "errors",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "valid",
+      "valid",
+      "plain"
+     ],
+     [
+      "warnings",
+      "warnings",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -297,6 +910,99 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "author_sid" : "a_author_sid",
+     "commit_message" : "a_commit_message",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "definition" : {
+      "a_definition" : 1
+     },
+     "errors" : [
+      "a_errors"
+     ],
+     "friendly_name" : "a_friendly_name",
+     "revision" : 879,
+     "sid" : "a_sid",
+     "status" : "draft",
+     "url" : "a_url",
+     "valid" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "author_sid",
+      "author_sid",
+      "plain"
+     ],
+     [
+      "commit_message",
+      "commit_message",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "definition",
+      "definition",
+      "plain"
+     ],
+     [
+      "errors",
+      "errors",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "valid",
+      "valid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -324,6 +1030,35 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1/Revisions/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "sid" : "a_sid",
+     "test_users" : [
+      "a_test_users"
+     ],
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "test_users",
+      "test_users",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -351,6 +1086,104 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1/TestUsers"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "executions" : [
+      {
+       "account_sid" : "a_account_sid",
+       "contact_channel_address" : "a_contact_channel_address",
+       "contact_sid" : "a_contact_sid",
+       "context" : {
+        "a_context" : 1
+       },
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "flow_sid" : "a_flow_sid",
+       "flow_version" : 1309,
+       "initiated_by" : "a_initiated_by",
+       "links" : {
+        "a_links" : 1
+       },
+       "sid" : "a_sid",
+       "status" : "active",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "contact_channel_address",
+      "contact_channel_address",
+      "plain"
+     ],
+     [
+      "contact_sid",
+      "contact_sid",
+      "plain"
+     ],
+     [
+      "context",
+      "context",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "flow_sid",
+      "flow_sid",
+      "plain"
+     ],
+     [
+      "flow_version",
+      "flow_version",
+      "plain"
+     ],
+     [
+      "initiated_by",
+      "initiated_by",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -400,6 +1233,110 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1/Executions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "steps" : [
+      {
+       "account_sid" : "a_account_sid",
+       "context" : {
+        "a_context" : 1
+       },
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "execution_sid" : "a_execution_sid",
+       "flow_sid" : "a_flow_sid",
+       "links" : {
+        "a_links" : 1
+       },
+       "name" : "a_name",
+       "parent_step_sid" : "a_parent_step_sid",
+       "sid" : "a_sid",
+       "transitioned_from" : "a_transitioned_from",
+       "transitioned_to" : "a_transitioned_to",
+       "type" : "a_type",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "context",
+      "context",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "execution_sid",
+      "execution_sid",
+      "plain"
+     ],
+     [
+      "flow_sid",
+      "flow_sid",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "name",
+      "name",
+      "plain"
+     ],
+     [
+      "parent_step_sid",
+      "parent_step_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "transitioned_from",
+      "transitioned_from",
+      "plain"
+     ],
+     [
+      "transitioned_to",
+      "transitioned_to",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -432,6 +1369,126 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1/Executions/id2/Steps"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "flows" : [
+      {
+       "account_sid" : "a_account_sid",
+       "author_sid" : "a_author_sid",
+       "commit_message" : "a_commit_message",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "definition" : {
+        "a_definition" : 1
+       },
+       "errors" : [
+        "a_errors"
+       ],
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "revision" : 879,
+       "sid" : "a_sid",
+       "status" : "draft",
+       "url" : "a_url",
+       "valid" : true,
+       "warnings" : [
+        "a_warnings"
+       ],
+       "webhook_url" : "a_webhook_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "author_sid",
+      "author_sid",
+      "plain"
+     ],
+     [
+      "commit_message",
+      "commit_message",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "definition",
+      "definition",
+      "plain"
+     ],
+     [
+      "errors",
+      "errors",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "valid",
+      "valid",
+      "plain"
+     ],
+     [
+      "warnings",
+      "warnings",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -456,6 +1513,104 @@
   "url" : "https://studio.twilio.com/v2/Flows"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "revisions" : [
+      {
+       "account_sid" : "a_account_sid",
+       "author_sid" : "a_author_sid",
+       "commit_message" : "a_commit_message",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "definition" : {
+        "a_definition" : 1
+       },
+       "errors" : [
+        "a_errors"
+       ],
+       "friendly_name" : "a_friendly_name",
+       "revision" : 879,
+       "sid" : "a_sid",
+       "status" : "draft",
+       "url" : "a_url",
+       "valid" : true
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "author_sid",
+      "author_sid",
+      "plain"
+     ],
+     [
+      "commit_message",
+      "commit_message",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "definition",
+      "definition",
+      "plain"
+     ],
+     [
+      "errors",
+      "errors",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "valid",
+      "valid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -484,6 +1639,99 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1/Revisions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "contact_channel_address" : "a_contact_channel_address",
+     "contact_sid" : "a_contact_sid",
+     "context" : {
+      "a_context" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "flow_sid" : "a_flow_sid",
+     "flow_version" : 1309,
+     "initiated_by" : "a_initiated_by",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "status" : "active",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "contact_channel_address",
+      "contact_channel_address",
+      "plain"
+     ],
+     [
+      "contact_sid",
+      "contact_sid",
+      "plain"
+     ],
+     [
+      "context",
+      "context",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "flow_sid",
+      "flow_sid",
+      "plain"
+     ],
+     [
+      "flow_version",
+      "flow_version",
+      "plain"
+     ],
+     [
+      "initiated_by",
+      "initiated_by",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -518,6 +1766,121 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1/Executions/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "author_sid" : "a_author_sid",
+     "commit_message" : "a_commit_message",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "definition" : {
+      "a_definition" : 1
+     },
+     "errors" : [
+      "a_errors"
+     ],
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "revision" : 879,
+     "sid" : "a_sid",
+     "status" : "draft",
+     "url" : "a_url",
+     "valid" : true,
+     "warnings" : [
+      "a_warnings"
+     ],
+     "webhook_url" : "a_webhook_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "author_sid",
+      "author_sid",
+      "plain"
+     ],
+     [
+      "commit_message",
+      "commit_message",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "definition",
+      "definition",
+      "plain"
+     ],
+     [
+      "errors",
+      "errors",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "revision",
+      "revision",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "valid",
+      "valid",
+      "plain"
+     ],
+     [
+      "warnings",
+      "warnings",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -571,6 +1934,21 @@
   "url" : "https://studio.twilio.com/v2/Flows/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "valid" : true
+    },
+    "fields" : [
+     [
+      "valid",
+      "valid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",
@@ -619,6 +1997,35 @@
   "url" : "https://studio.twilio.com/v2/Flows/Validate"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "sid" : "a_sid",
+     "test_users" : [
+      "a_test_users"
+     ],
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "test_users",
+      "test_users",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "studio",

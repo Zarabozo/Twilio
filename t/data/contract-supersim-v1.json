@@ -1,5 +1,100 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "activation_code" : "a_activation_code",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "eid" : "a_eid",
+     "error_code" : "a_error_code",
+     "error_message" : "a_error_message",
+     "iccid" : "a_iccid",
+     "matching_id" : "a_matching_id",
+     "sid" : "a_sid",
+     "sim_sid" : "a_sim_sid",
+     "smdp_plus_address" : "a_smdp_plus_address",
+     "status" : "installed",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "activation_code",
+      "activation_code",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "eid",
+      "eid",
+      "plain"
+     ],
+     [
+      "error_code",
+      "error_code",
+      "plain"
+     ],
+     [
+      "error_message",
+      "error_message",
+      "plain"
+     ],
+     [
+      "iccid",
+      "iccid",
+      "plain"
+     ],
+     [
+      "matching_id",
+      "matching_id",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "smdp_plus_address",
+      "smdp_plus_address",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -45,6 +140,107 @@
   "url" : "https://supersim.twilio.com/v1/ESimProfiles"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "data_enabled" : true,
+     "data_limit" : 1048,
+     "data_metering" : "payg",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "ip_commands_method" : "GET",
+     "ip_commands_url" : "a_ip_commands_url",
+     "network_access_profile_sid" : "a_network_access_profile_sid",
+     "sid" : "a_sid",
+     "sms_commands_enabled" : true,
+     "sms_commands_method" : "GET",
+     "sms_commands_url" : "a_sms_commands_url",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "data_enabled",
+      "data_enabled",
+      "plain"
+     ],
+     [
+      "data_limit",
+      "data_limit",
+      "plain"
+     ],
+     [
+      "data_metering",
+      "data_metering",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "ip_commands_method",
+      "ip_commands_method",
+      "plain"
+     ],
+     [
+      "ip_commands_url",
+      "ip_commands_url",
+      "plain"
+     ],
+     [
+      "network_access_profile_sid",
+      "network_access_profile_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sms_commands_enabled",
+      "sms_commands_enabled",
+      "plain"
+     ],
+     [
+      "sms_commands_method",
+      "sms_commands_method",
+      "plain"
+     ],
+     [
+      "sms_commands_url",
+      "sms_commands_url",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -116,6 +312,95 @@
   "url" : "https://supersim.twilio.com/v1/Fleets"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "device_ip" : "a_device_ip",
+     "device_port" : 1172,
+     "direction" : "from_sim",
+     "payload" : "a_payload",
+     "payload_type" : "binary",
+     "sid" : "a_sid",
+     "sim_iccid" : "a_sim_iccid",
+     "sim_sid" : "a_sim_sid",
+     "status" : "queued",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "device_ip",
+      "device_ip",
+      "plain"
+     ],
+     [
+      "device_port",
+      "device_port",
+      "plain"
+     ],
+     [
+      "direction",
+      "direction",
+      "plain"
+     ],
+     [
+      "payload",
+      "payload",
+      "plain"
+     ],
+     [
+      "payload_type",
+      "payload_type",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_iccid",
+      "sim_iccid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -172,6 +457,61 @@
   "url" : "https://supersim.twilio.com/v1/IpCommands"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -214,6 +554,53 @@
   "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "friendly_name" : "a_friendly_name",
+     "identifiers" : [
+      "a_identifiers"
+     ],
+     "iso_country" : "a_iso_country",
+     "network_access_profile_sid" : "a_network_access_profile_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identifiers",
+      "identifiers",
+      "plain"
+     ],
+     [
+      "iso_country",
+      "iso_country",
+      "plain"
+     ],
+     [
+      "network_access_profile_sid",
+      "network_access_profile_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -248,6 +635,79 @@
   "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles/id1/Networks"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "fleet_sid" : "a_fleet_sid",
+     "iccid" : "a_iccid",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "status" : "ready",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "fleet_sid",
+      "fleet_sid",
+      "plain"
+     ],
+     [
+      "iccid",
+      "iccid",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -283,6 +743,71 @@
   "url" : "https://supersim.twilio.com/v1/Sims"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "direction" : "from_sim",
+     "payload" : "a_payload",
+     "sid" : "a_sid",
+     "sim_sid" : "a_sim_sid",
+     "status" : "sent",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "direction",
+      "direction",
+      "plain"
+     ],
+     [
+      "payload",
+      "payload",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -329,6 +854,11 @@
   "url" : "https://supersim.twilio.com/v1/SmsCommands"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -356,6 +886,101 @@
   "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles/id1/Networks/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "activation_code" : "a_activation_code",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "eid" : "a_eid",
+     "error_code" : "a_error_code",
+     "error_message" : "a_error_message",
+     "iccid" : "a_iccid",
+     "matching_id" : "a_matching_id",
+     "sid" : "a_sid",
+     "sim_sid" : "a_sim_sid",
+     "smdp_plus_address" : "a_smdp_plus_address",
+     "status" : "installed",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "activation_code",
+      "activation_code",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "eid",
+      "eid",
+      "plain"
+     ],
+     [
+      "error_code",
+      "error_code",
+      "plain"
+     ],
+     [
+      "error_message",
+      "error_message",
+      "plain"
+     ],
+     [
+      "iccid",
+      "iccid",
+      "plain"
+     ],
+     [
+      "matching_id",
+      "matching_id",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "smdp_plus_address",
+      "smdp_plus_address",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -379,6 +1004,107 @@
   "url" : "https://supersim.twilio.com/v1/ESimProfiles/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "data_enabled" : true,
+     "data_limit" : 1048,
+     "data_metering" : "payg",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "ip_commands_method" : "GET",
+     "ip_commands_url" : "a_ip_commands_url",
+     "network_access_profile_sid" : "a_network_access_profile_sid",
+     "sid" : "a_sid",
+     "sms_commands_enabled" : true,
+     "sms_commands_method" : "GET",
+     "sms_commands_url" : "a_sms_commands_url",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "data_enabled",
+      "data_enabled",
+      "plain"
+     ],
+     [
+      "data_limit",
+      "data_limit",
+      "plain"
+     ],
+     [
+      "data_metering",
+      "data_metering",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "ip_commands_method",
+      "ip_commands_method",
+      "plain"
+     ],
+     [
+      "ip_commands_url",
+      "ip_commands_url",
+      "plain"
+     ],
+     [
+      "network_access_profile_sid",
+      "network_access_profile_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sms_commands_enabled",
+      "sms_commands_enabled",
+      "plain"
+     ],
+     [
+      "sms_commands_method",
+      "sms_commands_method",
+      "plain"
+     ],
+     [
+      "sms_commands_url",
+      "sms_commands_url",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -402,6 +1128,95 @@
   "url" : "https://supersim.twilio.com/v1/Fleets/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "device_ip" : "a_device_ip",
+     "device_port" : 1172,
+     "direction" : "from_sim",
+     "payload" : "a_payload",
+     "payload_type" : "binary",
+     "sid" : "a_sid",
+     "sim_iccid" : "a_sim_iccid",
+     "sim_sid" : "a_sim_sid",
+     "status" : "queued",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "device_ip",
+      "device_ip",
+      "plain"
+     ],
+     [
+      "device_port",
+      "device_port",
+      "plain"
+     ],
+     [
+      "direction",
+      "direction",
+      "plain"
+     ],
+     [
+      "payload",
+      "payload",
+      "plain"
+     ],
+     [
+      "payload_type",
+      "payload_type",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_iccid",
+      "sim_iccid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -425,6 +1240,47 @@
   "url" : "https://supersim.twilio.com/v1/IpCommands/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "friendly_name" : "a_friendly_name",
+     "identifiers" : [
+      "a_identifiers"
+     ],
+     "iso_country" : "a_iso_country",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identifiers",
+      "identifiers",
+      "plain"
+     ],
+     [
+      "iso_country",
+      "iso_country",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -448,6 +1304,61 @@
   "url" : "https://supersim.twilio.com/v1/Networks/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -471,6 +1382,53 @@
   "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "friendly_name" : "a_friendly_name",
+     "identifiers" : [
+      "a_identifiers"
+     ],
+     "iso_country" : "a_iso_country",
+     "network_access_profile_sid" : "a_network_access_profile_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identifiers",
+      "identifiers",
+      "plain"
+     ],
+     [
+      "iso_country",
+      "iso_country",
+      "plain"
+     ],
+     [
+      "network_access_profile_sid",
+      "network_access_profile_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -498,6 +1456,79 @@
   "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles/id1/Networks/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "fleet_sid" : "a_fleet_sid",
+     "iccid" : "a_iccid",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "status" : "ready",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "fleet_sid",
+      "fleet_sid",
+      "plain"
+     ],
+     [
+      "iccid",
+      "iccid",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -521,6 +1552,71 @@
   "url" : "https://supersim.twilio.com/v1/Sims/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "direction" : "from_sim",
+     "payload" : "a_payload",
+     "sid" : "a_sid",
+     "sim_sid" : "a_sim_sid",
+     "status" : "sent",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "direction",
+      "direction",
+      "plain"
+     ],
+     [
+      "payload",
+      "payload",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -544,6 +1640,72 @@
   "url" : "https://supersim.twilio.com/v1/SmsCommands/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "billing_periods" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "end_time" : "2026-01-26T03:04:05Z",
+       "period_type" : "ready",
+       "sid" : "a_sid",
+       "sim_sid" : "a_sim_sid",
+       "start_time" : "2026-01-21T03:04:05Z"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "end_time",
+      "end_time",
+      "date",
+      1769396645
+     ],
+     [
+      "period_type",
+      "period_type",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "start_time",
+      "start_time",
+      "date",
+      1768964645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -572,6 +1734,106 @@
   "url" : "https://supersim.twilio.com/v1/Sims/id1/BillingPeriods"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "esim_profiles" : [
+      {
+       "account_sid" : "a_account_sid",
+       "activation_code" : "a_activation_code",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "eid" : "a_eid",
+       "error_code" : "a_error_code",
+       "error_message" : "a_error_message",
+       "iccid" : "a_iccid",
+       "matching_id" : "a_matching_id",
+       "sid" : "a_sid",
+       "sim_sid" : "a_sim_sid",
+       "smdp_plus_address" : "a_smdp_plus_address",
+       "status" : "installed",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "activation_code",
+      "activation_code",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "eid",
+      "eid",
+      "plain"
+     ],
+     [
+      "error_code",
+      "error_code",
+      "plain"
+     ],
+     [
+      "error_message",
+      "error_message",
+      "plain"
+     ],
+     [
+      "iccid",
+      "iccid",
+      "plain"
+     ],
+     [
+      "matching_id",
+      "matching_id",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "smdp_plus_address",
+      "smdp_plus_address",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -613,6 +1875,112 @@
   "url" : "https://supersim.twilio.com/v1/ESimProfiles"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "fleets" : [
+      {
+       "account_sid" : "a_account_sid",
+       "data_enabled" : true,
+       "data_limit" : 1048,
+       "data_metering" : "payg",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "ip_commands_method" : "GET",
+       "ip_commands_url" : "a_ip_commands_url",
+       "network_access_profile_sid" : "a_network_access_profile_sid",
+       "sid" : "a_sid",
+       "sms_commands_enabled" : true,
+       "sms_commands_method" : "GET",
+       "sms_commands_url" : "a_sms_commands_url",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "data_enabled",
+      "data_enabled",
+      "plain"
+     ],
+     [
+      "data_limit",
+      "data_limit",
+      "plain"
+     ],
+     [
+      "data_metering",
+      "data_metering",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "ip_commands_method",
+      "ip_commands_method",
+      "plain"
+     ],
+     [
+      "ip_commands_url",
+      "ip_commands_url",
+      "plain"
+     ],
+     [
+      "network_access_profile_sid",
+      "network_access_profile_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sms_commands_enabled",
+      "sms_commands_enabled",
+      "plain"
+     ],
+     [
+      "sms_commands_method",
+      "sms_commands_method",
+      "plain"
+     ],
+     [
+      "sms_commands_url",
+      "sms_commands_url",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -644,6 +2012,100 @@
   "url" : "https://supersim.twilio.com/v1/Fleets"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "ip_commands" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "device_ip" : "a_device_ip",
+       "device_port" : 1172,
+       "direction" : "from_sim",
+       "payload" : "a_payload",
+       "payload_type" : "binary",
+       "sid" : "a_sid",
+       "sim_iccid" : "a_sim_iccid",
+       "sim_sid" : "a_sim_sid",
+       "status" : "queued",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "device_ip",
+      "device_ip",
+      "plain"
+     ],
+     [
+      "device_port",
+      "device_port",
+      "plain"
+     ],
+     [
+      "direction",
+      "direction",
+      "plain"
+     ],
+     [
+      "payload",
+      "payload",
+      "plain"
+     ],
+     [
+      "payload_type",
+      "payload_type",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_iccid",
+      "sim_iccid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -690,6 +2152,52 @@
   "url" : "https://supersim.twilio.com/v1/IpCommands"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "networks" : [
+      {
+       "friendly_name" : "a_friendly_name",
+       "identifiers" : [
+        "a_identifiers"
+       ],
+       "iso_country" : "a_iso_country",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identifiers",
+      "identifiers",
+      "plain"
+     ],
+     [
+      "iso_country",
+      "iso_country",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -731,6 +2239,66 @@
   "url" : "https://supersim.twilio.com/v1/Networks"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "network_access_profiles" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "links" : {
+        "a_links" : 1
+       },
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -755,6 +2323,58 @@
   "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "networks" : [
+      {
+       "friendly_name" : "a_friendly_name",
+       "identifiers" : [
+        "a_identifiers"
+       ],
+       "iso_country" : "a_iso_country",
+       "network_access_profile_sid" : "a_network_access_profile_sid",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identifiers",
+      "identifiers",
+      "plain"
+     ],
+     [
+      "iso_country",
+      "iso_country",
+      "plain"
+     ],
+     [
+      "network_access_profile_sid",
+      "network_access_profile_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -783,6 +2403,73 @@
   "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles/id1/Networks"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "settings_updates" : [
+      {
+       "date_completed" : "2026-01-11T03:04:05Z",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "iccid" : "a_iccid",
+       "packages" : [
+        "a_packages"
+       ],
+       "sid" : "a_sid",
+       "sim_sid" : "a_sim_sid",
+       "status" : "scheduled"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "date_completed",
+      "date_completed",
+      "date",
+      1768100645
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "iccid",
+      "iccid",
+      "plain"
+     ],
+     [
+      "packages",
+      "packages",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -819,6 +2506,84 @@
   "url" : "https://supersim.twilio.com/v1/SettingsUpdates"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "sims" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "fleet_sid" : "a_fleet_sid",
+       "iccid" : "a_iccid",
+       "links" : {
+        "a_links" : 1
+       },
+       "sid" : "a_sid",
+       "status" : "ready",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "fleet_sid",
+      "fleet_sid",
+      "plain"
+     ],
+     [
+      "iccid",
+      "iccid",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -860,6 +2625,32 @@
   "url" : "https://supersim.twilio.com/v1/Sims"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "ip_addresses" : [
+      {
+       "ip_address" : "a_ip_address",
+       "ip_address_version" : "IPv6"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "ip_address",
+      "ip_address",
+      "plain"
+     ],
+     [
+      "ip_address_version",
+      "ip_address_version",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -888,6 +2679,76 @@
   "url" : "https://supersim.twilio.com/v1/Sims/id1/IpAddresses"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "sms_commands" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "direction" : "from_sim",
+       "payload" : "a_payload",
+       "sid" : "a_sid",
+       "sim_sid" : "a_sim_sid",
+       "status" : "sent",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "direction",
+      "direction",
+      "plain"
+     ],
+     [
+      "payload",
+      "payload",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -929,6 +2790,88 @@
   "url" : "https://supersim.twilio.com/v1/SmsCommands"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "usage_records" : [
+      {
+       "account_sid" : "a_account_sid",
+       "billed_unit" : "a_billed_unit",
+       "data_download" : 1361,
+       "data_total" : 1053,
+       "data_total_billed" : 1768.5,
+       "data_upload" : 1150,
+       "fleet_sid" : "a_fleet_sid",
+       "iso_country" : "a_iso_country",
+       "network_sid" : "a_network_sid",
+       "period" : {
+        "a_period" : 1
+       },
+       "sim_sid" : "a_sim_sid"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "billed_unit",
+      "billed_unit",
+      "plain"
+     ],
+     [
+      "data_download",
+      "data_download",
+      "plain"
+     ],
+     [
+      "data_total",
+      "data_total",
+      "plain"
+     ],
+     [
+      "data_total_billed",
+      "data_total_billed",
+      "plain"
+     ],
+     [
+      "data_upload",
+      "data_upload",
+      "plain"
+     ],
+     [
+      "fleet_sid",
+      "fleet_sid",
+      "plain"
+     ],
+     [
+      "iso_country",
+      "iso_country",
+      "plain"
+     ],
+     [
+      "network_sid",
+      "network_sid",
+      "plain"
+     ],
+     [
+      "period",
+      "period",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -999,6 +2942,107 @@
   "url" : "https://supersim.twilio.com/v1/UsageRecords"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "data_enabled" : true,
+     "data_limit" : 1048,
+     "data_metering" : "payg",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "ip_commands_method" : "GET",
+     "ip_commands_url" : "a_ip_commands_url",
+     "network_access_profile_sid" : "a_network_access_profile_sid",
+     "sid" : "a_sid",
+     "sms_commands_enabled" : true,
+     "sms_commands_method" : "GET",
+     "sms_commands_url" : "a_sms_commands_url",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "data_enabled",
+      "data_enabled",
+      "plain"
+     ],
+     [
+      "data_limit",
+      "data_limit",
+      "plain"
+     ],
+     [
+      "data_metering",
+      "data_metering",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "ip_commands_method",
+      "ip_commands_method",
+      "plain"
+     ],
+     [
+      "ip_commands_url",
+      "ip_commands_url",
+      "plain"
+     ],
+     [
+      "network_access_profile_sid",
+      "network_access_profile_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sms_commands_enabled",
+      "sms_commands_enabled",
+      "plain"
+     ],
+     [
+      "sms_commands_method",
+      "sms_commands_method",
+      "plain"
+     ],
+     [
+      "sms_commands_url",
+      "sms_commands_url",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -1059,6 +3103,61 @@
   "url" : "https://supersim.twilio.com/v1/Fleets/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "supersim",
@@ -1089,6 +3188,150 @@
   "url" : "https://supersim.twilio.com/v1/NetworkAccessProfiles/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "fleet_sid" : "a_fleet_sid",
+     "iccid" : "a_iccid",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "status" : "ready",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "fleet_sid",
+      "fleet_sid",
+      "plain"
+     ],
+     [
+      "iccid",
+      "iccid",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   },
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "fleet_sid" : "a_fleet_sid",
+     "iccid" : "a_iccid",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "status" : "ready",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "fleet_sid",
+      "fleet_sid",
+      "plain"
+     ],
+     [
+      "iccid",
+      "iccid",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "chain" : [
    [
     "supersim",
