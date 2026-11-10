@@ -27,6 +27,11 @@ sub versionless {
   return Twilio::Rest::PreviewIam::Versionless->new($self);
 }
 
+sub organization {
+  my ($self, @arguments) = @_;
+  return $self->versionless->organization(@arguments);
+}
+
 1;
 
 __END__
@@ -54,6 +59,10 @@ Returns L<Twilio::Rest::PreviewIam::V1>.
 =head2 versionless
 
 Returns L<Twilio::Rest::PreviewIam::Versionless>.
+
+=head2 organization
+
+See L<Twilio::Rest::PreviewIam::Versionless::Organization>.
 
 =head1 LICENSE
 
