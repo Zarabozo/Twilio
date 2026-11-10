@@ -6,6 +6,7 @@ use Test::More;
 use Time::Piece ();
 
 use Twilio::Http::FakeClient;
+use Twilio::Http::File;
 use Twilio::Json;
 use Twilio::Rest::Client;
 
@@ -445,6 +446,30 @@ subtest 'a JSON body' => sub {
     'with the names the caller wrote'
   );
   is($app->sid, 'OQ1', 'the record');
+};
+
+subtest 'a file sends the form as multipart' => sub {
+  my ($client, $http) = client();
+  $http->mock(201, { inquiry_id => 'IN1' });
+
+  my $inquiry = $client->trusthub->v1->compliance_registration_inquiries->create(
+    'business',
+    'local',
+    {
+      file         => Twilio::Http::File->new('id.pdf', "%PDF\xFF", 'application/pdf'),
+      file_name    => 'id.pdf',
+      is_isv_embed => 1,
+    }
+  );
+  my $request = ($http->requests)[-1];
+  like($request->{headers}{'Content-Type'}, qr{\Amultipart/form-data; boundary=}, 'multipart');
+  my $content = $request->{content};
+  ok(index($content, qq{name="File"; filename="id.pdf"\r\nContent-Type: application/pdf}) >= 0,
+    'the file');
+  ok(index($content, "\r\n\r\n%PDF\xFF\r\n") >= 0,                     'with its bytes');
+  ok(index($content, qq{name="EndUserType"\r\n\r\nbusiness\r\n}) >= 0, 'a required value');
+  ok(index($content, qq{name="IsIsvEmbed"\r\n\r\ntrue\r\n}) >= 0,      'a converted option');
+  is($inquiry->inquiry_id, 'IN1', 'the record');
 };
 
 subtest 'a required value with the name of a variable' => sub {
