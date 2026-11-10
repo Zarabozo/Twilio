@@ -3,7 +3,8 @@ package Twilio::Base::BaseClient;
 use 5.016;
 use warnings;
 
-use POSIX ();
+use POSIX        ();
+use Scalar::Util qw(blessed);
 
 use Twilio;
 use Twilio::Exceptions::ConfigurationException;
@@ -43,6 +44,8 @@ sub new {
   $self->{edge}      = $self->get_arg($options->{edge},   $ENV_EDGE);
   $self->{log_level} = $self->get_arg(undef,              $ENV_LOG_LEVEL);
   $self->set_max_retries($options->{max_retries});
+  $self->set_credential_provider($options->{credential_provider})
+    if $options->{credential_provider};
 
   return $self;
 }
@@ -58,10 +61,15 @@ sub request {
   $options //= {};
   $method = uc $method;
 
+  # A username and password win over a provider, as in twilio-php. Setting a provider clears the
+  # client's own, so they only apply when given again, to the client or to one request.
   my $username = $options->{username} || $self->get_username;
   my $password = $options->{password} || $self->get_password;
-  Twilio::Exceptions::ConfigurationException->throw('username is required') if !$username;
-  Twilio::Exceptions::ConfigurationException->throw('password is required') if !$password;
+  my $strategy = $username && $password ? undef : $self->_auth_strategy;
+  if (!$strategy) {
+    Twilio::Exceptions::ConfigurationException->throw('username is required') if !$username;
+    Twilio::Exceptions::ConfigurationException->throw('password is required') if !$password;
+  }
 
   # Header options the caller did not set are left out, like any other option.
   my %headers =
@@ -72,6 +80,12 @@ sub request {
 
   # Delete responses have no body to negotiate.
   $headers{Accept} //= 'application/json' if $method ne 'DELETE';
+
+  # An Authorization header from the caller is Flex Insights' own token, and it is sent instead.
+  my $given = grep { lc eq 'authorization' } keys %headers;
+  if ($strategy && $strategy->requires_authentication && !$given) {
+    $headers{Authorization} = $strategy->get_auth_string($self);
+  }
 
   return $self->_send_with_retries(
     $method,
@@ -177,6 +191,39 @@ sub validate_ssl_certificate {
     Twilio::Exceptions::TwilioException->throw('Failed to validate SSL certificate');
   }
   return 1;
+}
+
+sub _auth_strategy {
+  my ($self) = @_;
+  my $provider = $self->get_credential_provider or return;
+  return $provider->to_auth_strategy;
+}
+
+sub get_credential_provider { return $_[0]{credential_provider} }
+sub get_environment         { return $_[0]{environment} }
+
+sub set_credential_provider {
+  my ($self, $credential_provider) = @_;
+  if (!blessed($credential_provider) || !$credential_provider->can('to_auth_strategy')) {
+    Twilio::Exceptions::ConfigurationException->throw(
+      'credential_provider must be a Twilio::CredentialProvider::CredentialProvider');
+  }
+  $self->{credential_provider} = $credential_provider;
+  $self->invalidate_basic_auth;
+  return;
+}
+
+sub invalidate_basic_auth {
+  my ($self) = @_;
+  $self->{username} = undef;
+  $self->{password} = undef;
+  return;
+}
+
+sub invalidate_oauth {
+  my ($self) = @_;
+  $self->{credential_provider} = undef;
+  return;
 }
 
 sub get_username    { return $_[0]{username} }
@@ -299,7 +346,15 @@ C<TWILIO_AUTH_TOKEN> environment variables. The options are:
 =item account_sid
 
 The account to act on, which defaults to C<$username>. It is required with an
-API key.
+API key, and with a credential provider for account resources such as
+C<< $client->messages >>.
+
+=item credential_provider
+
+A L<Twilio::CredentialProvider::CredentialProvider> that authenticates requests
+instead of the username and password, such as
+L<Twilio::CredentialProvider::ClientCredentialProvider> for OAuth. See
+L</set_credential_provider>.
 
 =item region, edge
 
@@ -346,9 +401,10 @@ response is returned too.
 
 Sends a request and returns a L<Twilio::Http::Response>. The options are those
 of L<Twilio::Http::Client/request>. C<username> and C<password> default to the
-client's credentials. It throws L<Twilio::Exceptions::ConfigurationException>
-when there are no credentials. It does not treat HTTP error statuses as
-exceptions.
+client's credentials. Without both, the credential provider authenticates the
+request, unless the request has its own C<Authorization> header. It throws
+L<Twilio::Exceptions::ConfigurationException> when there are no credentials.
+It does not treat HTTP error statuses as exceptions.
 
 =head2 build_uri
 
@@ -370,6 +426,28 @@ client's own. Throws L<Twilio::Exceptions::TwilioException> on a bad response.
   my $value = $client->get_arg($value, $environment_variable);
 
 Returns the value if it is not empty, and otherwise the environment variable.
+
+=head2 set_credential_provider
+
+  $client->set_credential_provider($provider);
+
+Authenticates requests with C<$provider>, and clears the username and password,
+as twilio-php does. The account SID is kept. A username and password set again
+later, or given to one request, are used instead of the provider. It throws
+L<Twilio::Exceptions::ConfigurationException> when C<$provider> is not a
+credential provider.
+
+=head2 invalidate_basic_auth
+
+Clears the username and password.
+
+=head2 invalidate_oauth
+
+Removes the credential provider. Requests then need a username and password.
+
+=head2 get_credential_provider
+
+=head2 get_environment
 
 =head2 get_username
 
