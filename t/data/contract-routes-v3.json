@@ -1,5 +1,64 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "accountSid" : "a_accountSid",
+     "dateCreated" : "2026-01-19T03:04:05Z",
+     "dateUpdated" : "2026-01-06T03:04:05Z",
+     "friendlyName" : "a_friendlyName",
+     "messagingRegion" : "a_messagingRegion",
+     "phoneNumber" : "a_phoneNumber",
+     "url" : "a_url",
+     "voiceRegion" : "a_voiceRegion"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "accountSid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "dateCreated",
+      "date",
+      1768791845
+     ],
+     [
+      "date_updated",
+      "dateUpdated",
+      "date",
+      1767668645
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "messaging_region",
+      "messagingRegion",
+      "plain"
+     ],
+     [
+      "phone_number",
+      "phoneNumber",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "voice_region",
+      "voiceRegion",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "routes",
@@ -23,6 +82,65 @@
   "url" : "https://routes.twilio.com/v3/PhoneNumbers/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "accountSid" : "a_accountSid",
+     "dateCreated" : "2026-01-19T03:04:05Z",
+     "dateUpdated" : "2026-01-06T03:04:05Z",
+     "friendlyName" : "a_friendlyName",
+     "isoCountryCode" : "a_isoCountryCode",
+     "messagingRegion" : "a_messagingRegion",
+     "shortCode" : "a_shortCode",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "accountSid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "dateCreated",
+      "date",
+      1768791845
+     ],
+     [
+      "date_updated",
+      "dateUpdated",
+      "date",
+      1767668645
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "iso_country_code",
+      "isoCountryCode",
+      "plain"
+     ],
+     [
+      "messaging_region",
+      "messagingRegion",
+      "plain"
+     ],
+     [
+      "short_code",
+      "shortCode",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "routes",
@@ -46,6 +164,65 @@
   "url" : "https://routes.twilio.com/v3/ShortCodes/id1/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "accountSid" : "a_accountSid",
+     "dateCreated" : "2026-01-19T03:04:05Z",
+     "dateUpdated" : "2026-01-06T03:04:05Z",
+     "friendlyName" : "a_friendlyName",
+     "messagingRegion" : "a_messagingRegion",
+     "phoneNumber" : "a_phoneNumber",
+     "url" : "a_url",
+     "voiceRegion" : "a_voiceRegion"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "accountSid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "dateCreated",
+      "date",
+      1768791845
+     ],
+     [
+      "date_updated",
+      "dateUpdated",
+      "date",
+      1767668645
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "messaging_region",
+      "messagingRegion",
+      "plain"
+     ],
+     [
+      "phone_number",
+      "phoneNumber",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "voice_region",
+      "voiceRegion",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "routes",
@@ -86,6 +263,65 @@
   "url" : "https://routes.twilio.com/v3/PhoneNumbers/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "accountSid" : "a_accountSid",
+     "dateCreated" : "2026-01-19T03:04:05Z",
+     "dateUpdated" : "2026-01-06T03:04:05Z",
+     "friendlyName" : "a_friendlyName",
+     "isoCountryCode" : "a_isoCountryCode",
+     "messagingRegion" : "a_messagingRegion",
+     "shortCode" : "a_shortCode",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "accountSid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "dateCreated",
+      "date",
+      1768791845
+     ],
+     [
+      "date_updated",
+      "dateUpdated",
+      "date",
+      1767668645
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "iso_country_code",
+      "isoCountryCode",
+      "plain"
+     ],
+     [
+      "messaging_region",
+      "messagingRegion",
+      "plain"
+     ],
+     [
+      "short_code",
+      "shortCode",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "routes",

@@ -185,6 +185,110 @@ subtest 'a child can leave out an id of its parent' => sub {
   is($entries{FetchTotal}{url}, 'https://demo.test/v1/Things/Totals.json', 'with no id in the URL');
 };
 
+subtest 'what each field of an answer must read' => sub {
+  my $document = document();
+  $document->{components}{schemas}{thing}{properties} = {
+    sid          => { type => 'string' },
+    friendlyName => { type => 'string' },
+    active       => { type => 'boolean' },
+    size         => { type => 'integer' },
+    amount       => { type => 'number' },
+    tags         => { type => 'array', items => { type => 'string' } },
+    config       => { type => 'object' },
+    free         => {},
+    mode         => { '$ref' => '#/components/schemas/thing_enum_mode' },
+    created      => { type   => 'string', format => 'date-time' },
+    sent         => { type   => 'string', format => 'date-time-rfc-2822' },
+    day          => { type   => 'string', format => 'date' },
+    capabilities => { type   => 'object', format => 'phone-number-capabilities' },
+  };
+  my %entries = map { $_->{id} => $_ } @{ entries($document) };
+
+  my ($answer) = @{ $entries{FetchThing}{answers} };
+  is($answer->{status}, 200, 'the status');
+  my %field = map { $_->[1] => $_ } @{ $answer->{fields} };
+  my $body  = $answer->{body};
+
+  is_deeply(
+    $field{friendlyName},
+    ['friendly_name', 'friendlyName', 'plain'],
+    'a camelCase field has a snake_case method'
+  );
+  is($body->{friendlyName}, 'a_friendlyName', 'text is named after its field');
+  ok(JSON::PP::is_bool($body->{active}) && $body->{active}, 'a boolean');
+  like($body->{size},   qr/\A[0-9]+\z/,     'an integer');
+  like($body->{amount}, qr/\A[0-9]+[.]5\z/, 'a number');
+  is_deeply($body->{tags},   ['a_tags'], 'an array');
+  is_deeply($body->{config}, { a_config => 1 }, 'an object');
+  is_deeply($body->{free},   { a_free   => 1 }, 'a value of no type');
+  like($body->{mode}, qr/\A(?:fast|slow)\z/, 'one of the choices of an enum');
+
+  my %epoch = map { $_ => $field{$_}[3] } qw(created sent day);
+  is($field{$_}[2], 'date', "$_ is read as a date") for sort keys %epoch;
+  like($body->{created}, qr/\A2026-01-\d\dT03:04:05Z\z/, 'ISO 8601 date and time');
+  is($epoch{created}, iso_epoch($body->{created}), 'with its epoch');
+  like($body->{sent}, qr/\A[A-Z][a-z]{2}, \d\d Jan 2026 03:04:05 [+]0000\z/, 'RFC 2822');
+  is(
+    substr($body->{sent}, 0, 3),
+    (qw(Sun Mon Tue Wed Thu Fri Sat))[(gmtime $epoch{sent})[6]],
+    'on the right day of the week'
+  );
+  is($epoch{sent}, rfc_epoch($body->{sent}), 'with its epoch');
+  like($body->{day}, qr/\A2026-01-\d\d\z/, 'a date alone');
+  is($epoch{day},             iso_epoch($body->{day}), 'at midnight');
+  is($field{capabilities}[2], 'capabilities',          'phone number capabilities');
+  is_deeply([sort keys %{ $body->{capabilities} }], [qw(MMS SMS fax voice)],
+    'as Twilio sends them');
+  is($field{size}[2], 'plain', 'the rest is read as it is');
+};
+
+subtest 'answers of a list, a delete and several statuses' => sub {
+  my $document = document();
+  my $item     = $document->{paths}{'/v1/Things/{Sid}.json'};
+  $item->{delete} = { operationId => 'DeleteThing', responses => { 204 => {} } };
+  $item->{post} =
+    { operationId => 'UpdateThing', responses => { 202 => answer(), 200 => other() } };
+  $document->{components}{schemas}{other} = { properties => { note => { type => 'string' } } };
+  my %entries = map { $_->{id} => $_ } @{ entries($document) };
+
+  my ($page) = @{ $entries{ListThing}{answers} };
+  is_deeply($page->{body}, { things => [{ sid => 'a_sid' }], meta => {} },
+    'a page with one record');
+  is_deeply($page->{fields}, [['sid', 'sid', 'plain']], 'the fields of the record');
+
+  is_deeply($entries{DeleteThing}{answers}, [{ status => 204 }], 'no body');
+  is_deeply(
+    [map { [$_->{status}, sort keys %{ $_->{body} }] } @{ $entries{UpdateThing}{answers} }],
+    [[200, 'note'], [202, 'sid']],
+    'each status with its own body'
+  );
+};
+
+subtest 'an answer that is one of several objects' => sub {
+  my $document = document();
+  $document->{components}{schemas}{other} = { properties => { note => { type => 'string' } } };
+  $document->{paths}{'/v1/Things/{Sid}.json'}{get}{responses}{200} = {
+    content => {
+      'application/scim+json' => { schema => { oneOf => [thing_reference(), other_reference()] } }
+    }
+  };
+  my %entries = map { $_->{id} => $_ } @{ entries($document) };
+
+  my ($answer) = @{ $entries{FetchThing}{answers} };
+  is_deeply([sort keys %{ $answer->{body} }],
+    [qw(note sid)], 'the fields of all of them, from SCIM');
+};
+
+subtest 'a redirect on a list is not a page' => sub {
+  my $document = document();
+  my $list     = $document->{paths}{'/v1/Things.json'}{get};
+  $list->{responses}{301} = other();
+  $document->{components}{schemas}{other} = { properties => { note => { type => 'string' } } };
+
+  my %entries = map { $_->{id} => $_ } @{ entries($document) };
+  is_deeply([map { $_->{status} } @{ $entries{ListThing}{answers} }], [200], 'left out');
+};
+
 subtest 'calls that do not fit the path stop generation' => sub {
 
   # The list and the instance of one resource disagree on the ids before the instance's own.
@@ -219,6 +323,27 @@ sub thing_reference {
 
 sub answer {
   return { content => { 'application/json' => { schema => thing_reference() } } };
+}
+
+sub other_reference {
+  return { '$ref' => '#/components/schemas/other' };
+}
+
+sub other {
+  return { content => { 'application/json' => { schema => other_reference() } } };
+}
+
+sub iso_epoch {
+  my ($text) = @_;
+  my ($year, $month, $day, $hours, $minutes, $seconds) =
+    $text =~ /\A(\d{4})-(\d\d)-(\d\d)(?:T(\d\d):(\d\d):(\d\d)Z)?\z/;
+  return timegm($seconds // 0, $minutes // 0, $hours // 0, $day, $month - 1, $year);
+}
+
+sub rfc_epoch {
+  my ($text) = @_;
+  my ($day, $hours, $minutes, $seconds) = $text =~ /, (\d\d) Jan 2026 (\d\d):(\d\d):(\d\d) /;
+  return timegm($seconds, $minutes, $hours, $day, 0, 2026);
 }
 
 sub records {

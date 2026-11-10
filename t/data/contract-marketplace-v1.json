@@ -1,5 +1,28 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "billable_items" : [
+      "a_billable_items"
+     ],
+     "total_submitted" : 1620.5
+    },
+    "fields" : [
+     [
+      "billable_items",
+      "billable_items",
+      "plain"
+     ],
+     [
+      "total_submitted",
+      "total_submitted",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "body" : {
    "billable_items" : [
     "v_billable_items"
@@ -42,6 +65,81 @@
   "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1/Usage"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "configuration" : {
+      "a_configuration" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -90,6 +188,83 @@
   "url" : "https://marketplace.twilio.com/v1/InstalledAddOns"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "configuration" : {
+      "a_configuration" : 1
+     },
+     "description" : {
+      "a_description" : 1
+     },
+     "documentation" : {
+      "a_documentation" : 1
+     },
+     "module_info" : {
+      "a_module_info" : 1
+     },
+     "policies" : {
+      "a_policies" : 1
+     },
+     "pricing" : {
+      "a_pricing" : 1
+     },
+     "sid" : "a_sid",
+     "support" : {
+      "a_support" : 1
+     },
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "documentation",
+      "documentation",
+      "plain"
+     ],
+     [
+      "module_info",
+      "module_info",
+      "plain"
+     ],
+     [
+      "policies",
+      "policies",
+      "plain"
+     ],
+     [
+      "pricing",
+      "pricing",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "support",
+      "support",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -125,6 +300,34 @@
   "url" : "https://marketplace.twilio.com/v1/Listings"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "converted_account_sid" : "a_converted_account_sid"
+    },
+    "fields" : [
+     [
+      "converted_account_sid",
+      "converted_account_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   },
+   {
+    "body" : {
+     "converted_account_sid" : "a_converted_account_sid"
+    },
+    "fields" : [
+     [
+      "converted_account_sid",
+      "converted_account_sid",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "body" : {
    "referral_account_sid" : "v_referral_account_sid"
   },
@@ -157,6 +360,11 @@
   "url" : "https://marketplace.twilio.com/v1/ReferralConversion"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -180,6 +388,61 @@
   "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "configuration_schema" : {
+      "a_configuration_schema" : 1
+     },
+     "description" : "a_description",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "pricing_type" : "a_pricing_type",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "configuration_schema",
+      "configuration_schema",
+      "plain"
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "pricing_type",
+      "pricing_type",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -203,6 +466,51 @@
   "url" : "https://marketplace.twilio.com/v1/AvailableAddOns/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "available_add_on_sid" : "a_available_add_on_sid",
+     "friendly_name" : "a_friendly_name",
+     "product_name" : "a_product_name",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "available_add_on_sid",
+      "available_add_on_sid",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "product_name",
+      "product_name",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -230,6 +538,81 @@
   "url" : "https://marketplace.twilio.com/v1/AvailableAddOns/id1/Extensions/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "configuration" : {
+      "a_configuration" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -253,6 +636,57 @@
   "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "enabled" : true,
+     "friendly_name" : "a_friendly_name",
+     "installed_add_on_sid" : "a_installed_add_on_sid",
+     "product_name" : "a_product_name",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "enabled",
+      "enabled",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "installed_add_on_sid",
+      "installed_add_on_sid",
+      "plain"
+     ],
+     [
+      "product_name",
+      "product_name",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -280,6 +714,23 @@
   "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1/Extensions/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "listings" : [
+      "a_listings"
+     ]
+    },
+    "fields" : [
+     [
+      "listings",
+      "listings",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -303,6 +754,83 @@
   "url" : "https://marketplace.twilio.com/v1/Listings"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "configuration" : {
+      "a_configuration" : 1
+     },
+     "description" : {
+      "a_description" : 1
+     },
+     "documentation" : {
+      "a_documentation" : 1
+     },
+     "module_info" : {
+      "a_module_info" : 1
+     },
+     "policies" : {
+      "a_policies" : 1
+     },
+     "pricing" : {
+      "a_pricing" : 1
+     },
+     "sid" : "a_sid",
+     "support" : {
+      "a_support" : 1
+     },
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "documentation",
+      "documentation",
+      "plain"
+     ],
+     [
+      "module_info",
+      "module_info",
+      "plain"
+     ],
+     [
+      "policies",
+      "policies",
+      "plain"
+     ],
+     [
+      "pricing",
+      "pricing",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "support",
+      "support",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -326,6 +854,66 @@
   "url" : "https://marketplace.twilio.com/v1/Listing/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "available_add_ons" : [
+      {
+       "configuration_schema" : {
+        "a_configuration_schema" : 1
+       },
+       "description" : "a_description",
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "pricing_type" : "a_pricing_type",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "configuration_schema",
+      "configuration_schema",
+      "plain"
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "pricing_type",
+      "pricing_type",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -350,6 +938,56 @@
   "url" : "https://marketplace.twilio.com/v1/AvailableAddOns"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "extensions" : [
+      {
+       "available_add_on_sid" : "a_available_add_on_sid",
+       "friendly_name" : "a_friendly_name",
+       "product_name" : "a_product_name",
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "available_add_on_sid",
+      "available_add_on_sid",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "product_name",
+      "product_name",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -378,6 +1016,86 @@
   "url" : "https://marketplace.twilio.com/v1/AvailableAddOns/id1/Extensions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "installed_add_ons" : [
+      {
+       "account_sid" : "a_account_sid",
+       "configuration" : {
+        "a_configuration" : 1
+       },
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "description" : "a_description",
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -402,6 +1120,62 @@
   "url" : "https://marketplace.twilio.com/v1/InstalledAddOns"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "extensions" : [
+      {
+       "enabled" : true,
+       "friendly_name" : "a_friendly_name",
+       "installed_add_on_sid" : "a_installed_add_on_sid",
+       "product_name" : "a_product_name",
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "enabled",
+      "enabled",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "installed_add_on_sid",
+      "installed_add_on_sid",
+      "plain"
+     ],
+     [
+      "product_name",
+      "product_name",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -430,6 +1204,81 @@
   "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1/Extensions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "configuration" : {
+      "a_configuration" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -467,6 +1316,57 @@
   "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "enabled" : true,
+     "friendly_name" : "a_friendly_name",
+     "installed_add_on_sid" : "a_installed_add_on_sid",
+     "product_name" : "a_product_name",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "enabled",
+      "enabled",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "installed_add_on_sid",
+      "installed_add_on_sid",
+      "plain"
+     ],
+     [
+      "product_name",
+      "product_name",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",
@@ -501,6 +1401,83 @@
   "url" : "https://marketplace.twilio.com/v1/InstalledAddOns/id1/Extensions/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "configuration" : {
+      "a_configuration" : 1
+     },
+     "description" : {
+      "a_description" : 1
+     },
+     "documentation" : {
+      "a_documentation" : 1
+     },
+     "module_info" : {
+      "a_module_info" : 1
+     },
+     "policies" : {
+      "a_policies" : 1
+     },
+     "pricing" : {
+      "a_pricing" : 1
+     },
+     "sid" : "a_sid",
+     "support" : {
+      "a_support" : 1
+     },
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "documentation",
+      "documentation",
+      "plain"
+     ],
+     [
+      "module_info",
+      "module_info",
+      "plain"
+     ],
+     [
+      "policies",
+      "policies",
+      "plain"
+     ],
+     [
+      "pricing",
+      "pricing",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "support",
+      "support",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "marketplace",

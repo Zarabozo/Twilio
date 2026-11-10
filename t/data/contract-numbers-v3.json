@@ -1,5 +1,163 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "accountSid" : "a_accountSid",
+     "addressSid" : "a_addressSid",
+     "callDelay" : 907,
+     "capabilities" : {
+      "MMS" : false,
+      "SMS" : true,
+      "fax" : false,
+      "voice" : true
+     },
+     "ccEmails" : [
+      "a_ccEmails"
+     ],
+     "dateCreated" : "2026-01-19T03:04:05Z",
+     "dateUpdated" : "2026-01-06T03:04:05Z",
+     "email" : "a_email",
+     "extension" : "a_extension",
+     "failureReason" : "a_failureReason",
+     "friendlyName" : "a_friendlyName",
+     "incomingPhoneNumberSid" : "a_incomingPhoneNumberSid",
+     "phoneNumber" : "a_phoneNumber",
+     "sid" : "a_sid",
+     "signingDocumentSid" : "a_signingDocumentSid",
+     "status" : "testing",
+     "uniqueName" : "a_uniqueName",
+     "url" : "a_url",
+     "verificationAttempts" : 2133,
+     "verificationCallSids" : [
+      "a_verificationCallSids"
+     ],
+     "verificationCode" : "a_verificationCode",
+     "verificationDocumentSid" : "a_verificationDocumentSid",
+     "verificationType" : "phone-bill"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "accountSid",
+      "plain"
+     ],
+     [
+      "address_sid",
+      "addressSid",
+      "plain"
+     ],
+     [
+      "call_delay",
+      "callDelay",
+      "plain"
+     ],
+     [
+      "capabilities",
+      "capabilities",
+      "capabilities"
+     ],
+     [
+      "cc_emails",
+      "ccEmails",
+      "plain"
+     ],
+     [
+      "date_created",
+      "dateCreated",
+      "date",
+      1768791845
+     ],
+     [
+      "date_updated",
+      "dateUpdated",
+      "date",
+      1767668645
+     ],
+     [
+      "email",
+      "email",
+      "plain"
+     ],
+     [
+      "extension",
+      "extension",
+      "plain"
+     ],
+     [
+      "failure_reason",
+      "failureReason",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "incoming_phone_number_sid",
+      "incomingPhoneNumberSid",
+      "plain"
+     ],
+     [
+      "phone_number",
+      "phoneNumber",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "signing_document_sid",
+      "signingDocumentSid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "uniqueName",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "verification_attempts",
+      "verificationAttempts",
+      "plain"
+     ],
+     [
+      "verification_call_sids",
+      "verificationCallSids",
+      "plain"
+     ],
+     [
+      "verification_code",
+      "verificationCode",
+      "plain"
+     ],
+     [
+      "verification_document_sid",
+      "verificationDocumentSid",
+      "plain"
+     ],
+     [
+      "verification_type",
+      "verificationType",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "numbers",

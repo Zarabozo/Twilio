@@ -7,6 +7,7 @@ use Carp        qw(croak);
 use JSON::PP    ();
 use Time::Local qw(timegm);
 
+use Twilio::Generator::Names qw(snake);
 use Twilio::Generator::Resource;
 use Twilio::Generator::Spec;
 use Twilio::Generator::Types qw(header_option_name option_name);
@@ -140,7 +141,111 @@ sub _entry {
     my $model = Twilio::Generator::Resource::build($spec, $tree, $resource);
     $entry{records_key} = $model->{records_key};
   }
+  $entry{answers} = _answers($spec, $operation, $entry{records_key});
   return \%entry;
+}
+
+# What Twilio may answer: a sample body for each success status that has one, with the method
+# that must read each field and how. A page holds one record. With no body at all, the method
+# returns true, and the first success status stands for the answer.
+sub _answers {
+  my ($spec, $operation, $records_key) = @_;
+
+  my $responses = $operation->{spec}{responses} // {};
+  my @codes     = sort grep { /\A[23]/ } keys %{$responses};
+  my @answers;
+  for my $code (@codes) {
+    my $schema     = _answer_schema($spec, $responses->{$code}) or next;
+    my $properties = _properties($spec, $schema);
+    if (defined $records_key) {
+
+      # Memory's lists also answer 301 with where the store moved, which is not a page. A success
+      # without the records can't reach here: building the resource already refuses it.
+      next if !$properties->{$records_key} && $code =~ /\A3/;
+      my $records = $properties->{$records_key}
+        or croak "$operation->{id}: no $records_key in the answer";
+      $properties = _properties($spec, $spec->resolve($spec->resolve($records)->{items} // {}));
+    }
+    my ($sample, $fields) = _sample_record($spec, $properties);
+    my $body = defined $records_key ? { $records_key => [$sample], meta => {} } : $sample;
+    push @answers, { status => 0 + $code, body => $body, fields => $fields };
+  }
+  return @answers ? \@answers : [{ status => 0 + ($codes[0] // 200) }];
+}
+
+sub _answer_schema {
+  my ($spec, $response) = @_;
+
+  my $content = $response->{content} // {};
+  my ($type)  = grep { $content->{$_} } $JSON_CONTENT, $SCIM_CONTENT;
+  return if !$type;
+  return $spec->resolve($content->{$type}{schema} // {});
+}
+
+# An answer that can be one of several objects reads the fields of all of them.
+sub _properties {
+  my ($spec, $schema) = @_;
+
+  my @parts      = map { $spec->resolve($_) } @{ $schema->{oneOf} // $schema->{anyOf} // [] };
+  my %properties = map { %{ $_->{properties} // {} } } @parts ? @parts : $schema;
+  return \%properties;
+}
+
+sub _sample_record {
+  my ($spec, $properties) = @_;
+
+  my (%sample, @fields);
+  for my $name (sort keys %{$properties}) {
+    my ($value, $kind, @epoch) = _answer_value($spec->resolve($properties->{$name} // {}), $name);
+    $sample{$name} = $value;
+    push @fields, [snake($name), $name, $kind, @epoch];
+  }
+  return (\%sample, \@fields);
+}
+
+# A field is read as it is, as a date (an object with that epoch) or as phone number
+# capabilities, from its format in the spec.
+sub _answer_value {
+  my ($schema, $name) = @_;
+
+  my $type   = $schema->{type}   // q{};
+  my $format = $schema->{format} // $type;
+  my $number = unpack '%32C*', $name;
+  my $day    = $number % $DAYS_IN_A_SHORT_MONTH + 1;
+  my $epoch  = timegm(5, 4, 3, $day, 0, 2026);
+  my $date   = sprintf '2026-01-%02d', $day;
+  my $text   = "a_$name";
+
+  return ("${date}T03:04:05Z", 'date', $epoch) if $format eq 'date-time';
+  return (_rfc_2822($epoch),   'date', $epoch) if $format eq 'date-time-rfc-2822';
+  return ($date,               'date', timegm(0, 0, 0, $day, 0, 2026)) if $format eq 'date';
+  return (
+    {
+      voice => JSON::PP::true,
+      SMS   => JSON::PP::true,
+      MMS   => JSON::PP::false,
+      fax   => JSON::PP::false
+    },
+    'capabilities'
+  ) if $format eq 'phone-number-capabilities';
+  return (JSON::PP::true,  'plain') if $type eq 'boolean';
+  return ($number,         'plain') if $type eq 'integer';
+  return ($number + $HALF, 'plain') if $type eq 'number';
+  return ([$text],         'plain') if $type eq 'array';
+  return ({ $text => 1 },  'plain') if $type eq 'object' || $type eq q{};
+
+  my @choices = @{ $schema->{enum} // [] };
+  return (@choices ? $choices[$number % @choices] : $text, 'plain');
+}
+
+# Not strftime, whose day and month names follow the locale. Twilio writes them in English.
+sub _rfc_2822 {
+  my ($epoch) = @_;
+
+  my ($seconds, $minutes, $hours, $day, $month, $year, $weekday) = gmtime $epoch;
+  return sprintf '%s, %02d %s %d %02d:%02d:%02d +0000', (qw(Sun Mon Tue Wed Thu Fri Sat))[$weekday],
+    $day, (qw(Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec))[$month], $year + 1900, $hours,
+    $minutes, $seconds;
 }
 
 # A required query value comes after the required body values, except in a list, which keeps it

@@ -1,5 +1,102 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "attributes" : "a_attributes",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "members_count" : 1395,
+     "messages_count" : 1504,
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "type" : "public",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "members_count",
+      "members_count",
+      "plain"
+     ],
+     [
+      "messages_count",
+      "messages_count",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -72,6 +169,73 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "channel_sid" : "a_channel_sid",
+     "configuration" : {
+      "a_configuration" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "type" : "a_type",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -155,6 +319,65 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Webhooks"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "sandbox" : "a_sandbox",
+     "sid" : "a_sid",
+     "type" : "gcm",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "sandbox",
+      "sandbox",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -216,6 +439,77 @@
   "url" : "https://chat.twilio.com/v2/Credentials"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "channel_sid" : "a_channel_sid",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "identity" : "a_identity",
+     "role_sid" : "a_role_sid",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "role_sid",
+      "role_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -260,6 +554,90 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Invites"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "attributes" : "a_attributes",
+     "channel_sid" : "a_channel_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "identity" : "a_identity",
+     "last_consumed_message_index" : 2860,
+     "last_consumption_timestamp" : "2026-01-22T03:04:05Z",
+     "role_sid" : "a_role_sid",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "last_consumed_message_index",
+      "last_consumed_message_index",
+      "plain"
+     ],
+     [
+      "last_consumption_timestamp",
+      "last_consumption_timestamp",
+      "date",
+      1769051045
+     ],
+     [
+      "role_sid",
+      "role_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -339,6 +717,115 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Members"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "attributes" : "a_attributes",
+     "body" : "a_body",
+     "channel_sid" : "a_channel_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "from" : "a_from",
+     "index" : 536,
+     "last_updated_by" : "a_last_updated_by",
+     "media" : {
+      "a_media" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "to" : "a_to",
+     "type" : "a_type",
+     "url" : "a_url",
+     "was_edited" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "body",
+      "body",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "from",
+      "from",
+      "plain"
+     ],
+     [
+      "index",
+      "index",
+      "plain"
+     ],
+     [
+      "last_updated_by",
+      "last_updated_by",
+      "plain"
+     ],
+     [
+      "media",
+      "media",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "to",
+      "to",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "was_edited",
+      "was_edited",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -415,6 +902,73 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Messages"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "permissions" : [
+      "a_permissions"
+     ],
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "type" : "channel",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "permissions",
+      "permissions",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -466,6 +1020,165 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Roles"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "consumption_report_interval" : 2942,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "default_channel_creator_role_sid" : "a_default_channel_creator_role_sid",
+     "default_channel_role_sid" : "a_default_channel_role_sid",
+     "default_service_role_sid" : "a_default_service_role_sid",
+     "friendly_name" : "a_friendly_name",
+     "limits" : {
+      "a_limits" : 1
+     },
+     "links" : {
+      "a_links" : 1
+     },
+     "media" : {
+      "a_media" : 1
+     },
+     "notifications" : {
+      "a_notifications" : 1
+     },
+     "post_webhook_retry_count" : 2609,
+     "post_webhook_url" : "a_post_webhook_url",
+     "pre_webhook_retry_count" : 2482,
+     "pre_webhook_url" : "a_pre_webhook_url",
+     "reachability_enabled" : true,
+     "read_status_enabled" : true,
+     "sid" : "a_sid",
+     "typing_indicator_timeout" : 2589,
+     "url" : "a_url",
+     "webhook_filters" : [
+      "a_webhook_filters"
+     ],
+     "webhook_method" : "a_webhook_method"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "consumption_report_interval",
+      "consumption_report_interval",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_channel_creator_role_sid",
+      "default_channel_creator_role_sid",
+      "plain"
+     ],
+     [
+      "default_channel_role_sid",
+      "default_channel_role_sid",
+      "plain"
+     ],
+     [
+      "default_service_role_sid",
+      "default_service_role_sid",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "limits",
+      "limits",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "media",
+      "media",
+      "plain"
+     ],
+     [
+      "notifications",
+      "notifications",
+      "plain"
+     ],
+     [
+      "post_webhook_retry_count",
+      "post_webhook_retry_count",
+      "plain"
+     ],
+     [
+      "post_webhook_url",
+      "post_webhook_url",
+      "plain"
+     ],
+     [
+      "pre_webhook_retry_count",
+      "pre_webhook_retry_count",
+      "plain"
+     ],
+     [
+      "pre_webhook_url",
+      "pre_webhook_url",
+      "plain"
+     ],
+     [
+      "reachability_enabled",
+      "reachability_enabled",
+      "plain"
+     ],
+     [
+      "read_status_enabled",
+      "read_status_enabled",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "typing_indicator_timeout",
+      "typing_indicator_timeout",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "webhook_filters",
+      "webhook_filters",
+      "plain"
+     ],
+     [
+      "webhook_method",
+      "webhook_method",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -496,6 +1209,103 @@
   "url" : "https://chat.twilio.com/v2/Services"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "attributes" : "a_attributes",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "identity" : "a_identity",
+     "is_notifiable" : true,
+     "is_online" : true,
+     "joined_channels_count" : 2220,
+     "links" : {
+      "a_links" : 1
+     },
+     "role_sid" : "a_role_sid",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "is_notifiable",
+      "is_notifiable",
+      "plain"
+     ],
+     [
+      "is_online",
+      "is_online",
+      "plain"
+     ],
+     [
+      "joined_channels_count",
+      "joined_channels_count",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "role_sid",
+      "role_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -550,6 +1360,11 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Users"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -577,6 +1392,11 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Bindings/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -609,6 +1429,11 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -640,6 +1465,11 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Webhooks/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -663,6 +1493,11 @@
   "url" : "https://chat.twilio.com/v2/Credentials/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -694,6 +1529,11 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Invites/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -730,6 +1570,11 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Members/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -766,6 +1611,11 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Messages/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -793,6 +1643,11 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Roles/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -816,6 +1671,11 @@
   "url" : "https://chat.twilio.com/v2/Services/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -843,6 +1703,11 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Users/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -874,6 +1739,11 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Users/id2/Bindings/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -910,6 +1780,93 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Users/id2/Channels/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "binding_type" : "apn",
+     "credential_sid" : "a_credential_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "endpoint" : "a_endpoint",
+     "identity" : "a_identity",
+     "links" : {
+      "a_links" : 1
+     },
+     "message_types" : [
+      "a_message_types"
+     ],
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "binding_type",
+      "binding_type",
+      "plain"
+     ],
+     [
+      "credential_sid",
+      "credential_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "endpoint",
+      "endpoint",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "message_types",
+      "message_types",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -937,6 +1894,103 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Bindings/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "attributes" : "a_attributes",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "members_count" : 1395,
+     "messages_count" : 1504,
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "type" : "public",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "members_count",
+      "members_count",
+      "plain"
+     ],
+     [
+      "messages_count",
+      "messages_count",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -964,6 +2018,73 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "channel_sid" : "a_channel_sid",
+     "configuration" : {
+      "a_configuration" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "type" : "a_type",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -995,6 +2116,65 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Webhooks/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "sandbox" : "a_sandbox",
+     "sid" : "a_sid",
+     "type" : "gcm",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "sandbox",
+      "sandbox",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1018,6 +2198,77 @@
   "url" : "https://chat.twilio.com/v2/Credentials/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "channel_sid" : "a_channel_sid",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "identity" : "a_identity",
+     "role_sid" : "a_role_sid",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "role_sid",
+      "role_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1049,6 +2300,90 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Invites/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "attributes" : "a_attributes",
+     "channel_sid" : "a_channel_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "identity" : "a_identity",
+     "last_consumed_message_index" : 2860,
+     "last_consumption_timestamp" : "2026-01-22T03:04:05Z",
+     "role_sid" : "a_role_sid",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "last_consumed_message_index",
+      "last_consumed_message_index",
+      "plain"
+     ],
+     [
+      "last_consumption_timestamp",
+      "last_consumption_timestamp",
+      "date",
+      1769051045
+     ],
+     [
+      "role_sid",
+      "role_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1080,6 +2415,115 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Members/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "attributes" : "a_attributes",
+     "body" : "a_body",
+     "channel_sid" : "a_channel_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "from" : "a_from",
+     "index" : 536,
+     "last_updated_by" : "a_last_updated_by",
+     "media" : {
+      "a_media" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "to" : "a_to",
+     "type" : "a_type",
+     "url" : "a_url",
+     "was_edited" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "body",
+      "body",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "from",
+      "from",
+      "plain"
+     ],
+     [
+      "index",
+      "index",
+      "plain"
+     ],
+     [
+      "last_updated_by",
+      "last_updated_by",
+      "plain"
+     ],
+     [
+      "media",
+      "media",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "to",
+      "to",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "was_edited",
+      "was_edited",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1111,6 +2555,73 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Messages/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "permissions" : [
+      "a_permissions"
+     ],
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "type" : "channel",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "permissions",
+      "permissions",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1138,6 +2649,165 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Roles/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "consumption_report_interval" : 2942,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "default_channel_creator_role_sid" : "a_default_channel_creator_role_sid",
+     "default_channel_role_sid" : "a_default_channel_role_sid",
+     "default_service_role_sid" : "a_default_service_role_sid",
+     "friendly_name" : "a_friendly_name",
+     "limits" : {
+      "a_limits" : 1
+     },
+     "links" : {
+      "a_links" : 1
+     },
+     "media" : {
+      "a_media" : 1
+     },
+     "notifications" : {
+      "a_notifications" : 1
+     },
+     "post_webhook_retry_count" : 2609,
+     "post_webhook_url" : "a_post_webhook_url",
+     "pre_webhook_retry_count" : 2482,
+     "pre_webhook_url" : "a_pre_webhook_url",
+     "reachability_enabled" : true,
+     "read_status_enabled" : true,
+     "sid" : "a_sid",
+     "typing_indicator_timeout" : 2589,
+     "url" : "a_url",
+     "webhook_filters" : [
+      "a_webhook_filters"
+     ],
+     "webhook_method" : "a_webhook_method"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "consumption_report_interval",
+      "consumption_report_interval",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_channel_creator_role_sid",
+      "default_channel_creator_role_sid",
+      "plain"
+     ],
+     [
+      "default_channel_role_sid",
+      "default_channel_role_sid",
+      "plain"
+     ],
+     [
+      "default_service_role_sid",
+      "default_service_role_sid",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "limits",
+      "limits",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "media",
+      "media",
+      "plain"
+     ],
+     [
+      "notifications",
+      "notifications",
+      "plain"
+     ],
+     [
+      "post_webhook_retry_count",
+      "post_webhook_retry_count",
+      "plain"
+     ],
+     [
+      "post_webhook_url",
+      "post_webhook_url",
+      "plain"
+     ],
+     [
+      "pre_webhook_retry_count",
+      "pre_webhook_retry_count",
+      "plain"
+     ],
+     [
+      "pre_webhook_url",
+      "pre_webhook_url",
+      "plain"
+     ],
+     [
+      "reachability_enabled",
+      "reachability_enabled",
+      "plain"
+     ],
+     [
+      "read_status_enabled",
+      "read_status_enabled",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "typing_indicator_timeout",
+      "typing_indicator_timeout",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "webhook_filters",
+      "webhook_filters",
+      "plain"
+     ],
+     [
+      "webhook_method",
+      "webhook_method",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1161,6 +2831,103 @@
   "url" : "https://chat.twilio.com/v2/Services/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "attributes" : "a_attributes",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "identity" : "a_identity",
+     "is_notifiable" : true,
+     "is_online" : true,
+     "joined_channels_count" : 2220,
+     "links" : {
+      "a_links" : 1
+     },
+     "role_sid" : "a_role_sid",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "is_notifiable",
+      "is_notifiable",
+      "plain"
+     ],
+     [
+      "is_online",
+      "is_online",
+      "plain"
+     ],
+     [
+      "joined_channels_count",
+      "joined_channels_count",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "role_sid",
+      "role_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1188,6 +2955,91 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Users/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "binding_type" : "apn",
+     "credential_sid" : "a_credential_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "endpoint" : "a_endpoint",
+     "identity" : "a_identity",
+     "message_types" : [
+      "a_message_types"
+     ],
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url",
+     "user_sid" : "a_user_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "binding_type",
+      "binding_type",
+      "plain"
+     ],
+     [
+      "credential_sid",
+      "credential_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "endpoint",
+      "endpoint",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "message_types",
+      "message_types",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "user_sid",
+      "user_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1219,6 +3071,83 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Users/id2/Bindings/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "channel_sid" : "a_channel_sid",
+     "last_consumed_message_index" : 2860,
+     "links" : {
+      "a_links" : 1
+     },
+     "member_sid" : "a_member_sid",
+     "notification_level" : "default",
+     "service_sid" : "a_service_sid",
+     "status" : "invited",
+     "unread_messages_count" : 2238,
+     "url" : "a_url",
+     "user_sid" : "a_user_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "last_consumed_message_index",
+      "last_consumed_message_index",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "member_sid",
+      "member_sid",
+      "plain"
+     ],
+     [
+      "notification_level",
+      "notification_level",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unread_messages_count",
+      "unread_messages_count",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "user_sid",
+      "user_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1250,6 +3179,98 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Users/id2/Channels/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "bindings" : [
+      {
+       "account_sid" : "a_account_sid",
+       "binding_type" : "apn",
+       "credential_sid" : "a_credential_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "endpoint" : "a_endpoint",
+       "identity" : "a_identity",
+       "links" : {
+        "a_links" : 1
+       },
+       "message_types" : [
+        "a_message_types"
+       ],
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "binding_type",
+      "binding_type",
+      "plain"
+     ],
+     [
+      "credential_sid",
+      "credential_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "endpoint",
+      "endpoint",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "message_types",
+      "message_types",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1304,6 +3325,108 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Bindings"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "channels" : [
+      {
+       "account_sid" : "a_account_sid",
+       "attributes" : "a_attributes",
+       "created_by" : "a_created_by",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "members_count" : 1395,
+       "messages_count" : 1504,
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "type" : "public",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "members_count",
+      "members_count",
+      "plain"
+     ],
+     [
+      "messages_count",
+      "messages_count",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1346,6 +3469,78 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "webhooks" : [
+      {
+       "account_sid" : "a_account_sid",
+       "channel_sid" : "a_channel_sid",
+       "configuration" : {
+        "a_configuration" : 1
+       },
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "type" : "a_type",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1378,6 +3573,70 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Webhooks"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "credentials" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "sandbox" : "a_sandbox",
+       "sid" : "a_sid",
+       "type" : "gcm",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "sandbox",
+      "sandbox",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1402,6 +3661,82 @@
   "url" : "https://chat.twilio.com/v2/Credentials"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "invites" : [
+      {
+       "account_sid" : "a_account_sid",
+       "channel_sid" : "a_channel_sid",
+       "created_by" : "a_created_by",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "identity" : "a_identity",
+       "role_sid" : "a_role_sid",
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "role_sid",
+      "role_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1448,6 +3783,95 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Invites"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "members" : [
+      {
+       "account_sid" : "a_account_sid",
+       "attributes" : "a_attributes",
+       "channel_sid" : "a_channel_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "identity" : "a_identity",
+       "last_consumed_message_index" : 2860,
+       "last_consumption_timestamp" : "2026-01-22T03:04:05Z",
+       "role_sid" : "a_role_sid",
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "last_consumed_message_index",
+      "last_consumed_message_index",
+      "plain"
+     ],
+     [
+      "last_consumption_timestamp",
+      "last_consumption_timestamp",
+      "date",
+      1769051045
+     ],
+     [
+      "role_sid",
+      "role_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1494,6 +3918,120 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Members"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "messages" : [
+      {
+       "account_sid" : "a_account_sid",
+       "attributes" : "a_attributes",
+       "body" : "a_body",
+       "channel_sid" : "a_channel_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "from" : "a_from",
+       "index" : 536,
+       "last_updated_by" : "a_last_updated_by",
+       "media" : {
+        "a_media" : 1
+       },
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "to" : "a_to",
+       "type" : "a_type",
+       "url" : "a_url",
+       "was_edited" : true
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "body",
+      "body",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "from",
+      "from",
+      "plain"
+     ],
+     [
+      "index",
+      "index",
+      "plain"
+     ],
+     [
+      "last_updated_by",
+      "last_updated_by",
+      "plain"
+     ],
+     [
+      "media",
+      "media",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "to",
+      "to",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "was_edited",
+      "was_edited",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1533,6 +4071,78 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Messages"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "roles" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "permissions" : [
+        "a_permissions"
+       ],
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "type" : "channel",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "permissions",
+      "permissions",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1561,6 +4171,170 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Roles"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "services" : [
+      {
+       "account_sid" : "a_account_sid",
+       "consumption_report_interval" : 2942,
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "default_channel_creator_role_sid" : "a_default_channel_creator_role_sid",
+       "default_channel_role_sid" : "a_default_channel_role_sid",
+       "default_service_role_sid" : "a_default_service_role_sid",
+       "friendly_name" : "a_friendly_name",
+       "limits" : {
+        "a_limits" : 1
+       },
+       "links" : {
+        "a_links" : 1
+       },
+       "media" : {
+        "a_media" : 1
+       },
+       "notifications" : {
+        "a_notifications" : 1
+       },
+       "post_webhook_retry_count" : 2609,
+       "post_webhook_url" : "a_post_webhook_url",
+       "pre_webhook_retry_count" : 2482,
+       "pre_webhook_url" : "a_pre_webhook_url",
+       "reachability_enabled" : true,
+       "read_status_enabled" : true,
+       "sid" : "a_sid",
+       "typing_indicator_timeout" : 2589,
+       "url" : "a_url",
+       "webhook_filters" : [
+        "a_webhook_filters"
+       ],
+       "webhook_method" : "a_webhook_method"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "consumption_report_interval",
+      "consumption_report_interval",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_channel_creator_role_sid",
+      "default_channel_creator_role_sid",
+      "plain"
+     ],
+     [
+      "default_channel_role_sid",
+      "default_channel_role_sid",
+      "plain"
+     ],
+     [
+      "default_service_role_sid",
+      "default_service_role_sid",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "limits",
+      "limits",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "media",
+      "media",
+      "plain"
+     ],
+     [
+      "notifications",
+      "notifications",
+      "plain"
+     ],
+     [
+      "post_webhook_retry_count",
+      "post_webhook_retry_count",
+      "plain"
+     ],
+     [
+      "post_webhook_url",
+      "post_webhook_url",
+      "plain"
+     ],
+     [
+      "pre_webhook_retry_count",
+      "pre_webhook_retry_count",
+      "plain"
+     ],
+     [
+      "pre_webhook_url",
+      "pre_webhook_url",
+      "plain"
+     ],
+     [
+      "reachability_enabled",
+      "reachability_enabled",
+      "plain"
+     ],
+     [
+      "read_status_enabled",
+      "read_status_enabled",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "typing_indicator_timeout",
+      "typing_indicator_timeout",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "webhook_filters",
+      "webhook_filters",
+      "plain"
+     ],
+     [
+      "webhook_method",
+      "webhook_method",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1585,6 +4359,108 @@
   "url" : "https://chat.twilio.com/v2/Services"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "users" : [
+      {
+       "account_sid" : "a_account_sid",
+       "attributes" : "a_attributes",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "identity" : "a_identity",
+       "is_notifiable" : true,
+       "is_online" : true,
+       "joined_channels_count" : 2220,
+       "links" : {
+        "a_links" : 1
+       },
+       "role_sid" : "a_role_sid",
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "is_notifiable",
+      "is_notifiable",
+      "plain"
+     ],
+     [
+      "is_online",
+      "is_online",
+      "plain"
+     ],
+     [
+      "joined_channels_count",
+      "joined_channels_count",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "role_sid",
+      "role_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1613,6 +4489,96 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Users"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "bindings" : [
+      {
+       "account_sid" : "a_account_sid",
+       "binding_type" : "apn",
+       "credential_sid" : "a_credential_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "endpoint" : "a_endpoint",
+       "identity" : "a_identity",
+       "message_types" : [
+        "a_message_types"
+       ],
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "url" : "a_url",
+       "user_sid" : "a_user_sid"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "binding_type",
+      "binding_type",
+      "plain"
+     ],
+     [
+      "credential_sid",
+      "credential_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "endpoint",
+      "endpoint",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "message_types",
+      "message_types",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "user_sid",
+      "user_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1659,6 +4625,88 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Users/id2/Bindings"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "channels" : [
+      {
+       "account_sid" : "a_account_sid",
+       "channel_sid" : "a_channel_sid",
+       "last_consumed_message_index" : 2860,
+       "links" : {
+        "a_links" : 1
+       },
+       "member_sid" : "a_member_sid",
+       "notification_level" : "default",
+       "service_sid" : "a_service_sid",
+       "status" : "invited",
+       "unread_messages_count" : 2238,
+       "url" : "a_url",
+       "user_sid" : "a_user_sid"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "last_consumed_message_index",
+      "last_consumed_message_index",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "member_sid",
+      "member_sid",
+      "plain"
+     ],
+     [
+      "notification_level",
+      "notification_level",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unread_messages_count",
+      "unread_messages_count",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "user_sid",
+      "user_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1691,6 +4739,103 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Users/id2/Channels"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "attributes" : "a_attributes",
+     "created_by" : "a_created_by",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "members_count" : 1395,
+     "messages_count" : 1504,
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "type" : "public",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "created_by",
+      "created_by",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "members_count",
+      "members_count",
+      "plain"
+     ],
+     [
+      "messages_count",
+      "messages_count",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1758,6 +4903,73 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "channel_sid" : "a_channel_sid",
+     "configuration" : {
+      "a_configuration" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "type" : "a_type",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1835,6 +5047,65 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Webhooks/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "sandbox" : "a_sandbox",
+     "sid" : "a_sid",
+     "type" : "gcm",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "sandbox",
+      "sandbox",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1890,6 +5161,90 @@
   "url" : "https://chat.twilio.com/v2/Credentials/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "attributes" : "a_attributes",
+     "channel_sid" : "a_channel_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "identity" : "a_identity",
+     "last_consumed_message_index" : 2860,
+     "last_consumption_timestamp" : "2026-01-22T03:04:05Z",
+     "role_sid" : "a_role_sid",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "last_consumed_message_index",
+      "last_consumed_message_index",
+      "plain"
+     ],
+     [
+      "last_consumption_timestamp",
+      "last_consumption_timestamp",
+      "date",
+      1769051045
+     ],
+     [
+      "role_sid",
+      "role_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -1963,6 +5318,115 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Members/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "attributes" : "a_attributes",
+     "body" : "a_body",
+     "channel_sid" : "a_channel_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "from" : "a_from",
+     "index" : 536,
+     "last_updated_by" : "a_last_updated_by",
+     "media" : {
+      "a_media" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "to" : "a_to",
+     "type" : "a_type",
+     "url" : "a_url",
+     "was_edited" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "body",
+      "body",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "from",
+      "from",
+      "plain"
+     ],
+     [
+      "index",
+      "index",
+      "plain"
+     ],
+     [
+      "last_updated_by",
+      "last_updated_by",
+      "plain"
+     ],
+     [
+      "media",
+      "media",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "to",
+      "to",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "was_edited",
+      "was_edited",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -2034,6 +5498,73 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Channels/id2/Messages/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "permissions" : [
+      "a_permissions"
+     ],
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "type" : "channel",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "permissions",
+      "permissions",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -2075,6 +5606,165 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Roles/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "consumption_report_interval" : 2942,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "default_channel_creator_role_sid" : "a_default_channel_creator_role_sid",
+     "default_channel_role_sid" : "a_default_channel_role_sid",
+     "default_service_role_sid" : "a_default_service_role_sid",
+     "friendly_name" : "a_friendly_name",
+     "limits" : {
+      "a_limits" : 1
+     },
+     "links" : {
+      "a_links" : 1
+     },
+     "media" : {
+      "a_media" : 1
+     },
+     "notifications" : {
+      "a_notifications" : 1
+     },
+     "post_webhook_retry_count" : 2609,
+     "post_webhook_url" : "a_post_webhook_url",
+     "pre_webhook_retry_count" : 2482,
+     "pre_webhook_url" : "a_pre_webhook_url",
+     "reachability_enabled" : true,
+     "read_status_enabled" : true,
+     "sid" : "a_sid",
+     "typing_indicator_timeout" : 2589,
+     "url" : "a_url",
+     "webhook_filters" : [
+      "a_webhook_filters"
+     ],
+     "webhook_method" : "a_webhook_method"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "consumption_report_interval",
+      "consumption_report_interval",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_channel_creator_role_sid",
+      "default_channel_creator_role_sid",
+      "plain"
+     ],
+     [
+      "default_channel_role_sid",
+      "default_channel_role_sid",
+      "plain"
+     ],
+     [
+      "default_service_role_sid",
+      "default_service_role_sid",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "limits",
+      "limits",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "media",
+      "media",
+      "plain"
+     ],
+     [
+      "notifications",
+      "notifications",
+      "plain"
+     ],
+     [
+      "post_webhook_retry_count",
+      "post_webhook_retry_count",
+      "plain"
+     ],
+     [
+      "post_webhook_url",
+      "post_webhook_url",
+      "plain"
+     ],
+     [
+      "pre_webhook_retry_count",
+      "pre_webhook_retry_count",
+      "plain"
+     ],
+     [
+      "pre_webhook_url",
+      "pre_webhook_url",
+      "plain"
+     ],
+     [
+      "reachability_enabled",
+      "reachability_enabled",
+      "plain"
+     ],
+     [
+      "read_status_enabled",
+      "read_status_enabled",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "typing_indicator_timeout",
+      "typing_indicator_timeout",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "webhook_filters",
+      "webhook_filters",
+      "plain"
+     ],
+     [
+      "webhook_method",
+      "webhook_method",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -2262,6 +5952,103 @@
   "url" : "https://chat.twilio.com/v2/Services/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "attributes" : "a_attributes",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "identity" : "a_identity",
+     "is_notifiable" : true,
+     "is_online" : true,
+     "joined_channels_count" : 2220,
+     "links" : {
+      "a_links" : 1
+     },
+     "role_sid" : "a_role_sid",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "is_notifiable",
+      "is_notifiable",
+      "plain"
+     ],
+     [
+      "is_online",
+      "is_online",
+      "plain"
+     ],
+     [
+      "joined_channels_count",
+      "joined_channels_count",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "role_sid",
+      "role_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
@@ -2310,6 +6097,83 @@
   "url" : "https://chat.twilio.com/v2/Services/id1/Users/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "channel_sid" : "a_channel_sid",
+     "last_consumed_message_index" : 2860,
+     "links" : {
+      "a_links" : 1
+     },
+     "member_sid" : "a_member_sid",
+     "notification_level" : "default",
+     "service_sid" : "a_service_sid",
+     "status" : "invited",
+     "unread_messages_count" : 2238,
+     "url" : "a_url",
+     "user_sid" : "a_user_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_sid",
+      "channel_sid",
+      "plain"
+     ],
+     [
+      "last_consumed_message_index",
+      "last_consumed_message_index",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "member_sid",
+      "member_sid",
+      "plain"
+     ],
+     [
+      "notification_level",
+      "notification_level",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unread_messages_count",
+      "unread_messages_count",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "user_sid",
+      "user_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "chat",
