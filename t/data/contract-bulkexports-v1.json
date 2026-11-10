@@ -1,5 +1,82 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "details" : [
+      "a_details"
+     ],
+     "email" : "a_email",
+     "end_day" : "a_end_day",
+     "estimated_completion_time" : "a_estimated_completion_time",
+     "friendly_name" : "a_friendly_name",
+     "job_queue_position" : "a_job_queue_position",
+     "job_sid" : "a_job_sid",
+     "resource_type" : "a_resource_type",
+     "start_day" : "a_start_day",
+     "webhook_method" : "a_webhook_method",
+     "webhook_url" : "a_webhook_url"
+    },
+    "fields" : [
+     [
+      "details",
+      "details",
+      "plain"
+     ],
+     [
+      "email",
+      "email",
+      "plain"
+     ],
+     [
+      "end_day",
+      "end_day",
+      "plain"
+     ],
+     [
+      "estimated_completion_time",
+      "estimated_completion_time",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "job_queue_position",
+      "job_queue_position",
+      "plain"
+     ],
+     [
+      "job_sid",
+      "job_sid",
+      "plain"
+     ],
+     [
+      "resource_type",
+      "resource_type",
+      "plain"
+     ],
+     [
+      "start_day",
+      "start_day",
+      "plain"
+     ],
+     [
+      "webhook_method",
+      "webhook_method",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "bulkexports",
@@ -60,6 +137,11 @@
   "url" : "https://bulkexports.twilio.com/v1/Exports/id1/Jobs"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "bulkexports",
@@ -87,6 +169,21 @@
   "url" : "https://bulkexports.twilio.com/v1/Exports/Jobs/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "redirect_to" : "a_redirect_to"
+    },
+    "fields" : [
+     [
+      "redirect_to",
+      "redirect_to",
+      "plain"
+     ]
+    ],
+    "status" : 307
+   }
+  ],
   "chain" : [
    [
     "bulkexports",
@@ -114,6 +211,35 @@
   "url" : "https://bulkexports.twilio.com/v1/Exports/id1/Days/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "links" : {
+      "a_links" : 1
+     },
+     "resource_type" : "a_resource_type",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "resource_type",
+      "resource_type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "bulkexports",
@@ -137,6 +263,45 @@
   "url" : "https://bulkexports.twilio.com/v1/Exports/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "enabled" : true,
+     "resource_type" : "a_resource_type",
+     "url" : "a_url",
+     "webhook_method" : "a_webhook_method",
+     "webhook_url" : "a_webhook_url"
+    },
+    "fields" : [
+     [
+      "enabled",
+      "enabled",
+      "plain"
+     ],
+     [
+      "resource_type",
+      "resource_type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "webhook_method",
+      "webhook_method",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "bulkexports",
@@ -160,6 +325,89 @@
   "url" : "https://bulkexports.twilio.com/v1/Exports/id1/Configuration"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "details" : [
+      "a_details"
+     ],
+     "email" : "a_email",
+     "end_day" : "a_end_day",
+     "estimated_completion_time" : "a_estimated_completion_time",
+     "friendly_name" : "a_friendly_name",
+     "job_queue_position" : "a_job_queue_position",
+     "job_sid" : "a_job_sid",
+     "resource_type" : "a_resource_type",
+     "start_day" : "a_start_day",
+     "url" : "a_url",
+     "webhook_method" : "a_webhook_method",
+     "webhook_url" : "a_webhook_url"
+    },
+    "fields" : [
+     [
+      "details",
+      "details",
+      "plain"
+     ],
+     [
+      "email",
+      "email",
+      "plain"
+     ],
+     [
+      "end_day",
+      "end_day",
+      "plain"
+     ],
+     [
+      "estimated_completion_time",
+      "estimated_completion_time",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "job_queue_position",
+      "job_queue_position",
+      "plain"
+     ],
+     [
+      "job_sid",
+      "job_sid",
+      "plain"
+     ],
+     [
+      "resource_type",
+      "resource_type",
+      "plain"
+     ],
+     [
+      "start_day",
+      "start_day",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "webhook_method",
+      "webhook_method",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "bulkexports",
@@ -187,6 +435,50 @@
   "url" : "https://bulkexports.twilio.com/v1/Exports/Jobs/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "days" : [
+      {
+       "create_date" : "a_create_date",
+       "day" : "a_day",
+       "friendly_name" : "a_friendly_name",
+       "resource_type" : "a_resource_type",
+       "size" : 443
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "create_date",
+      "create_date",
+      "plain"
+     ],
+     [
+      "day",
+      "day",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "resource_type",
+      "resource_type",
+      "plain"
+     ],
+     [
+      "size",
+      "size",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "bulkexports",
@@ -215,6 +507,88 @@
   "url" : "https://bulkexports.twilio.com/v1/Exports/id1/Days"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "jobs" : [
+      {
+       "details" : [
+        "a_details"
+       ],
+       "email" : "a_email",
+       "end_day" : "a_end_day",
+       "estimated_completion_time" : "a_estimated_completion_time",
+       "friendly_name" : "a_friendly_name",
+       "job_queue_position" : "a_job_queue_position",
+       "job_sid" : "a_job_sid",
+       "resource_type" : "a_resource_type",
+       "start_day" : "a_start_day",
+       "webhook_method" : "a_webhook_method",
+       "webhook_url" : "a_webhook_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "details",
+      "details",
+      "plain"
+     ],
+     [
+      "email",
+      "email",
+      "plain"
+     ],
+     [
+      "end_day",
+      "end_day",
+      "plain"
+     ],
+     [
+      "estimated_completion_time",
+      "estimated_completion_time",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "job_queue_position",
+      "job_queue_position",
+      "plain"
+     ],
+     [
+      "job_sid",
+      "job_sid",
+      "plain"
+     ],
+     [
+      "resource_type",
+      "resource_type",
+      "plain"
+     ],
+     [
+      "start_day",
+      "start_day",
+      "plain"
+     ],
+     [
+      "webhook_method",
+      "webhook_method",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "bulkexports",
@@ -243,6 +617,45 @@
   "url" : "https://bulkexports.twilio.com/v1/Exports/id1/Jobs"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "enabled" : true,
+     "resource_type" : "a_resource_type",
+     "url" : "a_url",
+     "webhook_method" : "a_webhook_method",
+     "webhook_url" : "a_webhook_url"
+    },
+    "fields" : [
+     [
+      "enabled",
+      "enabled",
+      "plain"
+     ],
+     [
+      "resource_type",
+      "resource_type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "webhook_method",
+      "webhook_method",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "bulkexports",

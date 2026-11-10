@@ -1,5 +1,72 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "available" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "available",
+      "available",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -40,6 +107,165 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Activities"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "addons" : "a_addons",
+     "age" : 301,
+     "assignment_status" : "completed",
+     "attributes" : "a_attributes",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "ignore_capacity" : true,
+     "links" : {
+      "a_links" : 1
+     },
+     "priority" : 898,
+     "reason" : "a_reason",
+     "routing_target" : "a_routing_target",
+     "sid" : "a_sid",
+     "task_channel_sid" : "a_task_channel_sid",
+     "task_channel_unique_name" : "a_task_channel_unique_name",
+     "task_queue_entered_date" : "2026-01-19T03:04:05Z",
+     "task_queue_friendly_name" : "a_task_queue_friendly_name",
+     "task_queue_sid" : "a_task_queue_sid",
+     "timeout" : 775,
+     "url" : "a_url",
+     "virtual_start_time" : "2026-01-23T03:04:05Z",
+     "workflow_friendly_name" : "a_workflow_friendly_name",
+     "workflow_sid" : "a_workflow_sid",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "addons",
+      "addons",
+      "plain"
+     ],
+     [
+      "age",
+      "age",
+      "plain"
+     ],
+     [
+      "assignment_status",
+      "assignment_status",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "ignore_capacity",
+      "ignore_capacity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "priority",
+      "priority",
+      "plain"
+     ],
+     [
+      "reason",
+      "reason",
+      "plain"
+     ],
+     [
+      "routing_target",
+      "routing_target",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_channel_sid",
+      "task_channel_sid",
+      "plain"
+     ],
+     [
+      "task_channel_unique_name",
+      "task_channel_unique_name",
+      "plain"
+     ],
+     [
+      "task_queue_entered_date",
+      "task_queue_entered_date",
+      "date",
+      1768791845
+     ],
+     [
+      "task_queue_friendly_name",
+      "task_queue_friendly_name",
+      "plain"
+     ],
+     [
+      "task_queue_sid",
+      "task_queue_sid",
+      "plain"
+     ],
+     [
+      "timeout",
+      "timeout",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "virtual_start_time",
+      "virtual_start_time",
+      "date",
+      1769137445
+     ],
+     [
+      "workflow_friendly_name",
+      "workflow_friendly_name",
+      "plain"
+     ],
+     [
+      "workflow_sid",
+      "workflow_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -116,6 +342,79 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "channel_optimized_routing" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_optimized_routing",
+      "channel_optimized_routing",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -161,6 +460,109 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskChannels"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "assignment_activity_name" : "a_assignment_activity_name",
+     "assignment_activity_sid" : "a_assignment_activity_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "max_reserved_workers" : 2161,
+     "reservation_activity_name" : "a_reservation_activity_name",
+     "reservation_activity_sid" : "a_reservation_activity_sid",
+     "sid" : "a_sid",
+     "target_workers" : "a_target_workers",
+     "task_order" : "FIFO",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "assignment_activity_name",
+      "assignment_activity_name",
+      "plain"
+     ],
+     [
+      "assignment_activity_sid",
+      "assignment_activity_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "max_reserved_workers",
+      "max_reserved_workers",
+      "plain"
+     ],
+     [
+      "reservation_activity_name",
+      "reservation_activity_name",
+      "plain"
+     ],
+     [
+      "reservation_activity_sid",
+      "reservation_activity_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "target_workers",
+      "target_workers",
+      "plain"
+     ],
+     [
+      "task_order",
+      "task_order",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -221,6 +623,47 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "task_queue_data" : [
+      "a_task_queue_data"
+     ],
+     "task_queue_response_count" : 2701,
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "task_queue_data",
+      "task_queue_data",
+      "plain"
+     ],
+     [
+      "task_queue_response_count",
+      "task_queue_response_count",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "body" : {},
   "chain" : [
    [
@@ -257,6 +700,98 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/RealTimeStatistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "activity_name" : "a_activity_name",
+     "activity_sid" : "a_activity_sid",
+     "attributes" : "a_attributes",
+     "available" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_status_changed" : "2026-01-07T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "activity_name",
+      "activity_name",
+      "plain"
+     ],
+     [
+      "activity_sid",
+      "activity_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "available",
+      "available",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_status_changed",
+      "date_status_changed",
+      "date",
+      1767755045
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -302,6 +837,97 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "assignment_callback_url" : "a_assignment_callback_url",
+     "configuration" : "a_configuration",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "document_content_type" : "a_document_content_type",
+     "fallback_assignment_callback_url" : "a_fallback_assignment_callback_url",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "task_reservation_timeout" : 2602,
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "assignment_callback_url",
+      "assignment_callback_url",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "document_content_type",
+      "document_content_type",
+      "plain"
+     ],
+     [
+      "fallback_assignment_callback_url",
+      "fallback_assignment_callback_url",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_reservation_timeout",
+      "task_reservation_timeout",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -357,6 +983,109 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "default_activity_name" : "a_default_activity_name",
+     "default_activity_sid" : "a_default_activity_sid",
+     "event_callback_url" : "a_event_callback_url",
+     "events_filter" : "a_events_filter",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "multi_task_enabled" : true,
+     "prioritize_queue_order" : "FIFO",
+     "sid" : "a_sid",
+     "timeout_activity_name" : "a_timeout_activity_name",
+     "timeout_activity_sid" : "a_timeout_activity_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_activity_name",
+      "default_activity_name",
+      "plain"
+     ],
+     [
+      "default_activity_sid",
+      "default_activity_sid",
+      "plain"
+     ],
+     [
+      "event_callback_url",
+      "event_callback_url",
+      "plain"
+     ],
+     [
+      "events_filter",
+      "events_filter",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "multi_task_enabled",
+      "multi_task_enabled",
+      "plain"
+     ],
+     [
+      "prioritize_queue_order",
+      "prioritize_queue_order",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "timeout_activity_name",
+      "timeout_activity_name",
+      "plain"
+     ],
+     [
+      "timeout_activity_sid",
+      "timeout_activity_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -413,6 +1142,11 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -440,6 +1174,11 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Activities/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -472,6 +1211,11 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -499,6 +1243,11 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskChannels/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -526,6 +1275,11 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -558,6 +1312,11 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -585,6 +1344,11 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -608,6 +1372,73 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "available" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "available",
+      "available",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -635,6 +1466,120 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Activities/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "actor_sid" : "a_actor_sid",
+     "actor_type" : "a_actor_type",
+     "actor_url" : "a_actor_url",
+     "description" : "a_description",
+     "event_data" : {
+      "a_event_data" : 1
+     },
+     "event_date" : "2026-01-20T03:04:05Z",
+     "event_date_ms" : 1374,
+     "event_type" : "a_event_type",
+     "resource_sid" : "a_resource_sid",
+     "resource_type" : "a_resource_type",
+     "resource_url" : "a_resource_url",
+     "sid" : "a_sid",
+     "source" : "a_source",
+     "source_ip_address" : "a_source_ip_address",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "actor_sid",
+      "actor_sid",
+      "plain"
+     ],
+     [
+      "actor_type",
+      "actor_type",
+      "plain"
+     ],
+     [
+      "actor_url",
+      "actor_url",
+      "plain"
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "event_data",
+      "event_data",
+      "plain"
+     ],
+     [
+      "event_date",
+      "event_date",
+      "date",
+      1768878245
+     ],
+     [
+      "event_date_ms",
+      "event_date_ms",
+      "plain"
+     ],
+     [
+      "event_type",
+      "event_type",
+      "plain"
+     ],
+     [
+      "resource_sid",
+      "resource_sid",
+      "plain"
+     ],
+     [
+      "resource_type",
+      "resource_type",
+      "plain"
+     ],
+     [
+      "resource_url",
+      "resource_url",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "source",
+      "source",
+      "plain"
+     ],
+     [
+      "source_ip_address",
+      "source_ip_address",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -662,6 +1607,165 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Events/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "addons" : "a_addons",
+     "age" : 301,
+     "assignment_status" : "completed",
+     "attributes" : "a_attributes",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "ignore_capacity" : true,
+     "links" : {
+      "a_links" : 1
+     },
+     "priority" : 898,
+     "reason" : "a_reason",
+     "routing_target" : "a_routing_target",
+     "sid" : "a_sid",
+     "task_channel_sid" : "a_task_channel_sid",
+     "task_channel_unique_name" : "a_task_channel_unique_name",
+     "task_queue_entered_date" : "2026-01-19T03:04:05Z",
+     "task_queue_friendly_name" : "a_task_queue_friendly_name",
+     "task_queue_sid" : "a_task_queue_sid",
+     "timeout" : 775,
+     "url" : "a_url",
+     "virtual_start_time" : "2026-01-23T03:04:05Z",
+     "workflow_friendly_name" : "a_workflow_friendly_name",
+     "workflow_sid" : "a_workflow_sid",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "addons",
+      "addons",
+      "plain"
+     ],
+     [
+      "age",
+      "age",
+      "plain"
+     ],
+     [
+      "assignment_status",
+      "assignment_status",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "ignore_capacity",
+      "ignore_capacity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "priority",
+      "priority",
+      "plain"
+     ],
+     [
+      "reason",
+      "reason",
+      "plain"
+     ],
+     [
+      "routing_target",
+      "routing_target",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_channel_sid",
+      "task_channel_sid",
+      "plain"
+     ],
+     [
+      "task_channel_unique_name",
+      "task_channel_unique_name",
+      "plain"
+     ],
+     [
+      "task_queue_entered_date",
+      "task_queue_entered_date",
+      "date",
+      1768791845
+     ],
+     [
+      "task_queue_friendly_name",
+      "task_queue_friendly_name",
+      "plain"
+     ],
+     [
+      "task_queue_sid",
+      "task_queue_sid",
+      "plain"
+     ],
+     [
+      "timeout",
+      "timeout",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "virtual_start_time",
+      "virtual_start_time",
+      "date",
+      1769137445
+     ],
+     [
+      "workflow_friendly_name",
+      "workflow_friendly_name",
+      "plain"
+     ],
+     [
+      "workflow_sid",
+      "workflow_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -689,6 +1793,79 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "channel_optimized_routing" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_optimized_routing",
+      "channel_optimized_routing",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -716,6 +1893,109 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskChannels/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "assignment_activity_name" : "a_assignment_activity_name",
+     "assignment_activity_sid" : "a_assignment_activity_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "max_reserved_workers" : 2161,
+     "reservation_activity_name" : "a_reservation_activity_name",
+     "reservation_activity_sid" : "a_reservation_activity_sid",
+     "sid" : "a_sid",
+     "target_workers" : "a_target_workers",
+     "task_order" : "FIFO",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "assignment_activity_name",
+      "assignment_activity_name",
+      "plain"
+     ],
+     [
+      "assignment_activity_sid",
+      "assignment_activity_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "max_reserved_workers",
+      "max_reserved_workers",
+      "plain"
+     ],
+     [
+      "reservation_activity_name",
+      "reservation_activity_name",
+      "plain"
+     ],
+     [
+      "reservation_activity_sid",
+      "reservation_activity_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "target_workers",
+      "target_workers",
+      "plain"
+     ],
+     [
+      "task_order",
+      "task_order",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -743,6 +2023,157 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "avg_task_acceptance_time" : 2500,
+     "end_time" : "2026-01-26T03:04:05Z",
+     "reservations_accepted" : 2237,
+     "reservations_canceled" : 2227,
+     "reservations_created" : 2140,
+     "reservations_rejected" : 2250,
+     "reservations_rescinded" : 2357,
+     "reservations_timed_out" : 2382,
+     "split_by_wait_time" : {
+      "a_split_by_wait_time" : 1
+     },
+     "start_time" : "2026-01-21T03:04:05Z",
+     "task_queue_sid" : "a_task_queue_sid",
+     "tasks_canceled" : 1460,
+     "tasks_completed" : 1602,
+     "tasks_deleted" : 1372,
+     "tasks_entered" : 1388,
+     "tasks_moved" : 1184,
+     "url" : "a_url",
+     "wait_duration_in_queue_until_accepted" : {
+      "a_wait_duration_in_queue_until_accepted" : 1
+     },
+     "wait_duration_until_accepted" : {
+      "a_wait_duration_until_accepted" : 1
+     },
+     "wait_duration_until_canceled" : {
+      "a_wait_duration_until_canceled" : 1
+     },
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "avg_task_acceptance_time",
+      "avg_task_acceptance_time",
+      "plain"
+     ],
+     [
+      "end_time",
+      "end_time",
+      "date",
+      1769396645
+     ],
+     [
+      "reservations_accepted",
+      "reservations_accepted",
+      "plain"
+     ],
+     [
+      "reservations_canceled",
+      "reservations_canceled",
+      "plain"
+     ],
+     [
+      "reservations_created",
+      "reservations_created",
+      "plain"
+     ],
+     [
+      "reservations_rejected",
+      "reservations_rejected",
+      "plain"
+     ],
+     [
+      "reservations_rescinded",
+      "reservations_rescinded",
+      "plain"
+     ],
+     [
+      "reservations_timed_out",
+      "reservations_timed_out",
+      "plain"
+     ],
+     [
+      "split_by_wait_time",
+      "split_by_wait_time",
+      "plain"
+     ],
+     [
+      "start_time",
+      "start_time",
+      "date",
+      1768964645
+     ],
+     [
+      "task_queue_sid",
+      "task_queue_sid",
+      "plain"
+     ],
+     [
+      "tasks_canceled",
+      "tasks_canceled",
+      "plain"
+     ],
+     [
+      "tasks_completed",
+      "tasks_completed",
+      "plain"
+     ],
+     [
+      "tasks_deleted",
+      "tasks_deleted",
+      "plain"
+     ],
+     [
+      "tasks_entered",
+      "tasks_entered",
+      "plain"
+     ],
+     [
+      "tasks_moved",
+      "tasks_moved",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "wait_duration_in_queue_until_accepted",
+      "wait_duration_in_queue_until_accepted",
+      "plain"
+     ],
+     [
+      "wait_duration_until_accepted",
+      "wait_duration_until_accepted",
+      "plain"
+     ],
+     [
+      "wait_duration_until_canceled",
+      "wait_duration_until_canceled",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -805,6 +2236,105 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/id2/CumulativeStatistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "activity_statistics" : [
+      "a_activity_statistics"
+     ],
+     "longest_relative_task_age_in_queue" : 3599,
+     "longest_relative_task_sid_in_queue" : "a_longest_relative_task_sid_in_queue",
+     "longest_task_waiting_age" : 2540,
+     "longest_task_waiting_sid" : "a_longest_task_waiting_sid",
+     "task_queue_sid" : "a_task_queue_sid",
+     "tasks_by_priority" : {
+      "a_tasks_by_priority" : 1
+     },
+     "tasks_by_status" : {
+      "a_tasks_by_status" : 1
+     },
+     "total_available_workers" : 2448,
+     "total_eligible_workers" : 2348,
+     "total_tasks" : 1193,
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "activity_statistics",
+      "activity_statistics",
+      "plain"
+     ],
+     [
+      "longest_relative_task_age_in_queue",
+      "longest_relative_task_age_in_queue",
+      "plain"
+     ],
+     [
+      "longest_relative_task_sid_in_queue",
+      "longest_relative_task_sid_in_queue",
+      "plain"
+     ],
+     [
+      "longest_task_waiting_age",
+      "longest_task_waiting_age",
+      "plain"
+     ],
+     [
+      "longest_task_waiting_sid",
+      "longest_task_waiting_sid",
+      "plain"
+     ],
+     [
+      "task_queue_sid",
+      "task_queue_sid",
+      "plain"
+     ],
+     [
+      "tasks_by_priority",
+      "tasks_by_priority",
+      "plain"
+     ],
+     [
+      "tasks_by_status",
+      "tasks_by_status",
+      "plain"
+     ],
+     [
+      "total_available_workers",
+      "total_available_workers",
+      "plain"
+     ],
+     [
+      "total_eligible_workers",
+      "total_eligible_workers",
+      "plain"
+     ],
+     [
+      "total_tasks",
+      "total_tasks",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -843,6 +2373,55 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/id2/RealTimeStatistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "cumulative" : {
+      "a_cumulative" : 1
+     },
+     "realtime" : {
+      "a_realtime" : 1
+     },
+     "task_queue_sid" : "a_task_queue_sid",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cumulative",
+      "cumulative",
+      "plain"
+     ],
+     [
+      "realtime",
+      "realtime",
+      "plain"
+     ],
+     [
+      "task_queue_sid",
+      "task_queue_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -905,6 +2484,85 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/id2/Statistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "reservation_status" : "rescinded",
+     "sid" : "a_sid",
+     "task_sid" : "a_task_sid",
+     "url" : "a_url",
+     "worker_name" : "a_worker_name",
+     "worker_sid" : "a_worker_sid",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "reservation_status",
+      "reservation_status",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_sid",
+      "task_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "worker_name",
+      "worker_name",
+      "plain"
+     ],
+     [
+      "worker_sid",
+      "worker_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -936,6 +2594,98 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks/id2/Reservations/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "activity_name" : "a_activity_name",
+     "activity_sid" : "a_activity_sid",
+     "attributes" : "a_attributes",
+     "available" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_status_changed" : "2026-01-07T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "activity_name",
+      "activity_name",
+      "plain"
+     ],
+     [
+      "activity_sid",
+      "activity_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "available",
+      "available",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_status_changed",
+      "date_status_changed",
+      "date",
+      1767755045
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -963,6 +2713,95 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "assigned_tasks" : 1491,
+     "available" : true,
+     "available_capacity_percentage" : 3019,
+     "configured_capacity" : 2003,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "sid" : "a_sid",
+     "task_channel_sid" : "a_task_channel_sid",
+     "task_channel_unique_name" : "a_task_channel_unique_name",
+     "url" : "a_url",
+     "worker_sid" : "a_worker_sid",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "assigned_tasks",
+      "assigned_tasks",
+      "plain"
+     ],
+     [
+      "available",
+      "available",
+      "plain"
+     ],
+     [
+      "available_capacity_percentage",
+      "available_capacity_percentage",
+      "plain"
+     ],
+     [
+      "configured_capacity",
+      "configured_capacity",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_channel_sid",
+      "task_channel_sid",
+      "plain"
+     ],
+     [
+      "task_channel_unique_name",
+      "task_channel_unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "worker_sid",
+      "worker_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -994,6 +2833,47 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Channels/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "cumulative" : {
+      "a_cumulative" : 1
+     },
+     "url" : "a_url",
+     "worker_sid" : "a_worker_sid",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cumulative",
+      "cumulative",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "worker_sid",
+      "worker_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1051,6 +2931,85 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Statistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "reservation_status" : "rescinded",
+     "sid" : "a_sid",
+     "task_sid" : "a_task_sid",
+     "url" : "a_url",
+     "worker_name" : "a_worker_name",
+     "worker_sid" : "a_worker_sid",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "reservation_status",
+      "reservation_status",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_sid",
+      "task_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "worker_name",
+      "worker_name",
+      "plain"
+     ],
+     [
+      "worker_sid",
+      "worker_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1082,6 +3041,49 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Reservations/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "cumulative" : {
+      "a_cumulative" : 1
+     },
+     "realtime" : {
+      "a_realtime" : 1
+     },
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cumulative",
+      "cumulative",
+      "plain"
+     ],
+     [
+      "realtime",
+      "realtime",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1154,6 +3156,91 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/Statistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "activity_durations" : [
+      "a_activity_durations"
+     ],
+     "end_time" : "2026-01-26T03:04:05Z",
+     "reservations_accepted" : 2237,
+     "reservations_canceled" : 2227,
+     "reservations_created" : 2140,
+     "reservations_rejected" : 2250,
+     "reservations_rescinded" : 2357,
+     "reservations_timed_out" : 2382,
+     "start_time" : "2026-01-21T03:04:05Z",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "activity_durations",
+      "activity_durations",
+      "plain"
+     ],
+     [
+      "end_time",
+      "end_time",
+      "date",
+      1769396645
+     ],
+     [
+      "reservations_accepted",
+      "reservations_accepted",
+      "plain"
+     ],
+     [
+      "reservations_canceled",
+      "reservations_canceled",
+      "plain"
+     ],
+     [
+      "reservations_created",
+      "reservations_created",
+      "plain"
+     ],
+     [
+      "reservations_rejected",
+      "reservations_rejected",
+      "plain"
+     ],
+     [
+      "reservations_rescinded",
+      "reservations_rescinded",
+      "plain"
+     ],
+     [
+      "reservations_timed_out",
+      "reservations_timed_out",
+      "plain"
+     ],
+     [
+      "start_time",
+      "start_time",
+      "date",
+      1768964645
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1211,6 +3298,47 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/CumulativeStatistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "activity_statistics" : [
+      "a_activity_statistics"
+     ],
+     "total_workers" : 1424,
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "activity_statistics",
+      "activity_statistics",
+      "plain"
+     ],
+     [
+      "total_workers",
+      "total_workers",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1249,6 +3377,97 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/RealTimeStatistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "assignment_callback_url" : "a_assignment_callback_url",
+     "configuration" : "a_configuration",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "document_content_type" : "a_document_content_type",
+     "fallback_assignment_callback_url" : "a_fallback_assignment_callback_url",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "task_reservation_timeout" : 2602,
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "assignment_callback_url",
+      "assignment_callback_url",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "document_content_type",
+      "document_content_type",
+      "plain"
+     ],
+     [
+      "fallback_assignment_callback_url",
+      "fallback_assignment_callback_url",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_reservation_timeout",
+      "task_reservation_timeout",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1276,6 +3495,155 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "avg_task_acceptance_time" : 2500,
+     "end_time" : "2026-01-26T03:04:05Z",
+     "reservations_accepted" : 2237,
+     "reservations_canceled" : 2227,
+     "reservations_created" : 2140,
+     "reservations_rejected" : 2250,
+     "reservations_rescinded" : 2357,
+     "reservations_timed_out" : 2382,
+     "split_by_wait_time" : {
+      "a_split_by_wait_time" : 1
+     },
+     "start_time" : "2026-01-21T03:04:05Z",
+     "tasks_canceled" : 1460,
+     "tasks_completed" : 1602,
+     "tasks_deleted" : 1372,
+     "tasks_entered" : 1388,
+     "tasks_moved" : 1184,
+     "tasks_timed_out_in_workflow" : 2911,
+     "url" : "a_url",
+     "wait_duration_until_accepted" : {
+      "a_wait_duration_until_accepted" : 1
+     },
+     "wait_duration_until_canceled" : {
+      "a_wait_duration_until_canceled" : 1
+     },
+     "workflow_sid" : "a_workflow_sid",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "avg_task_acceptance_time",
+      "avg_task_acceptance_time",
+      "plain"
+     ],
+     [
+      "end_time",
+      "end_time",
+      "date",
+      1769396645
+     ],
+     [
+      "reservations_accepted",
+      "reservations_accepted",
+      "plain"
+     ],
+     [
+      "reservations_canceled",
+      "reservations_canceled",
+      "plain"
+     ],
+     [
+      "reservations_created",
+      "reservations_created",
+      "plain"
+     ],
+     [
+      "reservations_rejected",
+      "reservations_rejected",
+      "plain"
+     ],
+     [
+      "reservations_rescinded",
+      "reservations_rescinded",
+      "plain"
+     ],
+     [
+      "reservations_timed_out",
+      "reservations_timed_out",
+      "plain"
+     ],
+     [
+      "split_by_wait_time",
+      "split_by_wait_time",
+      "plain"
+     ],
+     [
+      "start_time",
+      "start_time",
+      "date",
+      1768964645
+     ],
+     [
+      "tasks_canceled",
+      "tasks_canceled",
+      "plain"
+     ],
+     [
+      "tasks_completed",
+      "tasks_completed",
+      "plain"
+     ],
+     [
+      "tasks_deleted",
+      "tasks_deleted",
+      "plain"
+     ],
+     [
+      "tasks_entered",
+      "tasks_entered",
+      "plain"
+     ],
+     [
+      "tasks_moved",
+      "tasks_moved",
+      "plain"
+     ],
+     [
+      "tasks_timed_out_in_workflow",
+      "tasks_timed_out_in_workflow",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "wait_duration_until_accepted",
+      "wait_duration_until_accepted",
+      "plain"
+     ],
+     [
+      "wait_duration_until_canceled",
+      "wait_duration_until_canceled",
+      "plain"
+     ],
+     [
+      "workflow_sid",
+      "workflow_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1338,6 +3706,73 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows/id2/CumulativeStatistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "longest_task_waiting_age" : 2540,
+     "longest_task_waiting_sid" : "a_longest_task_waiting_sid",
+     "tasks_by_priority" : {
+      "a_tasks_by_priority" : 1
+     },
+     "tasks_by_status" : {
+      "a_tasks_by_status" : 1
+     },
+     "total_tasks" : 1193,
+     "url" : "a_url",
+     "workflow_sid" : "a_workflow_sid",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "longest_task_waiting_age",
+      "longest_task_waiting_age",
+      "plain"
+     ],
+     [
+      "longest_task_waiting_sid",
+      "longest_task_waiting_sid",
+      "plain"
+     ],
+     [
+      "tasks_by_priority",
+      "tasks_by_priority",
+      "plain"
+     ],
+     [
+      "tasks_by_status",
+      "tasks_by_status",
+      "plain"
+     ],
+     [
+      "total_tasks",
+      "total_tasks",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workflow_sid",
+      "workflow_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1376,6 +3811,55 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows/id2/RealTimeStatistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "cumulative" : {
+      "a_cumulative" : 1
+     },
+     "realtime" : {
+      "a_realtime" : 1
+     },
+     "url" : "a_url",
+     "workflow_sid" : "a_workflow_sid",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cumulative",
+      "cumulative",
+      "plain"
+     ],
+     [
+      "realtime",
+      "realtime",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workflow_sid",
+      "workflow_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1438,6 +3922,109 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows/id2/Statistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "default_activity_name" : "a_default_activity_name",
+     "default_activity_sid" : "a_default_activity_sid",
+     "event_callback_url" : "a_event_callback_url",
+     "events_filter" : "a_events_filter",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "multi_task_enabled" : true,
+     "prioritize_queue_order" : "FIFO",
+     "sid" : "a_sid",
+     "timeout_activity_name" : "a_timeout_activity_name",
+     "timeout_activity_sid" : "a_timeout_activity_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_activity_name",
+      "default_activity_name",
+      "plain"
+     ],
+     [
+      "default_activity_sid",
+      "default_activity_sid",
+      "plain"
+     ],
+     [
+      "event_callback_url",
+      "event_callback_url",
+      "plain"
+     ],
+     [
+      "events_filter",
+      "events_filter",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "multi_task_enabled",
+      "multi_task_enabled",
+      "plain"
+     ],
+     [
+      "prioritize_queue_order",
+      "prioritize_queue_order",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "timeout_activity_name",
+      "timeout_activity_name",
+      "plain"
+     ],
+     [
+      "timeout_activity_sid",
+      "timeout_activity_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1461,6 +4048,149 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "avg_task_acceptance_time" : 2500,
+     "end_time" : "2026-01-26T03:04:05Z",
+     "reservations_accepted" : 2237,
+     "reservations_canceled" : 2227,
+     "reservations_created" : 2140,
+     "reservations_rejected" : 2250,
+     "reservations_rescinded" : 2357,
+     "reservations_timed_out" : 2382,
+     "split_by_wait_time" : {
+      "a_split_by_wait_time" : 1
+     },
+     "start_time" : "2026-01-21T03:04:05Z",
+     "tasks_canceled" : 1460,
+     "tasks_completed" : 1602,
+     "tasks_created" : 1373,
+     "tasks_deleted" : 1372,
+     "tasks_moved" : 1184,
+     "tasks_timed_out_in_workflow" : 2911,
+     "url" : "a_url",
+     "wait_duration_until_accepted" : {
+      "a_wait_duration_until_accepted" : 1
+     },
+     "wait_duration_until_canceled" : {
+      "a_wait_duration_until_canceled" : 1
+     },
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "avg_task_acceptance_time",
+      "avg_task_acceptance_time",
+      "plain"
+     ],
+     [
+      "end_time",
+      "end_time",
+      "date",
+      1769396645
+     ],
+     [
+      "reservations_accepted",
+      "reservations_accepted",
+      "plain"
+     ],
+     [
+      "reservations_canceled",
+      "reservations_canceled",
+      "plain"
+     ],
+     [
+      "reservations_created",
+      "reservations_created",
+      "plain"
+     ],
+     [
+      "reservations_rejected",
+      "reservations_rejected",
+      "plain"
+     ],
+     [
+      "reservations_rescinded",
+      "reservations_rescinded",
+      "plain"
+     ],
+     [
+      "reservations_timed_out",
+      "reservations_timed_out",
+      "plain"
+     ],
+     [
+      "split_by_wait_time",
+      "split_by_wait_time",
+      "plain"
+     ],
+     [
+      "start_time",
+      "start_time",
+      "date",
+      1768964645
+     ],
+     [
+      "tasks_canceled",
+      "tasks_canceled",
+      "plain"
+     ],
+     [
+      "tasks_completed",
+      "tasks_completed",
+      "plain"
+     ],
+     [
+      "tasks_created",
+      "tasks_created",
+      "plain"
+     ],
+     [
+      "tasks_deleted",
+      "tasks_deleted",
+      "plain"
+     ],
+     [
+      "tasks_moved",
+      "tasks_moved",
+      "plain"
+     ],
+     [
+      "tasks_timed_out_in_workflow",
+      "tasks_timed_out_in_workflow",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "wait_duration_until_accepted",
+      "wait_duration_until_accepted",
+      "plain"
+     ],
+     [
+      "wait_duration_until_canceled",
+      "wait_duration_until_canceled",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1519,6 +4249,81 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/CumulativeStatistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "activity_statistics" : [
+      "a_activity_statistics"
+     ],
+     "longest_task_waiting_age" : 2540,
+     "longest_task_waiting_sid" : "a_longest_task_waiting_sid",
+     "tasks_by_priority" : {
+      "a_tasks_by_priority" : 1
+     },
+     "tasks_by_status" : {
+      "a_tasks_by_status" : 1
+     },
+     "total_tasks" : 1193,
+     "total_workers" : 1424,
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "activity_statistics",
+      "activity_statistics",
+      "plain"
+     ],
+     [
+      "longest_task_waiting_age",
+      "longest_task_waiting_age",
+      "plain"
+     ],
+     [
+      "longest_task_waiting_sid",
+      "longest_task_waiting_sid",
+      "plain"
+     ],
+     [
+      "tasks_by_priority",
+      "tasks_by_priority",
+      "plain"
+     ],
+     [
+      "tasks_by_status",
+      "tasks_by_status",
+      "plain"
+     ],
+     [
+      "total_tasks",
+      "total_tasks",
+      "plain"
+     ],
+     [
+      "total_workers",
+      "total_workers",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1553,6 +4358,49 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/RealTimeStatistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "cumulative" : {
+      "a_cumulative" : 1
+     },
+     "realtime" : {
+      "a_realtime" : 1
+     },
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cumulative",
+      "cumulative",
+      "plain"
+     ],
+     [
+      "realtime",
+      "realtime",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1611,6 +4459,78 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Statistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "activities" : [
+      {
+       "account_sid" : "a_account_sid",
+       "available" : true,
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "sid" : "a_sid",
+       "url" : "a_url",
+       "workspace_sid" : "a_workspace_sid"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "available",
+      "available",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1651,6 +4571,125 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Activities"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "events" : [
+      {
+       "account_sid" : "a_account_sid",
+       "actor_sid" : "a_actor_sid",
+       "actor_type" : "a_actor_type",
+       "actor_url" : "a_actor_url",
+       "description" : "a_description",
+       "event_data" : {
+        "a_event_data" : 1
+       },
+       "event_date" : "2026-01-20T03:04:05Z",
+       "event_date_ms" : 1374,
+       "event_type" : "a_event_type",
+       "resource_sid" : "a_resource_sid",
+       "resource_type" : "a_resource_type",
+       "resource_url" : "a_resource_url",
+       "sid" : "a_sid",
+       "source" : "a_source",
+       "source_ip_address" : "a_source_ip_address",
+       "url" : "a_url",
+       "workspace_sid" : "a_workspace_sid"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "actor_sid",
+      "actor_sid",
+      "plain"
+     ],
+     [
+      "actor_type",
+      "actor_type",
+      "plain"
+     ],
+     [
+      "actor_url",
+      "actor_url",
+      "plain"
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "event_data",
+      "event_data",
+      "plain"
+     ],
+     [
+      "event_date",
+      "event_date",
+      "date",
+      1768878245
+     ],
+     [
+      "event_date_ms",
+      "event_date_ms",
+      "plain"
+     ],
+     [
+      "event_type",
+      "event_type",
+      "plain"
+     ],
+     [
+      "resource_sid",
+      "resource_sid",
+      "plain"
+     ],
+     [
+      "resource_type",
+      "resource_type",
+      "plain"
+     ],
+     [
+      "resource_url",
+      "resource_url",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "source",
+      "source",
+      "plain"
+     ],
+     [
+      "source_ip_address",
+      "source_ip_address",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1740,6 +4779,170 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Events"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "tasks" : [
+      {
+       "account_sid" : "a_account_sid",
+       "addons" : "a_addons",
+       "age" : 301,
+       "assignment_status" : "completed",
+       "attributes" : "a_attributes",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "ignore_capacity" : true,
+       "links" : {
+        "a_links" : 1
+       },
+       "priority" : 898,
+       "reason" : "a_reason",
+       "routing_target" : "a_routing_target",
+       "sid" : "a_sid",
+       "task_channel_sid" : "a_task_channel_sid",
+       "task_channel_unique_name" : "a_task_channel_unique_name",
+       "task_queue_entered_date" : "2026-01-19T03:04:05Z",
+       "task_queue_friendly_name" : "a_task_queue_friendly_name",
+       "task_queue_sid" : "a_task_queue_sid",
+       "timeout" : 775,
+       "url" : "a_url",
+       "virtual_start_time" : "2026-01-23T03:04:05Z",
+       "workflow_friendly_name" : "a_workflow_friendly_name",
+       "workflow_sid" : "a_workflow_sid",
+       "workspace_sid" : "a_workspace_sid"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "addons",
+      "addons",
+      "plain"
+     ],
+     [
+      "age",
+      "age",
+      "plain"
+     ],
+     [
+      "assignment_status",
+      "assignment_status",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "ignore_capacity",
+      "ignore_capacity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "priority",
+      "priority",
+      "plain"
+     ],
+     [
+      "reason",
+      "reason",
+      "plain"
+     ],
+     [
+      "routing_target",
+      "routing_target",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_channel_sid",
+      "task_channel_sid",
+      "plain"
+     ],
+     [
+      "task_channel_unique_name",
+      "task_channel_unique_name",
+      "plain"
+     ],
+     [
+      "task_queue_entered_date",
+      "task_queue_entered_date",
+      "date",
+      1768791845
+     ],
+     [
+      "task_queue_friendly_name",
+      "task_queue_friendly_name",
+      "plain"
+     ],
+     [
+      "task_queue_sid",
+      "task_queue_sid",
+      "plain"
+     ],
+     [
+      "timeout",
+      "timeout",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "virtual_start_time",
+      "virtual_start_time",
+      "date",
+      1769137445
+     ],
+     [
+      "workflow_friendly_name",
+      "workflow_friendly_name",
+      "plain"
+     ],
+     [
+      "workflow_sid",
+      "workflow_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1827,6 +5030,84 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "channels" : [
+      {
+       "account_sid" : "a_account_sid",
+       "channel_optimized_routing" : true,
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url",
+       "workspace_sid" : "a_workspace_sid"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_optimized_routing",
+      "channel_optimized_routing",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1855,6 +5136,114 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskChannels"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "task_queues" : [
+      {
+       "account_sid" : "a_account_sid",
+       "assignment_activity_name" : "a_assignment_activity_name",
+       "assignment_activity_sid" : "a_assignment_activity_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "max_reserved_workers" : 2161,
+       "reservation_activity_name" : "a_reservation_activity_name",
+       "reservation_activity_sid" : "a_reservation_activity_sid",
+       "sid" : "a_sid",
+       "target_workers" : "a_target_workers",
+       "task_order" : "FIFO",
+       "url" : "a_url",
+       "workspace_sid" : "a_workspace_sid"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "assignment_activity_name",
+      "assignment_activity_name",
+      "plain"
+     ],
+     [
+      "assignment_activity_sid",
+      "assignment_activity_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "max_reserved_workers",
+      "max_reserved_workers",
+      "plain"
+     ],
+     [
+      "reservation_activity_name",
+      "reservation_activity_name",
+      "plain"
+     ],
+     [
+      "reservation_activity_sid",
+      "reservation_activity_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "target_workers",
+      "target_workers",
+      "plain"
+     ],
+     [
+      "task_order",
+      "task_order",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1905,6 +5294,54 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "task_queues_statistics" : [
+      {
+       "account_sid" : "a_account_sid",
+       "cumulative" : {
+        "a_cumulative" : 1
+       },
+       "realtime" : {
+        "a_realtime" : 1
+       },
+       "task_queue_sid" : "a_task_queue_sid",
+       "workspace_sid" : "a_workspace_sid"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "cumulative",
+      "cumulative",
+      "plain"
+     ],
+     [
+      "realtime",
+      "realtime",
+      "plain"
+     ],
+     [
+      "task_queue_sid",
+      "task_queue_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -1973,6 +5410,90 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/Statistics"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "reservations" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "links" : {
+        "a_links" : 1
+       },
+       "reservation_status" : "rescinded",
+       "sid" : "a_sid",
+       "task_sid" : "a_task_sid",
+       "url" : "a_url",
+       "worker_name" : "a_worker_name",
+       "worker_sid" : "a_worker_sid",
+       "workspace_sid" : "a_workspace_sid"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "reservation_status",
+      "reservation_status",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_sid",
+      "task_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "worker_name",
+      "worker_name",
+      "plain"
+     ],
+     [
+      "worker_sid",
+      "worker_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -2017,6 +5538,103 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks/id2/Reservations"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "workers" : [
+      {
+       "account_sid" : "a_account_sid",
+       "activity_name" : "a_activity_name",
+       "activity_sid" : "a_activity_sid",
+       "attributes" : "a_attributes",
+       "available" : true,
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_status_changed" : "2026-01-07T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "sid" : "a_sid",
+       "url" : "a_url",
+       "workspace_sid" : "a_workspace_sid"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "activity_name",
+      "activity_name",
+      "plain"
+     ],
+     [
+      "activity_sid",
+      "activity_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "available",
+      "available",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_status_changed",
+      "date_status_changed",
+      "date",
+      1767755045
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -2087,6 +5705,100 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "channels" : [
+      {
+       "account_sid" : "a_account_sid",
+       "assigned_tasks" : 1491,
+       "available" : true,
+       "available_capacity_percentage" : 3019,
+       "configured_capacity" : 2003,
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "sid" : "a_sid",
+       "task_channel_sid" : "a_task_channel_sid",
+       "task_channel_unique_name" : "a_task_channel_unique_name",
+       "url" : "a_url",
+       "worker_sid" : "a_worker_sid",
+       "workspace_sid" : "a_workspace_sid"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "assigned_tasks",
+      "assigned_tasks",
+      "plain"
+     ],
+     [
+      "available",
+      "available",
+      "plain"
+     ],
+     [
+      "available_capacity_percentage",
+      "available_capacity_percentage",
+      "plain"
+     ],
+     [
+      "configured_capacity",
+      "configured_capacity",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_channel_sid",
+      "task_channel_sid",
+      "plain"
+     ],
+     [
+      "task_channel_unique_name",
+      "task_channel_unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "worker_sid",
+      "worker_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -2119,6 +5831,90 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Channels"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "reservations" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "links" : {
+        "a_links" : 1
+       },
+       "reservation_status" : "rescinded",
+       "sid" : "a_sid",
+       "task_sid" : "a_task_sid",
+       "url" : "a_url",
+       "worker_name" : "a_worker_name",
+       "worker_sid" : "a_worker_sid",
+       "workspace_sid" : "a_workspace_sid"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "reservation_status",
+      "reservation_status",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_sid",
+      "task_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "worker_name",
+      "worker_name",
+      "plain"
+     ],
+     [
+      "worker_sid",
+      "worker_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -2158,6 +5954,102 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Reservations"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "workflows" : [
+      {
+       "account_sid" : "a_account_sid",
+       "assignment_callback_url" : "a_assignment_callback_url",
+       "configuration" : "a_configuration",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "document_content_type" : "a_document_content_type",
+       "fallback_assignment_callback_url" : "a_fallback_assignment_callback_url",
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "sid" : "a_sid",
+       "task_reservation_timeout" : 2602,
+       "url" : "a_url",
+       "workspace_sid" : "a_workspace_sid"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "assignment_callback_url",
+      "assignment_callback_url",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "document_content_type",
+      "document_content_type",
+      "plain"
+     ],
+     [
+      "fallback_assignment_callback_url",
+      "fallback_assignment_callback_url",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_reservation_timeout",
+      "task_reservation_timeout",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -2193,6 +6085,114 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "workspaces" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "default_activity_name" : "a_default_activity_name",
+       "default_activity_sid" : "a_default_activity_sid",
+       "event_callback_url" : "a_event_callback_url",
+       "events_filter" : "a_events_filter",
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "multi_task_enabled" : true,
+       "prioritize_queue_order" : "FIFO",
+       "sid" : "a_sid",
+       "timeout_activity_name" : "a_timeout_activity_name",
+       "timeout_activity_sid" : "a_timeout_activity_sid",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_activity_name",
+      "default_activity_name",
+      "plain"
+     ],
+     [
+      "default_activity_sid",
+      "default_activity_sid",
+      "plain"
+     ],
+     [
+      "event_callback_url",
+      "event_callback_url",
+      "plain"
+     ],
+     [
+      "events_filter",
+      "events_filter",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "multi_task_enabled",
+      "multi_task_enabled",
+      "plain"
+     ],
+     [
+      "prioritize_queue_order",
+      "prioritize_queue_order",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "timeout_activity_name",
+      "timeout_activity_name",
+      "plain"
+     ],
+     [
+      "timeout_activity_sid",
+      "timeout_activity_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -2224,6 +6224,73 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "available" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "available",
+      "available",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -2258,6 +6325,165 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Activities/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "addons" : "a_addons",
+     "age" : 301,
+     "assignment_status" : "completed",
+     "attributes" : "a_attributes",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "ignore_capacity" : true,
+     "links" : {
+      "a_links" : 1
+     },
+     "priority" : 898,
+     "reason" : "a_reason",
+     "routing_target" : "a_routing_target",
+     "sid" : "a_sid",
+     "task_channel_sid" : "a_task_channel_sid",
+     "task_channel_unique_name" : "a_task_channel_unique_name",
+     "task_queue_entered_date" : "2026-01-19T03:04:05Z",
+     "task_queue_friendly_name" : "a_task_queue_friendly_name",
+     "task_queue_sid" : "a_task_queue_sid",
+     "timeout" : 775,
+     "url" : "a_url",
+     "virtual_start_time" : "2026-01-23T03:04:05Z",
+     "workflow_friendly_name" : "a_workflow_friendly_name",
+     "workflow_sid" : "a_workflow_sid",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "addons",
+      "addons",
+      "plain"
+     ],
+     [
+      "age",
+      "age",
+      "plain"
+     ],
+     [
+      "assignment_status",
+      "assignment_status",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "ignore_capacity",
+      "ignore_capacity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "priority",
+      "priority",
+      "plain"
+     ],
+     [
+      "reason",
+      "reason",
+      "plain"
+     ],
+     [
+      "routing_target",
+      "routing_target",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_channel_sid",
+      "task_channel_sid",
+      "plain"
+     ],
+     [
+      "task_channel_unique_name",
+      "task_channel_unique_name",
+      "plain"
+     ],
+     [
+      "task_queue_entered_date",
+      "task_queue_entered_date",
+      "date",
+      1768791845
+     ],
+     [
+      "task_queue_friendly_name",
+      "task_queue_friendly_name",
+      "plain"
+     ],
+     [
+      "task_queue_sid",
+      "task_queue_sid",
+      "plain"
+     ],
+     [
+      "timeout",
+      "timeout",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "virtual_start_time",
+      "virtual_start_time",
+      "date",
+      1769137445
+     ],
+     [
+      "workflow_friendly_name",
+      "workflow_friendly_name",
+      "plain"
+     ],
+     [
+      "workflow_sid",
+      "workflow_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -2323,6 +6549,79 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "channel_optimized_routing" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel_optimized_routing",
+      "channel_optimized_routing",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -2362,6 +6661,109 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskChannels/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "assignment_activity_name" : "a_assignment_activity_name",
+     "assignment_activity_sid" : "a_assignment_activity_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "max_reserved_workers" : 2161,
+     "reservation_activity_name" : "a_reservation_activity_name",
+     "reservation_activity_sid" : "a_reservation_activity_sid",
+     "sid" : "a_sid",
+     "target_workers" : "a_target_workers",
+     "task_order" : "FIFO",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "assignment_activity_name",
+      "assignment_activity_name",
+      "plain"
+     ],
+     [
+      "assignment_activity_sid",
+      "assignment_activity_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "max_reserved_workers",
+      "max_reserved_workers",
+      "plain"
+     ],
+     [
+      "reservation_activity_name",
+      "reservation_activity_name",
+      "plain"
+     ],
+     [
+      "reservation_activity_sid",
+      "reservation_activity_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "target_workers",
+      "target_workers",
+      "plain"
+     ],
+     [
+      "task_order",
+      "task_order",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -2421,6 +6823,85 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/TaskQueues/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "reservation_status" : "rescinded",
+     "sid" : "a_sid",
+     "task_sid" : "a_task_sid",
+     "url" : "a_url",
+     "worker_name" : "a_worker_name",
+     "worker_sid" : "a_worker_sid",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "reservation_status",
+      "reservation_status",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_sid",
+      "task_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "worker_name",
+      "worker_name",
+      "plain"
+     ],
+     [
+      "worker_sid",
+      "worker_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -2749,6 +7230,98 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Tasks/id2/Reservations/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "activity_name" : "a_activity_name",
+     "activity_sid" : "a_activity_sid",
+     "attributes" : "a_attributes",
+     "available" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_status_changed" : "2026-01-07T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "activity_name",
+      "activity_name",
+      "plain"
+     ],
+     [
+      "activity_sid",
+      "activity_sid",
+      "plain"
+     ],
+     [
+      "attributes",
+      "attributes",
+      "plain"
+     ],
+     [
+      "available",
+      "available",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_status_changed",
+      "date_status_changed",
+      "date",
+      1767755045
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -2802,6 +7375,95 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "assigned_tasks" : 1491,
+     "available" : true,
+     "available_capacity_percentage" : 3019,
+     "configured_capacity" : 2003,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "sid" : "a_sid",
+     "task_channel_sid" : "a_task_channel_sid",
+     "task_channel_unique_name" : "a_task_channel_unique_name",
+     "url" : "a_url",
+     "worker_sid" : "a_worker_sid",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "assigned_tasks",
+      "assigned_tasks",
+      "plain"
+     ],
+     [
+      "available",
+      "available",
+      "plain"
+     ],
+     [
+      "available_capacity_percentage",
+      "available_capacity_percentage",
+      "plain"
+     ],
+     [
+      "configured_capacity",
+      "configured_capacity",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_channel_sid",
+      "task_channel_sid",
+      "plain"
+     ],
+     [
+      "task_channel_unique_name",
+      "task_channel_unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "worker_sid",
+      "worker_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -2845,6 +7507,85 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Channels/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "reservation_status" : "rescinded",
+     "sid" : "a_sid",
+     "task_sid" : "a_task_sid",
+     "url" : "a_url",
+     "worker_name" : "a_worker_name",
+     "worker_sid" : "a_worker_sid",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "reservation_status",
+      "reservation_status",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_sid",
+      "task_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "worker_name",
+      "worker_name",
+      "plain"
+     ],
+     [
+      "worker_sid",
+      "worker_sid",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -3163,6 +7904,97 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workers/id2/Reservations/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "assignment_callback_url" : "a_assignment_callback_url",
+     "configuration" : "a_configuration",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "document_content_type" : "a_document_content_type",
+     "fallback_assignment_callback_url" : "a_fallback_assignment_callback_url",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "task_reservation_timeout" : 2602,
+     "url" : "a_url",
+     "workspace_sid" : "a_workspace_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "assignment_callback_url",
+      "assignment_callback_url",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "document_content_type",
+      "document_content_type",
+      "plain"
+     ],
+     [
+      "fallback_assignment_callback_url",
+      "fallback_assignment_callback_url",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "task_reservation_timeout",
+      "task_reservation_timeout",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "workspace_sid",
+      "workspace_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",
@@ -3222,6 +8054,109 @@
   "url" : "https://taskrouter.twilio.com/v1/Workspaces/id1/Workflows/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "default_activity_name" : "a_default_activity_name",
+     "default_activity_sid" : "a_default_activity_sid",
+     "event_callback_url" : "a_event_callback_url",
+     "events_filter" : "a_events_filter",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "multi_task_enabled" : true,
+     "prioritize_queue_order" : "FIFO",
+     "sid" : "a_sid",
+     "timeout_activity_name" : "a_timeout_activity_name",
+     "timeout_activity_sid" : "a_timeout_activity_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_activity_name",
+      "default_activity_name",
+      "plain"
+     ],
+     [
+      "default_activity_sid",
+      "default_activity_sid",
+      "plain"
+     ],
+     [
+      "event_callback_url",
+      "event_callback_url",
+      "plain"
+     ],
+     [
+      "events_filter",
+      "events_filter",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "multi_task_enabled",
+      "multi_task_enabled",
+      "plain"
+     ],
+     [
+      "prioritize_queue_order",
+      "prioritize_queue_order",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "timeout_activity_name",
+      "timeout_activity_name",
+      "plain"
+     ],
+     [
+      "timeout_activity_sid",
+      "timeout_activity_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "taskrouter",

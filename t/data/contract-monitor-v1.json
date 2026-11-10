@@ -1,5 +1,131 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "alert_text" : "a_alert_text",
+     "api_version" : "a_api_version",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_generated" : "2026-01-25T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "error_code" : "a_error_code",
+     "log_level" : "a_log_level",
+     "more_info" : "a_more_info",
+     "request_headers" : "a_request_headers",
+     "request_method" : "POST",
+     "request_url" : "a_request_url",
+     "request_variables" : "a_request_variables",
+     "resource_sid" : "a_resource_sid",
+     "response_body" : "a_response_body",
+     "response_headers" : "a_response_headers",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "alert_text",
+      "alert_text",
+      "plain"
+     ],
+     [
+      "api_version",
+      "api_version",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_generated",
+      "date_generated",
+      "date",
+      1769310245
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "error_code",
+      "error_code",
+      "plain"
+     ],
+     [
+      "log_level",
+      "log_level",
+      "plain"
+     ],
+     [
+      "more_info",
+      "more_info",
+      "plain"
+     ],
+     [
+      "request_headers",
+      "request_headers",
+      "plain"
+     ],
+     [
+      "request_method",
+      "request_method",
+      "plain"
+     ],
+     [
+      "request_url",
+      "request_url",
+      "plain"
+     ],
+     [
+      "request_variables",
+      "request_variables",
+      "plain"
+     ],
+     [
+      "resource_sid",
+      "resource_sid",
+      "plain"
+     ],
+     [
+      "response_body",
+      "response_body",
+      "plain"
+     ],
+     [
+      "response_headers",
+      "response_headers",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "monitor",
@@ -23,6 +149,104 @@
   "url" : "https://monitor.twilio.com/v1/Alerts/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "actor_sid" : "a_actor_sid",
+     "actor_type" : "a_actor_type",
+     "description" : "a_description",
+     "event_data" : {
+      "a_event_data" : 1
+     },
+     "event_date" : "2026-01-20T03:04:05Z",
+     "event_type" : "a_event_type",
+     "links" : {
+      "a_links" : 1
+     },
+     "resource_sid" : "a_resource_sid",
+     "resource_type" : "a_resource_type",
+     "sid" : "a_sid",
+     "source" : "a_source",
+     "source_ip_address" : "a_source_ip_address",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "actor_sid",
+      "actor_sid",
+      "plain"
+     ],
+     [
+      "actor_type",
+      "actor_type",
+      "plain"
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "event_data",
+      "event_data",
+      "plain"
+     ],
+     [
+      "event_date",
+      "event_date",
+      "date",
+      1768878245
+     ],
+     [
+      "event_type",
+      "event_type",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "resource_sid",
+      "resource_sid",
+      "plain"
+     ],
+     [
+      "resource_type",
+      "resource_type",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "source",
+      "source",
+      "plain"
+     ],
+     [
+      "source_ip_address",
+      "source_ip_address",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "monitor",
@@ -46,6 +270,113 @@
   "url" : "https://monitor.twilio.com/v1/Events/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "alerts" : [
+      {
+       "account_sid" : "a_account_sid",
+       "alert_text" : "a_alert_text",
+       "api_version" : "a_api_version",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_generated" : "2026-01-25T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "error_code" : "a_error_code",
+       "log_level" : "a_log_level",
+       "more_info" : "a_more_info",
+       "request_method" : "POST",
+       "request_url" : "a_request_url",
+       "resource_sid" : "a_resource_sid",
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "alert_text",
+      "alert_text",
+      "plain"
+     ],
+     [
+      "api_version",
+      "api_version",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_generated",
+      "date_generated",
+      "date",
+      1769310245
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "error_code",
+      "error_code",
+      "plain"
+     ],
+     [
+      "log_level",
+      "log_level",
+      "plain"
+     ],
+     [
+      "more_info",
+      "more_info",
+      "plain"
+     ],
+     [
+      "request_method",
+      "request_method",
+      "plain"
+     ],
+     [
+      "request_url",
+      "request_url",
+      "plain"
+     ],
+     [
+      "resource_sid",
+      "resource_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "monitor",
@@ -91,6 +422,109 @@
   "url" : "https://monitor.twilio.com/v1/Alerts"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "events" : [
+      {
+       "account_sid" : "a_account_sid",
+       "actor_sid" : "a_actor_sid",
+       "actor_type" : "a_actor_type",
+       "description" : "a_description",
+       "event_data" : {
+        "a_event_data" : 1
+       },
+       "event_date" : "2026-01-20T03:04:05Z",
+       "event_type" : "a_event_type",
+       "links" : {
+        "a_links" : 1
+       },
+       "resource_sid" : "a_resource_sid",
+       "resource_type" : "a_resource_type",
+       "sid" : "a_sid",
+       "source" : "a_source",
+       "source_ip_address" : "a_source_ip_address",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "actor_sid",
+      "actor_sid",
+      "plain"
+     ],
+     [
+      "actor_type",
+      "actor_type",
+      "plain"
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "event_data",
+      "event_data",
+      "plain"
+     ],
+     [
+      "event_date",
+      "event_date",
+      "date",
+      1768878245
+     ],
+     [
+      "event_type",
+      "event_type",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "resource_sid",
+      "resource_sid",
+      "plain"
+     ],
+     [
+      "resource_type",
+      "resource_type",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "source",
+      "source",
+      "plain"
+     ],
+     [
+      "source_ip_address",
+      "source_ip_address",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "monitor",

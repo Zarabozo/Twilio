@@ -1,5 +1,74 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "sink_configuration" : {
+      "a_sink_configuration" : 1
+     },
+     "sink_type" : "segment",
+     "status" : "initialized",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sink_configuration",
+      "sink_configuration",
+      "plain"
+     ],
+     [
+      "sink_type",
+      "sink_type",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -42,6 +111,34 @@
   "url" : "https://events.twilio.com/v1/Sinks"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "result" : "a_result"
+    },
+    "fields" : [
+     [
+      "result",
+      "result",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   },
+   {
+    "body" : {
+     "result" : "a_result"
+    },
+    "fields" : [
+     [
+      "result",
+      "result",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -69,6 +166,21 @@
   "url" : "https://events.twilio.com/v1/Sinks/id1/Test"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "result" : "a_result"
+    },
+    "fields" : [
+     [
+      "result",
+      "result",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -103,6 +215,82 @@
   "url" : "https://events.twilio.com/v1/Sinks/id1/Validate"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "schema_version" : 1494,
+     "subscription_sid" : "a_subscription_sid",
+     "type" : "a_type",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "schema_version",
+      "schema_version",
+      "plain"
+     ],
+     [
+      "subscription_sid",
+      "subscription_sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   },
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "schema_version" : 1494,
+     "subscription_sid" : "a_subscription_sid",
+     "type" : "a_type",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "schema_version",
+      "schema_version",
+      "plain"
+     ],
+     [
+      "subscription_sid",
+      "subscription_sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -143,6 +331,67 @@
   "url" : "https://events.twilio.com/v1/Subscriptions/id1/SubscribedEvents"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "sink_sid" : "a_sink_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sink_sid",
+      "sink_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -194,6 +443,11 @@
   "url" : "https://events.twilio.com/v1/Subscriptions"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -217,6 +471,11 @@
   "url" : "https://events.twilio.com/v1/Sinks/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -244,6 +503,11 @@
   "url" : "https://events.twilio.com/v1/Subscriptions/id1/SubscribedEvents/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -267,6 +531,73 @@
   "url" : "https://events.twilio.com/v1/Subscriptions/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "documentation_url" : "a_documentation_url",
+     "links" : {
+      "a_links" : 1
+     },
+     "schema_id" : "a_schema_id",
+     "status" : "a_status",
+     "type" : "a_type",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "documentation_url",
+      "documentation_url",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "schema_id",
+      "schema_id",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -290,6 +621,48 @@
   "url" : "https://events.twilio.com/v1/Types/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "id" : "a_id",
+     "latest_version" : 1522,
+     "latest_version_date_created" : "2026-01-27T03:04:05Z",
+     "links" : {
+      "a_links" : 1
+     },
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "latest_version",
+      "latest_version",
+      "plain"
+     ],
+     [
+      "latest_version_date_created",
+      "latest_version_date_created",
+      "date",
+      1769483045
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -313,6 +686,46 @@
   "url" : "https://events.twilio.com/v1/Schemas/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "date_created" : "2026-01-06T03:04:05Z",
+     "id" : "a_id",
+     "raw" : "a_raw",
+     "schema_version" : 1494,
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "raw",
+      "raw",
+      "plain"
+     ],
+     [
+      "schema_version",
+      "schema_version",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -340,6 +753,75 @@
   "url" : "https://events.twilio.com/v1/Schemas/id1/Versions/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "sink_configuration" : {
+      "a_sink_configuration" : 1
+     },
+     "sink_type" : "segment",
+     "status" : "initialized",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sink_configuration",
+      "sink_configuration",
+      "plain"
+     ],
+     [
+      "sink_type",
+      "sink_type",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -363,6 +845,45 @@
   "url" : "https://events.twilio.com/v1/Sinks/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "schema_version" : 1494,
+     "subscription_sid" : "a_subscription_sid",
+     "type" : "a_type",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "schema_version",
+      "schema_version",
+      "plain"
+     ],
+     [
+      "subscription_sid",
+      "subscription_sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -390,6 +911,67 @@
   "url" : "https://events.twilio.com/v1/Subscriptions/id1/SubscribedEvents/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "sink_sid" : "a_sink_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sink_sid",
+      "sink_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -413,6 +995,78 @@
   "url" : "https://events.twilio.com/v1/Subscriptions/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "types" : [
+      {
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "description" : "a_description",
+       "documentation_url" : "a_documentation_url",
+       "links" : {
+        "a_links" : 1
+       },
+       "schema_id" : "a_schema_id",
+       "status" : "a_status",
+       "type" : "a_type",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "documentation_url",
+      "documentation_url",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "schema_id",
+      "schema_id",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -444,6 +1098,51 @@
   "url" : "https://events.twilio.com/v1/Types"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "schema_versions" : [
+      {
+       "date_created" : "2026-01-06T03:04:05Z",
+       "id" : "a_id",
+       "raw" : "a_raw",
+       "schema_version" : 1494,
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "raw",
+      "raw",
+      "plain"
+     ],
+     [
+      "schema_version",
+      "schema_version",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -472,6 +1171,80 @@
   "url" : "https://events.twilio.com/v1/Schemas/id1/Versions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "sinks" : [
+      {
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "description" : "a_description",
+       "links" : {
+        "a_links" : 1
+       },
+       "sid" : "a_sid",
+       "sink_configuration" : {
+        "a_sink_configuration" : 1
+       },
+       "sink_type" : "segment",
+       "status" : "initialized",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sink_configuration",
+      "sink_configuration",
+      "plain"
+     ],
+     [
+      "sink_type",
+      "sink_type",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -508,6 +1281,50 @@
   "url" : "https://events.twilio.com/v1/Sinks"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "types" : [
+      {
+       "account_sid" : "a_account_sid",
+       "schema_version" : 1494,
+       "subscription_sid" : "a_subscription_sid",
+       "type" : "a_type",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "schema_version",
+      "schema_version",
+      "plain"
+     ],
+     [
+      "subscription_sid",
+      "subscription_sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -536,6 +1353,72 @@
   "url" : "https://events.twilio.com/v1/Subscriptions/id1/SubscribedEvents"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "subscriptions" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "description" : "a_description",
+       "links" : {
+        "a_links" : 1
+       },
+       "sid" : "a_sid",
+       "sink_sid" : "a_sink_sid",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sink_sid",
+      "sink_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -567,6 +1450,75 @@
   "url" : "https://events.twilio.com/v1/Subscriptions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "sink_configuration" : {
+      "a_sink_configuration" : 1
+     },
+     "sink_type" : "segment",
+     "status" : "initialized",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sink_configuration",
+      "sink_configuration",
+      "plain"
+     ],
+     [
+      "sink_type",
+      "sink_type",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -597,6 +1549,45 @@
   "url" : "https://events.twilio.com/v1/Sinks/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "schema_version" : 1494,
+     "subscription_sid" : "a_subscription_sid",
+     "type" : "a_type",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "schema_version",
+      "schema_version",
+      "plain"
+     ],
+     [
+      "subscription_sid",
+      "subscription_sid",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",
@@ -631,6 +1622,67 @@
   "url" : "https://events.twilio.com/v1/Subscriptions/id1/SubscribedEvents/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "sink_sid" : "a_sink_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sink_sid",
+      "sink_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "events",

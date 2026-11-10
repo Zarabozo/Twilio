@@ -1,5 +1,74 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "address_sid" : "a_address_sid",
+     "cc_emails" : [
+      "a_cc_emails"
+     ],
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "email" : "a_email",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "status" : "signing",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "address_sid",
+      "address_sid",
+      "plain"
+     ],
+     [
+      "cc_emails",
+      "cc_emails",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "email",
+      "email",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -70,6 +139,164 @@
   "url" : "https://preview.twilio.com/HostedNumbers/AuthorizationDocuments"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "address_sid" : "a_address_sid",
+     "call_delay" : 1034,
+     "capabilities" : {
+      "MMS" : false,
+      "SMS" : true,
+      "fax" : false,
+      "voice" : true
+     },
+     "cc_emails" : [
+      "a_cc_emails"
+     ],
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "email" : "a_email",
+     "extension" : "a_extension",
+     "failure_reason" : "a_failure_reason",
+     "friendly_name" : "a_friendly_name",
+     "incoming_phone_number_sid" : "a_incoming_phone_number_sid",
+     "phone_number" : "a_phone_number",
+     "sid" : "a_sid",
+     "signing_document_sid" : "a_signing_document_sid",
+     "status" : "testing",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "verification_attempts" : 2260,
+     "verification_call_sids" : [
+      "a_verification_call_sids"
+     ],
+     "verification_code" : "a_verification_code",
+     "verification_document_sid" : "a_verification_document_sid",
+     "verification_type" : "phone-call"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "address_sid",
+      "address_sid",
+      "plain"
+     ],
+     [
+      "call_delay",
+      "call_delay",
+      "plain"
+     ],
+     [
+      "capabilities",
+      "capabilities",
+      "capabilities"
+     ],
+     [
+      "cc_emails",
+      "cc_emails",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "email",
+      "email",
+      "plain"
+     ],
+     [
+      "extension",
+      "extension",
+      "plain"
+     ],
+     [
+      "failure_reason",
+      "failure_reason",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "incoming_phone_number_sid",
+      "incoming_phone_number_sid",
+      "plain"
+     ],
+     [
+      "phone_number",
+      "phone_number",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "signing_document_sid",
+      "signing_document_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "verification_attempts",
+      "verification_attempts",
+      "plain"
+     ],
+     [
+      "verification_call_sids",
+      "verification_call_sids",
+      "plain"
+     ],
+     [
+      "verification_code",
+      "verification_code",
+      "plain"
+     ],
+     [
+      "verification_document_sid",
+      "verification_document_sid",
+      "plain"
+     ],
+     [
+      "verification_type",
+      "verification_type",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -188,6 +415,81 @@
   "url" : "https://preview.twilio.com/HostedNumbers/HostedNumberOrders"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "configuration" : {
+      "a_configuration" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -236,6 +538,83 @@
   "url" : "https://preview.twilio.com/marketplace/InstalledAddOns"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "command" : "a_command",
+     "command_mode" : "a_command_mode",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "device_sid" : "a_device_sid",
+     "direction" : "a_direction",
+     "sid" : "a_sid",
+     "sim_sid" : "a_sim_sid",
+     "status" : "a_status",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "command",
+      "command",
+      "plain"
+     ],
+     [
+      "command_mode",
+      "command_mode",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "device_sid",
+      "device_sid",
+      "plain"
+     ],
+     [
+      "direction",
+      "direction",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -297,6 +676,103 @@
   "url" : "https://preview.twilio.com/wireless/Commands"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "data_enabled" : true,
+     "data_limit" : 1048,
+     "data_metering" : "a_data_metering",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "international_roaming" : [
+      "a_international_roaming"
+     ],
+     "messaging_enabled" : true,
+     "national_roaming_enabled" : true,
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "voice_enabled" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "data_enabled",
+      "data_enabled",
+      "plain"
+     ],
+     [
+      "data_limit",
+      "data_limit",
+      "plain"
+     ],
+     [
+      "data_metering",
+      "data_metering",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "international_roaming",
+      "international_roaming",
+      "plain"
+     ],
+     [
+      "messaging_enabled",
+      "messaging_enabled",
+      "plain"
+     ],
+     [
+      "national_roaming_enabled",
+      "national_roaming_enabled",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "voice_enabled",
+      "voice_enabled",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -379,6 +855,11 @@
   "url" : "https://preview.twilio.com/wireless/RatePlans"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -402,6 +883,11 @@
   "url" : "https://preview.twilio.com/HostedNumbers/AuthorizationDocuments/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -425,6 +911,11 @@
   "url" : "https://preview.twilio.com/HostedNumbers/HostedNumberOrders/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -448,6 +939,11 @@
   "url" : "https://preview.twilio.com/marketplace/InstalledAddOns/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -471,6 +967,75 @@
   "url" : "https://preview.twilio.com/wireless/RatePlans/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "address_sid" : "a_address_sid",
+     "cc_emails" : [
+      "a_cc_emails"
+     ],
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "email" : "a_email",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "status" : "signing",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "address_sid",
+      "address_sid",
+      "plain"
+     ],
+     [
+      "cc_emails",
+      "cc_emails",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "email",
+      "email",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -494,6 +1059,164 @@
   "url" : "https://preview.twilio.com/HostedNumbers/AuthorizationDocuments/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "address_sid" : "a_address_sid",
+     "call_delay" : 1034,
+     "capabilities" : {
+      "MMS" : false,
+      "SMS" : true,
+      "fax" : false,
+      "voice" : true
+     },
+     "cc_emails" : [
+      "a_cc_emails"
+     ],
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "email" : "a_email",
+     "extension" : "a_extension",
+     "failure_reason" : "a_failure_reason",
+     "friendly_name" : "a_friendly_name",
+     "incoming_phone_number_sid" : "a_incoming_phone_number_sid",
+     "phone_number" : "a_phone_number",
+     "sid" : "a_sid",
+     "signing_document_sid" : "a_signing_document_sid",
+     "status" : "testing",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "verification_attempts" : 2260,
+     "verification_call_sids" : [
+      "a_verification_call_sids"
+     ],
+     "verification_code" : "a_verification_code",
+     "verification_document_sid" : "a_verification_document_sid",
+     "verification_type" : "phone-call"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "address_sid",
+      "address_sid",
+      "plain"
+     ],
+     [
+      "call_delay",
+      "call_delay",
+      "plain"
+     ],
+     [
+      "capabilities",
+      "capabilities",
+      "capabilities"
+     ],
+     [
+      "cc_emails",
+      "cc_emails",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "email",
+      "email",
+      "plain"
+     ],
+     [
+      "extension",
+      "extension",
+      "plain"
+     ],
+     [
+      "failure_reason",
+      "failure_reason",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "incoming_phone_number_sid",
+      "incoming_phone_number_sid",
+      "plain"
+     ],
+     [
+      "phone_number",
+      "phone_number",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "signing_document_sid",
+      "signing_document_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "verification_attempts",
+      "verification_attempts",
+      "plain"
+     ],
+     [
+      "verification_call_sids",
+      "verification_call_sids",
+      "plain"
+     ],
+     [
+      "verification_code",
+      "verification_code",
+      "plain"
+     ],
+     [
+      "verification_document_sid",
+      "verification_document_sid",
+      "plain"
+     ],
+     [
+      "verification_type",
+      "verification_type",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -517,6 +1240,61 @@
   "url" : "https://preview.twilio.com/HostedNumbers/HostedNumberOrders/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "configuration_schema" : {
+      "a_configuration_schema" : 1
+     },
+     "description" : "a_description",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "pricing_type" : "a_pricing_type",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "configuration_schema",
+      "configuration_schema",
+      "plain"
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "pricing_type",
+      "pricing_type",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -540,6 +1318,51 @@
   "url" : "https://preview.twilio.com/marketplace/AvailableAddOns/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "available_add_on_sid" : "a_available_add_on_sid",
+     "friendly_name" : "a_friendly_name",
+     "product_name" : "a_product_name",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "available_add_on_sid",
+      "available_add_on_sid",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "product_name",
+      "product_name",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -567,6 +1390,81 @@
   "url" : "https://preview.twilio.com/marketplace/AvailableAddOns/id1/Extensions/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "configuration" : {
+      "a_configuration" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -590,6 +1488,57 @@
   "url" : "https://preview.twilio.com/marketplace/InstalledAddOns/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "enabled" : true,
+     "friendly_name" : "a_friendly_name",
+     "installed_add_on_sid" : "a_installed_add_on_sid",
+     "product_name" : "a_product_name",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "enabled",
+      "enabled",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "installed_add_on_sid",
+      "installed_add_on_sid",
+      "plain"
+     ],
+     [
+      "product_name",
+      "product_name",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -617,6 +1566,83 @@
   "url" : "https://preview.twilio.com/marketplace/InstalledAddOns/id1/Extensions/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "command" : "a_command",
+     "command_mode" : "a_command_mode",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "device_sid" : "a_device_sid",
+     "direction" : "a_direction",
+     "sid" : "a_sid",
+     "sim_sid" : "a_sim_sid",
+     "status" : "a_status",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "command",
+      "command",
+      "plain"
+     ],
+     [
+      "command_mode",
+      "command_mode",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "device_sid",
+      "device_sid",
+      "plain"
+     ],
+     [
+      "direction",
+      "direction",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -640,6 +1666,103 @@
   "url" : "https://preview.twilio.com/wireless/Commands/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "data_enabled" : true,
+     "data_limit" : 1048,
+     "data_metering" : "a_data_metering",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "international_roaming" : [
+      "a_international_roaming"
+     ],
+     "messaging_enabled" : true,
+     "national_roaming_enabled" : true,
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "voice_enabled" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "data_enabled",
+      "data_enabled",
+      "plain"
+     ],
+     [
+      "data_limit",
+      "data_limit",
+      "plain"
+     ],
+     [
+      "data_metering",
+      "data_metering",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "international_roaming",
+      "international_roaming",
+      "plain"
+     ],
+     [
+      "messaging_enabled",
+      "messaging_enabled",
+      "plain"
+     ],
+     [
+      "national_roaming_enabled",
+      "national_roaming_enabled",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "voice_enabled",
+      "voice_enabled",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -663,6 +1786,151 @@
   "url" : "https://preview.twilio.com/wireless/RatePlans/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "commands_callback_method" : "a_commands_callback_method",
+     "commands_callback_url" : "a_commands_callback_url",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "e_id" : "a_e_id",
+     "friendly_name" : "a_friendly_name",
+     "iccid" : "a_iccid",
+     "links" : {
+      "a_links" : 1
+     },
+     "rate_plan_sid" : "a_rate_plan_sid",
+     "sid" : "a_sid",
+     "sms_fallback_method" : "GET",
+     "sms_fallback_url" : "a_sms_fallback_url",
+     "sms_method" : "POST",
+     "sms_url" : "a_sms_url",
+     "status" : "a_status",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "voice_fallback_method" : "POST",
+     "voice_fallback_url" : "a_voice_fallback_url",
+     "voice_method" : "GET",
+     "voice_url" : "a_voice_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "commands_callback_method",
+      "commands_callback_method",
+      "plain"
+     ],
+     [
+      "commands_callback_url",
+      "commands_callback_url",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "e_id",
+      "e_id",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "iccid",
+      "iccid",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "rate_plan_sid",
+      "rate_plan_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sms_fallback_method",
+      "sms_fallback_method",
+      "plain"
+     ],
+     [
+      "sms_fallback_url",
+      "sms_fallback_url",
+      "plain"
+     ],
+     [
+      "sms_method",
+      "sms_method",
+      "plain"
+     ],
+     [
+      "sms_url",
+      "sms_url",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "voice_fallback_method",
+      "voice_fallback_method",
+      "plain"
+     ],
+     [
+      "voice_fallback_url",
+      "voice_fallback_url",
+      "plain"
+     ],
+     [
+      "voice_method",
+      "voice_method",
+      "plain"
+     ],
+     [
+      "voice_url",
+      "voice_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -686,6 +1954,79 @@
   "url" : "https://preview.twilio.com/wireless/Sims/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "commands_costs" : {
+      "a_commands_costs" : 1
+     },
+     "commands_usage" : {
+      "a_commands_usage" : 1
+     },
+     "data_costs" : {
+      "a_data_costs" : 1
+     },
+     "data_usage" : {
+      "a_data_usage" : 1
+     },
+     "period" : {
+      "a_period" : 1
+     },
+     "sim_sid" : "a_sim_sid",
+     "sim_unique_name" : "a_sim_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "commands_costs",
+      "commands_costs",
+      "plain"
+     ],
+     [
+      "commands_usage",
+      "commands_usage",
+      "plain"
+     ],
+     [
+      "data_costs",
+      "data_costs",
+      "plain"
+     ],
+     [
+      "data_usage",
+      "data_usage",
+      "plain"
+     ],
+     [
+      "period",
+      "period",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "sim_unique_name",
+      "sim_unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -725,6 +2066,80 @@
   "url" : "https://preview.twilio.com/wireless/Sims/id1/Usage"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "items" : [
+      {
+       "address_sid" : "a_address_sid",
+       "cc_emails" : [
+        "a_cc_emails"
+       ],
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "email" : "a_email",
+       "links" : {
+        "a_links" : 1
+       },
+       "sid" : "a_sid",
+       "status" : "signing",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "address_sid",
+      "address_sid",
+      "plain"
+     ],
+     [
+      "cc_emails",
+      "cc_emails",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "email",
+      "email",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -761,6 +2176,163 @@
   "url" : "https://preview.twilio.com/HostedNumbers/AuthorizationDocuments"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "items" : [
+      {
+       "account_sid" : "a_account_sid",
+       "address_sid" : "a_address_sid",
+       "call_delay" : 1034,
+       "capabilities" : {
+        "MMS" : false,
+        "SMS" : true,
+        "fax" : false,
+        "voice" : true
+       },
+       "cc_emails" : [
+        "a_cc_emails"
+       ],
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "email" : "a_email",
+       "extension" : "a_extension",
+       "failure_reason" : "a_failure_reason",
+       "friendly_name" : "a_friendly_name",
+       "incoming_phone_number_sid" : "a_incoming_phone_number_sid",
+       "phone_number" : "a_phone_number",
+       "sid" : "a_sid",
+       "signing_document_sid" : "a_signing_document_sid",
+       "status" : "testing",
+       "unique_name" : "a_unique_name",
+       "verification_attempts" : 2260,
+       "verification_call_sids" : [
+        "a_verification_call_sids"
+       ],
+       "verification_code" : "a_verification_code",
+       "verification_document_sid" : "a_verification_document_sid",
+       "verification_type" : "phone-call"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "address_sid",
+      "address_sid",
+      "plain"
+     ],
+     [
+      "call_delay",
+      "call_delay",
+      "plain"
+     ],
+     [
+      "capabilities",
+      "capabilities",
+      "capabilities"
+     ],
+     [
+      "cc_emails",
+      "cc_emails",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "email",
+      "email",
+      "plain"
+     ],
+     [
+      "extension",
+      "extension",
+      "plain"
+     ],
+     [
+      "failure_reason",
+      "failure_reason",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "incoming_phone_number_sid",
+      "incoming_phone_number_sid",
+      "plain"
+     ],
+     [
+      "phone_number",
+      "phone_number",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "signing_document_sid",
+      "signing_document_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "verification_attempts",
+      "verification_attempts",
+      "plain"
+     ],
+     [
+      "verification_call_sids",
+      "verification_call_sids",
+      "plain"
+     ],
+     [
+      "verification_code",
+      "verification_code",
+      "plain"
+     ],
+     [
+      "verification_document_sid",
+      "verification_document_sid",
+      "plain"
+     ],
+     [
+      "verification_type",
+      "verification_type",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -816,6 +2388,169 @@
   "url" : "https://preview.twilio.com/HostedNumbers/AuthorizationDocuments/id1/DependentHostedNumberOrders"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "items" : [
+      {
+       "account_sid" : "a_account_sid",
+       "address_sid" : "a_address_sid",
+       "call_delay" : 1034,
+       "capabilities" : {
+        "MMS" : false,
+        "SMS" : true,
+        "fax" : false,
+        "voice" : true
+       },
+       "cc_emails" : [
+        "a_cc_emails"
+       ],
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "email" : "a_email",
+       "extension" : "a_extension",
+       "failure_reason" : "a_failure_reason",
+       "friendly_name" : "a_friendly_name",
+       "incoming_phone_number_sid" : "a_incoming_phone_number_sid",
+       "phone_number" : "a_phone_number",
+       "sid" : "a_sid",
+       "signing_document_sid" : "a_signing_document_sid",
+       "status" : "testing",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url",
+       "verification_attempts" : 2260,
+       "verification_call_sids" : [
+        "a_verification_call_sids"
+       ],
+       "verification_code" : "a_verification_code",
+       "verification_document_sid" : "a_verification_document_sid",
+       "verification_type" : "phone-call"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "address_sid",
+      "address_sid",
+      "plain"
+     ],
+     [
+      "call_delay",
+      "call_delay",
+      "plain"
+     ],
+     [
+      "capabilities",
+      "capabilities",
+      "capabilities"
+     ],
+     [
+      "cc_emails",
+      "cc_emails",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "email",
+      "email",
+      "plain"
+     ],
+     [
+      "extension",
+      "extension",
+      "plain"
+     ],
+     [
+      "failure_reason",
+      "failure_reason",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "incoming_phone_number_sid",
+      "incoming_phone_number_sid",
+      "plain"
+     ],
+     [
+      "phone_number",
+      "phone_number",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "signing_document_sid",
+      "signing_document_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "verification_attempts",
+      "verification_attempts",
+      "plain"
+     ],
+     [
+      "verification_call_sids",
+      "verification_call_sids",
+      "plain"
+     ],
+     [
+      "verification_code",
+      "verification_code",
+      "plain"
+     ],
+     [
+      "verification_document_sid",
+      "verification_document_sid",
+      "plain"
+     ],
+     [
+      "verification_type",
+      "verification_type",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -867,6 +2602,66 @@
   "url" : "https://preview.twilio.com/HostedNumbers/HostedNumberOrders"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "available_add_ons" : [
+      {
+       "configuration_schema" : {
+        "a_configuration_schema" : 1
+       },
+       "description" : "a_description",
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "pricing_type" : "a_pricing_type",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "configuration_schema",
+      "configuration_schema",
+      "plain"
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "pricing_type",
+      "pricing_type",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -891,6 +2686,56 @@
   "url" : "https://preview.twilio.com/marketplace/AvailableAddOns"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "extensions" : [
+      {
+       "available_add_on_sid" : "a_available_add_on_sid",
+       "friendly_name" : "a_friendly_name",
+       "product_name" : "a_product_name",
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "available_add_on_sid",
+      "available_add_on_sid",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "product_name",
+      "product_name",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -919,6 +2764,86 @@
   "url" : "https://preview.twilio.com/marketplace/AvailableAddOns/id1/Extensions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "installed_add_ons" : [
+      {
+       "account_sid" : "a_account_sid",
+       "configuration" : {
+        "a_configuration" : 1
+       },
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "description" : "a_description",
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -943,6 +2868,62 @@
   "url" : "https://preview.twilio.com/marketplace/InstalledAddOns"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "extensions" : [
+      {
+       "enabled" : true,
+       "friendly_name" : "a_friendly_name",
+       "installed_add_on_sid" : "a_installed_add_on_sid",
+       "product_name" : "a_product_name",
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "enabled",
+      "enabled",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "installed_add_on_sid",
+      "installed_add_on_sid",
+      "plain"
+     ],
+     [
+      "product_name",
+      "product_name",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -971,6 +2952,88 @@
   "url" : "https://preview.twilio.com/marketplace/InstalledAddOns/id1/Extensions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "commands" : [
+      {
+       "account_sid" : "a_account_sid",
+       "command" : "a_command",
+       "command_mode" : "a_command_mode",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "device_sid" : "a_device_sid",
+       "direction" : "a_direction",
+       "sid" : "a_sid",
+       "sim_sid" : "a_sim_sid",
+       "status" : "a_status",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "command",
+      "command",
+      "plain"
+     ],
+     [
+      "command_mode",
+      "command_mode",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "device_sid",
+      "device_sid",
+      "plain"
+     ],
+     [
+      "direction",
+      "direction",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sim_sid",
+      "sim_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -1017,6 +3080,108 @@
   "url" : "https://preview.twilio.com/wireless/Commands"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "rate_plans" : [
+      {
+       "account_sid" : "a_account_sid",
+       "data_enabled" : true,
+       "data_limit" : 1048,
+       "data_metering" : "a_data_metering",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "friendly_name" : "a_friendly_name",
+       "international_roaming" : [
+        "a_international_roaming"
+       ],
+       "messaging_enabled" : true,
+       "national_roaming_enabled" : true,
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url",
+       "voice_enabled" : true
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "data_enabled",
+      "data_enabled",
+      "plain"
+     ],
+     [
+      "data_limit",
+      "data_limit",
+      "plain"
+     ],
+     [
+      "data_metering",
+      "data_metering",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "international_roaming",
+      "international_roaming",
+      "plain"
+     ],
+     [
+      "messaging_enabled",
+      "messaging_enabled",
+      "plain"
+     ],
+     [
+      "national_roaming_enabled",
+      "national_roaming_enabled",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "voice_enabled",
+      "voice_enabled",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -1041,6 +3206,156 @@
   "url" : "https://preview.twilio.com/wireless/RatePlans"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "sims" : [
+      {
+       "account_sid" : "a_account_sid",
+       "commands_callback_method" : "a_commands_callback_method",
+       "commands_callback_url" : "a_commands_callback_url",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "e_id" : "a_e_id",
+       "friendly_name" : "a_friendly_name",
+       "iccid" : "a_iccid",
+       "links" : {
+        "a_links" : 1
+       },
+       "rate_plan_sid" : "a_rate_plan_sid",
+       "sid" : "a_sid",
+       "sms_fallback_method" : "GET",
+       "sms_fallback_url" : "a_sms_fallback_url",
+       "sms_method" : "POST",
+       "sms_url" : "a_sms_url",
+       "status" : "a_status",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url",
+       "voice_fallback_method" : "POST",
+       "voice_fallback_url" : "a_voice_fallback_url",
+       "voice_method" : "GET",
+       "voice_url" : "a_voice_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "commands_callback_method",
+      "commands_callback_method",
+      "plain"
+     ],
+     [
+      "commands_callback_url",
+      "commands_callback_url",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "e_id",
+      "e_id",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "iccid",
+      "iccid",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "rate_plan_sid",
+      "rate_plan_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sms_fallback_method",
+      "sms_fallback_method",
+      "plain"
+     ],
+     [
+      "sms_fallback_url",
+      "sms_fallback_url",
+      "plain"
+     ],
+     [
+      "sms_method",
+      "sms_method",
+      "plain"
+     ],
+     [
+      "sms_url",
+      "sms_url",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "voice_fallback_method",
+      "voice_fallback_method",
+      "plain"
+     ],
+     [
+      "voice_fallback_url",
+      "voice_fallback_url",
+      "plain"
+     ],
+     [
+      "voice_method",
+      "voice_method",
+      "plain"
+     ],
+     [
+      "voice_url",
+      "voice_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -1092,6 +3407,75 @@
   "url" : "https://preview.twilio.com/wireless/Sims"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "address_sid" : "a_address_sid",
+     "cc_emails" : [
+      "a_cc_emails"
+     ],
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "email" : "a_email",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "status" : "signing",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "address_sid",
+      "address_sid",
+      "plain"
+     ],
+     [
+      "cc_emails",
+      "cc_emails",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "email",
+      "email",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -1166,6 +3550,164 @@
   "url" : "https://preview.twilio.com/HostedNumbers/AuthorizationDocuments/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "address_sid" : "a_address_sid",
+     "call_delay" : 1034,
+     "capabilities" : {
+      "MMS" : false,
+      "SMS" : true,
+      "fax" : false,
+      "voice" : true
+     },
+     "cc_emails" : [
+      "a_cc_emails"
+     ],
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "email" : "a_email",
+     "extension" : "a_extension",
+     "failure_reason" : "a_failure_reason",
+     "friendly_name" : "a_friendly_name",
+     "incoming_phone_number_sid" : "a_incoming_phone_number_sid",
+     "phone_number" : "a_phone_number",
+     "sid" : "a_sid",
+     "signing_document_sid" : "a_signing_document_sid",
+     "status" : "testing",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "verification_attempts" : 2260,
+     "verification_call_sids" : [
+      "a_verification_call_sids"
+     ],
+     "verification_code" : "a_verification_code",
+     "verification_document_sid" : "a_verification_document_sid",
+     "verification_type" : "phone-call"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "address_sid",
+      "address_sid",
+      "plain"
+     ],
+     [
+      "call_delay",
+      "call_delay",
+      "plain"
+     ],
+     [
+      "capabilities",
+      "capabilities",
+      "capabilities"
+     ],
+     [
+      "cc_emails",
+      "cc_emails",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "email",
+      "email",
+      "plain"
+     ],
+     [
+      "extension",
+      "extension",
+      "plain"
+     ],
+     [
+      "failure_reason",
+      "failure_reason",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "incoming_phone_number_sid",
+      "incoming_phone_number_sid",
+      "plain"
+     ],
+     [
+      "phone_number",
+      "phone_number",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "signing_document_sid",
+      "signing_document_sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "verification_attempts",
+      "verification_attempts",
+      "plain"
+     ],
+     [
+      "verification_call_sids",
+      "verification_call_sids",
+      "plain"
+     ],
+     [
+      "verification_code",
+      "verification_code",
+      "plain"
+     ],
+     [
+      "verification_document_sid",
+      "verification_document_sid",
+      "plain"
+     ],
+     [
+      "verification_type",
+      "verification_type",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -1248,6 +3790,81 @@
   "url" : "https://preview.twilio.com/HostedNumbers/HostedNumberOrders/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "configuration" : {
+      "a_configuration" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "configuration",
+      "configuration",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -1285,6 +3902,57 @@
   "url" : "https://preview.twilio.com/marketplace/InstalledAddOns/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "enabled" : true,
+     "friendly_name" : "a_friendly_name",
+     "installed_add_on_sid" : "a_installed_add_on_sid",
+     "product_name" : "a_product_name",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "enabled",
+      "enabled",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "installed_add_on_sid",
+      "installed_add_on_sid",
+      "plain"
+     ],
+     [
+      "product_name",
+      "product_name",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -1319,6 +3987,103 @@
   "url" : "https://preview.twilio.com/marketplace/InstalledAddOns/id1/Extensions/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "data_enabled" : true,
+     "data_limit" : 1048,
+     "data_metering" : "a_data_metering",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "friendly_name" : "a_friendly_name",
+     "international_roaming" : [
+      "a_international_roaming"
+     ],
+     "messaging_enabled" : true,
+     "national_roaming_enabled" : true,
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "voice_enabled" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "data_enabled",
+      "data_enabled",
+      "plain"
+     ],
+     [
+      "data_limit",
+      "data_limit",
+      "plain"
+     ],
+     [
+      "data_metering",
+      "data_metering",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "international_roaming",
+      "international_roaming",
+      "plain"
+     ],
+     [
+      "messaging_enabled",
+      "messaging_enabled",
+      "plain"
+     ],
+     [
+      "national_roaming_enabled",
+      "national_roaming_enabled",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "voice_enabled",
+      "voice_enabled",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",
@@ -1354,6 +4119,151 @@
   "url" : "https://preview.twilio.com/wireless/RatePlans/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "commands_callback_method" : "a_commands_callback_method",
+     "commands_callback_url" : "a_commands_callback_url",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "e_id" : "a_e_id",
+     "friendly_name" : "a_friendly_name",
+     "iccid" : "a_iccid",
+     "links" : {
+      "a_links" : 1
+     },
+     "rate_plan_sid" : "a_rate_plan_sid",
+     "sid" : "a_sid",
+     "sms_fallback_method" : "GET",
+     "sms_fallback_url" : "a_sms_fallback_url",
+     "sms_method" : "POST",
+     "sms_url" : "a_sms_url",
+     "status" : "a_status",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url",
+     "voice_fallback_method" : "POST",
+     "voice_fallback_url" : "a_voice_fallback_url",
+     "voice_method" : "GET",
+     "voice_url" : "a_voice_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "commands_callback_method",
+      "commands_callback_method",
+      "plain"
+     ],
+     [
+      "commands_callback_url",
+      "commands_callback_url",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "e_id",
+      "e_id",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "iccid",
+      "iccid",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "rate_plan_sid",
+      "rate_plan_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sms_fallback_method",
+      "sms_fallback_method",
+      "plain"
+     ],
+     [
+      "sms_fallback_url",
+      "sms_fallback_url",
+      "plain"
+     ],
+     [
+      "sms_method",
+      "sms_method",
+      "plain"
+     ],
+     [
+      "sms_url",
+      "sms_url",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "voice_fallback_method",
+      "voice_fallback_method",
+      "plain"
+     ],
+     [
+      "voice_fallback_url",
+      "voice_fallback_url",
+      "plain"
+     ],
+     [
+      "voice_method",
+      "voice_method",
+      "plain"
+     ],
+     [
+      "voice_url",
+      "voice_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "preview",

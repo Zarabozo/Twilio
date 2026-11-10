@@ -1,5 +1,94 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "audience" : "a_audience",
+     "clientCredentialsAuthMethod" : "CLIENT_SECRET_POST",
+     "clientId" : "a_clientId",
+     "clientSecret" : "a_clientSecret",
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "friendlyName" : "a_friendlyName",
+     "id" : "a_id",
+     "password" : "a_password",
+     "scope" : "a_scope",
+     "tokenUrl" : "a_tokenUrl",
+     "type" : "DIGEST",
+     "updatedAt" : "2026-01-01T03:04:05Z",
+     "username" : "a_username"
+    },
+    "fields" : [
+     [
+      "audience",
+      "audience",
+      "plain"
+     ],
+     [
+      "client_credentials_auth_method",
+      "clientCredentialsAuthMethod",
+      "plain"
+     ],
+     [
+      "client_id",
+      "clientId",
+      "plain"
+     ],
+     [
+      "client_secret",
+      "clientSecret",
+      "plain"
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "password",
+      "password",
+      "plain"
+     ],
+     [
+      "scope",
+      "scope",
+      "plain"
+     ],
+     [
+      "token_url",
+      "tokenUrl",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ],
+     [
+      "username",
+      "username",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "body" : {},
   "chain" : [
    [
@@ -31,6 +120,31 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/AuthProfiles"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "operation" : {
+      "a_operation" : 1
+     },
+     "rule" : {
+      "a_rule" : 1
+     }
+    },
+    "fields" : [
+     [
+      "operation",
+      "operation",
+      "plain"
+     ],
+     [
+      "rule",
+      "rule",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "body" : {},
   "chain" : [
    [
@@ -62,6 +176,85 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/Rules"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "auth" : {
+      "a_auth" : 1
+     },
+     "connection" : {
+      "a_connection" : 1
+     },
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "description" : "a_description",
+     "edgeZones" : {
+      "a_edgeZones" : 1
+     },
+     "friendlyName" : "a_friendlyName",
+     "id" : "a_id",
+     "signature" : {
+      "a_signature" : 1
+     },
+     "type" : "SYSTEM",
+     "updatedAt" : "2026-01-01T03:04:05Z"
+    },
+    "fields" : [
+     [
+      "auth",
+      "auth",
+      "plain"
+     ],
+     [
+      "connection",
+      "connection",
+      "plain"
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "edge_zones",
+      "edgeZones",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "signature",
+      "signature",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "body" : {
    "auth" : {
     "v_auth" : 1
@@ -123,6 +316,47 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/Settings"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "friendlyName" : "a_friendlyName",
+     "id" : "a_id",
+     "secret" : "a_secret",
+     "updatedAt" : "2026-01-01T03:04:05Z"
+    },
+    "fields" : [
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "secret",
+      "secret",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "body" : {
    "friendlyName" : "v_friendlyName"
   },
@@ -158,6 +392,36 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/SharedKeys"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "result" : {
+      "a_result" : 1
+     },
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "result",
+      "result",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "body" : {
    "method" : "POST",
    "settingId" : "v_settingId",
@@ -194,6 +458,11 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/Tests"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -217,6 +486,31 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/AuthProfiles/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "operation" : {
+      "a_operation" : 1
+     },
+     "rule" : {
+      "a_rule" : 1
+     }
+    },
+    "fields" : [
+     [
+      "operation",
+      "operation",
+      "plain"
+     ],
+     [
+      "rule",
+      "rule",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -245,6 +539,11 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/Rules/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -268,6 +567,11 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/Settings/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -291,6 +595,95 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/SharedKeys/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "audience" : "a_audience",
+     "clientCredentialsAuthMethod" : "CLIENT_SECRET_POST",
+     "clientId" : "a_clientId",
+     "clientSecret" : "a_clientSecret",
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "friendlyName" : "a_friendlyName",
+     "id" : "a_id",
+     "password" : "a_password",
+     "scope" : "a_scope",
+     "tokenUrl" : "a_tokenUrl",
+     "type" : "DIGEST",
+     "updatedAt" : "2026-01-01T03:04:05Z",
+     "username" : "a_username"
+    },
+    "fields" : [
+     [
+      "audience",
+      "audience",
+      "plain"
+     ],
+     [
+      "client_credentials_auth_method",
+      "clientCredentialsAuthMethod",
+      "plain"
+     ],
+     [
+      "client_id",
+      "clientId",
+      "plain"
+     ],
+     [
+      "client_secret",
+      "clientSecret",
+      "plain"
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "password",
+      "password",
+      "plain"
+     ],
+     [
+      "scope",
+      "scope",
+      "plain"
+     ],
+     [
+      "token_url",
+      "tokenUrl",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ],
+     [
+      "username",
+      "username",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -314,6 +707,67 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/AuthProfiles/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "completedAt" : "2026-01-19T03:04:05Z",
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "error" : {
+      "a_error" : 1
+     },
+     "id" : "a_id",
+     "resourceId" : "a_resourceId",
+     "retentionPeriod" : "a_retentionPeriod",
+     "status" : "RUNNING",
+     "statusUrl" : "a_statusUrl"
+    },
+    "fields" : [
+     [
+      "completed_at",
+      "completedAt",
+      "date",
+      1768791845
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "error",
+      "error",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "resource_id",
+      "resourceId",
+      "plain"
+     ],
+     [
+      "retention_period",
+      "retentionPeriod",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -337,6 +791,73 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/Operations/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "description" : "a_description",
+     "friendlyName" : "a_friendlyName",
+     "id" : "a_id",
+     "matchType" : "DEFAULT",
+     "prefix" : "a_prefix",
+     "settings" : [
+      "a_settings"
+     ],
+     "updatedAt" : "2026-01-01T03:04:05Z",
+     "value" : "a_value"
+    },
+    "fields" : [
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "match_type",
+      "matchType",
+      "plain"
+     ],
+     [
+      "prefix",
+      "prefix",
+      "plain"
+     ],
+     [
+      "settings",
+      "settings",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ],
+     [
+      "value",
+      "value",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -360,6 +881,85 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/Rules/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "auth" : {
+      "a_auth" : 1
+     },
+     "connection" : {
+      "a_connection" : 1
+     },
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "description" : "a_description",
+     "edgeZones" : {
+      "a_edgeZones" : 1
+     },
+     "friendlyName" : "a_friendlyName",
+     "id" : "a_id",
+     "signature" : {
+      "a_signature" : 1
+     },
+     "type" : "SYSTEM",
+     "updatedAt" : "2026-01-01T03:04:05Z"
+    },
+    "fields" : [
+     [
+      "auth",
+      "auth",
+      "plain"
+     ],
+     [
+      "connection",
+      "connection",
+      "plain"
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "edge_zones",
+      "edgeZones",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "signature",
+      "signature",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -383,6 +983,41 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/Settings/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "friendlyName" : "a_friendlyName",
+     "id" : "a_id",
+     "updatedAt" : "2026-01-01T03:04:05Z"
+    },
+    "fields" : [
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -406,6 +1041,52 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/SharedKeys/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "authProfiles" : [
+      {
+       "createdAt" : "2026-01-14T03:04:05Z",
+       "friendlyName" : "a_friendlyName",
+       "id" : "a_id",
+       "type" : "OAUTH2",
+       "updatedAt" : "2026-01-01T03:04:05Z"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -430,6 +1111,46 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/AuthProfiles"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "edgeZones" : [
+      {
+       "description" : "a_description",
+       "edgeLocations" : [
+        "a_edgeLocations"
+       ],
+       "friendlyName" : "a_friendlyName",
+       "id" : "a_id"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "edge_locations",
+      "edgeLocations",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -454,6 +1175,72 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/EdgeZones"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "operations" : [
+      {
+       "completedAt" : "2026-01-19T03:04:05Z",
+       "createdAt" : "2026-01-14T03:04:05Z",
+       "error" : {
+        "a_error" : 1
+       },
+       "id" : "a_id",
+       "resourceId" : "a_resourceId",
+       "retentionPeriod" : "a_retentionPeriod",
+       "status" : "RUNNING",
+       "statusUrl" : "a_statusUrl"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "completed_at",
+      "completedAt",
+      "date",
+      1768791845
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "error",
+      "error",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "resource_id",
+      "resourceId",
+      "plain"
+     ],
+     [
+      "retention_period",
+      "retentionPeriod",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -490,6 +1277,78 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/Operations"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "rules" : [
+      {
+       "createdAt" : "2026-01-14T03:04:05Z",
+       "description" : "a_description",
+       "friendlyName" : "a_friendlyName",
+       "id" : "a_id",
+       "matchType" : "DEFAULT",
+       "prefix" : "a_prefix",
+       "settings" : [
+        "a_settings"
+       ],
+       "updatedAt" : "2026-01-01T03:04:05Z",
+       "value" : "a_value"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "match_type",
+      "matchType",
+      "plain"
+     ],
+     [
+      "prefix",
+      "prefix",
+      "plain"
+     ],
+     [
+      "settings",
+      "settings",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ],
+     [
+      "value",
+      "value",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -521,6 +1380,90 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/Rules"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "settings" : [
+      {
+       "auth" : {
+        "a_auth" : 1
+       },
+       "connection" : {
+        "a_connection" : 1
+       },
+       "createdAt" : "2026-01-14T03:04:05Z",
+       "description" : "a_description",
+       "edgeZones" : {
+        "a_edgeZones" : 1
+       },
+       "friendlyName" : "a_friendlyName",
+       "id" : "a_id",
+       "signature" : {
+        "a_signature" : 1
+       },
+       "type" : "SYSTEM",
+       "updatedAt" : "2026-01-01T03:04:05Z"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "auth",
+      "auth",
+      "plain"
+     ],
+     [
+      "connection",
+      "connection",
+      "plain"
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "edge_zones",
+      "edgeZones",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "signature",
+      "signature",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -562,6 +1505,46 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/Settings"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "sharedKeys" : [
+      {
+       "createdAt" : "2026-01-14T03:04:05Z",
+       "friendlyName" : "a_friendlyName",
+       "id" : "a_id",
+       "updatedAt" : "2026-01-01T03:04:05Z"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "webhooks",
@@ -586,6 +1569,95 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/SharedKeys"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "audience" : "a_audience",
+     "clientCredentialsAuthMethod" : "CLIENT_SECRET_POST",
+     "clientId" : "a_clientId",
+     "clientSecret" : "a_clientSecret",
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "friendlyName" : "a_friendlyName",
+     "id" : "a_id",
+     "password" : "a_password",
+     "scope" : "a_scope",
+     "tokenUrl" : "a_tokenUrl",
+     "type" : "DIGEST",
+     "updatedAt" : "2026-01-01T03:04:05Z",
+     "username" : "a_username"
+    },
+    "fields" : [
+     [
+      "audience",
+      "audience",
+      "plain"
+     ],
+     [
+      "client_credentials_auth_method",
+      "clientCredentialsAuthMethod",
+      "plain"
+     ],
+     [
+      "client_id",
+      "clientId",
+      "plain"
+     ],
+     [
+      "client_secret",
+      "clientSecret",
+      "plain"
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "password",
+      "password",
+      "plain"
+     ],
+     [
+      "scope",
+      "scope",
+      "plain"
+     ],
+     [
+      "token_url",
+      "tokenUrl",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ],
+     [
+      "username",
+      "username",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "body" : {
    "friendlyName" : "v_friendlyName"
   },
@@ -618,6 +1690,31 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/AuthProfiles/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "operation" : {
+      "a_operation" : 1
+     },
+     "rule" : {
+      "a_rule" : 1
+     }
+    },
+    "fields" : [
+     [
+      "operation",
+      "operation",
+      "plain"
+     ],
+     [
+      "rule",
+      "rule",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "body" : {},
   "chain" : [
    [
@@ -649,6 +1746,85 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/Rules/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "auth" : {
+      "a_auth" : 1
+     },
+     "connection" : {
+      "a_connection" : 1
+     },
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "description" : "a_description",
+     "edgeZones" : {
+      "a_edgeZones" : 1
+     },
+     "friendlyName" : "a_friendlyName",
+     "id" : "a_id",
+     "signature" : {
+      "a_signature" : 1
+     },
+     "type" : "SYSTEM",
+     "updatedAt" : "2026-01-01T03:04:05Z"
+    },
+    "fields" : [
+     [
+      "auth",
+      "auth",
+      "plain"
+     ],
+     [
+      "connection",
+      "connection",
+      "plain"
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "edge_zones",
+      "edgeZones",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "signature",
+      "signature",
+      "plain"
+     ],
+     [
+      "type",
+      "type",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "body" : {
    "description" : "v_description",
    "friendlyName" : "v_friendlyName"
@@ -683,6 +1859,41 @@
   "url" : "https://webhooks.twilio.com/v1/Webhooks/Settings/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "friendlyName" : "a_friendlyName",
+     "id" : "a_id",
+     "updatedAt" : "2026-01-01T03:04:05Z"
+    },
+    "fields" : [
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "friendly_name",
+      "friendlyName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "body" : {
    "friendlyName" : "v_friendlyName"
   },

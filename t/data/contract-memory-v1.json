@@ -1,5 +1,26 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message",
+     "statusUrl" : "a_statusUrl"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "body" : {
    "description" : "v_description",
    "displayName" : "v_displayName",
@@ -48,6 +69,66 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/DataMappings"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "communications" : [
+      "a_communications"
+     ],
+     "meta" : {
+      "a_meta" : 1
+     },
+     "observations" : [
+      "a_observations"
+     ],
+     "summaries" : [
+      "a_summaries"
+     ]
+    },
+    "fields" : [
+     [
+      "communications",
+      "communications",
+      "plain"
+     ],
+     [
+      "meta",
+      "meta",
+      "plain"
+     ],
+     [
+      "observations",
+      "observations",
+      "plain"
+     ],
+     [
+      "summaries",
+      "summaries",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 308
+   }
+  ],
   "body" : {
    "beginDate" : {
     "epoch" : 1767495845
@@ -103,6 +184,27 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Recall"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "id" : "a_id",
+     "message" : "a_message"
+    },
+    "fields" : [
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "message",
+      "message",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "body" : {
    "traits" : {
     "v_traits" : 1
@@ -139,6 +241,40 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 308
+   }
+  ],
   "body" : {
    "summaries" : [
     "v_summaries"
@@ -180,6 +316,40 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/ConversationSummaries"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 308
+   }
+  ],
   "body" : {
    "idType" : "v_idType",
    "value" : "v_value"
@@ -214,6 +384,40 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Identifiers"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 308
+   }
+  ],
   "body" : {
    "observations" : [
     "v_observations"
@@ -255,6 +459,48 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Observations"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "importId" : "a_importId",
+     "operationId" : {
+      "a_operationId" : 1
+     },
+     "statusUrl" : "a_statusUrl",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "import_id",
+      "importId",
+      "plain"
+     ],
+     [
+      "operation_id",
+      "operationId",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "body" : {
    "columnMappings" : [
     "v_columnMappings"
@@ -295,6 +541,29 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/Imports"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "normalizedValue" : "a_normalizedValue",
+     "profiles" : [
+      "a_profiles"
+     ]
+    },
+    "fields" : [
+     [
+      "normalized_value",
+      "normalizedValue",
+      "plain"
+     ],
+     [
+      "profiles",
+      "profiles",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "body" : {
    "idType" : "v_idType",
    "value" : "v_value"
@@ -329,6 +598,27 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/Lookup"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message",
+     "statusUrl" : "a_statusUrl"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "body" : {
    "description" : "v_description",
    "displayName" : "v_displayName"
@@ -363,6 +653,27 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message",
+     "statusUrl" : "a_statusUrl"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "body" : {
    "description" : "v_description",
    "displayName" : "v_displayName",
@@ -403,6 +714,27 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/TraitGroups"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message",
+     "statusUrl" : "a_statusUrl"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -426,6 +758,40 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/DataMappings/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 308
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -449,6 +815,40 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 308
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -472,6 +872,40 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/ConversationSummaries/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 308
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -502,6 +936,40 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Identifiers/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 308
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -525,6 +993,27 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Observations/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message",
+     "statusUrl" : "a_statusUrl"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -548,6 +1037,27 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message",
+     "statusUrl" : "a_statusUrl"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -571,6 +1081,75 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/TraitGroups/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "description" : "a_description",
+     "displayName" : "a_displayName",
+     "id" : "a_id",
+     "isEnabled" : true,
+     "mappingFrom" : {
+      "a_mappingFrom" : 1
+     },
+     "mappingTo" : {
+      "a_mappingTo" : 1
+     },
+     "updatedAt" : "2026-01-01T03:04:05Z",
+     "version" : 774
+    },
+    "fields" : [
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "display_name",
+      "displayName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "is_enabled",
+      "isEnabled",
+      "plain"
+     ],
+     [
+      "mapping_from",
+      "mappingFrom",
+      "plain"
+     ],
+     [
+      "mapping_to",
+      "mappingTo",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ],
+     [
+      "version",
+      "version",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -594,6 +1173,37 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/DataMappings/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "identifierConfigs" : [
+      "a_identifierConfigs"
+     ],
+     "matchingRules" : [
+      "a_matchingRules"
+     ],
+     "version" : 774
+    },
+    "fields" : [
+     [
+      "identifier_configs",
+      "identifierConfigs",
+      "plain"
+     ],
+     [
+      "matching_rules",
+      "matchingRules",
+      "plain"
+     ],
+     [
+      "version",
+      "version",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -617,6 +1227,69 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/IdentityResolutionSettings"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "completedAt" : "2026-01-19T03:04:05Z",
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "error" : {
+      "a_error" : 1
+     },
+     "operationId" : "a_operationId",
+     "result" : {
+      "a_result" : 1
+     },
+     "resultUrl" : "a_resultUrl",
+     "status" : "RUNNING",
+     "statusUrl" : "a_statusUrl"
+    },
+    "fields" : [
+     [
+      "completed_at",
+      "completedAt",
+      "date",
+      1768791845
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "error",
+      "error",
+      "plain"
+     ],
+     [
+      "operation_id",
+      "operationId",
+      "plain"
+     ],
+     [
+      "result",
+      "result",
+      "plain"
+     ],
+     [
+      "result_url",
+      "resultUrl",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -640,6 +1313,55 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Operations/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "id" : "a_id",
+     "traits" : {
+      "a_traits" : 1
+     }
+    },
+    "fields" : [
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "traits",
+      "traits",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 301
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -670,6 +1392,60 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "content" : "a_content",
+     "conversationId" : "a_conversationId",
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "id" : "a_id",
+     "occurredAt" : "2026-01-01T03:04:05Z",
+     "source" : "a_source",
+     "updatedAt" : "2026-01-01T03:04:05Z"
+    },
+    "fields" : [
+     [
+      "content",
+      "content",
+      "plain"
+     ],
+     [
+      "conversation_id",
+      "conversationId",
+      "plain"
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "occurred_at",
+      "occurredAt",
+      "date",
+      1767236645
+     ],
+     [
+      "source",
+      "source",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -693,6 +1469,48 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/ConversationSummaries/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "idType" : "a_idType",
+     "values" : [
+      "a_values"
+     ]
+    },
+    "fields" : [
+     [
+      "id_type",
+      "idType",
+      "plain"
+     ],
+     [
+      "values",
+      "values",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 301
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -716,6 +1534,63 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Identifiers/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "columnMappings" : [
+      "a_columnMappings"
+     ],
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "fileSize" : 827,
+     "filename" : "a_filename",
+     "status" : "PENDING",
+     "summary" : {
+      "a_summary" : 1
+     },
+     "updatedAt" : "2026-01-01T03:04:05Z"
+    },
+    "fields" : [
+     [
+      "column_mappings",
+      "columnMappings",
+      "plain"
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "file_size",
+      "fileSize",
+      "plain"
+     ],
+     [
+      "filename",
+      "filename",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "summary",
+      "summary",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -739,6 +1614,62 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/Imports/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "content" : "a_content",
+     "conversationIds" : [
+      "a_conversationIds"
+     ],
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "id" : "a_id",
+     "occurredAt" : "2026-01-01T03:04:05Z",
+     "source" : "a_source",
+     "updatedAt" : "2026-01-01T03:04:05Z"
+    },
+    "fields" : [
+     [
+      "content",
+      "content",
+      "plain"
+     ],
+     [
+      "conversation_ids",
+      "conversationIds",
+      "plain"
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "occurred_at",
+      "occurredAt",
+      "date",
+      1767236645
+     ],
+     [
+      "source",
+      "source",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -762,6 +1693,58 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Observations/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "dataAsOf" : "2026-01-16T03:04:05Z",
+     "description" : "a_description",
+     "displayName" : "a_displayName",
+     "id" : "a_id",
+     "intelligenceServiceId" : "a_intelligenceServiceId",
+     "status" : "QUEUED",
+     "version" : 774
+    },
+    "fields" : [
+     [
+      "data_as_of",
+      "dataAsOf",
+      "date",
+      1768532645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "display_name",
+      "displayName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "intelligence_service_id",
+      "intelligenceServiceId",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "version",
+      "version",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -785,6 +1768,31 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {
+      "a_meta" : 1
+     },
+     "traitGroup" : {
+      "a_traitGroup" : 1
+     }
+    },
+    "fields" : [
+     [
+      "meta",
+      "meta",
+      "plain"
+     ],
+     [
+      "trait_group",
+      "traitGroup",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -830,6 +1838,80 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/TraitGroups/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "dataMappings" : [
+      {
+       "createdAt" : "2026-01-14T03:04:05Z",
+       "description" : "a_description",
+       "displayName" : "a_displayName",
+       "id" : "a_id",
+       "isEnabled" : true,
+       "mappingFrom" : {
+        "a_mappingFrom" : 1
+       },
+       "mappingTo" : {
+        "a_mappingTo" : 1
+       },
+       "updatedAt" : "2026-01-01T03:04:05Z",
+       "version" : 774
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "display_name",
+      "displayName",
+      "plain"
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "is_enabled",
+      "isEnabled",
+      "plain"
+     ],
+     [
+      "mapping_from",
+      "mappingFrom",
+      "plain"
+     ],
+     [
+      "mapping_to",
+      "mappingTo",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ],
+     [
+      "version",
+      "version",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -866,6 +1948,67 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/DataMappings"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "revisions" : [
+      {
+       "content" : "a_content",
+       "conversationIds" : [
+        "a_conversationIds"
+       ],
+       "createdAt" : "2026-01-14T03:04:05Z",
+       "id" : "a_id",
+       "occurredAt" : "2026-01-01T03:04:05Z",
+       "source" : "a_source",
+       "updatedAt" : "2026-01-01T03:04:05Z"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "content",
+      "content",
+      "plain"
+     ],
+     [
+      "conversation_ids",
+      "conversationIds",
+      "plain"
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "occurred_at",
+      "occurredAt",
+      "date",
+      1767236645
+     ],
+     [
+      "source",
+      "source",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -895,6 +2038,65 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Observations/id3/Revisions"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "summaries" : [
+      {
+       "content" : "a_content",
+       "conversationId" : "a_conversationId",
+       "createdAt" : "2026-01-14T03:04:05Z",
+       "id" : "a_id",
+       "occurredAt" : "2026-01-01T03:04:05Z",
+       "source" : "a_source",
+       "updatedAt" : "2026-01-01T03:04:05Z"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "content",
+      "content",
+      "plain"
+     ],
+     [
+      "conversation_id",
+      "conversationId",
+      "plain"
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "occurred_at",
+      "occurredAt",
+      "date",
+      1767236645
+     ],
+     [
+      "source",
+      "source",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -930,6 +2132,34 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/ConversationSummaries"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "identifiers" : [
+      {
+       "idType" : "a_idType",
+       "values" : [
+        "a_values"
+       ]
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "id_type",
+      "idType",
+      "plain"
+     ],
+     [
+      "values",
+      "values",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -954,6 +2184,18 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Identifiers"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "imports" : [
+      {}
+     ],
+     "meta" : {}
+    },
+    "fields" : [],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -985,6 +2227,67 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/Imports"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "observations" : [
+      {
+       "content" : "a_content",
+       "conversationIds" : [
+        "a_conversationIds"
+       ],
+       "createdAt" : "2026-01-14T03:04:05Z",
+       "id" : "a_id",
+       "occurredAt" : "2026-01-01T03:04:05Z",
+       "source" : "a_source",
+       "updatedAt" : "2026-01-01T03:04:05Z"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "content",
+      "content",
+      "plain"
+     ],
+     [
+      "conversation_ids",
+      "conversationIds",
+      "plain"
+     ],
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "id",
+      "id",
+      "plain"
+     ],
+     [
+      "occurred_at",
+      "occurredAt",
+      "date",
+      1767236645
+     ],
+     [
+      "source",
+      "source",
+      "plain"
+     ],
+     [
+      "updated_at",
+      "updatedAt",
+      "date",
+      1767236645
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -1044,6 +2347,47 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Observations"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "traits" : [
+      {
+       "name" : "a_name",
+       "timestamp" : "2026-01-01T03:04:05Z",
+       "traitGroup" : "a_traitGroup",
+       "value" : {
+        "a_value" : 1
+       }
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "name",
+      "name",
+      "plain"
+     ],
+     [
+      "timestamp",
+      "timestamp",
+      "date",
+      1767236645
+     ],
+     [
+      "trait_group",
+      "traitGroup",
+      "plain"
+     ],
+     [
+      "value",
+      "value",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -1080,6 +2424,18 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Traits"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "profiles" : [
+      {}
+     ]
+    },
+    "fields" : [],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -1111,6 +2467,18 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "stores" : [
+      {}
+     ]
+    },
+    "fields" : [],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -1142,6 +2510,46 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "traitGroups" : [
+      {
+       "description" : "a_description",
+       "displayName" : "a_displayName",
+       "traits" : {
+        "a_traits" : 1
+       },
+       "version" : 774
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "display_name",
+      "displayName",
+      "plain"
+     ],
+     [
+      "traits",
+      "traits",
+      "plain"
+     ],
+     [
+      "version",
+      "version",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "memory",
@@ -1178,6 +2586,27 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/TraitGroups"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message",
+     "statusUrl" : "a_statusUrl"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "body" : {},
   "chain" : [
    [
@@ -1209,6 +2638,40 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/DataMappings/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 308
+   }
+  ],
   "body" : {
    "content" : "v_content",
    "conversationId" : "v_conversationId",
@@ -1249,6 +2712,40 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/ConversationSummaries/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 308
+   }
+  ],
   "body" : {
    "idType" : "v_idType",
    "newValue" : "v_newValue",
@@ -1285,6 +2782,40 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Identifiers/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 308
+   }
+  ],
   "body" : {
    "content" : "v_content",
    "conversationIds" : [
@@ -1329,6 +2860,40 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2/Observations/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   },
+   {
+    "body" : {
+     "message" : "a_message",
+     "uri" : "a_uri"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "uri",
+      "uri",
+      "plain"
+     ]
+    ],
+    "status" : 308
+   }
+  ],
   "body" : {
    "traits" : {
     "v_traits" : 1
@@ -1365,6 +2930,27 @@
   "url" : "https://memory.twilio.com/v1/Stores/id1/Profiles/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message",
+     "statusUrl" : "a_statusUrl"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "body" : {
    "description" : "v_description",
    "displayName" : "v_displayName"
@@ -1402,6 +2988,27 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message",
+     "statusUrl" : "a_statusUrl"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "body" : {
    "description" : "v_description",
    "traits" : {
@@ -1443,6 +3050,27 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/TraitGroups/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "message" : "a_message",
+     "statusUrl" : "a_statusUrl"
+    },
+    "fields" : [
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "body" : {
    "identifierConfigs" : [
     "v_identifierConfigs"
@@ -1488,6 +3116,42 @@
   "url" : "https://memory.twilio.com/v1/ControlPlane/Stores/id1/IdentityResolutionSettings"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "createdAt" : "2026-01-14T03:04:05Z",
+     "message" : "a_message",
+     "operationId" : {
+      "a_operationId" : 1
+     },
+     "statusUrl" : "a_statusUrl"
+    },
+    "fields" : [
+     [
+      "created_at",
+      "createdAt",
+      "date",
+      1768359845
+     ],
+     [
+      "message",
+      "message",
+      "plain"
+     ],
+     [
+      "operation_id",
+      "operationId",
+      "plain"
+     ],
+     [
+      "status_url",
+      "statusUrl",
+      "plain"
+     ]
+    ],
+    "status" : 202
+   }
+  ],
   "body" : {
    "profiles" : [
     "v_profiles"

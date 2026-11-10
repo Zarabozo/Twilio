@@ -1,5 +1,143 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "entity_identity" : "a_entity_identity",
+     "factor_friendly_name" : "a_factor_friendly_name",
+     "factor_type" : "push",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "token" : "a_token",
+     "ttl" : 340,
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "entity_identity",
+      "entity_identity",
+      "plain"
+     ],
+     [
+      "factor_friendly_name",
+      "factor_friendly_name",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "token",
+      "token",
+      "plain"
+     ],
+     [
+      "ttl",
+      "ttl",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   },
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "entity_identity" : "a_entity_identity",
+     "factor_friendly_name" : "a_factor_friendly_name",
+     "factor_type" : "push",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "token" : "a_token",
+     "ttl" : 340,
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "entity_identity",
+      "entity_identity",
+      "plain"
+     ],
+     [
+      "factor_friendly_name",
+      "factor_friendly_name",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "token",
+      "token",
+      "plain"
+     ],
+     [
+      "ttl",
+      "ttl",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -50,6 +188,71 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/AccessTokens"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "interval" : 869,
+     "max" : 326,
+     "rate_limit_sid" : "a_rate_limit_sid",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "interval",
+      "interval",
+      "plain"
+     ],
+     [
+      "max",
+      "max",
+      "plain"
+     ],
+     [
+      "rate_limit_sid",
+      "rate_limit_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -93,6 +296,135 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/RateLimits/id2/Buckets"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_responded" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "details" : {
+      "a_details" : 1
+     },
+     "entity_sid" : "a_entity_sid",
+     "expiration_date" : "2026-01-05T03:04:05Z",
+     "factor_sid" : "a_factor_sid",
+     "factor_type" : "passkeys",
+     "hidden_details" : {
+      "a_hidden_details" : 1
+     },
+     "identity" : "a_identity",
+     "links" : {
+      "a_links" : 1
+     },
+     "metadata" : {
+      "a_metadata" : 1
+     },
+     "responded_reason" : "none",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "pending",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_responded",
+      "date_responded",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "details",
+      "details",
+      "plain"
+     ],
+     [
+      "entity_sid",
+      "entity_sid",
+      "plain"
+     ],
+     [
+      "expiration_date",
+      "expiration_date",
+      "date",
+      1767582245
+     ],
+     [
+      "factor_sid",
+      "factor_sid",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "hidden_details",
+      "hidden_details",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "metadata",
+      "metadata",
+      "plain"
+     ],
+     [
+      "responded_reason",
+      "responded_reason",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -172,6 +504,143 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities/id2/Challenges"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_responded" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "details" : {
+      "a_details" : 1
+     },
+     "entity_sid" : "a_entity_sid",
+     "expiration_date" : "2026-01-05T03:04:05Z",
+     "factor_sid" : "a_factor_sid",
+     "factor_type" : "passkeys",
+     "hidden_details" : {
+      "a_hidden_details" : 1
+     },
+     "identity" : "a_identity",
+     "links" : {
+      "a_links" : 1
+     },
+     "metadata" : {
+      "a_metadata" : 1
+     },
+     "options" : {
+      "a_options" : 1
+     },
+     "responded_reason" : "none",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "pending",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_responded",
+      "date_responded",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "details",
+      "details",
+      "plain"
+     ],
+     [
+      "entity_sid",
+      "entity_sid",
+      "plain"
+     ],
+     [
+      "expiration_date",
+      "expiration_date",
+      "date",
+      1767582245
+     ],
+     [
+      "factor_sid",
+      "factor_sid",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "hidden_details",
+      "hidden_details",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "metadata",
+      "metadata",
+      "plain"
+     ],
+     [
+      "options",
+      "options",
+      "plain"
+     ],
+     [
+      "responded_reason",
+      "responded_reason",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "body" : {
    "factor_sid" : "v_factor_sid",
    "identity" : "v_identity"
@@ -210,6 +679,67 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Passkeys/Challenges"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "identity" : "a_identity",
+     "links" : {
+      "a_links" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -244,6 +774,59 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "country" : "a_country",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "messaging_service_sid" : "a_messaging_service_sid",
+     "service_sid" : "a_service_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "country",
+      "country",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "messaging_service_sid",
+      "messaging_service_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -283,6 +866,115 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/MessagingConfigurations"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "binding" : {
+      "a_binding" : 1
+     },
+     "config" : {
+      "a_config" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "entity_sid" : "a_entity_sid",
+     "factor_type" : "passkeys",
+     "friendly_name" : "a_friendly_name",
+     "identity" : "a_identity",
+     "metadata" : {
+      "a_metadata" : 1
+     },
+     "options" : {
+      "a_options" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "unverified",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "binding",
+      "binding",
+      "plain"
+     ],
+     [
+      "config",
+      "config",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "entity_sid",
+      "entity_sid",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "metadata",
+      "metadata",
+      "plain"
+     ],
+     [
+      "options",
+      "options",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -389,6 +1081,115 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities/id2/Factors"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "binding" : {
+      "a_binding" : 1
+     },
+     "config" : {
+      "a_config" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "entity_sid" : "a_entity_sid",
+     "factor_type" : "passkeys",
+     "friendly_name" : "a_friendly_name",
+     "identity" : "a_identity",
+     "metadata" : {
+      "a_metadata" : 1
+     },
+     "options" : {
+      "a_options" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "unverified",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "binding",
+      "binding",
+      "plain"
+     ],
+     [
+      "config",
+      "config",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "entity_sid",
+      "entity_sid",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "metadata",
+      "metadata",
+      "plain"
+     ],
+     [
+      "options",
+      "options",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "body" : {
    "config" : {
     "v_config" : 1
@@ -433,6 +1234,70 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Passkeys/Factors"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "challenge_sid" : "a_challenge_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "entity_sid" : "a_entity_sid",
+     "identity" : "a_identity",
+     "priority" : "a_priority",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "ttl" : 340
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "challenge_sid",
+      "challenge_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "entity_sid",
+      "entity_sid",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "priority",
+      "priority",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "ttl",
+      "ttl",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -475,6 +1340,73 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities/id2/Challenges/id3/Notifications"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "links" : {
+      "a_links" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -515,6 +1447,33 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/RateLimits"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "phone_number" : "a_phone_number",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "phone_number",
+      "phone_number",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -545,6 +1504,153 @@
   "url" : "https://verify.twilio.com/v2/SafeList/Numbers"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "code_length" : 1148,
+     "custom_code_enabled" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "default_template_sid" : "a_default_template_sid",
+     "do_not_share_warning_enabled" : true,
+     "dtmf_input_required" : true,
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "lookup_enabled" : true,
+     "passkeys" : {
+      "a_passkeys" : 1
+     },
+     "psd2_enabled" : true,
+     "push" : {
+      "a_push" : 1
+     },
+     "sid" : "a_sid",
+     "skip_sms_to_landlines" : true,
+     "totp" : {
+      "a_totp" : 1
+     },
+     "tts_name" : "a_tts_name",
+     "url" : "a_url",
+     "verify_event_subscription_enabled" : true,
+     "whatsapp" : {
+      "a_whatsapp" : 1
+     }
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "code_length",
+      "code_length",
+      "plain"
+     ],
+     [
+      "custom_code_enabled",
+      "custom_code_enabled",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_template_sid",
+      "default_template_sid",
+      "plain"
+     ],
+     [
+      "do_not_share_warning_enabled",
+      "do_not_share_warning_enabled",
+      "plain"
+     ],
+     [
+      "dtmf_input_required",
+      "dtmf_input_required",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "lookup_enabled",
+      "lookup_enabled",
+      "plain"
+     ],
+     [
+      "passkeys",
+      "passkeys",
+      "plain"
+     ],
+     [
+      "psd2_enabled",
+      "psd2_enabled",
+      "plain"
+     ],
+     [
+      "push",
+      "push",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "skip_sms_to_landlines",
+      "skip_sms_to_landlines",
+      "plain"
+     ],
+     [
+      "totp",
+      "totp",
+      "plain"
+     ],
+     [
+      "tts_name",
+      "tts_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "verify_event_subscription_enabled",
+      "verify_event_subscription_enabled",
+      "plain"
+     ],
+     [
+      "whatsapp",
+      "whatsapp",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -701,6 +1807,113 @@
   "url" : "https://verify.twilio.com/v2/Services"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "amount" : "a_amount",
+     "channel" : "sna",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "lookup" : {
+      "a_lookup" : 1
+     },
+     "payee" : "a_payee",
+     "send_code_attempts" : [
+      "a_send_code_attempts"
+     ],
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "sna" : {
+      "a_sna" : 1
+     },
+     "status" : "a_status",
+     "to" : "a_to",
+     "url" : "a_url",
+     "valid" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "amount",
+      "amount",
+      "plain"
+     ],
+     [
+      "channel",
+      "channel",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "lookup",
+      "lookup",
+      "plain"
+     ],
+     [
+      "payee",
+      "payee",
+      "plain"
+     ],
+     [
+      "send_code_attempts",
+      "send_code_attempts",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sna",
+      "sna",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "to",
+      "to",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "valid",
+      "valid",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -830,6 +2043,174 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Verifications"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "amount" : "a_amount",
+     "channel" : "sna",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "payee" : "a_payee",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "sna_attempts_error_codes" : [
+      "a_sna_attempts_error_codes"
+     ],
+     "status" : "a_status",
+     "to" : "a_to",
+     "valid" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "amount",
+      "amount",
+      "plain"
+     ],
+     [
+      "channel",
+      "channel",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "payee",
+      "payee",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sna_attempts_error_codes",
+      "sna_attempts_error_codes",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "to",
+      "to",
+      "plain"
+     ],
+     [
+      "valid",
+      "valid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   },
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "amount" : "a_amount",
+     "channel" : "sna",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "payee" : "a_payee",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "sna_attempts_error_codes" : [
+      "a_sna_attempts_error_codes"
+     ],
+     "status" : "a_status",
+     "to" : "a_to",
+     "valid" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "amount",
+      "amount",
+      "plain"
+     ],
+     [
+      "channel",
+      "channel",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "payee",
+      "payee",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sna_attempts_error_codes",
+      "sna_attempts_error_codes",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "to",
+      "to",
+      "plain"
+     ],
+     [
+      "valid",
+      "valid",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -889,6 +2270,91 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/VerificationCheck"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "event_types" : [
+      "a_event_types"
+     ],
+     "friendly_name" : "a_friendly_name",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "enabled",
+     "url" : "a_url",
+     "version" : "v1",
+     "webhook_method" : "POST",
+     "webhook_url" : "a_webhook_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "event_types",
+      "event_types",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "version",
+      "version",
+      "plain"
+     ],
+     [
+      "webhook_method",
+      "webhook_method",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ]
+    ],
+    "status" : 201
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -951,6 +2417,11 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Webhooks"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -982,6 +2453,11 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/RateLimits/id2/Buckets/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1009,6 +2485,11 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1040,6 +2521,11 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities/id2/Factors/id3"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1067,6 +2553,11 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/MessagingConfigurations/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1094,6 +2585,11 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/RateLimits/id2"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1117,6 +2613,11 @@
   "url" : "https://verify.twilio.com/v2/SafeList/Numbers/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1140,6 +2641,11 @@
   "url" : "https://verify.twilio.com/v2/Services/id1"
  },
  {
+  "answers" : [
+   {
+    "status" : 204
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1167,6 +2673,76 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Webhooks/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "entity_identity" : "a_entity_identity",
+     "factor_friendly_name" : "a_factor_friendly_name",
+     "factor_type" : "push",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "token" : "a_token",
+     "ttl" : 340,
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "entity_identity",
+      "entity_identity",
+      "plain"
+     ],
+     [
+      "factor_friendly_name",
+      "factor_friendly_name",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "token",
+      "token",
+      "plain"
+     ],
+     [
+      "ttl",
+      "ttl",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1194,6 +2770,71 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/AccessTokens/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "interval" : 869,
+     "max" : 326,
+     "rate_limit_sid" : "a_rate_limit_sid",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "interval",
+      "interval",
+      "plain"
+     ],
+     [
+      "max",
+      "max",
+      "plain"
+     ],
+     [
+      "rate_limit_sid",
+      "rate_limit_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1225,6 +2866,135 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/RateLimits/id2/Buckets/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_responded" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "details" : {
+      "a_details" : 1
+     },
+     "entity_sid" : "a_entity_sid",
+     "expiration_date" : "2026-01-05T03:04:05Z",
+     "factor_sid" : "a_factor_sid",
+     "factor_type" : "passkeys",
+     "hidden_details" : {
+      "a_hidden_details" : 1
+     },
+     "identity" : "a_identity",
+     "links" : {
+      "a_links" : 1
+     },
+     "metadata" : {
+      "a_metadata" : 1
+     },
+     "responded_reason" : "none",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "pending",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_responded",
+      "date_responded",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "details",
+      "details",
+      "plain"
+     ],
+     [
+      "entity_sid",
+      "entity_sid",
+      "plain"
+     ],
+     [
+      "expiration_date",
+      "expiration_date",
+      "date",
+      1767582245
+     ],
+     [
+      "factor_sid",
+      "factor_sid",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "hidden_details",
+      "hidden_details",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "metadata",
+      "metadata",
+      "plain"
+     ],
+     [
+      "responded_reason",
+      "responded_reason",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1256,6 +3026,67 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities/id2/Challenges/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "identity" : "a_identity",
+     "links" : {
+      "a_links" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1283,6 +3114,99 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "config" : {
+      "a_config" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "entity_sid" : "a_entity_sid",
+     "factor_type" : "passkeys",
+     "friendly_name" : "a_friendly_name",
+     "identity" : "a_identity",
+     "metadata" : {
+      "a_metadata" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "unverified",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "config",
+      "config",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "entity_sid",
+      "entity_sid",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "metadata",
+      "metadata",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1314,6 +3238,43 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities/id2/Factors/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "form_meta" : {
+      "a_form_meta" : 1
+     },
+     "form_type" : "form-push",
+     "forms" : {
+      "a_forms" : 1
+     },
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "form_meta",
+      "form_meta",
+      "plain"
+     ],
+     [
+      "form_type",
+      "form_type",
+      "plain"
+     ],
+     [
+      "forms",
+      "forms",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1337,6 +3298,59 @@
   "url" : "https://verify.twilio.com/v2/Forms/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "country" : "a_country",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "messaging_service_sid" : "a_messaging_service_sid",
+     "service_sid" : "a_service_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "country",
+      "country",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "messaging_service_sid",
+      "messaging_service_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1364,6 +3378,73 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/MessagingConfigurations/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "links" : {
+      "a_links" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1391,6 +3472,33 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/RateLimits/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "phone_number" : "a_phone_number",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "phone_number",
+      "phone_number",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1414,6 +3522,153 @@
   "url" : "https://verify.twilio.com/v2/SafeList/Numbers/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "code_length" : 1148,
+     "custom_code_enabled" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "default_template_sid" : "a_default_template_sid",
+     "do_not_share_warning_enabled" : true,
+     "dtmf_input_required" : true,
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "lookup_enabled" : true,
+     "passkeys" : {
+      "a_passkeys" : 1
+     },
+     "psd2_enabled" : true,
+     "push" : {
+      "a_push" : 1
+     },
+     "sid" : "a_sid",
+     "skip_sms_to_landlines" : true,
+     "totp" : {
+      "a_totp" : 1
+     },
+     "tts_name" : "a_tts_name",
+     "url" : "a_url",
+     "verify_event_subscription_enabled" : true,
+     "whatsapp" : {
+      "a_whatsapp" : 1
+     }
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "code_length",
+      "code_length",
+      "plain"
+     ],
+     [
+      "custom_code_enabled",
+      "custom_code_enabled",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_template_sid",
+      "default_template_sid",
+      "plain"
+     ],
+     [
+      "do_not_share_warning_enabled",
+      "do_not_share_warning_enabled",
+      "plain"
+     ],
+     [
+      "dtmf_input_required",
+      "dtmf_input_required",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "lookup_enabled",
+      "lookup_enabled",
+      "plain"
+     ],
+     [
+      "passkeys",
+      "passkeys",
+      "plain"
+     ],
+     [
+      "psd2_enabled",
+      "psd2_enabled",
+      "plain"
+     ],
+     [
+      "push",
+      "push",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "skip_sms_to_landlines",
+      "skip_sms_to_landlines",
+      "plain"
+     ],
+     [
+      "totp",
+      "totp",
+      "plain"
+     ],
+     [
+      "tts_name",
+      "tts_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "verify_event_subscription_enabled",
+      "verify_event_subscription_enabled",
+      "plain"
+     ],
+     [
+      "whatsapp",
+      "whatsapp",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1437,6 +3692,113 @@
   "url" : "https://verify.twilio.com/v2/Services/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "amount" : "a_amount",
+     "channel" : "sna",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "lookup" : {
+      "a_lookup" : 1
+     },
+     "payee" : "a_payee",
+     "send_code_attempts" : [
+      "a_send_code_attempts"
+     ],
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "sna" : {
+      "a_sna" : 1
+     },
+     "status" : "a_status",
+     "to" : "a_to",
+     "url" : "a_url",
+     "valid" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "amount",
+      "amount",
+      "plain"
+     ],
+     [
+      "channel",
+      "channel",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "lookup",
+      "lookup",
+      "plain"
+     ],
+     [
+      "payee",
+      "payee",
+      "plain"
+     ],
+     [
+      "send_code_attempts",
+      "send_code_attempts",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sna",
+      "sna",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "to",
+      "to",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "valid",
+      "valid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1464,6 +3826,87 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Verifications/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "channel" : "rbm",
+     "channel_data" : {
+      "a_channel_data" : 1
+     },
+     "conversion_status" : "unconverted",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "price" : {
+      "a_price" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url",
+     "verification_sid" : "a_verification_sid"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel",
+      "channel",
+      "plain"
+     ],
+     [
+      "channel_data",
+      "channel_data",
+      "plain"
+     ],
+     [
+      "conversion_status",
+      "conversion_status",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "price",
+      "price",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "verification_sid",
+      "verification_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1487,6 +3930,45 @@
   "url" : "https://verify.twilio.com/v2/Attempts/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "conversion_rate_percentage" : "a_conversion_rate_percentage",
+     "total_attempts" : 1525,
+     "total_converted" : 1613,
+     "total_unconverted" : 1840,
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "conversion_rate_percentage",
+      "conversion_rate_percentage",
+      "plain"
+     ],
+     [
+      "total_attempts",
+      "total_attempts",
+      "plain"
+     ],
+     [
+      "total_converted",
+      "total_converted",
+      "plain"
+     ],
+     [
+      "total_unconverted",
+      "total_unconverted",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1546,6 +4028,91 @@
   "url" : "https://verify.twilio.com/v2/Attempts/Summary"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "event_types" : [
+      "a_event_types"
+     ],
+     "friendly_name" : "a_friendly_name",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "enabled",
+     "url" : "a_url",
+     "version" : "v1",
+     "webhook_method" : "POST",
+     "webhook_url" : "a_webhook_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "event_types",
+      "event_types",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "version",
+      "version",
+      "plain"
+     ],
+     [
+      "webhook_method",
+      "webhook_method",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1573,6 +4140,76 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Webhooks/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "buckets" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "interval" : 869,
+       "max" : 326,
+       "rate_limit_sid" : "a_rate_limit_sid",
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "interval",
+      "interval",
+      "plain"
+     ],
+     [
+      "max",
+      "max",
+      "plain"
+     ],
+     [
+      "rate_limit_sid",
+      "rate_limit_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1605,6 +4242,140 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/RateLimits/id2/Buckets"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "challenges" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_responded" : "2026-01-18T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "details" : {
+        "a_details" : 1
+       },
+       "entity_sid" : "a_entity_sid",
+       "expiration_date" : "2026-01-05T03:04:05Z",
+       "factor_sid" : "a_factor_sid",
+       "factor_type" : "passkeys",
+       "hidden_details" : {
+        "a_hidden_details" : 1
+       },
+       "identity" : "a_identity",
+       "links" : {
+        "a_links" : 1
+       },
+       "metadata" : {
+        "a_metadata" : 1
+       },
+       "responded_reason" : "none",
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "status" : "pending",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_responded",
+      "date_responded",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "details",
+      "details",
+      "plain"
+     ],
+     [
+      "entity_sid",
+      "entity_sid",
+      "plain"
+     ],
+     [
+      "expiration_date",
+      "expiration_date",
+      "date",
+      1767582245
+     ],
+     [
+      "factor_sid",
+      "factor_sid",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "hidden_details",
+      "hidden_details",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "metadata",
+      "metadata",
+      "plain"
+     ],
+     [
+      "responded_reason",
+      "responded_reason",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1654,6 +4425,72 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities/id2/Challenges"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "entities" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "identity" : "a_identity",
+       "links" : {
+        "a_links" : 1
+       },
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1682,6 +4519,104 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "factors" : [
+      {
+       "account_sid" : "a_account_sid",
+       "config" : {
+        "a_config" : 1
+       },
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "entity_sid" : "a_entity_sid",
+       "factor_type" : "passkeys",
+       "friendly_name" : "a_friendly_name",
+       "identity" : "a_identity",
+       "metadata" : {
+        "a_metadata" : 1
+       },
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "status" : "unverified",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "config",
+      "config",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "entity_sid",
+      "entity_sid",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "metadata",
+      "metadata",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1714,6 +4649,64 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities/id2/Factors"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "messaging_configurations" : [
+      {
+       "account_sid" : "a_account_sid",
+       "country" : "a_country",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "messaging_service_sid" : "a_messaging_service_sid",
+       "service_sid" : "a_service_sid",
+       "url" : "a_url"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "country",
+      "country",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "messaging_service_sid",
+      "messaging_service_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1742,6 +4735,78 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/MessagingConfigurations"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "rate_limits" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "description" : "a_description",
+       "links" : {
+        "a_links" : 1
+       },
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "unique_name" : "a_unique_name",
+       "url" : "a_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1770,6 +4835,158 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/RateLimits"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "services" : [
+      {
+       "account_sid" : "a_account_sid",
+       "code_length" : 1148,
+       "custom_code_enabled" : true,
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "default_template_sid" : "a_default_template_sid",
+       "do_not_share_warning_enabled" : true,
+       "dtmf_input_required" : true,
+       "friendly_name" : "a_friendly_name",
+       "links" : {
+        "a_links" : 1
+       },
+       "lookup_enabled" : true,
+       "passkeys" : {
+        "a_passkeys" : 1
+       },
+       "psd2_enabled" : true,
+       "push" : {
+        "a_push" : 1
+       },
+       "sid" : "a_sid",
+       "skip_sms_to_landlines" : true,
+       "totp" : {
+        "a_totp" : 1
+       },
+       "tts_name" : "a_tts_name",
+       "url" : "a_url",
+       "verify_event_subscription_enabled" : true,
+       "whatsapp" : {
+        "a_whatsapp" : 1
+       }
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "code_length",
+      "code_length",
+      "plain"
+     ],
+     [
+      "custom_code_enabled",
+      "custom_code_enabled",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_template_sid",
+      "default_template_sid",
+      "plain"
+     ],
+     [
+      "do_not_share_warning_enabled",
+      "do_not_share_warning_enabled",
+      "plain"
+     ],
+     [
+      "dtmf_input_required",
+      "dtmf_input_required",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "lookup_enabled",
+      "lookup_enabled",
+      "plain"
+     ],
+     [
+      "passkeys",
+      "passkeys",
+      "plain"
+     ],
+     [
+      "psd2_enabled",
+      "psd2_enabled",
+      "plain"
+     ],
+     [
+      "push",
+      "push",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "skip_sms_to_landlines",
+      "skip_sms_to_landlines",
+      "plain"
+     ],
+     [
+      "totp",
+      "totp",
+      "plain"
+     ],
+     [
+      "tts_name",
+      "tts_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "verify_event_subscription_enabled",
+      "verify_event_subscription_enabled",
+      "plain"
+     ],
+     [
+      "whatsapp",
+      "whatsapp",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1794,6 +5011,92 @@
   "url" : "https://verify.twilio.com/v2/Services"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "attempts" : [
+      {
+       "account_sid" : "a_account_sid",
+       "channel" : "rbm",
+       "channel_data" : {
+        "a_channel_data" : 1
+       },
+       "conversion_status" : "unconverted",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "price" : {
+        "a_price" : 1
+       },
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "url" : "a_url",
+       "verification_sid" : "a_verification_sid"
+      }
+     ],
+     "meta" : {}
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channel",
+      "channel",
+      "plain"
+     ],
+     [
+      "channel_data",
+      "channel_data",
+      "plain"
+     ],
+     [
+      "conversion_status",
+      "conversion_status",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "price",
+      "price",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "verification_sid",
+      "verification_sid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1864,6 +5167,54 @@
   "url" : "https://verify.twilio.com/v2/Attempts"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "templates" : [
+      {
+       "account_sid" : "a_account_sid",
+       "channels" : [
+        "a_channels"
+       ],
+       "friendly_name" : "a_friendly_name",
+       "sid" : "a_sid",
+       "translations" : {
+        "a_translations" : 1
+       }
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "channels",
+      "channels",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "translations",
+      "translations",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1895,6 +5246,96 @@
   "url" : "https://verify.twilio.com/v2/Templates"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "meta" : {},
+     "webhooks" : [
+      {
+       "account_sid" : "a_account_sid",
+       "date_created" : "2026-01-06T03:04:05Z",
+       "date_updated" : "2026-01-21T03:04:05Z",
+       "event_types" : [
+        "a_event_types"
+       ],
+       "friendly_name" : "a_friendly_name",
+       "service_sid" : "a_service_sid",
+       "sid" : "a_sid",
+       "status" : "enabled",
+       "url" : "a_url",
+       "version" : "v1",
+       "webhook_method" : "POST",
+       "webhook_url" : "a_webhook_url"
+      }
+     ]
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "event_types",
+      "event_types",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "version",
+      "version",
+      "plain"
+     ],
+     [
+      "webhook_method",
+      "webhook_method",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1923,6 +5364,71 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Webhooks"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "interval" : 869,
+     "max" : 326,
+     "rate_limit_sid" : "a_rate_limit_sid",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "interval",
+      "interval",
+      "plain"
+     ],
+     [
+      "max",
+      "max",
+      "plain"
+     ],
+     [
+      "rate_limit_sid",
+      "rate_limit_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -1966,6 +5472,135 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/RateLimits/id2/Buckets/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_responded" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "details" : {
+      "a_details" : 1
+     },
+     "entity_sid" : "a_entity_sid",
+     "expiration_date" : "2026-01-05T03:04:05Z",
+     "factor_sid" : "a_factor_sid",
+     "factor_type" : "passkeys",
+     "hidden_details" : {
+      "a_hidden_details" : 1
+     },
+     "identity" : "a_identity",
+     "links" : {
+      "a_links" : 1
+     },
+     "metadata" : {
+      "a_metadata" : 1
+     },
+     "responded_reason" : "none",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "pending",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_responded",
+      "date_responded",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "details",
+      "details",
+      "plain"
+     ],
+     [
+      "entity_sid",
+      "entity_sid",
+      "plain"
+     ],
+     [
+      "expiration_date",
+      "expiration_date",
+      "date",
+      1767582245
+     ],
+     [
+      "factor_sid",
+      "factor_sid",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "hidden_details",
+      "hidden_details",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "metadata",
+      "metadata",
+      "plain"
+     ],
+     [
+      "responded_reason",
+      "responded_reason",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -2011,6 +5646,143 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities/id2/Challenges/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_responded" : "2026-01-18T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "details" : {
+      "a_details" : 1
+     },
+     "entity_sid" : "a_entity_sid",
+     "expiration_date" : "2026-01-05T03:04:05Z",
+     "factor_sid" : "a_factor_sid",
+     "factor_type" : "passkeys",
+     "hidden_details" : {
+      "a_hidden_details" : 1
+     },
+     "identity" : "a_identity",
+     "links" : {
+      "a_links" : 1
+     },
+     "metadata" : {
+      "a_metadata" : 1
+     },
+     "options" : {
+      "a_options" : 1
+     },
+     "responded_reason" : "none",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "pending",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_responded",
+      "date_responded",
+      "date",
+      1768705445
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "details",
+      "details",
+      "plain"
+     ],
+     [
+      "entity_sid",
+      "entity_sid",
+      "plain"
+     ],
+     [
+      "expiration_date",
+      "expiration_date",
+      "date",
+      1767582245
+     ],
+     [
+      "factor_sid",
+      "factor_sid",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "hidden_details",
+      "hidden_details",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "metadata",
+      "metadata",
+      "plain"
+     ],
+     [
+      "options",
+      "options",
+      "plain"
+     ],
+     [
+      "responded_reason",
+      "responded_reason",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "body" : {
    "authenticatorAttachment" : "platform",
    "id" : "v_id",
@@ -2059,6 +5831,99 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Passkeys/ApproveChallenge"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "config" : {
+      "a_config" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "entity_sid" : "a_entity_sid",
+     "factor_type" : "passkeys",
+     "friendly_name" : "a_friendly_name",
+     "identity" : "a_identity",
+     "metadata" : {
+      "a_metadata" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "unverified",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "config",
+      "config",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "entity_sid",
+      "entity_sid",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "metadata",
+      "metadata",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -2137,6 +6002,59 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Entities/id2/Factors/id3"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "country" : "a_country",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "messaging_service_sid" : "a_messaging_service_sid",
+     "service_sid" : "a_service_sid",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "country",
+      "country",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "messaging_service_sid",
+      "messaging_service_sid",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -2171,6 +6089,99 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/MessagingConfigurations/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "config" : {
+      "a_config" : 1
+     },
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "entity_sid" : "a_entity_sid",
+     "factor_type" : "passkeys",
+     "friendly_name" : "a_friendly_name",
+     "identity" : "a_identity",
+     "metadata" : {
+      "a_metadata" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "unverified",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "config",
+      "config",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "entity_sid",
+      "entity_sid",
+      "plain"
+     ],
+     [
+      "factor_type",
+      "factor_type",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "metadata",
+      "metadata",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "body" : {
    "authenticatorAttachment" : "platform",
    "id" : "v_id",
@@ -2219,6 +6230,73 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Passkeys/VerifyFactor"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "description" : "a_description",
+     "links" : {
+      "a_links" : 1
+     },
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "unique_name" : "a_unique_name",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "description",
+      "description",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "unique_name",
+      "unique_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -2253,6 +6331,153 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/RateLimits/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "code_length" : 1148,
+     "custom_code_enabled" : true,
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "default_template_sid" : "a_default_template_sid",
+     "do_not_share_warning_enabled" : true,
+     "dtmf_input_required" : true,
+     "friendly_name" : "a_friendly_name",
+     "links" : {
+      "a_links" : 1
+     },
+     "lookup_enabled" : true,
+     "passkeys" : {
+      "a_passkeys" : 1
+     },
+     "psd2_enabled" : true,
+     "push" : {
+      "a_push" : 1
+     },
+     "sid" : "a_sid",
+     "skip_sms_to_landlines" : true,
+     "totp" : {
+      "a_totp" : 1
+     },
+     "tts_name" : "a_tts_name",
+     "url" : "a_url",
+     "verify_event_subscription_enabled" : true,
+     "whatsapp" : {
+      "a_whatsapp" : 1
+     }
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "code_length",
+      "code_length",
+      "plain"
+     ],
+     [
+      "custom_code_enabled",
+      "custom_code_enabled",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "default_template_sid",
+      "default_template_sid",
+      "plain"
+     ],
+     [
+      "do_not_share_warning_enabled",
+      "do_not_share_warning_enabled",
+      "plain"
+     ],
+     [
+      "dtmf_input_required",
+      "dtmf_input_required",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "links",
+      "links",
+      "plain"
+     ],
+     [
+      "lookup_enabled",
+      "lookup_enabled",
+      "plain"
+     ],
+     [
+      "passkeys",
+      "passkeys",
+      "plain"
+     ],
+     [
+      "psd2_enabled",
+      "psd2_enabled",
+      "plain"
+     ],
+     [
+      "push",
+      "push",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "skip_sms_to_landlines",
+      "skip_sms_to_landlines",
+      "plain"
+     ],
+     [
+      "totp",
+      "totp",
+      "plain"
+     ],
+     [
+      "tts_name",
+      "tts_name",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "verify_event_subscription_enabled",
+      "verify_event_subscription_enabled",
+      "plain"
+     ],
+     [
+      "whatsapp",
+      "whatsapp",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -2408,6 +6633,113 @@
   "url" : "https://verify.twilio.com/v2/Services/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "amount" : "a_amount",
+     "channel" : "sna",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "lookup" : {
+      "a_lookup" : 1
+     },
+     "payee" : "a_payee",
+     "send_code_attempts" : [
+      "a_send_code_attempts"
+     ],
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "sna" : {
+      "a_sna" : 1
+     },
+     "status" : "a_status",
+     "to" : "a_to",
+     "url" : "a_url",
+     "valid" : true
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "amount",
+      "amount",
+      "plain"
+     ],
+     [
+      "channel",
+      "channel",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "lookup",
+      "lookup",
+      "plain"
+     ],
+     [
+      "payee",
+      "payee",
+      "plain"
+     ],
+     [
+      "send_code_attempts",
+      "send_code_attempts",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "sna",
+      "sna",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "to",
+      "to",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "valid",
+      "valid",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",
@@ -2442,6 +6774,91 @@
   "url" : "https://verify.twilio.com/v2/Services/id1/Verifications/id2"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "account_sid" : "a_account_sid",
+     "date_created" : "2026-01-06T03:04:05Z",
+     "date_updated" : "2026-01-21T03:04:05Z",
+     "event_types" : [
+      "a_event_types"
+     ],
+     "friendly_name" : "a_friendly_name",
+     "service_sid" : "a_service_sid",
+     "sid" : "a_sid",
+     "status" : "enabled",
+     "url" : "a_url",
+     "version" : "v1",
+     "webhook_method" : "POST",
+     "webhook_url" : "a_webhook_url"
+    },
+    "fields" : [
+     [
+      "account_sid",
+      "account_sid",
+      "plain"
+     ],
+     [
+      "date_created",
+      "date_created",
+      "date",
+      1767668645
+     ],
+     [
+      "date_updated",
+      "date_updated",
+      "date",
+      1768964645
+     ],
+     [
+      "event_types",
+      "event_types",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "service_sid",
+      "service_sid",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "status",
+      "status",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ],
+     [
+      "version",
+      "version",
+      "plain"
+     ],
+     [
+      "webhook_method",
+      "webhook_method",
+      "plain"
+     ],
+     [
+      "webhook_url",
+      "webhook_url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "verify",

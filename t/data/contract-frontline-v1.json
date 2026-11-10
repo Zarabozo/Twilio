@@ -1,5 +1,56 @@
 [
  {
+  "answers" : [
+   {
+    "body" : {
+     "avatar" : "a_avatar",
+     "friendly_name" : "a_friendly_name",
+     "identity" : "a_identity",
+     "is_available" : true,
+     "sid" : "a_sid",
+     "state" : "deactivated",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "avatar",
+      "avatar",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "is_available",
+      "is_available",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "state",
+      "state",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "frontline_api",
@@ -23,6 +74,57 @@
   "url" : "https://frontline-api.twilio.com/v1/Users/id1"
  },
  {
+  "answers" : [
+   {
+    "body" : {
+     "avatar" : "a_avatar",
+     "friendly_name" : "a_friendly_name",
+     "identity" : "a_identity",
+     "is_available" : true,
+     "sid" : "a_sid",
+     "state" : "deactivated",
+     "url" : "a_url"
+    },
+    "fields" : [
+     [
+      "avatar",
+      "avatar",
+      "plain"
+     ],
+     [
+      "friendly_name",
+      "friendly_name",
+      "plain"
+     ],
+     [
+      "identity",
+      "identity",
+      "plain"
+     ],
+     [
+      "is_available",
+      "is_available",
+      "plain"
+     ],
+     [
+      "sid",
+      "sid",
+      "plain"
+     ],
+     [
+      "state",
+      "state",
+      "plain"
+     ],
+     [
+      "url",
+      "url",
+      "plain"
+     ]
+    ],
+    "status" : 200
+   }
+  ],
   "chain" : [
    [
     "frontline_api",
