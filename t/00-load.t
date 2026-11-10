@@ -6,8 +6,15 @@ use Test::More;
 my @modules = qw(
   Twilio
   Twilio::ApiV1Version
+  Twilio::AuthStrategy::AuthStrategy
+  Twilio::AuthStrategy::NoAuthStrategy
+  Twilio::AuthStrategy::TokenAuthStrategy
   Twilio::Base::BaseClient
   Twilio::Base::PhoneNumberCapabilities
+  Twilio::CredentialProvider::ClientCredentialProvider
+  Twilio::CredentialProvider::CredentialProvider
+  Twilio::CredentialProvider::NoAuthCredentialProvider
+  Twilio::CredentialProvider::OrgsCredentialProvider
   Twilio::Deserialize
   Twilio::Domain
   Twilio::Exceptions::ConfigurationException
@@ -16,6 +23,9 @@ my @modules = qw(
   Twilio::Exceptions::RestException
   Twilio::Exceptions::RestExceptionV1
   Twilio::Exceptions::TwilioException
+  Twilio::Http::BearerToken::ApiTokenManager
+  Twilio::Http::BearerToken::OrgsTokenManager
+  Twilio::Http::BearerToken::TokenManager
   Twilio::Http::Client
   Twilio::Http::FakeClient
   Twilio::Http::File
