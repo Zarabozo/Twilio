@@ -92,12 +92,34 @@ sub domain_model {
 
   my ($main) = grep { $_->{account_context} } @{$versions};
   return {
-    method   => $name,
-    class    => $first->{domain_class},
-    base_url => $first->{base_url},
-    versions => [sort { $a->{version_method} cmp $b->{version_method} } @{$versions}],
+    method    => $name,
+    class     => $first->{domain_class},
+    base_url  => $first->{base_url},
+    versions  => [sort { $a->{version_method} cmp $b->{version_method} } @{$versions}],
+    shortcuts => [_host_shortcuts($name, $versions)],
     defined $main ? (main => $main) : (),
   };
+}
+
+# twilio-php writes these by hand on each host, and marks all but this one deprecated, besides
+# the main API's, which come from its account. A version they name must have the resource.
+my %HOST_SHORTCUTS = (preview_iam => { versionless => ['organization'] });
+
+sub _host_shortcuts {
+  my ($name, $versions) = @_;
+
+  my $wanted     = $HOST_SHORTCUTS{$name} or return;
+  my %version_of = map { $_->{version_method} => $_ } @{$versions};
+  my @shortcuts;
+  for my $method (sort keys %{$wanted}) {
+    my $version = $version_of{$method} or croak "$name: no version $method for its shortcuts";
+    for my $mount (@{ $wanted->{$method} }) {
+      my ($root) = grep { $_->{mount} eq $mount } @{ $version->{roots} };
+      croak "$name: no $mount in $method for a shortcut" if !$root;
+      push @shortcuts, { %{$root}, version_method => $method };
+    }
+  }
+  return @shortcuts;
 }
 
 # A domain and a shortcut of the account would be two methods with one name on the client.

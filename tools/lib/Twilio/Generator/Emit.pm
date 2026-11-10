@@ -605,7 +605,11 @@ END_CODE
     map { [$_->{version_method}, "Returns L<$_->{version_class}>."] } @{ $domain->{versions} }
   );
   my $main = $domain->{main};
-  return $code . _pod_shortcuts(@pod, []) if !$main;
+  if (!$main) {
+    my $shortcuts = $domain->{shortcuts} // [];
+    $code .= join "\n", map { _forwarders([$_], "\$self->$_->{version_method}") } @{$shortcuts};
+    return $code . _pod_shortcuts(@pod, $shortcuts);
+  }
 
   my @forwarded = ({ mount => 'accounts' }, { mount => 'account' }, @{ $main->{shortcuts} });
   $code .= _forwarders(\@forwarded, "\$self->$main->{version_method}");
