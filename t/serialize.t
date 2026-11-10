@@ -56,6 +56,13 @@ subtest 'path_segment' => sub {
     my ($name, $value, $expected) = @{$case};
     is(Twilio::Serialize::path_segment($value), $expected, $name);
   }
+
+  is(Twilio::Serialize::path_segment(0), '0', 'zero is a value');
+  for my $missing (undef, q{}) {
+    my $ok = eval { Twilio::Serialize::path_segment($missing); 1 };
+    ok(!$ok, 'a missing value dies');
+    like($@, qr/A URL needs an id that is missing/, 'and says why');
+  }
 };
 
 subtest 'iso8601_date' => sub {

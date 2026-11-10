@@ -123,6 +123,13 @@ sub _flatten {
 
 sub path_segment {
   my ($value) = @_;
+
+  # An empty part would point the request at another resource, such as /Accounts//Messages.json
+  # for a client with OAuth and no account SID.
+  if (!defined $value || !length $value) {
+    croak 'A URL needs an id that is missing. For account resources with a credential provider, '
+      . q{set the client's account_sid};
+  }
   my $encoded = "$value";
   utf8::encode($encoded) if utf8::is_utf8($encoded);
   $encoded =~ s/([^A-Za-z0-9._~-])/sprintf('%%%02X', ord $1)/ge;
@@ -215,7 +222,8 @@ else that is not a hash reference dies.
 
 =head2 path_segment
 
-Returns a value encoded for use as one part of a URL path.
+Returns a value encoded for use as one part of a URL path. It croaks when the
+value is undefined or empty.
 
 =head1 LICENSE
 
