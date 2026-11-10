@@ -16,6 +16,7 @@ BEGIN {
 }
 
 use Twilio::Http::FakeClient;
+use Twilio::Http::File;
 use Twilio::Rest::Client;
 
 my $URL = 'https://api.twilio.com/2010-04-01/Accounts.json';
@@ -41,11 +42,31 @@ subtest 'a 429 is retried when enabled' => sub {
   my $response = $client->request('POST', $URL, { data => { Body => 'Hello' } });
   my @requests = $http->requests;
 
-  is($response->get_status_code, 200, 'the second response is returned');
-  is(scalar @requests,           2,   'two requests');
-  is_deeply($requests[1]{body}, $requests[0]{body}, 'the same body is sent again');
+  is($response->get_status_code, 200,                   'the second response is returned');
+  is(scalar @requests,           2,                     'two requests');
+  is($requests[0]{content},      'Body=Hello',          'the body');
+  is($requests[1]{content},      $requests[0]{content}, 'the same body is sent again');
   ok($requests[1]{headers}{Authorization}, 'the retry is authenticated');
   is_deeply([@waits], [1], 'waited before retrying');
+};
+
+subtest 'a retried upload sends the file again' => sub {
+  my $client = client(1);
+  my $http   = $client->get_http_client;
+  $http->mock(429, {})->mock(200, {});
+
+  open my $handle, '<', \'the document' or die "Cannot open an in-memory file: $!\n";
+  my $file = Twilio::Http::File->new('id.pdf', $handle);
+  $client->request('POST', $URL, { data => { File => $file } });
+  close $handle or die "Cannot close an in-memory file: $!\n";
+  my @requests = $http->requests;
+
+  like($requests[0]{content}, qr/\r\n\r\nthe document\r\n/, 'the file');
+  is(
+    $requests[1]{content} =~ s/twilio-[0-9a-f]+/BOUNDARY/gr,
+    $requests[0]{content} =~ s/twilio-[0-9a-f]+/BOUNDARY/gr,
+    'the same file is sent again, from a filehandle read once'
+  );
 };
 
 subtest 'a retried create returns the resource' => sub {
