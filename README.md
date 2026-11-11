@@ -10,7 +10,9 @@ covers the main REST API (`api.twilio.com`), and it has not been released. The
 `Twilio-1.000` release on CPAN is the old, unrelated codebase.
 
 ```perl
-my $client = Twilio::Rest::Client->new($account_sid, $auth_token);
+use Twilio;
+
+my $client = Twilio->new($account_sid, $auth_token);    # a Twilio::Rest::Client
 
 my $message = $client->messages->create('+15558675309', {
   from => '+15017250604',
