@@ -7,3 +7,6 @@ Revision history for Twilio
       1.000's named arguments with a clear error.
     - Errors in the RFC 9457 form throw Twilio::Exceptions::TwilioServiceException,
       a RestException that keeps the title, detail, instance and field errors.
+    - with_metadata on every list and context runs an operation and returns
+      a Twilio::Metadata with the result and the status code and headers of
+      Twilio's answer.

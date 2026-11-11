@@ -30,6 +30,12 @@ sub stream_records {
   return $version->stream($page, $limits->{limit}, $limits->{page_limit});
 }
 
+sub with_metadata {
+  my ($self, $operation, @arguments) = @_;
+  require Twilio::Metadata;
+  return Twilio::Metadata->capture($self, $operation, @arguments);
+}
+
 1;
 
 __END__
@@ -67,6 +73,16 @@ method of a subclass calls this.
 Fetches the first page and returns a L<Twilio::Stream> that starts there. It calls
 the C<page> method of the subclass, with the options and page size. The C<stream>
 method of a subclass calls this.
+
+=head2 with_metadata
+
+  my $answer = $client->messages->with_metadata(create => $to, { body => 'Hi' });
+  my $listed = $client->messages->with_metadata(read => {}, 20);
+
+Runs one of the list's operations, such as C<create>, C<read>, C<stream> or
+C<page>, with the arguments that follow its name. Returns a L<Twilio::Metadata>
+with what the operation returns, and the status code and headers of Twilio's
+answer. It dies when the list has no such operation.
 
 =head1 LICENSE
 

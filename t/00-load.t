@@ -52,6 +52,7 @@ my @modules = qw(
   Twilio::Jwt::TaskRouter::WorkerCapability
   Twilio::Jwt::TaskRouter::WorkspaceCapability
   Twilio::ListResource
+  Twilio::Metadata
   Twilio::Page
   Twilio::Rest::Api
   Twilio::Rest::Api::V2010
