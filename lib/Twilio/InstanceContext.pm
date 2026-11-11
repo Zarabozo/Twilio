@@ -10,6 +10,12 @@ sub new {
   return bless { version => $version, solution => {}, uri => undef }, $class;
 }
 
+sub with_metadata {
+  my ($self, $operation, @arguments) = @_;
+  require Twilio::Metadata;
+  return Twilio::Metadata->capture($self, $operation, @arguments);
+}
+
 1;
 
 __END__
@@ -31,6 +37,16 @@ resource has a subclass that sets C<uri> and C<solution> in its constructor.
 =head2 new
 
   my $context = Twilio::InstanceContext->new($version);
+
+=head2 with_metadata
+
+  my $answer = $client->messages($sid)->with_metadata('fetch');
+  my $status = $client->messages($sid)->with_metadata('delete')->get_status_code;
+
+Runs one of the record's operations, such as C<fetch>, C<update> or C<delete>,
+with the arguments that follow its name. Returns a L<Twilio::Metadata> with what
+the operation returns, and the status code and headers of Twilio's answer. It
+dies when the record has no such operation.
 
 =head1 LICENSE
 

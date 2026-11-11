@@ -34,6 +34,19 @@ live(
 );
 
 live(
+  'the status and headers of an answer' => sub {
+    my $listed = $client->messages->with_metadata(read => {}, 1);
+    return 'The account has no messages' if !@{ $listed->get_data };
+    is($listed->get_status_code, 200, 'a read');
+
+    my $fetched = $client->messages($listed->get_data->[0]->sid)->with_metadata('fetch');
+    is($fetched->get_status_code, 200, 'a fetch');
+    like($fetched->get_header('Twilio-Request-Id'), qr/\ARQ[0-9a-f]{32}\z/, 'with its request id');
+    return;
+  }
+);
+
+live(
   'the balance' => sub {
     my $balance = eval { $client->balance->fetch };
     return 'Twilio keeps the balance of a subaccount in its parent'
