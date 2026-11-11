@@ -36,6 +36,12 @@ print $response;
 The interface mirrors `twilio-php`, so a Twilio documentation example translates
 to Perl with a few simple rules.
 
+Accounts that enforce Public Key Client Validation (a setting in the Twilio
+Console) need `Twilio::Http::ValidationClient` as the HTTP client, which signs
+every request. It uses the optional module `Crypt::OpenSSL::RSA` (0.38 or later,
+or before 0.35). Leave it out for other accounts: Twilio refuses signed requests
+to an account without that setting.
+
 ## Development
 
 ```sh
