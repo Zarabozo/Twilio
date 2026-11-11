@@ -145,9 +145,25 @@ Twilio::TwiML::VoiceResponse - The Response element of TwiML
 
 =head1 SYNOPSIS
 
-  my $element = Twilio::TwiML::VoiceResponse->new();
+  use Twilio::TwiML::VoiceResponse;
+
+  my $response = Twilio::TwiML::VoiceResponse->new;
+  $response->say('Thanks for calling!', { voice => 'Polly.Joanna' });
+  my $gather = $response->gather(
+    { input => [qw(dtmf speech)], action => '/menu', num_digits => 1 });
+  $gather->say('Press 1 for sales, or 2 for support.');
+  $response->redirect('/voice');
+
+  print "Content-Type: text/xml\n\n", $response;
+
+  # <?xml version="1.0" encoding="UTF-8"?>
+  # <Response><Say voice="Polly.Joanna">Thanks for calling!</Say><Gather action="/menu"
+  # input="dtmf speech" numDigits="1"><Say>Press 1 for sales, or 2 for
+  # support.</Say></Gather><Redirect>/voice</Redirect></Response>
 
 =head1 DESCRIPTION
+
+The root of the TwiML that tells Twilio what to do with a call. Return it from the webhook of a phone number, or pass it as C<twiml> when you make a call. See L<Twilio::Manual> for a whole webhook.
 
 See L<Twilio::TwiML::TwiML> for the methods every element has.
 

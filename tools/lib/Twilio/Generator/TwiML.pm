@@ -15,6 +15,67 @@ my %IS_RESERVED =
   map { $_ => 1 }
   qw(DESTROY add_child append as_xml attribute_table can isa nest new set_attribute);
 
+# The three documents a webhook returns are where people start, so they get a real example and a
+# word on their use; t/manual.t checks that each example writes what it says.
+my %ROOT_POD = (
+  VoiceResponse => {
+    about => 'The root of the TwiML that tells Twilio what to do with a call. Return it '
+      . 'from the webhook of a phone number, or pass it as C<twiml> when you make a call. '
+      . 'See L<Twilio::Manual> for a whole webhook.',
+    example => <<'END_EXAMPLE',
+  use Twilio::TwiML::VoiceResponse;
+
+  my $response = Twilio::TwiML::VoiceResponse->new;
+  $response->say('Thanks for calling!', { voice => 'Polly.Joanna' });
+  my $gather = $response->gather(
+    { input => [qw(dtmf speech)], action => '/menu', num_digits => 1 });
+  $gather->say('Press 1 for sales, or 2 for support.');
+  $response->redirect('/voice');
+
+  print "Content-Type: text/xml\n\n", $response;
+
+  # <?xml version="1.0" encoding="UTF-8"?>
+  # <Response><Say voice="Polly.Joanna">Thanks for calling!</Say><Gather action="/menu"
+  # input="dtmf speech" numDigits="1"><Say>Press 1 for sales, or 2 for
+  # support.</Say></Gather><Redirect>/voice</Redirect></Response>
+END_EXAMPLE
+  },
+  MessagingResponse => {
+    about => 'The root of the TwiML that tells Twilio how to answer a message. Return it from '
+      . 'the webhook of a phone number. See L<Twilio::Manual> for a whole webhook.',
+    example => <<'END_EXAMPLE',
+  use Twilio::TwiML::MessagingResponse;
+
+  my $response = Twilio::TwiML::MessagingResponse->new;
+  $response->message('The Robots are coming! Head for the hills!');
+
+  # With a picture
+  my $message = $response->message;
+  $message->body('Here is a picture.');
+  $message->media('https://demo.twilio.com/owl.png');
+
+  print "Content-Type: text/xml\n\n", $response;
+END_EXAMPLE
+  },
+  FaxResponse => {
+    about => 'The root of the TwiML that tells Twilio what to do with an incoming fax. Return '
+      . 'it from the fax webhook of a phone number.',
+    example => <<'END_EXAMPLE',
+  use Twilio::TwiML::FaxResponse;
+
+  my $response = Twilio::TwiML::FaxResponse->new;
+  $response->receive({ action => '/fax/received', media_type => 'application/pdf' });
+
+  print "Content-Type: text/xml\n\n", $response;
+
+  # <?xml version="1.0" encoding="UTF-8"?>
+  # <Response><Receive action="/fax/received" mediaType="application/pdf"/></Response>
+END_EXAMPLE
+  },
+);
+
+sub root_pod { return \%ROOT_POD }
+
 sub load {
   my ($file) = @_;
 
@@ -162,13 +223,15 @@ sub _pod {
   my $call = join q{, }, defined $element->{value} ? "\$$element->{value}" : (),
     $element->{has_attributes} ? '\%attributes' : ();
 
-  my @pod = (
+  my $root = $ROOT_POD{$name};
+  my @pod  = (
     "=encoding UTF-8\n",
     "=head1 NAME\n",
     "$module - The $tag element of TwiML\n",
     "=head1 SYNOPSIS\n",
-    "  my \$element = $module->new($call);\n",
+    $root ? $root->{example} : "  my \$element = $module->new($call);\n",
     "=head1 DESCRIPTION\n",
+    ($root ? "$root->{about}\n" : ()),
     "See L<Twilio::TwiML::TwiML> for the methods every element has.\n",
     "=head1 METHODS\n",
     "=head2 new\n",

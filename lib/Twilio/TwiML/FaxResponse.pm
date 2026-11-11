@@ -31,9 +31,19 @@ Twilio::TwiML::FaxResponse - The Response element of TwiML
 
 =head1 SYNOPSIS
 
-  my $element = Twilio::TwiML::FaxResponse->new();
+  use Twilio::TwiML::FaxResponse;
+
+  my $response = Twilio::TwiML::FaxResponse->new;
+  $response->receive({ action => '/fax/received', media_type => 'application/pdf' });
+
+  print "Content-Type: text/xml\n\n", $response;
+
+  # <?xml version="1.0" encoding="UTF-8"?>
+  # <Response><Receive action="/fax/received" mediaType="application/pdf"/></Response>
 
 =head1 DESCRIPTION
+
+The root of the TwiML that tells Twilio what to do with an incoming fax. Return it from the fax webhook of a phone number.
 
 See L<Twilio::TwiML::TwiML> for the methods every element has.
 
