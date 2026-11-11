@@ -87,7 +87,7 @@ sub request {
     $headers{Authorization} = $strategy->get_auth_string($self);
   }
 
-  return $self->_send_with_retries(
+  my $response = $self->_send_with_retries(
     $method,
     $self->build_uri($uri),
     {
@@ -97,6 +97,17 @@ sub request {
       password => $password,
     }
   );
+  push @{ $self->{captured_responses} }, $response if $self->{captured_responses};
+  return $response;
+}
+
+# Scoped to $code, so the answers to other callers of a shared client are never mixed in. An
+# OAuth token comes through a client of its own, so its answer is not among these.
+sub capture_responses {
+  my ($self, $code) = @_;
+  local $self->{captured_responses} = [];
+  my $result = $code->();
+  return ($result, @{ $self->{captured_responses} });
 }
 
 # Only 429 is retried: Twilio has refused the request, so repeating it cannot send anything
@@ -405,6 +416,15 @@ client's credentials. Without both, the credential provider authenticates the
 request, unless the request has its own C<Authorization> header. It throws
 L<Twilio::Exceptions::ConfigurationException> when there are no credentials.
 It does not treat HTTP error statuses as exceptions.
+
+=head2 capture_responses
+
+  my ($result, @responses) = $client->capture_responses(sub { ... });
+
+Runs the code and returns what it returns, followed by the
+L<Twilio::Http::Response> of each request the client made meanwhile, in order.
+A request repeated after HTTP 429 gives only its last answer. This is what
+C<with_metadata> uses; see L<Twilio::Metadata>.
 
 =head2 build_uri
 
