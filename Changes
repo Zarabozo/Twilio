@@ -5,3 +5,5 @@ Revision history for Twilio
       code or interface with 1.000.
     - Twilio->new is a shortcut for Twilio::Rest::Client->new, and refuses
       1.000's named arguments with a clear error.
+    - Errors in the RFC 9457 form throw Twilio::Exceptions::TwilioServiceException,
+      a RestException that keeps the title, detail, instance and field errors.

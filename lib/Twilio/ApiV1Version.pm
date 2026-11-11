@@ -27,7 +27,8 @@ sub exception {
     return Twilio::Exceptions::RestExceptionV1->new($status, $message, $status);
   }
 
-  # Older services behind these APIs still answer in the classic shape.
+  # Older services behind these APIs still answer in the classic shape, and newer ones in the RFC
+  # 9457 shape, which has a status too; the parent class tells those two apart.
   return $self->SUPER::exception($response, $header)
     if defined $content->{more_info} || defined $content->{status};
 
@@ -77,7 +78,8 @@ the newer APIs inherit from it.
 
 Returns a L<Twilio::Exceptions::RestExceptionV1> built from C<httpStatusCode>,
 C<params> and C<userError>. A response in the classic shape, with C<more_info> or
-C<status>, gives a L<Twilio::Exceptions::RestException>.
+C<status>, gives a L<Twilio::Exceptions::RestException>, and one in the RFC 9457
+shape gives a L<Twilio::Exceptions::TwilioServiceException>.
 
 =head1 LICENSE
 

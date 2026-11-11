@@ -23,6 +23,7 @@ my @modules = qw(
   Twilio::Exceptions::RestException
   Twilio::Exceptions::RestExceptionV1
   Twilio::Exceptions::TwilioException
+  Twilio::Exceptions::TwilioServiceException
   Twilio::Http::BearerToken::ApiTokenManager
   Twilio::Http::BearerToken::OrgsTokenManager
   Twilio::Http::BearerToken::TokenManager
