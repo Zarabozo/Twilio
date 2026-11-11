@@ -37,9 +37,21 @@ Twilio::TwiML::MessagingResponse - The Response element of TwiML
 
 =head1 SYNOPSIS
 
-  my $element = Twilio::TwiML::MessagingResponse->new();
+  use Twilio::TwiML::MessagingResponse;
+
+  my $response = Twilio::TwiML::MessagingResponse->new;
+  $response->message('The Robots are coming! Head for the hills!');
+
+  # With a picture
+  my $message = $response->message;
+  $message->body('Here is a picture.');
+  $message->media('https://demo.twilio.com/owl.png');
+
+  print "Content-Type: text/xml\n\n", $response;
 
 =head1 DESCRIPTION
+
+The root of the TwiML that tells Twilio how to answer a message. Return it from the webhook of a phone number. See L<Twilio::Manual> for a whole webhook.
 
 See L<Twilio::TwiML::TwiML> for the methods every element has.
 

@@ -53,6 +53,8 @@ jobs:
       # Optional at run time, so the test matrix skips the RS256 tests; here they run, with the
       # newest release, through make disttest.
       - run: cpanm --notest Crypt::OpenSSL::RSA
+      # Only for t/manual.t, which runs the web examples of Twilio::Manual; elsewhere they skip.
+      - run: cpanm --notest Mojolicious CGI
       # Lets xt/generator/up-to-date.t compare lib with what the generator writes.
       - run: perl tools/fetch-specs.pl
       - run: prove -lr xt

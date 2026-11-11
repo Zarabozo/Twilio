@@ -40,22 +40,55 @@ Version 2.000000
 
   use Twilio;
 
+  # Credentials from TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN, or given
+  my $client = Twilio->new;
   my $client = Twilio->new($account_sid, $auth_token);
+  my $client = Twilio->new($api_key_sid, $api_key_secret, { account_sid => $account_sid });
 
-  my $message = $client->messages->create('+15558675309', {
-    from => '+15017250604',
-    body => 'Hello',
+  # Send an SMS
+  my $message = $client->messages->create('+15558675310', {
+    from => '+15017122661',
+    body => 'Hello from Perl',
+  });
+  print $message->sid, "\n";
+
+  # Make a call
+  my $call = $client->calls->create('+15558675310', '+15017122661', {
+    url => 'http://demo.twilio.com/docs/voice.xml',
   });
 
-=head1 STATUS
+  # Read a list, 20 at most
+  for my $message ($client->messages->read({ to => '+15558675310' }, 20)) {
+    print $message->body, "\n";
+  }
 
-This distribution is being rewritten, and so far it covers the main REST API, at
-C<api.twilio.com>. The interface follows Twilio's official helper libraries, so that any
-Twilio documentation example can be translated to Perl with a few simple rules.
-The client is L<Twilio::Rest::Client>, and C<< Twilio->new >> is a short way to make one.
+  # Any other product, by its name and version
+  $client->verify->v2->services($service_sid)->verifications->create('+15558675310', 'sms');
 
-TwiML is built with L<Twilio::TwiML::VoiceResponse>,
-L<Twilio::TwiML::MessagingResponse> and L<Twilio::TwiML::FaxResponse>.
+  # Errors are exceptions, which read as their message
+  my $sent = eval { $client->messages->create($to, { from => $from, body => 'Hi' }) };
+  warn "Not sent: $@\n" if !$sent;
+
+  # Reply to an incoming SMS, in the webhook of your number
+  use Twilio::TwiML::MessagingResponse;
+
+  my $response = Twilio::TwiML::MessagingResponse->new;
+  $response->message('Thanks for your message!');
+  print "Content-Type: text/xml\n\n", $response;
+
+=head1 DESCRIPTION
+
+A library for the Twilio API. It follows Twilio's official libraries for PHP,
+Python and Node.js closely, so Twilio's documentation and its examples apply to
+it.
+
+B<For a guide, read L<Twilio::Manual>.> It follows Twilio's messaging and voice
+quickstarts: it sends an SMS, receives and replies to one, makes a call and
+answers one, and then covers credentials, webhook validation, lists, errors,
+other products, and how to translate any example from Twilio's documentation.
+
+This module only makes the client. C<< Twilio->new >> returns a
+L<Twilio::Rest::Client>, where every product starts.
 
 =head1 METHODS
 
@@ -64,13 +97,100 @@ L<Twilio::TwiML::MessagingResponse> and L<Twilio::TwiML::FaxResponse>.
   my $client = Twilio->new($username, $password, \%options);
 
 The same as C<< Twilio::Rest::Client->new >>, with the same arguments, and it returns a
-L<Twilio::Rest::Client>. With no arguments, the credentials come from the
-C<TWILIO_ACCOUNT_SID> and C<TWILIO_AUTH_TOKEN> environment variables. See
-L<Twilio::Base::BaseClient> for the options.
+L<Twilio::Rest::Client>. C<$username> and C<$password> are an Account SID and Auth
+Token, or an API key and its secret, which then needs C<account_sid> in the options.
+With no arguments, the credentials come from the C<TWILIO_ACCOUNT_SID> and
+C<TWILIO_AUTH_TOKEN> environment variables. See L<Twilio::Base::BaseClient> for the
+options.
 
 Version 1.x took named arguments (C<< sid => ..., token => ... >>). Those are refused with a
 L<Twilio::Exceptions::ConfigurationException>, so that old code fails at once instead of
 at its first request.
+
+=head1 WHAT IT COVERS
+
+=over
+
+=item * The REST API of Twilio's products: 58 API versions and 577 resources,
+generated from Twilio's OpenAPI specifications. Each resource has its own module,
+documented with every value it takes, in Twilio's words, such as
+L<Twilio::Rest::Api::V2010::Account::Message> for messages.
+
+=item * TwiML for voice, messaging and fax, with every verb and attribute:
+L<Twilio::TwiML::VoiceResponse>, L<Twilio::TwiML::MessagingResponse> and
+L<Twilio::TwiML::FaxResponse>.
+
+=item * Validation of the requests Twilio sends to your webhooks:
+L<Twilio::Security::RequestValidator>.
+
+=item * Access tokens for Twilio's client SDKs, L<Twilio::Jwt::AccessToken>, and
+the older capability tokens.
+
+=item * Authentication with the Auth Token, API keys, OAuth client credentials
+(L<Twilio::CredentialProvider::ClientCredentialProvider>), and Public Key
+Client Validation (L<Twilio::Http::ValidationClient>).
+
+=item * Regions and edges, retries after HTTP 429, paging, file uploads,
+detailed errors (L<Twilio::Exceptions::RestException> and its subclasses), and
+the status code and headers of each answer (L<Twilio::Metadata>).
+
+=back
+
+=head1 HOW IT FOLLOWS THE OFFICIAL LIBRARIES
+
+It has the structure of Twilio's official libraries, which are generated from the
+same specifications: the client, then a product and its version, then the list of
+a resource, the context of one record, and the record. Where the official libraries
+differ, it follows twilio-php: method names, the order of required values, paging,
+and how errors and TwiML are written.
+
+A documentation example becomes Perl with a few rules: names in snake_case,
+required values first as plain arguments, optional values in a hash reference, and
+C<eval> for errors. L<Twilio::Manual/"TRANSLATING TWILIO'S EXAMPLES"> lists them,
+with a PHP and a Python example side by side.
+
+=head1 HOW IT IS BUILT
+
+The modules under C<Twilio::Rest> are generated, as the official libraries' are,
+from Twilio's OpenAPI specifications, by a generator that applies the rules of
+Twilio's own and decides unclear cases the way twilio-php does. Their documentation
+comes from the descriptions in the specifications. The TwiML modules are generated
+from the names in twilio-php.
+
+The rest is written by hand: HTTP, authentication, paging, errors, TwiML, tokens and
+validation. It is ported from twilio-php, with choices from twilio-python and
+twilio-node where those are better. Only requests that Twilio refused with HTTP 429
+are ever sent again, so a message is never sent twice.
+
+=head1 HOW IT IS TESTED
+
+=over
+
+=item * Unit tests for every hand-written module, with a fake HTTP client, so they
+need no account and no network.
+
+=item * Access tokens, capability tokens, webhook signatures and TwiML are compared
+with what twilio-php itself produces.
+
+=item * Each of the 1,563 operations is checked against its specification: its URL,
+method, values and their formats, and the reading of every documented answer.
+
+=item * The hand-written tests of twilio-php, twilio-python and twilio-node were
+compared case by case with these, and the missing cases added.
+
+=item * Optional live tests call the real API.
+
+=item * Every example in L<Twilio::Manual> is run by the tests.
+
+=item * Continuous integration on Linux, macOS and Windows, with Perl 5.16 and the
+latest Perl.
+
+=back
+
+=head1 SEE ALSO
+
+L<Twilio::Manual>, L<Twilio::Rest::Client>, L<Twilio::Base::BaseClient>, and
+Twilio's documentation at L<https://www.twilio.com/docs>.
 
 =head1 COMMUNITY LIBRARY
 
