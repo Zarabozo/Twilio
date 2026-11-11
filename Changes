@@ -10,3 +10,6 @@ Revision history for Twilio
     - with_metadata on every list and context runs an operation and returns
       a Twilio::Metadata with the result and the status code and headers of
       Twilio's answer.
+    - Twilio::Http::ValidationClient signs every request for Public Key Client
+      Validation. Twilio::Jwt::JWT signs and verifies RS256 for it, with the
+      optional module Crypt::OpenSSL::RSA.

@@ -35,7 +35,10 @@ WriteMakefile(
     dynamic_config => 0,
     no_index       => { directory => ['t', 'xt'] },
     prereqs        => {
-      runtime => { recommends => { 'Cpanel::JSON::XS' => '0' } },
+
+      # Crypt::OpenSSL::RSA signs for Public Key Client Validation only. 0.33 and 0.34 work
+      # too; 0.35 to 0.37 refused the PKCS#1 v1.5 padding that RS256 needs.
+      runtime => { recommends => { 'Cpanel::JSON::XS' => '0', 'Crypt::OpenSSL::RSA' => '0.38' } },
       develop => {
         requires => {
           'Perl::Critic'        => '0',

@@ -64,22 +64,28 @@ subtest 'a forged token is refused' => sub {
 
   my $forged = $JWT->urlsafe_b64_encode('{"sub":"someone else","grants":{}}');
   my $none   = $JWT->urlsafe_b64_encode('{"typ":"JWT","alg":"none"}');
-  my $other  = $JWT->urlsafe_b64_encode('{"typ":"JWT","alg":"RS256"}');
+  my $other  = $JWT->urlsafe_b64_encode('{"typ":"JWT","alg":"ES256"}');
+  my $rsa    = $JWT->urlsafe_b64_encode('{"typ":"JWT","alg":"RS256"}');
   my $empty  = $JWT->urlsafe_b64_encode('{"typ":"JWT"}');
 
   my @cases = (
-    ['another payload',         "$header.$forged.$signature",    qr/Signature verification failed/],
-    ['no signature',            "$header.$payload.",             qr/Signature verification failed/],
-    ['a wrong signature',       "$header.$payload.abcd",         qr/Signature verification failed/],
-    ['the none attack',         "$none.$forged.",                qr/Algorithm not supported/],
-    ['the none attack, signed', "$none.$payload.$signature",     qr/Algorithm not supported/],
-    ['another algorithm',       "$other.$payload.$signature",    qr/Algorithm not supported/],
-    ['no algorithm',            "$empty.$payload.$signature",    qr/Empty algorithm/],
-    ['two segments',            "$header.$payload",              qr/Wrong number of segments/],
-    ['four segments',           "$header.$payload.$signature.x", qr/Wrong number of segments/],
-    ['not a token',             'nonsense',                      qr/Wrong number of segments/],
-    ['bad JSON',                'abc.def.ghi',                   qr/Invalid segment encoding/],
-    ['nothing',                 undef,                           qr/Wrong number of segments/],
+    ['another payload',         "$header.$forged.$signature", qr/Signature verification failed/],
+    ['no signature',            "$header.$payload.",          qr/Signature verification failed/],
+    ['a wrong signature',       "$header.$payload.abcd",      qr/Signature verification failed/],
+    ['the none attack',         "$none.$forged.",             qr/Algorithm not supported/],
+    ['the none attack, signed', "$none.$payload.$signature",  qr/Algorithm not supported/],
+    ['another algorithm',       "$other.$payload.$signature", qr/Algorithm not supported/],
+    [
+      'RS256 with a secret',
+      "$rsa.$payload.$signature",
+      qr/RS256 needs (?:an RSA public key|the Perl module)/
+    ],
+    ['no algorithm',  "$empty.$payload.$signature",    qr/Empty algorithm/],
+    ['two segments',  "$header.$payload",              qr/Wrong number of segments/],
+    ['four segments', "$header.$payload.$signature.x", qr/Wrong number of segments/],
+    ['not a token',   'nonsense',                      qr/Wrong number of segments/],
+    ['bad JSON',      'abc.def.ghi',                   qr/Invalid segment encoding/],
+    ['nothing',       undef,                           qr/Wrong number of segments/],
   );
 
   for my $case (@cases) {

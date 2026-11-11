@@ -32,6 +32,7 @@ my @modules = qw(
   Twilio::Http::File
   Twilio::Http::Response
   Twilio::Http::TinyClient
+  Twilio::Http::ValidationClient
   Twilio::InstanceContext
   Twilio::InstanceResource
   Twilio::Json
@@ -51,6 +52,7 @@ my @modules = qw(
   Twilio::Jwt::TaskRouter::TaskQueueCapability
   Twilio::Jwt::TaskRouter::WorkerCapability
   Twilio::Jwt::TaskRouter::WorkspaceCapability
+  Twilio::Jwt::Validation::ClientValidationJwt
   Twilio::ListResource
   Twilio::Metadata
   Twilio::Page
