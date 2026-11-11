@@ -4,9 +4,12 @@ use warnings;
 use Scalar::Util qw(blessed);
 use Test::More;
 
-# Free, read-only calls to the real API, to see that Twilio accepts what t/contract.t shows the
-# classes send. Nothing here sends a message, buys a number or changes the account.
-my %live = map { $_ => $ENV{"TWILIO_LIVE_$_"} } qw(TESTS ACCOUNT_SID API_KEY API_SECRET);
+# Free calls to the real API, to see that Twilio accepts what t/contract.t shows the classes send.
+# Nothing here sends a message, makes a call or buys a number. With TWILIO_LIVE_TESTS=1 alone the
+# calls only read. TWILIO_LIVE_WRITES=1 adds checks that create free resources, whose names start
+# with twilio-perl-live-, and delete them before they end, even when they fail.
+my %live =
+  map { $_ => $ENV{"TWILIO_LIVE_$_"} } qw(TESTS WRITES ACCOUNT_SID API_KEY API_SECRET);
 plan skip_all => 'Set TWILIO_LIVE_TESTS=1 to call the real API' if !$live{TESTS};
 plan skip_all => 'Set TWILIO_LIVE_ACCOUNT_SID, TWILIO_LIVE_API_KEY and TWILIO_LIVE_API_SECRET'
   if grep { !length($live{$_} // q{}) } qw(ACCOUNT_SID API_KEY API_SECRET);
@@ -65,6 +68,19 @@ live(
   }
 );
 
+# The + of an E.164 number must reach Twilio as %2B; sent bare, it would be read as a space.
+live(
+  'a phone number found by its number' => sub {
+    return 'The account has no phone numbers' if !$number;
+
+    my @found = $client->incoming_phone_numbers->read({ phone_number => $number->phone_number });
+    is(scalar(@found), 1,            'one number');
+    is($found[0]->sid, $number->sid, 'the same');
+    like(($http->requests)[-1]{url}, qr/[?&]PhoneNumber=%2B[0-9]+(?:&|\z)/, 'its + encoded');
+    return;
+  }
+);
+
 live(
   'prices, on another host' => sub {
     my $country = $client->pricing->v1->messaging->countries('MX')->fetch;
@@ -112,6 +128,97 @@ live(
   }
 );
 
+live(
+  'OAuth refuses credentials it does not know' => sub {
+    require Twilio::CredentialProvider::NoAuthCredentialProvider;
+    my ($anonymous) = client(undef, undef,
+      { credential_provider => Twilio::CredentialProvider::NoAuthCredentialProvider->new });
+
+    my $token = eval {
+      $anonymous->oauth->v2->token->create('client_credentials',
+        { client_id => 'twilio-perl-live-unknown', client_secret => 'not-a-secret' });
+    };
+    my $error = $@;
+    ok(!$token, 'no token');
+    isa_ok($error, 'Twilio::Exceptions::RestException', 'the error');
+    is(status($error), 401, 'HTTP 401');
+    like(message($error), qr/\A\[HTTP 401\] Unable to create record/, 'its message');
+    return;
+  }
+);
+
+# Names and data with the characters that break form and URL encoding come back as sent.
+live(
+  'special characters in names and data' => sub {
+    return 'Set TWILIO_LIVE_WRITES=1 to create and delete a Sync service' if !$live{WRITES};
+
+    my $sync = $client->sync->v1;
+    my %name = (
+      service  => 'twilio-perl-live-service|friendly&name',
+      document => 'twilio-perl-live-document|unique&name',
+    );
+    my $data = { text => "a&b|c<d=e+f caf\x{e9}", list => [1, 'two'] };
+
+    return with_cleanup(
+      sub {
+        my ($undo) = @_;
+        my $service = $sync->services->create({ friendly_name => $name{service} });
+        $undo->('the Sync service', sub { $sync->services($service->sid)->delete });
+        is($service->friendly_name, $name{service}, 'the service is created with its name');
+
+        my $created = $sync->services($service->sid)
+          ->documents->create({ unique_name => $name{document}, data => $data });
+        $undo->('the document', sub { $created->delete });
+        is($created->unique_name, $name{document}, 'the document is created with its name');
+
+        is($sync->services($service->sid)->fetch->friendly_name,
+          $name{service}, 'the service name comes back');
+        my $fetched = $sync->services($service->sid)->documents($name{document})->fetch;
+        is($fetched->sid, $created->sid, 'the document is found by its name in the URL');
+        is_deeply($fetched->data, $data, 'its data comes back');
+        return;
+      }
+    );
+  }
+);
+
+# A list of objects in a form body is sent as one Types value for each, each one JSON.
+live(
+  'a list in a create' => sub {
+    return 'Set TWILIO_LIVE_WRITES=1 to create and delete an Events sink' if !$live{WRITES};
+
+    my $events = $client->events->v1;
+    my @types  = map { "com.twilio.messaging.message.$_" } qw(delivered sent);
+
+    return with_cleanup(
+      sub {
+        my ($undo) = @_;
+        my $sink = $events->sinks->create(
+          'twilio-perl-live-sink',
+          {
+            destination  => 'https://example.org/twilio-perl-live',
+            method       => 'POST',
+            batch_events => \0,
+          },
+          'webhook'
+        );
+        $undo->('the sink', sub { $events->sinks($sink->sid)->delete });
+        is($sink->sink_type, 'webhook', 'a webhook sink');
+
+        my $subscription = $events->subscriptions->create('twilio-perl-live-subscription',
+          $sink->sid, [map { { type => $_ } } @types]);
+        $undo->('the subscription', sub { $events->subscriptions($subscription->sid)->delete });
+        is($subscription->sink_sid, $sink->sid, 'a subscription to it');
+
+        my @subscribed =
+          sort map { $_->type } $events->subscriptions($subscription->sid)->subscribed_events->read;
+        is_deeply(\@subscribed, \@types, 'with both types');
+        return;
+      }
+    );
+  }
+);
+
 done_testing;
 
 # Each check is a subtest that returns a reason to skip, or nothing. An error from Twilio fails
@@ -124,12 +231,37 @@ sub live {
     my $error = $@;
     if (!$ok) {
       fail('Twilio accepted the requests');
-      diag(blessed($error) && $error->can('get_message') ? $error->get_message : $error);
+      diag(message($error));
       return;
     }
     plan skip_all => $skip if defined $skip;
     return;
   };
+}
+
+# $code gets a function to register how to delete each thing it creates. The deletes run newest
+# first, also when $code dies, and each is a test, so a failed one is never silent.
+sub with_cleanup {
+  my ($code) = @_;
+  my @deletes;
+  my $result;
+  my $ok = eval {
+    $result = $code->(sub { push @deletes, [@_] });
+    1;
+  };
+  my $error = $@;
+  for my $delete (reverse @deletes) {
+    my ($what, $undo) = @{$delete};
+    my $deleted = eval { $undo->(); 1 };
+    ok($deleted, "$what is deleted") or diag(message($@));
+  }
+  die $error if !$ok;    ## no critic (ErrorHandling::RequireCarping)
+  return $result;
+}
+
+sub message {
+  my ($error) = @_;
+  return blessed($error) && $error->can('get_message') ? $error->get_message : $error;
 }
 
 sub status {
