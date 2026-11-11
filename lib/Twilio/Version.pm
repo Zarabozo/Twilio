@@ -4,6 +4,7 @@ use 5.016;
 use warnings;
 
 use Twilio::Exceptions::RestException;
+use Twilio::Exceptions::TwilioServiceException;
 use Twilio::Stream;
 
 our $VERSION = '2.000000';
@@ -41,6 +42,11 @@ sub exception {
   my $content = $response->get_content;
   if (ref $content ne 'HASH') {
     return Twilio::Exceptions::RestException->new($message, $status, $status);
+  }
+
+  # As in twilio-python and twilio-node, the shape of the body decides, whatever the API.
+  if (Twilio::Exceptions::TwilioServiceException->is_problem($content)) {
+    return Twilio::Exceptions::TwilioServiceException->new($message, $content, $status);
   }
 
   $message .= ": $content->{message}" if defined $content->{message};
@@ -150,7 +156,8 @@ the message, as in C<[HTTP 404] Unable to fetch record: Not found>.
 
 Returns a L<Twilio::Exceptions::RestException> for an error response, without
 throwing it. It uses Twilio's code, message, more_info and details when the
-body has them, and the HTTP status code otherwise.
+body has them, and the HTTP status code otherwise. A body in the RFC 9457 form
+gives a L<Twilio::Exceptions::TwilioServiceException> instead.
 
 =head2 read_limits
 
