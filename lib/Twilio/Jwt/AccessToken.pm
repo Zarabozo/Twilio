@@ -8,6 +8,9 @@ use overload
   bool     => sub { 1 },
   fallback => 1;
 
+use Carp         qw(croak);
+use Scalar::Util qw(blessed);
+
 use Twilio::Jwt::JWT;
 
 our $VERSION = '2.000000';
@@ -54,6 +57,13 @@ sub set_region {
 
 sub add_grant {
   my ($self, $grant) = @_;
+
+  # Checked here, as twilio-python does: otherwise the mistake surfaces only in to_jwt, far from
+  # where it was made and as a missing method.
+  if (!blessed($grant) || !$grant->can('get_grant_key') || !$grant->can('get_payload')) {
+    croak 'add_grant takes a grant object, such as Twilio::Jwt::Grants::VideoGrant->new, not '
+      . (defined $grant ? (ref $grant || "'$grant'") : 'undef');
+  }
   push @{ $self->{grants} }, $grant;
   return $self;
 }
@@ -150,7 +160,7 @@ and C<$region> are optional.
 
   $token->add_grant($grant);
 
-Adds a grant and returns the token.
+Adds a grant and returns the token. It dies when C<$grant> is not a grant object.
 
 =head2 add_claim
 
