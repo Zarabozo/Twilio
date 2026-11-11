@@ -305,8 +305,9 @@ In a CGI script:
     exit;
   }
 
-A webhook that receives JSON is validated with its raw body in place of the
-parameters; see L<Twilio::Security::RequestValidator>.
+C<multi_param> keeps every value of a parameter sent more than once, and needs
+L<CGI> 4.08 or later. A webhook that receives JSON is validated with its raw
+body in place of the parameters; see L<Twilio::Security::RequestValidator>.
 
 =head1 READ LISTS
 

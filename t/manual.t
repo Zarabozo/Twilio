@@ -46,7 +46,9 @@ my %EXAMPLE         = examples('lib/Twilio/Manual.pod');
 my %MESSAGE = (sid => 'SM123', account_sid => 'ACxx', from => '+15017122661', to => '+15558675310');
 my %CHECK   = checks();
 my $has_mojo = eval { require Mojolicious; require Test::Mojo; 1 };
-my $has_cgi  = eval { require CGI; 1 };
+
+# multi_param, which the manual uses, came in CGI 4.08; Perl 5.16 ships CGI 3.59.
+my $has_cgi = eval { require CGI; CGI->VERSION('4.08'); 1 };
 
 subtest 'every example has a check, and every check an example' => sub {
   is_deeply([sort keys %EXAMPLE], [sort keys %CHECK], 'the same names');
@@ -83,7 +85,7 @@ subtest 'the examples in Twilio.pm and the README compile' => sub {
   for my $case (@cases) {
     my ($name, $code) = @{$case};
     if ($code =~ /^use CGI;/m && !$has_cgi) {
-      pass("$name needs CGI, which is not installed");
+      pass("$name needs CGI 4.08 or later, which is not installed");
       next;
     }
     my $compiled = eval "no strict; no warnings; sub { $code }";    ## no critic (BuiltinFunctions::ProhibitStringyEval, TestingAndDebugging::ProhibitNoStrict, TestingAndDebugging::ProhibitNoWarnings)
@@ -148,7 +150,7 @@ sub checks {
         ->content_like(qr{<Response><Message>\Q$ROBOTS\E</Message>});
     },
     'reply-sms-cgi' => sub {
-      plan skip_all => 'The CGI module is not installed' if !$has_cgi;
+      plan skip_all => 'CGI 4.08 or later is not installed' if !$has_cgi;
       my $printed = run_cgi(shift, { From => '+15558675310', Body => 'Hi' });
       like($printed, qr{\AContent-Type: text/xml; charset=UTF-8\r?\n}i, 'XML');
       my $reply = 'Thanks for your message, +15558675310. You said: Hi';
@@ -209,7 +211,7 @@ sub checks {
       $t->post_ok('/reply_sms', form => \%form)->status_is(403);
     },
     'validate-cgi' => sub {
-      plan skip_all => 'The CGI module is not installed' if !$has_cgi;
+      plan skip_all => 'CGI 4.08 or later is not installed' if !$has_cgi;
       local $ENV{TWILIO_AUTH_TOKEN}         = 'token';
       local @ENV{qw(HTTP_HOST REQUEST_URI)} = ('example.com', '/sms');
       my %form      = (From => '+15558675310', Body => 'Hi');
