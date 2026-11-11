@@ -212,4 +212,8 @@ Copyright (c) 2026 Francisco Zarabozo.
 This library is free software, released under the MIT License. See the
 F<LICENSE> file in this distribution.
 
+Parts of it are based on Twilio's own MIT-licensed work, twilio-php and the
+twilio-oai specifications. As that license requires, F<LICENSE> also includes
+Twilio's copyright notice for them, as credit.
+
 =cut
