@@ -154,6 +154,51 @@ subtest 'the list is found with no key in meta' => sub {
   is(($version->{page}->records)[0]{sid}, 'A', 'the only list');
 };
 
+subtest 'an answer with no meta at all' => sub {
+  my ($http, $version) = fetched({ items => [{ sid => 'A' }] });
+  my $page = $version->{page};
+
+  is(($page->records)[0]{sid},     'A',   'the list is found');
+  is($page->get_next_page_url,     undef, 'no next page');
+  is($page->get_previous_page_url, undef, 'no previous page');
+};
+
+subtest 'an answer with no list dies' => sub {
+  my ($http, $version) = Local::Resources::build();
+  $http->mock(200, {});
+  my $response = $version->page('GET', '/Items');
+
+  my $ok = eval { Local::TokenPage->new($version, $response); 1 };
+  ok(!$ok, 'as in twilio-php');
+};
+
+# twilio-php's testStreamWithTokenPaginationWithQueryParams: a filter in the first URL stays on
+# every page, and both kinds of limit stop the stream where they should.
+subtest 'a stream keeps the query parameters and honours limits' => sub {
+  my @cases = (
+    ['no limits',      undef, undef, 5],
+    ['a record limit', 3,     undef, 3],
+    ['a page limit',   undef, 1,     2]
+  );
+
+  for my $case (@cases) {
+    my ($name, $limit, $page_limit, $expected) = @{$case};
+    my ($http, $version) =
+      fetched(body({ nextToken => 'token1', pageSize => 2 }, 'A', 'B'), { Status => 'on' });
+    $http->mock(200,
+      body({ nextToken => 'token2', previousToken => 'token0', pageSize => 2 }, 'C', 'D'));
+    $http->mock(200, body({ previousToken => 'token1', pageSize => 1 }, 'E'));
+
+    my $stream = $version->stream($version->{page}, $limit, $page_limit);
+    my $count  = 0;
+    $count++ while $stream->next;
+
+    is($count, $expected, "$name: records");
+    my @urls = map { $_->{url} } $http->requests;
+    ok(!grep({ !/[?]Status=on\b/ } @urls), "$name: every page keeps the filter");
+  }
+};
+
 subtest 'an error answer' => sub {
   my ($http, $version) = Local::Resources::build();
   $http->mock(500, { code => 1, message => 'broken' });

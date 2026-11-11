@@ -215,6 +215,20 @@ subtest 'the playback grant' => sub {
   is_deeply($grant->get_payload, { a => 1 }, 'the payload');
 };
 
+subtest 'a custom claim cannot replace the claims that identify the token' => sub {
+  my $token = token();
+  $token->add_claim(find => 'me');
+  $token->add_claim($_   => 'redefined') for qw(sub iss jti exp grants);
+  my $payload = $JWT->decode($token->to_jwt, $SECRET);
+
+  is($payload->{find}, 'me',        'a new claim is added');
+  is($payload->{sub},  'ACxxxx',    'sub stays the account, as in twilio-php');
+  is($payload->{iss},  'SKxxxx',    'iss stays the key');
+  is($payload->{exp},  $NOW + 3600, 'exp stays');
+  like($payload->{jti}, qr/\ASKxxxx-/, 'jti stays');
+  is_deeply($payload->{grants}, {}, 'grants stay');
+};
+
 # twilio-python's test_add_grant_validates_grant.
 subtest 'add_grant refuses what is not a grant' => sub {
   my @cases = (
