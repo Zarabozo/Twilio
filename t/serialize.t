@@ -79,6 +79,15 @@ subtest 'iso8601_date' => sub {
   is(Twilio::Serialize::iso8601_date($unknown), $unknown, 'an object with no epoch stays the same');
 };
 
+# twilio-php's DifferentTimezone cases: 2017-02-01T17:15:41-0800 is already the 2nd in UTC.
+subtest 'a moment behind UTC is sent as its UTC day and time' => sub {
+  my $moment = Local::Moment->new(1_485_998_141);
+
+  is(Twilio::Serialize::iso8601_date($moment),      '2017-02-02',           'the date');
+  is(Twilio::Serialize::iso8601_date_time($moment), '2017-02-02T01:15:41Z', 'the date and time');
+  is($moment->epoch,                                1_485_998_141, 'the object is not changed');
+};
+
 subtest 'json_object' => sub {
   is(Twilio::Serialize::json_object(undef),              undef,           'undef stays undef');
   is(Twilio::Serialize::json_object('{"a":1}'),          '{"a":1}',       'text stays the same');

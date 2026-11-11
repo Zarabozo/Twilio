@@ -26,6 +26,33 @@ subtest 'URLs join without doubled or missing slashes' => sub {
   isa_ok($domain->get_client, 'Twilio::Rest::Client');
 };
 
+# twilio-php's relativeUriProvider: every mix of leading and trailing slashes on the version and
+# on the path gives the same URI.
+subtest 'slashes on either side never change the URI' => sub {
+  my (undef, $built) = Local::Resources::build();
+  my $domain = $built->get_domain;
+  my %modes  = (normal => '%s', prepend => '/%s', append => '%s/', surround => '/%s/');
+
+  for my $case (['v1', 'path'], ['v2', 'path/to/resource']) {
+    my ($name, $path) = @{$case};
+    for my $version_mode (sort keys %modes) {
+      for my $path_mode (sort keys %modes) {
+        my $version = Twilio::Version->new($domain);
+        $version->{version} = sprintf $modes{$version_mode}, $name;
+        my $uri = sprintf $modes{$path_mode}, $path;
+
+        is($version->relative_uri($uri),
+          "$name/$path", "$path: version $version_mode, path $path_mode");
+        is(
+          $version->absolute_url($uri),
+          "https://api.twilio.com/$name/$path",
+          'and the absolute URL'
+        );
+      }
+    }
+  }
+};
+
 subtest 'a version without a path still builds a URI' => sub {
   my (undef, $version) = Local::Resources::build();
   is(Twilio::Version->new($version->get_domain)->relative_uri('/x'), '/x', 'empty version');

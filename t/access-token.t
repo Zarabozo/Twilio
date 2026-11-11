@@ -215,6 +215,43 @@ subtest 'the playback grant' => sub {
   is_deeply($grant->get_payload, { a => 1 }, 'the payload');
 };
 
+subtest 'a custom claim cannot replace the claims that identify the token' => sub {
+  my $token = token();
+  $token->add_claim(find => 'me');
+  $token->add_claim($_   => 'redefined') for qw(sub iss jti exp grants);
+  my $payload = $JWT->decode($token->to_jwt, $SECRET);
+
+  is($payload->{find}, 'me',        'a new claim is added');
+  is($payload->{sub},  'ACxxxx',    'sub stays the account, as in twilio-php');
+  is($payload->{iss},  'SKxxxx',    'iss stays the key');
+  is($payload->{exp},  $NOW + 3600, 'exp stays');
+  like($payload->{jti}, qr/\ASKxxxx-/, 'jti stays');
+  is_deeply($payload->{grants}, {}, 'grants stay');
+};
+
+# twilio-python's test_add_grant_validates_grant.
+subtest 'add_grant refuses what is not a grant' => sub {
+  my @cases = (
+    ['text',         'GrantRootAccess',                 qr/not 'GrantRootAccess'/],
+    ['a class name', 'Twilio::Jwt::Grants::VideoGrant', qr/not 'Twilio::Jwt::Grants::VideoGrant'/],
+    ['a hash',       { video => {} },                   qr/not HASH/],
+    ['another object', bless({}, 'Local::NotAGrant'),   qr/not Local::NotAGrant/],
+    ['undef',          undef,                           qr/not undef/],
+  );
+
+  for my $case (@cases) {
+    my ($name, $grant, $pattern) = @{$case};
+    my $token = token();
+    my $ok    = eval { $token->add_grant($grant); 1 };
+    my $error = $@;
+
+    ok(!$ok, "$name: refused");
+    like($error, qr/add_grant takes a grant object/, "$name: says why");
+    like($error, $pattern,                           "$name: names what it got");
+    is_deeply($JWT->decode($token->to_jwt, $SECRET)->{grants}, {}, "$name: the token still works");
+  }
+};
+
 subtest 'a grant must name itself' => sub {
   require Twilio::Jwt::Grants::Grant;
   my $grant = Twilio::Jwt::Grants::Grant->new;

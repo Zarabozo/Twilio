@@ -63,6 +63,18 @@ subtest 'transport failures throw' => sub {
   like($error->get_message, qr/Could not connect/, 'message from HTTP::Tiny');
 };
 
+# twilio-php's testFileProtocolThrowsException: a URL may never read a local file.
+subtest 'only http and https URLs are fetched' => sub {
+  my $client = Twilio::Http::TinyClient->new;
+
+  for my $other ('file:///etc/passwd', 'ftp://example.com/x') {
+    my $ok    = eval { $client->request('GET', $other); 1 };
+    my $error = $@;
+    ok(!$ok, "$other: refused");
+    like("$error", qr/Unsupported URL scheme/, 'by HTTP::Tiny, before any I/O');
+  }
+};
+
 done_testing;
 
 package Local::FakeTiny;    ## no critic (Modules::ProhibitMultiplePackages)
