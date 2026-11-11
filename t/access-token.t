@@ -215,6 +215,29 @@ subtest 'the playback grant' => sub {
   is_deeply($grant->get_payload, { a => 1 }, 'the payload');
 };
 
+# twilio-python's test_add_grant_validates_grant.
+subtest 'add_grant refuses what is not a grant' => sub {
+  my @cases = (
+    ['text',         'GrantRootAccess',                 qr/not 'GrantRootAccess'/],
+    ['a class name', 'Twilio::Jwt::Grants::VideoGrant', qr/not 'Twilio::Jwt::Grants::VideoGrant'/],
+    ['a hash',       { video => {} },                   qr/not HASH/],
+    ['another object', bless({}, 'Local::NotAGrant'),   qr/not Local::NotAGrant/],
+    ['undef',          undef,                           qr/not undef/],
+  );
+
+  for my $case (@cases) {
+    my ($name, $grant, $pattern) = @{$case};
+    my $token = token();
+    my $ok    = eval { $token->add_grant($grant); 1 };
+    my $error = $@;
+
+    ok(!$ok, "$name: refused");
+    like($error, qr/add_grant takes a grant object/, "$name: says why");
+    like($error, $pattern,                           "$name: names what it got");
+    is_deeply($JWT->decode($token->to_jwt, $SECRET)->{grants}, {}, "$name: the token still works");
+  }
+};
+
 subtest 'a grant must name itself' => sub {
   require Twilio::Jwt::Grants::Grant;
   my $grant = Twilio::Jwt::Grants::Grant->new;
