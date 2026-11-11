@@ -50,6 +50,9 @@ jobs:
           perl-version: '5'
       # perltidy output changes between releases, so this matches Makefile.PL exactly.
       - run: cpanm --notest Perl::Tidy@20260826 Perl::Critic Test::Pod Test::Pod::Coverage
+      # Optional at run time, so the test matrix skips the RS256 tests; here they run, with the
+      # newest release, through make disttest.
+      - run: cpanm --notest Crypt::OpenSSL::RSA
       # Lets xt/generator/up-to-date.t compare lib with what the generator writes.
       - run: perl tools/fetch-specs.pl
       - run: prove -lr xt
