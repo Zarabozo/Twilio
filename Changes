@@ -3,3 +3,5 @@ Revision history for Twilio
 {{NEXT}}
     - Rewrite from scratch for the current Twilio API. Version 2 shares no
       code or interface with 1.000.
+    - Twilio->new is a shortcut for Twilio::Rest::Client->new, and refuses
+      1.000's named arguments with a clear error.
