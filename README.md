@@ -160,3 +160,7 @@ Bug reports and pull requests are welcome through
 
 [MIT](LICENSE). This is an independent project. It is not written, endorsed or
 supported by Twilio Inc., and "Twilio" is a trademark of Twilio Inc.
+
+Parts of it are based on Twilio's own MIT-licensed work, twilio-php and the
+twilio-oai specifications. As that license requires, [LICENSE](LICENSE) also
+includes Twilio's copyright notice for them, as credit.
