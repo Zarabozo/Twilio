@@ -10,6 +10,7 @@ use overload
 
 use Scalar::Util qw(blessed);
 
+use Twilio::Json;
 use Twilio::Serialize;
 
 our $VERSION = '2.000000';
@@ -79,9 +80,14 @@ sub _element {
   return "$start>$content</$self->{name}>";
 }
 
+# Any other object is text by its own conversion, such as a URI given to <Play>. A hash or an
+# array is written as JSON, the content <Task> takes, as twilio-python does.
 sub _child {
   my ($child) = @_;
-  return blessed($child) ? $child->_element : _escaped($child, \%TEXT_ESCAPE, qr/[&<>\r]/);
+  return $child->_element if blessed($child) && $child->isa(__PACKAGE__);
+
+  my $text = ref $child eq 'HASH' || ref $child eq 'ARRAY' ? Twilio::Json::encode($child) : $child;
+  return _escaped($text, \%TEXT_ESCAPE, qr/[&<>\r]/);
 }
 
 sub _attribute {

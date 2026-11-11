@@ -107,6 +107,28 @@ subtest 'text arrives as characters or as bytes' => sub {
 subtest 'text can be a number or an object that converts' => sub {
   my $element = Twilio::TwiML::GenericNode->new('Say', 0);
   is(body($element), '<Say>0</Say>', 'zero is text');
+
+  my $url = Local::Url->new('https://example.com/a?b=1&c=2');
+  is(
+    body(Twilio::TwiML::GenericNode->new('Play', $url)),
+    '<Play>https://example.com/a?b=1&amp;c=2</Play>',
+    'an object, through its own conversion'
+  );
+  is(
+    body(response()->append($url)),
+    '<Response>https://example.com/a?b=1&amp;c=2</Response>',
+    'also when appended'
+  );
+};
+
+# twilio-python's test_task_dict: a <Task> body given as a hash is its JSON text.
+subtest 'a hash or an array is written as JSON' => sub {
+  my $task = Twilio::TwiML::GenericNode->new('Task', { account_sid => 'AC123', note => 'a<b' });
+  is(body($task), '<Task>{"account_sid":"AC123","note":"a&lt;b"}</Task>', 'a hash');
+  is(body(Twilio::TwiML::GenericNode->new('Task', [1, 'two'])),
+    '<Task>[1,"two"]</Task>', 'an array');
+  is(body(Twilio::TwiML::GenericNode->new('Task', '{"a":1}')),
+    '<Task>{"a":1}</Task>', 'text stays as it is');
 };
 
 done_testing;
@@ -141,4 +163,13 @@ sub read_vectors {
   my $content = do { local $/ = undef; <$handle> };
   close $handle or die "Cannot read $file: $!\n";
   return JSON::PP->new->utf8->decode($content);
+}
+
+package Local::Url;    ## no critic (Modules::ProhibitMultiplePackages)
+
+use overload q{""} => sub { $_[0]{url} }, fallback => 1;
+
+sub new {
+  my ($class, $url) = @_;
+  return bless { url => $url }, $class;
 }

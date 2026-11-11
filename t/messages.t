@@ -337,6 +337,11 @@ subtest 'delete' => sub {
   is($request->{method}, 'DELETE',                   'DELETE');
   is($request->{url},    "$BASE/Messages/$SID.json", 'url');
   ok(!exists $request->{headers}{Accept}, 'no Accept header');
+
+  # twilio-python's test_delete_with_invalid_json: the body of a delete is never read.
+  ($http, $client) = client();
+  $http->mock(200, '<html>deleted</html>');
+  ok($client->messages($SID)->delete, 'a body that is not JSON is still a success');
 };
 
 subtest 'failures of each operation throw and name it' => sub {
