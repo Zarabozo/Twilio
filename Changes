@@ -1,6 +1,6 @@
 Revision history for Twilio
 
-{{NEXT}}
+2.001  2026-11-12
     - Fixes PAUSE indexing, which failed for 2.000000: META now lists each
       module in "provides", so PAUSE no longer stores file paths longer than
       its database allows.
