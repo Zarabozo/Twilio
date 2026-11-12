@@ -8,7 +8,7 @@ use parent 'Twilio::Http::BearerToken::TokenManager';
 use Twilio::CredentialProvider::NoAuthCredentialProvider;
 use Twilio::Exceptions::TwilioException;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 my @TOKEN_OPTIONS = qw(client_id client_secret code redirect_uri audience refresh_token scope);
 

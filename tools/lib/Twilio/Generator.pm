@@ -15,7 +15,7 @@ use Twilio::Generator::Spec;
 use Twilio::Generator::Tree;
 use Twilio::Generator::TwiML;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 my $TWIML_ELEMENTS = dirname(dirname(dirname(__FILE__))) . '/twiml-elements.json';
 

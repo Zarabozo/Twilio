@@ -9,7 +9,7 @@ use Twilio::Exceptions::ConfigurationException;
 use Twilio::Jwt::JWT;
 use Twilio::Jwt::Validation::ClientValidationJwt;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 my @REQUIRED       = qw(account_sid api_key_sid credential_sid private_key);
 my @SIGNED_HEADERS = qw(authorization host);

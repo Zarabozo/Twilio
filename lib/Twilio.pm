@@ -3,7 +3,7 @@ package Twilio;
 use 5.016;
 use warnings;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 # 1.x took named arguments; passed to the 2.x constructor they would become the
 # credentials and fail only at the first request, as a 401 from Twilio.
@@ -34,7 +34,7 @@ Twilio - Community Perl library for the Twilio API
 
 =head1 VERSION
 
-Version 2.000000
+Version 2.001
 
 =head1 SYNOPSIS
 

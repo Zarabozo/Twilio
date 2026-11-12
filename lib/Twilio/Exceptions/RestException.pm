@@ -5,7 +5,7 @@ use warnings;
 
 use parent 'Twilio::Exceptions::TwilioException';
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 sub new {
   my ($class, $message, $code, $status_code, $more_info, $details) = @_;

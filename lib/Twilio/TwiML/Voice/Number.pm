@@ -6,7 +6,7 @@ use warnings;
 
 use parent 'Twilio::TwiML::TwiML';
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 my %ATTRIBUTES = (
   'amd_status_callback'                    => { name => 'amdStatusCallback' },

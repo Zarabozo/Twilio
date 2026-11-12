@@ -72,7 +72,7 @@ my @modules = qw(
 
 use_ok($_) or BAIL_OUT("$_ failed to load") for @modules;
 
-like(Twilio->VERSION, qr/\A\d+\.\d{6}\z/, 'version uses the six-decimal format');
+like(Twilio->VERSION, qr/\A\d+\.\d{3}\z/, 'version uses the three-decimal format');
 
 diag("Testing Twilio $Twilio::VERSION on Perl $] ($^O)");
 

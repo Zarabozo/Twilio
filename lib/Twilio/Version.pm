@@ -7,7 +7,7 @@ use Twilio::Exceptions::RestException;
 use Twilio::Exceptions::TwilioServiceException;
 use Twilio::Stream;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 my $MAX_PAGE_SIZE = 1000;
 

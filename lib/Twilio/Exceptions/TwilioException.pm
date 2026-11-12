@@ -8,7 +8,7 @@ use overload
   bool     => sub { 1 },
   fallback => 1;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 sub new {
   my ($class, $message, $code) = @_;

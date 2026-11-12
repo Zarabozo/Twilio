@@ -3,7 +3,7 @@ package Twilio::Domain;
 use 5.016;
 use warnings;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 sub new {
   my ($class, $client) = @_;

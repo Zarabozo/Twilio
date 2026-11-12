@@ -7,7 +7,7 @@ use parent 'Twilio::CredentialProvider::CredentialProvider';
 
 use Twilio::AuthStrategy::NoAuthStrategy;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 sub new {
   my ($class) = @_;

@@ -13,7 +13,7 @@ use Scalar::Util qw(blessed);
 use Twilio::Json;
 use Twilio::Serialize;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 my $DECLARATION = qq{<?xml version="1.0" encoding="UTF-8"?>\n};
 
