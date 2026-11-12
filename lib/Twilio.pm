@@ -201,6 +201,9 @@ endorsed or supported by Twilio Inc. "Twilio" is a trademark of Twilio Inc.
 
 Please report bugs at L<https://github.com/Zarabozo/Twilio/issues>.
 
+Report security problems privately, by email, as F<SECURITY.md> in this
+distribution explains, not through issues.
+
 =head1 AUTHOR
 
 Francisco Zarabozo <zarabozo@cpan.org>
