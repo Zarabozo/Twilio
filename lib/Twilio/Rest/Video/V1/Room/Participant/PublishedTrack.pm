@@ -4,7 +4,7 @@ package Twilio::Rest::Video::V1::Room::Participant::PublishedTrack;
 use 5.016;
 use warnings;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 package Twilio::Rest::Video::V1::Room::Participant::PublishedTrackList;
 

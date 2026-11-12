@@ -5,7 +5,7 @@ use warnings;
 
 use Carp qw(croak);
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 # read returns a list, so its records are kept in an array reference.
 my %RETURNS_LIST = (read => 1);

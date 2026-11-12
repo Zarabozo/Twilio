@@ -6,7 +6,7 @@ use warnings;
 
 use parent 'Twilio::Domain';
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 sub new {
   my ($class, $client) = @_;

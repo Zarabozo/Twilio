@@ -4,7 +4,7 @@ package Twilio::Rest::Proxy::V1::Service::Session::Participant::MessageInteracti
 use 5.016;
 use warnings;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 package Twilio::Rest::Proxy::V1::Service::Session::Participant::MessageInteractionList;
 

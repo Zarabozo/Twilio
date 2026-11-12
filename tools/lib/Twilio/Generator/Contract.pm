@@ -12,7 +12,7 @@ use Twilio::Generator::Resource;
 use Twilio::Generator::Spec;
 use Twilio::Generator::Types qw(header_option_name option_name);
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 my %IS_PAGE_PARAMETER = map { $_ => 1 } qw(Page PageSize PageToken);
 my %METHOD_FOR_VERB   = (list => 'page');

@@ -11,7 +11,7 @@ use Twilio::Generator::Names qw(snake);
 our @EXPORT_OK =
   qw(field_reader header_option_name json_rule map_prefix option_name request_writer);
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 # An entry with no value is sent or read as it is. A format that is not listed stops generation:
 # guessing would either send a value in a form Twilio rejects, or hide a date behind a string.

@@ -9,7 +9,7 @@ use Twilio::AuthStrategy::TokenAuthStrategy;
 use Twilio::Exceptions::ConfigurationException;
 use Twilio::Http::BearerToken::ApiTokenManager;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 sub new {
   my ($class, $options) = @_;

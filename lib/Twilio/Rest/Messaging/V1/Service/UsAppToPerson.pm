@@ -4,7 +4,7 @@ package Twilio::Rest::Messaging::V1::Service::UsAppToPerson;
 use 5.016;
 use warnings;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 package Twilio::Rest::Messaging::V1::Service::UsAppToPersonList;
 

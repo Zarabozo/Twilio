@@ -5,7 +5,7 @@ use warnings;
 
 use Twilio::Generator::Pod;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 # The layout does not matter here, because the result goes through perltidy.
 sub module {
@@ -24,7 +24,7 @@ package $model->{module};
 use 5.016;
 use warnings;
 
-our \$VERSION = '2.000000';
+our \$VERSION = '2.001';
 END_CODE
 }
 
@@ -531,7 +531,7 @@ use warnings;
 
 use parent '$parent';
 
-our \$VERSION = '2.000000';
+our \$VERSION = '2.001';
 
 sub new {
   my (\$class, \$domain) = \@_;
@@ -586,7 +586,7 @@ use warnings;
 
 use parent 'Twilio::Domain';
 
-our \$VERSION = '2.000000';
+our \$VERSION = '2.001';
 
 sub new {
   my (\$class, \$client) = \@_;
@@ -646,7 +646,7 @@ use warnings;
 
 use parent 'Twilio::Base::BaseClient';
 
-our \$VERSION = '2.000000';
+our \$VERSION = '2.001';
 
 # twilio-php caches these objects. Here each is built on demand: a child holds its parent, so
 # a parent that also held its child would be a reference cycle, which Perl never frees, and

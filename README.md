@@ -155,6 +155,10 @@ The live tests need a Twilio account; `xt/live/smoke.t` explains its switches.
 
 Bug reports and pull requests are welcome through
 [GitHub issues](https://github.com/Zarabozo/Twilio/issues).
+[CONTRIBUTING.md](CONTRIBUTING.md) explains how to work on the library.
+
+Report security problems privately, by email, as [SECURITY.md](SECURITY.md)
+explains, not through issues.
 
 ## License
 

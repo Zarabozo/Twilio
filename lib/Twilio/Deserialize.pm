@@ -8,7 +8,7 @@ use Time::Piece ();
 
 use Twilio::Base::PhoneNumberCapabilities;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 my $SECONDS_PER_MINUTE = 60;
 my $MINUTES_PER_HOUR   = 60;

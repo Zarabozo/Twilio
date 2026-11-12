@@ -7,7 +7,7 @@ use parent 'Twilio::Page';
 
 use Twilio::Exceptions::TwilioException;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 sub new {
   my ($class, @arguments) = @_;

@@ -5,7 +5,7 @@ use warnings;
 
 use Twilio::Exceptions::TwilioException;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 my $PARTS_OF_A_SCOPE = 3;
 

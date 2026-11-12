@@ -9,7 +9,7 @@ use MIME::Base64 ();
 
 use Twilio::Exceptions::TwilioException;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 my $DEFAULT_ALGORITHM = 'HMAC_SHA1';
 my %HMAC              = (HMAC_SHA1 => \&hmac_sha1, HMAC_SHA256 => \&hmac_sha256);

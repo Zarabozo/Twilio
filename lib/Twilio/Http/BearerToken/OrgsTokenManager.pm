@@ -5,7 +5,7 @@ use warnings;
 
 use parent 'Twilio::Http::BearerToken::ApiTokenManager';
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 1;
 

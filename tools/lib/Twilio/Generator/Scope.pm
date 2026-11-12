@@ -3,7 +3,7 @@ package Twilio::Generator::Scope;
 use 5.016;
 use warnings;
 
-our $VERSION = '2.000000';
+our $VERSION = '2.001';
 
 my $NOT_SHIPPED = 'No official Twilio library ships it yet, and the scope follows them';
 my $PROPRIETARY = 'The spec says "Proprietary and protected", so it stays out until Twilio '
