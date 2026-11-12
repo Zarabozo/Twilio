@@ -2,6 +2,7 @@ use 5.016;
 use warnings;
 
 use ExtUtils::MakeMaker 6.64;
+use Module::Metadata 1.000009;
 
 WriteMakefile(
   NAME               => 'Twilio',
@@ -10,7 +11,7 @@ WriteMakefile(
   ABSTRACT_FROM      => 'lib/Twilio.pm',
   LICENSE            => 'mit',
   MIN_PERL_VERSION   => '5.016',
-  CONFIGURE_REQUIRES => { 'ExtUtils::MakeMaker' => '6.64' },
+  CONFIGURE_REQUIRES => { 'ExtUtils::MakeMaker' => '6.64', 'Module::Metadata' => '1.000009' },
   TEST_REQUIRES      => { 'Test::More'          => '0.98' },
   PREREQ_PM          => {
     'Carp'            => '0',
@@ -28,12 +29,19 @@ WriteMakefile(
     'Time::Local'     => '0',
     'Time::Piece'     => '0',
   },
-  test       => { RECURSIVE_TEST_FILES => 1 },
-  clean      => { FILES                => 'Twilio-* cover_db' },
+  test  => { RECURSIVE_TEST_FILES => 1 },
+  clean => { FILES                => 'Twilio-* cover_db' },
+
+  # GNU tar options: on Windows every file would otherwise go in as executable, and with
+  # the local owner's name.
+  dist => {
+    TARFLAGS => '--owner=0 --group=0 --mode=a-x,u=rwX,go=rX -cvf',
+  },
   META_MERGE => {
     'meta-spec'    => { version => 2 },
     dynamic_config => 0,
     no_index       => { directory => ['t', 'xt'] },
+    provides       => versioned_packages(),
     prereqs        => {
 
       # Crypt::OpenSSL::RSA signs for Public Key Client Validation only. 0.33 and 0.34 work
@@ -60,3 +68,19 @@ WriteMakefile(
     },
   },
 );
+
+# With a provides list in META, PAUSE indexes from it and stores each file as written here.
+# Without one, it stores the path under the distribution's directory, and the longest goes
+# over the 128 characters of PAUSE's packages.file: indexing then fails with a database
+# error. Only the package that owns each file is listed, the one with a $VERSION; its List,
+# Context, Instance and Page classes are never installed by name.
+sub versioned_packages {
+  my $found = Module::Metadata->provides(dir => 'lib', version => 2, prefix => 'lib');
+  my %provides;
+  for my $package (grep { defined $found->{$_}{version} } keys %{$found}) {
+    my %entry = %{ $found->{$package} };
+    $entry{file} =~ tr{\\}{/};    # Module::Metadata joins with the native separator
+    $provides{$package} = \%entry;
+  }
+  return \%provides;
+}
