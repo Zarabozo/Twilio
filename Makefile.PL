@@ -33,9 +33,11 @@ WriteMakefile(
   clean => { FILES                => 'Twilio-* cover_db' },
 
   # GNU tar options: on Windows every file would otherwise go in as executable, and with
-  # the local owner's name.
+  # the local owner's name. Under nmake, cmd reads a "/" after a word as a switch, so the
+  # script's path takes DFSEP.
   dist => {
     TARFLAGS => '--owner=0 --group=0 --mode=a-x,u=rwX,go=rX -cvf',
+    PREOP    => '$(PERL) tools$(DFSEP)check-changes.pl $(VERSION) $(DISTVNAME)$(DFSEP)Changes',
   },
   META_MERGE => {
     'meta-spec'    => { version => 2 },
