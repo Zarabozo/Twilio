@@ -11,7 +11,7 @@ use Twilio::Generator::Emit;
 use Twilio::Generator::Resource;
 use Twilio::Generator::Scope;
 
-our $VERSION = '2.001';
+our $VERSION = '2.002';
 
 # Tries every spec in scope and writes nothing, to show what still stops each one. A warning
 # counts as a stop, because it means the generator went on with something it did not understand.

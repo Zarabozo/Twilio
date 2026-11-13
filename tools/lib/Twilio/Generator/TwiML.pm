@@ -8,7 +8,7 @@ use JSON::PP ();
 
 use Twilio::Generator::Pod;
 
-our $VERSION = '2.001';
+our $VERSION = '2.002';
 
 # Every element has these, so an element or attribute with one of these names would replace them.
 my %IS_RESERVED =
@@ -133,7 +133,7 @@ use warnings;
 
 use parent 'Twilio::TwiML::TwiML';
 
-our \$VERSION = '2.001';
+our \$VERSION = '2.002';
 END_CODE
 }
 

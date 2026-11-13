@@ -5,7 +5,7 @@ use warnings;
 
 use Text::Wrap ();
 
-our $VERSION = '2.001';
+our $VERSION = '2.002';
 
 my $POD_WIDTH = 80;
 my $TWILIO    = 'https://www.twilio.com';

@@ -7,7 +7,7 @@ use Exporter qw(import);
 
 our @EXPORT_OK = qw(camelize segment_class singular snake);
 
-our $VERSION = '2.001';
+our $VERSION = '2.002';
 
 # A letter after a digit starts a word, as in Twilio's generator: TrustHub's a2p_brand_registrations
 # are A2PBrandRegistration in twilio-php, twilio-python and twilio-node.
