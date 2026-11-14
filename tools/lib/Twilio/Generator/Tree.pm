@@ -8,7 +8,7 @@ use Carp qw(croak);
 use Twilio::Generator::Names qw(camelize segment_class singular snake);
 use Twilio::Generator::Spec;
 
-our $VERSION = '2.001';
+our $VERSION = '2.002';
 
 my @HTTP_METHODS = qw(get post put patch delete);
 my %IS_HTTP      = map { $_ => 1 } @HTTP_METHODS;

@@ -9,7 +9,7 @@ use JSON::PP       ();
 
 use Twilio::Generator::Scope;
 
-our $VERSION = '2.001';
+our $VERSION = '2.002';
 
 my $VERSION_PREFIX = qr{\A/(?:[0-9]{4}-[0-9]{2}-[0-9]{2}|v[0-9][a-z0-9]*)(?=/)};
 

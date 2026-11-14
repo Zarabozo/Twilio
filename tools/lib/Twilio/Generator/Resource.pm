@@ -10,7 +10,7 @@ use Twilio::Generator::Names qw(camelize snake);
 use Twilio::Generator::Types
   qw(field_reader header_option_name json_rule map_prefix option_name request_writer);
 
-our $VERSION = '2.001';
+our $VERSION = '2.002';
 
 my $FORM_CONTENT      = 'application/x-www-form-urlencoded';
 my $JSON_CONTENT      = 'application/json';
